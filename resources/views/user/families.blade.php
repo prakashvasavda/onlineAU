@@ -86,7 +86,7 @@
                 @foreach($candidates as $candidate_list)
                     <div class="candidate-slide">
                         <div class="candidate-img">
-                            <img src="{{ asset('storage/uploads/'.$candidate_list["profile"]) }}" alt="">
+                            <img src="{{ url('../storage/app/public/uploads/'.$candidate_list["profile"]) }}" alt="">
                         </div>
                         <div class="candidate-detail">
                             <h4>{{ $candidate_list['name'] }}</h4>

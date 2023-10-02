@@ -31,26 +31,32 @@ class FrontRegisterController extends Controller
         $rules = [
             'name'            => "required",
             'age'             => "required",
-            'profile'         => "required",
-            'id_number'       => "required",
-            'contact_number'  => "required",
+            // 'profile'         => "required",
+            // 'id_number'       => "required",
+            // 'contact_number'  => "required",
             'email'           => "required|email|unique:front_users,email",
             'password'        => "required",
-            'gender'          => "required",
-            'marital_status'  => "required",
-            'drivers_license' => "required",
+            // 'gender'          => "required",
+            // 'marital_status'  => "required",
+            // 'drivers_license' => "required",
+            'salary_expectation' => "required",
+            'morning.*'          => "required_without_all",
+            'afternoon.*'        => "required",
+            'evening'            => "required", 
         ];
         $message = [
             'name'            => 'The Name must be required',
             'age'             => 'The Age must be required',
-            'profile'         => 'The Profile must be required',
-            'id_number'       => 'The Id Number must be required',
-            'contact_number'  => 'The Contact Number must be required',
+            // 'profile'         => 'The Profile must be required',
+            // 'id_number'       => 'The Id Number must be required',
+            // 'contact_number'  => 'The Contact Number must be required',
             'email'           => 'The Email must be required',
             'password'        => 'The Password must be required',
-            'gender'          => 'The Gender must be required',
-            'marital_status'  => 'The Marital Status must be required',
-            'drivers_license' => 'The Drivers License must be required',
+            // 'gender'          => 'The Gender must be required',
+            // 'marital_status'  => 'The Marital Status must be required',
+            // 'drivers_license' => 'The Drivers License must be required',
+            'salary_expectation' => 'The salary expectation is required',
+            'morning.*'          => 'The morning hours are required'
         ];
         $validator = Validator::make($data, $rules, $message);
         if ($validator->fails()) {
@@ -109,7 +115,19 @@ class FrontRegisterController extends Controller
                 "updated_at"   => date("Y-m-d H:i:s"),
             ]);
         }
+
+        $status = $this->store_need_babysitter($data, $candidateId);
+
         return redirect()->back()->with('success', 'Registration create successfully.');
+    }
+
+    private function store_need_babysitter($input, $candidateId){
+        $data['family_id']  = $candidateId;
+        $data['morning']    = !empty($input['morning']) ? json_encode($input['morning']) : null;
+        $data['afternoon']  = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
+        $data['evening']    = !empty($input['evening']) ? json_encode($input['evening']) : null;
+        $data['night']      = !empty($input['night']) ? json_encode($input['night']) : null;
+        return NeedsBabysitter::create($data);
     }
 
     public function families()

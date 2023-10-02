@@ -20,6 +20,7 @@ Route::get('user-login', 'LoginController@index')->name('user-login');
 Route::get('candidates', 'FrontRegisterController@candidates')->name('candidates');
 Route::get('candidate-register/{service}', 'FrontRegisterController@index')->name('candidate-register');
 Route::post('store_candidate', 'FrontRegisterController@store_candidate')->name('store_candidate');
+Route::get('about', 'FrontRegisterController@about_candidate')->name('about-candidate');
 
 Route::get('families', 'FrontRegisterController@families')->name('families');
 Route::get('family-register', 'FrontRegisterController@family_register')->name('family-register');
