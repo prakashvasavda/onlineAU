@@ -1,0 +1,122 @@
+@media screen and (max-width:1199px) {
+	.services-section .title-main {margin-bottom: 35px;}
+	.services-section .row .col-xs-12:first-child, .services-section .row .col-xs-12:last-child {margin: 0;}
+	.services-section .row {align-items: stretch;}
+	.service-box {max-width: 100%;}
+	.pricing-card .heading h4 {font-size: 30px;}
+	.pricing-card .price {font-size: 50px;}
+	.pricing-card .heading p {font-size: 15px;}
+}
+@media screen and (min-width:992px) and (max-width:1020px) {
+	.candidate-contact .btn {font-size: 19px;}
+}
+@media screen and (min-width:991px) and (max-width:1025px) {
+	.banner-content h2 {font-size: 56px;}
+}
+@media screen and (min-width:768px) and (max-width:991px) {
+	header {padding: 24px 0;}
+	.single-form-section {padding: 70px 0;}
+	.favorites-section, .pricing-plans, .candidate-info, .services-section, .about-section, .steps-section, .available-candidates, .contact-section {padding: 70px 0;}
+	.title-main h2 {font-size: 36px;}
+	.candidate-content h3, .contact-inner h3, .sign-now h3, .service-name, .title-main h3, 
+	.contact-section form.contact-form h3 {font-size: 30px;}
+	.banner-content h2 {font-size: 52px;}
+	.subTitleBox h3 {font-size: 24px;}
+	.step-contentBox p {font-size: 18px;}
+	.single-form-section .title-main h2~h3 {margin-top: 40px;}
+	.single-form-section .title-main {margin: 0 0 25px;}
+	.pricing-card .btn, .candidate-availability .btn-main .btn, .candidate-contact .btn, .contact-inner .btn, .sign-now .btn, .contact-section form.contact-form input[type="submit"], .single-form-section form.row .btn, .available-candidates .btn-main .btn, .steps-section .btn-main .btn {font-size: 19px;}
+	.available-candidates .btn-main, .steps-section .btn-main {margin-top: 55px;}
+	.subTitleBox {min-width: 100%;}
+	.requirements-list {max-width: 100%;}
+	.review-section h2 {font-size: 27px;}
+	.about-candidate-box h4 {font-size: 18px;}
+	.can-avail-table table td, .can-avail-table table th {font-size: 20px;max-width: 125px;min-width: 125px;}
+}
+@media screen and (max-width:768px) {
+	.menu-wrapper .logo-main {
+		padding: 0;
+	}
+	.menu-wrapper {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	}
+	header {padding: 14px 0;}
+}
+@media screen and (max-width:767px) {
+	.single-form-section {padding: 60px 0;}
+	.favorites-section, .pricing-plans, .candidate-info, .services-section, .about-section, .steps-section, .available-candidates, .contact-section {padding: 60px 0;}
+	.other-option .text:before, .other-option .text:after {width: 36%;}
+	.banner-content h2 {font-size: 50px;}
+	.subTitleBox h3 {font-size: 24px;}
+	.step-contentBox p {font-size: 18px;}
+	.candidate-detail h4 {font-size: 26px;}
+	.step-list {gap: 30px;}
+	.step-item {gap: 15px;}
+	.step-img {text-align: left;}
+	.available-candidates .btn-main, .steps-section .btn-main {margin-top: 45px;}
+	.sign-now {margin-bottom: 40px;/*display: none;*/}
+	.subTitleBox {min-width: 100%;}
+	.requirements-list {max-width: 100%;}
+	.requirements-list li {font-size: 18px;}
+	.requirements-list li:before {min-width: 34px;width: 34px;}
+	.review-section h2 {font-size: 24px;}
+	.review-section p {font-size: 18px;}
+	.about-candidate-box {padding: 15px 10px;}
+	.about-candidate .row .col-xs-12:first-child .about-candidate-box {padding-bottom: 0;}
+	.about-candidate .row .col-xs-12:last-child .about-candidate-box {padding-top: 0;}
+	.about-candidate-box h4 {font-size: 18px;}
+	.about-candidate-box img {width: 36px;height: 36px;}
+	.can-avail-table table td, .can-avail-table table th {font-size: 18px;max-width: 110px;min-width: 110px;}
+	.favorites-section .card img.img-fluid {max-height: unset;aspect-ratio: 1/.8;}
+}
+@media screen and (max-width:575px) {
+	.ftr-menu h5 {font-size: 24px;margin: 0 0 8px;}
+	.ftr-menu li, .ftr-menu a {font-size: 15px;}
+	.cpyRight-section p {font-size: 13px;}
+	.title-main h2 {font-size: 34px;}
+	.candidate-content h3, .contact-inner h3, .sign-now h3, .service-name, .title-main h3, 
+	.contact-section form.contact-form h3 {font-size: 26px;}
+	.single-form-section .title-main h2~h3 {margin-top: 35px;}
+	.single-form-section .title-main {margin: 0 0 20px;}
+	.banner-content h2 {font-size: 40px;}
+	.subTitleBox h3 {font-size: 22px;}
+	.pricing-card .btn, .candidate-availability .btn-main .btn, .candidate-contact .btn, .contact-inner .btn, .sign-now .btn, .contact-section form.contact-form input[type="submit"], .single-form-section form.row .btn, .available-candidates .btn-main .btn, .steps-section .btn-main .btn {font-size: 18px;}
+	.candidate-detail h4 {font-size: 24px;}
+	.candidate-detail h5 {font-size: 20px;}
+	.candidate-slider .slick-arrow {font-size: 18px;width: 35px;height: 35px;}
+	.btn.round {padding-left: 25px;padding-right: 25px;}
+	.requirements-list li:before {min-width: 28px;width: 28px;}
+	.pricing-card .heading h4 {font-size: 26px;}
+	.pricing-card .price {font-size: 40px;}
+}
+@media screen and (max-width:481px) {
+	header {padding: 10px 0;}
+	.menu-wrapper .logo-main img {max-width: 160px;}
+	.cpyRight-section p {font-size: 12px;}
+	.other-option .text:before, .other-option .text:after {width: 30%;}
+	.step-contentBox p {font-size: 17px;}
+	.candidate-detail h4 {font-size: 23px;}
+	.contact-section form.contact-form {padding: 26px 16px;}
+	.contact-info a {font-size: 17px;}
+	.about-content p {font-size: 17px;}
+	.contact-inner p {font-size: 16px;}
+	.review-section h2 {font-size: 22px;}
+	.review-section p {font-size: 17px;}
+	.card-body>* {font-size: 17px;}
+	.pricing-card .features li {font-size: 17px;}
+}
+@media screen and (max-width:370px) {
+	.other-option .text:before, .other-option .text:after {width: 27%;}
+	.candidate-detail h4 {font-size: 21px;}
+	.candidate-detail h5 {font-size: 18px;}
+	.candidate-detail h6 {font-size: 16px;}
+	.pricing-card .btn, .candidate-availability .btn-main .btn, .candidate-contact .btn, .contact-inner .btn, .sign-now .btn, .contact-section form.contact-form input[type="submit"], .single-form-section form.row .btn, .available-candidates .btn-main .btn, .steps-section .btn-main .btn {font-size: 16px;}
+	.btn.round {padding-left: 20px;padding-right: 20px;}
+	.requirements-list li {font-size: 16px;}
+	.requirements-list li:before {min-width: 24px;width: 24px;}
+	.about-candidate-box h4 {font-size: 16px;}
+	.can-avail-table table td, .can-avail-table table th {font-size: 17px;max-width: 110px;min-width: 110px;}
+	.pricing-card .features li {font-size: 16px;}
+}

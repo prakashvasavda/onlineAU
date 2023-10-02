@@ -1,0 +1,20 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 721 144" width="721" height="144">
+	<title>logo</title>
+	<style>
+		tspan { white-space:pre } 
+		.t0 { font-size: 154px;line-height: 1px;fill: #915b44;font-family: "Brittany Signature Regular" } 
+		.t1 { font-size: 52px;line-height: 1px;fill: #e1b796;font-weight: 400;font-family: "Bellefair-Regular", "Bellefair" } 
+		.s2 { fill: #925b43 } 
+	</style>
+	<g id="logo">
+		<text id="Online" style="transform: matrix(1,0,0,1,-8.601,131.498)" >
+			<tspan x="0" y="0" class="t0">Online
+</tspan>
+		</text>
+		<text id="AU-PAIRS" style="transform: matrix(1,0,0,1,372.845,143.446)" >
+			<tspan x="0" y="0" class="t1" dx="0 1 1 1 1 1 1 1 1" >AU-PAIRS
+</tspan>
+		</text>
+		<path id="shape" class="s2" d="m606.5 63.4c-35 0.4-66.1-5-97.4-8.2-35.9-3.6-71.3-0.7-105.5 11.8-8.4 3.1-16.1 7.6-23.4 12.8-1.9 1.4-4.4 5.1-6.7 1.8-2-2.9 1.1-5.3 3.5-7.1 9.4-7.2 19.6-12.8 30.8-16.2 30.2-9 61-12.8 92.6-10.8 29.9 1.9 59.6 6.1 89.5 8.8 34.7 3.1 68.9 0.6 100.8-15.7 7.5-3.9 14.7-8.3 19.7-15.5 3.3-4.7 5.2-9.6 0.2-14.7-2-2-3.2-4.7-1.2-7.4 1.5-2 3.6-3.6 6.4-2.8 3 0.8 4 3.4 4.4 6.2 1.3 9.6-0.4 18.2-7.6 25.3-9.4 9.3-20.4 15.7-32.7 20-24.9 8.5-50.4 13.1-73.4 11.7z"/>
+	</g>
+</svg>
