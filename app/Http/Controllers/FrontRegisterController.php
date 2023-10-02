@@ -114,7 +114,8 @@ class FrontRegisterController extends Controller
 
     public function families()
     {
-        return view('user.families');
+        $candidates = FrontUser::where('role', '!=', 'family')->where('status', '1')->get()->toArray();
+        return view('user.families', compact('candidates'));
     }
 
     public function family_register()

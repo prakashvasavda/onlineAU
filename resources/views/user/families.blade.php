@@ -82,176 +82,27 @@
             <h2>available candidates</h2>
         </div>
         <div class="candidate-slider">
-            <div class="candidate-slide">
-                <div class="candidate-img">
-                    <img src="{{ asset('front/images/candidate-img1.png') }}" alt="">
-                </div>
-                <div class="candidate-detail">
-                    <h4>Jane Doe</h4>
-                    <h5>Lynwood (PTA)</h5>
-                    <h6>Babysitter</h6>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
+            @if(isset($candidates))
+                @foreach($candidates as $candidate_list)
+                    <div class="candidate-slide">
+                        <div class="candidate-img">
+                            <img src="{{ asset('storage/uploads/'.$candidate_list["profile"]) }}" alt="">
+                        </div>
+                        <div class="candidate-detail">
+                            <h4>{{ $candidate_list['name'] }}</h4>
+                            <h5>{{ ucfirst($candidate_list['role']) }}</h5>
+                            <h6>{{ $candidate_list['ethnicity'] }}</h6>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="candidate-slide">
-                <div class="candidate-img">
-                    <img src="{{ asset('front/images/candidate-img1.png') }}" alt="">
-                </div>
-                <div class="candidate-detail">
-                    <h4>Jane Doe</h4>
-                    <h5>Lynwood (PTA)</h5>
-                    <h6>Au-Pair</h6>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="candidate-slide">
-                <div class="candidate-img">
-                    <img src="{{ asset('front/images/candidate-img1.png') }}" alt="">
-                </div>
-                <div class="candidate-detail">
-                    <h4>Jane Doe</h4>
-                    <h5>Lynwood (PTA)</h5>
-                    <h6>Babysitter</h6>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="candidate-slide">
-                <div class="candidate-img">
-                    <img src="{{ asset('front/images/candidate-img1.png') }}" alt="">
-                </div>
-                <div class="candidate-detail">
-                    <h4>Jane Doe</h4>
-                    <h5>Lynwood (PTA)</h5>
-                    <h6>Au-Pair</h6>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="candidate-slide">
-                <div class="candidate-img">
-                    <img src="{{ asset('front/images/candidate-img1.png') }}" alt="">
-                </div>
-                <div class="candidate-detail">
-                    <h4>Jane Doe</h4>
-                    <h5>Lynwood (PTA)</h5>
-                    <h6>Babysitter</h6>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="candidate-slide">
-                <div class="candidate-img">
-                    <img src="{{ asset('front/images/candidate-img1.png') }}" alt="">
-                </div>
-                <div class="candidate-detail">
-                    <h4>Jane Doe</h4>
-                    <h5>Lynwood (PTA)</h5>
-                    <h6>Au-Pair</h6>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="candidate-slide">
-                <div class="candidate-img">
-                    <img src="{{ asset('front/images/candidate-img1.png') }}" alt="">
-                </div>
-                <div class="candidate-detail">
-                    <h4>Jane Doe</h4>
-                    <h5>Lynwood (PTA)</h5>
-                    <h6>Babysitter</h6>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="candidate-slide">
-                <div class="candidate-img">
-                    <img src="{{ asset('front/images/candidate-img1.png') }}" alt="">
-                </div>
-                <div class="candidate-detail">
-                    <h4>Jane Doe</h4>
-                    <h5>Lynwood (PTA)</h5>
-                    <h6>Au-Pair</h6>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="candidate-slide">
-                <div class="candidate-img">
-                    <img src="{{ asset('front/images/candidate-img1.png') }}" alt="">
-                </div>
-                <div class="candidate-detail">
-                    <h4>Jane Doe</h4>
-                    <h5>Lynwood (PTA)</h5>
-                    <h6>Babysitter</h6>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="candidate-slide">
-                <div class="candidate-img">
-                    <img src="{{ asset('front/images/candidate-img1.png') }}" alt="">
-                </div>
-                <div class="candidate-detail">
-                    <h4>Jane Doe</h4>
-                    <h5>Lynwood (PTA)</h5>
-                    <h6>Au-Pair</h6>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+            @endif
         </div>
         <div class="btn-main text-center">
             <a href="javaScript:;" class="btn btn-primary round">view all candidates</a>
