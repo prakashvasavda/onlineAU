@@ -232,4 +232,15 @@ class FrontRegisterController extends Controller
 
         return redirect()->back()->with('success', 'Registration create successfully.');
     }
+
+    public function candidate_detail($candidateId){
+        $data['menu'] = 'candidate detail';
+        $data['candidate'] = FrontUser::where('id', $candidateId)->where('status', '1')->first();
+        $data['availability'] = NeedsBabysitter::where('family_id', $candidateId)->first();
+        $data['morning_availability']   = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
+        $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
+        $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
+        $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        return view('user.candidate_detail', $data);
+    }
 }

@@ -84,23 +84,25 @@
         <div class="candidate-slider">
             @if(isset($candidates))
                 @foreach($candidates as $candidate_list)
-                    <div class="candidate-slide">
-                        <div class="candidate-img">
-                            <img src="{{ url('../storage/app/public/uploads/'.$candidate_list["profile"]) }}" alt="">
-                        </div>
-                        <div class="candidate-detail">
-                            <h4>{{ $candidate_list['name'] }}</h4>
-                            <h5>{{ ucfirst($candidate_list['role']) }}</h5>
-                            <h6>{{ $candidate_list['ethnicity'] }}</h6>
-                            <div class="rating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
+                    <a href="{{ url('candidate-detail/'. $candidate_list['id']) }}">
+                        <div class="candidate-slide">
+                            <div class="candidate-img">
+                                <img src="{{ url('../storage/app/public/uploads/'.$candidate_list["profile"]) }}" alt="">
+                            </div>
+                            <div class="candidate-detail">
+                                <h4>{{ $candidate_list['name'] }}</h4>
+                                <h5>{{ ucfirst($candidate_list['role']) }}</h5>
+                                <h6>{{ $candidate_list['ethnicity'] }}</h6>
+                                <div class="rating">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             @endif
         </div>
