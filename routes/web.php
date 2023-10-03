@@ -22,7 +22,6 @@ Route::get('candidate-register/{service}', 'FrontRegisterController@index')->nam
 Route::post('store_candidate', 'FrontRegisterController@store_candidate')->name('store_candidate');
 Route::get('candidate-detail/{id}', 'FrontRegisterController@candidate_detail')->name('candidate-detail');
 
-
 Route::get('families', 'FrontRegisterController@families')->name('families');
 Route::get('family-register', 'FrontRegisterController@family_register')->name('family-register');
 Route::post('store_family', 'FrontRegisterController@store_family')->name('store_family');
@@ -35,6 +34,7 @@ Route::post('create-new-password', 'LoginController@create_new_password')->name(
 Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');
 
 Route::group(['middleware' => 'frontendauth'], function () {
+    Route::get('pricing', 'HomeController@pricing')->name('pricing');
 });
 Auth::routes();
 

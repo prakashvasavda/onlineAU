@@ -11,7 +11,10 @@
                         <li><a href="#">about US</a></li>
                         <li class="{{ request()->is('candidates') ? 'active' : '' }}"><a href="{{ route('candidates') }}">candidates</a></li>
                         <li class="{{ request()->is('families') ? 'active' : '' }} {{ request()->is('family-register') || request()->is('candidate-detail/*') ? 'active' : '' }}"><a href="{{ route('families') }}">family</a></li>
-                        <li lass="{{ request()->is('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Contact us</a></li>
+                        <li class="{{ request()->is('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Contact us</a></li>
+                        @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
+                            <li class="{{ request()->is('pricing') ? 'active' : '' }}"><a href="{{ route('pricing') }}">Pricing</a></li>
+                        @endif
                         @if(session()->has('frontUser'))
                             <li><a href="{{ route('user-logout') }}">Logout</a></li>
                         @else
