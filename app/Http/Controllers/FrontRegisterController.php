@@ -9,24 +9,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Validator;
+use App\CandidateReview;
+use Session;
+use DB;
+use App\CandidateFavourite;
 
-class FrontRegisterController extends Controller
-{
-    public function index($type)
-    {
+class FrontRegisterController extends Controller{
+    public function index($type){
         if (session()->has('frontUser')) {
             return redirect()->route('home');
         }
         return view('user.register');
     }
 
-    public function candidates()
-    {
+    public function candidates(){
         return view('user.candidates');
     }
 
-    public function store_candidate(Request $request)
-    {
+    public function store_candidate(Request $request){
         $data  = $request->all();
         $rules = [
             'name'            => "required",
@@ -241,6 +241,19 @@ class FrontRegisterController extends Controller
         $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
         $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        
+        $data['reviews'] = CandidateReview::select(['review_note', 'review_rating_count'])
+            ->selectSub(function ($query) use ($candidateId) {
+                $query->selectRaw('COUNT(*)')
+                    ->from('candidate_reviews')
+                    ->where('candidate_id', $candidateId);
+            }, 'total_reviews')
+            ->where('candidate_id', $candidateId)
+            ->latest('created_at')
+            ->first();
+
+        $data['loginUser'] = Session::has('frontUser') ? Session::get('frontUser') : null;
+        $data['favourite'] = CandidateFavourite::where('candidate_id', $candidateId)->where('family_id',  $data['loginUser']->id)->first();
         return view('user.candidate_detail', $data);
     }
 }

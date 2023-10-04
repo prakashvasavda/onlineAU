@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+@include('flash.front-message')
 <div class="candidate-info">
     <div class="container">
         <div class="row">
@@ -20,7 +21,7 @@
             </div>
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div class="candidate-contact">
-                    <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0"><i class="fa-regular fa-heart"></i>Save</a></p>
+                    <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="CandidateFavourite()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
                     <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                 </div>
             </div>
@@ -30,31 +31,52 @@
 
 <div class="review-section">
     <div class="container">
-        <h2><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>12 Reviews</h2>
-        <p>LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET  DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX  EA COMMODO CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU  FUGIAT NULLA PARIATUR. EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT  MOLLIT ANIM ID EST LABORUM.</p>
+        <h2>
+            @if(isset($reviews->review_rating_count))
+                @for($i=0; $i< $reviews->review_rating_count; $i++)
+                     <i class="fa-solid fa-star"></i>
+                @endfor
+            @else
+                @for($i=0; $i< 5; $i++)
+                    <i class="far fa-star"></i>
+                @endfor
+            @endif
+            <span>{{ isset($reviews->total_reviews) ? $reviews->total_reviews : 0 }} Reviews</span>
+        </h2>
+
+        <p>{{ isset($reviews->review_note) ? $reviews->review_note : 'No review' }}</p>
         <!-- write-review-form -->
         <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 me-auto">
-            <form class="mt-5">
+            <form class="mt-5" name="candidate_review_form" action="{{ route('store-candidate-reviews') }}" enctype="multipart/form-data" method="post">
+                @csrf
+                <input type="hidden" name="reviewer_id" value="{{ isset($loginUser->role) && $loginUser->role == 'family' ? $loginUser->id : null }}">
+                <input type="hidden" name="reviewer_role" value="{{ isset($loginUser->role) && $loginUser->role == 'family' ? $loginUser->role : null }}">
+                <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
                 <div class="form-input mb-2">
                     <div class="rating-star">
-                        <input type="radio" name="rating" id="rating-5">
+                        <input type="radio" name="review_rating_count" id="rating-5" value="5">
                         <label for="rating-5"></label>
-                        <input type="radio" name="rating" id="rating-4">
+                        <input type="radio" name="review_rating_count" id="rating-4" value="4">
                         <label for="rating-4"></label>
-                        <input type="radio" name="rating" id="rating-3">
+                        <input type="radio" name="review_rating_count" id="rating-3" value="3">
                         <label for="rating-3"></label>
-                        <input type="radio" name="rating" id="rating-2">
+                        <input type="radio" name="review_rating_count" id="rating-2" value="2">
                         <label for="rating-2"></label>
-                        <input type="radio" name="rating" id="rating-1">
+                        <input type="radio" name="review_rating_count" id="rating-1" value="1"> 
                         <label for="rating-1"></label>
                     </div>
                 </div>
                 <div class="form-input mb-2">
                     <label for="write_review">Review</label>
-                    <textarea id="write_review" name="write_review" placeholder="" class="form-field" rows="5" required></textarea>
+                    <textarea id="review_note" name="review_note" placeholder="" class="form-field" rows="5" @error('review_note') is-invalid @enderror"></textarea>
+                    @error('review_note')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-input-btn">
-                    <input type="submit" class="btn btn-primary round" value="Submit">
+                    <input type="submit" class="btn btn-primary round" value="Submit" {{ isset($reviews) ? 'disabled' : '' }}>
                 </div>
             </form>
         </div>
@@ -169,75 +191,99 @@
                         <th>Su</th>
                     </tr>
                     <tr>
-                        <th>06:00 - 12:00</th>
+                        <th>Morning</th>
                         <td>
-                            <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ in_array("mo_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ in_array("mo_morning", $morning_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="morning[]" value="tu_morning" id="" {{ in_array("tu_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="morning[]" value="tu_morning" id="" {{ in_array("tu_morning", $morning_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="morning[]" value="we_morning" id="" {{ in_array("we_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="morning[]" value="we_morning" id="" {{ in_array("we_morning", $morning_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="morning[]" value="th_morning" id="" {{ in_array("th_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="morning[]" value="th_morning" id="" {{ in_array("th_morning", $morning_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="morning[]" value="fr_morning" id="" {{ in_array("fr_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="morning[]" value="fr_morning" id="" {{ in_array("fr_morning", $morning_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="morning[]" value="sa_morning" id="" {{ in_array("sa_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="morning[]" value="sa_morning" id="" {{ in_array("sa_morning", $morning_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="morning[]" value="su_morning" id="" {{ in_array("su_morning", $morning_availability ) ? 'checked' : '' }}></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>12:00 - 17:00</th>
-                        <td>
-                            <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ in_array("mo_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                        </td>
-                        <td>
-                            <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" id="" {{ in_array("tu_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                        </td>
-                        <td>
-                            <label><input type="checkbox" name="afternoon[]" value="we_afternoon" id="" {{ in_array("we_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                        </td>
-                        <td>
-                            <label><input type="checkbox" name="afternoon[]" value="th_afternoon" id="" {{ in_array("th_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                        </td>
-                        <td>
-                            <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" id="" {{ in_array("fr_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                        </td>
-                        <td>
-                            <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" id="" {{ in_array("sa_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                        </td>
-                        <td>
-                            <label><input type="checkbox" name="afternoon[]" value="su_afternoon" id="" {{ in_array("su_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="morning[]" value="su_morning" id="" {{ in_array("su_morning", $morning_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                     </tr>
                     <tr>
-                        <th>17:00 - 22:00</th>
+                        <th>Afternoon</th>
                         <td>
-                            <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ in_array("mo_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ in_array("mo_afternoon", $afternoon_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="evening[]" value="tu_evening" id="" {{ in_array("tu_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" id="" {{ in_array("tu_afternoon", $afternoon_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="evening[]" value="we_evening" id="" {{ in_array("we_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="afternoon[]" value="we_afternoon" id="" {{ in_array("we_afternoon", $afternoon_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="evening[]" value="th_evening" id="" {{ in_array("th_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="afternoon[]" value="th_afternoon" id="" {{ in_array("th_afternoon", $afternoon_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="evening[]" value="fr_evening" id="" {{ in_array("fr_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" id="" {{ in_array("fr_afternoon", $afternoon_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="evening[]" value="sa_evening" id="" {{ in_array("sa_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" id="" {{ in_array("sa_afternoon", $afternoon_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                         <td>
-                            <label><input type="checkbox" name="evening[]" value="su_evening" id="" {{ in_array("su_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                            <label><input type="checkbox" name="afternoon[]" value="su_afternoon" id="" {{ in_array("su_afternoon", $afternoon_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Evening</th>
+                        <td>
+                            <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ in_array("mo_evening", $evening_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="evening[]" value="tu_evening" id="" {{ in_array("tu_evening", $evening_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="evening[]" value="we_evening" id="" {{ in_array("we_evening", $evening_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="evening[]" value="th_evening" id="" {{ in_array("th_evening", $evening_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="evening[]" value="fr_evening" id="" {{ in_array("fr_evening", $evening_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="evening[]" value="sa_evening" id="" {{ in_array("sa_evening", $evening_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="evening[]" value="su_evening" id="" {{ in_array("su_evening", $evening_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                    </tr>
+                     <tr>
+                        <th>Night</th>
+                        <td>
+                            <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ in_array("mo_night", $night_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="night[]" value="tu_night" id="" {{ in_array("tu_night", $night_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="night[]" value="we_night" id="" {{ in_array("we_night", $night_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="night[]" value="th_night" id="" {{ in_array("th_night", $night_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="night[]" value="fr_night" id="" {{ in_array("fr_night", $night_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="night[]" value="sa_night" id="" {{ in_array("sa_night", $night_availability ) ? 'checked' : 'disabled' }}></label>
+                        </td>
+                        <td>
+                            <label><input type="checkbox" name="night[]" value="su_night" id="" {{ in_array("su_night", $night_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
                     </tr>
                 </tbody>
@@ -250,10 +296,30 @@
     </div>
 </div>
 @endsection
+
 @section('script')
+@parent
 <script type="text/javascript">
-    $(document).ready(function(){
-        alert("here");
-    });
+function CandidateFavourite(){
+    var family_id = {{ isset($loginUser->role) && $loginUser->role == 'family' ? $loginUser->id : null }};
+    if(family_id && !$("#candidate_favourite").hasClass("fa-solid")){
+        $.ajax({
+            url: "{{ url('store-candidate-favourite') }}",
+            type: "POST",
+            data: {
+                _token: '{{ csrf_token() }}', 
+                candidate_id: {{ $candidate->id }},
+                candidate_role: '{{ $candidate->role }}',
+                family_id: {{ $loginUser->id }},
+            },
+            success: function(response) {
+                if(response.message == "success"){
+                    $('#candidate_favourite').removeClass("fa-regular").addClass("fa-solid");
+                }
+            }
+        });
+    }
+}
+
 </script>
 @endsection

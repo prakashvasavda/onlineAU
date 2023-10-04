@@ -31,6 +31,13 @@ Route::post('check-user', 'LoginController@check_user')->name('check-user');
 Route::get('reset-password/{email}', 'LoginController@reset_password')->name('reset-password');
 Route::post('create-new-password', 'LoginController@create_new_password')->name('create-new-password');
 
+Route::get('candidate-detail/{id}', 'FrontRegisterController@candidate_detail')->name('candidate-detail');
+Route::post('store-candidate-reviews', 'FrontCandidateController@store_candidate_reviews')->name('store-candidate-reviews');
+Route::post('store-candidate-favourite', 'FrontCandidateController@store_candidate_favourite')->name('store-candidate-favourite');
+
+
+
+
 Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');
 
 Route::group(['middleware' => 'frontendauth'], function () {
