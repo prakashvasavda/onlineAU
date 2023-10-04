@@ -284,7 +284,7 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function(){
-        alert("here");
+        
     });
 </script>
 @endsection

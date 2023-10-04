@@ -20,7 +20,6 @@ Route::get('user-login', 'LoginController@index')->name('user-login');
 Route::get('candidates', 'FrontRegisterController@candidates')->name('candidates');
 Route::get('candidate-register/{service}', 'FrontRegisterController@index')->name('candidate-register');
 Route::post('store_candidate', 'FrontRegisterController@store_candidate')->name('store_candidate');
-Route::get('candidate-detail/{id}', 'FrontRegisterController@candidate_detail')->name('candidate-detail');
 
 Route::get('families', 'FrontRegisterController@families')->name('families');
 Route::get('family-register', 'FrontRegisterController@family_register')->name('family-register');
@@ -31,7 +30,7 @@ Route::post('check-user', 'LoginController@check_user')->name('check-user');
 Route::get('reset-password/{email}', 'LoginController@reset_password')->name('reset-password');
 Route::post('create-new-password', 'LoginController@create_new_password')->name('create-new-password');
 
-Route::get('candidate-detail/{id}', 'FrontRegisterController@candidate_detail')->name('candidate-detail');
+Route::get('candidate-detail/{id}', 'FrontCandidateController@candidate_detail')->name('candidate-detail');
 Route::post('store-candidate-reviews', 'FrontCandidateController@store_candidate_reviews')->name('store-candidate-reviews');
 Route::post('store-candidate-favourite', 'FrontCandidateController@store_candidate_favourite')->name('store-candidate-favourite');
 

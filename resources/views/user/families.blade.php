@@ -115,6 +115,6 @@
 @section('script')
 @parent
 <script type="text/javascript">
-    alert("true");
+   
 </script>
 @endsection

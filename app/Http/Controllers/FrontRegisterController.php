@@ -32,7 +32,7 @@ class FrontRegisterController extends Controller{
             'name'            => "required",
             'age'             => "required",
             // 'profile'         => "required",
-            // 'id_number'       => "required",
+            'id_number'       => "required",
             // 'contact_number'  => "required",
             'email'           => "required|email|unique:front_users,email",
             'password'        => "required",
@@ -42,21 +42,25 @@ class FrontRegisterController extends Controller{
             'salary_expectation' => "required",
             'morning.*'          => "required_without_all",
             'afternoon.*'        => "required",
-            'evening'            => "required", 
+            'evening.*'          => "required",
+            'night.*'            => "required", 
         ];
         $message = [
-            'name'            => 'The Name must be required',
-            'age'             => 'The Age must be required',
+            'name'            => 'The Name field isrequired',
+            'age'             => 'The Age field is required',
             // 'profile'         => 'The Profile must be required',
-            // 'id_number'       => 'The Id Number must be required',
+            'id_number'       => 'The Id Number field is required',
             // 'contact_number'  => 'The Contact Number must be required',
-            'email'           => 'The Email must be required',
-            'password'        => 'The Password must be required',
+            'email'           => 'The Email field is required',
+            'password'        => 'The Password field is required',
             // 'gender'          => 'The Gender must be required',
             // 'marital_status'  => 'The Marital Status must be required',
             // 'drivers_license' => 'The Drivers License must be required',
             'salary_expectation' => 'The salary expectation is required',
-            'morning.*'          => 'The morning hours are required'
+            'morning.*'          => 'The morning hours are required',
+            'afternoon.*'        => 'The afternoon hours are required',
+            'evening.*'          => 'The evening hours are required',
+            'night.*'            => 'The night hours are required',
         ];
         $validator = Validator::make($data, $rules, $message);
         if ($validator->fails()) {
@@ -141,10 +145,8 @@ class FrontRegisterController extends Controller{
         return view('user.family_register');
     }
 
-    public function store_family(Request $request)
-    {
+    public function store_family(Request $request){
         $data = $request->all();
-
         $rules = [
             'name'                          => "required",
             'age'                           => "required",
@@ -207,7 +209,7 @@ class FrontRegisterController extends Controller{
             'describe_kids'                 => $request->describe_kids,
             'family_types_babysitter'       => $request->family_types_babysitter,
             'family_location'               => $request->family_location,
-            'family_babysitter_comfortable' => $request->family_babysitter_comfortable,
+            'family_babysitter_comfortable' => isset($request->family_babysitter_comfortable) ? json_encode($request->family_babysitter_comfortable) : null,
             'family_profile_see'            => $request->family_profile_see,
             'family_notifications'          => $request->family_notifications,
             'salary_expectation'            => $request->salary_expectation,
@@ -231,29 +233,5 @@ class FrontRegisterController extends Controller{
         ]);
 
         return redirect()->back()->with('success', 'Registration create successfully.');
-    }
-
-    public function candidate_detail($candidateId){
-        $data['menu'] = 'candidate detail';
-        $data['candidate'] = FrontUser::where('id', $candidateId)->where('status', '1')->first();
-        $data['availability'] = NeedsBabysitter::where('family_id', $candidateId)->first();
-        $data['morning_availability']   = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
-        
-        $data['reviews'] = CandidateReview::select(['review_note', 'review_rating_count'])
-            ->selectSub(function ($query) use ($candidateId) {
-                $query->selectRaw('COUNT(*)')
-                    ->from('candidate_reviews')
-                    ->where('candidate_id', $candidateId);
-            }, 'total_reviews')
-            ->where('candidate_id', $candidateId)
-            ->latest('created_at')
-            ->first();
-
-        $data['loginUser'] = Session::has('frontUser') ? Session::get('frontUser') : null;
-        $data['favourite'] = CandidateFavourite::where('candidate_id', $candidateId)->where('family_id',  $data['loginUser']->id)->first();
-        return view('user.candidate_detail', $data);
     }
 }

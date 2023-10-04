@@ -12,7 +12,7 @@
         <input type="hidden" value="{{ Route::current()->parameter('service') }}" name="role">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="name">Full Name</label>
+                <label for="name">Full Name <span class="text-danger">*</span></label>
                 <input type="text" id="name" name="name" placeholder="" class="form-field @error('name') is-invalid @enderror" value="{{ old('name') }}" >
                 @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -23,7 +23,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="age">Age</label>
+                <label for="age">Age <span class="text-danger">*</span></label>
                 <input type="number" id="age" name="age" placeholder="" class="form-field @error('age') is-invalid @enderror"  value="{{ old('age') }}">
                 @error('age')
                     <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="id_number">ID Number</label>
+                <label for="id_number">ID Number <span class="text-danger">*</span></label>
                 <input type="number" id="id_number" name="id_number" placeholder="" class="form-field @error('id_number') is-invalid @enderror"  value="{{ old('id_number') }}">
                 @error('id_number')
                     <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="email">Email Address</label>
+                <label for="email">Email Address <span class="text-danger">*</span></label>
                 <input type="mail" id="email" name="email" placeholder="" class="form-field @error('email') is-invalid @enderror"  value="{{ old('email') }}">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -89,7 +89,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="area">Area Pin</label>
+                <label for="area">Area Pin <span class="text-danger">*</span></label>
                 <input type="number" id="area" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror"  value="{{ old('area') }}">
                {{--  <select class="js-example-basic-single" name="state">
                     <option value="AL">Alabama</option>
@@ -355,7 +355,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="day_hour">What are your available days and hours</label>
+                <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
                 <div class="table-responsive">
                     <table class="table table-borderless table-sm">
                         <tbody>
@@ -468,7 +468,7 @@
                         </tbody>
                     </table>
                 </div>
-                @error('salary_expectation')
+                @error('morning')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -478,8 +478,13 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="" class="form-field" >
+                <label for="password">Password <span class="text-danger">*</span></label>
+                <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" >
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="col-12">
@@ -492,8 +497,8 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.js-example-basic-single').select2({width: '100%'});      
-    });
+    // $(document).ready(function(){
+    //     $('.js-example-basic-single').select2({width: '100%'});      
+    // });
 </script>
 @endsection

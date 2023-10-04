@@ -24,8 +24,8 @@
   </button>
 </div>
 @endif
-@if ($message = Session::get('errorM'))
-<div class="alert alert-secondary alert-dismissible" role="alert">
+@if ($message = Session::get('error'))
+<div class="alert alert-danger alert-dismissible" role="alert">
   <p><strong>Error!</strong> {{ $message }}
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
   </button>
