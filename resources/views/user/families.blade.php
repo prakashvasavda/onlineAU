@@ -114,6 +114,4 @@
 @endsection
 @section('script')
 @parent
-<script type="text/javascript">
-</script>
 @endsection

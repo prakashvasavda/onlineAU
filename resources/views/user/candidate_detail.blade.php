@@ -65,15 +65,20 @@
                         <input type="radio" name="review_rating_count" id="rating-1" value="1"> 
                         <label for="rating-1"></label>
                     </div>
+                    @if ($errors->has('review_rating_count'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('review_rating_count') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="form-input mb-2">
                     <label for="write_review">Review</label>
-                    <textarea id="review_note" name="review_note" placeholder="" class="form-field" rows="5" @error('review_note') is-invalid @enderror"></textarea>
-                    @error('review_note')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                    <textarea id="review_note" name="review_note" placeholder="" class="form-field" rows="5"></textarea>
+                    @if ($errors->has('review_note'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('review_note') }}</strong>
                         </span>
-                    @enderror
+                    @endif
                 </div>
                 <div class="form-input-btn">
                     <input type="submit" class="btn btn-primary round" value="Submit" {{ isset($reviews) ? 'disabled' : '' }}>
@@ -310,7 +315,7 @@ function CandidateFavourite(){
                 _token: '{{ csrf_token() }}', 
                 candidate_id: {{ $candidate->id }},
                 candidate_role: '{{ $candidate->role }}',
-                family_id: {{ $loginUser->id }},
+                family_id: family_id,
             },
             success: function(response) {
                 if(response.message == "success"){

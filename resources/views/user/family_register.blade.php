@@ -4,6 +4,7 @@
 
 
 
+
 <div class="single-form-section">
     <div class="container">
         <div class="title-main">
@@ -11,28 +12,29 @@
             <h3>sign up</h3>
         </div>
         @include('flash.front-message')
+
         <form class="row" name="frm" action="{{ route('store_family') }}" enctype="multipart/form-data" method="post">
             @csrf
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label>Profile Photo</label>
+                    <label>Profile Photo <span class="text-danger">*</span></label>
                     <div class="box">
                         <div class="js--image-preview"></div>
                         <div class="upload-options">
-                            <label><input type="file" id="profile" name="profile" class="image-upload" accept="image/*" required></label>
-                            @error('profile')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <label><input type="file" id="profile" name="profile" class="image-upload" accept="image/*" ></label>
                         </div>
                     </div>
                 </div>
+                @if ($errors->has('profile'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('profile') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input mb-3">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="" class="form-field @error('name') is-invalid @enderror" required value="{{ old('name') }}">
+                    <label for="name">Full Name <span class="text-danger">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="" class="form-field @error('name') is-invalid @enderror"  value="{{ old('name') }}">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -42,8 +44,8 @@
                 </div>
                 <div class="form-input mb-3">
                     <div class="form-input">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="" class="form-field @error('email') is-invalid @enderror" required value="{{ old('email') }}">
+                        <label for="email">Email Address <span class="text-danger">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="" class="form-field @error('email') is-invalid @enderror">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -52,8 +54,8 @@
                     </div>
                 </div>
                 <div class="form-input">
-                    <label for="email">Password</label>
-                    <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" required value="">
+                    <label for="email">Password </label>
+                    <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror"  value="">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -63,8 +65,8 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="address">Your Address</label>
-                    <input type="text" id="address" name="family_address" placeholder="" class="form-field @error('family_address') is-invalid @enderror" required value="{{ old('family_address') }}">
+                    <label for="address">Your Address <span class="text-danger">*</span></label>
+                    <input type="text" id="address" name="family_address" placeholder="" class="form-field @error('family_address') is-invalid @enderror"  value="{{ old('family_address') }}">
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
@@ -77,8 +79,8 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="city">City</label>
-                    <input type="text" id="city" name="family_city" placeholder="" class="form-field @error('family_city') is-invalid @enderror" required value="{{ old('family_city') }}">
+                    <label for="city">City <span class="text-danger">*</span></label>
+                    <input type="text" id="city" name="family_city" placeholder="" class="form-field @error('family_city') is-invalid @enderror"  value="{{ old('family_city') }}">
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
@@ -91,8 +93,8 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="language">Add Language</label>
-                    <select id="language" name="home_language" multiple class="form-field @error('home_language') is-invalid @enderror" required>
+                    <label for="language">Add Language <span class="text-danger">*</span></label>
+                    <select id="language" name="home_language" multiple class="form-field @error('home_language') is-invalid @enderror" >
                         <option value="" disabled="disabled">Select</option>
                         <option value="English">English</option>
                         <option value="Afrikaans">Afrikaans</option>
@@ -125,8 +127,8 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="no_children">Number of children</label>
-                    <input type="number" id="no_children" name="no_children" placeholder="" class="form-field @error('no_children') is-invalid @enderror" required>
+                    <label for="no_children">Number of children <span class="text-danger">*</span></label>
+                    <input type="number" id="no_children" name="no_children" placeholder="" class="form-field @error('no_children') is-invalid @enderror" >
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
@@ -139,8 +141,8 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="age_children">Age of children</label>
-                    <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" required>
+                    <label for="age_children">Age of children <span class="text-danger">*</span></label>
+                    <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
                         <option selected="selected" value="Baby">Baby</option>
                         <option value="Gradeschooler">Gradeschooler</option>
                         <option value="Toddler">Toddler</option>
@@ -157,8 +159,8 @@
             <div id="more_childern"></div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="describe_kids">Describe your kids in 3 words</label>
-                    <select id="describe_kids" name="describe_kids" multiple class="form-field @error('describe_kids') is-invalid @enderror" required>
+                    <label for="describe_kids">Describe your kids in 3 words <span class="text-danger">*</span></label>
+                    <select id="describe_kids" name="describe_kids" multiple class="form-field @error('describe_kids') is-invalid @enderror" >
                         <option value="" disabled="disabled">Select</option>
                         <option value="Energetic">Energetic</option>
                         <option value="Curious">Curious</option>
@@ -182,37 +184,48 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="family_types_babysitter">Type of babysitter needed<span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
+                    <label for="family_types_babysitter">Type of babysitter needed <span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
                     <ul class="radio-box-list">
                         <li class="radio-box-item"><input type="radio" name="family_types_babysitter" checked value="Babysitter"><label>Babysitter</label></li>
                         <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="Nanny"><label>Nanny</label></li>
                         <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="Other parent (parents-help-parents)"><label>Other parent (parents-help-parents)</label></li>
                     </ul>
-                </div>
+                </div> 
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="family_location">Preferred babysitting location</label>
+                    <label for="family_location">Preferred babysitting location </label>
                     <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" name="family_location" checked value="At our home"><label>At our home</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_location" value="At the babysitter's"><label>At the babysitter's</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_location" checked value="At our home" class="form-field @error('family_location') is-invalid @enderror"><label>At our home</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_location" value="At the babysitter's" class="form-field @error('family_location') is-invalid @enderror"><label>At the babysitter's</label></li>
                     </ul>
+                    @if ($errors->has('last_name'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('last_name') }}</strong>
+                        </span>
+                    @endif
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="family_babysitter_comfortable">We need a babysitter comfortable with</label>
-                    <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" name="family_babysitter_comfortable" checked value="Pets"><label>Pets</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_babysitter_comfortable" value="Cooking"><label>Cooking</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_babysitter_comfortable" value="Chores"><label>Chores</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_babysitter_comfortable" value="Homework assistance"><label>Homework assistance</label></li>
-                    </ul>
+                    <label for="family_babysitter_comfortable">We need a babysitter comfortable with <span class="text-danger">*</span></label>
+                    <select id="family_babysitter_comfortable" name="family_babysitter_comfortable[]" multiple class="form-field @error('family_babysitter_comfortable') is-invalid @enderror" >
+                        <option value="" disabled="disabled">Select</option>
+                        <option value="pets">Pets</option>
+                        <option value="cooking">Cooking</option>
+                        <option value="chores">Chores</option>
+                        <option value="homeworkassistance">Homework assistance</option>
+                    </select>
+                     @error('family_babysitter_comfortable')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="family_profile_see">Who can see your profile?</label>
+                    <label for="family_profile_see">Who can see your profile? </label>
                     <ul class="radio-box-list">
                         <li class="radio-box-item"><input type="radio" checked name="family_profile_see" value="everyone" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Babysits users, public search engines, and job boards can iew your profile."><label>Everyone</label></li>
                         <li class="radio-box-item"><input type="radio" name="family_profile_see" value="Only Babysits users" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get."><label>Only Babysits users</label></li>
@@ -221,40 +234,42 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input mb-3">
-                    <label for="family_notifications">Do you want to get notifications from new babysitters in your area?</label>
-                    <ul class="d-flex flex-wrap">
+                    <label for="family_notifications">Do you want to get notifications from new babysitters in your area? </label>
+                    <ul class="d-flex flex-wrap" >
                         <li><input type="radio" checked name="family_notifications" value="Yes">Yes</li>
                         <li><input type="radio" name="family_notifications" value="No">No</li>
                     </ul>
-                </div>
-                <div class="form-input">
-                    <label for="">What hourly rate are you willing to pay?</label>
-                    <div class="input-group mb-1">
-                      <span class="input-group-text">$</span>
-                      <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="">
-                      <span class="input-group-text">hr</span>
-                    </div>
-                    @error('salary_expectation')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                    @if ($errors->has('family_notifications'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('family_notifications') }}</strong>
                         </span>
-                    @enderror
+                    @endif
+                </div>
+
+                <div class="form-input">
+                    <label for="">What hourly rate are you willing to pay? </label>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text">R</span>
+                            <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="">
+                        <span class="input-group-text">hr</span>
+                    </div>
                     <p class="fw-light small">Average rate that other families offer: US$16,34<br>For your safety and protection, only pay through Babysits.</p>
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="family_description">Tell a little about your family, so babysitters can get to know you.</label>
-                <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" required>{{ old('family_description') }}</textarea>
+                <label for="family_description">Tell a little about your family, so babysitters can get to know you. <span class="text-danger">*</span></label>
+                <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" >{{ old('family_description') }}</textarea>
                 <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-                @error('family_description')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                @if ($errors->has('family_description'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('family_description') }}</strong>
                     </span>
-                @enderror
+                @endif
             </div>
             <div class="col-12">
                 <div class="form-input">
-                    <label for="">When do you need a babysitter?</label>
+                    <label for="">When do you need a babysitter? </label>
                     <div class="table-responsive">
                         <table class="table table-borderless table-sm">
                             <tbody>
@@ -372,7 +387,7 @@
             <div class="col-12">
                 <div class="form-input switch-input">
                     <input type="checkbox" name="family_special_need_option" id="special-needs" class="switch">
-                    <label for="special-needs">We are looking for someone who has experience with children with special needs</label>
+                    <label for="special-needs">We are looking for someone who has experience with children with special needs </label>
                     <p>For example with children with behavioral problems, an intellectual disability or a chronic illness. <a href="javaScript:;">Learn more</a></p>
                     <div id="special-needs-section" class="special-needs-types w-100 mt-3" hidden>
                         <label class="mb-3">Specific experience:</label>
@@ -456,7 +471,8 @@
     </div>
 </div>
 @endsection
-@section('js')
+@section('script')
+@parent
 <script type="text/javascript">
 $(document).ready(function() {
     var imageInput = $('#profile');
@@ -479,7 +495,7 @@ $(document).ready(function() {
         $("#more_childern").html('');
         if(no_children > 1) {
             for (var i = no_children - 1; i >= 1; i--) {
-                $("#more_childern").append('<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="age_children">Age of children</label><select name="age[]" class="form-field" required><option value="Baby" selected="selected">Baby</option><option value="Gradeschooler">Gradeschooler</option><option value="Toddler">Toddler</option><option value="Teenager">Teenager</option><option value="Preschooler">Preschooler</option></select></div></div>');
+                $("#more_childern").append('<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="age_children">Age of children</label><select name="age[]" class="form-field" ><option value="Baby" selected="selected">Baby</option><option value="Gradeschooler">Gradeschooler</option><option value="Toddler">Toddler</option><option value="Teenager">Teenager</option><option value="Preschooler">Preschooler</option></select></div></div>');
             }
         }
     });
