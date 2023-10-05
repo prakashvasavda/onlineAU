@@ -222,7 +222,9 @@ class FrontRegisterController extends Controller{
             "updated_at"                    => date("Y-m-d H:i:s"),
         ]);
 
-        $needs = NeedsBabysitter::insertGetId([
+        $status = $this->store_need_babysitter($data, $familyId);
+        
+       /* $needs = NeedsBabysitter::insertGetId([
             'family_id'  => $familyId,
             'morning'    => serialize($request->morning),
             'afternoon'  => serialize($request->afternoon),
@@ -230,7 +232,7 @@ class FrontRegisterController extends Controller{
             'night'      => serialize($request->night),
             "created_at" => date("Y-m-d H:i:s"),
             "updated_at" => date("Y-m-d H:i:s"),
-        ]);
+        ]);*/
 
         return redirect()->back()->with('success', 'Registration create successfully.');
     }

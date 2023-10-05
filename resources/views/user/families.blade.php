@@ -107,7 +107,7 @@
             @endif
         </div>
         <div class="btn-main text-center">
-            <a href="javaScript:;" class="btn btn-primary round">view all candidates</a>
+            <a href="{{ route('all-candidates') }}" class="btn btn-primary round">view all candidates</a>
         </div>
     </div>
 </div>

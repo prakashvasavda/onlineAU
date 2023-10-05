@@ -30,14 +30,21 @@ Route::post('check-user', 'LoginController@check_user')->name('check-user');
 Route::get('reset-password/{email}', 'LoginController@reset_password')->name('reset-password');
 Route::post('create-new-password', 'LoginController@create_new_password')->name('create-new-password');
 
+/*FRONT CANDIDATE ROUTES*/
 Route::get('candidate-detail/{id}', 'FrontCandidateController@candidate_detail')->name('candidate-detail');
 Route::post('store-candidate-reviews', 'FrontCandidateController@store_candidate_reviews')->name('store-candidate-reviews');
 Route::post('store-candidate-favourite', 'FrontCandidateController@store_candidate_favourite')->name('store-candidate-favourite');
+Route::get('all-candidates', 'FrontCandidateController@all_candidates')->name('all-candidates');
 
 
-
+/*FRONT FAMMILLY ROUTES*/
+Route::get('family-detail/{id}', 'FrontFamilyController@family_detail')->name('family-detail');
+Route::post('store-family-reviews', 'FrontFamilyController@store_family_reviews')->name('store-family-reviews');
+Route::post('store-family-favourite', 'FrontFamilyController@store_family_favourite')->name('store-family-favourite');
 
 Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');
+
+
 
 Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('pricing', 'HomeController@pricing')->name('pricing');
