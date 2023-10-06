@@ -13,7 +13,7 @@
                             <li class="{{ request()->is('candidates') ? 'active' : '' }}"><a href="{{ route('candidates') }}">candidates</a></li>
                             <li class="{{ request()->is('families') ? 'active' : '' }} {{ request()->is('family-register') || request()->is('candidate-detail/*') ? 'active' : '' }}"><a href="{{ route('families') }}">family</a></li>
                         @elseif(session()->get('frontUser')->role != "family")
-                            <li class="#"><a href="#">Manage Profile</a></li>
+                            <li class="{{ request()->routeIs('edit-candidate') ? 'active' : '' }}"><a href="{{ route('edit-candidate', ['id' =>  Session::has('frontUser') ? Session::get('frontUser')->id : null]) }}">Manage Profile</a></li>
                             <li class="#"><a href="#">View Families</a></li>
                             <li class="#"><a href="#">Manage Calander</a></li>
                             <li class="#"><a href="#">Messages</a></li>

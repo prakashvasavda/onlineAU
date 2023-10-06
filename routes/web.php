@@ -35,7 +35,8 @@ Route::get('candidate-detail/{id}', 'FrontCandidateController@candidate_detail')
 Route::post('store-candidate-reviews', 'FrontCandidateController@store_candidate_reviews')->name('store-candidate-reviews');
 Route::post('store-candidate-favourite', 'FrontCandidateController@store_candidate_favourite')->name('store-candidate-favourite');
 Route::get('all-candidates', 'FrontCandidateController@all_candidates')->name('all-candidates');
-
+Route::get('manage-profile/{id}', 'FrontCandidateController@edit_candidate')->name('edit-candidate');
+Route::put('update-candidate/{id}', 'FrontCandidateController@update_candidate')->name('update-candidate');
 
 /*FRONT FAMMILLY ROUTES*/
 Route::get('family-detail/{id}', 'FrontFamilyController@family_detail')->name('family-detail');

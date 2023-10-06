@@ -125,7 +125,7 @@ class FrontRegisterController extends Controller{
         return redirect()->back()->with('success', 'Registration create successfully.');
     }
 
-    private function store_need_babysitter($input, $candidateId){
+    public function store_need_babysitter($input, $candidateId){
         $data['family_id']  = $candidateId;
         $data['morning']    = !empty($input['morning']) ? json_encode($input['morning']) : null;
         $data['afternoon']  = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
