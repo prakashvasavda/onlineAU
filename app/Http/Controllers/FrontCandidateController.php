@@ -18,7 +18,7 @@ class FrontCandidateController extends Controller{
         if (!Session::has('frontUser')) {
             return redirect()->back()->with('error', 'You must be logged in to submit a review.');
         } 
-        $this->validate($request, [
+        $request->validate([
             'review_rating_count'       => 'required',
             'review_note'               => 'required',
             'reviewer_id'               => 'required',
@@ -32,7 +32,7 @@ class FrontCandidateController extends Controller{
     }
 
     public function store_candidate_favourite(Request $request){
-        $this->validate($request, [
+        $request->validate([
             'candidate_id'          => 'required',
             'candidate_role'        => 'required',
             'saved_by_id'           => 'required',
@@ -104,7 +104,7 @@ class FrontCandidateController extends Controller{
         $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
         $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
-        return view('user.candidate_edit', $data);
+        return view('user.candidate_manage_profile', $data);
     }
 
     public function update_candidate(Request $request, $candidateId){
@@ -163,8 +163,6 @@ class FrontCandidateController extends Controller{
         $data['updated_at']     = date("Y-m-d H:i:s");
         return NeedsBabysitter::create($data);
     }
-
-
 
     public function store_image($data, $path){
         $randomName = Str::random(20);

@@ -35,13 +35,16 @@ Route::get('candidate-detail/{id}', 'FrontCandidateController@candidate_detail')
 Route::post('store-candidate-reviews', 'FrontCandidateController@store_candidate_reviews')->name('store-candidate-reviews');
 Route::post('store-candidate-favourite', 'FrontCandidateController@store_candidate_favourite')->name('store-candidate-favourite');
 Route::get('all-candidates', 'FrontCandidateController@all_candidates')->name('all-candidates');
-Route::get('manage-profile/{id}', 'FrontCandidateController@edit_candidate')->name('edit-candidate');
+Route::get('candidate/manage-profile/{id}', 'FrontCandidateController@edit_candidate')->name('edit-candidate');
 Route::put('update-candidate/{id}', 'FrontCandidateController@update_candidate')->name('update-candidate');
 
 /*FRONT FAMMILLY ROUTES*/
 Route::get('family-detail/{id}', 'FrontFamilyController@family_detail')->name('family-detail');
 Route::post('store-family-reviews', 'FrontFamilyController@store_family_reviews')->name('store-family-reviews');
 Route::post('store-family-favourite', 'FrontFamilyController@store_family_favourite')->name('store-family-favourite');
+Route::get('family/manage-profile/{id}', 'FrontFamilyController@edit_family')->name('edit-family');
+Route::put('update-family/{id}', 'FrontFamilyController@update_family')->name('update-family');
+
 
 Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');
 

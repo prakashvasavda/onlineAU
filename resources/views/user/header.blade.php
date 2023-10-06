@@ -19,7 +19,7 @@
                             <li class="#"><a href="#">Messages</a></li>
                             <li class="#"><a href="#">Reviews</a></li>
                         @else
-                            <li class="#"><a href="#">Manage Profile</a></li>
+                            <li class="{{ request()->routeIs('edit-family') ? 'active' : '' }}"><a href="{{ route('edit-family', ['id' =>  Session::has('frontUser') ? Session::get('frontUser')->id : null]) }}">Manage Profile</a></li>
                             <li class="#"><a href="#">Manage Candidates</a></li>
                             <li class="#"><a href="#">Messages</a></li>
                             <li class="#"><a href="#">Reviews</a></li>

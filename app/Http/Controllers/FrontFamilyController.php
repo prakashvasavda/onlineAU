@@ -43,7 +43,8 @@ class FrontFamilyController extends Controller{
         if (!Session::has('frontUser')) {
             return redirect()->back()->with('error', 'You must be logged in to submit a review.');
         } 
-        $this->validate($request, [
+         
+        $request->validate([
             'review_rating_count'       => 'required',
             'review_note'               => 'required',
             'reviewer_id'               => 'required',
@@ -58,7 +59,7 @@ class FrontFamilyController extends Controller{
     }
 
     public function store_family_favourite(Request $request){
-        $this->validate($request, [
+        $request->validate([
             'candidate_id'          => 'required',
             'candidate_role'        => 'required',
             'saved_by_id'           => 'required',
@@ -74,6 +75,22 @@ class FrontFamilyController extends Controller{
         
         $favourite = CandidateFavourite::create($data);
         return response()->json(['message' => 'success', 'favourite' => $favourite], 200);
+    }
+
+    public function edit_family($familyId){
+        $data['menu']                   = "manage profile";
+        $data['family']                 = FrontUser::findOrFail($familyId);
+        $data['availability']           = NeedsBabysitter::where('family_id', $familyId)->first();
+        $data['previous_experience']    = PreviousExperience::where('candidate_id', $familyId)->get();
+        $data['morning_availability']   = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
+        $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
+        $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
+        $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        return view('user.family_manage_profile', $data);
+    }
+
+    public function update_family(Request $request, $familyId){
+        return "true";
     }
 
 }
