@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 use App\CandidateReview;
 use App\CandidateFavourite;
@@ -76,7 +77,7 @@ class FrontCandidateController extends Controller{
 
     public function all_candidates(){
         $data['menu'] = "all candidates";
-        return $data['candidates'] = FrontUser::leftJoin('candidate_favourites', 'front_users.id', '=', 'candidate_favourites.candidate_id')
+        $data['candidates'] = FrontUser::leftJoin('candidate_favourites', 'front_users.id', '=', 'candidate_favourites.candidate_id')
             ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
             ->select(
                 'front_users.*',
@@ -160,7 +161,7 @@ class FrontCandidateController extends Controller{
         $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
         $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
         $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
-        $data['updated_at']     = date("Y-m-d H:i:s");
+        $data['updated_at']     =  date("Y-m-d H:i:s");
         return NeedsBabysitter::create($data);
     }
 
