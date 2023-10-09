@@ -4,7 +4,7 @@
 <div class="container">
   <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12 mx-auto">
     <div class="title-main">
-      <h2>Welcome to Babysits</h2>
+      <h2>Welcome to Online Au-Pairs</h2>
       <h3>Login</h3>
     </div>
     <form method="POST" class="row" action="{{ route('check-login') }}">

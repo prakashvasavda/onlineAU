@@ -33,7 +33,7 @@ class FrontRegisterController extends Controller{
         $rules = [
             'name'            => "required",
             'age'             => "required",
-            // 'profile'         => "required",
+            'profile'         => "required",
             'id_number'       => "required",
             // 'contact_number'  => "required",
             'email'           => "required|email|unique:front_users,email",
@@ -50,7 +50,7 @@ class FrontRegisterController extends Controller{
         $message = [
             'name'            => 'The Name field isrequired',
             'age'             => 'The Age field is required',
-            // 'profile'         => 'The Profile must be required',
+            'profile'         => 'The Profile must be required',
             'id_number'       => 'The Id Number field is required',
             // 'contact_number'  => 'The Contact Number must be required',
             'email'           => 'The Email field is required',

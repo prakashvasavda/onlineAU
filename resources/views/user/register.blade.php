@@ -119,31 +119,31 @@
                 <label for="religion">Religion</label>
                 <select id="religion" name="religion" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select one</option>
-                    <option value="African Traditional &amp; Diasporic">African Traditional &amp; Diasporic</option>
-                    <option value="Agnostic">Agnostic</option>
-                    <option value="Atheist">Atheist</option>
-                    <option value="Baha'i">Baha'i</option>
-                    <option value="Buddhism">Buddhism</option>
-                    <option value="Cao Dai">Cao Dai</option>
-                    <option value="Chinese traditional religion">Chinese traditional religion</option>
-                    <option value="Christianity">Christianity</option>
-                    <option value="Hinduism">Hinduism</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Jainism">Jainism</option>
-                    <option value="Juche">Juche</option>
-                    <option value="Judaism">Judaism</option>
-                    <option value="Neo-Paganism">Neo-Paganism</option>
-                    <option value="Nonreligious">Nonreligious</option>
-                    <option value="Rastafarianism">Rastafarianism</option>
-                    <option value="Secular">Secular</option>
-                    <option value="Shinto">Shinto</option>
-                    <option value="Sikhism">Sikhism</option>
-                    <option value="Spiritism">Spiritism</option>
-                    <option value="Tenrikyo">Tenrikyo</option>
-                    <option value="Unitarian-Universalism">Unitarian-Universalism</option>
-                    <option value="Zoroastrianism">Zoroastrianism</option>
-                    <option value="primal-indigenous">primal-indigenous</option>
-                    <option value="Other">Other</option>
+                    <option value="african traditional and diasporic" {{ old('religion') == "african traditional and diasporic" ? "selected" : ''}}>African Traditional &amp; Diasporic</option>
+                    <option value="agnostic" {{ old('religion') == "agnostic" ? "selected" : ''}}>Agnostic</option>
+                    <option value="atheist" {{ old('religion') == "atheist" ? "selected" : ''}}>Atheist</option>
+                    <option value="baha'i" {{ old('religion') == "baha'i" ? "selected" : ''}}>Baha'i</option>
+                    <option value="buddhism" {{ old('religion') == "buddhism" ? "selected" : ''}}>Buddhism</option>
+                    <option value="cao dai" {{ old('religion') == "cao dai" ? "selected" : ''}}>Cao Dai</option>
+                    <option value="chinese traditional religion" {{ old('religion') == "chinese traditional religion" ? "selected" : ''}}>Chinese traditional religion</option>
+                    <option value="christianity" {{ old('religion') == "christianity" ? "selected" : ''}}>Christianity</option>
+                    <option value="hinduism" {{ old('religion') == "hinduism" ? "selected" : ''}}>Hinduism</option>
+                    <option value="islam" {{ old('religion') == "islam" ? "selected" : ''}}>Islam</option>
+                    <option value="jainism" {{ old('religion') == "jainism" ? "selected" : ''}}>Jainism</option>
+                    <option value="juche" {{ old('religion') == "juche" ? "selected" : ''}}>Juche</option>
+                    <option value="judaism" {{ old('religion') == "judaism" ? "selected" : ''}}>Judaism</option>
+                    <option value="neo-paganism" {{ old('religion') == "neo-paganism" ? "selected" : ''}}>Neo-Paganism</option>
+                    <option value="nonreligious" {{ old('religion') == "nonreligious" ? "selected" : ''}}>Nonreligious</option>
+                    <option value="rastafarianism" {{ old('religion') == "rastafarianism" ? "selected" : ''}}>Rastafarianism</option>
+                    <option value="secular" {{ old('religion') == "secular" ? "selected" : ''}}>Secular</option>
+                    <option value="shinto" {{ old('religion') == "shinto" ? "selected" : ''}}>Shinto</option>
+                    <option value="sikhism" {{ old('religion') == "sikhism" ? "selected" : ''}}>Sikhism</option>
+                    <option value="spiritism" {{ old('religion') == "spiritism" ? "selected" : ''}}>Spiritism</option>
+                    <option value="tenrikyo" {{ old('religion') == "tenrikyo" ? "selected" : ''}}>Tenrikyo</option>
+                    <option value="unitarian-universalism" {{ old('religion') == "unitarian-universalism" ? "selected" : ''}}>Unitarian-Universalism</option>
+                    <option value="zoroastrianism" {{ old('religion') == "zoroastrianism" ? "selected" : ''}}>Zoroastrianism</option>
+                    <option value="primal-indigenous" {{ old('religion') == "primal-indigenous" ? "selected" : ''}}>primal-indigenous</option>
+                    <option value="other" {{ old('religion') == "other" ? "selected" : ''}}>Other</option>
                 </select>
             </div>
         </div>
@@ -152,27 +152,27 @@
                 <label for="home_language">Home Language</label>
                 <select id="home_language" name="home_language" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select one</option>
-                    <option value="English">English</option>
-                    <option value="Afrikaans">Afrikaans</option>
-                    <option value="Zulu (isiZulu)">Zulu (isiZulu)</option>
-                    <option value="Xhosa (isiXhosa)">Xhosa (isiXhosa)</option>
-                    <option value="Northern Sotho (Sesotho sa Leboa)">Northern Sotho (Sesotho sa Leboa)</option>
-                    <option value="Sotho (Sesotho)">Sotho (Sesotho)</option>
-                    <option value="Swazi (siSwati)">Swazi (siSwati)</option>
-                    <option value="Tsonga (Xitsonga)">Tsonga (Xitsonga)</option>
-                    <option value="Tswana (Setswana)">Tswana (Setswana)</option>
-                    <option value="Venda (Tshivenda)">Venda (Tshivenda)</option>
-                    <option value="Southern Ndebele (isiNdebele)">Southern Ndebele (isiNdebele)</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="French">French</option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="Arabic">Arabic</option>
-                    <option value="Bengali">Bengali</option>
-                    <option value="Portuguese">Portuguese</option>
-                    <option value="Russian">Russian</option>
-                    <option value="Japanese">Japanese</option>
-                    <option value="Punjabi">Punjabi</option>
-                    <option value="German">German</option>
+                    <option value="english" {{ old('home_language') === 'english' ? 'selected' : '' }}>English</option>
+                    <option value="afrikaans" {{ old('home_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
+                    <option value="zulu (isizulu)" {{ old('home_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
+                    <option value="xhosa (isixhosa)" {{ old('home_language') === 'xhosa (isixhosa)' ? 'selected' : '' }}>Xhosa (isiXhosa)</option>
+                    <option value="northern sotho (sesotho sa leboa)" {{ old('home_language') === 'northern sotho (sesotho sa leboa)' ? 'selected' : '' }}>Northern Sotho (Sesotho sa Leboa)</option>
+                    <option value="sotho (sesotho)" {{ old('home_language') === 'sotho (sesotho)' ? 'selected' : '' }}>Sotho (Sesotho)</option>
+                    <option value="swazi (siswati)" {{ old('home_language') === 'swazi (siswati)' ? 'selected' : '' }}>Swazi (siSwati)</option>
+                    <option value="tsonga (xitsonga)" {{ old('home_language') === 'tsonga (xitsonga)' ? 'selected' : '' }}>Tsonga (Xitsonga)</option>
+                    <option value="tswana (setswana)" {{ old('home_language') === 'tswana (setswana)' ? 'selected' : '' }}>Tswana (Setswana)</option>
+                    <option value="venda (tshivenda)" {{ old('home_language') === 'venda (tshivenda)' ? 'selected' : '' }}>Venda (Tshivenda)</option>
+                    <option value="southern ndebele (isindebele)" {{ old('home_language') === 'southern ndebele (isindebele)' ? 'selected' : '' }}>Southern Ndebele (isiNdebele)</option>
+                    <option value="spanish" {{ old('home_language') === 'spanish' ? 'selected' : '' }}>Spanish</option>
+                    <option value="french" {{ old('home_language') === 'french' ? 'selected' : '' }}>French</option>
+                    <option value="hindi" {{ old('home_language') === 'hindi' ? 'selected' : '' }}>Hindi</option>
+                    <option value="arabic" {{ old('home_language') === 'arabic' ? 'selected' : '' }}>Arabic</option>
+                    <option value="bengali" {{ old('home_language') === 'bengali' ? 'selected' : '' }}>Bengali</option>
+                    <option value="portuguese" {{ old('home_language') === 'portuguese' ? 'selected' : '' }}>Portuguese</option>
+                    <option value="russian" {{ old('home_language') === 'russian' ? 'selected' : '' }}>Russian</option>
+                    <option value="japanese" {{ old('home_language') === 'japanese' ? 'selected' : '' }}>Japanese</option>
+                    <option value="punjabi" {{ old('home_language') === 'punjabi' ? 'selected' : '' }}>Punjabi</option>
+                    <option value="german" {{ old('home_language') === 'german' ? 'selected' : '' }}>German</option>
                 </select>
             </div>
         </div>
@@ -208,16 +208,16 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="disabilities">Disabilities</label>
-                <input type="text" id="disabilities" name="disabilities" placeholder="" class="form-field">
+                <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="marital_status">Marital Status</label>
                 <ul class="radio-box-list d-flex flex-wrap">
-                    <li class="radio-box-item"><input type="radio" name="marital_status" value="Married"><label>Married</label></li>
-                    <li class="radio-box-item"><input type="radio" name="marital_status" value="Single"><label>Single</label></li>
-                    <li class="radio-box-item"><input type="radio" name="marital_status" value="In a Relationship"><label>In a Relationship</label></li>
+                    <li class="radio-box-item"><input type="radio" name="marital_status" value="married" {{ old('marital_status') == "married" ? "checked" : ''}}><label>Married</label></li>
+                    <li class="radio-box-item"><input type="radio" name="marital_status" value="single" {{ old('marital_status') == "single" ? "checked" : ''}}><label>Single</label></li>
+                    <li class="radio-box-item"><input type="radio" name="marital_status" value="in a relationship" {{ old('marital_status') == "in a relationship" ? "checked" : ''}}><label>In a Relationship</label></li>
                 </ul>
             </div>
         </div>
@@ -225,8 +225,8 @@
             <div class="form-input">
                 <label for="dependants">Do you have any dependants</label>
                 <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="dependants" value="Yes">Yes</li>
-                    <li><input type="radio" name="dependants" value="No">No</li>
+                    <li><input type="radio" name="dependants" value="yes" {{ old('dependants') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="dependants" value="no" {{ old('dependants') == "no" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
         </div>
@@ -234,8 +234,8 @@
             <div class="form-input">
                 <label for="chronical_medication">Are you on any chronical medication</label>
                 <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="chronical_medication" value="Yes">Yes</li>
-                    <li><input type="radio" name="chronical_medication" value="No">No</li>
+                    <li><input type="radio" name="chronical_medication" value="yes" {{ old('chronical_medication') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="chronical_medication" value="no" {{ old('chronical_medication') == "no" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
         </div>
@@ -243,8 +243,8 @@
             <div class="form-input">
                 <label for="drivers_license">Do you have your drivers license</label>
                 <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="drivers_license" value="Yes">Yes</li>
-                    <li><input type="radio" name="drivers_license" value="No">No</li>
+                    <li><input type="radio" name="drivers_license" value="yes" {{ old('drivers_license') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="drivers_license" value="no" {{ old('drivers_license') == "no" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
         </div>
@@ -252,8 +252,8 @@
             <div class="form-input">
                 <label for="vehicle">Do you have your own vehicle</label>
                 <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="vehicle" value="Yes">Yes</li>
-                    <li><input type="radio" name="vehicle" value="No">No</li>
+                    <li><input type="radio" name="vehicle" value="yes" {{ old('vehicle') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="vehicle" value="no" {{ old('vehicle') == "yes" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
         </div>
@@ -261,8 +261,8 @@
             <div class="form-input">
                 <label for="car_accident">Have you ever been in a car accident</label>
                 <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="car_accident" value="Yes">Yes</li>
-                    <li><input type="radio" name="car_accident" value="No">No</li>
+                    <li><input type="radio" name="car_accident" value="yes" {{ old('car_accident') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="car_accident" value="no" {{ old('car_accident') == "no" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
         </div>
@@ -271,17 +271,17 @@
                 <label for="childcare_experience">How many years of childcare experience do you have</label>
                 <select id="childcare_experience" name="childcare_experience" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select</option>
-                    <option value="6 Months">6 Months</option>
-                    <option value="1 years">1 year</option>
-                    <option value="1.5 years">1.5 years</option>
-                    <option value="2 years">2 years</option>
-                    <option value="2.5 years">2.5 years</option>
-                    <option value="3 years">3 years</option>
-                    <option value="3.5 years">3.5 years</option>
-                    <option value="4 years">4 years</option>
-                    <option value="4.5 years">4.5 years</option>
-                    <option value="5 years">5 years</option>
-                    <option value="5+ years">5+ years</option>
+                    <option value="6 months" {{ old('childcare_experience') == "6 months" ? "selected" : '' }}>6 Months</option>
+                    <option value="1 years" {{ old('childcare_experience') == "1 years" ? "selected" : '' }}>1 year</option>
+                    <option value="1.5 years" {{ old('childcare_experience') == "1.5 years" ? "selected" : '' }}>1.5 years</option>
+                    <option value="2 years" {{ old('childcare_experience') == "2 years" ? "selected" : '' }}>2 years</option>
+                    <option value="2.5 years" {{ old('childcare_experience') == "2.5 years" ? "selected" : '' }}>2.5 years</option>
+                    <option value="3 years" {{ old('childcare_experience') == "3 years" ? "selected" : '' }}>3 years</option>
+                    <option value="3.5 years" {{ old('childcare_experience') == "3.5 years" ? "selected" : '' }}>3.5 years</option>
+                    <option value="4 years" {{ old('childcare_experience') == "4 years" ? "selected" : '' }}>4 years</option>
+                    <option value="4.5 years" {{ old('childcare_experience') == "4.5 years" ? "selected" : '' }}>4.5 years</option>
+                    <option value="5 years" {{ old('childcare_experience') == "5 years" ? "selected" : '' }}>5 years</option>
+                    <option value="5+ years" {{ old('childcare_experience') == "5+ years" ? "selected" : '' }}>5+ years</option>
                 </select>
             </div>
         </div>
@@ -289,8 +289,8 @@
             <div class="form-input">
                 <label for="experience_special_needs">Do you have experience with special needs</label>
                 <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="experience_special_needs" value="Yes">Yes</li>
-                    <li><input type="radio" name="experience_special_needs" value="No">No</li>
+                    <li><input type="radio" name="experience_special_needs" value="yes" {{ old('experience_special_needs') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="experience_special_needs" value="no" {{ old('experience_special_needs') == "no" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
         </div>
@@ -355,113 +355,113 @@
                 <div class="table-responsive">
                     <table class="table table-borderless table-sm">
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <th>Mo</th>
-                                <th>Tu</th>
-                                <th>We</th>
-                                <th>Th</th>
-                                <th>Fr</th>
-                                <th>Sa</th>
-                                <th>Su</th>
-                            </tr>
-                            <tr>
-                                <th>Morning</th>
-                                <td>
-                                    <label><input type="checkbox" name="morning[]" value="mo_morning" id="" class="@error('morning') is-invalid @enderror"></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="morning[]" value="tu_morning" id="" class="@error('morning') is-invalid @enderror"></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="morning[]" value="we_morning" id="" class="@error('morning') is-invalid @enderror"></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="morning[]" value="th_morning" id="" class="@error('morning') is-invalid @enderror"></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="morning[]" value="fr_morning" id="" class="@error('morning') is-invalid @enderror"></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="morning[]" value="sa_morning" id="" class="@error('morning') is-invalid @enderror"></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="morning[]" value="su_morning" id="" class="@error('morning') is-invalid @enderror"></label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Afternoon</th>
-                                <td>
-                                    <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="afternoon[]" value="we_afternoon" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="afternoon[]" value="th_afternoon" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="afternoon[]" value="su_afternoon" id=""></label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Evening</th>
-                                <td>
-                                    <label><input type="checkbox" name="evening[]" value="mo_evening" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="evening[]" value="tu_evening" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="evening[]" value="we_evening" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="evening[]" value="th_evening" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="evening[]" value="fr_evening" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="evening[]" value="sa_evening" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="evening[]" value="su_evening" id=""></label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Night</th>
-                                <td>
-                                    <label><input type="checkbox" name="night[]" value="mo_night" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="night[]" value="tu_night" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="night[]" value="we_night" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="night[]" value="th_night" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="night[]" value="fr_night" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="night[]" value="sa_night" id=""></label>
-                                </td>
-                                <td>
-                                    <label><input type="checkbox" name="night[]" value="su_night" id=""></label>
-                                </td>
-                            </tr>
-                        </tbody>
+                                <tr>
+                                    <td></td>
+                                    <th>Mo</th>
+                                    <th>Tu</th>
+                                    <th>We</th>
+                                    <th>Th</th>
+                                    <th>Fr</th>
+                                    <th>Sa</th>
+                                    <th>Su</th>
+                                </tr>
+                                <tr>
+                                    <th>Morning</th>
+                                    <td>
+                                        <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ (old('morning') !== null && in_array("mo_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="morning[]" value="tu_morning" id="" {{ (old('morning') !== null && in_array("tu_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="morning[]" value="we_morning" id="" {{ (old('morning') !== null && in_array("we_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="morning[]" value="th_morning" id="" {{ (old('morning') !== null && in_array("th_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="morning[]" value="fr_morning" id="" {{ (old('morning') !== null && in_array("fr_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="morning[]" value="sa_morning" id="" {{ (old('morning') !== null && in_array("sa_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="morning[]" value="su_morning" id="" {{ (old('morning') !== null && in_array("su_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Afternoon</th>
+                                    <td>
+                                        <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ (old('afternoon') !== null && in_array("mo_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" id="" {{ (old('afternoon') !== null && in_array("tu_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="afternoon[]" value="we_afternoon" id="" {{ (old('afternoon') !== null && in_array("we_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="afternoon[]" value="th_afternoon" id="" {{ (old('afternoon') !== null && in_array("th_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" id="" {{ (old('afternoon') !== null && in_array("fr_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" id="" {{ (old('afternoon') !== null && in_array("sa_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="afternoon[]" value="su_afternoon" id="" {{ (old('afternoon') !== null && in_array("su_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Evening</th>
+                                    <td>
+                                        <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ (old('evening') !== null && in_array("mo_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="evening[]" value="tu_evening" id="" {{ (old('evening') !== null && in_array("tu_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="evening[]" value="we_evening" id="" {{ (old('evening') !== null && in_array("we_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="evening[]" value="th_evening" id="" {{ (old('evening') !== null && in_array("th_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="evening[]" value="fr_evening" id="" {{ (old('evening') !== null && in_array("fr_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="evening[]" value="sa_evening" id="" {{ (old('evening') !== null && in_array("sa_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="evening[]" value="su_evening" id="" {{ (old('evening') !== null && in_array("su_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Night</th>
+                                    <td>
+                                        <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ (old('night') !== null && in_array("mo_night", old('night'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="night[]" value="tu_night" id="" {{ (old('night') !== null && in_array("tu_night", old('night'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="night[]" value="we_night" id="" {{ (old('night') !== null && in_array("we_night", old('night'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="night[]" value="th_night" id="" {{ (old('night') !== null && in_array("th_night", old('night'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="night[]" value="fr_night" id="" {{ (old('night') !== null && in_array("fr_night", old('night'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="night[]" value="sa_night" id="" {{ (old('night') !== null && in_array("sa_night", old('night'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="night[]" value="su_night" id="" {{ (old('night') !== null && in_array("su_night", old('night'))) ? 'checked' : '' }}></label>
+                                    </td>
+                                </tr>
+                            </tbody>
                     </table>
                 </div>
                 @error('morning')
@@ -475,7 +475,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="password">Password <span class="text-danger">*</span></label>
-                <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" >
+                <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
