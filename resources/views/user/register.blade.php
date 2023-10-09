@@ -91,10 +91,6 @@
             <div class="form-input">
                 <label for="area">Area Pin <span class="text-danger">*</span></label>
                 <input type="number" id="area" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror"  value="{{ old('area') }}">
-               {{--  <select class="js-example-basic-single" name="state">
-                    <option value="AL">Alabama</option>
-                    <option value="WY">Wyoming</option>
-                </select> --}}
                 @error('area')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

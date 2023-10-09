@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 use App\CandidateReview;
 use App\CandidateFavourite;
@@ -18,7 +19,7 @@ class FrontCandidateController extends Controller{
         if (!Session::has('frontUser')) {
             return redirect()->back()->with('error', 'You must be logged in to submit a review.');
         } 
-        $this->validate($request, [
+        $request->validate([
             'review_rating_count'       => 'required',
             'review_note'               => 'required',
             'reviewer_id'               => 'required',
@@ -32,7 +33,7 @@ class FrontCandidateController extends Controller{
     }
 
     public function store_candidate_favourite(Request $request){
-        $this->validate($request, [
+        $request->validate([
             'candidate_id'          => 'required',
             'candidate_role'        => 'required',
             'saved_by_id'           => 'required',
@@ -74,7 +75,6 @@ class FrontCandidateController extends Controller{
         return view('user.candidate_detail', $data);
     }
 
-    /*return all candidates except family candidates*/
     public function all_candidates(){
         $data['menu'] = "all candidates";
         $data['candidates'] = FrontUser::leftJoin('candidate_favourites', 'front_users.id', '=', 'candidate_favourites.candidate_id')
@@ -94,5 +94,81 @@ class FrontCandidateController extends Controller{
             ->get();
 
         return view('user.all_candidates', $data);
+    }
+
+    public function edit_candidate($candidateId){
+        $data['menu']                   = "manage profile";
+        $data['candidate']              = FrontUser::findOrFail($candidateId);
+        $data['availability']           = NeedsBabysitter::where('family_id', $candidateId)->first();
+        $data['previous_experience']    = PreviousExperience::where('candidate_id', $candidateId)->get();
+        $data['morning_availability']   = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
+        $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
+        $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
+        $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        return view('user.candidate_manage_profile', $data);
+    }
+
+    public function update_candidate(Request $request, $candidateId){
+        $request->validate([
+            'name'                  => 'required',
+            'age'                   => 'required',
+            'id_number'             => "required",
+            'salary_expectation'    => "required",
+        ]);
+
+        $candidate              = FrontUser::findorFail($candidateId);
+        $input                  = $request->all();
+        $input['password']      = !empty($request->password) ? Hash::make($request->password) : $candidate->password;
+        $input['email']         = !empty($request->email) ? $request->email : $candidate->email;
+        $input['role']          = $candidate->role;
+        $experiance             = !empty($input['daterange']) ? $this->store_previous_experience($input, $candidateId) : 0;
+        $availability           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_candidate_availability($input, $candidateId) : 0;
+        $update_status          = $candidate->update($input);
+       
+
+        return redirect()->back()->with('success', 'Profile updated successfully.');
+    }
+
+    public function store_previous_experience($input, $candidateId){
+        $previous_experiance =  PreviousExperience::where('candidate_id', $candidateId)->get()->toArray();
+        if(isset($previous_experiance) && !empty($previous_experiance)){
+            $delete_status = PreviousExperience::where('candidate_id', $candidateId)->delete(); 
+        }
+            
+        foreach ($input['daterange'] as $key => $value) {
+            $data = array();
+            $data['candidate_id']   = isset($candidateId) ? $candidateId : null;
+            $data['daterange']      = isset($input['daterange'][$key]) ? $input['daterange'][$key] : null;
+            $data['heading']        = isset($input['heading'][$key]) ? $input['heading'][$key] : null; 
+            $data['description']    = isset($input['description'][$key]) ? $input['description'][$key] : null;             
+            $data['reference']      = isset($input['reference'][$key]) ? $input['reference'][$key] : null; 
+            $data['tel_number']     = isset($input['tel_number'][$key]) ? $input['tel_number'][$key] : null;  
+            $data['created_at']     = date("Y-m-d H:i:s");
+            $data['updated_at']     = date("Y-m-d H:i:s");
+            $status = PreviousExperience::create($data);
+        }
+        return $status;
+    }
+
+    public function store_candidate_availability($input, $candidateId){
+        $candidate_availability = NeedsBabysitter::where('family_id', $candidateId)->get()->toArray();
+        if(isset($candidate_availability) && !empty($candidate_availability)){
+          $delete_status = NeedsBabysitter::where('family_id', $candidateId)->delete();
+        }
+
+        $data['family_id']      = $candidateId;
+        $data['morning']        = !empty($input['morning']) ? json_encode($input['morning']) : null;
+        $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
+        $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
+        $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
+        $data['updated_at']     =  date("Y-m-d H:i:s");
+        return NeedsBabysitter::create($data);
+    }
+
+    public function store_image($data, $path){
+        $randomName = Str::random(20);
+        $extension  = $request->file('profile')->getClientOriginalExtension();
+        $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
+        $path       = $request->file('profile')->storeAs('uploads', $imageName, 'public');
     }
 }
