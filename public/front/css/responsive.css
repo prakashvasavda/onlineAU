@@ -55,6 +55,7 @@
 	.step-list {gap: 30px;}
 	.step-item {gap: 15px;}
 	.step-img {text-align: left;}
+	.special-needs-types .form-input {width: 100%;padding-right: 0px;}
 	.available-candidates .btn-main, .steps-section .btn-main {margin-top: 45px;}
 	.sign-now {margin-bottom: 40px;/*display: none;*/}
 	.subTitleBox {min-width: 100%;}

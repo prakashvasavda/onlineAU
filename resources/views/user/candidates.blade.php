@@ -170,7 +170,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>REGISTER AS A NANNY AND FILL OUT OUR APPLICATION FORM.</p>
+                                    <p>REGISTER AS A BABYSITTER AND FILL OUT OUR APPLICATION FORM.</p>
                                 </div>
                             </div>
                         </li>

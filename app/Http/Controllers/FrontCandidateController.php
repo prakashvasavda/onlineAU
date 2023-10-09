@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Validator;
 use App\CandidateReview;
 use App\CandidateFavourite;
@@ -121,6 +122,7 @@ class FrontCandidateController extends Controller{
         $input['password']      = !empty($request->password) ? Hash::make($request->password) : $candidate->password;
         $input['email']         = !empty($request->email) ? $request->email : $candidate->email;
         $input['role']          = $candidate->role;
+        $input['profile']       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $candidate->profile;
         $experiance             = !empty($input['daterange']) ? $this->store_previous_experience($input, $candidateId) : 0;
         $availability           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_candidate_availability($input, $candidateId) : 0;
         $update_status          = $candidate->update($input);
@@ -165,10 +167,11 @@ class FrontCandidateController extends Controller{
         return NeedsBabysitter::create($data);
     }
 
-    public function store_image($data, $path){
+    public function store_image($data, $path=null){
         $randomName = Str::random(20);
-        $extension  = $request->file('profile')->getClientOriginalExtension();
+        $extension  = $data->getClientOriginalExtension();
         $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
-        $path       = $request->file('profile')->storeAs('uploads', $imageName, 'public');
+        $path       = $data->storeAs('uploads', $imageName, 'public');
+        return      $imageName;
     }
 }

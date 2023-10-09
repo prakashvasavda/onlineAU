@@ -4,7 +4,7 @@
 <div class="container">
     <div class="title-main">
         <h2>Welcome to Online Au-Pairs</h2>
-        <h3>sign up</h3>
+        <h3>sign up to be {{isset($type) ? $type : ''}}</h3>
     </div>
     @include('flash.flash-message')
     <form method="POST" class="row" action="{{ route('store_candidate') }}" enctype="multipart/form-data">
@@ -68,7 +68,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="email">Email Address <span class="text-danger">*</span></label>
-                <input type="mail" id="email" name="email" placeholder="" class="form-field @error('email') is-invalid @enderror"  value="{{ old('email') }}">
+                <input type="mail" id="email" name="email" placeholder="" class="form-field @error('email') is-invalid @enderror"  value="{{ old('email') }}" autocomplete="off">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -102,16 +102,16 @@
             <div class="form-input">
                 <label for="gender">Gender</label>
                 <ul class="radio-box-list d-flex flex-wrap">
-                    <li class="radio-box-item"><input type="radio" name="gender" value="male"><label>Male</label></li>
-                    <li class="radio-box-item"><input type="radio" name="gender" value="female"><label>Female</label></li>
-                    <li class="radio-box-item"><input type="radio" name="gender" value="other"><label>Other</label></li>
+                    <li class="radio-box-item"><input type="radio" name="gender" value="male" {{ old('gender') == "male" ? "checked" : '' }}><label>Male</label></li>
+                    <li class="radio-box-item"><input type="radio" name="gender" value="female" {{ old('gender') == "female" ? "checked" : '' }}><label>Female</label></li>
+                    <li class="radio-box-item"><input type="radio" name="gender" value="other" {{ old('gender') == "other" ? "checked" : '' }}><label>Other</label></li>
                 </ul>
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="ethnicity">Ethnicity</label>
-                <input type="text" id="ethnicity" name="ethnicity" placeholder="" class="form-field">
+                <input type="text" id="ethnicity" name="ethnicity" value="{{ old("ethnicity") }}" placeholder="" class="form-field">
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -272,7 +272,7 @@
                 <select id="childcare_experience" name="childcare_experience" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select</option>
                     <option value="6 Months">6 Months</option>
-                    <option value="1 years">1 years</option>
+                    <option value="1 years">1 year</option>
                     <option value="1.5 years">1.5 years</option>
                     <option value="2 years">2 years</option>
                     <option value="2.5 years">2.5 years</option>

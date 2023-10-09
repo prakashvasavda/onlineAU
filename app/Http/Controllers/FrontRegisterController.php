@@ -16,10 +16,12 @@ use App\CandidateFavourite;
 
 class FrontRegisterController extends Controller{
     public function index($type){
+        $data['type'] = $type == 'nannies' ? 'a nanny' : ($type == 'babysitters' ? 'a babysitter' : 'an au-pair');
+
         if (session()->has('frontUser')) {
             return redirect()->route('home');
         }
-        return view('user.register');
+        return view('user.register', $data);
     }
 
     public function candidates(){
@@ -215,7 +217,7 @@ class FrontRegisterController extends Controller{
             'salary_expectation'            => $request->salary_expectation,
             'family_description'            => $request->family_description,
             'family_special_need_option'    => isset($request->family_special_need_option) ? 1 : 0,
-            'family_special_need_value'     => serialize($request->family_special_need_value),
+            'family_special_need_value'     => json_encode($request->family_special_need_value),
             'status'                        => 1,
             'role'                          => 'family',
             "created_at"                    => date("Y-m-d H:i:s"),
