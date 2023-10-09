@@ -45,10 +45,8 @@ Route::post('store-family-favourite', 'FrontFamilyController@store_family_favour
 Route::get('family/manage-profile/{id}', 'FrontFamilyController@edit_family')->name('edit-family');
 Route::put('update-family/{id}', 'FrontFamilyController@update_family')->name('update-family');
 
-
 Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');
-
-
+Route::post('store-contact', 'HomeController@store_contact')->name('store-contact');
 
 Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('pricing', 'HomeController@pricing')->name('pricing');
@@ -69,4 +67,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::any('destroyFamilies', 'AdminController@destroyFamilies')->name('admin.destroyFamilies');
     Route::any('get_families', 'AdminController@get_families')->name('admin.get_families');
     Route::any('features/{id}', 'AdminController@features')->name('admin.features');
+
+    Route::get('contact', 'AdminController@contact')->name('admin.contact');
+    Route::any('get-contact', 'AdminController@get_contact')->name('admin.get-contact');
+    Route::any('destroyContact', 'AdminController@destroyContact')->name('admin.destroyContact');
 });

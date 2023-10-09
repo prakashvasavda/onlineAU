@@ -54,6 +54,14 @@
             </a>
           </li>
           <li class="nav-item menu-open">
+            <a href="{{ route('admin.contact') }}" class="nav-link {{ request()->is('admin/contact') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-address-book"></i>
+              <p>
+                Contact
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
             <a href="{{ route('admin.change-password') }}" class="nav-link {{ request()->is('admin/change-password') ? 'active' : '' }}">
               <i class="nav-icon fas fa-lock"></i>
               <p>
