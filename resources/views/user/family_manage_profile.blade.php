@@ -184,7 +184,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="family_types_babysitter">Type of babysitter needed <span class="text-danger">*</span> <span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
-                    <ul class="radio-box-list">ffamily_babysitter_comfortable
+                    <ul class="radio-box-list">
                         <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="babysitter" {{ $family->family_types_babysitter == "babysitter" ? "checked" : ' ' }}><label>Babysitter</label></li>
                         <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="nanny" {{ $family->family_types_babysitter == "nanny" ? "checked" : ' ' }}><label>Nanny</label></li>
                         <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="other parent (parents-help-parents)" {{ $family->family_types_babysitter == "other parent (parents-help-parents)" ? "checked" : ' ' }}><label>Other parent (parents-help-parents)</label></li>
@@ -215,10 +215,10 @@
                     <label for="family_babysitter_comfortable">We need a babysitter comfortable with <span class="text-danger">*</span></label>
                     <select id="family_babysitter_comfortable" name="family_babysitter_comfortable[]" multiple class="form-field @error('family_babysitter_comfortable') is-invalid @enderror" >
                         <option value="" disabled="disabled">Select</option>
-                        <option value="pets" {{in_array("pets", $family->family_babysitter_comfortable) ? 'selected' : null}}>Pets</option>
-                        <option value="cooking" {{in_array("cooking", $family->family_babysitter_comfortable) ? 'selected' : null}}>Cooking</option>
-                        <option value="chores" {{in_array("chores", $family->family_babysitter_comfortable) ? 'selected' : null}}>Chores</option>
-                        <option value="homeworkassistance" {{in_array("homeworkassistance", $family->family_babysitter_comfortable) ? 'selected' : null}}>Homework assistance</option>
+                        <option value="pets" {{ isset($family->family_babysitter_comfortable) && in_array("pets", $family->family_babysitter_comfortable) ? 'selected' : null}}>Pets</option>
+                        <option value="cooking" {{ isset($family->family_babysitter_comfortable) && in_array("cooking", $family->family_babysitter_comfortable) ? 'selected' : null}}>Cooking</option>
+                        <option value="chores" {{ isset($family->family_babysitter_comfortable) && in_array("chores", $family->family_babysitter_comfortable) ? 'selected' : null}}>Chores</option>
+                        <option value="homeworkassistance" {{ isset($family->family_babysitter_comfortable) && in_array("homeworkassistance", $family->family_babysitter_comfortable) ? 'selected' : null}}>Homework assistance</option>
                     </select>
                      @error('family_babysitter_comfortable')
                         <span class="invalid-feedback" role="alert">
@@ -295,97 +295,97 @@
                                 <tr>
                                     <th>Morning</th>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ in_array("mo_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ isset($morning_availability) && in_array("mo_morning", $morning_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="tu_morning" id="" {{ in_array("tu_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="tu_morning" id="" {{ isset($morning_availability) && in_array("tu_morning", $morning_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="we_morning" id="" {{ in_array("we_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="we_morning" id="" {{ isset($morning_availability) && in_array("we_morning", $morning_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="th_morning" id="" {{ in_array("th_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="th_morning" id="" {{ isset($morning_availability) && in_array("th_morning", $morning_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="fr_morning" id="" {{ in_array("fr_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="fr_morning" id="" {{ isset($morning_availability) && in_array("fr_morning", $morning_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="sa_morning" id="" {{ in_array("sa_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="sa_morning" id="" {{ isset($morning_availability) && in_array("sa_morning", $morning_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="su_morning" id="" {{ in_array("su_morning", $morning_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="su_morning" id="" {{ isset($morning_availability) && in_array("su_morning", $morning_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Afternoon</th>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ in_array("mo_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ isset($afternoon_availability) && in_array("mo_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" id="" {{ in_array("tu_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" id="" {{ isset($afternoon_availability) && in_array("tu_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="we_afternoon" id="" {{ in_array("we_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="we_afternoon" id="" {{ isset($afternoon_availability) && in_array("we_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="th_afternoon" id="" {{ in_array("th_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="th_afternoon" id="" {{ isset($afternoon_availability) && in_array("th_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" id="" {{ in_array("fr_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" id="" {{ isset($afternoon_availability) && in_array("fr_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" id="" {{ in_array("sa_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" id="" {{ isset($afternoon_availability) && in_array("sa_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="su_afternoon" id="" {{ in_array("su_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="su_afternoon" id="" {{ isset($afternoon_availability) && in_array("su_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Evening</th>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ in_array("mo_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ isset($evening_availability) && in_array("mo_evening", $evening_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="tu_evening" id="" {{ in_array("tu_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="tu_evening" id="" {{ isset($evening_availability) && in_array("tu_evening", $evening_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="we_evening" id="" {{ in_array("we_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="we_evening" id="" {{ isset($evening_availability) && in_array("we_evening", $evening_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="th_evening" id="" {{ in_array("th_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="th_evening" id="" {{ isset($evening_availability) && in_array("th_evening", $evening_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="fr_evening" id="" {{ in_array("fr_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="fr_evening" id="" {{ isset($evening_availability) && in_array("fr_evening", $evening_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="sa_evening" id="" {{ in_array("sa_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="sa_evening" id="" {{ isset($evening_availability) && in_array("sa_evening", $evening_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="su_evening" id="" {{ in_array("su_evening", $evening_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="su_evening" id="" {{ isset($evening_availability) && in_array("su_evening", $evening_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Night</th>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ in_array("mo_night", $night_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ isset($night_availability) && in_array("mo_night", $night_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="tu_night" id="" {{ in_array("tu_night", $night_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="tu_night" id="" {{ isset($night_availability) && in_array("tu_night", $night_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="we_night" id="" {{ in_array("we_night", $night_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="we_night" id="" {{ isset($night_availability) && in_array("we_night", $night_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="th_night" id="" {{ in_array("th_night", $night_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="th_night" id="" {{ isset($night_availability) && in_array("th_night", $night_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="fr_night" id="" {{ in_array("fr_night", $night_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="fr_night" id="" {{ isset($night_availability) && in_array("fr_night", $night_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="sa_night" id="" {{ in_array("sa_night", $night_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="sa_night" id="" {{ isset($night_availability) && in_array("sa_night", $night_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="su_night" id="" {{ in_array("su_night", $night_availability ) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="su_night" id="" {{ isset($night_availability) && in_array("su_night", $night_availability ) ? 'checked' : '' }}></label>
                                     </td>
                                 </tr>
                             </tbody>
@@ -401,71 +401,71 @@
                     <div id="special-needs-section" class="special-needs-types w-100 mt-3" {{isset($family->family_special_need_option) && $family->family_special_need_option == 1 ? '' : 'hidden'}}>
                         <label class="mb-3">Specific experience:</label>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("anxiety_disorder", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-disorder-btn" autocomplete="off" value="anxiety_disorder">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) && in_array("anxiety_disorder", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-disorder-btn" autocomplete="off" value="anxiety_disorder">
                             <label class="form-check-label" for="special-needs-disorder-btn">Anxiety disorder</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("adhd", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-adhd-btn" autocomplete="off" value="adhd">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("adhd", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-adhd-btn" autocomplete="off" value="adhd">
                             <label class="form-check-label" for="special-needs-adhd-btn">Attention Deficit Hyperactivity Disorder (ADHD)</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("autism", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-autism-btn" autocomplete="off" value="autism">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("autism", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-autism-btn" autocomplete="off" value="autism">
                             <label class="form-check-label" for="special-needs-autism-btn">Autism Spectrum Disorder (ASD)</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("asthma", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-asthma-btn" autocomplete="off" value="asthma">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("asthma", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-asthma-btn" autocomplete="off" value="asthma">
                             <label class="form-check-label" for="special-needs-asthma-btn">Asthma</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("odd_cd", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-odd-cd-btn" autocomplete="off" value="odd_cd">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("odd_cd", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-odd-cd-btn" autocomplete="off" value="odd_cd">
                             <label class="form-check-label" for="special-needs-odd-cd-btn">Oppositional Defiant Disorder and Conduct Disorders (ODD/CD)</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("deaf_and_hard_hearing", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-hard-hearing-btn" autocomplete="off" value="deaf_and_hard_hearing">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("deaf_and_hard_hearing", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-hard-hearing-btn" autocomplete="off" value="deaf_and_hard_hearing">
                             <label class="form-check-label" for="special-needs-hard-hearing-btn">Deaf and hard of hearing</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("global_development_delay", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-dev-delay-btn" autocomplete="off" value="global_development_delay">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("global_development_delay", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-dev-delay-btn" autocomplete="off" value="global_development_delay">
                             <label class="form-check-label" for="special-needs-dev-delay-btn">Global development delay</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("diabetes", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-diabetes-btn" autocomplete="off" value="diabetes">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("diabetes", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-diabetes-btn" autocomplete="off" value="diabetes">
                             <label class="form-check-label" for="special-needs-diabetes-btn">Diabetes</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("language_disorder", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-lang-dis-btn" autocomplete="off" value="language_disorder">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("language_disorder", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-lang-dis-btn" autocomplete="off" value="language_disorder">
                             <label class="form-check-label" for="special-needs-lang-dis-btn">Language disorder</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("epilepsy", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-epilepsy-btn" autocomplete="off" value="epilepsy">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("epilepsy", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-epilepsy-btn" autocomplete="off" value="epilepsy">
                             <label class="form-check-label" for="special-needs-epilepsy-btn">Epilepsy</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("food_allergies", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-allergies-btn" autocomplete="off" value="food_allergies">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("food_allergies", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-allergies-btn" autocomplete="off" value="food_allergies">
                             <label class="form-check-label" for="special-needs-allergies-btn">Food allergies</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("hemophilia", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-hemophilia-btn" autocomplete="off" value="hemophilia">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("hemophilia", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-hemophilia-btn" autocomplete="off" value="hemophilia">
                             <label class="form-check-label" for="special-needs-hemophilia-btn">Hemophilia</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("obsessive_compulsive_disorder", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-compulsive-btn" autocomplete="off" value="obsessive_compulsive_disorder">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("obsessive_compulsive_disorder", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-compulsive-btn" autocomplete="off" value="obsessive_compulsive_disorder">
                             <label class="form-check-label" for="special-needs-compulsive-btn">Obsessive compulsive disorder (OCD)</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("physically_limited", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-limited-btn" autocomplete="off" value="physically_limited">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("physically_limited", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-limited-btn" autocomplete="off" value="physically_limited">
                             <label class="form-check-label" for="special-needs-limited-btn">Physically limited</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("sleep_disorder", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-sleep-dis-btn" autocomplete="off" value="sleep_disorder">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("sleep_disorder", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-sleep-dis-btn" autocomplete="off" value="sleep_disorder">
                             <label class="form-check-label" for="special-needs-sleep-dis-btn">Sleep disorder</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("tics", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-tics-btn" autocomplete="off" value="tics">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("tics", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-tics-btn" autocomplete="off" value="tics">
                             <label class="form-check-label" for="special-needs-tics-btn">Tics</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ in_array("visual_impairment", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-visual-btn" autocomplete="off" value="visual_impairment">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("visual_impairment", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-visual-btn" autocomplete="off" value="visual_impairment">
                             <label class="form-check-label" for="special-needs-visual-btn">Visual impairment</label>
                         </div>
                     </div>

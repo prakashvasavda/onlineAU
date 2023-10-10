@@ -48,6 +48,11 @@ Route::put('update-family/{id}', 'FrontFamilyController@update_family')->name('u
 Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');
 Route::post('store-contact', 'HomeController@store_contact')->name('store-contact');
 
+/*FRONT PAYMENT CONTROLLER*/
+Route::post('/payment/process', 'PaymentController@process_payment')->name('payment-process');
+Route::get('/payment/success', 'PaymentController@payment_success')->name('payment-success');
+Route::get('/payment/cancel', 'PaymentController@payment_cancel')->name('payment-cancel');
+
 Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('pricing', 'HomeController@pricing')->name('pricing');
 });
