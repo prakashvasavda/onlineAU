@@ -24,10 +24,11 @@
                             <li class="#"><a href="#">Reviews</a></li>
                             <li class="#"><a href="#">Manage Payments</a></li>
                         @endif
-                        <li><a href="{{ route('home') }}#aboutUs">Contact us</a></li>
                         @if(session()->has('frontUser'))
+                            <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li>
                             <li><a href="{{ route('user-logout') }}">Logout</a></li>
                         @else
+                            <li><a href="{{ route('home') }}#aboutUs">Contact us</a></li>
                             <li class="{{ request()->is('user-login') ? 'active' : '' }}"><a href="{{ route('user-login') }}">Login</a></li>
                         @endif
                     </ul>
