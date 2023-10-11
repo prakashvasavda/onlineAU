@@ -4,11 +4,11 @@
     <div class="container">
         <div class="title-main">
             <h2>Welcome to Online Au-Pairs</h2>
-            <h3>{{ ucfirst($menu) }}</h3>
+            <h3>{{ isset($menu) ? ucfirst($menu) : '' }}</h3>
         </div>
         @include('flash.front-message')
 
-        <form class="row" name="frm" action="{{ route('update-family', ['id' => $family->id]) }}" enctype="multipart/form-data" method="POST">
+      <form class="row" name="frm" action="{{ route('update-family', ['id' => $family->id]) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -33,7 +33,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input mb-3">
                     <label for="name">Full Name <span class="text-danger">*</span></label>
-                    <input type="text" id="name" name="name" value="{{ old('name', $family->name) }}" placeholder="" class="form-field @error('name') is-invalid @enderror">
+                    <input type="text" id="name" name="name" placeholder="" class="form-field @error('name') is-invalid @enderror"  value="{{ old('name', isset($family->name) ? $family->name : '') }}">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -41,10 +41,10 @@
                     @enderror
 
                 </div>
-                <div class="form-input mb-3">
+                <div class="form-input">
                     <div class="form-input">
                         <label for="email">Email Address <span class="text-danger">*</span></label>
-                        <input type="email" id="email" name="email" value="{{ old('email', $family->email) }}" placeholder="" class="form-field @error('email') is-invalid @enderror" autocomplete="off">
+                        <input type="email" id="email" name="email" value="{{ old('email', isset($family->email) ? $family->email : '') }}" placeholder="" class="form-field @error('email') is-invalid @enderror" autocomplete="off">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -52,9 +52,12 @@
                         @enderror
                     </div>
                 </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="email">Password </label>
-                    <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
+                    <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror"  value="" readonly onfocus="this.removeAttribute('readonly');">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -65,7 +68,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="address">Your Address <span class="text-danger">*</span></label>
-                    <input type="text" id="address" name="family_address" value="{{ old('family_address', $family->family_address) }}" placeholder="" class="form-field @error('family_address') is-invalid @enderror">
+                    <input type="text" id="address" name="family_address" placeholder="" class="form-field @error('family_address') is-invalid @enderror"  value="{{ old('family_address', isset($family->family_address) ? $family->family_address : '') }}">
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
@@ -79,7 +82,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="city">City <span class="text-danger">*</span></label>
-                    <input type="text" id="city" name="family_city" value="{{ old('family_city', $family->family_city) }}" placeholder="" class="form-field @error('family_city') is-invalid @enderror">
+                    <input type="text" id="city" name="family_city" placeholder="" class="form-field @error('family_city') is-invalid @enderror"  value="{{ old('family_city', isset($family->family_city) ? $family->family_city : '') }}">
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
@@ -93,8 +96,8 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="language">Add Language <span class="text-danger">*</span></label>
-                    <select id="home_language" name="home_language" class="form-field">
-                        <option value="" selected="selected" disabled="disabled">Select one</option>
+                    <select id="language" name="home_language" multiple class="form-field @error('home_language') is-invalid @enderror" >
+                        <option value="" disabled="disabled">Select</option>
                         <option value="english" {{ isset($family->home_language) && $family->home_language == "english" ? 'selected' : null }}>English</option>
                         <option value="afrikaans" {{ isset($family->home_language) && $family->home_language == "afrikaans" ? 'selected' : null }}>Afrikaans</option>
                         <option value="zulu (isizulu)" {{ isset($family->home_language) && $family->home_language == "zulu (isizulu)" ? 'selected' : null }}>Zulu (isiZulu)</option>
@@ -127,7 +130,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="no_children">Number of children <span class="text-danger">*</span></label>
-                    <input type="number" id="no_children" name="no_children" value="{{ old('no_children', $family->no_children) }}" placeholder="" class="form-field @error('no_children') is-invalid @enderror" >
+                    <input type="number" id="no_children" name="no_children" placeholder="" class="form-field @error('no_children') is-invalid @enderror" value="{{ old('no_children', isset($family->no_children) ? $family->no_children : '') }}">
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
@@ -138,76 +141,102 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="age_children">Age of children <span class="text-danger">*</span></label>
-                    <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
-                        <option selected="selected" value="Baby">Baby</option>
-                        <option value="gradeschooler" {{ $family->age_children == "gradeschooler" ? "selected" : "" }}>Gradeschooler</option>
-                        <option value="toddler" {{ $family->age_children == "toddler" ? "selected" : "" }}>Toddler</option>
-                        <option value="teenager" {{ $family->age_children == "teenager" ? "selected" : "" }}>Teenager</option>
-                        <option value="preschooler" {{ $family->age_children == "preschooler" ? "selected" : "" }}>Preschooler</option>
-                    </select>
-                    @error('age')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+
+            @if(isset($family->age) && !empty($family->age))
+                @foreach($family->age as $key => $value)
+                    @if ($key >= 1)  
+                        @break  
+                    @else
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-input">
+                                <label for="age_children">Age of children <span class="text-danger">*</span></label>
+                                <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
+                                    <option value="baby" {{ $value == "baby" ? 'selected' : '' }}>Baby</option>
+                                    <option value="gradeschooler" {{ $value == "gradeschooler" ? 'selected' : '' }}>Gradeschooler</option>
+                                    <option value="toddler" {{ $value == "toddler" ? 'selected' : '' }}>Toddler</option>
+                                    <option value="teenager" {{ $value == "teenager" ? 'selected' : '' }}>Teenager</option>
+                                    <option value="preschooler" {{ $value == "preschooler" ? 'selected' : '' }}>Preschooler</option>
+                                </select>
+                                @error('age')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @else
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-input">
+                        <label for="age_children">Age of children <span class="text-danger">*</span></label>
+                        <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
+                            <option value="" disabled="disabled" selected>Select Age</option>
+                            <option value="baby">Baby</option>
+                            <option value="gradeschooler">Gradeschooler</option>
+                            <option value="toddler">Toddler</option>
+                            <option value="teenager">Teenager</option>
+                            <option value="preschooler">Preschooler</option>
+                        </select>
+                        @error('age')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 </div>
+            @endif 
+           
+
+            <div id="more_childern" class="row p-0 m-0">
+                @if(isset($family->age) && !empty($family->age))
+                    @foreach($family->age as $key => $value)
+                        @if ($key >= 1) 
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-input">
+                                    <label for="age_children">Age of children <span class="text-danger">*</span></label>
+                                    <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
+                                        <option value="baby" {{ $value == "baby" ? 'selected' : '' }}>Baby</option>
+                                        <option value="gradeschooler" {{ $value == "gradeschooler" ? 'selected' : '' }}>Gradeschooler</option>
+                                        <option value="toddler" {{ $value == "toddler" ? 'selected' : '' }}>Toddler</option>
+                                        <option value="teenager" {{ $value == "teenager" ? 'selected' : '' }}>Teenager</option>
+                                        <option value="preschooler" {{ $value == "preschooler" ? 'selected' : '' }}>Preschooler</option>
+                                    </select>
+                                    @error('age')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach     
+                @endif 
             </div>
-            <div id="more_childern"></div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="describe_kids">Describe your kids in 3 words <span class="text-danger">*</span></label>
-                    <select id="describe_kids" name="describe_kids" multiple class="form-field @error('describe_kids') is-invalid @enderror" >
-                        <option value="" disabled="disabled">Select</option>
-                        <option value="energetic" {{ $family->describe_kids == "energetic" ? "selected" : " " }}>Energetic</option>
-                        <option value="curious" {{ $family->describe_kids == "curious" ? "selected" : " " }}>Curious</option>
-                        <option value="sporty" {{ $family->describe_kids == "sporty" ? "selected" : " " }}>Sporty</option>
-                        <option value="creative" {{ $family->describe_kids == "creative" ? "selected" : " " }}>Creative</option>
-                        <option value="friendly" {{ $family->describe_kids == "friendly" ? "selected" : " " }}>Friendly</option>
-                        <option value="talkative" {{ $family->describe_kids == "talkative" ? "selected" : " " }}>Talkative</option>
-                        <option value="calm" {{ $family->describe_kids == "calm" ? "selected" : " " }}>Calm</option>
-                        <option value="playful" {{ $family->describe_kids == "playful" ? "selected" : " " }}>Playful</option>
-                        <option value="funny" {{ $family->describe_kids == "funny" ? "selected" : " " }}>Funny</option>
-                        <option value="intelligent" {{ $family->describe_kids == "intelligent" ? "selected" : " " }}>Intelligent</option>
-                        <option value="affectionate" {{ $family->describe_kids == "affectionate" ? "selected" : " " }}>Affectionate</option>
-                        <option value="independent" {{ $family->describe_kids == "independent" ? "selected" : " " }}>Independent</option>
+                    <select id="describe_kids" name="describe_kids" class="form-field @error('describe_kids') is-invalid @enderror" >
+                        <option value="" disabled="disabled" selected>Select</option>
+                        <option value="energetic" {{ isset($family->describe_kids) && $family->describe_kids == "energetic" ? "selected" : " " }}>Energetic</option>
+                        <option value="curious" {{ isset($family->describe_kids) && $family->describe_kids == "curious" ? "selected" : " " }}>Curious</option>
+                        <option value="sporty" {{ isset($family->describe_kids) && $family->describe_kids == "sporty" ? "selected" : " " }}>Sporty</option>
+                        <option value="creative" {{ isset($family->describe_kids) && $family->describe_kids == "creative" ? "selected" : " " }}>Creative</option>
+                        <option value="friendly" {{ isset($family->describe_kids) && $family->describe_kids == "friendly" ? "selected" : " " }}>Friendly</option>
+                        <option value="talkative" {{ isset($family->describe_kids) && $family->describe_kids == "talkative" ? "selected" : " " }}>Talkative</option>
+                        <option value="calm" {{ isset($family->describe_kids) && $family->describe_kids == "calm" ? "selected" : " " }}>Calm</option>
+                        <option value="playful" {{ isset($family->describe_kids) && $family->describe_kids == "playful" ? "selected" : " " }}>Playful</option>
+                        <option value="funny" {{ isset($family->describe_kids) && $family->describe_kids == "funny" ? "selected" : " " }}>Funny</option>
+                        <option value="intelligent" {{ isset($family->describe_kids) && $family->describe_kids == "intelligent" ? "selected" : " " }}>Intelligent</option>
+                        <option value="affectionate" {{ isset($family->describe_kids) && $family->describe_kids == "affectionate" ? "selected" : " " }}>Affectionate</option>
+                        <option value="independent" {{ isset($family->describe_kids) && $family->describe_kids == "independent" ? "selected" : " " }}>Independent</option>
                     </select>
                     @error('describe_kids')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="family_types_babysitter">Type of babysitter needed <span class="text-danger">*</span> <span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
-                    <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="babysitter" {{ $family->family_types_babysitter == "babysitter" ? "checked" : ' ' }}><label>Babysitter</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="nanny" {{ $family->family_types_babysitter == "nanny" ? "checked" : ' ' }}><label>Nanny</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="other parent (parents-help-parents)" {{ $family->family_types_babysitter == "other parent (parents-help-parents)" ? "checked" : ' ' }}><label>Other parent (parents-help-parents)</label></li>
-                    </ul>
-                     @if ($errors->has('family_types_babysitter'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('family_types_babysitter') }}</strong>
-                        </span>
-                    @endif
-                </div> 
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="family_location">Preferred babysitting location <span class="text-danger">*</span></label>
-                    <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" name="family_location" value="at our home" class="form-field @error('family_location') is-invalid @enderror" {{ $family->family_location == "at our home" ? "checked" : '' }}><label>At our home</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_location" value="at the babysitter's" class="form-field @error('family_location') is-invalid @enderror" {{ $family->family_location == "at the babysitter's" ? "checked" : '' }}><label>At the babysitter's</label></li>
-                    </ul>
-                    @if ($errors->has('family_location'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('family_location') }}</strong>
-                        </span>
-                    @endif
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -229,24 +258,44 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="family_profile_see">Who can see your profile? <span class="text-danger">*</span></label>
+                    <label for="family_types_babysitter">Type of babysitter needed <span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
                     <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" name="family_profile_see" value="everyone" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Babysits users, public search engines, and job boards can iew your profile." {{ $family->family_profile_see == "everyone" ? "checked" : '' }}><label>Everyone</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_profile_see" value="only babysits users" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get." {{ $family->family_profile_see == "only babysits users" ? "checked" : '' }}><label>Only Babysits users</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="babysitter" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "babysitter" ? "checked" : ' ' }}><label>Babysitter</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="nanny" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "nanny" ? "checked" : ' ' }}><label>Nanny</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="other parent (parents-help-parents)" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "other parent (parents-help-parents)" ? "checked" : ' ' }}><label>Other parent (parents-help-parents)</label></li>
                     </ul>
-                    @if ($errors->has('family_profile_see'))
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="family_location">Preferred babysitting location </label>
+                    <ul class="radio-box-list">
+                        <li class="radio-box-item"><input type="radio" name="family_location" value="at our home" class="form-field @error('family_location') is-invalid @enderror" {{ isset($family->family_location) && $family->family_location == "at our home" ? "checked" : '' }}><label>At our home</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_location" value="at the babysitter's" class="form-field @error('family_location') is-invalid @enderror" {{ isset($family->family_location) && $family->family_location == "at the babysitter's" ? "checked" : '' }}><label>At the babysitter's</label></li>
+                    </ul>
+                    @if ($errors->has('last_name'))
                         <span class="text-danger">
-                            <strong>{{ $errors->first('family_profile_see') }}</strong>
+                            <strong>{{ $errors->first('last_name') }}</strong>
                         </span>
                     @endif
                 </div>
             </div>
+            
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input mb-3">
+                <div class="form-input">
+                    <label for="family_profile_see">Who can see your profile? </label>
+                    <ul class="radio-box-list">
+                        <li class="radio-box-item"><input type="radio" checked name="family_profile_see" value="everyone" {{ old('family_profile_see') === "everyone" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Babysits users, public search engines, and job boards can iew your profile."><label>Everyone</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_profile_see" value="only babysits users" {{ old('family_profile_see') === "only babysits users" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get."><label>Only Babysits users</label></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
                     <label for="family_notifications">Do you want to get notifications from new babysitters in your area? </label>
                     <ul class="d-flex flex-wrap" >
-                        <li><input type="radio" checked name="family_notifications" value="yes" {{ $family->family_notifications == "yes" ? 'checked' : '' }}>Yes</li>
-                        <li><input type="radio" name="family_notifications" value="no" {{ $family->family_notifications == "no" ? 'checked' : '' }}>No</li>
+                         <li><input type="radio" checked name="family_notifications" value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'checked' : '' }}>Yes</li>
+                        <li><input type="radio" name="family_notifications" value="no" {{ isset($family->family_notifications) && $family->family_notifications == "no" ? 'checked' : '' }}>No</li>
                     </ul>
                     @if ($errors->has('family_notifications'))
                         <span class="text-danger">
@@ -254,21 +303,23 @@
                         </span>
                     @endif
                 </div>
+            </div>
 
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="">What hourly rate are you willing to pay? </label>
                     <div class="input-group mb-1">
                         <span class="input-group-text">R</span>
-                            <input type="text" name="salary_expectation" value="{{ old('salary_expectation', isset($family->salary_expectation) ? $family->salary_expectation : '') }}"  id="salary_expectation" class="form-field" placeholder="">
+                            <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="" value="{{ old('salary_expectation', isset($family->salary_expectation) ? $family->salary_expectation : '') }}">
                         <span class="input-group-text">hr</span>
                     </div>
-                    <p class="fw-light small">Average rate that other families offer: US$16,34<br>For your safety and protection, only pay through Babysits.</p>
+                    <p class="fw-light small">Average rate that other families offer: R16,34<br>For your safety and protection, only pay through Online Au-Pairs.</p>
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="family_description">Tell a little about your family, so babysitters can get to know you. <span class="text-danger">*</span></label>
-                <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" >{{ old('family_description', $family->family_description) }}</textarea>
+                <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" >{{ old('family_description', isset($family->family_description) ? $family->family_description : '') }}</textarea>
                 <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                 @if ($errors->has('family_description'))
                     <span class="text-danger">
@@ -399,7 +450,7 @@
                     <label for="special-needs">We are looking for someone who has experience with children with special needs </label>
                     <p>For example with children with behavioral problems, an intellectual disability or a chronic illness. <a href="javaScript:;">Learn more</a></p>
                     <div id="special-needs-section" class="special-needs-types w-100 mt-3" {{isset($family->family_special_need_option) && $family->family_special_need_option == 1 ? '' : 'hidden'}}>
-                        <label class="mb-3">Specific experience:</label>
+                        <label class="w-100 mb-3">Specific experience:</label>
                         <div class="form-input d-flex flex-wrap mb-2">
                             <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) && in_array("anxiety_disorder", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-disorder-btn" autocomplete="off" value="anxiety_disorder">
                             <label class="form-check-label" for="special-needs-disorder-btn">Anxiety disorder</label>
@@ -441,7 +492,7 @@
                             <label class="form-check-label" for="special-needs-epilepsy-btn">Epilepsy</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
-                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("food_allergies", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-allergies-btn" autocomplete="off" value="food_allergies">
+                            <input type="checkbox" name="family_special_need_value[]" {{ isset($family->family_special_need_value ) &&  in_array("hemophilia", $family->family_special_need_value ) ? 'checked' : '' }} id="special-needs-hemophilia-btn" autocomplete="off" value="hemophilia">
                             <label class="form-check-label" for="special-needs-allergies-btn">Food allergies</label>
                         </div>
                         <div class="form-input d-flex flex-wrap mb-2">
@@ -504,7 +555,7 @@ $(document).ready(function() {
         $("#more_childern").html('');
         if(no_children > 1) {
             for (var i = no_children - 1; i >= 1; i--) {
-                $("#more_childern").append('<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="age_children">Age of children</label><select name="age[]" class="form-field" ><option value="Baby" selected="selected">Baby</option><option value="Gradeschooler">Gradeschooler</option><option value="Toddler">Toddler</option><option value="Teenager">Teenager</option><option value="Preschooler">Preschooler</option></select></div></div>');
+                $("#more_childern").append('<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="age_children">Age of children</label><select name="age[]" class="form-field" ><option value="" disabled="disabled" selected>Select Age</option><option value="baby">Baby</option><option value="gradeschooler">Gradeschooler</option><option value="toddler">Toddler</option><option value="teenager">Teenager</option><option value="preschooler">Preschooler</option></select></div></div>');
             }
         }
     });

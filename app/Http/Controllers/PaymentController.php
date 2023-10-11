@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 class PaymentController extends Controller{
     
     public function process_payment(Request $request){
-        $merchant_id = env('PAYFAST_MERCHANT_ID');
-        $merchant_key = env('PAYFAST_MERCHANT_KEY');
-        $amount = $request->amount;
-        $item_name = 'Test Product';
-        $return_url = 'http://localhost/payfast-demo/public/payment/success';
-        $payfast_url = 'https://sandbox.payfast.co.za/eng/process';
+        $merchant_id    = env('PAYFAST_MERCHANT_ID');
+        $merchant_key   = env('PAYFAST_MERCHANT_KEY');
+
+        $amount         = $request->amount;
+        $item_name      = $request->item_name;
+        
+        $return_url     = 'http://localhost/onlineAU/public/payment/success';
+        $cancel_url     = 'http://localhost/onlineAU/public/payment/cancel';
+        $notify_url     = 'http://localhost/onlineAU/public/payment/notify';
+        $notify_url     = 'https://onlineaupairs.co.za/public/payment/notify';
+        $payfast_url    = 'https://sandbox.payfast.co.za/eng/process';
 
         $data = array(
             'merchant_id' => $merchant_id,
@@ -20,6 +25,8 @@ class PaymentController extends Controller{
             'amount' => $amount,
             'item_name' => $item_name,
             'return_url' => $return_url,
+            'cancel_url' => $cancel_url,
+            'notify_url' => $notify_url,
         );
 
         $ch = curl_init();
@@ -43,6 +50,10 @@ class PaymentController extends Controller{
     }
     public function payment_cancel(Request $request){
         return "canceled";
+    }
+
+    public function payment_notify(Request $request){
+        return $request;
     }
 
 }

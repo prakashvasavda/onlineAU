@@ -14,6 +14,7 @@
                         <form method="POST" class="row" action="{{ route('payment-process') }}" id="pricing-form-{{$key}}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="amount" value="{{ $price['price'] }}">
+                            <input type="hidden" name="item_name" value="{{ $price['name'] }}">
                             <div class="pricing-card">
                                 <div class="heading">
                                     @if($key== 0)

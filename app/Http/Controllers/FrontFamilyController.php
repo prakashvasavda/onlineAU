@@ -41,11 +41,7 @@ class FrontFamilyController extends Controller{
         return view('user.family_detail', $data);
     }
 
-    public function store_family_reviews(Request $request){
-        if (!Session::has('frontUser')) {
-            return redirect()->back()->with('error', 'You must be logged in to submit a review.');
-        } 
-         
+    public function store_family_reviews(Request $request){  
         $request->validate([
             'review_rating_count'       => 'required',
             'review_note'               => 'required',
@@ -90,6 +86,7 @@ class FrontFamilyController extends Controller{
         $data['afternoon_availability']                     = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
         $data['evening_availability']                       = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']                         = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        $data['family']['age']                              = !empty($data['family']->age) ? json_decode($data['family']->age, true) : array();
         return view('user.family_manage_profile', $data);
     }
 
@@ -122,6 +119,7 @@ class FrontFamilyController extends Controller{
         $input['family_babysitter_comfortable'] = isset($request->family_babysitter_comfortable) ? json_encode($request->family_babysitter_comfortable) : null;
         $input['family_special_need_value']     = isset($request->family_special_need_value) ? json_encode($request->family_special_need_value) : null;
         $input['profile']                       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
+        $input['no_children']                   = isset($request->age) && is_array($request->age) ? count($request->age) : $request->no_children;
         $availability                           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_family_availability($input, $familyId) : 0;
         $update_status                          = $family->update($input);
 
@@ -150,5 +148,4 @@ class FrontFamilyController extends Controller{
         $path       = $data->storeAs('uploads', $imageName, 'public');
         return      $imageName;
     }
-
 }
