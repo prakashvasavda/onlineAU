@@ -17,7 +17,7 @@
 					<div class="ftr-menu">
 						<h5>Family</h5>
 						<ul>
-							<li><a href="javaScript:;">How it Works</a></li>
+							<li><a href="{{ route('families') }}#howWorks">How it Works</a></li>
 							<li><a href="{{ route('family-register') }}">Register my family</a></li>
 						</ul>
 					</div>

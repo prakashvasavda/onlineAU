@@ -8,14 +8,13 @@ use App\PreviousExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Validator;
-use App\CandidateReview;
 use Session;
-use DB;
-use App\CandidateFavourite;
+use Validator;
 
-class FrontRegisterController extends Controller{
-    public function index($type){
+class FrontRegisterController extends Controller
+{
+    public function index($type)
+    {
         $data['type'] = $type == 'nannies' ? 'a nanny' : ($type == 'babysitters' ? 'a babysitter' : 'an au-pair');
 
         if (session()->has('frontUser')) {
@@ -24,20 +23,22 @@ class FrontRegisterController extends Controller{
         return view('user.register', $data);
     }
 
-    public function candidates(){
+    public function candidates()
+    {
         return view('user.candidates');
     }
 
-    public function store_candidate(Request $request){
+    public function store_candidate(Request $request)
+    {
         $data  = $request->all();
         $rules = [
-            'name'            => "required",
-            'age'             => "required",
-            'profile'         => "required",
-            'id_number'       => "required",
+            'name'               => "required",
+            'age'                => "required",
+            'profile'            => "required",
+            'id_number'          => "required",
             // 'contact_number'  => "required",
-            'email'           => "required|email|unique:front_users,email",
-            'password'        => "required",
+            'email'              => "required|email|unique:front_users,email",
+            'password'           => "required",
             // 'gender'          => "required",
             // 'marital_status'  => "required",
             // 'drivers_license' => "required",
@@ -45,16 +46,16 @@ class FrontRegisterController extends Controller{
             'morning.*'          => "required_without_all",
             'afternoon.*'        => "required",
             'evening.*'          => "required",
-            'night.*'            => "required", 
+            'night.*'            => "required",
         ];
         $message = [
-            'name'            => 'The Name field isrequired',
-            'age'             => 'The Age field is required',
-            'profile'         => 'The Profile must be required',
-            'id_number'       => 'The Id Number field is required',
+            'name'               => 'The Name field isrequired',
+            'age'                => 'The Age field is required',
+            'profile'            => 'The Profile must be required',
+            'id_number'          => 'The Id Number field is required',
             // 'contact_number'  => 'The Contact Number must be required',
-            'email'           => 'The Email field is required',
-            'password'        => 'The Password field is required',
+            'email'              => 'The Email field is required',
+            'password'           => 'The Password field is required',
             // 'gender'          => 'The Gender must be required',
             // 'marital_status'  => 'The Marital Status must be required',
             // 'drivers_license' => 'The Drivers License must be required',
@@ -124,15 +125,32 @@ class FrontRegisterController extends Controller{
 
         $status = $this->store_need_babysitter($data, $candidateId);
 
+        config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
+        config(['mail.mailers.smtp.port' => '587']);
+        config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
+        config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
+        config(['mail.mailers.smtp.encryption' => 'tls']);
+        $message = '<p>Hello Admin,</p>
+            <p>New Candidate Registration, Please check below detail and then make status action on the admin side. .</p>
+            <p>Name: ' . $request->name . '</p>
+            <p>Email: ' . $request->email . '</p>';
+        $emailTo = 'prakash.v.php@gmail.com';
+        $name    = 'Admin';
+        Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
+            $mail->to($emailTo, $name)->subject('New Candidate Registration')->setBody($message, 'text/html');
+            $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
+        });
+
         return redirect()->back()->with('success', 'Registration create successfully.');
     }
 
-    public function store_need_babysitter($input, $candidateId){
-        $data['family_id']  = $candidateId;
-        $data['morning']    = !empty($input['morning']) ? json_encode($input['morning']) : null;
-        $data['afternoon']  = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
-        $data['evening']    = !empty($input['evening']) ? json_encode($input['evening']) : null;
-        $data['night']      = !empty($input['night']) ? json_encode($input['night']) : null;
+    public function store_need_babysitter($input, $candidateId)
+    {
+        $data['family_id'] = $candidateId;
+        $data['morning']   = !empty($input['morning']) ? json_encode($input['morning']) : null;
+        $data['afternoon'] = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
+        $data['evening']   = !empty($input['evening']) ? json_encode($input['evening']) : null;
+        $data['night']     = !empty($input['night']) ? json_encode($input['night']) : null;
         return NeedsBabysitter::create($data);
     }
 
@@ -147,8 +165,9 @@ class FrontRegisterController extends Controller{
         return view('user.family_register');
     }
 
-    public function store_family(Request $request){
-        $data = $request->all();
+    public function store_family(Request $request)
+    {
+        $data  = $request->all();
         $rules = [
             'name'                          => "required",
             'age'                           => "required",
@@ -225,15 +244,15 @@ class FrontRegisterController extends Controller{
         ]);
 
         $status = $this->store_need_babysitter($data, $familyId);
-        
-       /* $needs = NeedsBabysitter::insertGetId([
-            'family_id'  => $familyId,
-            'morning'    => serialize($request->morning),
-            'afternoon'  => serialize($request->afternoon),
-            'evening'    => serialize($request->evening),
-            'night'      => serialize($request->night),
-            "created_at" => date("Y-m-d H:i:s"),
-            "updated_at" => date("Y-m-d H:i:s"),
+
+        /* $needs = NeedsBabysitter::insertGetId([
+        'family_id'  => $familyId,
+        'morning'    => serialize($request->morning),
+        'afternoon'  => serialize($request->afternoon),
+        'evening'    => serialize($request->evening),
+        'night'      => serialize($request->night),
+        "created_at" => date("Y-m-d H:i:s"),
+        "updated_at" => date("Y-m-d H:i:s"),
         ]);*/
 
         return redirect()->back()->with('success', 'Registration create successfully.');

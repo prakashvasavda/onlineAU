@@ -24,7 +24,7 @@
                             <li class="#"><a href="#">Reviews</a></li>
                             <li class="#"><a href="#">Manage Payments</a></li>
                         @endif
-                        <li class="{{ request()->is('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Contact us</a></li>
+                        <li><a href="{{ route('home') }}#aboutUs">Contact us</a></li>
                         @if(session()->has('frontUser'))
                             <li><a href="{{ route('user-logout') }}">Logout</a></li>
                         @else

@@ -29,7 +29,7 @@
     </div>
 </div>
 
-<div class="contact-section">
+<div class="contact-section" id="aboutUs">
     <div class="container">
         <div class="contact-inner">
             <a href="{{ route('contact-us') }}" class="btn btn-primary round">contact us</a>
@@ -37,7 +37,7 @@
     </div>
 </div>
 
-<div class="about-section">
+<div class="about-section" >
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">

@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div class="steps-section">
+<div class="steps-section" id="howWorks">
     <div class="container">
         <div class="title-main mb-5">
             <h2>family registration</h2>
