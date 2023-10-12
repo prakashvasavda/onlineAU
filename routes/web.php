@@ -30,12 +30,14 @@ Route::post('check-user', 'LoginController@check_user')->name('check-user');
 Route::get('reset-password/{email}', 'LoginController@reset_password')->name('reset-password');
 Route::post('create-new-password', 'LoginController@create_new_password')->name('create-new-password');
 
-
 Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');
 Route::post('store-contact', 'HomeController@store_contact')->name('store-contact');
 
 Route::get('/payment/notify', 'PaymentController@payment_notify')->name('payment-notify');
 
+/* Search */
+
+Route::get('search', 'SearchController@index')->name('search');
 
 Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('pricing', 'HomeController@pricing')->name('pricing');
@@ -52,7 +54,6 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('candidate/manage-calender', 'FrontCandidateController@edit_candidate_calender')->name('manage-calender');
     Route::put('update-candidate-calender/{id}', 'FrontCandidateController@update_candidate_calender')->name('update-candidate-calender');
 
-
     /*FRONT FAMILY ROUTES*/
     Route::get('family-detail/{id}', 'FrontFamilyController@family_detail')->name('family-detail');
     Route::post('store-family-reviews', 'FrontFamilyController@store_family_reviews')->name('store-family-reviews');
@@ -65,7 +66,6 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('/payment/success', 'PaymentController@payment_success')->name('payment-success');
     Route::get('/payment/cancel', 'PaymentController@payment_cancel')->name('payment-cancel');
 });
-
 
 Auth::routes();
 
