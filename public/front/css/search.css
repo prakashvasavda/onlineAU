@@ -1,0 +1,131 @@
+body.search-open {
+    overflow: hidden;
+}
+.close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    outline: none;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-box.search-elem {
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(0,0,0,.5);
+    transition: all 0.3s ease-in-out;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+}
+.search-box.search-elem .inner {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.search-box.search-elem input.form-field {
+    width: calc(100% - 120px);
+    /*border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-width: 0;*/
+}
+.search-box.search-elem .nice-select {
+    width: 120px;
+    /*border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-width: 0;*/
+}
+.search-box.search-elem .inner .input-group-append {
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-box.search-elem .nice-select .current {
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/*.search-box.search-elem label {
+    color: white;
+    font-weight: 300;
+}
+.search-box.search-elem button.submit {
+    outline: none;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    height: 70px;
+    padding: 10px 2rem;
+    background: #00A896;
+    font-size: 1rem;
+    color: white;
+}
+.search-box.search-elem button.submit[disabled] {
+    background: #ccc;
+    color: #32213A;
+}
+.search-box.search-elem input[type=text] {
+    padding: 20px;
+    height: 72px;
+    font-size: 32px;
+    font-weight: 300;
+    border: none;
+    border-bottom: solid 2px #999;
+    transition: border 0.3s;
+    border-radius: 0;
+}
+.search-box.search-elem input[type=text]:focus {
+    border-bottom: solid 2px #00A896;
+    box-shadow: none;
+}
+.search-box.search-elem label.placeholder {
+    position: absolute;
+    top: 10px;
+    left: 2rem;
+    font-size: 32px;
+    font-weight: 300;
+    color: #999;
+    transition: all 0.3s;
+}
+.search-box.search-elem label.placeholder.move-up {
+    top: -25px;
+    color: white;
+    font-size: 1rem;
+}*/
+.search-box.search-elem.search-open {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+.search-btn {
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    padding: 0 10px;
+    display: inline-block;
+}
+.search-btn:hover {
+    color: #00A896;
+}
