@@ -13,9 +13,12 @@ class PaymentController extends Controller{
         $amount         = $request->amount;
         $item_name      = $request->item_name;
         
-        $return_url     = 'http://localhost/onlineAU/public/payment/success';
-        $cancel_url     = 'http://localhost/onlineAU/public/payment/cancel';
-        $notify_url     = 'http://localhost/onlineAU/public/payment/notify';
+        //$return_url     = 'http://localhost/onlineAU/public/payment/success';
+        //$cancel_url     = 'http://localhost/onlineAU/public/payment/cancel';
+        //$notify_url     = 'http://localhost/onlineAU/public/payment/notify';
+        
+        $return_url     = 'https://onlineaupairs.co.za/public/payment/success';
+        $cancel_url     = 'https://onlineaupairs.co.za/public/payment/cancel';
         $notify_url     = 'https://onlineaupairs.co.za/public/payment/notify';
         $payfast_url    = 'https://sandbox.payfast.co.za/eng/process';
 
@@ -46,14 +49,63 @@ class PaymentController extends Controller{
     }
 
     public function payment_success(Request $request){
-        return "success";
+       header( 'HTTP/1.0 200 OK' );
+        flush();
+
+        define( 'SANDBOX_MODE', true );
+        $pfHost = SANDBOX_MODE ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
+        // Posted variables from ITN
+        $pfData = $_POST;
+
+        // Strip any slashes in data
+        foreach( $pfData as $key => $val ) {
+            $pfData[$key] = stripslashes( $val );
+        }
+
+        // Convert posted variables to a string
+        foreach( $pfData as $key => $val ) {
+            if( $key !== 'signature' ) {
+                $pfParamString .= $key .'='. urlencode( $val ) .'&';
+            } else {
+                break;
+            }
+        }
+
+        $pfParamString = substr( $pfParamString, 0, -1 );
     }
     public function payment_cancel(Request $request){
         return "canceled";
     }
 
     public function payment_notify(Request $request){
-        return $request;
+       
+        // Tell Payfast that this page is reachable by triggering a header 200
+        header( 'HTTP/1.0 200 OK' );
+        flush();
+
+        define( 'SANDBOX_MODE', true );
+        $pfHost = SANDBOX_MODE ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
+        // Posted variables from ITN
+        $pfData = $_POST;
+
+        // Strip any slashes in data
+        foreach( $pfData as $key => $val ) {
+            $pfData[$key] = stripslashes( $val );
+        }
+
+        // Convert posted variables to a string
+        foreach( $pfData as $key => $val ) {
+            if( $key !== 'signature' ) {
+                $pfParamString .= $key .'='. urlencode( $val ) .'&';
+            } else {
+                break;
+            }
+        }
+
+        $pfParamString = substr( $pfParamString, 0, -1 );
+
+        session_start();
+        $_SESSION["payment"] = $pfParamString;
     }
 
 }

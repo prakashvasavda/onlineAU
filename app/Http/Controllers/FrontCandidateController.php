@@ -98,14 +98,15 @@ class FrontCandidateController extends Controller{
     }
 
     public function edit_candidate($candidateId){
-        $data['menu']                   = "manage profile";
-        $data['candidate']              = FrontUser::findOrFail($candidateId);
-        $data['availability']           = NeedsBabysitter::where('family_id', $candidateId)->first();
-        $data['previous_experience']    = PreviousExperience::where('candidate_id', $candidateId)->get();
-        $data['morning_availability']   = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        $data['menu']                           = "manage profile";
+        $data['candidate']                      = FrontUser::findOrFail($candidateId);
+        $data['candidate']['other_services']    = !empty($data['candidate']->other_services) ? json_decode($data['candidate']->other_services) : array();
+        $data['availability']                   = NeedsBabysitter::where('family_id', $candidateId)->first();
+        $data['previous_experience']            = PreviousExperience::where('candidate_id', $candidateId)->get();
+        $data['morning_availability']           = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
+        $data['afternoon_availability']         = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
+        $data['evening_availability']           = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
+        $data['night_availability']             = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
         return view('user.candidate_manage_profile', $data);
     }
 
@@ -118,11 +119,14 @@ class FrontCandidateController extends Controller{
         ]);
 
         $candidate              = FrontUser::findorFail($candidateId);
+        
         $input                  = $request->all();
         $input['password']      = !empty($request->password) ? Hash::make($request->password) : $candidate->password;
         $input['email']         = !empty($request->email) ? $request->email : $candidate->email;
         $input['role']          = $candidate->role;
         $input['profile']       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $candidate->profile;
+        $input['other_services']= !empty($request->other_services) ? json_encode($request->other_services) : null;
+
         $experiance             = !empty($input['daterange']) ? $this->store_previous_experience($input, $candidateId) : 0;
         $availability           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_candidate_availability($input, $candidateId) : 0;
         $update_status          = $candidate->update($input);
@@ -173,5 +177,9 @@ class FrontCandidateController extends Controller{
         $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
         $path       = $data->storeAs('uploads', $imageName, 'public');
         return      $imageName;
+    }
+
+    public function edit_candidate_calender(Request $request){
+        return "true";
     }
 }

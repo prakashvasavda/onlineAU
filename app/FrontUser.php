@@ -50,6 +50,7 @@ class FrontUser extends Model
         'role',
         'email_verified_at',
         'remember_token',
+        'other_services',
     ];
 
 
