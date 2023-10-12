@@ -8,6 +8,7 @@ use App\PreviousExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Mail;
 use Session;
 use Validator;
 
@@ -15,7 +16,7 @@ class FrontRegisterController extends Controller
 {
     public function index($type)
     {
-        $data['type'] = $type == 'nannies' ? 'a nanny' : ($type == 'babysitters' ? 'a babysitter' : 'an au-pair');
+        $data['type'] = $type == 'nannies' ? 'a nanny' : ($type == 'babysitters' ? 'a babysitter' : ($type == 'petsitters' ? 'A Petsitter' : 'an au-pair'));
 
         if (session()->has('frontUser')) {
             return redirect()->route('home');
