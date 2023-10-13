@@ -338,6 +338,111 @@
             </div>
         </div>
 
+         @if(old('daterange') && is_array(old('daterange')))
+            @foreach(old('daterange') as $key => $value)
+                @if(isset($key) && $key >= 1)
+                    @break
+                @else
+                    <div class="col-12">
+                        <div class="form-inputs" id="dynamic_field">
+                            <div class="row mt-4" id="row{{ isset($key) ? $key : null }}">
+                                <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                                <div class="icon-option all-in-one">
+                                    <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="daterange">Date range</label>
+                                        <input type="text" id="daterange" name="daterange[]" value="{{ isset(old('daterange')[$key]) ? old('daterange')[$key] : null }}" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="heading">Heading</label>
+                                        <input type="text" id="heading" name="heading[]" value="{{ isset(old('heading')[$key]) ? old('heading')[$key] : null }}" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="description">Description</label>
+                                        <input type="text" id="description" name="description[]" value="{{ isset(old('description')[$key]) ? old('description')[$key] : null }}" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="reference">Reference Name</label>
+                                        <input type="text" id="reference" name="reference[]" value="{{ isset(old('reference')[$key]) ? old('reference')[$key] : null }}" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="tel_number">Tel Number</label>
+                                        <input type="text" id="tel_number" name="tel_number[]" value="{{ isset(old('tel_number')[$key]) ? old('tel_number')[$key] : null }}" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        @endif
+
+       
+        @if(old('daterange') && is_array(old('daterange')))
+            @foreach(old('daterange') as $key => $value)
+                @if(isset($key) && $key >= 1)
+                    <div class="col-12">
+                        <div class="form-inputs" id="dynamic_field">
+                            <div class="row mt-4" id="row{{ isset($key) ? $key : null }}">
+                                <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                                <div class="icon-option all-in-one">
+                                    <a href="javaScript:;" class="btn btn-danger delete-btn" id="{{ isset($key) ? $key : null }}"><i class="fa-solid fa-trash-can"></i></a>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="daterange">Date range</label>
+                                        <input type="text" id="daterange" name="daterange[]" value="{{ isset(old('daterange')[$key]) ? old('daterange')[$key] : null }}" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="heading">Heading</label>
+                                        <input type="text" id="heading" name="heading[]" value="{{ isset(old('heading')[$key]) ? old('heading')[$key] : null }}" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="description">Description</label>
+                                        <input type="text" id="description" name="description[]" value="{{ isset(old('description')[$key]) ? old('description')[$key] : null }}" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="reference">Reference Name</label>
+                                        <input type="text" id="reference" name="reference[]" value="{{ isset(old('reference')[$key]) ? old('reference')[$key] : null }}" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="tel_number">Tel Number</label>
+                                        <input type="text" id="tel_number" name="tel_number[]" value="{{ isset(old('tel_number')[$key]) ? old('tel_number')[$key] : null }}" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        @endif
+
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
