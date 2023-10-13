@@ -89,8 +89,8 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="area">Area Pin <span class="text-danger">*</span></label>
-                <input type="number" id="area" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror"  value="{{ old('area') }}">
+                <label for="area">Area <span class="text-danger">*</span></label>
+                <input type="text" id="address-input" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror"  value="{{ old('area') }}">
                 @error('area')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -336,7 +336,7 @@
         </div>
 
         <div class="row">
-            
+
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
@@ -494,7 +494,7 @@
 @section('script')
 <script type="text/javascript">
     // $(document).ready(function(){
-    //     $('.js-example-basic-single').select2({width: '100%'});      
+    //     $('.js-example-basic-single').select2({width: '100%'});
     // });
 </script>
 @endsection

@@ -119,3 +119,13 @@
   });
 
 })(jQuery);
+
+function initAutocomplete() {
+    var input = document.getElementById('address-input');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+}
+    google.maps.event.addDomListener(window, 'load', initAutocomplete);
+google.maps.event.addListener(autocomplete, 'place_changed', function () {
+    var place = autocomplete.getPlace();
+    console.log(place); // This will contain information about the selected place.
+});
