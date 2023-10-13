@@ -155,23 +155,23 @@
                 </div>
             </div>
             <div id="more_childern" class="row p-0 m-0"></div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            
+             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="describe_kids">Describe your kids in 3 words <span class="text-danger">*</span></label>
-                    <select id="describe_kids" name="describe_kids" class="form-field @error('describe_kids') is-invalid @enderror" >
-                        <option value="" disabled="disabled" selected>Select</option>
-                        <option value="energetic" {{ old('describe_kids') === 'energetic' ? 'selected' : '' }}>Energetic</option>
-                        <option value="curious" {{ old('describe_kids') === 'curious' ? 'selected' : '' }}>Curious</option>
-                        <option value="sporty" {{ old('describe_kids') === 'sporty' ? 'selected' : '' }}>Sporty</option>
-                        <option value="creative" {{ old('describe_kids') === 'creative' ? 'selected' : '' }}>Creative</option>
-                        <option value="friendly" {{ old('describe_kids') === 'friendly' ? 'selected' : '' }}>Friendly</option>
-                        <option value="talkative" {{ old('describe_kids') === 'talkative' ? 'selected' : '' }}>Talkative</option>
-                        <option value="calm" {{ old('describe_kids') === 'calm' ? 'selected' : '' }}>Calm</option>
-                        <option value="playful" {{ old('describe_kids') === 'playful' ? 'selected' : '' }}>Playful</option>
-                        <option value="funny" {{ old('describe_kids') === 'funny' ? 'selected' : '' }}>Funny</option>
-                        <option value="intelligent" {{ old('describe_kids') === 'intelligent' ? 'selected' : '' }}>Intelligent</option>
-                        <option value="affectionate" {{ old('describe_kids') === 'affectionate' ? 'selected' : '' }}>Affectionate</option>
-                        <option value="independent" {{ old('describe_kids') === 'independent' ? 'selected' : '' }}>Independent</option>
+                    <select id="describe_kids" name="describe_kids[]" multiple class="form-field @error('describe_kids') is-invalid @enderror" >
+                        <option value="energetic" {{ (!empty(old('describe_kids')) && in_array('energetic', old('describe_kids')) ? 'selected' : '') }}>Energetic</option>
+                        <option value="curious" {{ (!empty(old('describe_kids')) && in_array('curious', old('describe_kids')) ? 'selected' : '') }}>Curious</option>
+                        <option value="sporty" {{ (!empty(old('describe_kids')) && in_array('sporty', old('describe_kids')) ? 'selected' : '') }}>Sporty</option>
+                        <option value="creative" {{ (!empty(old('describe_kids')) && in_array('creative', old('describe_kids')) ? 'selected' : '') }}>Creative</option>
+                        <option value="friendly" {{ (!empty(old('describe_kids')) && in_array('friendly', old('describe_kids')) ? 'selected' : '') }}>Friendly</option>
+                        <option value="talkative" {{ (!empty(old('describe_kids')) && in_array('talkative', old('describe_kids')) ? 'selected' : '') }}>Talkative</option>
+                        <option value="calm" {{ (!empty(old('describe_kids')) && in_array('calm', old('describe_kids')) ? 'selected' : '') }}>Calm</option>
+                        <option value="playful" {{ (!empty(old('describe_kids')) && in_array('playful', old('describe_kids')) ? 'selected' : '') }}>Playful</option>
+                        <option value="funny" {{ (!empty(old('describe_kids')) && in_array('funny', old('describe_kids')) ? 'selected' : '') }}>Funny</option>
+                        <option value="intelligent" {{ (!empty(old('describe_kids')) && in_array('intelligent', old('describe_kids')) ? 'selected' : '') }}>Intelligent</option>
+                        <option value="affectionate" {{ (!empty(old('describe_kids')) && in_array('affectionate', old('describe_kids')) ? 'selected' : '') }}>Affectionate</option>
+                        <option value="independent" {{ (!empty(old('describe_kids')) && in_array('independent', old('describe_kids')) ? 'selected' : '') }}>Independent</option>
                     </select>
                     @error('describe_kids')
                         <span class="invalid-feedback" role="alert">
@@ -180,6 +180,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="family_babysitter_comfortable">We need a babysitter comfortable with <span class="text-danger">*</span></label>
