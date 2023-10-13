@@ -217,20 +217,19 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="describe_kids">Describe your kids in 3 words <span class="text-danger">*</span></label>
-                    <select id="describe_kids" name="describe_kids" class="form-field @error('describe_kids') is-invalid @enderror" >
-                        <option value="" disabled="disabled" selected>Select</option>
-                        <option value="energetic" {{ isset($family->describe_kids) && $family->describe_kids == "energetic" ? "selected" : " " }}>Energetic</option>
-                        <option value="curious" {{ isset($family->describe_kids) && $family->describe_kids == "curious" ? "selected" : " " }}>Curious</option>
-                        <option value="sporty" {{ isset($family->describe_kids) && $family->describe_kids == "sporty" ? "selected" : " " }}>Sporty</option>
-                        <option value="creative" {{ isset($family->describe_kids) && $family->describe_kids == "creative" ? "selected" : " " }}>Creative</option>
-                        <option value="friendly" {{ isset($family->describe_kids) && $family->describe_kids == "friendly" ? "selected" : " " }}>Friendly</option>
-                        <option value="talkative" {{ isset($family->describe_kids) && $family->describe_kids == "talkative" ? "selected" : " " }}>Talkative</option>
-                        <option value="calm" {{ isset($family->describe_kids) && $family->describe_kids == "calm" ? "selected" : " " }}>Calm</option>
-                        <option value="playful" {{ isset($family->describe_kids) && $family->describe_kids == "playful" ? "selected" : " " }}>Playful</option>
-                        <option value="funny" {{ isset($family->describe_kids) && $family->describe_kids == "funny" ? "selected" : " " }}>Funny</option>
-                        <option value="intelligent" {{ isset($family->describe_kids) && $family->describe_kids == "intelligent" ? "selected" : " " }}>Intelligent</option>
-                        <option value="affectionate" {{ isset($family->describe_kids) && $family->describe_kids == "affectionate" ? "selected" : " " }}>Affectionate</option>
-                        <option value="independent" {{ isset($family->describe_kids) && $family->describe_kids == "independent" ? "selected" : " " }}>Independent</option>
+                    <select id="describe_kids" name="describe_kids[]" multiple class="form-field @error('describe_kids') is-invalid @enderror" >
+                        <option value="energetic" {{ (isset($family->describe_kids) && in_array("energetic", $family->describe_kids)) ? "selected" : " " }}>Energetic</option>
+                        <option value="curious" {{ (isset($family->describe_kids) && in_array("curious", $family->describe_kids)) ? "selected" : " " }}>Curious</option>
+                        <option value="sporty" {{ (isset($family->describe_kids) && in_array("sporty", $family->describe_kids)) ? "selected" : " " }}>Sporty</option>
+                        <option value="creative" {{ (isset($family->describe_kids) && in_array("creative", $family->describe_kids)) ? "selected" : " " }}>Creative</option>
+                        <option value="friendly" {{ (isset($family->describe_kids) && in_array("friendly", $family->describe_kids)) ? "selected" : " " }}>Friendly</option>
+                        <option value="talkative" {{ (isset($family->describe_kids) && in_array("talkative", $family->describe_kids)) ? "selected" : " " }}>Talkative</option>
+                        <option value="calm" {{ (isset($family->describe_kids) && in_array("calm", $family->describe_kids)) ? "selected" : " " }}>Calm</option>
+                        <option value="playful" {{ (isset($family->describe_kids) && in_array("playful", $family->describe_kids)) ? "selected" : " " }}>Playful</option>
+                        <option value="funny" {{ (isset($family->describe_kids) && in_array("funny", $family->describe_kids)) ? "selected" : " " }}>Funny</option>
+                        <option value="intelligent" {{ (isset($family->describe_kids) && in_array("intelligent", $family->describe_kids)) ? "selected" : " " }}>Intelligent</option>
+                        <option value="affectionate" {{ (isset($family->describe_kids) && in_array("affectionate", $family->describe_kids)) ? "selected" : " " }}>Affectionate</option>
+                        <option value="independent" {{ (isset($family->describe_kids) && in_array("independent", $family->describe_kids)) ? "selected" : " " }}>Independent</option>
                     </select>
                     @error('describe_kids')
                         <span class="invalid-feedback" role="alert">

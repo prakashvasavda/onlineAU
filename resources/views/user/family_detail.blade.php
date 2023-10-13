@@ -303,7 +303,7 @@
         </div>
         <div class="btn-main d-flex flex-wrap justify-content-evenly align-items-center mt-5">
             <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($family->name) ? explode(' ', $family->name)[0] : '' }}</a>
-            <a href="{{route('families')}}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
+            <a href="{{ route('families') }}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
         </div>
     </div>
 </div>

@@ -76,11 +76,14 @@
     </div>
 </div>
 
+@include('flash.flash-message')
+
 <div class="available-candidates">
     <div class="container">
         <div class="title-main mb-5">
             <h2>available candidates</h2>
         </div>
+        @include('flash.flash-message')
         <div class="candidate-slider">
             @if(isset($candidates))
                 @foreach($candidates as $candidate_list)

@@ -53,5 +53,7 @@ class FrontUser extends Model
         'other_services',
     ];
 
-
+    public function needs_babysitter(){
+        return $this->hasOne(NeedsBabysitter::class, 'family_id');
+    }
 }

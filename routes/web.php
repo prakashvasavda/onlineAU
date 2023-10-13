@@ -50,9 +50,13 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('candidate/manage-profile/{id}', 'FrontCandidateController@edit_candidate')->name('edit-candidate');
     Route::put('update-candidate/{id}', 'FrontCandidateController@update_candidate')->name('update-candidate');
 
-    /*CANDIDATE CALENDER ROUTES*/
-    Route::get('candidate/manage-calender', 'FrontCandidateController@edit_candidate_calender')->name('manage-calender');
+    /*CANDIDATE MANAGE CALENDER ROUTES*/
+    Route::get('candidate/manage-calender', 'FrontCandidateController@edit_candidate_calender')->name('candidate-manage-calender');
     Route::put('update-candidate-calender/{id}', 'FrontCandidateController@update_candidate_calender')->name('update-candidate-calender');
+
+    /*FAMILY MANAGE CALENDER ROUTES*/
+    Route::get('family/manage-calender', 'FrontFamilyController@edit_family_calender')->name('family-manage-calender');
+    Route::put('update-family-calender/{id}', 'FrontFamilyController@update_family_calender')->name('update-family-calender');
 
     /*FRONT FAMILY ROUTES*/
     Route::get('family-detail/{id}', 'FrontFamilyController@family_detail')->name('family-detail');

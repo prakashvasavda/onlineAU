@@ -35,7 +35,7 @@ class FrontRegisterController extends Controller
         $rules = [
             'name'               => "required",
             'age'                => "required",
-            'profile'            => "required",
+            // 'profile'         => "required",
             'id_number'          => "required",
             // 'contact_number'  => "required",
             'email'              => "required|email|unique:front_users,email",
@@ -52,7 +52,7 @@ class FrontRegisterController extends Controller
         $message = [
             'name'               => 'The Name field isrequired',
             'age'                => 'The Age field is required',
-            'profile'            => 'The Profile must be required',
+            // 'profile'            => 'The Profile must be required',
             'id_number'          => 'The Id Number field is required',
             // 'contact_number'  => 'The Contact Number must be required',
             'email'              => 'The Email field is required',
@@ -74,15 +74,18 @@ class FrontRegisterController extends Controller
                 ->with('message', 'There were some error try again');
         }
 
-        $randomName = Str::random(20);
-        $extension  = $request->file('profile')->getClientOriginalExtension();
-        $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
-        $path       = $request->file('profile')->storeAs('uploads', $imageName, 'public');
+        if($request->hasFile('profile') && !empty($request->file('profile'))){
+            $randomName = Str::random(20);
+            $extension  = $request->file('profile')->getClientOriginalExtension();
+            $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
+            $path       = $request->file('profile')->storeAs('uploads', $imageName, 'public');
+        }
 
+       
         $candidateId = FrontUser::insertGetId([
             'name'                     => $request->name,
             'age'                      => $request->age,
-            'profile'                  => $imageName,
+            'profile'                  => isset($imageName) ? $imageName : null,
             'id_number'                => $request->id_number,
             'contact_number'           => $request->contact_number,
             'email'                    => $request->email,
@@ -179,7 +182,7 @@ class FrontRegisterController extends Controller
             'family_city'                   => "required",
             'home_language'                 => "required",
             'no_children'                   => "required",
-            'describe_kids'                 => "required",
+            'describe_kids'                 => "required|array",
             'family_types_babysitter'       => "required",
             'family_location'               => "required",
             'family_babysitter_comfortable' => "required",
@@ -197,7 +200,8 @@ class FrontRegisterController extends Controller
             'family_city'                   => "The Family city must be required",
             'home_language'                 => "The Home language must be required",
             'no_children'                   => "The No children must be required",
-            'describe_kids'                 => "The Describe kids must be required",
+            'describe_kids.required'        => "The Describe kids must be required",
+            'describe_kids.array'           => 'Invalid selected value.',
             'family_types_babysitter'       => "The Family types babysitter must be required",
             'family_location'               => "The Family location must be required",
             'family_babysitter_comfortable' => "The Family babysitter comfortable must be required",
@@ -213,22 +217,25 @@ class FrontRegisterController extends Controller
                 ->with('message', 'There were some error try again');
         }
 
-        $randomName = Str::random(20);
-        $extension  = $request->file('profile')->getClientOriginalExtension();
-        $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
-        $path       = $request->file('profile')->storeAs('uploads', $imageName, 'public');
+        if($request->hasFile('profile') && !empty($request->file('profile'))){
+            $randomName = Str::random(20);
+            $extension  = $request->file('profile')->getClientOriginalExtension();
+            $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
+            $path       = $request->file('profile')->storeAs('uploads', $imageName, 'public');
+        }
 
+        
         $familyId = FrontUser::insertGetId([
             'name'                          => $request->name,
             'age'                           => serialize($request->family_special_need_value),
-            'profile'                       => $imageName,
+            'profile'                       => isset($imageName) ? $imageName : null,
             'email'                         => $request->email,
             'password'                      => Hash::make($request->password),
             'family_address'                => $request->family_address,
             'family_city'                   => $request->family_city,
             'home_language'                 => $request->home_language,
             'no_children'                   => $request->no_children,
-            'describe_kids'                 => $request->describe_kids,
+            'describe_kids'                 => isset($request->describe_kids) ? json_encode($request->describe_kids) : null,
             'family_types_babysitter'       => $request->family_types_babysitter,
             'family_location'               => $request->family_location,
             'family_babysitter_comfortable' => isset($request->family_babysitter_comfortable) ? json_encode($request->family_babysitter_comfortable) : null,
@@ -245,17 +252,6 @@ class FrontRegisterController extends Controller
         ]);
 
         $status = $this->store_need_babysitter($data, $familyId);
-
-        /* $needs = NeedsBabysitter::insertGetId([
-        'family_id'  => $familyId,
-        'morning'    => serialize($request->morning),
-        'afternoon'  => serialize($request->afternoon),
-        'evening'    => serialize($request->evening),
-        'night'      => serialize($request->night),
-        "created_at" => date("Y-m-d H:i:s"),
-        "updated_at" => date("Y-m-d H:i:s"),
-        ]);*/
-
-        return redirect()->back()->with('success', 'Registration create successfully.');
+        return redirect()->to(route('families') . '#available-candidates')->with('success', 'Registration created successfully.');
     }
 }

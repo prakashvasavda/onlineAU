@@ -128,7 +128,7 @@ class FrontCandidateController extends Controller{
         $input['other_services']= !empty($request->other_services) ? json_encode($request->other_services) : null;
 
         $experiance             = !empty($input['daterange']) ? $this->store_previous_experience($input, $candidateId) : 0;
-        $availability           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_candidate_availability($input, $candidateId) : 0;
+        $availability           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_candidate_calender($input, $candidateId) : 0;
         $update_status          = $candidate->update($input);
        
 
@@ -156,20 +156,7 @@ class FrontCandidateController extends Controller{
         return $status;
     }
 
-    public function store_candidate_availability($input, $candidateId){
-        $candidate_availability = NeedsBabysitter::where('family_id', $candidateId)->get()->toArray();
-        if(isset($candidate_availability) && !empty($candidate_availability)){
-          $delete_status = NeedsBabysitter::where('family_id', $candidateId)->delete();
-        }
-
-        $data['family_id']      = $candidateId;
-        $data['morning']        = !empty($input['morning']) ? json_encode($input['morning']) : null;
-        $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
-        $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
-        $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
-        $data['updated_at']     =  date("Y-m-d H:i:s");
-        return NeedsBabysitter::create($data);
-    }
+  
 
     public function store_image($data, $path=null){
         $randomName = Str::random(20);
@@ -180,6 +167,32 @@ class FrontCandidateController extends Controller{
     }
 
     public function edit_candidate_calender(Request $request){
-        return "true";
+        $data['menu']                   = "manage calender";
+        $data['candidate']              = FrontUser::findOrFail(Session::get('frontUser')->id);
+        $data['availability']           = NeedsBabysitter::where('family_id', Session::get('frontUser')->id)->first();
+        $data['morning_availability']   = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
+        $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
+        $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
+        $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        return view('user.candidate.candidate_manage_calender', $data);
+    }
+
+    public function update_candidate_calender(Request $request, $candidateId){
+        $input      = $request->all();
+        $status     = $this->store_candidate_calender($input, $candidateId);
+        return redirect()->back()->with($status > 0 ? 'success' : 'error', $status > 0 ? 'Candidate calendar has been updated successfully.' : 'Failed to update candidate\'s calendar.');
+    }
+
+    public function store_candidate_calender($input, $candidateId){
+        $candidate = FrontUser::findOrFail($candidateId);
+        if(isset($candidate) && !empty($candidate)){
+            $data['morning']        = !empty($input['morning']) ? json_encode($input['morning']) : null;
+            $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
+            $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
+            $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
+            $data['updated_at']     =  date("Y-m-d H:i:s");
+            $availability           =  $candidate->needs_babysitter()->updateOrCreate(['family_id' => $candidateId], $data);
+            return $availability->id;
+        }        
     }
 }

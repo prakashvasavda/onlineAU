@@ -80,6 +80,7 @@ class FrontFamilyController extends Controller{
         $data['family']                                     = FrontUser::findOrFail($familyId);
         $data['family']['family_babysitter_comfortable']    = !empty($data['family']->family_babysitter_comfortable) ? json_decode($data['family']->family_babysitter_comfortable, true) : array();
         $data['family']['family_special_need_value']        = !empty($data['family']->family_special_need_value) ? json_decode($data['family']->family_special_need_value, true) : array();
+        $data['family']['describe_kids']                    = !empty($data['family']->describe_kids) ? json_decode($data['family']->describe_kids): array();
         $data['availability']                               = NeedsBabysitter::where('family_id', $familyId)->first();
         $data['previous_experience']                        = PreviousExperience::where('candidate_id', $familyId)->get();
         $data['morning_availability']                       = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
@@ -99,7 +100,7 @@ class FrontFamilyController extends Controller{
             'family_city'                   => "required",
             'home_language'                 => "required",
             'no_children'                   => "required",
-            'describe_kids'                 => "required",
+            'describe_kids'                 => "required|array",
             'family_types_babysitter'       => "required",
             'family_location'               => "required",
             'family_babysitter_comfortable' => "required",
@@ -107,7 +108,8 @@ class FrontFamilyController extends Controller{
             'family_notifications'          => "required",
             'family_description'            => "required",
         ],[
-            'profile.required_if' => 'The profile field is required',
+            'profile.required_if'   => 'The profile field is required',
+            'describe_kids.array'   =>  'Invalid selected value',   
         ]);
 
         $family                                 = FrontUser::findorFail($familyId);
@@ -120,25 +122,11 @@ class FrontFamilyController extends Controller{
         $input['family_special_need_value']     = isset($request->family_special_need_value) ? json_encode($request->family_special_need_value) : null;
         $input['profile']                       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
         $input['no_children']                   = isset($request->age) && is_array($request->age) ? count($request->age) : $request->no_children;
-        $availability                           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_family_availability($input, $familyId) : 0;
+        $input['describe_kids']                 = isset($request->describe_kids) ? json_encode($request->describe_kids) : null;
+        $availability                           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_family_calender($input, $familyId) : 0;
         $update_status                          = $family->update($input);
 
         return redirect()->back()->with('success', 'Profile updated successfully.');
-    }
-
-    public function store_family_availability($input, $familyId){
-        $family_availability = NeedsBabysitter::where('family_id', $familyId)->get()->toArray();
-        if(isset($family_availability) && !empty($family_availability)){
-          $delete_status = NeedsBabysitter::where('family_id', $familyId)->delete();
-        }
-
-        $data['family_id']      = $familyId;
-        $data['morning']        = !empty($input['morning']) ? json_encode($input['morning']) : null;
-        $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
-        $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
-        $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
-        $data['updated_at']     =  date("Y-m-d H:i:s");
-        return NeedsBabysitter::create($data);
     }
 
     public function store_image($data, $path=null){
@@ -147,5 +135,35 @@ class FrontFamilyController extends Controller{
         $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
         $path       = $data->storeAs('uploads', $imageName, 'public');
         return      $imageName;
+    }
+
+    public function edit_family_calender(Request $request){
+        $data['menu']                   = "manage calender";
+        $data['candidate']              = FrontUser::findOrFail(Session::get('frontUser')->id);
+        $data['availability']           = NeedsBabysitter::where('family_id', Session::get('frontUser')->id)->first();
+        $data['morning_availability']   = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
+        $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
+        $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
+        $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        return view('user.family.family_manage_calender', $data);
+    }
+
+    public function update_family_calender(Request $request, $familyId){
+        $input      = $request->all();
+        $status     = $this->store_family_calender($input, $familyId);
+        return redirect()->back()->with($status > 0 ? 'success' : 'error', $status > 0 ? 'Family calendar has been updated successfully.' : 'Failed to update Family\'s calendar.');
+    }
+
+    public function store_family_calender($input, $candidateId){
+        $candidate = FrontUser::findOrFail($candidateId);
+        if(isset($candidate) && !empty($candidate)){
+            $data['morning']        = !empty($input['morning']) ? json_encode($input['morning']) : null;
+            $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
+            $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
+            $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
+            $data['updated_at']     =  date("Y-m-d H:i:s");
+            $availability           =  $candidate->needs_babysitter()->updateOrCreate(['family_id' => $candidateId], $data);
+            return $availability->id;
+        }        
     }
 }

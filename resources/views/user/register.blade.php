@@ -7,6 +7,8 @@
         <h3>sign up to be {{isset($type) ? $type : ''}}</h3>
     </div>
     @include('flash.flash-message')
+
+
     <form method="POST" class="row" action="{{ route('store_candidate') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value="{{ Route::current()->parameter('service') }}" name="role">
@@ -34,7 +36,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="profile">Profile Picture</label>
+                <label for="profile">Profile Picture </label>
                 <input type="file" id="profile" name="profile" placeholder="" class="form-field" >
                 @error('profile')
                     <span class="invalid-feedback" role="alert">
@@ -294,7 +296,8 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12">
+
+        <div class="col-12" style="display: {{ old('daterange') ? 'none' : 'block'}}">
             <div class="form-inputs" id="dynamic_field">
                 <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
                 <div class="icon-option all-in-one">
@@ -335,9 +338,7 @@
             </div>
         </div>
 
-        <div class="row">
 
-        </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="salary_expectation">What is your salary expectation/hourly rate</label>
@@ -493,8 +494,6 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-    // $(document).ready(function(){
-    //     $('.js-example-basic-single').select2({width: '100%'});
-    // });
+
 </script>
 @endsection
