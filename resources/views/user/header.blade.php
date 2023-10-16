@@ -40,7 +40,7 @@
         </div>
     </div>
 </header>
- <div class="search-box search-elem">
+<div class="search-box search-elem">
     <a href="javaScript:;" class="close btn btn-primary round">x</a>
     <div class="inner row">
         <div class="col-lg-5 col-md-7 col-sm-12 col-xs-12 mx-auto">
