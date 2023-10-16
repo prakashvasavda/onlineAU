@@ -92,7 +92,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="area">Area <span class="text-danger">*</span></label>
-                <input type="text" id="address-input" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror"  value="{{ old('area') }}">
+                <input type="text" id="" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror address-input"  value="{{ old('area') }}">
                 @error('area')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -338,7 +338,7 @@
             </div>
         </div>
 
-       
+
         @if(old('daterange') && is_array(old('daterange')))
             @foreach(old('daterange') as $key => $value)
                 @if(isset($key) && $key >= 1)

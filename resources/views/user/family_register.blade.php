@@ -64,7 +64,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="address">Your Address <span class="text-danger">*</span></label>
-                    <input type="text" id="address-input" name="family_address" placeholder="" class="form-field @error('family_address') is-invalid @enderror"  value="{{ old('family_address') }}">
+                    <input type="text" id="address-input" name="family_address" placeholder="" class="form-field @error('family_address') is-invalid @enderror address-input"  value="{{ old('family_address') }}">
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
@@ -155,7 +155,7 @@
                 </div>
             </div>
             <div id="more_childern" class="row p-0 m-0"></div>
-            
+
              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="describe_kids">Describe your kids in 3 words <span class="text-danger">*</span></label>

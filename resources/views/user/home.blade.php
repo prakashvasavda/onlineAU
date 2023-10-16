@@ -1,26 +1,7 @@
 @extends('layouts.main')
 @section('css')
-<link rel="stylesheet" type="text/css" href="{{ asset('front/css/search.css') }}">
 @endsection
 @section('content')
-<div class="search-box search-elem">
-    <a href="javaScript:;" class="close btn btn-primary round">x</a>
-    <div class="inner row">
-        <div class="col-lg-5 col-md-7 col-sm-12 col-xs-12 mx-auto">
-            <div class="w-100 input-group d-flex flex-direction-row flex-wrap align-items-center">
-                <select class="form-field" required>
-                    <option disabled selected>Select</option>
-                    <option value="candidate">Candidate</option>
-                    <option value="family">Family</option>
-                </select>
-                <input type="text" placeholder="Search here" id="search-field" class="form-field">
-                <div class="input-group-append">
-                    <button id="" type="submit" class="submit btn btn-link text-secondary"><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="banner-section">
     <div class="container-fluid">
         <div class="row">
@@ -120,46 +101,5 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-    (function ($) {
-            $.fn.searchBox = function (ev) {
-
-                var $searchEl = $('.search-elem');
-                var $placeHolder = $('.placeholder');
-                var $sField = $('#search-field');
-
-                if (ev === "open") {
-                    $searchEl.addClass('search-open')
-                };
-
-                if (ev === 'close') {
-                    $searchEl.removeClass('search-open'),
-                        $placeHolder.removeClass('move-up'),
-                        $sField.val('');
-                };
-
-                var moveText = function () {
-                    $placeHolder.addClass('move-up');
-                }
-
-                $sField.focus(moveText);
-                $placeHolder.on('click', moveText);
-
-                $('.submit').prop('disabled', true);
-                $('#search-field').keyup(function () {
-                    if ($(this).val() != '') {
-                        $('.submit').prop('disabled', false);
-                    }
-                });
-            }
-        }(jQuery));
-
-        $('.search-btn').on('click', function (e) {
-            $(this).searchBox('open');
-            e.preventDefault();
-        });
-
-        $('.close').on('click', function () {
-            $(this).searchBox('close');
-        });
 </script>
 @endsection

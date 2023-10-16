@@ -120,12 +120,58 @@
 
 })(jQuery);
 
-function initAutocomplete() {
-    var input = document.getElementById('address-input');
-    var autocomplete = new google.maps.places.Autocomplete(input);
-}
-    google.maps.event.addDomListener(window, 'load', initAutocomplete);
-google.maps.event.addListener(autocomplete, 'place_changed', function () {
-    var place = autocomplete.getPlace();
-    console.log(place); // This will contain information about the selected place.
+(function ($) {
+  $.fn.searchBox = function (ev) {
+
+      var $searchEl = $('.search-elem');
+      var $placeHolder = $('.placeholder');
+      var $sField = $('#search-field');
+
+      if (ev === "open") {
+          $searchEl.addClass('search-open')
+      };
+
+      if (ev === 'close') {
+          $searchEl.removeClass('search-open'),
+              $placeHolder.removeClass('move-up'),
+              $sField.val('');
+      };
+
+      var moveText = function () {
+          $placeHolder.addClass('move-up');
+      }
+
+      $sField.focus(moveText);
+      $placeHolder.on('click', moveText);
+
+      $('.submit').prop('disabled', true);
+      $('#search-field').keyup(function () {
+          if ($(this).val() != '') {
+              $('.submit').prop('disabled', false);
+          }
+      });
+  }
+}(jQuery));
+
+$('.search-btn').on('click', function (e) {
+    $(this).searchBox('open');
+    e.preventDefault();
 });
+
+$('.close').on('click', function () {
+    $(this).searchBox('close');
+});
+
+function initAutocomplete() {
+    var inputs = document.querySelectorAll('.address-input');
+
+    inputs.forEach(function(input) {
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            console.log(place); // This will contain information about the selected place.
+        });
+    });
+}
+
+google.maps.event.addDomListener(window, 'load', initAutocomplete);
