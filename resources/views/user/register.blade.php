@@ -181,29 +181,29 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="additional_language">Additional Language</label>
-                <select id="additional_language" name="additional_language" multiple class="form-field">
+                <select id="additional_language" name="additional_language" class="form-field">
                     <option value="" disabled="disabled">Select</option>
-                    <option value="English">English</option>
-                    <option value="Afrikaans">Afrikaans</option>
-                    <option value="Zulu (isiZulu)">Zulu (isiZulu)</option>
-                    <option value="Xhosa (isiXhosa)">Xhosa (isiXhosa)</option>
-                    <option value="Northern Sotho (Sesotho sa Leboa)">Northern Sotho (Sesotho sa Leboa)</option>
-                    <option value="Sotho (Sesotho)">Sotho (Sesotho)</option>
-                    <option value="Swazi (siSwati)">Swazi (siSwati)</option>
-                    <option value="Tsonga (Xitsonga)">Tsonga (Xitsonga)</option>
-                    <option value="Tswana (Setswana)">Tswana (Setswana)</option>
-                    <option value="Venda (Tshivenda)">Venda (Tshivenda)</option>
-                    <option value="Southern Ndebele (isiNdebele)">Southern Ndebele (isiNdebele)</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="French">French</option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="Arabic">Arabic</option>
-                    <option value="Bengali">Bengali</option>
-                    <option value="Portuguese">Portuguese</option>
-                    <option value="Russian">Russian</option>
-                    <option value="Japanese">Japanese</option>
-                    <option value="Punjabi">Punjabi</option>
-                    <option value="German">German</option>
+                    <option value="english" {{ old('additional_language') === 'english' ? 'selected' : '' }}>English</option>
+                    <option value="afrikaans" {{ old('additional_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
+                    <option value="zulu (isizulu)" {{ old('additional_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
+                    <option value="xhosa (isixhosa)" {{ old('home_language') === 'xhosa (isixhosa)' ? 'selected' : '' }}>Xhosa (isiXhosa)</option>
+                    <option value="northern sotho (sesotho sa leboa)" {{ old('additional_language') === 'northern sotho (sesotho sa leboa)' ? 'selected' : '' }}>Northern Sotho (Sesotho sa Leboa)</option>
+                    <option value="sotho (sesotho)" {{ old('additional_language') === 'sotho (sesotho)' ? 'selected' : '' }}>Sotho (Sesotho)</option>
+                    <option value="swazi (siswati)" {{ old('additional_language') === 'swazi (siswati)' ? 'selected' : '' }}>Swazi (siSwati)</option>
+                    <option value="tsonga (xitsonga)" {{ old('additional_language') === 'tsonga (xitsonga)' ? 'selected' : '' }}>Tsonga (Xitsonga)</option>
+                    <option value="tswana (setswana)" {{ old('additional_language') === 'tswana (setswana)' ? 'selected' : '' }}>Tswana (Setswana)</option>
+                    <option value="venda (tshivenda)" {{ old('additional_language') === 'venda (tshivenda)' ? 'selected' : '' }}>Venda (Tshivenda)</option>
+                    <option value="southern ndebele (isindebele)" {{ old('additional_language') === 'southern ndebele (isindebele)' ? 'selected' : '' }}>Southern Ndebele (isiNdebele)</option>
+                    <option value="spanish" {{ old('additional_language') === 'spanish' ? 'selected' : '' }}>Spanish</option>
+                    <option value="french" {{ old('additional_language') === 'french' ? 'selected' : '' }}>French</option>
+                    <option value="hindi" {{ old('additional_language') === 'hindi' ? 'selected' : '' }}>Hindi</option>
+                    <option value="arabic" {{ old('additional_language') === 'arabic' ? 'selected' : '' }}>Arabic</option>
+                    <option value="bengali" {{ old('additional_language') === 'bengali' ? 'selected' : '' }}>Bengali</option>
+                    <option value="portuguese" {{ old('additional_language') === 'portuguese' ? 'selected' : '' }}>Portuguese</option>
+                    <option value="russian" {{ old('additional_language') === 'russian' ? 'selected' : '' }}>Russian</option>
+                    <option value="japanese" {{ old('additional_language') === 'japanese' ? 'selected' : '' }}>Japanese</option>
+                    <option value="punjabi" {{ old('additional_language') === 'punjabi' ? 'selected' : '' }}>Punjabi</option>
+                    <option value="german" {{ old('additional_language') === 'german' ? 'selected' : '' }}>German</option>
                 </select>
             </div>
         </div>
@@ -297,7 +297,7 @@
             </div>
         </div>
 
-        <div class="col-12" style="display: {{ old('daterange') ? 'none' : 'block'}}">
+        <div class="col-12">
             <div class="form-inputs" id="dynamic_field">
                 <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
                 <div class="icon-option all-in-one">
@@ -307,89 +307,36 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-input">
                             <label for="daterange">Date range</label>
-                            <input type="text" id="daterange" name="daterange[]" value="10/01/2023 - 12/15/2023" class="form-field" placeholder="">
+                            <input type="text" id="daterange" name="daterange[]" value="{{ isset(old('daterange')[0]) ? old('daterange')[0] : '10/01/2023 - 12/15/2023' }}" class="form-field" placeholder="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-input">
                             <label for="heading">Heading</label>
-                            <input type="text" id="heading" name="heading[]" class="form-field" placeholder="">
+                            <input type="text" id="heading" name="heading[]" value="{{ isset(old('heading')[0]) ? old('heading')[0] : null }}" class="form-field" placeholder="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-input">
                             <label for="description">Description</label>
-                            <input type="text" id="description" name="description[]" class="form-field" placeholder="">
+                            <input type="text" id="description" name="description[]" value="{{ isset(old('description')[0]) ? old('description')[0] : null }}" class="form-field" placeholder="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-input">
                             <label for="reference">Reference Name</label>
-                            <input type="text" id="reference" name="reference[]" class="form-field" placeholder="">
+                            <input type="text" id="reference" name="reference[]" value="{{ isset(old('reference')[0]) ? old('reference')[0] : null }}" class="form-field" placeholder="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-input">
                             <label for="tel_number">Tel Number</label>
-                            <input type="text" id="tel_number" name="tel_number[]" class="form-field" placeholder="">
+                            <input type="text" id="tel_number" name="tel_number[]" value="{{ isset(old('tel_number')[0]) ? old('tel_number')[0] : null }}" class="form-field" placeholder="">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-         @if(old('daterange') && is_array(old('daterange')))
-            @foreach(old('daterange') as $key => $value)
-                @if(isset($key) && $key >= 1)
-                    @break
-                @else
-                    <div class="col-12">
-                        <div class="form-inputs" id="dynamic_field">
-                            <div class="row mt-4" id="row{{ isset($key) ? $key : null }}">
-                                <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
-                                <div class="icon-option all-in-one">
-                                    <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-input">
-                                        <label for="daterange">Date range</label>
-                                        <input type="text" id="daterange" name="daterange[]" value="{{ isset(old('daterange')[$key]) ? old('daterange')[$key] : null }}" class="form-field" placeholder="">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-input">
-                                        <label for="heading">Heading</label>
-                                        <input type="text" id="heading" name="heading[]" value="{{ isset(old('heading')[$key]) ? old('heading')[$key] : null }}" class="form-field" placeholder="">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-input">
-                                        <label for="description">Description</label>
-                                        <input type="text" id="description" name="description[]" value="{{ isset(old('description')[$key]) ? old('description')[$key] : null }}" class="form-field" placeholder="">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-input">
-                                        <label for="reference">Reference Name</label>
-                                        <input type="text" id="reference" name="reference[]" value="{{ isset(old('reference')[$key]) ? old('reference')[$key] : null }}" class="form-field" placeholder="">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-input">
-                                        <label for="tel_number">Tel Number</label>
-                                        <input type="text" id="tel_number" name="tel_number[]" value="{{ isset(old('tel_number')[$key]) ? old('tel_number')[$key] : null }}" class="form-field" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            @endforeach
-        @endif
 
        
         @if(old('daterange') && is_array(old('daterange')))

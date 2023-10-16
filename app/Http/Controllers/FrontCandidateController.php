@@ -111,7 +111,6 @@ class FrontCandidateController extends Controller{
     }
 
     public function update_candidate(Request $request, $candidateId){
-        return $request;
         $request->validate([
             'name'                  => 'required',
             'age'                   => 'required',
@@ -120,19 +119,15 @@ class FrontCandidateController extends Controller{
         ]);
 
         $candidate              = FrontUser::findorFail($candidateId);
-        
         $input                  = $request->all();
         $input['password']      = !empty($request->password) ? Hash::make($request->password) : $candidate->password;
         $input['email']         = !empty($request->email) ? $request->email : $candidate->email;
         $input['role']          = $candidate->role;
         $input['profile']       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $candidate->profile;
         $input['other_services']= !empty($request->other_services) ? json_encode($request->other_services) : null;
-
         $experiance             = !empty($input['daterange']) ? $this->store_previous_experience($input, $candidateId) : 0;
         $availability           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_candidate_calender($input, $candidateId) : 0;
         $update_status          = $candidate->update($input);
-       
-
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 
@@ -158,7 +153,6 @@ class FrontCandidateController extends Controller{
     }
 
   
-
     public function store_image($data, $path=null){
         $randomName = Str::random(20);
         $extension  = $data->getClientOriginalExtension();
