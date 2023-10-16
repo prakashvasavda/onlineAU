@@ -111,6 +111,7 @@ class FrontCandidateController extends Controller{
     }
 
     public function update_candidate(Request $request, $candidateId){
+        return $request;
         $request->validate([
             'name'                  => 'required',
             'age'                   => 'required',
@@ -184,15 +185,45 @@ class FrontCandidateController extends Controller{
     }
 
     public function store_candidate_calender($input, $candidateId){
-        $candidate = FrontUser::findOrFail($candidateId);
-        if(isset($candidate) && !empty($candidate)){
-            $data['morning']        = !empty($input['morning']) ? json_encode($input['morning']) : null;
-            $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
-            $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
-            $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
-            $data['updated_at']     =  date("Y-m-d H:i:s");
-            $availability           =  $candidate->needs_babysitter()->updateOrCreate(['family_id' => $candidateId], $data);
-            return $availability->id;
-        }        
+        $candidate = FrontUser::find($candidateId);
+        if(isset($candidate) && empty($candidate)){
+            return 0;
+        }
+
+        $data['morning']        = !empty($input['morning']) ? json_encode($input['morning']) : null;
+        $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
+        $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
+        $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
+        $data['updated_at']     =  date("Y-m-d H:i:s");
+        $availability           =  $candidate->needs_babysitter()->updateOrCreate(['family_id' => $candidateId], $data);
+        return $availability->id;        
+    }
+
+    /*This function is not used at the moment*/
+    public function _store_previous_experience($input, $candidateId){
+        $candidate = FrontUser::find($candidateId);
+        if(isset($candidate) && empty($candidate)){
+            return 0;
+        }
+
+        foreach ($input['daterange'] as $key => $value) {
+            $data = array();
+            $data['candidate_id']   = isset($candidateId) ? $candidateId : null;
+            $data['daterange']      = isset($input['daterange'][$key]) ? $input['daterange'][$key] : null;
+            $data['heading']        = isset($input['heading'][$key]) ? $input['heading'][$key] : null; 
+            $data['description']    = isset($input['description'][$key]) ? $input['description'][$key] : null;             
+            $data['reference']      = isset($input['reference'][$key]) ? $input['reference'][$key] : null; 
+            $data['tel_number']     = isset($input['tel_number'][$key]) ? $input['tel_number'][$key] : null;  
+            $data['created_at']     = date("Y-m-d H:i:s");
+            $data['updated_at']     = date("Y-m-d H:i:s");
+            $previous_experience    = $candidate->previous_experience()->updateOrCreate(['candidate_id' => $candidateId], $data);
+
+            $previous_experience    = $candidate->previous_experience()
+                                        ->where('daterange', $input['daterange'][$key])
+                                        ->firstOrNew($data);
+
+            $previous_experience->save();
+        }
+        return $previous_experience->id;
     }
 }

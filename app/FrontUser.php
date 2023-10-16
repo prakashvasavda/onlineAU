@@ -56,4 +56,8 @@ class FrontUser extends Model
     public function needs_babysitter(){
         return $this->hasOne(NeedsBabysitter::class, 'family_id');
     }
+
+    public function previous_experience(){
+        return $this->hasMany(PreviousExperience::class, 'candidate_id');
+    }
 }
