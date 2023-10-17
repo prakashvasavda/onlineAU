@@ -32,7 +32,7 @@ class FrontFamilyController extends Controller{
 
     public function store_family_favourite(Request $request){
         $request->validate([
-            'candidate_id'          => 'required',
+            'candidate_id'     => 'required',
             'family_id'        => 'required',
         ]);
 
@@ -143,7 +143,22 @@ class FrontFamilyController extends Controller{
 
     public function view_families(){
         $data['menu']       = "view families";
-        $data['families']   = FrontUser::where('role', 'family')->where('status', 1)->get();
+        $data['families'] = FrontUser::leftJoin('family_favourites', 'front_users.id', '=', 'family_favourites.family_id')
+            ->leftJoin('family_reviews', 'front_users.id', '=', 'family_reviews.family_id')
+            ->select(
+                'front_users.*',
+                'family_favourites.candidate_id AS candidate_favourites_id',
+                'family_reviews.review_note',
+                'family_reviews.review_rating_count'
+            )
+            ->selectSub(function ($query) {
+                $query->selectRaw('COUNT(*)')
+                    ->from('family_reviews')
+                    ->whereColumn('family_reviews.family_id', 'front_users.id');
+            }, 'total_reviews')
+            ->where('front_users.role', 'family')->where('front_users.status', '1')
+            ->get();
+
         return view('user.family.view_families', $data);
     }
 
