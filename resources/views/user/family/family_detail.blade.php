@@ -12,8 +12,7 @@
             <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
                 <div class="candidate-content">
                     <h3>NAME: {{ strtoupper($family->name) }}<br>
-                        AGE: {{ strtoupper($family->age) }}<br>
-                        LOCATION: {{ strtoupper($family->area) }}<br>
+                        LOCATION: {{ strtoupper($family->family_address) }}<br>
                         SPECIALITY: {{ strtoupper($family->role) }}<br>
                         HOURLY RATE: R{{ strtoupper($family->salary_expectation) }}
                     </h3>
@@ -22,7 +21,7 @@
             @if(isset($loginUser) && !empty($loginUser) && $loginUser->role != 'family')
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                     <div class="candidate-contact">
-                        <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="CandidateFavourite()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
+                        <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="CandidateFavourite()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="family_favourite"></i>Save</a></p>
                         <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($family->name) ? explode(' ', $family->name)[0] : '' }}</a>
                     </div>
                 </div>
@@ -50,48 +49,45 @@
             <span>{{ isset($reviews->review_note) ? $reviews->review_note : 'No review' }}</span>
         </p>
         
-        @if(isset($loginUser) && !empty($loginUser) && $loginUser->role != 'family')
-            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 me-auto">
-                <form class="mt-5" name="candidate_review_form" action="{{ route('store-family-reviews') }}" enctype="multipart/form-data" method="post">
-                    @csrf
-                    <input type="hidden" name="reviewer_id" value="{{ $loginUser->id }}">
-                    <input type="hidden" name="reviewer_role" value="{{ $loginUser->role }}">
-                    <input type="hidden" name="candidate_id" value="{{ $family->id }}">
-                    <input type="hidden" name="candidate_role" value="{{ $family->role }}">
-                    <div class="form-input mb-2">
-                        <div class="rating-star">
-                            <input type="radio" name="review_rating_count" id="rating-5" value="5">
-                            <label for="rating-5"></label>
-                            <input type="radio" name="review_rating_count" id="rating-4" value="4">
-                            <label for="rating-4"></label>
-                            <input type="radio" name="review_rating_count" id="rating-3" value="3">
-                            <label for="rating-3"></label>
-                            <input type="radio" name="review_rating_count" id="rating-2" value="2">
-                            <label for="rating-2"></label>
-                            <input type="radio" name="review_rating_count" id="rating-1" value="1"> 
-                            <label for="rating-1"></label>
-                        </div>
-                        @if ($errors->has('review_rating_count'))
-                            <span class="text-danger">
-                                <strong>{{ $errors->first('review_rating_count') }}</strong>
-                            </span>
-                        @endif
+        <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 me-auto">
+            <form class="mt-5" name="family_review_form" action="{{ route('store-family-review') }}" enctype="multipart/form-data" method="post">
+                @csrf
+                <input type="hidden" name="candidate_id" value="{{ $loginUser->id }}">
+                <input type="hidden" name="family_id" value="{{ $family->id }}">
+                <div class="form-input mb-2">
+                    <div class="rating-star">
+                        <input type="radio" name="review_rating_count" id="rating-5" value="5">
+                        <label for="rating-5"></label>
+                        <input type="radio" name="review_rating_count" id="rating-4" value="4">
+                        <label for="rating-4"></label>
+                        <input type="radio" name="review_rating_count" id="rating-3" value="3">
+                        <label for="rating-3"></label>
+                        <input type="radio" name="review_rating_count" id="rating-2" value="2">
+                        <label for="rating-2"></label>
+                        <input type="radio" name="review_rating_count" id="rating-1" value="1"> 
+                        <label for="rating-1"></label>
                     </div>
-                    <div class="form-input mb-2">
-                        <label for="write_review">Review</label>
-                        <textarea id="review_note" name="review_note" placeholder="" class="form-field" rows="5"></textarea>
-                        @if ($errors->has('review_note'))
-                            <span class="text-danger">
-                                <strong>{{ $errors->first('review_note') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                    <div class="form-input-btn">
-                        <input type="submit" class="btn btn-primary round" value="Submit" {{ isset($reviews) ? 'disabled' : '' }}>
-                    </div>
-                </form>
-            </div>
-        @endif
+                    @if ($errors->has('review_rating_count'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('review_rating_count') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-input mb-2">
+                    <label for="write_review">Review</label>
+                    <textarea id="review_note" name="review_note" placeholder="" class="form-field" rows="5"></textarea>
+                    @if ($errors->has('review_note'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('review_note') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-input-btn">
+                    <input type="submit" class="btn btn-primary round" value="Submit">
+                </div>
+            </form>
+        </div>
+       
     </div>
 </div>
 
@@ -313,22 +309,24 @@
 @parent
 <script type="text/javascript">
 function CandidateFavourite(){
-    var saved_by_id = {{ isset($loginUser->role) ? $loginUser->id : 0 }};
-    var saved_by_role = '{{ isset($loginUser->role) ? $loginUser->role : "none" }}';
-    if(saved_by_id != 0 && !$("#candidate_favourite").hasClass("fa-solid")){
+    var candidate_id = {{ isset($loginUser->role) ? $loginUser->id : 0 }};
+    var status = {{ isset($favourite) ? 0 : 1 }}
+
+    if(candidate_id != 0){
         $.ajax({
             url: "{{ url('store-family-favourite') }}",
             type: "POST",
             data: {
                 _token: '{{ csrf_token() }}', 
-                candidate_id: {{ $family->id }},
-                candidate_role: '{{ $family->role }}',
-                saved_by_id: saved_by_id,
-                saved_by_role: saved_by_role
+                family_id: {{ $family->id }},
+                candidate_id: candidate_id,
+                status: status
             },
             success: function(response) {
                 if(response.message == "success"){
-                    $('#candidate_favourite').removeClass("fa-regular").addClass("fa-solid");
+                    $('#family_favourite').removeClass("fa-regular").addClass("fa-solid");
+                }else{
+                    $('#family_favourite').removeClass("fa-solid").addClass("fa-regular"); 
                 }
             }
         });

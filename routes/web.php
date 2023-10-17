@@ -59,16 +59,18 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::put('update-family-calender/{id}', 'FrontFamilyController@update_family_calender')->name('update-family-calender');
 
     /*FRONT FAMILY ROUTES*/
-    Route::get('family-detail/{id}', 'FrontFamilyController@family_detail')->name('family-detail');
-    Route::post('store-family-reviews', 'FrontFamilyController@store_family_reviews')->name('store-family-reviews');
+    Route::post('store-family-review', 'FrontFamilyController@store_family_review')->name('store-family-review');
     Route::post('store-family-favourite', 'FrontFamilyController@store_family_favourite')->name('store-family-favourite');
     Route::get('family/manage-profile/{id}', 'FrontFamilyController@edit_family')->name('edit-family');
     Route::put('update-family/{id}', 'FrontFamilyController@update_family')->name('update-family');
+     Route::get('view-families', 'FrontFamilyController@view_families')->name('view-families');
+    Route::get('family-detail/{id}', 'FrontFamilyController@family_detail')->name('family-detail');
 
     /*FRONT PAYMENT ROUTES*/
     Route::post('/payment/process', 'PaymentController@process_payment')->name('payment-process');
     Route::get('/payment/success', 'PaymentController@payment_success')->name('payment-success');
     Route::get('/payment/cancel', 'PaymentController@payment_cancel')->name('payment-cancel');
+
 });
 
 Auth::routes();
