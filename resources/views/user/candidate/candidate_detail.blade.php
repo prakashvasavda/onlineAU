@@ -309,7 +309,7 @@
 function CandidateFavourite(){
     var saved_by_id = {{ isset($loginUser->role) ? $loginUser->id : 0 }};
     var saved_by_role = '{{ isset($loginUser->role) ? $loginUser->role : "none" }}';
-    if(saved_by_id != 0 && !$("#candidate_favourite").hasClass("fa-solid")){
+    if(saved_by_id != 0){
         $.ajax({
             url: "{{ url('store-candidate-favourite') }}",
             type: "POST",
@@ -323,6 +323,8 @@ function CandidateFavourite(){
             success: function(response) {
                 if(response.message == "success"){
                     $('#candidate_favourite').removeClass("fa-regular").addClass("fa-solid");
+                }else{
+                    $('#candidate_favourite').removeClass("fa-solid").addClass("fa-regular");
                 }
             }
         });

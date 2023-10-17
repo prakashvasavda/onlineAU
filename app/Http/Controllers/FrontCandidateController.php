@@ -42,7 +42,8 @@ class FrontCandidateController extends Controller{
         $data['date']   = date('Y-m-d');
         $favourite = CandidateFavourite::where('saved_by_id', $data['saved_by_id'])->where('saved_by_role', $data['saved_by_role'])->where('candidate_id', $data['candidate_id'])->where('candidate_role', $data['candidate_role'])->first();
         if(!empty($favourite)){
-            return response()->json(['message' => 'error'], 404);
+            $status = $favourite->delete();
+            return response()->json(['message' => 'deleted'], 200);
         }
         
         $favourite = CandidateFavourite::create($data);
@@ -135,7 +136,6 @@ class FrontCandidateController extends Controller{
         return $status;
     }
 
-  
     public function store_image($data, $path=null){
         $randomName = Str::random(20);
         $extension  = $data->getClientOriginalExtension();
