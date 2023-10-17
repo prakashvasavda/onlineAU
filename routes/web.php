@@ -46,9 +46,10 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('candidate-detail/{id}', 'FrontCandidateController@candidate_detail')->name('candidate-detail');
     Route::post('store-candidate-reviews', 'FrontCandidateController@store_candidate_reviews')->name('store-candidate-reviews');
     Route::post('store-candidate-favourite', 'FrontCandidateController@store_candidate_favourite')->name('store-candidate-favourite');
-    Route::get('all-candidates', 'FrontCandidateController@all_candidates')->name('all-candidates');
     Route::get('candidate/manage-profile/{id}', 'FrontCandidateController@edit_candidate')->name('edit-candidate');
     Route::put('update-candidate/{id}', 'FrontCandidateController@update_candidate')->name('update-candidate');
+    Route::get('view-families', 'FrontFamilyController@view_families')->name('view-families');
+    Route::get('family-detail/{id}', 'FrontFamilyController@family_detail')->name('family-detail');
 
     /*CANDIDATE MANAGE CALENDER ROUTES*/
     Route::get('candidate/manage-calender', 'FrontCandidateController@edit_candidate_calender')->name('candidate-manage-calender');
@@ -63,8 +64,10 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::post('store-family-favourite', 'FrontFamilyController@store_family_favourite')->name('store-family-favourite');
     Route::get('family/manage-profile/{id}', 'FrontFamilyController@edit_family')->name('edit-family');
     Route::put('update-family/{id}', 'FrontFamilyController@update_family')->name('update-family');
-     Route::get('view-families', 'FrontFamilyController@view_families')->name('view-families');
-    Route::get('family-detail/{id}', 'FrontFamilyController@family_detail')->name('family-detail');
+    Route::get('all-candidates', 'FrontCandidateController@view_all_candidates')->name('all-candidates');
+    Route::get('manage-candidates', 'FrontCandidateController@manage_candidates')->name('manage-candidates');
+    Route::get('candidate-detail/{id}', 'FrontCandidateController@candidate_detail')->name('candidate-detail');
+
 
     /*FRONT PAYMENT ROUTES*/
     Route::post('/payment/process', 'PaymentController@process_payment')->name('payment-process');

@@ -82,7 +82,7 @@
                     @endif
                 </div>
                 <div class="form-input-btn">
-                    <input type="submit" class="btn btn-primary round" value="Submit" {{ isset($reviews) ? 'disabled' : '' }}>
+                    <input type="submit" class="btn btn-primary round" value="Submit">
                 </div>
             </form>
         </div>

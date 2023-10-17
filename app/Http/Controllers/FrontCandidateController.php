@@ -17,9 +17,6 @@ use DB;
 class FrontCandidateController extends Controller{
 
     public function store_candidate_reviews(Request $request){
-        if (!Session::has('frontUser')) {
-            return redirect()->back()->with('error', 'You must be logged in to submit a review.');
-        } 
         $request->validate([
             'review_rating_count'       => 'required',
             'review_note'               => 'required',
@@ -27,9 +24,9 @@ class FrontCandidateController extends Controller{
             'candidate_role'            => 'required',
         ]);
 
-        $data              = $request->all();
-        $data['date']      = date('Y-m-d');
-        $review = CandidateReview::create($data);
+        $input              = $request->all();
+        $input['date']      = date('Y-m-d');
+        $review = CandidateReview::updateOrCreate(['candidate_id' => $request->candidate_id, 'reviewer_id' => $request->reviewer_id], $input);
         return redirect()->back()->with('success', 'Your review have been recorded successfully.');
     }
 
@@ -68,33 +65,19 @@ class FrontCandidateController extends Controller{
                     ->where('candidate_id', $candidateId);
             }, 'total_reviews')
             ->where('candidate_id', $candidateId)
+            ->where('reviewer_id', Session::get('frontUser')->id)
             ->latest('created_at')
             ->first();
 
         $data['loginUser'] = Session::has('frontUser') ? Session::get('frontUser') : null;
         $data['favourite'] = Session::has('frontUser') ? CandidateFavourite::where('candidate_id', $candidateId)->where('saved_by_id',  $data['loginUser']->id)->first() : null;
-        return view('user.candidate_detail', $data);
+        return view('user.candidate.candidate_detail', $data);
     }
 
-    public function all_candidates(){
-        $data['menu'] = "all candidates";
-        $data['candidates'] = FrontUser::leftJoin('candidate_favourites', 'front_users.id', '=', 'candidate_favourites.candidate_id')
-            ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
-            ->select(
-                'front_users.*',
-                'candidate_favourites.candidate_id AS candidate_favourites_id',
-                'candidate_reviews.review_note',
-                'candidate_reviews.review_rating_count'
-            )
-            ->selectSub(function ($query) {
-                $query->selectRaw('COUNT(*)')
-                    ->from('candidate_reviews')
-                    ->whereColumn('candidate_reviews.candidate_id', 'front_users.id');
-            }, 'total_reviews')
-            ->where('front_users.role', '!=', 'family')->where('front_users.status', '1')
-            ->get();
-
-        return view('user.all_candidates', $data);
+    public function view_all_candidates(){
+        $data['menu']       = "all candidates";
+        $data['candidates']  = FrontUser::where('role', '!=', 'family')->where('status', 1)->get();
+        return view('user.candidate.all_candidates', $data);
     }
 
     public function edit_candidate($candidateId){
@@ -192,5 +175,25 @@ class FrontCandidateController extends Controller{
         $availability           =  $candidate->needs_babysitter()->updateOrCreate(['family_id' => $candidateId], $data);
         return $availability->id;        
     }
-    
+
+    public function manage_candidates(){
+        $data['menu'] = "manage candidates";
+        $data['candidates'] = FrontUser::leftJoin('candidate_favourites', 'front_users.id', '=', 'candidate_favourites.candidate_id')
+            ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
+            ->select(
+                'front_users.*',
+                'candidate_favourites.candidate_id AS candidate_favourites_id',
+                'candidate_reviews.review_note',
+                'candidate_reviews.review_rating_count'
+            )
+            ->selectSub(function ($query) {
+                $query->selectRaw('COUNT(*)')
+                    ->from('candidate_reviews')
+                    ->whereColumn('candidate_reviews.candidate_id', 'front_users.id');
+            }, 'total_reviews')
+            ->where('front_users.role', '!=', 'family')->where('front_users.status', '1')
+            ->where('candidate_reviews.reviewer_id', Session::get('frontUser')->id)
+            ->get();
+        return view('user.candidate.manage_candidates', $data);
+    }
 }

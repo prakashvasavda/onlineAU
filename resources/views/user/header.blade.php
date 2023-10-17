@@ -13,14 +13,16 @@
                             <li class="{{ request()->is('candidates') ? 'active' : '' }}"><a href="{{ route('candidates') }}">candidates</a></li>
                             <li class="{{ request()->is('families') ? 'active' : '' }} {{ request()->is('family-register') || request()->is('candidate-detail/*') ? 'active' : '' }}"><a href="{{ route('families') }}">family</a></li>
                         @elseif(session()->get('frontUser')->role != "family")
+                            {{-- family menu --}}
                             <li class="{{ request()->routeIs('edit-candidate') ? 'active' : '' }}"><a href="{{ route('edit-candidate', ['id' =>  Session::has('frontUser') ? Session::get('frontUser')->id : null]) }}">Manage Profile</a></li>
                             <li class="{{ request()->routeIs('view-families') ? 'active' : '' }}"><a href="{{ route('view-families') }}">View Families</a></li>
-                            <li class="{{ request()->routeIs('candidate-manage-calender') ? 'active' : '' }}"><a href="{{ url('candidate/manage-calender') }}">Manage Candidates</a></li>
+                            <li class="{{ request()->routeIs('candidate-manage-calender') ? 'active' : '' }}"><a href="{{ url('candidate/manage-calender') }}">Manage Calender</a></li>
                             <li class="#"><a href="#">Messages</a></li>
                             <li class="#"><a href="#">Reviews</a></li>
                         @else
+                            {{-- candidate manu --}}
                             <li class="{{ request()->routeIs('edit-family') ? 'active' : '' }}"><a href="{{ route('edit-family', ['id' =>  Session::has('frontUser') ? Session::get('frontUser')->id : null]) }}">Manage Profile</a></li>
-                            <li class="{{ request()->routeIs('family-manage-calender') ? 'active' : '' }}"><a href="{{ url('family/manage-calender') }}">Manage Calander</a></li>
+                            <li class="{{ request()->routeIs('manage-candidates') ? 'active' : '' }}"><a href="{{ route('manage-candidates') }}">Manage Candidates</a></li>
                             <li class="#"><a href="#">Messages</a></li>
                             <li class="#"><a href="#">Reviews</a></li>
                             <li class="#"><a href="#">Manage Payments</a></li>

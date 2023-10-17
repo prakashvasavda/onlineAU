@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+@include('flash.front-message')
 <div class="search-section no-banner">
 	<ul class="filter-option">
 		<li><a href="javaScript:;">Type of babysitter needed</a></li>
@@ -14,20 +15,18 @@
 				{{-- <p>26 families matching your search</p> --}}
 			</div>
 			<div class="row result-list">
-				@if(isset($families) && !empty($families))
-					@foreach($families as $key => $value)
+				@if(isset($candidates) && !empty($candidates))
+					@foreach($candidates as $key => $value)
 						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-							<a href="{{ route('family-detail', ['id' => $value->id]) }}">
+							<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
 								<div class="card">
 								    <div class="row g-0">
 								        <div class="col-md-4">
-								        	<img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" class="img-fluid" alt="">
+								            <img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" alt="">
 								        </div>
 								        <div class="col-md-8">
 								            <div class="card-body">
-								            	<div class="pos-icon">
-								            		<i class="{{ isset($value->candidate_favourites_id) ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
-								            	</div>
+								            	<div class="pos-icon"><i class="fa-regular fa-heart"></i></div>
 								                <h5 class="card-title">{{ $value->name }}</h5>
 								                <p class="card-text">{{ $value->area }}</p>
 								                <p class="card-text">
@@ -43,9 +42,9 @@
 												                @endfor
 											                @endif 
 										                </span>
-								                		<span>{{ isset($value->total_reviews) ? $value->total_reviews : 0 }} Reviews</span>
-								                </small>
-								                </p>
+									                	<span>{{ isset($value->total_reviews) ? $value->total_reviews : 0 }} Reviews</span>
+									                </small>
+									            </p>
 								            </div>
 								        </div>
 								    </div>
@@ -59,7 +58,10 @@
 	</div>
 </div>
 @endsection
+
 @section('script')
+@parent
 <script type="text/javascript">
+
 </script>
 @endsection
