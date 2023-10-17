@@ -192,7 +192,7 @@ class FrontCandidateController extends Controller{
                     ->whereColumn('candidate_reviews.candidate_id', 'front_users.id');
             }, 'total_reviews')
             ->where('front_users.role', '!=', 'family')->where('front_users.status', '1')
-            ->where('candidate_reviews.reviewer_id', Session::get('frontUser')->id)
+            ->where('candidate_favourites.saved_by_id', Session::get('frontUser')->id)
             ->get();
         return view('user.candidate.manage_candidates', $data);
     }
