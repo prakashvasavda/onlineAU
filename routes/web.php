@@ -37,7 +37,7 @@ Route::get('/payment/notify', 'PaymentController@payment_notify')->name('payment
 
 /* Search */
 
-Route::get('search', 'SearchController@index')->name('search');
+Route::any('search', 'SearchController@index')->name('search');
 
 Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('pricing', 'HomeController@pricing')->name('pricing');
@@ -50,7 +50,7 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('view-families', 'FrontCandidateController@view_families')->name('view-families');
     Route::get('family-detail/{id}', 'FrontCandidateController@family_detail')->name('family-detail');
     Route::post('store-candidate-favorite-family', 'FrontCandidateController@store_candidate_favorite_family')->name('store-candidate-favorite-family');
-    
+
     /*CANDIDATE MANAGE CALENDER ROUTES*/
     Route::get('candidate/manage-calender', 'FrontCandidateController@edit_candidate_calender')->name('candidate-manage-calender');
     Route::put('update-candidate-calender/{id}', 'FrontCandidateController@update_candidate_calender')->name('update-candidate-calender');

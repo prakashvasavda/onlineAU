@@ -45,17 +45,20 @@
 <div class="search-box search-elem">
     <a href="javaScript:;" class="close btn btn-primary round">x</a>
     <div class="inner row">
-        <div class="col-lg-5 col-md-7 col-sm-12 col-xs-12 mx-auto">
-            <div class="w-100 input-group d-flex flex-direction-row flex-wrap align-items-center">
-                <select class="form-field" required>
-                    <option value="family">Family</option>
-                    <option value="candidate">Candidate</option>
-                </select>
-                <input type="text" placeholder="Search here" id="search-field" class="form-field address-input">
-                <div class="input-group-append">
-                    <button id="" type="submit" class="submit btn btn-link text-secondary"><i class="fa fa-search"></i></button>
+        <form name="frm" method="post" action="{{ route('search') }}">
+            <div class="col-lg-5 col-md-7 col-sm-12 col-xs-12 mx-auto">
+                <div class="w-100 input-group d-flex flex-direction-row flex-wrap align-items-center">
+                        @csrf
+                        <select class="form-field" required name="type">
+                            <option value="family">Family</option>
+                            <option value="candidate">Candidate</option>
+                        </select>
+                        <input type="text" placeholder="Search here" id="search-field" class="form-field address-input" name="search" required>
+                        <div class="input-group-append">
+                            <button id="" type="submit" class="submit btn btn-link text-secondary"><i class="fa fa-search"></i></button>
+                        </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
