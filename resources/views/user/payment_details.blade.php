@@ -3,10 +3,19 @@
 @section('content')
 <div class="pricing-plans no-banner">
     <div class="container">
+         
         <div class="title-main">
-            <h2>Pricing</h2>
+            <h2>Payment Details</h2>
         </div>
-        <div class="row">
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+
+       {{--  <div class="row">
             <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12"></div>
             @if(isset($packages))
                 @foreach($packages as $key=>$price)
@@ -48,7 +57,7 @@
                 @endforeach
             @endif
             <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12"></div>
-        </div>
+        </div> --}}
     </div>
 </div>
 
