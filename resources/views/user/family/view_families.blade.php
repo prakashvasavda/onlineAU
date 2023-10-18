@@ -26,7 +26,7 @@
 								        <div class="col-md-8">
 								            <div class="card-body">
 								            	<div class="pos-icon">
-								            		<i class="{{ isset($value->candidate_favourites_id) ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
+								            		<i class="{{ isset($value->candidate_favourite_family) ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
 								            	</div>
 								                <h5 class="card-title">{{ $value->name }}</h5>
 								                <p class="card-text">{{ $value->area }}</p>

@@ -45,12 +45,12 @@ Route::group(['middleware' => 'frontendauth'], function () {
     /*FRONT CANDIDATE ROUTES*/
     Route::get('candidate-detail/{id}', 'FrontCandidateController@candidate_detail')->name('candidate-detail');
     Route::post('store-candidate-reviews', 'FrontCandidateController@store_candidate_reviews')->name('store-candidate-reviews');
-    Route::post('store-candidate-favourite', 'FrontCandidateController@store_candidate_favourite')->name('store-candidate-favourite');
     Route::get('candidate/manage-profile/{id}', 'FrontCandidateController@edit_candidate')->name('edit-candidate');
     Route::put('update-candidate/{id}', 'FrontCandidateController@update_candidate')->name('update-candidate');
-    Route::get('view-families', 'FrontFamilyController@view_families')->name('view-families');
-    Route::get('family-detail/{id}', 'FrontFamilyController@family_detail')->name('family-detail');
-
+    Route::get('view-families', 'FrontCandidateController@view_families')->name('view-families');
+    Route::get('family-detail/{id}', 'FrontCandidateController@family_detail')->name('family-detail');
+    Route::post('store-candidate-favorite-family', 'FrontCandidateController@store_candidate_favorite_family')->name('store-candidate-favorite-family');
+    
     /*CANDIDATE MANAGE CALENDER ROUTES*/
     Route::get('candidate/manage-calender', 'FrontCandidateController@edit_candidate_calender')->name('candidate-manage-calender');
     Route::put('update-candidate-calender/{id}', 'FrontCandidateController@update_candidate_calender')->name('update-candidate-calender');
@@ -61,13 +61,12 @@ Route::group(['middleware' => 'frontendauth'], function () {
 
     /*FRONT FAMILY ROUTES*/
     Route::post('store-family-review', 'FrontFamilyController@store_family_review')->name('store-family-review');
-    Route::post('store-family-favourite', 'FrontFamilyController@store_family_favourite')->name('store-family-favourite');
     Route::get('family/manage-profile/{id}', 'FrontFamilyController@edit_family')->name('edit-family');
     Route::put('update-family/{id}', 'FrontFamilyController@update_family')->name('update-family');
-    Route::get('all-candidates', 'FrontCandidateController@view_all_candidates')->name('all-candidates');
-    Route::get('manage-candidates', 'FrontCandidateController@manage_candidates')->name('manage-candidates');
-    Route::get('candidate-detail/{id}', 'FrontCandidateController@candidate_detail')->name('candidate-detail');
-
+    Route::get('all-candidates', 'FrontFamilyController@view_all_candidates')->name('all-candidates');
+    Route::get('manage-candidates', 'FrontFamilyController@manage_candidates')->name('manage-candidates');
+    Route::get('candidate-detail/{id}', 'FrontFamilyController@candidate_detail')->name('candidate-detail');
+    Route::post('store-family-favourite-candidate', 'FrontFamilyController@store_family_favourite_candidate')->name('store-family-favourite-candidate');
 
     /*FRONT PAYMENT ROUTES*/
     Route::post('/payment/process', 'PaymentController@process_payment')->name('payment-process');

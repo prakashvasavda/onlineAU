@@ -21,7 +21,7 @@
             @if(isset($loginUser) && !empty($loginUser) && $loginUser->role != 'family')
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                     <div class="candidate-contact">
-                        <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="CandidateFavourite()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="family_favourite"></i>Save</a></p>
+                        <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="storeCandidateFavoriteFamily()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="favourite_button"></i>Save</a></p>
                         <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($family->name) ? explode(' ', $family->name)[0] : '' }}</a>
                     </div>
                 </div>
@@ -308,25 +308,22 @@
 @section('script')
 @parent
 <script type="text/javascript">
-function CandidateFavourite(){
+function storeCandidateFavoriteFamily(){
     var candidate_id = {{ isset($loginUser->role) ? $loginUser->id : 0 }};
-    var status = {{ isset($favourite) ? 0 : 1 }}
-
     if(candidate_id != 0){
         $.ajax({
-            url: "{{ url('store-family-favourite') }}",
+            url: "{{ url('store-candidate-favorite-family') }}",
             type: "POST",
             data: {
                 _token: '{{ csrf_token() }}', 
                 family_id: {{ $family->id }},
                 candidate_id: candidate_id,
-                status: status
             },
             success: function(response) {
                 if(response.message == "success"){
-                    $('#family_favourite').removeClass("fa-regular").addClass("fa-solid");
+                    $('#favourite_button').removeClass("fa-regular").addClass("fa-solid");
                 }else{
-                    $('#family_favourite').removeClass("fa-solid").addClass("fa-regular"); 
+                    $('#favourite_button').removeClass("fa-solid").addClass("fa-regular"); 
                 }
             }
         });

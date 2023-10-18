@@ -17,7 +17,7 @@
 			<div class="row result-list">
 				@if(isset($candidates) && !empty($candidates))
 					@foreach($candidates as $key => $value)
-						@if(isset($value->candidate_favourites_id) && !empty($value->candidate_favourites_id))
+						@if(isset($value->family_favorite_candidate) && !empty($value->family_favorite_candidate))
 							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 								<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
 									<div class="card">
@@ -28,7 +28,7 @@
 									        <div class="col-md-8">
 									            <div class="card-body">
 									            	<div class="pos-icon">
-									            		<i class="{{ isset($value->candidate_favourites_id) ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
+									            		<i class="{{ isset($value->family_favorite_candidate) ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
 									            	</div>
 									                <h5 class="card-title">{{ $value->name }}</h5>
 									                <p class="card-text">{{ $value->area }}</p>

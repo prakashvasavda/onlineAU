@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FamilyFavourite extends Model{
+class CandidateFavoriteFamily extends Model{
     protected $guarded = [];
-    protected $table   = 'family_favourites';
+    protected $table   = 'candidate_favorite_families';
     protected $fillable = [
-        'family_id',
         'candidate_id',
-        'status',
+        'family_id',
         'date',
     ];
 }

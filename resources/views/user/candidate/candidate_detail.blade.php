@@ -21,7 +21,7 @@
             </div>
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div class="candidate-contact">
-                    <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="CandidateFavourite()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
+                    <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="storeFamilyFavoriteCandidate()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
                     <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                 </div>
             </div>
@@ -49,10 +49,8 @@
         <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 me-auto">
             <form class="mt-5" name="candidate_review_form" action="{{ route('store-candidate-reviews') }}" enctype="multipart/form-data" method="post">
                 @csrf
-                <input type="hidden" name="reviewer_id" value="{{ isset($loginUser->role) && $loginUser->role == 'family' ? $loginUser->id : null }}">
-                <input type="hidden" name="reviewer_role" value="{{ isset($loginUser->role) && $loginUser->role == 'family' ? $loginUser->role : null }}">
+                <input type="hidden" name="family_id" value="{{ isset($loginUser->role) && $loginUser->role == 'family' ? $loginUser->id : null }}">
                 <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
-                <input type="hidden" name="candidate_role" value="{{ $candidate->role }}">
                 <div class="form-input mb-2">
                     <div class="rating-star">
                         <input type="radio" name="review_rating_count" id="rating-5" value="5">
@@ -306,19 +304,16 @@
 @section('script')
 @parent
 <script type="text/javascript">
-function CandidateFavourite(){
-    var saved_by_id = {{ isset($loginUser->role) ? $loginUser->id : 0 }};
-    var saved_by_role = '{{ isset($loginUser->role) ? $loginUser->role : "none" }}';
-    if(saved_by_id != 0){
+function storeFamilyFavoriteCandidate(){
+    var family_id = {{ isset($loginUser->role) ? $loginUser->id : 0 }};
+    if(family_id != 0){
         $.ajax({
-            url: "{{ url('store-candidate-favourite') }}",
+            url: "{{ url('store-family-favourite-candidate') }}",
             type: "POST",
             data: {
                 _token: '{{ csrf_token() }}', 
                 candidate_id: {{ $candidate->id }},
-                candidate_role: '{{ $candidate->role }}',
-                saved_by_id: saved_by_id,
-                saved_by_role: saved_by_role
+                family_id: family_id,
             },
             success: function(response) {
                 if(response.message == "success"){
