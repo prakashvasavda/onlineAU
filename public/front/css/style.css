@@ -1885,3 +1885,6 @@ header {
     background-color: var(--primary);
     color: var(--white);
 }
+.header-sticky.sticky-bar .stellarnav.desktop ul li {
+ padding: 0 8px;
+}
