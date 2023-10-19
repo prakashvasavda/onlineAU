@@ -67,6 +67,7 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('manage-candidates', 'FrontFamilyController@manage_candidates')->name('manage-candidates');
     Route::get('candidate-detail/{id}', 'FrontFamilyController@candidate_detail')->name('candidate-detail');
     Route::post('store-family-favourite-candidate', 'FrontFamilyController@store_family_favourite_candidate')->name('store-family-favourite-candidate');
+    Route::get('reviews', 'FrontFamilyController@reviews')->name('reviews');
 });
 
 Auth::routes();

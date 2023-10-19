@@ -49,7 +49,6 @@ class FrontFamilyController extends Controller{
         $status = FamilyFavoriteCandidate::create($input);
         return response()->json(['message' => 'success'], 200);
     }
-
     
     public function edit_family($familyId){
         $data['menu']                                       = "manage profile";
@@ -166,7 +165,7 @@ class FrontFamilyController extends Controller{
     }
 
     public function view_all_candidates(){
-        $data['menu']       = "all candidates";
+        $data['menu']        = "all candidates";
         $data['candidates']  = FrontUser::where('role', '!=', 'family')->where('status', 1)->get();
         return view('user.candidate.all_candidates', $data);
     }
@@ -179,7 +178,7 @@ class FrontFamilyController extends Controller{
         $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
         $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
-        
+    
         $data['reviews'] = CandidateReview::select(['review_note', 'review_rating_count'])
             ->selectSub(function ($query) use ($candidateId) {
                 $query->selectRaw('COUNT(*)')
@@ -187,12 +186,31 @@ class FrontFamilyController extends Controller{
                     ->where('candidate_id', $candidateId);
             }, 'total_reviews')
             ->where('candidate_id', $candidateId)
-            ->where('family_id', Session::get('frontUser')->id)
             ->latest('created_at')
             ->first();
 
         $data['loginUser'] = Session::has('frontUser') ? Session::get('frontUser') : null;
         $data['favourite'] = Session::has('frontUser') ? FamilyFavoriteCandidate::where('candidate_id', $candidateId)->where('family_id', Session::get('frontUser')->id)->first() : null;
         return view('user.candidate.candidate_detail', $data);
+    }
+
+    public function reviews(){
+        $data['menu']       = "review";
+        $data['candidates'] = FrontUser::leftJoin('family_favorite_candidates', 'front_users.id', '=', 'family_favorite_candidates.candidate_id')
+            // ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
+            ->select(
+                'front_users.*',
+                'family_favorite_candidates.candidate_id AS family_favorite_candidate',
+                // 'candidate_reviews.review_note',
+                // 'candidate_reviews.review_rating_count'
+            )
+            ->selectSub(function ($query) {
+                $query->selectRaw('COUNT(*)')
+                    ->from('candidate_reviews')
+                    ->whereColumn('candidate_reviews.candidate_id', 'front_users.id');
+            }, 'total_reviews')
+            ->where('front_users.role', '!=', 'family')->where('front_users.status', '1')
+            ->get();
+        return view('user.family.reviews', $data);
     }
 }
