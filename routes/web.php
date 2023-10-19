@@ -69,9 +69,7 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::post('store-family-favourite-candidate', 'FrontFamilyController@store_family_favourite_candidate')->name('store-family-favourite-candidate');
 
     /*FRONT PAYMENT ROUTES*/
-    Route::post('/payment/process', 'PaymentController@process_payment')->name('payment-process');
-    Route::get('/payment/success', 'PaymentController@payment_success')->name('payment-success');
-    Route::get('/payment/cancel', 'PaymentController@payment_cancel')->name('payment-cancel');
+    Route::get('payment-details', 'PaymentController@payment_details')->name('payment-details');
 
 });
 
