@@ -868,6 +868,9 @@ header {
     width: auto;
     object-fit: contain;
 }
+.stellarnav.desktop {
+    z-index: unset !important;
+}
 .stellarnav.desktop ul li {
     padding: 0 15px;
 }
