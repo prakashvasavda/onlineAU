@@ -40,7 +40,7 @@ Route::get('/payment/notify', 'PaymentController@payment_notify')->name('payment
 Route::any('search', 'SearchController@index')->name('search');
 
 Route::group(['middleware' => 'frontendauth'], function () {
-    Route::get('pricing', 'HomeController@pricing')->name('pricing');
+    Route::get('manage-payments', 'HomeController@manage_payments')->name('manage-payments');
 
     /*FRONT CANDIDATE ROUTES*/
     Route::get('candidate-detail/{id}', 'FrontCandidateController@candidate_detail')->name('candidate-detail');

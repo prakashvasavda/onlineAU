@@ -25,7 +25,7 @@
                             <li class="{{ request()->routeIs('manage-candidates') ? 'active' : '' }}"><a href="{{ route('manage-candidates') }}">Manage Candidates</a></li>
                             <li class="#"><a href="#">Messages</a></li>
                             <li class="#"><a href="#">Reviews</a></li>
-                            <li class="#"><a href="#">Manage Payments</a></li>
+                            <li class="{{ request()->routeIs('manage-payments') ? 'active' : '' }}"><a href="{{ route('manage-payments') }}">Manage Payments</a></li>
                         @endif
                         @if(session()->has('frontUser'))
                             <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li>

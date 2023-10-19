@@ -71,7 +71,7 @@ class PaymentController extends Controller{
     }
 
     public function payment_success(Request $request){
-        return redirect()->route('pricing');
+        return redirect()->route('manage-payments');
     }
 
     public function payment_cancel(Request $request){
