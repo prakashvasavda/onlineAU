@@ -71,17 +71,11 @@ class PaymentController extends Controller{
     }
 
     public function payment_success(Request $request){
-        return redirect()->route('payment-details');
-    }
-
-    public function payment_details(){
-        $data['menu']       = 'payment details';
-        $data['payment']    = Payment::latest()->first();
-        return view('user.payment_details', $data)->with('success', 'payment completed successfully.');
+        return redirect()->route('pricing');
     }
 
     public function payment_cancel(Request $request){
-        return "canceled";
+       return redirect()->back()->with('error', 'Payment canceled, please try again.');
     }
 
     public function payment_notify(Request $request){
@@ -90,7 +84,7 @@ class PaymentController extends Controller{
 
         $data               = $request->all();
         $data['user_id']    = isset($request->custom_int1) ? $request->custom_int1 : null;
-        $status             = Payment::create($data);
+        $status             = (isset($data) && !empty($data)) ? Payment::create($data) : null;
 
         \Log::info(print_r($request->all(), true));
     }

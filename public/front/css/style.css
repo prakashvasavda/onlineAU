@@ -1888,3 +1888,9 @@ header {
 .header-sticky.sticky-bar .stellarnav.desktop ul li {
  padding: 0 8px;
 }
+.js--image-preview img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+ object-position: center;
+}

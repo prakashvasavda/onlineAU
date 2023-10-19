@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Contact;
 use App\Features;
 use App\Packages;
-use Illuminate\Http\Request;
+use App\Payment;
 use Session;
 use Validator;
 
@@ -24,10 +25,10 @@ class HomeController extends Controller
 
     public function pricing()
     {
-        $features = Features::get()->toArray();
-        $packages = Packages::get()->toArray();
-
-        return view('user.pricing', compact('packages', 'features'));
+        $features   = Features::get()->toArray();
+        $packages   = Packages::get()->toArray();
+        $payment    = Payment::where('user_id', Session::get('frontUser')->id)->first();
+        return view('user.pricing', compact('packages', 'features', 'payment'));
     }
 
     public function store_contact(Request $request)
