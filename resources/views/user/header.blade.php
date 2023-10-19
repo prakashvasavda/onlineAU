@@ -24,8 +24,8 @@
                             <li class="{{ request()->routeIs('edit-family') ? 'active' : '' }}"><a href="{{ route('edit-family', ['id' =>  Session::has('frontUser') ? Session::get('frontUser')->id : null]) }}">Manage Profile</a></li>
                             <li class="{{ request()->routeIs('manage-candidates') ? 'active' : '' }}"><a href="{{ route('manage-candidates') }}">Manage Candidates</a></li>
                             <li class="#"><a href="#">Messages</a></li>
-                            <li class="#"><a href="#">Reviews</a></li>
-                            <li class="#"><a href="#">Manage Payments</a></li>
+                            <li class="{{ request()->routeIs('reviews') ? 'active' : '' }}"><a href="{{ route('reviews') }}">Reviews</a></li>
+                            <li class="{{ request()->routeIs('manage-payments') ? 'active' : '' }}"><a href="{{ route('manage-payments') }}">Manage Payments</a></li>
                         @endif
                         @if(session()->has('frontUser'))
                             <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li>

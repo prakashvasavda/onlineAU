@@ -180,7 +180,6 @@ class FrontCandidateController extends Controller{
                     ->from('family_reviews')
                     ->where('family_id', $familyId);
             }, 'total_reviews')
-            ->where('candidate_id', Session::get('frontUser')->id)
             ->where('family_id', $familyId)
             ->latest('created_at')
             ->first();
