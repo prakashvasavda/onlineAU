@@ -15,6 +15,7 @@
                         AGE: {{ strtoupper($candidate->age) }}<br>
                         LOCATION: {{ strtoupper($candidate->area) }}<br>
                         SPECIALITY: {{ strtoupper($candidate->role) }}<br>
+                        @if(isset($candidate->other_services)) OTHER SPECIALITY: {{ strtoupper($candidate->other_services) }}<br>  @endif
                         HOURLY RATE: R{{ strtoupper($candidate->salary_expectation) }}
                     </h3>
                 </div>
