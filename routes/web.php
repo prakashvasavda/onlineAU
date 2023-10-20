@@ -90,4 +90,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('contact', 'AdminController@contact')->name('admin.contact');
     Route::any('get-contact', 'AdminController@get_contact')->name('admin.get-contact');
     Route::any('destroyContact', 'AdminController@destroyContact')->name('admin.destroyContact');
+
+    /*TRANSACTION ROUTES*/
+    Route::get('transactions', 'TransactionController@index')->name('admin.transactions');
+
+    /*REVIEW ROUTES*/
+    Route::get('reviews', 'ReviewController@index')->name('admin.reviews');
+    Route::post('delete-review/{id}', 'ReviewController@destroy')->name('admin.delete-review');
 });
