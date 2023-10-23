@@ -33,9 +33,13 @@
 <div class="review-section">
     <div class="container">
         <h2>
-            @if(isset($reviews->review_rating_count))
-                @for($i=0; $i< $reviews->review_rating_count; $i++)
-                     <i class="fa-solid fa-star"></i>
+            @if(isset($reviews->review_rating_count) && is_numeric($reviews->review_rating_count))
+                @for($i=0; $i< 5; $i++)
+                    @if($i < $reviews->review_rating_count)
+                        <i class="fa-solid fa-star"></i>
+                    @else
+                        <i class="far fa-star"></i>
+                    @endif
                 @endfor
             @else
                 @for($i=0; $i< 5; $i++)

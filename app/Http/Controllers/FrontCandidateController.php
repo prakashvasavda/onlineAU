@@ -145,22 +145,21 @@ class FrontCandidateController extends Controller{
     }
 
     public function view_families(){
-        $data['menu']       = "view families";
+        $data['menu']     = "view families";
         $data['families'] = FrontUser::leftJoin('candidate_favorite_families', 'front_users.id', '=', 'candidate_favorite_families.family_id')
-            ->leftJoin('family_reviews', 'front_users.id', '=', 'family_reviews.family_id')
-            ->select(
-                'front_users.*',
-                'candidate_favorite_families.candidate_id AS candidate_favourite_family',
-                'family_reviews.review_note',
-                'family_reviews.review_rating_count'
-            )
-            ->selectSub(function ($query) {
-                $query->selectRaw('COUNT(*)')
-                    ->from('family_reviews')
-                    ->whereColumn('family_reviews.family_id', 'front_users.id');
-            }, 'total_reviews')
-            ->where('front_users.role', 'family')->where('front_users.status', '1')
-            ->get();
+        ->leftJoin('family_reviews', 'front_users.id', '=', 'family_reviews.family_id')
+        ->select(
+            'front_users.*',
+            'candidate_favorite_families.candidate_id AS candidate_favourite_family',
+            'reviews.review_note',
+            'reviews.review_rating_count',
+            'reviews.total_reviews'
+        )
+        ->leftJoin(DB::raw('(SELECT family_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM family_reviews GROUP BY family_id) as reviews'), 'front_users.id', '=', 'reviews.family_id')
+        ->where('front_users.role', 'family')
+        ->where('front_users.status', '1')
+        ->distinct()
+        ->get();
 
         return view('user.family.view_families', $data);
     }
@@ -181,11 +180,31 @@ class FrontCandidateController extends Controller{
                     ->where('family_id', $familyId);
             }, 'total_reviews')
             ->where('family_id', $familyId)
-            ->latest('created_at')
+            ->latest('updated_at')
             ->first();
 
         $data['loginUser'] = Session::has('frontUser') ? Session::get('frontUser') : null;
         $data['favourite'] = Session::has('frontUser') ? CandidateFavoriteFamily::where('candidate_id', Session::get('frontUser')->id)->where('family_id', $familyId)->first() : null;
         return view('user.family.family_detail', $data);
+    }
+
+    public function reviews(){
+        $data['menu']       = "review";
+        $data['families'] = FrontUser::leftJoin('candidate_favorite_families', 'front_users.id', '=', 'candidate_favorite_families.family_id')
+        ->leftJoin('family_reviews', 'front_users.id', '=', 'family_reviews.family_id')
+        ->select(
+            'front_users.*',
+            'candidate_favorite_families.candidate_id AS candidate_favourite_family',
+            'reviews.review_note',
+            'reviews.review_rating_count',
+            'reviews.total_reviews'
+        )
+        ->leftJoin(DB::raw('(SELECT family_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM family_reviews GROUP BY family_id) as reviews'), 'front_users.id', '=', 'reviews.family_id')
+        ->where('front_users.role', 'family')
+        ->where('front_users.status', '1')
+        ->distinct()
+        ->get();
+
+        return view('user.candidate.reviews', $data);
     }
 }

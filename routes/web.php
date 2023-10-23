@@ -50,6 +50,8 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('view-families', 'FrontCandidateController@view_families')->name('view-families');
     Route::get('family-detail/{id}', 'FrontCandidateController@family_detail')->name('family-detail');
     Route::post('store-candidate-favorite-family', 'FrontCandidateController@store_candidate_favorite_family')->name('store-candidate-favorite-family');
+    Route::get('family/reviews', 'FrontCandidateController@reviews')->name('family-reviews');
+
 
     /*CANDIDATE MANAGE CALENDER ROUTES*/
     Route::get('candidate/manage-calender', 'FrontCandidateController@edit_candidate_calender')->name('candidate-manage-calender');
@@ -67,7 +69,7 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('manage-candidates', 'FrontFamilyController@manage_candidates')->name('manage-candidates');
     Route::get('candidate-detail/{id}', 'FrontFamilyController@candidate_detail')->name('candidate-detail');
     Route::post('store-family-favourite-candidate', 'FrontFamilyController@store_family_favourite_candidate')->name('store-family-favourite-candidate');
-    Route::get('reviews', 'FrontFamilyController@reviews')->name('reviews');
+    Route::get('candidate/reviews', 'FrontFamilyController@reviews')->name('candidate-reviews');
 });
 
 Auth::routes();

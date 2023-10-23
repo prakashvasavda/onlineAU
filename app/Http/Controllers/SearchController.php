@@ -15,12 +15,13 @@ class SearchController extends Controller
         if (empty($data['search'])) {
             return redirect()->route('home');
         }
+        
         if ($data['type'] == "family") {
-            $search = FrontUser::leftJoin('family_favorite_candidates', 'front_users.id', '=', 'family_favorite_candidates.candidate_id')
+            $search = FrontUser::leftJoin('candidate_favorite_families', 'front_users.id', '=', 'candidate_favorite_families.family_id')
             ->leftJoin('family_reviews', 'front_users.id', '=', 'family_reviews.family_id')
             ->select(
                 'front_users.*',
-                'family_favorite_candidates.candidate_id AS family_favorite_candidate',
+                'candidate_favorite_families.candidate_id AS candidate_favourite_family',
                 'reviews.review_note',
                 'reviews.review_rating_count',
                 'reviews.total_reviews'

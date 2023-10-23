@@ -144,23 +144,23 @@ class FrontFamilyController extends Controller{
 
     
     public function manage_candidates(){
-        $data['menu'] = "manage candidates";
+        $data['menu']       = "manage candidates";
         $data['candidates'] = FrontUser::leftJoin('family_favorite_candidates', 'front_users.id', '=', 'family_favorite_candidates.candidate_id')
-            ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
-            ->select(
-                'front_users.*',
-                'family_favorite_candidates.candidate_id AS family_favorite_candidate',
-                'candidate_reviews.review_note',
-                'candidate_reviews.review_rating_count'
-            )
-            ->selectSub(function ($query) {
-                $query->selectRaw('COUNT(*)')
-                    ->from('candidate_reviews')
-                    ->whereColumn('candidate_reviews.candidate_id', 'front_users.id');
-            }, 'total_reviews')
-            ->where('front_users.role', '!=', 'family')->where('front_users.status', '1')
-            ->where('family_favorite_candidates.family_id', Session::get('frontUser')->id)
-            ->get();
+        ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
+        ->select(
+            'front_users.*',
+            'family_favorite_candidates.candidate_id AS family_favorite_candidate',
+            'reviews.review_note',
+            'reviews.review_rating_count',
+            'reviews.total_reviews'
+        )
+        ->leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM candidate_reviews GROUP BY candidate_id) as reviews'), 'front_users.id', '=', 'reviews.candidate_id')
+        ->where('front_users.role', '!=', 'family')
+        ->where('front_users.status', '1')
+        ->where('family_favorite_candidates.family_id', Session::get('frontUser')->id)
+        ->distinct()
+        ->get();
+
         return view('user.candidate.manage_candidates', $data);
     }
 
@@ -187,7 +187,7 @@ class FrontFamilyController extends Controller{
                     ->where('candidate_id', $candidateId);
             }, 'total_reviews')
             ->where('candidate_id', $candidateId)
-            ->latest('created_at')
+            ->latest('updated_at')
             ->first();
 
         $data['loginUser'] = Session::has('frontUser') ? Session::get('frontUser') : null;

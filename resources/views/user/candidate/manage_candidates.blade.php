@@ -35,16 +35,20 @@
 									                <p class="card-text">
 									                	<small>
 									                		<span>
-									                			@if(isset($value->review_rating_count) && !empty($value->review_rating_count))
-												                	@for($i=0; $i<$value->review_rating_count; $i++)
-													                	<i class="fa-solid fa-star"></i>
-													                @endfor
+									                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
+											                	 	@for($i = 0; $i < 5; $i++)
+																        @if($i < max(explode(",", $value->review_rating_count)))
+																            <i class="fa-solid fa-star"></i>
+																        @else
+																            <i class="fa-regular fa-star"></i>
+																        @endif
+															   	 	@endfor
 													            @else
 													            	@for($i=0; $i<5; $i++)
 													                	<i class="fa-regular fa-star"></i>
 													                @endfor
 												                @endif 
-											                </span>
+										                	</span>
 										                	<span>{{ isset($value->total_reviews) ? $value->total_reviews : 0 }} Reviews</span>
 										                </small>
 										            </p>
