@@ -133,7 +133,11 @@ class AdminController extends Controller
                 $postnestedData['role']           = $post_val->role;
                 $postnestedData['status']         = $status;
                 $url                              = url('admin/view_candidates/' . $post_val->id);
-                $postnestedData['options']        = "<a href='" . $url . "' title='View' class='btn btn-info btn-sm'><i class='fas fa-eye'></i></a> <a title='Delete' href='javascript:void(0)' class='btn btn-danger btn-sm' onClick='removeCandidates(" . $post_val->id . ")'><i class='fas fa-trash'></i></a>";
+                $edit_url                         = url('admin/edit-candidate/' . $post_val->id);
+                $postnestedData['options']        = "   <a href='" . $url . "' title='View' class='btn btn-info btn-sm'><i class='fas fa-eye'></i></a> 
+                                                        <a title='Delete' href='javascript:void(0)' class='btn btn-danger btn-sm' onClick='removeCandidates(" . $post_val->id . ")'><i class='fas fa-trash'></i></a>
+                                                        <a href='" . $edit_url . "' title='Edit' class='btn btn-primary btn-sm'><i class='fa fa-edit'></i></a> 
+                                                    ";
                 $data_val[]                       = $postnestedData;
 
             }
@@ -227,7 +231,11 @@ class AdminController extends Controller
                 $postnestedData['age']            = $post_val->age;
                 $postnestedData['area']           = $post_val->area;
                 $url                              = url('admin/view_families/' . $post_val->id);
-                $postnestedData['options']        = "<a href='" . $url . "' title='View' class='btn btn-info btn-sm'><i class='fas fa-eye'></i></a> <a title='Delete' href='javascript:void(0)' class='btn btn-danger btn-sm' onClick='removeFamilies(" . $post_val->id . ")'><i class='fas fa-trash'></i></a>";
+                $edit_url                         = url('admin/edit-family/' . $post_val->id);
+                $postnestedData['options']        = "   <a href='" . $url . "' title='View' class='btn btn-info btn-sm'><i class='fas fa-eye'></i></a> 
+                                                        <a title='Delete' href='javascript:void(0)' class='btn btn-danger btn-sm' onClick='removeFamilies(" . $post_val->id . ")'><i class='fas fa-trash'></i></a>
+                                                        <a href='" . $edit_url . "' title='Edit' class='btn btn-primary btn-sm'><i class='fa fa-edit'></i></a> 
+                                                    ";
                 $data_val[]                       = $postnestedData;
 
             }

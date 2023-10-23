@@ -23,17 +23,17 @@
             <h3 class="card-title">Families Data</h3>
           </div>
           <div class="card-body" id="returnsData">
-            <table id="familiesDataTable" class="table table-bordered table-striped table-re">
+            <table id="familiesDataTable" class="table table-striped table-bordered dataTable display" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Contact Number</th>
-                  <th>Gender</th>
-                  <th>Age</th>
-                  <th>Area</th>                  
-                  <th>Action</th>
+                  <th width="10%">ID</th>
+                  <th width="10%">Name</th>
+                  <th width="10%">Email</th>
+                  <th width="10%">Contact Number</th>
+                  <th width="10%">Gender</th>
+                  <th width="10%">Age</th>
+                  <th width="10%">Area</th>                  
+                  <th width="20%">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -50,6 +50,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
     var dataTable = $('#familiesDataTable').DataTable({
+      "responsive": true,
       "serverSide": true,
       "processing": true,
       "ajax":{
@@ -69,8 +70,8 @@ $(document).ready(function () {
         { "data": "options" },
       ],
       "columnDefs": [
-        { "width": "10%", "targets": 2 },        
-        { "width": "13%", "targets": 3 },        
+        // { "width": "10%", "targets": 2 },        
+        // { "width": "13%", "targets": 3 },        
       ],
       "order": [[0, 'desc']]
     });

@@ -17,32 +17,36 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <!-- small box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Candidates Data</h3>
+             <h3 class="card-title">Candidates Data</h3>
           </div>
-          <div class="card-body" id="returnsData">
-            <table id="candidatesDataTable" class="table table-bordered table-striped table-re">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Contact Number</th>
-                  <th>Gender</th>
-                  <th>Age</th>
-                  <th>Area</th>
-                  <th>Role</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
+          <!-- /.card-header -->
+          <div class="card-body">
+             {{-- <div class="table-responsive">  --}}
+                <table id="candidatesDataTable" class="table table-striped table-bordered dataTable display" cellspacing="0" width="100%">
+                  <thead>
+                      <tr>
+                          <th width="10%">ID</th>
+                          <th width="10%">Name</th>
+                          <th width="10%">Email</th>
+                          <th width="10%">Contact Number</th>
+                          <th width="10%">Gender</th>
+                          <th width="10%">Age</th>
+                          <th width="10%">Area</th>
+                          <th width="10%">Role</th>
+                          <th width="10%">Status</th>
+                          <th width="10%">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      
+                  </tbody>
+                </table>
+             {{-- </div>  --}}
           </div>
-        </div>
+          <!-- /.card-body -->
+      </div>
       </div>
     </div>
   </div>
@@ -52,6 +56,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
     var dataTable = $('#candidatesDataTable').DataTable({
+      "responsive": true,
       "serverSide": true,
       "processing": true,
       "ajax":{
@@ -74,7 +79,7 @@ $(document).ready(function () {
       ],
       "columnDefs": [
         { "width": "10%", "targets": 8 },        
-        { "width": "13%", "targets": 9 },        
+        { "width": "10%", "targets": 9 },        
       ],
       "order": [[0, 'desc']],
       "fnDrawCallback": function() {

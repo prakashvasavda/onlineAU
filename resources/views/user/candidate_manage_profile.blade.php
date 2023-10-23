@@ -177,6 +177,7 @@
                 </select>
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="additional_language">Additional Language</label>
@@ -212,6 +213,7 @@
                 <input type="text" id="disabilities" name="disabilities" placeholder="" class="form-field" value="{{ old('disabilities', isset($candidate->disabilities) ? $candidate->disabilities : null) }}">
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="marital_status">Marital Status</label>
@@ -267,6 +269,7 @@
                 </ul>
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="childcare_experience">How many years of childcare experience do you have</label>
@@ -377,6 +380,7 @@
         <div class="row">
             
         </div>
+        
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="salary_expectation">What is your salary expectation/hourly rate</label>

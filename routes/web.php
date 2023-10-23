@@ -93,10 +93,19 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::any('get-contact', 'AdminController@get_contact')->name('admin.get-contact');
     Route::any('destroyContact', 'AdminController@destroyContact')->name('admin.destroyContact');
 
-    /*TRANSACTION ROUTES*/
+    /*TRANSACTION ADMIN ROUTES*/
     Route::get('transactions', 'TransactionController@index')->name('admin.transactions');
 
-    /*REVIEW ROUTES*/
+    /*REVIEW ADMIN ROUTES*/
     Route::get('reviews', 'ReviewController@index')->name('admin.reviews');
     Route::post('delete-review/{id}', 'ReviewController@destroy')->name('admin.delete-review');
+
+    /*CANDIDATE ADMIN ROUTES*/
+    Route::get('edit-candidate/{id}', 'CandidateController@edit')->name('admin.edit-candidate');
+    Route::put('update-candidate/{id}', 'CandidateController@update')->name('admin.update-candidate');
+
+    /*FAMILY ADMIN ROUTES*/
+    Route::get('edit-family/{id}', 'FamilyController@edit')->name('admin.edit-family');
+    Route::put('update-family/{id}', 'FamilyController@update')->name('admin.update-family');
+
 });
