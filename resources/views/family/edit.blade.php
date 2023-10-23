@@ -33,11 +33,11 @@
                                     <div class="form-group">
                                         <label for="profile">Profile Picture</label>
                                         <input type="file" id="profile" name="profile" placeholder="" class="form-control" value="{{ old('profile', isset($family->profile) ? $family->profile : null) }}">
-                                        @error('profile')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                        @if ($errors->has('profile'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('profile') }}</strong>
                                             </span>
-                                        @enderror
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -47,11 +47,11 @@
                                     <div class="form-group">
                                         <label for="name">Full Name <span class="text-danger">*</span></label>
                                         <input type="text" id="name" name="name" placeholder="" class="form-control"  value="{{ old('name', isset($family->name) ? $family->name : '') }}">
-                                        @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                         @if ($errors->has('name'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('name') }}</strong>
                                             </span>
-                                        @enderror
+                                        @endif
                                     </div>
                                 </div>
 
@@ -60,11 +60,11 @@
                                         <div class="form-group">
                                             <label for="email">Email Address <span class="text-danger">*</span></label>
                                             <input type="email" id="email" name="email" value="{{ old('email', isset($family->email) ? $family->email : '') }}" placeholder="" class="form-control" autocomplete="off">
-                                            @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                            @if ($errors->has('email'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('email') }}</strong>
                                                 </span>
-                                            @enderror
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -75,11 +75,11 @@
                                     <div class="form-group">
                                         <label for="email">Password </label>
                                         <input type="password" id="password" name="password" placeholder="" class="form-control @error('password') is-invalid @enderror"  value="" readonly onfocus="this.removeAttribute('readonly');">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                        @if ($errors->has('password'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('password') }}</strong>
                                             </span>
-                                        @enderror
+                                        @endif
                                     </div>
                                 </div>
 

@@ -142,6 +142,11 @@
                                             <option value="female" {{ isset($candidate->gender) && $candidate->gender == 'female' ? 'selected' : null }}>Female</option>
                                             <option value="other" {{ isset($candidate->gender) && $candidate->gender == 'other' ? 'selected' : null }}>Other</option>
                                         </select>
+                                        @if ($errors->has('gender'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('gender') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
