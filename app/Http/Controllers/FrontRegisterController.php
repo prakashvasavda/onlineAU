@@ -24,11 +24,6 @@ class FrontRegisterController extends Controller
         return view('user.register', $data);
     }
 
-    public function candidates()
-    {
-        return view('user.candidates');
-    }
-
     public function store_candidate(Request $request)
     {
         $data  = $request->all();

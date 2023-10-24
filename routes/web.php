@@ -33,18 +33,18 @@ Route::post('create-new-password', 'LoginController@create_new_password')->name(
 Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');
 Route::post('store-contact', 'HomeController@store_contact')->name('store-contact');
 
+/*PAYMENT ROUTES*/
 Route::get('/payment/notify', 'PaymentController@payment_notify')->name('payment-notify');
 
 /*FRONT SEARCH ROUTE*/
 Route::any('search', 'SearchController@index')->name('search');
 
-/*LOOGED OUT CANDIDATE ROUTES*/
+/*LOGGED OUT CANDIDATE ROUTES*/
 Route::get('candidates', 'HomeController@candidates')->name('candidates');
 Route::get('candidate-detail/{id}', 'FrontFamilyController@candidate_detail')->name('candidate-detail');
 
-/*CANDIDATE SIGN UP ROUTE*/
-Route::get('sign-up', 'FrontRegisterController@candidates')->name('sign-up');
-
+/*CANDIDATE SIGN UP ROUTES*/
+Route::get('sign-up', 'HomeController@sign_up')->name('sign-up');
 
 Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('manage-payments', 'HomeController@manage_payments')->name('manage-payments');
@@ -64,10 +64,8 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::put('update-family/{id}', 'FrontFamilyController@update_family')->name('update-family');
     Route::get('all-candidates', 'FrontFamilyController@view_all_candidates')->name('all-candidates');
     Route::get('view-candidates', 'FrontFamilyController@view_candidates')->name('view-candidates');
-    //Route::get('candidate-detail/{id}', 'FrontFamilyController@candidate_detail')->name('candidate-detail');
     Route::post('store-family-favourite-candidate', 'FrontFamilyController@store_family_favourite_candidate')->name('store-family-favourite-candidate');
     Route::get('candidate/reviews', 'FrontFamilyController@reviews')->name('candidate-reviews');
-
 
     /*CANDIDATE MANAGE CALENDER ROUTES*/
     Route::get('candidate/manage-calender', 'FrontCandidateController@edit_candidate_calender')->name('candidate-manage-calender');

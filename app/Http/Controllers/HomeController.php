@@ -16,13 +16,11 @@ use DB;
 class HomeController extends Controller
 {
 
-    public function index()
-    {
+    public function index(){
         return view('user.home');
     }
 
-    public function contact_us()
-    {
+    public function contact_us(){
         return view('user.contact_us');
     }
 
@@ -33,8 +31,7 @@ class HomeController extends Controller
         return view('user.manage_payments', compact('packages', 'features', 'payment'));
     }
 
-    public function store_contact(Request $request)
-    {
+    public function store_contact(Request $request){
         $data  = $request->all();
         $rules = [
             'name'    => "required",
@@ -87,8 +84,11 @@ class HomeController extends Controller
         return view('user.candidate.candidates', $data);
     }
 
-    public function user_logout()
-    {
+    public function sign_up(){
+        return view('user.sign_up');
+    }
+
+    public function user_logout(){
         Session::forget('frontUser');
         return redirect()->route('home');
     }
