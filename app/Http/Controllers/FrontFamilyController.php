@@ -143,8 +143,8 @@ class FrontFamilyController extends Controller{
     }
 
     
-    public function manage_candidates(){
-        $data['menu']       = "manage candidates";
+    public function view_candidates(){
+        $data['menu']       = "view candidates";
         $data['candidates'] = FrontUser::leftJoin('family_favorite_candidates', 'front_users.id', '=', 'family_favorite_candidates.candidate_id')
         ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
         ->select(
@@ -157,11 +157,11 @@ class FrontFamilyController extends Controller{
         ->leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM candidate_reviews GROUP BY candidate_id) as reviews'), 'front_users.id', '=', 'reviews.candidate_id')
         ->where('front_users.role', '!=', 'family')
         ->where('front_users.status', '1')
-        ->where('family_favorite_candidates.family_id', Session::get('frontUser')->id)
+        ->orderBy('family_favorite_candidate', 'DESC')
         ->distinct()
         ->get();
 
-        return view('user.candidate.manage_candidates', $data);
+        return view('user.candidate.view_candidates', $data);
     }
 
     public function view_all_candidates(){

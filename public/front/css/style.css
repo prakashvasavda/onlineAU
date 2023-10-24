@@ -1648,7 +1648,7 @@ header {
 .can-avail-table table td, 
 .can-avail-table table th {
     max-width: 145px;
-    min-width: 145px;
+    min-width: 100px;
     vertical-align: middle;
     text-align: center;
     padding: 8px 10px;

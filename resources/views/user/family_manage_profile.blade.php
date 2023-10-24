@@ -286,7 +286,7 @@
                     <label for="family_profile_see">Who can see your profile? </label>
                     <ul class="radio-box-list">
                         <li class="radio-box-item"><input type="radio" checked name="family_profile_see" value="everyone" {{ old('family_profile_see') === "everyone" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Babysits users, public search engines, and job boards can iew your profile."><label>Everyone</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_profile_see" value="only babysits users" {{ old('family_profile_see') === "only babysits users" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get."><label>Only Babysits users</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_profile_see" value="only_online_au_pair_users" {{ old('family_profile_see') === "only_online_au_pair_users" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get."><label>Only Online Au-Pair users</label></li>
                     </ul>
                 </div>
             </div>
@@ -344,7 +344,7 @@
                                     <th>Su</th>
                                 </tr>
                                 <tr>
-                                    <th>Morning</th>
+                                    <th>Morning: 07:00 – 13:00</th>
                                     <td>
                                         <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ isset($morning_availability) && in_array("mo_morning", $morning_availability ) ? 'checked' : '' }}></label>
                                     </td>
@@ -368,7 +368,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Afternoon</th>
+                                    <th>Afternoon: 13:00 – 17:00</th>
                                     <td>
                                         <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ isset($afternoon_availability) && in_array("mo_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
                                     </td>
@@ -392,7 +392,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Evening</th>
+                                    <th>Evening: 17:00 – 21:00</th>
                                     <td>
                                         <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ isset($evening_availability) && in_array("mo_evening", $evening_availability ) ? 'checked' : '' }}></label>
                                     </td>
@@ -416,7 +416,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Night</th>
+                                    <th>Night: 21:00 – 00:00</th>
                                     <td>
                                         <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ isset($night_availability) && in_array("mo_night", $night_availability ) ? 'checked' : '' }}></label>
                                     </td>
