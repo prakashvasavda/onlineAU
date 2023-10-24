@@ -32,12 +32,12 @@
             </div>
             <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
                 <div class="candidate-content">
-                    <h3>NAME: {{ ucfirst($candidate->name) }}<br>
-                        AGE: {{ ucfirst($candidate->age) }}<br>
-                        LOCATION: {{ ucfirst($candidate->area) }}<br>
-                        SPECIALITY: {{ ucfirst($candidate->role) }}<br>
-                        @if(isset($candidate->other_services)) OTHER SPECIALITY: {{ ucfirst($candidate->other_services) }}<br>  @endif
-                        HOURLY RATE: R{{ ucfirst($candidate->salary_expectation) }}
+                    <h3>NAME: {{ strtoupper($candidate->name) }}<br>
+                        AGE: {{ strtoupper($candidate->age) }}<br>
+                        LOCATION: {{ strtoupper($candidate->area) }}<br>
+                        SPECIALITY: {{ strtoupper($candidate->role) }}<br>
+                        @if(isset($candidate->other_services)) OTHER SPECIALITY: {{ strtoupper($candidate->other_services) }}<br>  @endif
+                        HOURLY RATE: R{{ strtoupper($candidate->salary_expectation) }}
                     </h3>
                 </div>
             </div>
