@@ -43,8 +43,13 @@
             </div>
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div class="candidate-contact">
-                    <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="storeFamilyFavoriteCandidate()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
-                    <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                    @if(Session::has('frontUser'))
+                        <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="storeFamilyFavoriteCandidate()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
+                        <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                    @else
+                        <p class="mb-2"><a href="{{ route('user-login') }}" class="btn icon-with-text btn-link p-0"><i class="fa-regular fa-heart" id="candidate_favourite"></i>Save</a></p>
+                        <a href="{{ route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -259,7 +264,7 @@
             </table>
         </div>
         <div class="btn-main d-flex flex-wrap justify-content-evenly align-items-center mt-5">
-            <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+            <a href="{{ Session::has('frontUser') ? '#' : route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
             <a href="{{route('families')}}#available-candidates" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
         </div>
     </div>
@@ -335,7 +340,7 @@
 @parent
 <script type="text/javascript">
 function storeFamilyFavoriteCandidate(){
-    var family_id = {{ isset($loginUser->role) ? $loginUser->id : 0 }};
+    var family_id = {{ isset($loginUser->id) ? $loginUser->id : 0 }};
     if(family_id != 0){
         $.ajax({
             url: "{{ url('store-family-favourite-candidate') }}",

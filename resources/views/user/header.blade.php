@@ -12,6 +12,7 @@
                             <li><a href="{{ route('home') }}#aboutUs">About US</a></li>
                             <li class="{{ request()->is('candidates') ? 'active' : '' }}"><a href="{{ route('candidates') }}">candidates</a></li>
                             <li class="{{ request()->is('families') ? 'active' : '' }} {{ request()->is('family-register') || request()->is('candidate-detail/*') ? 'active' : '' }}"><a href="{{ route('families') }}">family</a></li>
+                            <li class="{{ request()->is('sign-up') ? 'active' : '' }}"><a href="{{ route('sign-up') }}">sign up</a></li>
                         @elseif(session()->get('frontUser')->role != "family")
                              {{-- candidate manu --}}
                             <li class="{{ request()->routeIs('edit-candidate') ? 'active' : '' }}"><a href="{{ route('edit-candidate', ['id' =>  Session::has('frontUser') ? Session::get('frontUser')->id : null]) }}">Manage Profile</a></li>

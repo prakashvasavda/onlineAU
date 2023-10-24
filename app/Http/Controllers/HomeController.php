@@ -9,6 +9,9 @@ use App\Packages;
 use App\Payment;
 use Session;
 use Validator;
+use App\FrontUser;
+use DB;
+
 
 class HomeController extends Controller
 {
@@ -64,6 +67,24 @@ class HomeController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Thank you for your enquiry. We will be in touch as soon as possible.');
+    }
+
+    public function candidates(){
+        $data['menu']        = "all candidates";
+        $data['candidates'] = FrontUser::leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
+        ->select(
+            'front_users.*',
+            'reviews.review_note',
+            'reviews.review_rating_count',
+            'reviews.total_reviews'
+        )
+        ->leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM candidate_reviews GROUP BY candidate_id) as reviews'), 'front_users.id', '=', 'reviews.candidate_id')
+        ->where('front_users.role', '!=', 'family')
+        ->where('front_users.status', '1')
+        ->distinct()
+        ->get();
+
+        return view('user.candidate.candidates', $data);
     }
 
     public function user_logout()
