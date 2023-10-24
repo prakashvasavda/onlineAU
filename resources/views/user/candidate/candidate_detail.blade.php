@@ -1,6 +1,27 @@
 @extends('layouts.main')
 @section('content')
 @include('flash.front-message')
+
+<style>
+    .about-candidate-content, 
+    .about-candidate-title {
+        width: 50%;
+        height: 100%;
+    }
+    .about-candidate-title {
+        align-items: center;
+    }
+    .about-candidate-content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .about-candidate-box h4 {
+        text-transform: uppercase;
+    }
+</style>
+
 <div class="candidate-info">
     <div class="container">
         <div class="row">
@@ -332,6 +353,35 @@ function storeFamilyFavoriteCandidate(){
                 }
             }
         });
+    }
+}
+
+(function () {
+    equalHeight(false);
+})();
+
+window.onresize = function(){
+    equalHeight(true);
+}
+
+function equalHeight(resize) {
+    var elements = document.getElementsByClassName("equalHeight"),
+        allHeights = [],
+        i = 0;
+    if(resize === true){
+      for(i = 0; i < elements.length; i++){
+        elements[i].style.height = 'auto';
+      }
+    }
+    for(i = 0; i < elements.length; i++){
+      var elementHeight = elements[i].clientHeight;
+      allHeights.push(elementHeight);
+    }
+    for(i = 0; i < elements.length; i++){
+      elements[i].style.height = Math.max.apply( Math, allHeights) + 'px';
+      if(resize === false){
+        elements[i].className = elements[i].className + " show";
+      }
     }
 }
 
