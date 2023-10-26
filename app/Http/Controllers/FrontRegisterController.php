@@ -242,14 +242,33 @@ class FrontRegisterController extends Controller
 
         $status             = $this->store_need_babysitter($data, $familyId);
         $package            = Packages::find($request->package);
+        $marital_status     = $this->send_notification_email($request->all(), 'family');
 
+        /*payment details*/
         $data['amount']     = $package->price;
         $data['item_name']  = $package->name;
         $data['custom_int1']= $familyId;
         $data['profile']    = null;
 
-
+        /*redirect to payment api*/
         return redirect()->route('payment-process')->with(['guestUser' => $data]);
-        //return redirect()->to(route('families') . '#available-candidates')->with('success', 'Registration created successfully.');
+    }
+
+    public function send_notification_email($data, $role){
+        config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
+        config(['mail.mailers.smtp.port' => '587']);
+        config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
+        config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
+        config(['mail.mailers.smtp.encryption' => 'tls']);
+        $message = '<p>Hello Admin,</p>
+            <p>New'.$role.'Registration, Please check below detail and then make status action on the admin side. .</p>
+            <p>Name: ' . $data['name']. '</p>
+            <p>Email: ' . $data['email'] . '</p>';
+        $emailTo = 'prakash.v.php@gmail.com';
+        $name    = 'Admin';
+        Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
+            $mail->to($emailTo, $name)->subject('New Candidate Registration')->setBody($message, 'text/html');
+            $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
+        });
     }
 }
