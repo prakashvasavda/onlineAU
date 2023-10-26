@@ -147,7 +147,7 @@ class FrontFamilyController extends Controller{
         ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
         ->select(
             'front_users.*',
-            'family_favorites.family_favorite_candidate', //return the ids of the families who liked this candidate
+            'family_favorites.family_favorite_candidate AS candidate_favorited_by', //return the ids of the families who liked this candidate
             'reviews.review_note',
             'reviews.review_rating_count',
             'reviews.total_reviews'

@@ -1,18 +1,23 @@
 @extends('layouts.main')
 @section('content')
 <div class="search-section no-banner">
-	<ul class="filter-option">
+	{{-- <ul class="filter-option">
 		<li><a href="javaScript:;">Type of babysitter needed</a></li>
 		<li><a href="javaScript:;">Children</a></li>
 		<li><a href="javaScript:;">Verifications</a></li>
 		<li><a href="javaScript:;">More filters</a></li>
-	</ul>
+	</ul> --}}
 	<div class="search-inner">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="title-main title-box">
 				{{-- <h2>Find babysitting jobs</h2> --}}
 				{{-- <p>26 families matching your search</p> --}}
 			</div>
+
+			<div class="title-main mb-5">
+	            <h2>Favorites</h2>
+	        </div>
+
 			<div class="row result-list">
 				@if(isset($families) && !empty($families))
 					@foreach($families as $key => $value)
@@ -30,7 +35,15 @@
 								        <div class="col-md-8">
 								            <div class="card-body">
 								            	<div class="pos-icon">
-								            		<i class="{{ isset($value->family_favourite_candidate) ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
+								            		@if(isset($value->family_favorited_by) && is_string($value->family_favorited_by))
+								            			@if(in_array($user->id, explode(",", $value->family_favorited_by)))
+								            				<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="addCandidateFavoriteFamily(event, '{{ $value->id }}')"></i>
+								            			@else
+								            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="addCandidateFavoriteFamily(event, '{{ $value->id }}')"></i>
+								            			@endif
+								            		@else
+								            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="addCandidateFavoriteFamily(event, '{{ $value->id }}')"></i>
+								            		@endif
 								            	</div>
 								                <h5 class="card-title">{{ $value->name }}</h5>
 								                <p class="card-text">{{ $value->area }}</p>

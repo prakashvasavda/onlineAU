@@ -11,7 +11,7 @@
                         @if(!session()->has('frontUser'))
                             <li><a href="{{ route('home') }}#aboutUs">About US</a></li>
                             <li class="{{ request()->is('candidates') ? 'active' : '' }}"><a href="{{ route('candidates') }}">candidates</a></li>
-                            <li class="{{ request()->is('families') ? 'active' : '' }} {{ request()->is('family-register') || request()->is('candidate-detail/*') ? 'active' : '' }}"><a href="{{ route('families') }}">family</a></li>
+                            <li class="{{ request()->is('families') ? 'active' : '' }} {{ request()->is('family-register') }}"><a href="{{ route('families') }}">family</a></li>
                             <li class="{{ request()->is('sign-up') ? 'active' : '' }}"><a href="{{ route('sign-up') }}">sign up</a></li>
                         @elseif(session()->get('frontUser')->role != "family")
                              {{-- candidate manu --}}

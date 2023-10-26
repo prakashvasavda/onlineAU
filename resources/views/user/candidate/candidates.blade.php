@@ -2,14 +2,14 @@
 @section('content')
 @include('flash.front-message')
 <div class="search-section no-banner">
-	<ul class="filter-option">
+	{{-- <ul class="filter-option">
 		<li><a href="javaScript:;">Type of babysitter needed</a></li>
 		<li><a href="javaScript:;">Children</a></li>
 		<li><a href="javaScript:;">Verifications</a></li>
 		<li><a href="javaScript:;">More filters</a></li>
-	</ul>
+	</ul> --}}
 	<div class="search-inner">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="title-main title-box">
 				{{-- <h2>Find babysitting jobs</h2> --}}
 				{{-- <p>26 families matching your search</p> --}}
@@ -22,7 +22,11 @@
 								<div class="card">
 								    <div class="row g-0">
 								        <div class="col-md-4">
-								            <img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" alt="">
+								           	@if(isset($value->profile))
+								            	<img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" alt="">
+								            @else
+								            	<img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="">
+								            @endif
 								        </div>
 								        <div class="col-md-8">
 								            <div class="card-body">

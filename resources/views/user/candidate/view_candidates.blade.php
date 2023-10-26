@@ -2,14 +2,14 @@
 @section('content')
 @include('flash.front-message')
 <div class="search-section no-banner">
-	<ul class="filter-option">
+	{{-- <ul class="filter-option">
 		<li><a href="javaScript:;">Type of babysitter needed</a></li>
 		<li><a href="javaScript:;">Children</a></li>
 		<li><a href="javaScript:;">Verifications</a></li>
 		<li><a href="javaScript:;">More filters</a></li>
-	</ul>
+	</ul> --}}
 	<div class="search-inner">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="title-main title-box">
 				{{-- <h2>Find babysitting jobs</h2> --}}
 				{{-- <p>26 families matching your search</p> --}}
@@ -40,8 +40,8 @@
 													  <span class="visually-hidden">Loading...</span>
 													</div>
 
-								            		@if(isset($value->family_favorite_candidate) && is_string($value->family_favorite_candidate))
-								            			@if(in_array($user->id, explode(",", $value->family_favorite_candidate)))
+								            		@if(isset($value->candidate_favorited_by) && is_string($value->candidate_favorited_by))
+								            			@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
 								            				<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
 								            			@else
 								            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>

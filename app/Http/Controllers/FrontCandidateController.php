@@ -139,17 +139,19 @@ class FrontCandidateController extends Controller{
 
     public function view_families(){
         $data['menu']     = "view families";
-        $data['families'] = FrontUser::leftJoin('family_favorite_candidates', 'front_users.id', '=', 'family_favorite_candidates.family_id')
+        $data['user']     = Session::get('frontUser');
+        $data['families'] = FrontUser::leftJoin(DB::raw('(SELECT family_id, GROUP_CONCAT(DISTINCT candidate_id) as candidate_favorite_families FROM candidate_favorite_families GROUP BY family_id) as candidate_favorites'), 'front_users.id', '=', 'candidate_favorites.family_id')
         ->leftJoin('family_reviews', 'front_users.id', '=', 'family_reviews.family_id')
+        ->leftJoin('family_favorite_candidates', 'front_users.id', '=', 'family_favorite_candidates.family_id')
         ->select(
             'front_users.*',
-            'family_favorite_candidates.family_id AS family_favourite_candidate',
+            'candidate_favorites.candidate_favorite_families AS family_favorited_by', //holds the ids of candidate who have liked this family from result set
             'reviews.review_note',
             'reviews.review_rating_count',
             'reviews.total_reviews'
         )
         ->leftJoin(DB::raw('(SELECT family_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM family_reviews GROUP BY family_id) as reviews'), 'front_users.id', '=', 'reviews.family_id')
-        ->where('family_favorite_candidates.candidate_id', Session::get('frontUser')->id)
+        ->where('family_favorite_candidates.candidate_id', Session::get('frontUser')->id) //families who have liked this camdidate
         ->where('front_users.role', 'family')
         ->where('front_users.status', '1')
         ->distinct()
