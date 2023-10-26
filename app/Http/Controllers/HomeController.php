@@ -24,13 +24,6 @@ class HomeController extends Controller
         return view('user.contact_us');
     }
 
-    public function manage_payments(){
-        $features   = Features::get()->toArray();
-        $packages   = Packages::get()->toArray();
-        $payment    = Payment::where('user_id', Session::get('frontUser')->id)->first();
-        return view('user.manage_payments', compact('packages', 'features', 'payment'));
-    }
-
     public function store_contact(Request $request){
         $data  = $request->all();
         $rules = [
@@ -67,7 +60,7 @@ class HomeController extends Controller
     }
 
     public function candidates(){
-        $data['menu']        = "all candidates";
+        $data['menu']       = "candidates";
         $data['candidates'] = FrontUser::leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
         ->select(
             'front_users.*',
@@ -82,6 +75,12 @@ class HomeController extends Controller
         ->get();
 
         return view('user.candidate.candidates', $data);
+    }
+
+    public function families(){
+        $data['menu'] = 'families';
+        $data['candidates'] = FrontUser::where('front_users.role', '!=', 'family')->where('front_users.status', '1')->get()->toArray();
+        return view('user.families', $data);
     }
 
     public function sign_up(){

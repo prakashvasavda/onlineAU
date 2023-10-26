@@ -15,21 +15,23 @@
                             <li class="{{ request()->is('sign-up') ? 'active' : '' }}"><a href="{{ route('sign-up') }}">sign up</a></li>
                         @elseif(session()->get('frontUser')->role != "family")
                              {{-- candidate manu --}}
-                            <li class="{{ request()->routeIs('edit-candidate') ? 'active' : '' }}"><a href="{{ route('edit-candidate', ['id' =>  Session::has('frontUser') ? Session::get('frontUser')->id : null]) }}">Manage Profile</a></li>
                             <li class="{{ request()->routeIs('view-families') ? 'active' : '' }}"><a href="{{ route('view-families') }}">View Families</a></li>
+                            <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li>
+                            <li class="{{ request()->routeIs('candidate-manage-profile') ? 'active' : '' }}"><a href="{{ route('candidate-manage-profile') }}">Manage Profile</a></li>
                             <li class="{{ request()->routeIs('candidate-manage-calender') ? 'active' : '' }}"><a href="{{ url('candidate/manage-calender') }}">Manage Calender</a></li>
-                            <li class="#"><a href="#">Messages</a></li>
+                            {{-- <li class="#"><a href="#">Messages</a></li> --}}
                             <li class="{{ request()->routeIs('family-reviews') ? 'active' : '' }}"><a href="{{ route('family-reviews') }}">Reviews</a></li>
                         @else
                             {{-- family menu --}}
-                            {{-- <li class="{{ request()->routeIs('edit-family') ? 'active' : '' }}"><a href="{{ route('edit-family', ['id' =>  Session::has('frontUser') ? Session::get('frontUser')->id : null]) }}">Manage Profile</a></li> --}}
                             <li class="{{ request()->routeIs('view-candidates') ? 'active' : '' }}"><a href="{{ route('view-candidates') }}">View Candidates</a></li>
+                            <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li>
+                            <li class="{{ request()->routeIs('family-manage-profile') ? 'active' : '' }}"><a href="{{ route('family-manage-profile') }}">Manage Profile</a></li>
                             {{-- <li class="#"><a href="#">Messages</a></li> --}}
                             {{-- <li class="{{ request()->routeIs('candidate-reviews') ? 'active' : '' }}"><a href="{{ route('candidate-reviews') }}">Reviews</a></li> --}}
-                            {{-- <li class="{{ request()->routeIs('manage-payments') ? 'active' : '' }}"><a href="{{ route('manage-payments') }}">Manage Payments</a></li> --}}
+                            <li class="{{ request()->routeIs('transactions') ? 'active' : '' }}"><a href="{{ route('transactions') }}">Transactions</a></li>
                         @endif
                         @if(session()->has('frontUser'))
-                            <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li>
+                            {{-- <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li> --}}
                             <li><a href="{{ route('user-logout') }}">Logout</a></li>
                             <li><a href="javaScript:;" class="search-btn"><i class="fa fa-search"></i></a></li>
                         @else

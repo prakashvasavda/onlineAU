@@ -13,6 +13,9 @@ use App\NeedsBabysitter;
 use App\CandidateReview;
 use App\FamilyReview;
 use App\FrontUser;
+use App\Features;
+use App\Packages;
+use App\Payment;
 use Validator;
 use Session;
 use DB;
@@ -50,7 +53,8 @@ class FrontFamilyController extends Controller{
         return response()->json(['message' => 'success'], 200);
     }
     
-    public function edit_family($familyId){
+    public function manage_profile(){
+        $familyId                                           = Session::get('frontUser')->id;
         $data['menu']                                       = "manage profile";
         $data['family']                                     = FrontUser::findOrFail($familyId);
         $data['family']['family_babysitter_comfortable']    = !empty($data['family']->family_babysitter_comfortable) ? json_decode($data['family']->family_babysitter_comfortable, true) : array();
@@ -63,7 +67,7 @@ class FrontFamilyController extends Controller{
         $data['evening_availability']                       = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']                         = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
         $data['family']['age']                              = !empty($data['family']->age) ? json_decode($data['family']->age, true) : array();
-        return view('user.family_manage_profile', $data);
+        return view('user.family.manage_profile', $data);
     }
 
     public function update_family(Request $request, $familyId){
@@ -95,7 +99,7 @@ class FrontFamilyController extends Controller{
         $input['family_special_need_option']    = isset($request->family_special_need_option) ? 1 : 0;
         $input['family_babysitter_comfortable'] = isset($request->family_babysitter_comfortable) ? json_encode($request->family_babysitter_comfortable) : null;
         $input['family_special_need_value']     = isset($request->family_special_need_value) ? json_encode($request->family_special_need_value) : null;
-        $input['profile']                       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
+        $input['profile']                       = $request->hasFile('profile') ? $this->store_image($request->file('profile')) : $family->profile;
         $input['no_children']                   = isset($request->age) && is_array($request->age) ? count($request->age) : $request->no_children;
         $input['describe_kids']                 = isset($request->describe_kids) ? json_encode($request->describe_kids) : null;
         $availability                           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_family_calender($input, $familyId) : 0;
@@ -104,14 +108,7 @@ class FrontFamilyController extends Controller{
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 
-    public function store_image($data, $path=null){
-        $randomName = Str::random(20);
-        $extension  = $data->getClientOriginalExtension();
-        $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
-        $path       = $data->storeAs('uploads', $imageName, 'public');
-        return      $imageName;
-    }
-
+   
     public function edit_family_calender(Request $request){
         $data['menu']                   = "manage calender";
         $data['candidate']              = FrontUser::findOrFail(Session::get('frontUser')->id);
@@ -145,11 +142,12 @@ class FrontFamilyController extends Controller{
     
     public function view_candidates(){
         $data['menu']       = "view candidates";
-        $data['candidates'] = FrontUser::leftJoin('family_favorite_candidates', 'front_users.id', '=', 'family_favorite_candidates.candidate_id')
+        $data['user']       = Session::get('frontUser');
+        $data['candidates'] = FrontUser::leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT family_id) as family_favorite_candidate FROM family_favorite_candidates GROUP BY candidate_id) as family_favorites'), 'front_users.id', '=', 'family_favorites.candidate_id')
         ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
         ->select(
             'front_users.*',
-            'family_favorite_candidates.candidate_id AS family_favorite_candidate',
+            'family_favorites.family_favorite_candidate', //return the ids of the families who liked this candidate
             'reviews.review_note',
             'reviews.review_rating_count',
             'reviews.total_reviews'
@@ -157,7 +155,7 @@ class FrontFamilyController extends Controller{
         ->leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM candidate_reviews GROUP BY candidate_id) as reviews'), 'front_users.id', '=', 'reviews.candidate_id')
         ->where('front_users.role', '!=', 'family')
         ->where('front_users.status', '1')
-        ->orderBy('family_favorite_candidate', 'DESC')
+        ->orderByRaw('LOCATE(?, family_favorite_candidate) DESC, family_favorite_candidate ASC', [$data['user']->id])
         ->distinct()
         ->get();
 
@@ -197,11 +195,11 @@ class FrontFamilyController extends Controller{
 
     public function reviews(){
         $data['menu']       = "review";
-        $data['candidates'] = FrontUser::leftJoin('family_favorite_candidates', 'front_users.id', '=', 'family_favorite_candidates.candidate_id')
+        $data['candidates'] = FrontUser::leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT family_id) as family_favorite_candidate FROM family_favorite_candidates GROUP BY candidate_id) as family_favorites'), 'front_users.id', '=', 'family_favorites.candidate_id')
         ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
         ->select(
             'front_users.*',
-            'family_favorite_candidates.candidate_id AS family_favorite_candidate',
+            'family_favorites.family_favorite_candidate', //return the ids of the families who liked this candidate
             'reviews.review_note',
             'reviews.review_rating_count',
             'reviews.total_reviews'
@@ -213,5 +211,12 @@ class FrontFamilyController extends Controller{
         ->get();
 
         return view('user.family.reviews', $data);
+    }
+
+    public function transactions(){
+        $features   = Features::get()->toArray();
+        $packages   = Packages::get()->toArray();
+        $payment    = Payment::where('user_id', Session::get('frontUser')->id)->first();
+        return view('user.family.pricing', compact('packages', 'features', 'payment'));
     }
 }

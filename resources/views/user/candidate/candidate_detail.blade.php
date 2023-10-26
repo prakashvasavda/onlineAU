@@ -27,17 +27,23 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
                 <div class="candidate-img">
-                     <img src="{{ url('../storage/app/public/uploads/'.$candidate->profile) }}" alt="">
+                    @if(isset($candidate->profile))
+                        <img src="{{ url('../storage/app/public/uploads/'.$candidate->profile) }}" alt="">
+                    @else
+                        <img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="">
+                    @endif
                 </div>
             </div>
             <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
                 <div class="candidate-content">
-                    <h3>NAME: {{ strtoupper($candidate->name) }}<br>
-                        AGE: {{ strtoupper($candidate->age) }}<br>
-                        LOCATION: {{ strtoupper($candidate->area) }}<br>
-                        SPECIALITY: {{ strtoupper($candidate->role) }}<br>
+                    <h3>
+                        NAME: {{ $candidate->name ? strtoupper($candidate->name) : "-"  }}<br>
+                        AGE: {{ $candidate->age ? strtoupper($candidate->age) : "-" }}<br>
+                        LOCATION: {{ $candidate->area ? strtoupper($candidate->area) : "-" }}<br>
+                        SPECIALITY: {{ $candidate->role ? strtoupper($candidate->role) : "-" }}<br>
                         @if(isset($candidate->other_services)) OTHER SPECIALITY: {{ strtoupper($candidate->other_services) }}<br>  @endif
-                        HOURLY RATE: R{{ strtoupper($candidate->salary_expectation) }}
+                        HOURLY RATE: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
+                        CONTACT NUMBER: R{{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}
                     </h3>
                 </div>
             </div>
@@ -265,7 +271,7 @@
         </div>
         <div class="btn-main d-flex flex-wrap justify-content-evenly align-items-center mt-5">
             <a href="{{ Session::has('frontUser') ? '#' : route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
-            <a href="{{route('families')}}#available-candidates" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
+            <a href="{{route('view-candidates')}}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
         </div>
     </div>
 </div>

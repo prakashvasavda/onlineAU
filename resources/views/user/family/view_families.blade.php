@@ -21,12 +21,16 @@
 								<div class="card">
 								    <div class="row g-0">
 								        <div class="col-md-4">
-								        	<img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" class="img-fluid" alt="">
+								        	@if(isset($value->profile))
+								        		<img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" class="img-fluid" alt="">
+								            @else
+								            	<img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="">
+								            @endif
 								        </div>
 								        <div class="col-md-8">
 								            <div class="card-body">
 								            	<div class="pos-icon">
-								            		<i class="{{ isset($value->candidate_favourite_family) ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
+								            		<i class="{{ isset($value->family_favourite_candidate) ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
 								            	</div>
 								                <h5 class="card-title">{{ $value->name }}</h5>
 								                <p class="card-text">{{ $value->area }}</p>

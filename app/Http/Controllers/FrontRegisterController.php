@@ -140,7 +140,7 @@ class FrontRegisterController extends Controller
             $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
         });
 
-        return redirect()->back()->with('success', 'Registration create successfully.');
+        return redirect()->route('families');
     }
 
     public function store_need_babysitter($input, $candidateId)
@@ -153,14 +153,7 @@ class FrontRegisterController extends Controller
         return NeedsBabysitter::create($data);
     }
 
-    public function families()
-    {
-        $candidates = FrontUser::where('role', '!=', 'family')->where('status', '1')->get()->toArray();
-        return view('user.families', compact('candidates'));
-    }
-
-    public function family_register()
-    {
+    public function family_register(){
         return view('user.family_register');
     }
 

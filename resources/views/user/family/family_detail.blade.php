@@ -6,7 +6,11 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
                 <div class="candidate-img">
-                     <img src="{{ url('../storage/app/public/uploads/'.$family->profile) }}" alt="">
+                    @if(isset($family->profile))
+                        <img src="{{ url('../storage/app/public/uploads/'.$family->profile) }}" alt="">
+                    @else
+                        <img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="">
+                    @endif
                 </div>
             </div>
             <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
@@ -22,7 +26,7 @@
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                     <div class="candidate-contact">
                         <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="storeCandidateFavoriteFamily()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="favourite_button"></i>Save</a></p>
-                        <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($family->name) ? explode(' ', $family->name)[0] : '' }}</a>
+                        {{-- <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($family->name) ? explode(' ', $family->name)[0] : '' }}</a> --}}
                     </div>
                 </div>
             @endif
@@ -203,7 +207,7 @@
                         <th>Su</th>
                     </tr>
                     <tr>
-                        <th>Morning</th>
+                        <th>Morning: <span style="font-size: medium;">07:00 – 13:00</span></th>
                         <td>
                             <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ in_array("mo_morning", $morning_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
@@ -227,7 +231,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Afternoon</th>
+                        <th>Afternoon: <span style="font-size: medium;">13:00 – 17:00</span></th>
                         <td>
                             <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ in_array("mo_afternoon", $afternoon_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
@@ -251,7 +255,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Evening</th>
+                        <th>Evening: <span style="font-size: medium;">17:00 – 21:00</span></th>
                         <td>
                             <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ in_array("mo_evening", $evening_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
@@ -275,7 +279,7 @@
                         </td>
                     </tr>
                      <tr>
-                        <th>Night</th>
+                         <th>Night: <span style="font-size: medium;">21:00 – 00:00</span></th>
                         <td>
                             <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ in_array("mo_night", $night_availability ) ? 'checked' : 'disabled' }}></label>
                         </td>
@@ -302,8 +306,8 @@
             </table>
         </div>
         <div class="btn-main d-flex flex-wrap justify-content-evenly align-items-center mt-5">
-            <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($family->name) ? explode(' ', $family->name)[0] : '' }}</a>
-            <a href="{{ route('families') }}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
+            {{-- <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($family->name) ? explode(' ', $family->name)[0] : '' }}</a> --}}
+            <a href="{{ route('view-families') }}" class="btn btn-primary round">BACK TO ALL FAMILIES</a>
         </div>
     </div>
 </div>

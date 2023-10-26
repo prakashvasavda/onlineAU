@@ -49,7 +49,8 @@ class FrontCandidateController extends Controller{
         return response()->json(['message' => 'success'], 200);
     }
 
-    public function edit_candidate($candidateId){
+    public function manage_profile(){
+        $candidateId                            = Session::get('frontUser')->id;
         $data['menu']                           = "manage profile";
         $data['candidate']                      = FrontUser::findOrFail($candidateId);
         $data['candidate']['other_services']    = !empty($data['candidate']->other_services) ? json_decode($data['candidate']->other_services) : array();
@@ -59,7 +60,7 @@ class FrontCandidateController extends Controller{
         $data['afternoon_availability']         = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
         $data['evening_availability']           = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']             = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
-        return view('user.candidate_manage_profile', $data);
+        return view('user.candidate.manage_profile', $data);
     }
 
     public function update_candidate(Request $request, $candidateId){
@@ -75,7 +76,7 @@ class FrontCandidateController extends Controller{
         $input['password']      = !empty($request->password) ? Hash::make($request->password) : $candidate->password;
         $input['email']         = !empty($request->email) ? $request->email : $candidate->email;
         $input['role']          = $candidate->role;
-        $input['profile']       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $candidate->profile;
+        $input['profile']       = $request->hasFile('profile') ? $this->store_image($request->file('profile')) : $candidate->profile;
         $input['other_services']= !empty($request->other_services) ? json_encode($request->other_services) : null;
         $experiance             = !empty($input['daterange']) ? $this->store_previous_experience($input, $candidateId) : 0;
         $availability           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_candidate_calender($input, $candidateId) : 0;
@@ -102,14 +103,6 @@ class FrontCandidateController extends Controller{
             $status = PreviousExperience::create($data);
         }
         return $status;
-    }
-
-    public function store_image($data, $path=null){
-        $randomName = Str::random(20);
-        $extension  = $data->getClientOriginalExtension();
-        $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
-        $path       = $data->storeAs('uploads', $imageName, 'public');
-        return      $imageName;
     }
 
     public function edit_candidate_calender(Request $request){
@@ -146,16 +139,17 @@ class FrontCandidateController extends Controller{
 
     public function view_families(){
         $data['menu']     = "view families";
-        $data['families'] = FrontUser::leftJoin('candidate_favorite_families', 'front_users.id', '=', 'candidate_favorite_families.family_id')
+        $data['families'] = FrontUser::leftJoin('family_favorite_candidates', 'front_users.id', '=', 'family_favorite_candidates.family_id')
         ->leftJoin('family_reviews', 'front_users.id', '=', 'family_reviews.family_id')
         ->select(
             'front_users.*',
-            'candidate_favorite_families.candidate_id AS candidate_favourite_family',
+            'family_favorite_candidates.family_id AS family_favourite_candidate',
             'reviews.review_note',
             'reviews.review_rating_count',
             'reviews.total_reviews'
         )
         ->leftJoin(DB::raw('(SELECT family_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM family_reviews GROUP BY family_id) as reviews'), 'front_users.id', '=', 'reviews.family_id')
+        ->where('family_favorite_candidates.candidate_id', Session::get('frontUser')->id)
         ->where('front_users.role', 'family')
         ->where('front_users.status', '1')
         ->distinct()
