@@ -126,7 +126,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="no_children">Number of children <span class="text-danger">*</span></label>
-                    <input type="number" id="no_children" name="no_children" placeholder="" class="form-field @error('no_children') is-invalid @enderror" >
+                    <input type="number" id="no_children" name="no_children" value="1" placeholder="" class="form-field @error('no_children') is-invalid @enderror" >
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
@@ -269,7 +269,9 @@
                     </span>
                 @endif
             </div>
-            <div class="col-12">
+
+            
+            <div class="col-6">
                 <div class="form-input">
                     <label for="">When do you need a babysitter? </label>
                     <div class="table-responsive">
@@ -286,7 +288,7 @@
                                     <th>Su</th>
                                 </tr>
                                 <tr>
-                                    <th>Morning</th>
+                                    <th>Morning: 07:00 – 13:00</th>
                                     <td>
                                         <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ (old('morning') !== null && in_array("mo_morning", old('morning'))) ? 'checked' : '' }}></label>
                                     </td>
@@ -310,7 +312,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Afternoon</th>
+                                    <th>Afternoon: 13:00 – 17:00</th>
                                     <td>
                                         <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ (old('afternoon') !== null && in_array("mo_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                     </td>
@@ -334,7 +336,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Evening</th>
+                                    <th>Evening: 17:00 – 21:00</th>
                                     <td>
                                         <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ (old('evening') !== null && in_array("mo_evening", old('evening'))) ? 'checked' : '' }}></label>
                                     </td>
@@ -358,7 +360,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Night</th>
+                                    <th>Night: 21:00 – 00:00</th>
                                     <td>
                                         <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ (old('night') !== null && in_array("mo_night", old('night'))) ? 'checked' : '' }}></label>
                                     </td>
@@ -386,6 +388,28 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="package">Payment Plan  <span class="text-danger">*</span></label>
+                    <select id="package" name="package" class="form-field" >
+                        <option selected="selected" disabled>select</option>
+                        @if(isset($packages) && !empty($packages))
+                            @foreach($packages as $key => $value)
+                                <option value="{{ $value->id }}" {{ !empty(old('package')) && old('package') == $value->id ? "selected" : ""}}>{{ $value->name }}</option>
+                            @endforeach 
+                        @endif
+                    </select>
+                    @if ($errors->has('package'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('package') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+           
+            
+
             <div class="col-12">
                 <div class="form-input switch-input">
                     <input type="checkbox" name="family_special_need_option" id="special-needs" class="switch" {{ old('family_special_need_option') == 'on' ? 'checked' : '' }}>

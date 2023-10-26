@@ -45,6 +45,9 @@ Route::get('families', 'HomeController@families')->name('families');
 /*PUBLIC CANDIDATE SIGN UP ROUTES*/
 Route::get('sign-up', 'HomeController@sign_up')->name('sign-up');
 
+/*PUBLIC PAYMENT ROUTE*/
+Route::any('/payment/process', 'PaymentController@process_payment')->name('payment-process');
+
 Route::group(['middleware' => 'frontendauth'], function () {
     /*FAMILY TRANSACTIONS ROUTES*/
     Route::get('transactions', 'FrontFamilyController@transactions')->name('transactions');

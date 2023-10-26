@@ -8,24 +8,23 @@ use App\PreviousExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Packages;
 use Mail;
 use Session;
 use Validator;
 
 class FrontRegisterController extends Controller
 {
-    public function index($type)
-    {
+    public function index($type){
         $data['type'] = $type == 'nannies' ? 'a nanny' : ($type == 'babysitters' ? 'a babysitter' : ($type == 'petsitters' ? 'A Petsitter' : 'an au-pair'));
 
         if (session()->has('frontUser')) {
             return redirect()->route('home');
         }
-        return view('user.register', $data);
+        return view('user.candidate_register', $data);
     }
 
-    public function store_candidate(Request $request)
-    {
+    public function store_candidate(Request $request){
         $data  = $request->all();
         $rules = [
             'name'               => "required",
@@ -143,8 +142,7 @@ class FrontRegisterController extends Controller
         return redirect()->route('families');
     }
 
-    public function store_need_babysitter($input, $candidateId)
-    {
+    public function store_need_babysitter($input, $candidateId){
         $data['family_id'] = $candidateId;
         $data['morning']   = !empty($input['morning']) ? json_encode($input['morning']) : null;
         $data['afternoon'] = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
@@ -154,11 +152,12 @@ class FrontRegisterController extends Controller
     }
 
     public function family_register(){
-        return view('user.family_register');
+        $data['menu']       = "family registration";
+        $data['packages']   = packages::all();
+        return view('user.family_register', $data);
     }
 
-    public function store_family(Request $request)
-    {
+    public function store_family(Request $request){
         $data  = $request->all();
         $rules = [
             'name'                          => "required",
@@ -177,6 +176,7 @@ class FrontRegisterController extends Controller
             'family_profile_see'            => "required",
             'family_notifications'          => "required",
             'family_description'            => "required",
+            'package'                       => "required",
         ];
         $message = [
             'name'                          => "The Name must be required",
@@ -196,6 +196,7 @@ class FrontRegisterController extends Controller
             'family_profile_see'            => "The Family profile see must be required",
             'family_notifications'          => "The Family notifications must be required",
             'family_description'            => "The Family description must be required",
+            'package'                       => "The payment plan is required",
         ];
         $validator = Validator::make($data, $rules, $message);
         if ($validator->fails()) {
@@ -215,7 +216,7 @@ class FrontRegisterController extends Controller
         
         $familyId = FrontUser::insertGetId([
             'name'                          => $request->name,
-            'age'                           => serialize($request->family_special_need_value),
+            'age'                           => isset($request->age) ? json_encode($request->age) : null,
             'profile'                       => isset($imageName) ? $imageName : null,
             'email'                         => $request->email,
             'password'                      => Hash::make($request->password),
@@ -239,7 +240,16 @@ class FrontRegisterController extends Controller
             "updated_at"                    => date("Y-m-d H:i:s"),
         ]);
 
-        $status = $this->store_need_babysitter($data, $familyId);
-        return redirect()->to(route('families') . '#available-candidates')->with('success', 'Registration created successfully.');
+        $status             = $this->store_need_babysitter($data, $familyId);
+        $package            = Packages::find($request->package);
+
+        $data['amount']     = $package->price;
+        $data['item_name']  = $package->name;
+        $data['custom_int1']= $familyId;
+        $data['profile']    = null;
+
+
+        return redirect()->route('payment-process')->with(['guestUser' => $data]);
+        //return redirect()->to(route('families') . '#available-candidates')->with('success', 'Registration created successfully.');
     }
 }

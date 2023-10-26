@@ -88,18 +88,32 @@
                     <a href="{{ url('candidate-detail/'. $candidate_list['id']) }}">
                         <div class="candidate-slide">
                             <div class="candidate-img">
-                                <img src="{{ url('../storage/app/public/uploads/'.$candidate_list["profile"]) }}" alt="">
+                                @if(isset($candidate_list["profile"]))
+                                    <img src="{{ url('../storage/app/public/uploads/'.$candidate_list["profile"]) }}" alt="">
+                                @else
+                                    <img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="">
+                                @endif
                             </div>
                             <div class="candidate-detail">
                                 <h4>{{ $candidate_list['name'] }}</h4>
                                 <h5>{{ ucfirst($candidate_list['role']) }}</h5>
                                 <h6>{{ $candidate_list['ethnicity'] }}</h6>
                                 <div class="rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
+                                    <span>
+                                        @if(isset($candidate_list->review_rating_count) && is_string($candidate_list->review_rating_count))
+                                            @for($i = 0; $i < 5; $i++)
+                                                @if($i < max(explode(",", $candidate_list->review_rating_count)))
+                                                    <i class="fa-solid fa-star"></i>
+                                                @else
+                                                    <i class="fa-regular fa-star"></i>
+                                                @endif
+                                            @endfor
+                                        @else
+                                            @for($i=0; $i<5; $i++)
+                                                <i class="fa-regular fa-star"></i>
+                                            @endfor
+                                        @endif 
+                                    </span>
                                 </div>
                             </div>
                         </div>

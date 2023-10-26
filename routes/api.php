@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 /*FRONT PAYMENT ROUTES*/
-Route::any('/payment/process', 'PaymentController@process_payment')->name('payment-process');
+// Route::any('/payment/process', 'PaymentController@process_payment')->name('payment-process');
 Route::any('/payment/success', 'PaymentController@payment_success')->name('payment-success');
 Route::any('/payment/cancel', 'PaymentController@payment_cancel')->name('payment-cancel');
 Route::any('/payment/notify', 'PaymentController@payment_notify')->name('payment-notify');

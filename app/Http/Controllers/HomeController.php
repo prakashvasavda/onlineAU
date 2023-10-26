@@ -78,8 +78,20 @@ class HomeController extends Controller
     }
 
     public function families(){
-        $data['menu'] = 'families';
-        $data['candidates'] = FrontUser::where('front_users.role', '!=', 'family')->where('front_users.status', '1')->get()->toArray();
+        $data['menu']       = 'families';
+        $data['candidates'] = FrontUser::leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
+        ->select(
+            'front_users.*',
+            'reviews.review_note',
+            'reviews.review_rating_count',
+            'reviews.total_reviews'
+        )
+        ->leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM candidate_reviews GROUP BY candidate_id) as reviews'), 'front_users.id', '=', 'reviews.candidate_id')
+        ->where('front_users.role', '!=', 'family')
+        ->where('front_users.status', '1')
+        ->distinct()
+        ->get();
+
         return view('user.families', $data);
     }
 

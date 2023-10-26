@@ -419,7 +419,7 @@
                                     <th>Su</th>
                                 </tr>
                                 <tr>
-                                    <th>Morning</th>
+                                    <th>Morning: 07:00 – 13:00</th>
                                     <td>
                                         <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ (old('morning') !== null && in_array("mo_morning", old('morning'))) ? 'checked' : '' }}></label>
                                     </td>
@@ -443,7 +443,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Afternoon</th>
+                                    <th>Afternoon: 13:00 – 17:00</th>
                                     <td>
                                         <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ (old('afternoon') !== null && in_array("mo_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                     </td>
@@ -467,7 +467,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Evening</th>
+                                    <th>Evening: 17:00 – 21:00</th>
                                     <td>
                                         <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ (old('evening') !== null && in_array("mo_evening", old('evening'))) ? 'checked' : '' }}></label>
                                     </td>
@@ -491,7 +491,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Night</th>
+                                    <th>Night: 21:00 – 00:00</th>
                                     <td>
                                         <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ (old('night') !== null && in_array("mo_night", old('night'))) ? 'checked' : '' }}></label>
                                     </td>

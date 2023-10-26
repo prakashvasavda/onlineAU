@@ -6,30 +6,34 @@ use Illuminate\Http\Request;
 use App\Payment;
 use Session;
 
+/*
+    $return_url = 'http://localhost/onlineAU/public/api/payment/success';
+    $cancel_url = 'http://localhost/onlineAU/public/api/payment/cancel';
+    $notify_url = 'http://localhost/onlineAU/public/api/payment/notify';
+*/
+
 
 class PaymentController extends Controller{
-    
+
     public function process_payment(Request $request){
+        /*GUEST USER PAYMENT*/
+        $guest           = Session::has('guestUser') ? Session::get('guestUser') : null;
+
         /*Merchant details*/
         $merchant_id    = env('PAYFAST_MERCHANT_ID');
         $merchant_key   = env('PAYFAST_MERCHANT_KEY');
 
         /*Buyer details*/
-        $name_first     = $request->name_first;
-        $name_last      = $request->name_last;
-        $email_address  = $request->email_address;
-        $custom_int1    = $request->custom_int1;
+        $name_first     = Session::has('frontUser') ? $request->name_first    : $guest['name'];
+        $name_last      = Session::has('frontUser') ? $request->name_last     : $guest['name'];
+        $email_address  = Session::has('frontUser') ? $request->email_address : $guest['email'];
+        $custom_int1    = Session::has('frontUser') ? $request->custom_int1   : $guest['custom_int1'];
 
         /*Transaction details*/
-        $amount         = $request->amount;
-        $item_name      = $request->item_name;
+        $amount         = Session::has('frontUser') ? $request->amount    : $guest['amount'];
+        $item_name      = Session::has('frontUser') ? $request->item_name : $guest['item_name'];
         $m_payment_id   = rand();
         
-        /*Local testing urls*/
-        // $return_url     = 'http://localhost/onlineAU/public/api/payment/success';
-        // $cancel_url     = 'http://localhost/onlineAU/public/api/payment/cancel';
-        // $notify_url     = 'http://localhost/onlineAU/public/api/payment/notify';
-
         /*Merchant detail urls*/
         $return_url     = 'https://onlineaupairs.co.za/public/api/payment/success';
         $cancel_url     = 'https://onlineaupairs.co.za/public/api/payment/cancel';
@@ -71,7 +75,7 @@ class PaymentController extends Controller{
     }
 
     public function payment_success(Request $request){
-        return redirect()->route('manage-payments');
+        return redirect()->route('transactions');
     }
 
     public function payment_cancel(Request $request){

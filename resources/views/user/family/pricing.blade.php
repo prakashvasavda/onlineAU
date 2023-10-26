@@ -1,5 +1,10 @@
 @extends('layouts.main')
 @section('content')
+<style type="text/css">
+.pricing-plans .row form {
+    height: 100%;
+}
+</style>
 
 @if(isset($payment) && !empty($payment))
     <div class="single-form-section">
@@ -7,7 +12,7 @@
             <div class="title-main mb-5">
                 <h2>Payments</h2>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center align-items-stretch">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="card border-light">
                         <h4 class="card-header">{{ isset($payment->name_first) ? $payment->name_first : '-' }}</h4>
@@ -80,7 +85,7 @@
                 @if(isset($packages))
                     @foreach($packages as $key=>$price)
                         <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                            <form method="POST" class="row" action="{{ route('payment-process') }}" id="pricing-form-{{$key}}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('payment-process') }}" id="pricing-form-{{$key}}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="{{ $price['price'] }}">
                                 <input type="hidden" name="item_name" value="{{ $price['name'] }}">
