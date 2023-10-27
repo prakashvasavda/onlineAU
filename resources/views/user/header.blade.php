@@ -10,7 +10,7 @@
                         <li class="{{ request()->is('/') ? 'active' : '' }}"><a href="{{ route('home') }}">home</a></li>
                         @if(!session()->has('frontUser'))
                             <li><a href="{{ route('home') }}#aboutUs">About US</a></li>
-                            <li class="{{ request()->is('candidates') ? 'active' : '' }}"><a href="{{ route('candidates') }}">candidates</a></li>
+                            <li class="{{ request()->is('candidates') || request()->is('candidates/*') ? 'active' : '' }}"><a href="{{ route('candidates') }}">candidates</a></li>
                             <li class="{{ request()->is('families') ? 'active' : '' }} {{ request()->is('family-register') }}"><a href="{{ route('families') }}">family</a></li>
                             <li class="{{ request()->is('sign-up') ? 'active' : '' }}"><a href="{{ route('sign-up') }}">sign up</a></li>
                         @elseif(session()->get('frontUser')->role != "family")

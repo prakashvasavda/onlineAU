@@ -38,6 +38,8 @@ Route::any('search', 'SearchController@index')->name('search');
 /*PUBLIC CANDIDATE ROUTES*/
 Route::get('candidates', 'HomeController@candidates')->name('candidates');
 Route::get('candidate-detail/{id}', 'FrontFamilyController@candidate_detail')->name('candidate-detail');
+Route::get('candidates/{service}', 'HomeController@candidates')->name('candidates-service');
+
 
 /*PUBLIC FAMILY ROUTES*/
 Route::get('families', 'HomeController@families')->name('families');

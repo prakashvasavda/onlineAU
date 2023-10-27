@@ -59,7 +59,7 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'Thank you for your enquiry. We will be in touch as soon as possible.');
     }
 
-    public function candidates(){
+    public function candidates($service=null){
         $data['menu']       = "candidates";
         $data['candidates'] = FrontUser::leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
         ->select(
@@ -71,6 +71,9 @@ class HomeController extends Controller
         ->leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM candidate_reviews GROUP BY candidate_id) as reviews'), 'front_users.id', '=', 'reviews.candidate_id')
         ->where('front_users.role', '!=', 'family')
         ->where('front_users.status', '1')
+        ->when($service, function ($query, $status) {
+            return $query->where('front_users.role', $status);
+        })
         ->distinct()
         ->get();
 

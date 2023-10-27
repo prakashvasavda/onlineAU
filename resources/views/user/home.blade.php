@@ -70,6 +70,9 @@
                         <h3 class="service-name">Pet Sitting</h3>
                     </div>
                 </a>
+                <div class="contact-inner mt-3">
+                    <a href="{{ route('candidates-service', ['service' => 'petsitters']) }}" class="btn btn-primary round" style="font-size: small;">View All Candidates</a>
+                </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <a href="{{ route('candidate-register','au-pairs') }}">
@@ -78,6 +81,9 @@
                         <h3 class="service-name">Au-Pairs</h3>
                     </div>
                 </a>
+                <div class="contact-inner mt-3">
+                    <a href="{{ route('candidates-service', ['service' => 'au-pairs']) }}" class="btn btn-primary round" style="font-size: small;">View All Candidates</a>
+                </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <a href="{{ route('candidate-register','nannies') }}">
@@ -86,6 +92,9 @@
                         <h3 class="service-name">nannies</h3>
                     </div>
                 </a>
+                <div class="contact-inner mt-3">
+                    <a href="{{ route('candidates-service', ['service' => 'nannies']) }}" class="btn btn-primary round" style="font-size: small;">View All Candidates</a>
+                </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <a href="{{ route('candidate-register','babysitters') }}">
@@ -94,6 +103,9 @@
                         <h3 class="service-name">babysitting</h3>
                     </div>
                 </a>
+                <div class="contact-inner mt-3">
+                    <a href="{{ route('candidates-service', ['service' => 'babysitters']) }}" class="btn btn-primary round" style="font-size: small;">View All Candidates</a>
+                </div>
             </div>
         </div>
     </div>

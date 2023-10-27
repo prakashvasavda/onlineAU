@@ -15,7 +15,7 @@
 				{{-- <p>26 families matching your search</p> --}}
 			</div>
 			<div class="row result-list">
-				@if(isset($candidates) && !empty($candidates))
+				@if(isset($candidates) && count($candidates) > 0)
 					@foreach($candidates as $key => $value)
 						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 							<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
@@ -30,7 +30,7 @@
 								        </div>
 								        <div class="col-md-8">
 								            <div class="card-body">
-								            	<div class="pos-icon"><i class="fa-regular fa-heart"></i></div>
+								            	<div class="pos-icon"><i class="fa-regular fa-heart" onclick="addFamilyFavorite(event)"></i></div>
 								                <h5 class="card-title">{{ $value->name }}</h5>
 								                <p class="card-text">{{ $value->area }}</p>
 								                <p class="card-text">
@@ -62,6 +62,12 @@
 					@endforeach
 				@endif
 			</div>
+
+			@if(request()->is('candidates/*'))
+				<div class="btn-main text-center mb-4">
+		            <a href="{{ route('candidates') }}" class="btn btn-primary round">view all candidates</a>
+		        </div>
+		    @endif
 		</div>
 	</div>
 </div>
@@ -70,6 +76,9 @@
 @section('script')
 @parent
 <script type="text/javascript">
-
+	function addFamilyFavorite(event){
+		event.preventDefault();
+		window.location.href = "{{route('user-login')}}";
+	}
 </script>
 @endsection

@@ -28,8 +28,10 @@
           @enderror
       </div>
       <div class="form-input text-end">
-          <p>Forgot your <a href="{{ route('forgot-password') }}">Password</a> ?</p>
+            <p>Forgot your <a href="{{ route('forgot-password') }}">Password</a> ?</p>
+            <p>Not registered yet? <a href="{{ route('family-register') }}">Please click here and register your family</a> .</p>
       </div>
+
       <!-- <div class="form-input d-flex flex-wrap justify-content-start align-items-center">
           <input type="checkbox" name="remember" id="rememberMe">
           <label for="rememberMe">Remember me</label>
