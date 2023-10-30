@@ -327,7 +327,7 @@
                     </span>
                 @endif
             </div>
-            <div class="col-12">
+            <div class="col-6">
                 <div class="form-input">
                     <label for="">When do you need a babysitter? </label>
                     <div class="table-responsive">
@@ -444,6 +444,22 @@
                     </div>
                 </div>
             </div>
+
+             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="package">Package <span class="text-danger">*</span></label>
+                    <select id="package" name="package"  class="form-field" >
+                        <option disabled="disabled" selected>Select</option>
+                        <option value="test" >test</option>
+                    </select>
+                    @if ($errors->has('package'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('package') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="col-12">
                 <div class="form-input switch-input">
                     <input type="checkbox" name="family_special_need_option" id="special-needs" class="switch" {{isset($family->family_special_need_option) && $family->family_special_need_option == 1 ? 'checked' : '' }}>

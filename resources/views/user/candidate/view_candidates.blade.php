@@ -165,12 +165,12 @@
 @section('script')
 @parent
 <script type="text/javascript">
-
 function storeFamilyFavoriteCandidate(event, candidate_id){
 	event.preventDefault();
-    var family_id = {{ Session::has('frontUser') ? Session::get('frontUser')->id : 0 }};
+    var family_id = {{ session()->has('frontUser') ? session()->get('frontUser')->id : 0 }};
+    var role = "{{ session()->has('frontUser') ? session()->get('frontUser')->role : " " }}";
 
-    if(family_id != 0){
+    if(family_id != 0 && role == "family"){
     	$('#favBtn'+candidate_id).css('display', 'none');
 		$('#spinner'+candidate_id).css('display', 'block');
 
@@ -193,6 +193,5 @@ function storeFamilyFavoriteCandidate(event, candidate_id){
         });
     }
 }
-
 </script>
 @endsection

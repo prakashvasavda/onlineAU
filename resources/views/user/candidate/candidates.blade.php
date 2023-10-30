@@ -18,7 +18,7 @@
 				@if(isset($candidates) && count($candidates) > 0)
 					@foreach($candidates as $key => $value)
 						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-							<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
+								<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
 								<div class="card">
 								    <div class="row g-0">
 								        <div class="col-md-4">
@@ -31,8 +31,22 @@
 								        <div class="col-md-8">
 								            <div class="card-body">
 								            	<div class="pos-icon">
-								            		@if(\Session::has('frontUser'))
-								            			<i class="fa-regular fa-heart"></i>
+								            		<div class="spinner-border" role="status" id="spinner{{$value->id}}" style="display: none;">
+													  <span class="visually-hidden">Loading...</span>
+													</div>
+
+								            		@if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
+								            			@if(isset($value->candidate_favorited_by) && is_string($value->candidate_favorited_by))
+								            				@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
+								            					<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+								            				@else
+								            					<i class="fa-regular fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+								            				@endif
+								            			@else
+								            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+								            			@endif
+								            		@elseif(session()->has('frontUser') && session()->get('frontUser')->role != "family")
+								         				<span class="disabled-heart"><i class="far fa-heart"></i></span>
 								            		@else
 								            			<i class="fa-regular fa-heart" onclick="event.preventDefault(); window.location.href = '{{ route('user-login') }}';"></i>
 								            		@endif								            		
@@ -82,9 +96,32 @@
 @section('script')
 @parent
 <script type="text/javascript">
-	function addFamilyFavorite(event){
+	function storeFamilyFavoriteCandidate(event, candidate_id){
 		event.preventDefault();
-		window.location.href = "{{route('user-login')}}";
+	    var family_id = {{ session()->has('frontUser') ? session()->get('frontUser')->id : 0 }};
+
+	    if(family_id != 0){
+	    	$('#favBtn'+candidate_id).css('display', 'none');
+			$('#spinner'+candidate_id).css('display', 'block');
+
+	        $.ajax({
+	            url: "{{ url('store-family-favourite-candidate') }}",
+	            type: "POST",
+	            data: {
+	                _token: '{{ csrf_token() }}', 
+	                candidate_id: candidate_id,
+	                family_id: family_id,
+	            },
+	            success: function(response) {
+	            	$('#spinner'+candidate_id).css('display', 'none');
+	                if(response.message == "success"){
+	                    $('#favBtn'+candidate_id).removeClass("fa-regular").addClass("fa-solid").css('display', 'block');
+	                }else{
+	                    $('#favBtn'+candidate_id).removeClass("fa-solid").addClass("fa-regular").css('display', 'block');
+	                }
+	            }
+	        });
+	    }
 	}
 </script>
 @endsection

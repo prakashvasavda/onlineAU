@@ -61,9 +61,12 @@ class HomeController extends Controller
 
     public function candidates($service=null){
         $data['menu']       = "candidates";
-        $data['candidates'] = FrontUser::leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
+        $data['user']       = Session::has('frontUser') ? Session::get('frontUser') : null;
+        $data['candidates'] = FrontUser::leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT family_id) as family_favorite_candidate FROM family_favorite_candidates GROUP BY candidate_id) as family_favorites'), 'front_users.id', '=', 'family_favorites.candidate_id')
+        ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
         ->select(
             'front_users.*',
+            'family_favorites.family_favorite_candidate AS candidate_favorited_by', //return the ids of the families who liked this candidate
             'reviews.review_note',
             'reviews.review_rating_count',
             'reviews.total_reviews'
@@ -76,7 +79,6 @@ class HomeController extends Controller
         })
         ->distinct()
         ->get();
-
         return view('user.candidate.candidates', $data);
     }
 

@@ -2,26 +2,6 @@
 @section('content')
 @include('flash.front-message')
 
-<style>
-    .about-candidate-content, 
-    .about-candidate-title {
-        width: 50%;
-        height: 100%;
-    }
-    .about-candidate-title {
-        align-items: center;
-    }
-    .about-candidate-content {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-start;
-    }
-    .about-candidate-box h4 {
-        text-transform: uppercase;
-    }
-</style>
-
 <div class="candidate-info">
     <div class="container">
         <div class="row">
@@ -43,20 +23,29 @@
                         SPECIALITY: {{ $candidate->role ? strtoupper($candidate->role) : "-" }}<br>
                         @if(isset($candidate->other_services)) OTHER SPECIALITY: {{ strtoupper($candidate->other_services) }}<br>  @endif
                         HOURLY RATE: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
-                        <span id="candidate_contact" style="display: none;">@if(\Session::has('frontUser')) CONTACT NUMBER: R{{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}@endif</span>
+                        <span id="candidate_contact" style="display: none;">
+                            @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
+                                CONTACT NUMBER: R{{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}<br>
+                                EMAIL: {{ strtoupper($candidate->email) }}
+                            @endif
+                        </span>
                     </h3>
                 </div>
             </div>
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div class="candidate-contact">
-                    @if(Session::has('frontUser'))
+                    @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
                         <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="storeFamilyFavoriteCandidate()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
-                        <a href="javaScript:;" class="btn btn-primary round" onclick="displayContact()">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                        <a href="javaScript:;" class="btn btn-primary round" onclick="displayContact(event)">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                     @else
                         <p class="mb-2"><a href="{{ route('user-login') }}" class="btn icon-with-text btn-link p-0"><i class="fa-regular fa-heart" id="candidate_favourite"></i>Save</a></p>
                         <a href="{{ route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                     @endif
                 </div>
+
+                <span class="text-danger payment_alert_msg" style="margin-left: 10px; display: none;">
+                    <strong style="font-size: small;">Please complete your payments</strong>
+                </span>
             </div>
         </div>
     </div>
@@ -270,7 +259,7 @@
             </table>
         </div>
         <div class="btn-main d-flex flex-wrap justify-content-evenly align-items-center mt-5">
-            @if(\Session::has('frontUser'))
+            @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
                 <a href="#" class="btn btn-primary round" onclick="displayContact(event)">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                 <a href="{{ route('view-candidates') }}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
             @else
@@ -278,6 +267,9 @@
                 <a href="{{ route('candidates') }}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
             @endif
         </div>
+        <span class="text-danger payment_alert_msg" style="margin-left: 220px; display: none;">
+            <strong style="font-size: small;">Please complete your payments</strong>
+        </span>
     </div>
 </div>
 
@@ -305,42 +297,44 @@
         <p>{{ isset($reviews->review_note) ? $reviews->review_note : 'No review' }}</p>
         <!-- write-review-form -->
         <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 me-auto">
-            <form class="mt-5" name="candidate_review_form" action="{{ route('store-candidate-reviews') }}" enctype="multipart/form-data" method="post">
-                @csrf
-                <input type="hidden" name="family_id" value="{{ isset($loginUser->role) && $loginUser->role == 'family' ? $loginUser->id : null }}">
-                <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
-                <div class="form-input mb-2">
-                    <div class="rating-star">
-                        <input type="radio" name="review_rating_count" id="rating-5" value="5">
-                        <label for="rating-5"></label>
-                        <input type="radio" name="review_rating_count" id="rating-4" value="4">
-                        <label for="rating-4"></label>
-                        <input type="radio" name="review_rating_count" id="rating-3" value="3">
-                        <label for="rating-3"></label>
-                        <input type="radio" name="review_rating_count" id="rating-2" value="2">
-                        <label for="rating-2"></label>
-                        <input type="radio" name="review_rating_count" id="rating-1" value="1"> 
-                        <label for="rating-1"></label>
+            @if(session()->has('frontUser') && session()->get('frontUser') == "family")
+                <form class="mt-5" name="candidate_review_form" action="{{ route('store-candidate-reviews') }}" enctype="multipart/form-data" method="post">
+                    @csrf
+                    <input type="hidden" name="family_id" value="{{ isset($loginUser->role) && $loginUser->role == 'family' ? $loginUser->id : null }}">
+                    <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
+                    <div class="form-input mb-2">
+                        <div class="rating-star">
+                            <input type="radio" name="review_rating_count" id="rating-5" value="5">
+                            <label for="rating-5"></label>
+                            <input type="radio" name="review_rating_count" id="rating-4" value="4">
+                            <label for="rating-4"></label>
+                            <input type="radio" name="review_rating_count" id="rating-3" value="3">
+                            <label for="rating-3"></label>
+                            <input type="radio" name="review_rating_count" id="rating-2" value="2">
+                            <label for="rating-2"></label>
+                            <input type="radio" name="review_rating_count" id="rating-1" value="1"> 
+                            <label for="rating-1"></label>
+                        </div>
+                        @if ($errors->has('review_rating_count'))
+                            <span class="text-danger">
+                                <strong>{{ $errors->first('review_rating_count') }}</strong>
+                            </span>
+                        @endif
                     </div>
-                    @if ($errors->has('review_rating_count'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('review_rating_count') }}</strong>
-                        </span>
-                    @endif
-                </div>
-                <div class="form-input mb-2">
-                    <label for="write_review">Review</label>
-                    <textarea id="review_note" name="review_note" placeholder="" class="form-field" rows="5"></textarea>
-                    @if ($errors->has('review_note'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('review_note') }}</strong>
-                        </span>
-                    @endif
-                </div>
-                <div class="form-input-btn">
-                    <input type="submit" class="btn btn-primary round" value="Submit">
-                </div>
-            </form>
+                    <div class="form-input mb-2">
+                        <label for="write_review">Review</label>
+                        <textarea id="review_note" name="review_note" placeholder="" class="form-field" rows="5"></textarea>
+                        @if ($errors->has('review_note'))
+                            <span class="text-danger">
+                                <strong>{{ $errors->first('review_note') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-input-btn">
+                        <input type="submit" class="btn btn-primary round" value="Submit">
+                    </div>
+                </form>
+            @endif
         </div>
     </div>
 </div>
@@ -352,7 +346,9 @@
 <script type="text/javascript">
 function storeFamilyFavoriteCandidate(){
     var family_id = {{ isset($loginUser->id) ? $loginUser->id : 0 }};
-    if(family_id != 0){
+    var role      = "{{ isset($loginUser->role) ? $loginUser->role : " " }}";
+
+    if(family_id != 0 && role == "family"){
         $.ajax({
             url: "{{ url('store-family-favourite-candidate') }}",
             type: "POST",
@@ -402,6 +398,13 @@ function equalHeight(resize) {
 }
 
 function displayContact(event){
+    var payments_status = {{ isset($payments->payment_status) ? 1 : 0 }};
+    if(payments_status == 0){
+        event.preventDefault();
+        $(".payment_alert_msg").css("display", "block");
+        return false;
+    }
+    $(".payment_alert_msg").css("display", "none");
     $("#candidate_contact").css("display", "block");
 }
 

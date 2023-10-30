@@ -8,6 +8,7 @@ use App\PreviousExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\FrontUserSubscription;
 use App\Packages;
 use Mail;
 use Session;
@@ -240,15 +241,17 @@ class FrontRegisterController extends Controller
             "updated_at"                    => date("Y-m-d H:i:s"),
         ]);
 
-        $status             = $this->store_need_babysitter($data, $familyId);
-        $package            = Packages::find($request->package);
-        $marital_status     = $this->send_notification_email($request->all(), 'family');
+        $status              = $this->store_need_babysitter($data, $familyId);
+        $package             = Packages::find($request->package);
+        $mail_sent_status    = $this->send_notification_email($request->all(), 'family');
+        $user_subscription   = $this->store_user_subscription($data, $familyId);
 
         /*payment details*/
-        $data['amount']     = $package->price;
-        $data['item_name']  = $package->name;
-        $data['custom_int1']= $familyId;
-        $data['profile']    = null;
+        $data['amount']         = $package->price;
+        $data['item_name']      = $package->name;
+        $data['custom_int1']    = $familyId;
+        $data['custom_int2']    = $request->package;
+        $data['profile']        = null;
 
         /*redirect to payment api*/
         return redirect()->route('payment-process')->with(['guestUser' => $data]);
@@ -270,5 +273,12 @@ class FrontRegisterController extends Controller
             $mail->to($emailTo, $name)->subject('New Candidate Registration')->setBody($message, 'text/html');
             $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
         });
+    }
+
+    public function store_user_subscription($user, $familyId){
+        $data['front_user_id']  = $familyId;
+        $data['package_id']     = $user['package'];
+        $data['date']           = date("Y-m-d H:i:s");
+        return FrontUserSubscription::create($data);
     }
 }

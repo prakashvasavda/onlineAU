@@ -17,7 +17,7 @@ class PaymentController extends Controller{
 
     public function process_payment(Request $request){
         /*GUEST USER PAYMENT*/
-        $guest           = Session::has('guestUser') ? Session::get('guestUser') : null;
+        $guest          = Session::has('guestUser') ? Session::get('guestUser') : null;
 
         /*Merchant details*/
         $merchant_id    = env('PAYFAST_MERCHANT_ID');
@@ -28,6 +28,7 @@ class PaymentController extends Controller{
         $name_last      = Session::has('frontUser') ? $request->name_last     : $guest['name'];
         $email_address  = Session::has('frontUser') ? $request->email_address : $guest['email'];
         $custom_int1    = Session::has('frontUser') ? $request->custom_int1   : $guest['custom_int1'];
+        $custom_int2    = Session::has('frontUser') ? $request->custom_int2   : $guest['custom_int2'];
 
         /*Transaction details*/
         $amount         = Session::has('frontUser') ? $request->amount    : $guest['amount'];
@@ -55,6 +56,7 @@ class PaymentController extends Controller{
             'email_address' => $email_address,
             'm_payment_id'  => $m_payment_id,
             'custom_int1'   => $custom_int1,
+            'custom_int1'   => $custom_int2,
         );
 
         $ch = curl_init();
@@ -87,7 +89,8 @@ class PaymentController extends Controller{
         flush();
 
         $data               = $request->all();
-        $data['user_id']    = isset($request->custom_int1) ? $request->custom_int1 : null;
+        $data['user_id']    = $request->custom_int1;
+        $data['user_id']    = $request->custom_int2;
         $status             = (isset($data) && !empty($data)) ? Payment::create($data) : null;
 
         \Log::info(print_r($request->all(), true));

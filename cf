@@ -1,0 +1,472 @@
+[33mcommit 337d4cb91d3ea6ecf44d9601ddc32d2a74bbce52[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Mon Oct 30 09:58:05 2023 +0530
+
+    candidate details feature
+
+[33mcommit a3211d0d870956dd3b3c1dcca3b8a399acbb3d4d[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Mon Oct 30 09:04:14 2023 +0530
+
+    making changes in services section from home page
+
+[33mcommit 8c2d27e0f3391e4a5ec877e987f135a88928e1f6[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Fri Oct 27 12:08:29 2023 +0530
+
+    work updates for 26th Oct 2023 tasks
+
+[33mcommit 9254d29d07a78ec15b729da6e65750aef0ea138d[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 26 20:06:13 2023 +0530
+
+    displaying favorite and all candidate at view candidate page
+
+[33mcommit dae85266e421c68aed0707adb09b1de899e62997[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 26 19:11:58 2023 +0530
+
+    updating mail functionality
+
+[33mcommit ccca23bf3d42ec946a1be2435d13c4c24aab8580[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 26 18:38:50 2023 +0530
+
+    candidate signup redirect to payment gateway
+
+[33mcommit 93bff855bab7428b08820e608702f8dd5bf39441[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 26 10:52:52 2023 +0530
+
+    making changes in candidate favorite feature
+
+[33mcommit 252a1a0ae02c2020d2059689129453c29cea5fc7[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 26 09:01:11 2023 +0530
+
+    making changes for 24th Oct 2023 on client response
+
+[33mcommit a73b89bd33ff472e936c0b51b5bbe7cf3ed2dc28[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Wed Oct 25 12:15:13 2023 +0530
+
+    Change for admin redirect
+
+[33mcommit 316c61a4bf938a3bd49f2b25f8a7675f4b95775b[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 24 20:11:43 2023 +0530
+
+    adding signup page
+
+[33mcommit a9c11c67eee2f2f8ad40bc35a8a0d0cd066165f2[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 24 19:38:07 2023 +0530
+
+    registered as candidate tasks
+
+[33mcommit a43ef3c08f84ee5e808605a0270a16a9d7ac08bc[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 24 18:12:39 2023 +0530
+
+    making changes in candidate detail page
+
+[33mcommit aaba7546436087c77fd4eb7b7f666f56e6eae695[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 24 18:06:47 2023 +0530
+
+    making changes in candidate detail page
+
+[33mcommit 6427552ba74140a2eb3f28631693c5af1b3dfd69[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 24 17:26:03 2023 +0530
+
+    all tasks from When logged in as FAMILY
+
+[33mcommit de7de6c2e45428d86e389dec7e5e4907edf21864[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Mon Oct 23 19:56:28 2023 +0530
+
+    adding validation
+
+[33mcommit 51b6b76dc1535196935e0b718d960cebf442ac79[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Mon Oct 23 19:39:34 2023 +0530
+
+    creading candidate edit functionality from the admin side
+
+[33mcommit 23e20d3551c613a7f8e32bf82310a8f44e8f262f[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Mon Oct 23 08:32:03 2023 +0530
+
+    making chenges in search functionality
+
+[33mcommit bc6da1c7ec2acfcc3e00e04c196a3385bae746bb[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Fri Oct 20 19:30:41 2023 +0530
+
+    displaying user transactions and reviews in the admin pannel
+
+[33mcommit 368bf02a8b7b27c1790ed467c2f67735489b809f[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Fri Oct 20 14:50:37 2023 +0530
+
+    displaying candidate other specilities in the candidate detail page
+
+[33mcommit 21727b16be29d79a041c3207f62a36a6801abd37[m
+Merge: 53e5bc7 cba8687
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 19 19:31:16 2023 +0530
+
+    Merge branch 'main' of https://github.com/prakashvasavda/onlineAU into main
+
+[33mcommit 53e5bc7c10a1313e94b4b163413c418813fa895f[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 19 19:30:37 2023 +0530
+
+    displaying reviews rating from the search results
+
+[33mcommit cba868742109c51cb683ba1029b1e49e3fb4df38[m
+Merge: f9fae22 0d4402b
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Thu Oct 19 17:47:58 2023 +0530
+
+    Merge branch 'main' of https://github.com/prakashvasavda/onlineAU into main
+
+[33mcommit f9fae22edf72e437ac48ac40ec9151c37935a625[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Thu Oct 19 17:47:51 2023 +0530
+
+    Css changes
+
+[33mcommit 0d4402b9ecbd6f9250e17983119287f754ed21a4[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 19 17:39:49 2023 +0530
+
+    adding candidate reviews from family section
+
+[33mcommit 5d9091f8abed6e3b45ad1b44a74fa84640608e64[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 19 16:04:40 2023 +0530
+
+    adding manage payment section
+
+[33mcommit a58f4496475cc25318a9d111851e219c9bedbf66[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 19 15:21:08 2023 +0530
+
+    displaying payment details
+
+[33mcommit 8e0b86c8d542733418558d7d8080f4b083fe9ab2[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Thu Oct 19 10:54:05 2023 +0530
+
+    Css changes
+
+[33mcommit 9366e6770277ca9726b0ab057fece5f3bbfb040a[m
+Merge: f958965 d467b14
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Thu Oct 19 10:34:50 2023 +0530
+
+    Merge branch 'main' of https://github.com/prakashvasavda/onlineAU into main
+
+[33mcommit f95896508a21163be7dabb7415827daedda89738[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Thu Oct 19 10:34:44 2023 +0530
+
+    Search changes
+
+[33mcommit d467b14a7c9ec888f81378dbab46d6c2d732b11c[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Wed Oct 18 20:21:59 2023 +0530
+
+    adding payment success route
+
+[33mcommit 27c560468ab25e526389e68387f5cb5371339880[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Wed Oct 18 20:19:59 2023 +0530
+
+    integrating with payfast api and store api response in the database
+
+[33mcommit 0f13ac0701111cebe57478918593e5661ddfb2fa[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Wed Oct 18 17:28:35 2023 +0530
+
+    Search functionality
+
+[33mcommit c9a8fbf7b9b2d4c65d84bc4189c6a0f16dfaf92a[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Wed Oct 18 15:32:40 2023 +0530
+
+    redesigning family and candidate favorite table schema
+
+[33mcommit b7c243cab0eddb6cdbc005b9022cf79555598ca1[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Wed Oct 18 10:14:21 2023 +0530
+
+    Css changes again
+
+[33mcommit 3e0f244fa4fec9f3e41577fd5cd232b89051c09b[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Wed Oct 18 10:06:55 2023 +0530
+
+    Css changes
+
+[33mcommit 84c8ba725d71e3eb975278fe55f38068f6ae3862[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 17 18:08:59 2023 +0530
+
+    making changes in the candidate favorite return http status
+
+[33mcommit 39eb61c0c3b0dbc52cf272c01be67b4c57bd7e5d[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 17 17:55:08 2023 +0530
+
+    minor changes in the function which return family favorite candidates
+
+[33mcommit 2120f4ed1ccfc327fce93eeef7a6b301e34db8a7[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 17 17:44:50 2023 +0530
+
+    creating candidate review and favoriate feature from family section
+
+[33mcommit 02fa7b43eef1b8d1a4c98ed9b1392fc013ea444b[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 17 14:19:01 2023 +0530
+
+    displaying family review count and candidate favoriate on the view family page
+
+[33mcommit 7b6880eca750e57177639ecf4329892ba831cfbc[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 17 12:40:28 2023 +0530
+
+    family review and favorite feature
+
+[33mcommit cf4e5182c138ca42662c755aec7ec7bf7cab0420[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Mon Oct 16 18:43:30 2023 +0530
+
+    Changes for google map
+
+[33mcommit 512ebe47d9da37f75f7da16b9bc6edba38f4dcf5[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Mon Oct 16 18:29:09 2023 +0530
+
+    Fix jquery issue for google map and search box
+
+[33mcommit d29fe2533b1de9b9427e64633300d06c34bfe556[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Mon Oct 16 15:48:25 2023 +0530
+
+    fixing error in dynamic fields in the candidate register page
+
+[33mcommit 7e17fddf7647f1cad24be2fa69671851dc8d41b9[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Mon Oct 16 08:30:47 2023 +0530
+
+    creating table relationship
+
+[33mcommit 4b6b31e4bff733df16b702254df7c93a2ce238fc[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Sat Oct 14 00:52:03 2023 +0530
+
+    fixing select dropdown bug
+
+[33mcommit f9c69081c618cae6ff448db5db99e78e960bffc1[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Fri Oct 13 20:42:10 2023 +0530
+
+    showing previous entered values on experiance section in candidate regiter form
+
+[33mcommit b70d04511ad545b3c93b1cff316347cfa4a3cd9a[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Fri Oct 13 20:39:07 2023 +0530
+
+    resolving marge conflict
+
+[33mcommit 05807f250bb84ab71e8bcb4a3051ee18b8522c5a[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Fri Oct 13 18:47:08 2023 +0530
+
+    Implement Google Map search functionality
+
+[33mcommit 436329126f8c9fa1f00267c3bf8be1dc8e7d704d[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Thu Oct 12 17:26:30 2023 +0530
+
+    Client feedback changes
+
+[33mcommit 002a84e33b7f894023504d698335c2184b8921f6[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Thu Oct 12 17:06:28 2023 +0530
+
+    Search box design
+
+[33mcommit 6c4fd1f88737b690d79d95a52f8a32736164fbd7[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Thu Oct 12 16:48:14 2023 +0530
+
+    Search box added in home page
+
+[33mcommit 6ce7e2eb1f7b4f5fc5e4f00460d1d311f8348942[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Thu Oct 12 14:53:45 2023 +0530
+
+    Search page
+
+[33mcommit 5a45fa9160d0a0caa5b324cb9f0ce3d9d3756f40[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 12 13:05:30 2023 +0530
+
+    giving user the ability to add multiple services in manage profile section
+
+[33mcommit b2d31d617845815e6a017bbc14e60afe7b81dca2[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Wed Oct 11 18:31:12 2023 +0530
+
+    intergrating with payfast api and read response data
+
+[33mcommit a0431259ce1594ca7337f057a32ca11b71127b53[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Wed Oct 11 12:19:59 2023 +0530
+
+    Header changes
+
+[33mcommit 648be2bcd141a50a883ee721012e99bb41bf4295[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Wed Oct 11 11:54:44 2023 +0530
+
+    Changes as per the feedback
+
+[33mcommit e9d316da8f69abf667adfa2b5377d78212cef282[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Wed Oct 11 10:56:39 2023 +0530
+
+    adding user protected routes
+
+[33mcommit 4582913b1fb3aa0338b2249b2b57a96a36fa3160[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Wed Oct 11 04:11:01 2023 +0530
+
+    integrating payfast api
+
+[33mcommit c63b22dcaa9ce1cb1c1fadbce7e638afc9605ac2[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Mon Oct 9 20:31:54 2023 +0530
+
+    changes in family register page
+
+[33mcommit 75a0b45221efca0d92dff35d4320cf907c2cf517[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Mon Oct 9 19:18:36 2023 +0530
+
+    adding a feature to keep the content in form as loaded when you receive the Error message
+
+[33mcommit 72678193bc02c52bef6f0541006168194de3165a[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Mon Oct 9 15:46:08 2023 +0530
+
+    Contact functionality implement
+
+[33mcommit 48750b6027443c2e9382ae412ea8ce67692b2ad9[m
+Merge: 423b597 04264e2
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Mon Oct 9 14:52:08 2023 +0530
+
+    Merge branch 'main' of https://github.com/prakashvasavda/onlineAU into main
+
+[33mcommit 423b5972b9998870c79ae602a4179434ce67cf61[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Mon Oct 9 14:51:39 2023 +0530
+
+    Header changes
+
+[33mcommit 04264e2c8a6fcc8726e8e0519e2a4115a3c4dba1[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Sat Oct 7 16:35:10 2023 +0530
+
+    manage family profile
+
+[33mcommit 8b79915bcde341d07331bf110bba3310676bc139[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Fri Oct 6 20:41:09 2023 +0530
+
+    creating family manage profile
+
+[33mcommit 2c0f36a7c684aeabbacd5300c8036c860c4055e5[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Fri Oct 6 19:32:09 2023 +0530
+
+    candidate manage profile
+
+[33mcommit 5f4e646fb1c3d4268b270990abd57708488a60e0[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Thu Oct 5 20:45:00 2023 +0530
+
+    Header changes
+
+[33mcommit ee0995b1058e59c9e8db996c5708900bf079f2a8[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Thu Oct 5 20:02:56 2023 +0530
+
+    dislaying family detail and displaying all candidates
+
+[33mcommit 93c5cbcd2b282d5b03fe5868e783965668b3f6a6[m
+Merge: 01b4f8f 1d67166
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Wed Oct 4 19:28:32 2023 +0530
+
+    Fix confilict
+
+[33mcommit 01b4f8f42f433cf003435041df3bc8cb6d8afa74[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Wed Oct 4 19:27:38 2023 +0530
+
+    changes
+
+[33mcommit 1d67166e5816c1b99569993d2cd17de0d11f9718[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Wed Oct 4 17:53:51 2023 +0530
+
+    adding validation in the forms
+
+[33mcommit e3d90e9d8fb0d9626ed5f5827644240f2865d4a8[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Wed Oct 4 09:37:59 2023 +0530
+
+    creating candidate favorite and review feature
+
+[33mcommit c97543748c6f84f25c78c376d7cf84afd5611c6d[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Tue Oct 3 20:23:02 2023 +0530
+
+    package changes
+
+[33mcommit c7b39b9a9716a60a9a4837e74b0ad3a4a39440e3[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Tue Oct 3 16:41:28 2023 +0530
+
+    displaying candidate details
+
+[33mcommit 6fccd285f4e2153120bfdb40f87ce2a16a7d65a9[m
+Author: jatinbphp <jatin.b.php@gmail.com>
+Date:   Mon Oct 2 20:36:44 2023 +0530
+
+    displaying dynamic candidate details
+
+[33mcommit f8ad5a6d5f812c2aa9ea9e1f53b246330ce41e82[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Mon Oct 2 16:45:07 2023 +0530
+
+    Family page show candidates slider data dyanamic
+
+[33mcommit 77e9a84ead66cd1485a1867eb35dcc9b3bf5f037[m
+Author: Prakash Vasavda <prakash.v.php@gmail.com>
+Date:   Mon Oct 2 14:43:03 2023 +0530
+
+    First commit
+
+[33mcommit d78edc47e26e2b876ff9f10ff28cced8749aebee[m
+Author: prakashvasavda <96465483+prakashvasavda@users.noreply.github.com>
+Date:   Mon Oct 2 14:41:00 2023 +0530
+
+    Initial commit

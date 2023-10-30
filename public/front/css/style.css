@@ -1894,3 +1894,25 @@ header {
  object-fit: cover;
  object-position: center;
 }
+.disabled-heart {
+    color: #ccc; 
+    text-decoration: line-through; 
+    pointer-events: none; 
+}
+.about-candidate-content, 
+.about-candidate-title {
+    width: 50%;
+    height: 100%;
+}
+.about-candidate-title {
+    align-items: center;
+}
+.about-candidate-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+.about-candidate-box h4 {
+    text-transform: uppercase;
+}

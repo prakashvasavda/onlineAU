@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\CandidateFavoriteFamily;
 use App\FamilyFavoriteCandidate;
+use App\FrontUserSubscription;
 use App\CandidateFavourite;
 use App\PreviousExperience;
 use App\NeedsBabysitter;
@@ -172,6 +173,7 @@ class FrontFamilyController extends Controller{
         $data['menu']                           = 'candidate detail';
         $data['candidate']                      = FrontUser::where('id', $candidateId)->where('status', '1')->first();
         $data['availability']                   = NeedsBabysitter::where('family_id', $candidateId)->first();
+        $data['payments']                       = Session::has('frontUser') ? Payment::where('user_id', Session::get('frontUser')->id)->first() : null;
         $data['candidate']['other_services']    = isset($data['candidate']->other_services) ? implode(", ", json_decode($data['candidate']->other_services, true)) : null;
         $data['morning_availability']           = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
         $data['afternoon_availability']         = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
@@ -214,9 +216,17 @@ class FrontFamilyController extends Controller{
     }
 
     public function transactions(){
-        $features   = Features::get()->toArray();
-        $packages   = Packages::get()->toArray();
-        $payment    = Payment::where('user_id', Session::get('frontUser')->id)->first();
-        return view('user.family.pricing', compact('packages', 'features', 'payment'));
+        $features                       = Features::get()->toArray();
+        $packages                       = Packages::get()->toArray();
+        $user_subscription              = FrontUserSubscription::where('front_user_id', Session::get('frontUser')->id)->latest()->first();
+        $user_subscription_expiry_date  = date('Y-m-d', strtotime("+1 months", strtotime($user_subscription->date)));
+        
+
+        $currentDate = now(); 
+        $user_subscription_expiry_date = \Carbon\Carbon::parse($user_subscription_expiry_date); 
+
+
+        $payment                        = Payment::where('user_id', Session::get('frontUser')->id)->first();
+        return view('user.family.pricing', compact('packages', 'features', 'payment', 'user_subscription_expiry_date', 'currentDate'));
     }
 }
