@@ -30,7 +30,13 @@
 								        </div>
 								        <div class="col-md-8">
 								            <div class="card-body">
-								            	<div class="pos-icon"><i class="fa-regular fa-heart" onclick="addFamilyFavorite(event)"></i></div>
+								            	<div class="pos-icon">
+								            		@if(\Session::has('frontUser'))
+								            			<i class="fa-regular fa-heart"></i>
+								            		@else
+								            			<i class="fa-regular fa-heart" onclick="event.preventDefault(); window.location.href = '{{ route('user-login') }}';"></i>
+								            		@endif								            		
+								            	</div>
 								                <h5 class="card-title">{{ $value->name }}</h5>
 								                <p class="card-text">{{ $value->area }}</p>
 								                <p class="card-text">

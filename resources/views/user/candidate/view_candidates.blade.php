@@ -117,10 +117,10 @@
 									            			@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
 									            				<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
 									            			@else
-									            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+									            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
 									            			@endif
 									            		@else
-									            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+									            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
 									            		@endif
 									            	</div>
 									                <h5 class="card-title">{{ $value->name }}</h5>

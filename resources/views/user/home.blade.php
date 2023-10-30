@@ -64,48 +64,39 @@
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <a href="{{ route('candidate-register','petsitters') }}">
+                <a href="{{ route('candidates-service', ['service' => 'petsitters']) }}">
                     <div class="service-box">
                         <img src="{{ asset('front/images/petSitting-icon1.png') }}" alt="">
                         <h3 class="service-name">Pet Sitting</h3>
                     </div>
                 </a>
-                <div class="contact-inner mt-3">
-                    <a href="{{ route('candidates-service', ['service' => 'petsitters']) }}" class="btn btn-primary round" style="font-size: small;">View All Candidates</a>
-                </div>
             </div>
+
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <a href="{{ route('candidate-register','au-pairs') }}">
+                <a href="{{ route('candidates-service', ['service' => 'au-pairs']) }}">
                     <div class="service-box">
                         <img src="{{ asset('front/images/auPairs-icon1.png') }}" alt="">
                         <h3 class="service-name">Au-Pairs</h3>
                     </div>
                 </a>
-                <div class="contact-inner mt-3">
-                    <a href="{{ route('candidates-service', ['service' => 'au-pairs']) }}" class="btn btn-primary round" style="font-size: small;">View All Candidates</a>
-                </div>
             </div>
+
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <a href="{{ route('candidate-register','nannies') }}">
+                <a href="{{ route('candidates-service', ['service' => 'nannies']) }}">
                     <div class="service-box">
                         <img src="{{ asset('front/images/nannies-icon1.png') }}" alt="">
                         <h3 class="service-name">nannies</h3>
                     </div>
                 </a>
-                <div class="contact-inner mt-3">
-                    <a href="{{ route('candidates-service', ['service' => 'nannies']) }}" class="btn btn-primary round" style="font-size: small;">View All Candidates</a>
-                </div>
             </div>
+
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <a href="{{ route('candidate-register','babysitters') }}">
+                <a href="{{ route('candidates-service', ['service' => 'babysitters']) }}">
                     <div class="service-box">
                         <img src="{{ asset('front/images/babysitting-icon1.png') }}" alt="">
                         <h3 class="service-name">babysitting</h3>
                     </div>
                 </a>
-                <div class="contact-inner mt-3">
-                    <a href="{{ route('candidates-service', ['service' => 'babysitters']) }}" class="btn btn-primary round" style="font-size: small;">View All Candidates</a>
-                </div>
             </div>
         </div>
     </div>
