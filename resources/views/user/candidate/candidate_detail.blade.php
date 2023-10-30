@@ -43,7 +43,7 @@
                         SPECIALITY: {{ $candidate->role ? strtoupper($candidate->role) : "-" }}<br>
                         @if(isset($candidate->other_services)) OTHER SPECIALITY: {{ strtoupper($candidate->other_services) }}<br>  @endif
                         HOURLY RATE: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
-                        CONTACT NUMBER: R{{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}
+                        <span id="candidate_contact" style="display: none;">@if(\Session::has('frontUser')) CONTACT NUMBER: R{{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}@endif</span>
                     </h3>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                 <div class="candidate-contact">
                     @if(Session::has('frontUser'))
                         <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="storeFamilyFavoriteCandidate()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
-                        <a href="javaScript:;" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                        <a href="javaScript:;" class="btn btn-primary round" onclick="displayContact()">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                     @else
                         <p class="mb-2"><a href="{{ route('user-login') }}" class="btn icon-with-text btn-link p-0"><i class="fa-regular fa-heart" id="candidate_favourite"></i>Save</a></p>
                         <a href="{{ route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
@@ -270,11 +270,12 @@
             </table>
         </div>
         <div class="btn-main d-flex flex-wrap justify-content-evenly align-items-center mt-5">
-            <a href="{{ Session::has('frontUser') ? '#' : route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
-            @if(Session::has('frontUser'))
-                <a href="{{route('view-candidates')}}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
+            @if(\Session::has('frontUser'))
+                <a href="#" class="btn btn-primary round" onclick="displayContact(event)">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                <a href="{{ route('view-candidates') }}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
             @else
-                <a href="{{route('candidates')}}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
+                <a href="{{ route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                <a href="{{ route('candidates') }}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
             @endif
         </div>
     </div>
@@ -398,6 +399,10 @@ function equalHeight(resize) {
         elements[i].className = elements[i].className + " show";
       }
     }
+}
+
+function displayContact(event){
+    $("#candidate_contact").css("display", "block");
 }
 
 </script>
