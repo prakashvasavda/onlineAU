@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+
 <div class="single-form-section">
     <div class="container">
         <div class="title-main">
@@ -40,7 +41,7 @@
                 <div class="form-input">
                     <div class="form-input">
                         <label for="email">Email Address <span class="text-danger">*</span></label>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="" class="form-field @error('email') is-invalid @enderror" autocomplete="off">
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="" class="form-field @error('email') is-invalid @enderror">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -61,6 +62,27 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="id_number">ID number <span class="text-danger">*</span></label>
+                <input type="number" id="id_number" name="id_number" value="{{ old('id_number') }}" placeholder="" class="form-field">
+                @if ($errors->has('id_number'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('id_number') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="cell_number">Cell Number <span class="text-danger">*</span></label>
+                <input type="number" id="cell_number" name="cell_number" value="{{ old('cell_number') }}" placeholder="" class="form-field">
+                @if ($errors->has('cell_number'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('cell_number') }}</strong>
+                    </span>
+                @endif
+            </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="address">Your Address <span class="text-danger">*</span></label>
@@ -137,7 +159,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="age_children">Age of children <span class="text-danger">*</span></label>
                     <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
@@ -154,60 +176,111 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
+                    <select id="gender_of_children" name="gender_of_children[]" class="form-field">
+                        <option selected="selected" disabled>Select</option>
+                        <option value="gradeschooler" {{ (!empty(old('gender_of_children')) && in_array("male", old('gender_of_children')))? 'selected' : '' }}>Male</option>
+                        <option value="toddler" {{ (!empty(old('gender_of_children')) && in_array("female", old('gender_of_children')))? 'selected' : '' }}>Female</option>
+                    </select>
+                    @if ($errors->has('gender_of_children'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('gender_of_children') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div id="more_childern" class="row p-0 m-0"></div>
 
-             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="describe_kids">Describe your kids in 3 words <span class="text-danger">*</span></label>
-                    <select id="describe_kids" name="describe_kids[]" multiple class="form-field @error('describe_kids') is-invalid @enderror" >
-                        <option value="energetic" {{ (!empty(old('describe_kids')) && in_array('energetic', old('describe_kids')) ? 'selected' : '') }}>Energetic</option>
-                        <option value="curious" {{ (!empty(old('describe_kids')) && in_array('curious', old('describe_kids')) ? 'selected' : '') }}>Curious</option>
-                        <option value="sporty" {{ (!empty(old('describe_kids')) && in_array('sporty', old('describe_kids')) ? 'selected' : '') }}>Sporty</option>
-                        <option value="creative" {{ (!empty(old('describe_kids')) && in_array('creative', old('describe_kids')) ? 'selected' : '') }}>Creative</option>
-                        <option value="friendly" {{ (!empty(old('describe_kids')) && in_array('friendly', old('describe_kids')) ? 'selected' : '') }}>Friendly</option>
-                        <option value="talkative" {{ (!empty(old('describe_kids')) && in_array('talkative', old('describe_kids')) ? 'selected' : '') }}>Talkative</option>
-                        <option value="calm" {{ (!empty(old('describe_kids')) && in_array('calm', old('describe_kids')) ? 'selected' : '') }}>Calm</option>
-                        <option value="playful" {{ (!empty(old('describe_kids')) && in_array('playful', old('describe_kids')) ? 'selected' : '') }}>Playful</option>
-                        <option value="funny" {{ (!empty(old('describe_kids')) && in_array('funny', old('describe_kids')) ? 'selected' : '') }}>Funny</option>
-                        <option value="intelligent" {{ (!empty(old('describe_kids')) && in_array('intelligent', old('describe_kids')) ? 'selected' : '') }}>Intelligent</option>
-                        <option value="affectionate" {{ (!empty(old('describe_kids')) && in_array('affectionate', old('describe_kids')) ? 'selected' : '') }}>Affectionate</option>
-                        <option value="independent" {{ (!empty(old('describe_kids')) && in_array('independent', old('describe_kids')) ? 'selected' : '') }}>Independent</option>
+                    <label for="what_do_you_need">What do you need <span class="text-danger">*</span></label>
+                    <select id="what_do_you_need" name="what_do_you_need" class="form-field">
+                        <option selected="selected" disabled>Select</option>
+                        <option value="babysitter" {{ old('what_do_you_need') == "babysitter" ? "selected" : " " }}>Babysitter</option>
+                        <option value="babysitter" {{ old('what_do_you_need') == "babysitter" ? "selected" : " " }}>Petsitter</option>
+                        <option value="babysitter" {{ old('what_do_you_need') == "babysitter" ? "selected" : " " }}>Babysitter</option>
+                        <option value="babysitter" {{ old('what_do_you_need') == "babysitter" ? "selected" : " " }}>Babysitter</option>
                     </select>
-                    @error('describe_kids')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                    @if ($errors->has('profile'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('profile') }}</strong>
                         </span>
-                    @enderror
+                    @endif
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="family_babysitter_comfortable">We need a babysitter comfortable with <span class="text-danger">*</span></label>
-                    <select id="family_babysitter_comfortable" name="family_babysitter_comfortable[]" multiple class="form-field @error('family_babysitter_comfortable') is-invalid @enderror" >
-                        <option value="" disabled="disabled">Select</option>
-                        <option value="pets" {{ (!empty(old('family_babysitter_comfortable')) && in_array("pets", old('family_babysitter_comfortable'))) ? "selected" : '' }}>Pets</option>
-                        <option value="cooking" {{ (!empty(old('family_babysitter_comfortable')) && in_array("cooking", old('family_babysitter_comfortable'))) ? "selected" : '' }}>Cooking</option>
-                        <option value="chores" {{ (!empty(old('family_babysitter_comfortable')) && in_array("chores", old('family_babysitter_comfortable'))) ? "selected" : '' }}>Chores</option>
-                        <option value="homeworkassistance" {{ (!empty(old('family_babysitter_comfortable')) && in_array("homeworkassistance", old('family_babysitter_comfortable'))) ? "selected" : '' }}>Homework assistance</option>
-                    </select>
-                     @error('family_babysitter_comfortable')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="family_types_babysitter">Type of babysitter needed <span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
+                    <label for="what_do_you_need">What do you need<span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
                     <ul class="radio-box-list">
                         <li class="radio-box-item"><input type="radio" name="family_types_babysitter" checked value="babysitter" {{ old('family_types_babysitter') === 'babysitter' ? 'checked' : '' }}><label>Babysitter</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="petsitter" {{ old('family_types_babysitter') === 'petsitter' ? 'checked' : '' }}><label>Petsitter</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="au_pair" {{ old('family_types_babysitter') === 'au_pair' ? 'checked' : '' }}><label>Au-Pair</label></li>
                         <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="nanny" {{ old('family_types_babysitter') === 'nanny' ? 'checked' : '' }}><label>Nanny</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="other parent (parents-help-parents)" {{ old('family_types_babysitter') === 'other parent (parents-help-parents)' ? 'checked' : '' }}><label>Other parent (parents-help-parents)</label></li>
                     </ul>
                 </div>
             </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="start_date">Start date <span class="text-danger">*</span></label>
+                    <input type="date" id="start_date" name="start_date" class="form-field">
+                    @if ($errors->has('start_date'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('start_date') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="duration_needed">Duration needed <span class="text-danger">*</span></label>
+                    <input type="text" id="duration_needed" name="duration_needed" class="form-field">
+                    @if ($errors->has('duration_needed'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('duration_needed') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="petrol_reimbursement">Petrol Reimbursement <span class="text-danger">*</span></label>
+                    <select id="petrol_reimbursement" name="petrol_reimbursement" class="form-field">
+                        <option selected="selected" disabled>Select</option>
+                        <option value="babysitter" {{ old('petrol_reimbursement') == "aa_rates" ? "selected" : " " }}>AA rates</option>
+                        <option value="babysitter" {{ old('petrol_reimbursement') == "included_in_salary" ? "selected" : " " }}>Included in salary</option>
+                        <option value="babysitter" {{ old('petrol_reimbursement') == "extra_amount" ? "selected" : " " }}>Extra amount</option>
+                    </select>
+                    @if ($errors->has('petrol_reimbursement'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('petrol_reimbursement') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="live_in_or_live_out">Live in / Live out </label>
+                    <ul class="radio-box-list">
+                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="at our home" {{ old('live_in_or_live_out') === "live_in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
+                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="at the babysitter's" {{ old('live_in_or_live_out') === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
+                    </ul>
+                    @if ($errors->has('live_in_or_live_out'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('live_in_or_live_out') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="family_location">Preferred babysitting location </label>
@@ -232,19 +305,28 @@
                     </ul>
                 </div>
             </div>
+           
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="family_notifications">Do you want to get notifications from new babysitters in your area? </label>
-                    <ul class="d-flex flex-wrap" >
-                        <li><input type="radio" checked name="family_notifications" value="yes" {{ old('family_notifications') === "yes" ? "checked" : '' }} >Yes</li>
-                        <li><input type="radio" name="family_notifications" value="no" {{ old('family_notifications') === "no" ? "checked" : '' }} >No</li>
-                    </ul>
-                    @if ($errors->has('family_notifications'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('family_notifications') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                <label for="candidate_duties">What will be the candidate’s duties. <span class="text-danger">*</span></label>
+                <textarea id="candidate_duties" name="candidate_duties" class="form-field" rows="5" >{{ old('candidate_duties') }}</textarea>
+                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+                @if ($errors->has('candidate_duties'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('candidate_duties') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="family_description">Tell a little about your family, so babysitters can get to know you. <span class="text-danger">*</span></label>
+                <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" >{{ old('family_description') }}</textarea>
+                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+                @if ($errors->has('family_description'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('family_description') }}</strong>
+                    </span>
+                @endif
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -259,15 +341,19 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="family_description">Tell a little about your family, so babysitters can get to know you. <span class="text-danger">*</span></label>
-                <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" >{{ old('family_description') }}</textarea>
-                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-                @if ($errors->has('family_description'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('family_description') }}</strong>
-                    </span>
-                @endif
+             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="family_notifications">Do you want to get notifications from new babysitters in your area? </label>
+                    <ul class="d-flex flex-wrap" >
+                        <li><input type="radio" checked name="family_notifications" value="yes" {{ old('family_notifications') === "yes" ? "checked" : '' }} >Yes</li>
+                        <li><input type="radio" name="family_notifications" value="no" {{ old('family_notifications') === "no" ? "checked" : '' }} >No</li>
+                    </ul>
+                    @if ($errors->has('family_notifications'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('family_notifications') }}</strong>
+                        </span>
+                    @endif
+                </div>
             </div>
 
             
@@ -488,6 +574,22 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <div class="form-input d-flex flex-wrap mb-2">
+                        <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions" autocomplete="off">
+                        <label class="form-check-label" for="terms_and_conditions">Accept Terms and Conditions <span class="text-danger">*</span></label>
+                    </div>
+
+                    @if ($errors->has('terms_and_conditions'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('terms_and_conditions') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="col-12">
                 <div class="form-input-btn text-center">
                     <input type="submit" class="btn btn-primary round" value="signup">
@@ -521,7 +623,31 @@ $(document).ready(function() {
         $("#more_childern").html('');
         if(no_children > 1) {
             for (var i = no_children - 1; i >= 1; i--) {
-                $("#more_childern").append('<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="age_children">Age of children</label><select name="age[]" class="form-field" ><option value="Baby" selected="selected">Baby</option><option value="Gradeschooler">Gradeschooler</option><option value="Toddler">Toddler</option><option value="Teenager">Teenager</option><option value="Preschooler">Preschooler</option></select></div></div>');
+                $("#more_childern")
+                .append(`
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-input">
+                            <label for="age_children">Age of children</label>
+                            <select name="age[]" class="form-field" >
+                                <option value="Baby" selected="selected">Baby</option>
+                                <option value="Gradeschooler">Gradeschooler</option>
+                                <option value="Toddler">Toddler</option>
+                                <option value="Teenager">Teenager</option>
+                                <option value="Preschooler">Preschooler</option>
+                            </select>
+                        </div>
+                    </div> 
+
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-input">
+                            <label for="gender_of_children">Gender of children</label>
+                            <select name="gender_of_children[]" class="form-field">
+                            <option selected="selected" disabled>Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option></select>
+                        </div>
+                    </div>
+                `);
             }
         }
     });

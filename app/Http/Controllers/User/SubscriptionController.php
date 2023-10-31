@@ -21,5 +21,6 @@ class SubscriptionController extends Controller{
             $user_subscription->update(['status' => $request->status]);
             return response()->json('success');
         }
+        return response()->json('error');
     }   
 }

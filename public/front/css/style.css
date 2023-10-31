@@ -1916,3 +1916,6 @@ header {
 .about-candidate-box h4 {
     text-transform: uppercase;
 }
+span.text-danger{
+    font-size: .875em;
+}

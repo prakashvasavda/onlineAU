@@ -22,7 +22,16 @@ class FrontRegisterController extends Controller
         if (session()->has('frontUser')) {
             return redirect()->route('home');
         }
-        return view('user.candidate_register', $data);
+
+       if($type == "au-pairs"){
+            return view('user.registration_forms.au_pairs_register', $data);
+       }elseif($type == "petsitters"){
+            return view('user.registration_forms.petsitters_register', $data);
+       }elseif($type == "nannies"){
+            return view('user.registration_forms.nannies_register', $data);
+       }else{
+            return view('user.registration_forms.babysitters_register', $data);
+       }
     }
 
     public function store_candidate(Request $request){
@@ -155,7 +164,7 @@ class FrontRegisterController extends Controller
     public function family_register(){
         $data['menu']       = "family registration";
         $data['packages']   = packages::all();
-        return view('user.family_register', $data);
+        return view('user.registration_forms.family_register', $data);
     }
 
     public function store_family(Request $request){
@@ -178,6 +187,14 @@ class FrontRegisterController extends Controller
             'family_notifications'          => "required",
             'family_description'            => "required",
             'package'                       => "required",
+
+            'cell_number'                   => "required",
+            'id_number'                     => "required",
+            'start_date'                    => "required",
+            'duration_needed'               => "required",
+            'petrol_reimbursement'          => "required",
+            'candidate_duties'              => "required",
+            'terms_and_conditions'          => "required",
         ];
         $message = [
             'name'                          => "The Name must be required",
@@ -199,6 +216,7 @@ class FrontRegisterController extends Controller
             'family_description'            => "The Family description must be required",
             'package'                       => "The payment plan is required",
         ];
+
         $validator = Validator::make($data, $rules, $message);
         if ($validator->fails()) {
             return back()->withInput()
