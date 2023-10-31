@@ -6,7 +6,7 @@
 }
 </style>
 
-@if(isset($payment) && !empty($payment) && $currentDate->lt($user_subscription_expiry_date))
+@if(isset($payment) && !empty($payment) && now()->lt($end_date))
     <div class="single-form-section">
         <div class="container">
             <div class="title-main mb-5">

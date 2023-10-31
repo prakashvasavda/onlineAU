@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPackageIdToPaymentsTable extends Migration
+class AddUserSubscriptionIdToPaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddPackageIdToPaymentsTable extends Migration
     public function up()
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->integer('package_id')->after('user_id');
+            $table->integer('user_subscription_id')->after('user_id');
         });
     }
 

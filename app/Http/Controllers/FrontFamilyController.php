@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\CandidateFavoriteFamily;
 use App\FamilyFavoriteCandidate;
-use App\FrontUserSubscription;
+use App\UserSubscription;
 use App\CandidateFavourite;
 use App\PreviousExperience;
 use App\NeedsBabysitter;
@@ -20,6 +20,8 @@ use App\Payment;
 use Validator;
 use Session;
 use DB;
+use Carbon\Carbon;
+
 
 class FrontFamilyController extends Controller{
 
@@ -216,17 +218,12 @@ class FrontFamilyController extends Controller{
     }
 
     public function transactions(){
-        $features                       = Features::get()->toArray();
-        $packages                       = Packages::get()->toArray();
-        $user_subscription              = FrontUserSubscription::where('front_user_id', Session::get('frontUser')->id)->latest()->first();
-        $user_subscription_expiry_date  = date('Y-m-d', strtotime("+1 months", strtotime($user_subscription->date)));
-        
-
-        $currentDate = now(); 
-        $user_subscription_expiry_date = \Carbon\Carbon::parse($user_subscription_expiry_date); 
-
-
-        $payment                        = Payment::where('user_id', Session::get('frontUser')->id)->first();
-        return view('user.family.pricing', compact('packages', 'features', 'payment', 'user_subscription_expiry_date', 'currentDate'));
+        $data['menu']                = "transactions";
+        $data['features']            = Features::get()->toArray();
+        $data['packages']            = Packages::get()->toArray();
+        $data['user_subscription']   = UserSubscription::where('user_id', Session::get('frontUser')->id)->where('status', 1)->latest()->first();
+        $data['end_date']            = isset($data['user_subscription']) ? Carbon::parse($data['user_subscription']['end_date']) : null;
+        $data['payment']             = Payment::where('user_id', Session::get('frontUser')->id)->first();
+        return view('user.family.pricing', $data);
     }
 }

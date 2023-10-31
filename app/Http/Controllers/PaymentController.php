@@ -27,8 +27,8 @@ class PaymentController extends Controller{
         $name_first     = Session::has('frontUser') ? $request->name_first    : $guest['name'];
         $name_last      = Session::has('frontUser') ? $request->name_last     : $guest['name'];
         $email_address  = Session::has('frontUser') ? $request->email_address : $guest['email'];
-        $custom_int1    = Session::has('frontUser') ? $request->custom_int1   : $guest['custom_int1'];
-        $custom_int2    = Session::has('frontUser') ? $request->custom_int2   : $guest['custom_int2'];
+        $custom_int1    = Session::has('frontUser') ? $request->custom_int1   : $guest['custom_int1'];  //user_id
+        $custom_int2    = Session::has('frontUser') ? $request->custom_int2   : $guest['custom_int2']; //user_sunscription_id
 
         /*Transaction details*/
         $amount         = Session::has('frontUser') ? $request->amount    : $guest['amount'];
@@ -55,8 +55,8 @@ class PaymentController extends Controller{
             'name_last'     => $name_last,
             'email_address' => $email_address,
             'm_payment_id'  => $m_payment_id,
-            'custom_int1'   => $custom_int1,
-            'custom_int1'   => $custom_int2,
+            'custom_int1'   => $custom_int1,   //user_id
+            'custom_int2'   => $custom_int2,  //user_sunscription_id
         );
 
         $ch = curl_init();
@@ -88,10 +88,10 @@ class PaymentController extends Controller{
         header( 'HTTP/1.0 200 OK' );
         flush();
 
-        $data               = $request->all();
-        $data['user_id']    = $request->custom_int1;
-        $data['user_id']    = $request->custom_int2;
-        $status             = (isset($data) && !empty($data)) ? Payment::create($data) : null;
+        $data                           = $request->all();
+        $data['user_id']                = $request->custom_int1;
+        $data['user_subscription_id']   = $request->custom_int2;
+        $status                         = Payment::create($data);
 
         \Log::info(print_r($request->all(), true));
     }
