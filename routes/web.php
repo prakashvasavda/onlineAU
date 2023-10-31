@@ -79,6 +79,9 @@ Route::group(['middleware' => 'frontendauth'], function () {
     /*USER FAMILY MANAGE CALENDER ROUTES*/
     Route::get('family/manage-calender', 'FrontFamilyController@edit_family_calender')->name('family-manage-calender');
     Route::put('update-family-calender/{id}', 'FrontFamilyController@update_family_calender')->name('update-family-calender');
+
+    /*USER SUBSCRIPTIONS*/
+    Route::post('cancel-user-subscription', 'User\SubscriptionController@cancel_user_subscription')->name('cancel-user-subscription');
 });
 
 Auth::routes();

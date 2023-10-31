@@ -9,7 +9,6 @@ use App\PreviousExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\FrontUserSubscription;
 use App\Packages;
 use Mail;
 use Session;

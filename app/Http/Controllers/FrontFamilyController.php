@@ -223,7 +223,7 @@ class FrontFamilyController extends Controller{
         $data['packages']            = Packages::get()->toArray();
         $data['user_subscription']   = UserSubscription::where('user_id', Session::get('frontUser')->id)->where('status', 1)->latest()->first();
         $data['end_date']            = isset($data['user_subscription']) ? Carbon::parse($data['user_subscription']['end_date']) : null;
-        $data['payment']             = Payment::where('user_id', Session::get('frontUser')->id)->first();
+        $data['payment']             = Payment::where('user_id', Session::get('frontUser')->id)->latest()->first();
         return view('user.family.pricing', $data);
     }
 }

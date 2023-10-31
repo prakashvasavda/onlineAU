@@ -15,7 +15,11 @@ class SubscriptionController extends Controller{
         return UserSubscription::create($data);
     }
 
-    public function cancel_user_subscription(){
-
+    public function cancel_user_subscription(Request $request){
+        $user_subscription = UserSubscription::find($request->id);
+        if(!empty($user_subscription)){
+            $user_subscription->update(['status' => $request->status]);
+            return response()->json('success');
+        }
     }   
 }

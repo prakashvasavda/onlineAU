@@ -86,4 +86,19 @@ class Controller extends BaseController{
             return $availability->id;
         }        
     }
+
+    public function send_notification_mail($data, $message){
+        config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
+        config(['mail.mailers.smtp.port' => '587']);
+        config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
+        config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
+        config(['mail.mailers.smtp.encryption' => 'tls']);
+        $message = $message;
+        $emailTo = $data['emailTo'];
+        $name    = $data['name'];
+        Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
+            $mail->to($emailTo, $name)->subject($data['subject'])->setBody($message, 'text/html');
+            $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
+        });
+    }
 }

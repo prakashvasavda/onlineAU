@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\User\SubscriptionController;
 use Illuminate\Http\Request;
 use App\Payment;
 use Session;
@@ -19,16 +20,20 @@ class PaymentController extends Controller{
         /*GUEST USER PAYMENT*/
         $guest          = Session::has('guestUser') ? Session::get('guestUser') : null;
 
+        /*add user subscription*/
+        $subscription       = new SubscriptionController();
+        $user_subscription  = Session::has('frontUser') ? $subscription->add_user_subscription($request, Session::get('frontUser')->id) : null;
+
         /*Merchant details*/
         $merchant_id    = 10031315;
         $merchant_key   = 'sbijrnrrkonrs';
 
         /*Buyer details*/
-        $name_first     = Session::has('frontUser') ? $request->name_first    : $guest['name'];
-        $name_last      = Session::has('frontUser') ? $request->name_last     : $guest['name'];
-        $email_address  = Session::has('frontUser') ? $request->email_address : $guest['email'];
-        $custom_int1    = Session::has('frontUser') ? $request->custom_int1   : $guest['custom_int1'];  //user_id
-        $custom_int2    = Session::has('frontUser') ? $request->custom_int2   : $guest['custom_int2']; //user_sunscription_id
+        $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : $guest['name'];
+        $name_last      = Session::has('frontUser') ? Session::get('frontUser')->name  : $guest['name'];
+        $email_address  = Session::has('frontUser') ? Session::get('frontUser')->email : $guest['email'];
+        $custom_int1    = Session::has('frontUser') ? Session::get('frontUser')->id    : $guest['custom_int1'];  //user_id
+        $custom_int2    = Session::has('frontUser') ? $user_subscription->id           : $guest['custom_int2']; //user_sunscription_id
 
         /*Transaction details*/
         $amount         = Session::has('frontUser') ? $request->amount    : $guest['amount'];

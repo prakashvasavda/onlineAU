@@ -6,7 +6,7 @@
 }
 </style>
 
-@if(isset($payment) && !empty($payment) && now()->lt($end_date))
+@if(isset($user_subscription) && now()->lt($end_date))
     <div class="single-form-section">
         <div class="container">
             <div class="title-main mb-5">
@@ -47,7 +47,7 @@
                         </div>
                         <hr>
                         <p class="text-center">
-                            <input type="checkbox" name="subscribe" value="{{ now()->lt($end_date) ? 0 : 1}}" id="subscribe_btn" {{ now()->lt($end_date) ? "checked" : " " }} id="" style="vertical-align: middle;" onclick="userSubscription()">
+                            <input type="checkbox" name="subscribe" id="subscribe_chkbx" {{ now()->lt($end_date) && isset($user_subscription->status) ? "checked" : " " }} id="" style="vertical-align: middle;" onclick="userSubscription()">
                             <a href="#" style="vertical-align: middle; pointer-events: none;">subscribe</a>
                         </p>
                     </div>
@@ -92,10 +92,13 @@
                                 @csrf
                                 <input type="hidden" name="amount" value="{{ $price['price'] }}">
                                 <input type="hidden" name="item_name" value="{{ $price['name'] }}">
+                                <input type="hidden" name="package" value="{{ $price['id'] }}">
+
                                 <input type="hidden" name="custom_int1" value="{{ Session::has('frontUser') ? Session::get('frontUser')->id : '' }}">
                                 <input type="hidden" name="name_first" value="{{ Session::has('frontUser') ? Session::get('frontUser')->name : '' }}">
                                 <input type="hidden" name="name_last" value="{{ Session::has('frontUser') ? Session::get('frontUser')->name : '' }}">
                                 <input type="hidden" name="email_address" value="{{ Session::has('frontUser') ? Session::get('frontUser')->email : '' }}">
+
                                 <div class="pricing-card">
                                     <div class="heading">
                                         @if($key== 0)
@@ -132,9 +135,23 @@
 
 @endsection
 @section('script')
-    <script type="text/javascript">
-        function userSubscription(){
-            return false;
-        }
-    </script>
+<script type="text/javascript">
+    function userSubscription(){
+        var status = $('#subscribe_chkbx').is(':checked') ? 1 : 0;
+        $.ajax({
+            type: "POST",
+            url: "{{ route('cancel-user-subscription') }}",
+            data: {
+                    status:status,
+                    _token: "{{ csrf_token() }}",
+                    id: {{ isset($user_subscription->id) ??  $user_subscription->id }}
+            },
+            success: function (response) {
+                if(response === "success"){
+                   location.reload();
+                }
+            }
+        });
+    }
+</script>
 @endsection
