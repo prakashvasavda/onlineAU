@@ -16,6 +16,7 @@ class Payment extends Model{
     protected $fillable = [
         'user_id',
         'merchant_id',
+        'user_subscription_id',
         'name_first',
         'name_last',
         'email_address',

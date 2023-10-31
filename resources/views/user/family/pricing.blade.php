@@ -46,7 +46,10 @@
                             </a>
                         </div>
                         <hr>
-                        <p class="text-center"><a href="#">Manage subscription</a></p>
+                        <p class="text-center">
+                            <input type="checkbox" name="subscribe" value="{{ now()->lt($end_date) ? 0 : 1}}" id="subscribe_btn" {{ now()->lt($end_date) ? "checked" : " " }} id="" style="vertical-align: middle;" onclick="userSubscription()">
+                            <a href="#" style="vertical-align: middle; pointer-events: none;">subscribe</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -130,5 +133,8 @@
 @endsection
 @section('script')
     <script type="text/javascript">
+        function userSubscription(){
+            return false;
+        }
     </script>
 @endsection
