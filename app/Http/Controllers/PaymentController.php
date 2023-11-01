@@ -25,18 +25,18 @@ class PaymentController extends Controller{
         $merchant_key   = 'sbijrnrrkonrs';
 
         /*Buyer details*/
-        $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : Session::get('guestUser')->name;
-        $name_last      = Session::has('frontUser') ? Session::get('frontUser')->name  : Session::get('guestUser')->name;
-        $email_address  = Session::has('frontUser') ? Session::get('frontUser')->email : Session::get('guestUser')->email;
-        $custom_int1    = Session::has('frontUser') ? Session::get('frontUser')->id    : Session::get('guestUser')->user_id;  //user_id
+        $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : Session::get('guestUser')['name'];
+        $name_last      = Session::has('frontUser') ? Session::get('frontUser')->name  : Session::get('guestUser')['name'];
+        $email_address  = Session::has('frontUser') ? Session::get('frontUser')->email : Session::get('guestUser')['email'];
+        $custom_int1    = Session::has('frontUser') ? Session::get('frontUser')->id    : Session::get('guestUser')['user_id'];  //user_id
 
         /*add user subscription*/
         $subscription       = new SubscriptionController();
         $user_subscription  = $subscription->add_user_subscription($input, $custom_int1);
 
         /*Transaction details*/
-        $amount         = Session::has('frontUser') ? $request->amount    : $guest['amount'];
-        $item_name      = Session::has('frontUser') ? $request->item_name : $guest['item_name'];
+        $amount         = isset($request->amount)    ? $request->amount     : null;
+        $item_name      = isset($request->item_name) ? $request->item_name  : null;
         $m_payment_id   = rand();
         
         /*Merchant detail urls*/
@@ -83,12 +83,6 @@ class PaymentController extends Controller{
     public function payment_success(Request $request){
         $payment = Payment::latest()->first();
         $payment->update(['status' => 1]);
-
-        /*unset guest user session*/
-        if(Sesson::has('guestUser')){
-            Session::forget('guestUser');
-        }
-
         return redirect()->route('transactions');
     }
 
