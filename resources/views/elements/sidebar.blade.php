@@ -27,14 +27,14 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item menu-open">
+                {{-- <li class="nav-item menu-open">
                     <a href="{{ route('admin.packages') }}" class="nav-link {{ request()->is('admin/packages') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-gift"></i>
                         <p>
                             Packages
                         </p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item menu-open">
                     <a href="{{ route('admin.candidates') }}" class="nav-link {{ request()->is('admin/candidates') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>

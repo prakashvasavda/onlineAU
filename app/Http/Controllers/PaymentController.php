@@ -17,23 +17,22 @@ use Session;
 class PaymentController extends Controller{
 
     public function process_payment(Request $request){
-        /*GUEST USER PAYMENT*/
-        $guest          = Session::has('guestUser') ? Session::get('guestUser') : null;
-
-        /*add user subscription*/
-        $subscription       = new SubscriptionController();
-        $user_subscription  = Session::has('frontUser') ? $subscription->add_user_subscription($request, Session::get('frontUser')->id) : null;
+        /*package details*/
+        $input          = Session::has('frontUser') ? $request->all() : Session::get('guestUser');
 
         /*Merchant details*/
         $merchant_id    = 10031315;
         $merchant_key   = 'sbijrnrrkonrs';
 
         /*Buyer details*/
-        $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : $guest['name'];
-        $name_last      = Session::has('frontUser') ? Session::get('frontUser')->name  : $guest['name'];
-        $email_address  = Session::has('frontUser') ? Session::get('frontUser')->email : $guest['email'];
-        $custom_int1    = Session::has('frontUser') ? Session::get('frontUser')->id    : $guest['custom_int1'];  //user_id
-        $custom_int2    = Session::has('frontUser') ? $user_subscription->id           : $guest['custom_int2']; //user_sunscription_id
+        $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : Session::get('guestUser')->name;
+        $name_last      = Session::has('frontUser') ? Session::get('frontUser')->name  : Session::get('guestUser')->name;
+        $email_address  = Session::has('frontUser') ? Session::get('frontUser')->email : Session::get('guestUser')->email;
+        $custom_int1    = Session::has('frontUser') ? Session::get('frontUser')->id    : Session::get('guestUser')->user_id;  //user_id
+
+        /*add user subscription*/
+        $subscription       = new SubscriptionController();
+        $user_subscription  = $subscription->add_user_subscription($input, $custom_int1);
 
         /*Transaction details*/
         $amount         = Session::has('frontUser') ? $request->amount    : $guest['amount'];
@@ -61,7 +60,7 @@ class PaymentController extends Controller{
             'email_address' => $email_address,
             'm_payment_id'  => $m_payment_id,
             'custom_int1'   => $custom_int1,   //user_id
-            'custom_int2'   => $custom_int2,  //user_sunscription_id
+            'custom_int2'   => 1,             //user_sunscription_id
         );
 
         $ch = curl_init();
@@ -82,6 +81,14 @@ class PaymentController extends Controller{
     }
 
     public function payment_success(Request $request){
+        $payment = Payment::latest()->first();
+        $payment->update(['status' => 1]);
+
+        /*unset guest user session*/
+        if(Sesson::has('guestUser')){
+            Session::forget('guestUser');
+        }
+
         return redirect()->route('transactions');
     }
 

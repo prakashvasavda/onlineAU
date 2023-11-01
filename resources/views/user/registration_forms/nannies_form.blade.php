@@ -78,17 +78,8 @@
                 @enderror
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="situated">Situated</label>
-                <input type="text" id="situated" name="situated" placeholder="" class="form-field @error('situated') is-invalid @enderror"  value="{{ old('situated') }}">
-                @error('situated')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
+
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="area">Area <span class="text-danger">*</span></label>
@@ -207,6 +198,119 @@
                 </select>
             </div>
         </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="south_african_citizen">Are you a South African citizen? </label>
+                <ul class="d-flex flex-wrap" >
+                    <li><input type="radio" checked name="south_african_citizen" value="yes" {{ old('south_african_citizen') === "yes" ? "checked" : '' }} >Yes</li>
+                    <li><input type="radio" name="south_african_citizen" value="no" {{ old('south_african_citizen') === "no" ? "checked" : '' }} >No</li>
+                </ul>
+                @if ($errors->has('south_african_citizen'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('south_african_citizen') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="working_permit">If NO do you have a working permit? </label>
+                <ul class="d-flex flex-wrap" >
+                    <li><input type="radio" checked name="working_permit" value="yes" {{ old('working_permit') === "yes" ? "checked" : '' }} >Yes</li>
+                    <li><input type="radio" name="working_permit" value="no" {{ old('working_permit') === "no" ? "checked" : '' }} >No</li>
+                </ul>
+                @if ($errors->has('working_permit'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('working_permit') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
+                <select id="ages_of_children_you_worked_with" name="age[]" class="form-field ">
+                    <option selected="selected" disabled>Select</option>
+                    <option selected="selected" value="baby" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("baby", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Baby</option>
+                    <option value="gradeschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("gradeschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Gradeschooler</option>
+                    <option value="toddler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("toddler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Toddler</option>
+                    <option value="teenager" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("teenager", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Teenager</option>
+                    <option value="preschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("preschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Preschooler</option>
+                </select>
+                @if ($errors->has('ages_of_children_you_worked_with'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="first_aid">Do you have first aid? </label>
+                <ul class="d-flex flex-wrap" >
+                    <li><input type="radio" checked name="working_permit" value="yes" {{ old('first_aid') === "yes" ? "checked" : '' }} >Yes</li>
+                    <li><input type="radio" name="first_aid" value="no" {{ old('first_aid') === "no" ? "checked" : '' }} >No</li>
+                </ul>
+                @if ($errors->has('first_aid'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('first_aid') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
+                <ul class="radio-box-list">
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" checked value="smoker" {{ old('smoker_or_non_smoker') === 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="available_date">From which date would you be available? <span class="text-danger">*</span></label>
+                <input type="date" id="available_date" name="available_date" value="{{ old('available_date') }}" class="form-field">
+                @if ($errors->has('available_date'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('available_date') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <label for="about_yourself">Tell us a bit more about yourself? </label>
+            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
+            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+            @if ($errors->has('about_yourself'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('about_yourself') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="first_aid">Would you be comfortable with doing light housework as well </label>
+                <ul class="d-flex flex-wrap" >
+                    <li><input type="radio" checked name="comfortable_with_light_housework" value="yes" {{ old('comfortable_with_light_housework') === "yes" ? "checked" : '' }} >Yes</li>
+                    <li><input type="radio" name="comfortable_with_light_housework" value="no" {{ old('comfortable_with_light_housework') === "no" ? "checked" : '' }} >No</li>
+                </ul>
+                @if ($errors->has('comfortable_with_light_housework'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('comfortable_with_light_housework') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="disabilities">Disabilities</label>
@@ -536,6 +640,22 @@
                 @enderror
             </div>
         </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <div class="form-input d-flex flex-wrap mb-2">
+                    <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions" autocomplete="off">
+                    <label class="form-check-label" for="terms_and_conditions">Accept Terms and Conditions <span class="text-danger">*</span></label>
+                </div>
+
+                @if ($errors->has('terms_and_conditions'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('terms_and_conditions') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="col-12">
             <div class="form-input-btn text-center">
                 <input type="submit" class="btn btn-primary round" value="signup">

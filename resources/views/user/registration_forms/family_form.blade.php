@@ -182,8 +182,8 @@
                     <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                     <select id="gender_of_children" name="gender_of_children[]" class="form-field">
                         <option selected="selected" disabled>Select</option>
-                        <option value="gradeschooler" {{ (!empty(old('gender_of_children')) && in_array("male", old('gender_of_children')))? 'selected' : '' }}>Male</option>
-                        <option value="toddler" {{ (!empty(old('gender_of_children')) && in_array("female", old('gender_of_children')))? 'selected' : '' }}>Female</option>
+                        <option value="male" {{ (!empty(old('gender_of_children')) && in_array("male", old('gender_of_children')))? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ (!empty(old('gender_of_children')) && in_array("female", old('gender_of_children')))? 'selected' : '' }}>Female</option>
                     </select>
                     @if ($errors->has('gender_of_children'))
                         <span class="text-danger">
@@ -205,9 +205,9 @@
                         <option value="babysitter" {{ old('what_do_you_need') == "babysitter" ? "selected" : " " }}>Babysitter</option>
                         <option value="babysitter" {{ old('what_do_you_need') == "babysitter" ? "selected" : " " }}>Babysitter</option>
                     </select>
-                    @if ($errors->has('profile'))
+                    @if ($errors->has('what_do_you_need'))
                         <span class="text-danger">
-                            <strong>{{ $errors->first('profile') }}</strong>
+                            <strong>{{ $errors->first('what_do_you_need') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -228,7 +228,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="start_date">Start date <span class="text-danger">*</span></label>
-                    <input type="date" id="start_date" name="start_date" class="form-field">
+                    <input type="date" id="start_date" name="start_date" value="{{ old('start_date') }}" class="form-field">
                     @if ($errors->has('start_date'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('start_date') }}</strong>
@@ -240,7 +240,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="duration_needed">Duration needed <span class="text-danger">*</span></label>
-                    <input type="text" id="duration_needed" name="duration_needed" class="form-field">
+                    <input type="text" id="duration_needed" name="duration_needed" value="{{ old('duration_needed') }}" class="form-field">
                     @if ($errors->has('duration_needed'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('duration_needed') }}</strong>
@@ -254,9 +254,9 @@
                     <label for="petrol_reimbursement">Petrol Reimbursement <span class="text-danger">*</span></label>
                     <select id="petrol_reimbursement" name="petrol_reimbursement" class="form-field">
                         <option selected="selected" disabled>Select</option>
-                        <option value="babysitter" {{ old('petrol_reimbursement') == "aa_rates" ? "selected" : " " }}>AA rates</option>
-                        <option value="babysitter" {{ old('petrol_reimbursement') == "included_in_salary" ? "selected" : " " }}>Included in salary</option>
-                        <option value="babysitter" {{ old('petrol_reimbursement') == "extra_amount" ? "selected" : " " }}>Extra amount</option>
+                        <option value="aa_rates" {{ old('petrol_reimbursement') == "aa_rates" ? "selected" : " " }}>AA rates</option>
+                        <option value="included_in_salary" {{ old('petrol_reimbursement') == "included_in_salary" ? "selected" : " " }}>Included in salary</option>
+                        <option value="extra_amount" {{ old('petrol_reimbursement') == "extra_amount" ? "selected" : " " }}>Extra amount</option>
                     </select>
                     @if ($errors->has('petrol_reimbursement'))
                         <span class="text-danger">
@@ -341,7 +341,7 @@
                 </div>
             </div>
 
-             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="family_notifications">Do you want to get notifications from new babysitters in your area? </label>
                     <ul class="d-flex flex-wrap" >
@@ -475,7 +475,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+           {{--  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="package">Payment Plan  <span class="text-danger">*</span></label>
                     <select id="package" name="package" class="form-field" >
@@ -492,7 +492,7 @@
                         </span>
                     @endif
                 </div>
-            </div>
+            </div> --}}
            
             
 

@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="step-contentBox">
-                        <p>REGISTER YOUR FAMILY AND LIST YOUR REQUIREMENTS</p>
+                        <p>REGISTER AS A FAMILY AND FILL OUT THE REGISTRATION FORM.</p>
                     </div>
                 </div>
             </li>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="step-contentBox">
-                        <p>SELECT YOUR PREFERED PACKAGE.ACCESS TO ALL CANDIDATES OR LETTING US DO THE PLACEMENT FOR YOU.</p>
+                        <p>SELECT YOUR PREFERRED PACKAGE (SELF PLACEMENT OR PRIVATE PLACEMENT) AND CONTINUE TO PAYMENT.</p>
                     </div>
                 </div>
             </li>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="step-contentBox">
-                        <p>VIEW ALL THE CANDIDATES THAT MATCH YOUR REQUIREMENTS AND SCHEDULE INTERVIEWS.</p>
+                        <p>VIEW ALL THE CANDIDATES THAT MEET YOUR REQUIREMENTS AND SCHEDULE INTERVIEWS.</p>
                     </div>
                 </div>
             </li>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="step-contentBox">
-                        <p>FIND THE PERFECT CANDIDATE FOR YOUR NEEDS.</p>
+                        <p>FIND THE PERFECT MATCH FOR YOUR FAMILY.</p>
                     </div>
                 </div>
             </li>

@@ -393,7 +393,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="salary_expectation">What is your salary expectation/hourly rate</label>
+                <label for="salary_expectation">What is your hourly rate</label>
                 <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation') }}">
                 @error('salary_expectation')
                     <span class="invalid-feedback" role="alert">

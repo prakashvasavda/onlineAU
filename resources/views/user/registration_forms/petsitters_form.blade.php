@@ -116,39 +116,28 @@
                 <input type="text" id="ethnicity" name="ethnicity" value="{{ old("ethnicity") }}" placeholder="" class="form-field">
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="religion">Religion</label>
-                <select id="religion" name="religion" class="form-field">
-                    <option value="" selected="selected" disabled="disabled">Select one</option>
-                    <option value="african traditional and diasporic" {{ old('religion') == "african traditional and diasporic" ? "selected" : ''}}>African Traditional &amp; Diasporic</option>
-                    <option value="agnostic" {{ old('religion') == "agnostic" ? "selected" : ''}}>Agnostic</option>
-                    <option value="atheist" {{ old('religion') == "atheist" ? "selected" : ''}}>Atheist</option>
-                    <option value="baha'i" {{ old('religion') == "baha'i" ? "selected" : ''}}>Baha'i</option>
-                    <option value="buddhism" {{ old('religion') == "buddhism" ? "selected" : ''}}>Buddhism</option>
-                    <option value="cao dai" {{ old('religion') == "cao dai" ? "selected" : ''}}>Cao Dai</option>
-                    <option value="chinese traditional religion" {{ old('religion') == "chinese traditional religion" ? "selected" : ''}}>Chinese traditional religion</option>
-                    <option value="christianity" {{ old('religion') == "christianity" ? "selected" : ''}}>Christianity</option>
-                    <option value="hinduism" {{ old('religion') == "hinduism" ? "selected" : ''}}>Hinduism</option>
-                    <option value="islam" {{ old('religion') == "islam" ? "selected" : ''}}>Islam</option>
-                    <option value="jainism" {{ old('religion') == "jainism" ? "selected" : ''}}>Jainism</option>
-                    <option value="juche" {{ old('religion') == "juche" ? "selected" : ''}}>Juche</option>
-                    <option value="judaism" {{ old('religion') == "judaism" ? "selected" : ''}}>Judaism</option>
-                    <option value="neo-paganism" {{ old('religion') == "neo-paganism" ? "selected" : ''}}>Neo-Paganism</option>
-                    <option value="nonreligious" {{ old('religion') == "nonreligious" ? "selected" : ''}}>Nonreligious</option>
-                    <option value="rastafarianism" {{ old('religion') == "rastafarianism" ? "selected" : ''}}>Rastafarianism</option>
-                    <option value="secular" {{ old('religion') == "secular" ? "selected" : ''}}>Secular</option>
-                    <option value="shinto" {{ old('religion') == "shinto" ? "selected" : ''}}>Shinto</option>
-                    <option value="sikhism" {{ old('religion') == "sikhism" ? "selected" : ''}}>Sikhism</option>
-                    <option value="spiritism" {{ old('religion') == "spiritism" ? "selected" : ''}}>Spiritism</option>
-                    <option value="tenrikyo" {{ old('religion') == "tenrikyo" ? "selected" : ''}}>Tenrikyo</option>
-                    <option value="unitarian-universalism" {{ old('religion') == "unitarian-universalism" ? "selected" : ''}}>Unitarian-Universalism</option>
-                    <option value="zoroastrianism" {{ old('religion') == "zoroastrianism" ? "selected" : ''}}>Zoroastrianism</option>
-                    <option value="primal-indigenous" {{ old('religion') == "primal-indigenous" ? "selected" : ''}}>primal-indigenous</option>
-                    <option value="other" {{ old('religion') == "other" ? "selected" : ''}}>Other</option>
-                </select>
+                <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
+                <ul class="radio-box-list">
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" checked value="smoker" {{ old('smoker_or_non_smoker') === 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                </ul>
             </div>
         </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <label for="about_yourself">Tell us a bit more about yourself? </label>
+            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
+            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+            @if ($errors->has('about_yourself'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('about_yourself') }}</strong>
+                </span>
+            @endif
+        </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="home_language">Home Language</label>
@@ -178,60 +167,53 @@
                 </select>
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="additional_language">Additional Language</label>
-                <select id="additional_language" name="additional_language" class="form-field">
-                    <option value="" disabled="disabled">Select</option>
-                    <option value="english" {{ old('additional_language') === 'english' ? 'selected' : '' }}>English</option>
-                    <option value="afrikaans" {{ old('additional_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
-                    <option value="zulu (isizulu)" {{ old('additional_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
-                    <option value="xhosa (isixhosa)" {{ old('home_language') === 'xhosa (isixhosa)' ? 'selected' : '' }}>Xhosa (isiXhosa)</option>
-                    <option value="northern sotho (sesotho sa leboa)" {{ old('additional_language') === 'northern sotho (sesotho sa leboa)' ? 'selected' : '' }}>Northern Sotho (Sesotho sa Leboa)</option>
-                    <option value="sotho (sesotho)" {{ old('additional_language') === 'sotho (sesotho)' ? 'selected' : '' }}>Sotho (Sesotho)</option>
-                    <option value="swazi (siswati)" {{ old('additional_language') === 'swazi (siswati)' ? 'selected' : '' }}>Swazi (siSwati)</option>
-                    <option value="tsonga (xitsonga)" {{ old('additional_language') === 'tsonga (xitsonga)' ? 'selected' : '' }}>Tsonga (Xitsonga)</option>
-                    <option value="tswana (setswana)" {{ old('additional_language') === 'tswana (setswana)' ? 'selected' : '' }}>Tswana (Setswana)</option>
-                    <option value="venda (tshivenda)" {{ old('additional_language') === 'venda (tshivenda)' ? 'selected' : '' }}>Venda (Tshivenda)</option>
-                    <option value="southern ndebele (isindebele)" {{ old('additional_language') === 'southern ndebele (isindebele)' ? 'selected' : '' }}>Southern Ndebele (isiNdebele)</option>
-                    <option value="spanish" {{ old('additional_language') === 'spanish' ? 'selected' : '' }}>Spanish</option>
-                    <option value="french" {{ old('additional_language') === 'french' ? 'selected' : '' }}>French</option>
-                    <option value="hindi" {{ old('additional_language') === 'hindi' ? 'selected' : '' }}>Hindi</option>
-                    <option value="arabic" {{ old('additional_language') === 'arabic' ? 'selected' : '' }}>Arabic</option>
-                    <option value="bengali" {{ old('additional_language') === 'bengali' ? 'selected' : '' }}>Bengali</option>
-                    <option value="portuguese" {{ old('additional_language') === 'portuguese' ? 'selected' : '' }}>Portuguese</option>
-                    <option value="russian" {{ old('additional_language') === 'russian' ? 'selected' : '' }}>Russian</option>
-                    <option value="japanese" {{ old('additional_language') === 'japanese' ? 'selected' : '' }}>Japanese</option>
-                    <option value="punjabi" {{ old('additional_language') === 'punjabi' ? 'selected' : '' }}>Punjabi</option>
-                    <option value="german" {{ old('additional_language') === 'german' ? 'selected' : '' }}>German</option>
-                </select>
+                <label for="animals_comfortable_with">Which animals do you feel comfortable working with <span class="text-danger">*</span></label>
+                <select id="animals_comfortable_with" name="petrol_reimbursement" class="form-field">
+                    <option selected="selected" disabled>Select</option>
+                    <option value="dogs" {{ old('animals_comfortable_with') == "dogs" ? "selected" : " " }}>Dogs</option>
+                    <option value="cats" {{ old('animals_comfortable_with') == "cats" ? "selected" : " " }}>Cats</option>
+                    <option value="hamsters_and_guinea_pigs" {{ old('animals_comfortable_with') == "hamsters_and_guinea_pigs" ? "selected" : " " }}>Hamsters &amp; Guinea pigs</option>
+                    <option value="reptiles" {{ old('animals_comfortable_with') == "reptiles" ? "selected" : " " }}>Reptiles</option>
+                    <option value="spiders" {{ old('animals_comfortable_with') == "spiders" ? "selected" : " " }}>Spiders</option>
+                </select> 
+                @if ($errors->has('animals_comfortable_with'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('animals_comfortable_with') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="disabilities">Disabilities</label>
                 <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="marital_status">Marital Status</label>
-                <ul class="radio-box-list d-flex flex-wrap">
-                    <li class="radio-box-item"><input type="radio" name="marital_status" value="married" {{ old('marital_status') == "married" ? "checked" : ''}}><label>Married</label></li>
-                    <li class="radio-box-item"><input type="radio" name="marital_status" value="single" {{ old('marital_status') == "single" ? "checked" : ''}}><label>Single</label></li>
-                    <li class="radio-box-item"><input type="radio" name="marital_status" value="in a relationship" {{ old('marital_status') == "in a relationship" ? "checked" : ''}}><label>In a Relationship</label></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="dependants">Do you have any dependants</label>
+                <label for="experience_with_animals">Do you have experience with animals?</label>
                 <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="dependants" value="yes" {{ old('dependants') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="dependants" value="no" {{ old('dependants') == "no" ? "checked" : '' }}>No</li>
+                    <li><input type="radio" name="experience_with_animals" value="yes" {{ old('experience_with_animals') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="experience_with_animals" value="no" {{ old('experience_with_animals') == "no" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
         </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="do_you_like_animals">“Do you like animals?</label>
+                <ul class="d-flex flex-wrap">
+                    <li><input type="radio" name="do_you_like_animals" value="yes" {{ old('do_you_like_animals') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="do_you_like_animals" value="no" {{ old('do_you_like_animals') == "no" ? "checked" : '' }}>No</li>
+                </ul>
+            </div>
+        </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="chronical_medication">Are you on any chronical medication</label>
@@ -536,6 +518,22 @@
                 @enderror
             </div>
         </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <div class="form-input d-flex flex-wrap mb-2">
+                    <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions" autocomplete="off">
+                    <label class="form-check-label" for="terms_and_conditions">Accept Terms and Conditions <span class="text-danger">*</span></label>
+                </div>
+
+                @if ($errors->has('terms_and_conditions'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('terms_and_conditions') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="col-12">
             <div class="form-input-btn text-center">
                 <input type="submit" class="btn btn-primary round" value="signup">

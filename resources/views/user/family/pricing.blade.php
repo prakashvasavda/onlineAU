@@ -1,9 +1,75 @@
 @extends('layouts.main')
 @section('content')
-<style type="text/css">
-.pricing-plans .row form {
-    height: 100%;
-}
+<style>
+    .py-5 {
+        padding-top: 5rem!important;
+        padding-bottom: 5rem!important;
+    }
+    .pt-5 {
+        padding-top: 5rem!important;
+    }
+    .row.row-gap-5 {
+        row-gap: 5rem;
+    }
+    .pricing-box {
+        border: 1px solid var(--secondary);
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+        word-break: break-all;
+    }
+    .pricing-box .name-box {
+        background-color: var(--secondary);
+        text-align: center;
+        padding: 1.1rem;
+        color: var(--white);
+        text-transform: uppercase;
+        font-family: var(--bellefair-font);
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+    .pricing-box .price-box {
+        background-color: var(--primary);
+        text-align: center;
+        padding: 0.7rem;
+        color: var(--white);
+        text-transform: uppercase;
+        font-family: var(--montserrat-font);
+        line-height: 1.3;
+        font-weight: 600;
+    }
+    .pricing-box .features {
+        flex: 1 0 auto;
+        padding: 2rem 1.6rem;
+        display: flex;
+        flex-flow: column;
+        gap: 8px;
+    }
+    .pricing-box .features li {
+        color: var(--gray-text);
+        text-transform: unset;
+        font-family: var(--montserrat-font);
+        font-size: 15px;
+        line-height: 1.3;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .pricing-box .features li svg, .pricing-box .features li i {
+        margin-right: 8px;
+        margin-top: 6px;
+        width: 5px;
+        height: 5px;
+        font-size: 5px;
+    }
+    @media screen and (min-width: 992px) and (max-width: 1299px) {
+        .pricing-plans .row .col-lg-6 .row .col-lg-4 {flex: 0 0 auto;width: 50%;}
+    }
+    @media screen and (max-width: 767px) {
+        .py-5 {padding-top: 4rem!important;padding-bottom: 4rem!important;}
+        .pt-5 {padding-top: 4rem!important;}
+        .row.row-gap-5 {row-gap: 4rem;}
+    }
 </style>
 
 @if(isset($user_subscription) && now()->lt($end_date))
@@ -78,209 +144,158 @@
         </div>
     </div>
 @else
-    {{-- <div class="pricing-plans no-banner">
-        <div class="container">
-            <div class="title-main">
-                <h2>Pricing</h2>
-            </div>
-            <div class="row">
-                <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12"></div>
-                @if(isset($packages))
-                    @foreach($packages as $key=>$price)
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                            <form method="POST" action="{{ route('payment-process') }}" id="pricing-form-{{$key}}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" name="amount" value="{{ $price['price'] }}">
-                                <input type="hidden" name="item_name" value="{{ $price['name'] }}">
-                                <input type="hidden" name="package" value="{{ $price['id'] }}">
-
-                                <input type="hidden" name="custom_int1" value="{{ Session::has('frontUser') ? Session::get('frontUser')->id : '' }}">
-                                <input type="hidden" name="name_first" value="{{ Session::has('frontUser') ? Session::get('frontUser')->name : '' }}">
-                                <input type="hidden" name="name_last" value="{{ Session::has('frontUser') ? Session::get('frontUser')->name : '' }}">
-                                <input type="hidden" name="email_address" value="{{ Session::has('frontUser') ? Session::get('frontUser')->email : '' }}">
-
-                                <div class="pricing-card">
-                                    <div class="heading">
-                                        @if($key== 0)
-                                            <span class="badge bg-secondary round">Popular</span>
-                                        @endif
-                                        <h4>{{ $price['name'] }}</h4>
-                                        <p>for small websites or blogs</p>
-                                    </div>
-
-                                    <p class="price">{{ $price['price'] }}</p>
-                                    <ul class="features">
-                                        @if(isset($features))
-                                            @foreach($features as $key=>$feature)
-                                                @if($feature['package_id'] == $price['id'])
-                                                    <li>
-                                                        <i class="fa-solid fa-check"></i>
-                                                        <strong>{{ $feature['title'] }}</strong>
-                                                    </li>
-                                                @endif
-                                            @endforeach
-                                        @endif
-                                    </ul>
-                                    <button type="submit" class="btn btn-primary round">SELECT</button>
-                                </div>
-                            </form>
-                        </div>
-                    @endforeach
-                @endif
-                <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12"></div>
-            </div>
-        </div>
-    </div> --}}
-
     <div class="pricing-plans no-banner">
         <div class="container">
-            <div class="title-main">
-                <h2>Pricing</h2>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class="pricing-card">
-                        <div class="heading">
-                            <h4>BASIC</h4>
-                            <p>for small websites or blogs</p>
+            <div class="row row-gap-5 justify-content-center">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="pricing-plans-main">
+                        <div class="title-main">
+                            <h2>au-pairs</h2>
                         </div>
-                        <p class="price">$2<sub>/month</sub></p>
-                        <ul class="features">
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>1 domain</strong> name
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>10 GB</strong> of disk space
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>100GB </strong>of bandwidth
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>1 MySQL</strong> database
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>5 email</strong> accounts
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>cPanel</strong> control panel
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>Free SSL</strong> certificate
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>24/7</strong> support
-                            </li>
-                        </ul>
-                        <a href="javaScript:;" class="btn btn-primary round">SELECT</a>
+
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <form method="POST" id="form_one" action="{{ route('payment-process') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="amount" value="1500">
+                                    <input type="hidden" name="item_name" value="self placement">
+                                    <a href="#" onclick="document.getElementById('form_one').submit(); return false;">
+                                        <div class="pricing-box">
+                                            <div class="name-box">SELF PLACEMENT PACKAGE</div>
+                                            <div class="price-box display-6">R 1500</div>
+                                            <ul class="features">
+                                                <li><i class="fa-solid fa-circle"></i>You are your own agent.</li>
+                                                <li><i class="fa-solid fa-circle"></i>Full access to all our available Candidates in your area for up to 2 months.</li>
+                                                <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
+                                                <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </form>
+                            </div>
+                            
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <form method="POST" id="form_two" action="{{ route('payment-process') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="amount" value="3000">
+                                    <input type="hidden" name="item_name" value="private placement">
+                                    <a href="#" onclick="document.getElementById('form_two').submit(); return false;">
+                                        <div class="pricing-box">
+                                            <div class="name-box">PRIVATE PLACEMENT PACKAGE</div>
+                                            <div class="price-box display-6">R 3000</div>
+                                            <ul class="features">
+                                                <li><i class="fa-solid fa-circle"></i>We assign an agent to you.</li>
+                                                <li><i class="fa-solid fa-circle"></i>We find the perfect candidate for your specific needs.</li>
+                                                <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
+                                                <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class="pricing-card">
-                        <div class="heading">
-                            <span class="badge bg-secondary round">Popular</span>
-                            <h4>STANDARD</h4>
-                            <p>for medium-sized businesses</p>
+
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="pricing-plans-main">
+                        <div class="title-main">
+                            <h2>nannies</h2>
                         </div>
-                        <p class="price">$5<sub>/month</sub></p>
-                        <ul class="features">
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>Unlimited</strong> domain name
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>50 GB</strong> of disk space
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>500GB </strong>of bandwidth
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>10 MySQL</strong> database
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>50 email</strong> accounts
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>cPanel</strong> control panel
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>Free SSL</strong> certificate
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>24/7</strong> support
-                            </li>
-                        </ul>
-                        <a href="javaScript:;" class="btn btn-primary round">SELECT</a>
+
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <form method="POST" id="form_three" action="{{ route('payment-process') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="amount" value="3000">
+                                    <input type="hidden" name="item_name" value="private placement">
+                                    <a href="#" onclick="document.getElementById('form_three').submit(); return false;">
+                                        <div class="pricing-box">
+                                            <div class="name-box">SELF PLACEMENT PACKAGE</div>
+                                            <div class="price-box display-6">R 1500</div>
+                                            <ul class="features">
+                                                <li><i class="fa-solid fa-circle"></i>You are your own agent.</li>
+                                                <li><i class="fa-solid fa-circle"></i>Full access to all our available Candidates in your area for up to 2 months.</li>
+                                                <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
+                                                <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <form method="POST" id="form_four" action="{{ route('payment-process') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="amount" value="3000">
+                                    <input type="hidden" name="item_name" value="private placement">
+                                    <a href="#" onclick="document.getElementById('form_four').submit(); return false;">
+                                         <div class="pricing-box">
+                                            <div class="name-box">PRIVATE PLACEMENT PACKAGE</div>
+                                            <div class="price-box display-6">R 3000</div>
+                                            <ul class="features">
+                                                <li><i class="fa-solid fa-circle"></i>We assign an agent to you.</li>
+                                                <li><i class="fa-solid fa-circle"></i>We find the perfect candidate for your specific needs.</li>
+                                                <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
+                                                <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class="pricing-card">
-                        <div class="heading">
-                            <h4>PREMIUM</h4>
-                            <p>for small businesses</p>
+
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="pricing-plans-main">
+                        <div class="title-main">
+                            <h2>babysitters / pet sitters</h2>
                         </div>
-                        <p class="price">$10<sub>/month</sub></p>
-                        <ul class="features">
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>Unlimited</strong> domain name
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>100 GB</strong> of disk space
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>1TB </strong>of bandwidth
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>Unlimited MySQL</strong> database
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>Unlimited email</strong> accounts
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>cPanel</strong> control panel
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>Free SSL</strong> certificate
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>24/7 priority</strong> support
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <strong>Advanced</strong> security features
-                            </li>
-                        </ul>
-                        <a href="javaScript:;" class="btn btn-primary round">SELECT</a>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <form method="POST" id="form_five" action="{{ route('payment-process') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="amount" value="250">
+                                    <input type="hidden" name="item_name" value="one month">
+                                    <a href="#" onclick="document.getElementById('form_five').submit(); return false;">
+                                        <div class="pricing-box">
+                                            <div class="name-box">1 MONTH PACKAGE</div>
+                                            <div class="price-box display-6">R 250</div>
+                                            <ul class="features">
+                                                <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to a months.</li>
+                                                <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <form method="POST" id="form_six" action="{{ route('payment-process') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="amount" value="500">
+                                    <input type="hidden" name="item_name" value="two month">
+                                    <a href="#" onclick="document.getElementById('form_six').submit(); return false;">
+                                        <div class="pricing-box">
+                                            <div class="name-box">2 MONTH PACKAGE</div>
+                                            <div class="price-box display-6">R 500</div>
+                                            <ul class="features">
+                                                <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 2 months.</li>
+                                                <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </form>   
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 @endif
-
 @endsection
 @section('script')
 <script type="text/javascript">

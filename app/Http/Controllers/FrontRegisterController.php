@@ -23,35 +23,36 @@ class FrontRegisterController extends Controller
             return redirect()->route('home');
         }
 
-       if($type == "au-pairs"){
-            return view('user.registration_forms.au_pairs_register', $data);
-       }elseif($type == "petsitters"){
-            return view('user.registration_forms.petsitters_register', $data);
-       }elseif($type == "nannies"){
-            return view('user.registration_forms.nannies_register', $data);
-       }else{
-            return view('user.registration_forms.babysitters_register', $data);
-       }
+        if($type == "au-pairs"){
+            return view('user.registration_forms.au_pairs_form', $data);
+        }elseif($type == "petsitters"){
+            return view('user.registration_forms.petsitters_form', $data);
+        }elseif($type == "nannies"){
+            return view('user.registration_forms.nannies_form', $data);
+        }else{
+            return view('user.registration_forms.babysitters_form', $data);
+        }
     }
 
     public function store_candidate(Request $request){
         $data  = $request->all();
         $rules = [
-            'name'               => "required",
-            'age'                => "required",
-            // 'profile'         => "required",
-            'id_number'          => "required",
-            // 'contact_number'  => "required",
-            'email'              => "required|email|unique:front_users,email",
-            'password'           => "required",
-            // 'gender'          => "required",
-            // 'marital_status'  => "required",
-            // 'drivers_license' => "required",
-            'salary_expectation' => "required",
-            'morning.*'          => "required_without_all",
-            'afternoon.*'        => "required",
-            'evening.*'          => "required",
-            'night.*'            => "required",
+            'name'                  => "required",
+            'age'                   => "required",
+            // 'profile'            => "required",
+            'id_number'             => "required",
+            // 'contact_number'     => "required",
+            'email'                 => "required|email|unique:front_users,email",
+            'password'              => "required",
+            // 'gender'             => "required",
+            // 'marital_status'     => "required",
+            // 'drivers_license'    => "required",
+            'salary_expectation'    => "required",
+            'morning.*'             => "required_without_all",
+            'afternoon.*'           => "required",
+            'evening.*'             => "required",
+            'night.*'               => "required",
+            'terms_and_conditions'  => "required",
         ];
         $message = [
             'name'               => 'The Name field isrequired',
@@ -94,7 +95,7 @@ class FrontRegisterController extends Controller
             'contact_number'           => $request->contact_number,
             'email'                    => $request->email,
             'password'                 => Hash::make($request->password),
-            'situated'                 => $request->situated,
+            // 'situated'                 => $request->situated,
             'area'                     => $request->area,
             'gender'                   => $request->gender,
             'ethnicity'                => $request->ethnicity,
@@ -164,7 +165,7 @@ class FrontRegisterController extends Controller
     public function family_register(){
         $data['menu']       = "family registration";
         $data['packages']   = packages::all();
-        return view('user.registration_forms.family_register', $data);
+        return view('user.registration_forms.family_form', $data);
     }
 
     public function store_family(Request $request){
@@ -179,14 +180,14 @@ class FrontRegisterController extends Controller
             'family_city'                   => "required",
             'home_language'                 => "required",
             'no_children'                   => "required",
-            'describe_kids'                 => "required|array",
-            'family_types_babysitter'       => "required",
+            // 'describe_kids'                 => "required|array",
+            // 'family_types_babysitter'       => "required",
             'family_location'               => "required",
-            'family_babysitter_comfortable' => "required",
+            // 'family_babysitter_comfortable' => "required",
             'family_profile_see'            => "required",
             'family_notifications'          => "required",
             'family_description'            => "required",
-            'package'                       => "required",
+            // 'package'                       => "required",
 
             'cell_number'                   => "required",
             'id_number'                     => "required",
@@ -206,11 +207,11 @@ class FrontRegisterController extends Controller
             'family_city'                   => "The Family city must be required",
             'home_language'                 => "The Home language must be required",
             'no_children'                   => "The No children must be required",
-            'describe_kids.required'        => "The Describe kids must be required",
-            'describe_kids.array'           => 'Invalid selected value.',
+            // 'describe_kids.required'        => "The Describe kids must be required",
+            // 'describe_kids.array'           => 'Invalid selected value.',
             'family_types_babysitter'       => "The Family types babysitter must be required",
             'family_location'               => "The Family location must be required",
-            'family_babysitter_comfortable' => "The Family babysitter comfortable must be required",
+            // 'family_babysitter_comfortable' => "The Family babysitter comfortable must be required",
             'family_profile_see'            => "The Family profile see must be required",
             'family_notifications'          => "The Family notifications must be required",
             'family_description'            => "The Family description must be required",
@@ -243,10 +244,10 @@ class FrontRegisterController extends Controller
             'family_city'                   => $request->family_city,
             'home_language'                 => $request->home_language,
             'no_children'                   => $request->no_children,
-            'describe_kids'                 => isset($request->describe_kids) ? json_encode($request->describe_kids) : null,
-            'family_types_babysitter'       => $request->family_types_babysitter,
+            // 'describe_kids'                 => isset($request->describe_kids) ? json_encode($request->describe_kids) : null,
+            // 'family_types_babysitter'       => $request->family_types_babysitter,
             'family_location'               => $request->family_location,
-            'family_babysitter_comfortable' => isset($request->family_babysitter_comfortable) ? json_encode($request->family_babysitter_comfortable) : null,
+            // 'family_babysitter_comfortable' => isset($request->family_babysitter_comfortable) ? json_encode($request->family_babysitter_comfortable) : null,
             'family_profile_see'            => $request->family_profile_see,
             'family_notifications'          => $request->family_notifications,
             'salary_expectation'            => $request->salary_expectation,
@@ -263,19 +264,13 @@ class FrontRegisterController extends Controller
         $package             = Packages::find($request->package);
         //$mail_sent_status    = $this->send_notification_email($request->all(), 'family');
 
-        /*User subscription*/
-        $subscription       = new SubscriptionController();
-        $user_subscription  = $subscription->add_user_subscription($data, $familyId);
-        
-        /*payment details*/
-        $data['amount']         = $package->price;
-        $data['item_name']      = $package->name;
-        $data['custom_int1']    = $familyId;
-        $data['custom_int2']    = $user_subscription->id;
+        $data['user_id']        = $familyId;
         $data['profile']        = null;
 
-        /*redirect to payment api*/
-        return redirect()->route('payment-process')->with(['guestUser' => $data]);
+        /*redirect to payment packages*/
+        Session::put('guestUser', $data);
+
+        return view('user.family.pricing');
     }
 
     public function send_notification_email($data, $role){

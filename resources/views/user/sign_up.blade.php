@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>REGISTER AS AN AU-APIR AND FILL OUT OUR APPLICATION FORM.</p>
+                                    <p>REGISTER AS AN AU-PAIR AND FILL OUT OUR REGISTRATION FORM.</p>
                                 </div>
                             </div>
                         </li>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>COMPLETE AN ONLINE INTERVIEW AND REFERENCE CHECKS.</p>
+                                    <p>YOU WILL THEN HAVE TO GO THROUGH THE SCREENING PROCESS. WHICH WILL INCLUDE AN ONLINE INTERVIEW AND REFERENCE CHECKS.</p>
                                 </div>
                             </div>
                         </li>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>ADD YOUR PROFILE TO THE DATA BASE AND APPLY FOR AVAILABLE POSITIONS.</p>
+                                    <p>CREATE YOUR PROFILE AND APPLY FOR AVAILABLE POSITIONS.</p>
                                 </div>
                             </div>
                         </li>
@@ -73,10 +73,12 @@
                 <h3>REQUIREMENTS:</h3>
             </div>
             <ul class="requirements-list">
-                <li>MATRIC</li>
-                <li>RELIABLECAR</li>
-                <li>DRIVERSLICENSE</li>
-                <li>PREVIOUSCHILDCAREEXPERIENCE</li>
+                <li>19 YEARS OR OLDER.</li>
+                <li>VALID DRIVER’S LICENSE.</li>
+                <li>OWN RELIABLE VEHICLE.</li>
+                <li>MATRIC CERTIFICATE.</li>
+                <li>MINIMUM OF 2 CONTACTABLE REFERENCES.</li>
+                <li>CLEAN CRIMINAL RECORD.</li>
             </ul>
         </div>
     </div>
@@ -105,7 +107,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>REGISTER AS A NANNY AND FILL OUT OUR APPLICATION FORM.</p>
+                                    <p>REGISTER AS A NANNY AND FILL OUT OUR REGISTRATION FORM.</p>
                                 </div>
                             </div>
                         </li>
@@ -117,7 +119,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>COMPLETE AN ONLINE INTERVIEW AND REFERENCE CHECKS.</p>
+                                    <p>YOU WILL THEN HAVE TO GO THROUGH THE SCREENING PROCESS. WHICH WILL INCLUDE AN ONLINE INTERVIEW AND REFERENCE CHECKS.</p>
                                 </div>
                             </div>
                         </li>
@@ -129,7 +131,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>ADD YOUR PROFILE TO THE DATA BASE AND APPLY FOR AVAILABLE POSITIONS.</p>
+                                    <p>CREATE YOUR PROFILE AND APPLY FOR AVAILABLE POSITIONS.</p>
                                 </div>
                             </div>
                         </li>
@@ -140,8 +142,10 @@
                 <h3>REQUIREMENTS:</h3>
             </div>
             <ul class="requirements-list">
-                <li>MINIMUMOF2CONTACTABLEREFERENCES</li>
-                <li>PREVIOUSCHILDCAREEXPERIENCE</li>
+                <li>23 YEARS OR OLDER.</li>
+                <li>MINIMUM OF 2 YEARS’ EXPERIENCE WITH CHILDREN.</li>
+                <li>MINIMUM OF 2 CONTACTABLE REFERENCES.</li>
+                <li>CLEAN CRIMINAL RECORD.</li>
             </ul>
         </div>
     </div>
@@ -170,7 +174,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>REGISTER AS A BABYSITTER AND FILL OUT OUR APPLICATION FORM.</p>
+                                    <p>REGISTER AS A BABYSITTER AND FILL OUT OUR REGISTRATION FORM.</p>
                                 </div>
                             </div>
                         </li>
@@ -182,7 +186,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>COMPLETE AN ONLINE INTERVIEW AND REFERENCE CHECKS.</p>
+                                    <p>YOU WILL THEN HAVE TO GO THROUGH THE SCREENING PROCESS. WHICH WILL INCLUDE AN ONLINE INTERVIEW AND REFERENCE CHECKS.</p>
                                 </div>
                             </div>
                         </li>
@@ -194,7 +198,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>ADD YOUR PROFILE TO THE DATA BASE AND APPLY FOR AVAILABLE POSITIONS.</p>
+                                    <p>CREATE YOUR PROFILE AND APPLY FOR AVAILABLE POSITIONS.</p>
                                 </div>
                             </div>
                         </li>
@@ -205,10 +209,10 @@
                 <h3>REQUIREMENTS:</h3>
             </div>
             <ul class="requirements-list">
-                <li>MATRIC</li>
-                <li>RELIABLECAR</li>
-                <li>DRIVERSLICENSE</li>
-                <li>PREVIOUSCHILDCAREEXPERIENCE</li>
+                <li>19 YEARS OR OLDER.</li>
+                <li>VALID DRIVER’S LICENSE.</li>
+                <li>MINIMUM OF 2 CONTACTABLE REFERENCES.</li>
+                <li>CLEAN CRIMINAL RECORD.</li>
             </ul>
         </div>
     </div>
@@ -237,7 +241,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>REGISTER AS A PETSITTER AND FILL OUT OUR APPLICATION FORM.</p>
+                                    <p>REGISTER AS A PET SITTER AND FILL OUT OUR REGISTRATION FORM..</p>
                                 </div>
                             </div>
                         </li>
@@ -249,7 +253,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>COMPLETE AN ONLINE INTERVIEW AND REFERENCE CHECKS.</p>
+                                    <p>YOU WILL THEN HAVE TO GO THROUGH THE SCREENING PROCESS. WHICH WILL INCLUDE AN ONLINE INTERVIEW AND REFERENCE CHECKS.</p>
                                 </div>
                             </div>
                         </li>
@@ -261,7 +265,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>ADD YOUR PROFILE TO THE DATA BASE AND APPLY FOR AVAILABLE POSITIONS.</p>
+                                    <p>CREATE YOUR PROFILE AND APPLY FOR AVAILABLE POSITIONS.</p>
                                 </div>
                             </div>
                         </li>
@@ -272,10 +276,10 @@
                 <h3>REQUIREMENTS:</h3>
             </div>
             <ul class="requirements-list">
-                <li>MUSTBERESPONSIBLEANDRELIABLE</li>
-                <li>MUSTHAVEFLEXIBLEHOURS</li>
-                <li>PREVIOUSEXPERIENCEWILLBEBENEFICIAL</li>
-                <li>MUSTLOVEANIMALS</li>
+                <li>18 YEARS OR OLDER.</li>
+                <li>EXPERIENCE WITH ANIMALS.</li>
+                <li>MINIMUM OF 2 CONTACTABLE REFERENCES.</li>
+                <li>CLEAN CRIMINAL RECORD.</li>
             </ul>
         </div>
     </div>

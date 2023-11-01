@@ -108,4 +108,12 @@ class HomeController extends Controller
         Session::forget('frontUser');
         return redirect()->route('home');
     }
+
+    public function terms_and_conditions($service){
+        if($service == "candidate"){
+            return view('user.candidate_terms_and_conditions');
+        }else{
+            return view('user.family_terms_and_conditions');
+        }
+    }
 }
