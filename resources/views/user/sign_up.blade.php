@@ -33,7 +33,7 @@
 </div>
 
 <div class="steps-section-list">
-    <div class="steps-section">
+    <div class="steps-section" id="how-aupairs-works">
         <div class="container">
             <div class="title-main mb-5">
                 <h2>Au-Pairs</h2>
@@ -107,7 +107,7 @@
             </div>
         </div>
     </div>
-    <div class="steps-section">
+    <div class="steps-section" id="how-nannies-works">
         <div class="container">
             <div class="title-main mb-5">
                 <h2>Nannies</h2>
@@ -179,7 +179,7 @@
             </div>
         </div>
     </div>
-    <div class="steps-section">
+    <div class="steps-section" id="how-babysitters-works">
         <div class="container">
             <div class="title-main mb-5">
                 <h2>Babysitters</h2>
@@ -251,7 +251,7 @@
             </div>
         </div>
     </div>
-    <div class="steps-section">
+    <div class="steps-section" id="how-petsitters-works">
         <div class="container">
             <div class="title-main mb-5">
                 <h2>Petsitters</h2>

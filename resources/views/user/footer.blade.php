@@ -7,12 +7,12 @@
 						<h5>Candidates</h5>
 						<p class="fs-4 mb-2"><a href="javaScript:;" class="fs-4">How it works</a></p>
 						<ul>
-							<li><a href="{{ route('candidate-register','au-pairs') }}">Au-Pairs</a></li>
-							<li><a href="{{ route('candidate-register','nannies') }}">Nannies</a></li>
-							<li><a href="{{ route('candidate-register','babysitters') }}">Babysitters</a></li>
-							<li><a href="{{ route('candidate-register','petsitters') }}">Petsitters</a></li>
+							<li><a href="{{ route('sign-up-candidate') }}#how-aupairs-works">Au-Pairs</a></li>
+							<li><a href="{{ route('sign-up-candidate') }}#how-nannies-works">Nannies</a></li>
+							<li><a href="{{ route('sign-up-candidate') }}#how-babysitters-works">Babysitters</a></li>
+							<li><a href="{{ route('sign-up-candidate') }}#how-petsitters-works">Petsitters</a></li>
 						</ul>
-						<p class="fs-4 mt-2"><a href="javaScript:;" class="fs-4">Register as a candidate</a></p>
+						<p class="fs-4 mt-2"><a href="{{ route('sign-up-candidate') }}" class="fs-4">Register as a candidate</a></p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
