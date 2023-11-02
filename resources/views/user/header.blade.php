@@ -13,18 +13,18 @@
                             <li class="{{ request()->is('candidates') || request()->is('candidates/*') ? 'active' : '' }}">
                                 <a href="{{ route('candidates') }}">candidates</a>
                                 <ul>
-                                    <li><a href="javaScript:;">Au-Pairs</a></li>
-                                    <li><a href="javaScript:;">Nannies</a></li>
-                                    <li><a href="javaScript:;">Babysitters</a></li>
-                                    <li><a href="javaScript:;">Pet sitters</a></li>
+                                    <li><a href="{{ route('candidates-service', ['service' => 'au-pairs']) }}">Au-Pairs</a></li>
+                                    <li><a href="{{ route('candidates-service', ['service' => 'nannies']) }}">Nannies</a></li>
+                                    <li><a href="{{ route('candidates-service', ['service' => 'babysitters']) }}">Babysitters</a></li>
+                                    <li><a href="{{ route('candidates-service', ['service' => 'petsitters']) }}">Pet sitters</a></li>
                                 </ul>
                             </li>
-                            <li class="d-none {{ request()->is('families') ? 'active' : '' }} {{ request()->is('family-register') }}"><a href="{{ route('families') }}">family</a></li>
-                            <li class="{{ request()->is('sign-up') ? 'active' : '' }}">
-                                <a href="{{ route('sign-up') }}">sign up</a>
+                            
+                            <li class="{{ request()->routeIs('sign-up-candidate') || request()->routeIs('sign-up-family') ? 'active' : '' }}">
+                                <a href="{{ route('sign-up-candidate') }}">sign up</a>
                                 <ul>
-                                    <li><a href="javaScript:;">candidates</a></li>
-                                    <li><a href="javaScript:;">family</a></li>
+                                    <li><a href="{{ route('sign-up-candidate') }}">candidates</a></li>
+                                    <li><a href="{{ route('sign-up-family') }}">family</a></li>
                                 </ul>
                             </li>
                         @elseif(session()->get('frontUser')->role != "family")
