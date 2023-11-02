@@ -10,9 +10,23 @@
                         <li class="{{ request()->is('/') ? 'active' : '' }}"><a href="{{ route('home') }}">home</a></li>
                         @if(!session()->has('frontUser'))
                             <li><a href="{{ route('home') }}#aboutUs">About US</a></li>
-                            <li class="{{ request()->is('candidates') || request()->is('candidates/*') ? 'active' : '' }}"><a href="{{ route('candidates') }}">candidates</a></li>
-                            <li class="{{ request()->is('families') ? 'active' : '' }} {{ request()->is('family-register') }}"><a href="{{ route('families') }}">family</a></li>
-                            <li class="{{ request()->is('sign-up') ? 'active' : '' }}"><a href="{{ route('sign-up') }}">sign up</a></li>
+                            <li class="{{ request()->is('candidates') || request()->is('candidates/*') ? 'active' : '' }}">
+                                <a href="{{ route('candidates') }}">candidates</a>
+                                <ul>
+                                    <li><a href="javaScript:;">Au-Pairs</a></li>
+                                    <li><a href="javaScript:;">Nannies</a></li>
+                                    <li><a href="javaScript:;">Babysitters</a></li>
+                                    <li><a href="javaScript:;">Pet sitters</a></li>
+                                </ul>
+                            </li>
+                            <li class="d-none {{ request()->is('families') ? 'active' : '' }} {{ request()->is('family-register') }}"><a href="{{ route('families') }}">family</a></li>
+                            <li class="{{ request()->is('sign-up') ? 'active' : '' }}">
+                                <a href="{{ route('sign-up') }}">sign up</a>
+                                <ul>
+                                    <li><a href="javaScript:;">candidates</a></li>
+                                    <li><a href="javaScript:;">family</a></li>
+                                </ul>
+                            </li>
                         @elseif(session()->get('frontUser')->role != "family")
                              {{-- candidate manu --}}
                             <li class="{{ request()->routeIs('view-families') ? 'active' : '' }}"><a href="{{ route('view-families') }}">View Families</a></li>

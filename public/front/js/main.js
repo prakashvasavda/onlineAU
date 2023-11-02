@@ -80,7 +80,7 @@
   /*stellarnav - mobile menu*/
   $('.stellarnav').stellarNav({
     position: 'right',
-    breakpoint: 768,
+    breakpoint: 991,
     closeBtn: true
   });
 

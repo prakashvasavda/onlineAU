@@ -19,6 +19,17 @@
 	            <h2>Favorites</h2>
 	        </div>
 
+	        <div class="search-box profileSrc">
+	        	<form class="w-100 d-flex flex-row justify-content-center align-items-center">
+		        	<div class="form-input">
+		        		<input type="text" name="" placeholder="Search here" class="form-field">
+					</div>
+					<div class="form-input-btn">
+						<a href="javaScript:;" class="btn src-icon"><i class="fa fa-search"></i></a>
+					</div>
+				</form>
+	        </div>
+
 			<div class="row result-list">
 				@if(isset($candidates) && !empty($candidates))
 					@foreach($candidates as $key => $value)
@@ -156,7 +167,108 @@
 				@endif
 			</div>
 
-
+		</div>
+	</div>
+	<div class="favorites-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+					<div class="card verticalBox">
+					  <img src="https://onlineaupairs.co.za/storage/app/public/uploads/user-profile.png" class="img-fluid card-img-top" alt="">
+					  <div class="card-body">
+					  	<div class="pos-icon">
+					  		<a href="javaScript:;" class="wishBtn"><i class="fa-regular fa-heart"></i></a>
+					  	</div>
+					    <p class="text-capitalize mb-1"><span>name</span>: JANE</p>
+					    <p class="text-capitalize mb-1"><span>age</span>: 28</p>
+					    <p class="text-capitalize mb-1"><span>area</span>: Nebraska, Grand Island</p>
+					    <p class="text-capitalize mb-1"><span>availability</span>: date</p>
+					    <p class="text-capitalize mb-1"><span>years experience</span>: 2 years</p>
+					    <p class="text-center mt-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+					  </div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+					<div class="card verticalBox">
+					  <img src="https://onlineaupairs.co.za/storage/app/public/uploads/user-profile.png" class="img-fluid card-img-top" alt="">
+					  <div class="card-body">
+					  	<div class="pos-icon">
+					  		<a href="javaScript:;" class="wishBtn"><i class="fa-regular fa-heart"></i></a>
+					  	</div>
+					    <p class="text-capitalize mb-1"><span>name</span>: JANE</p>
+					    <p class="text-capitalize mb-1"><span>age</span>: 28</p>
+					    <p class="text-capitalize mb-1"><span>area</span>: Nebraska, Grand Island</p>
+					    <p class="text-capitalize mb-1"><span>availability</span>: date</p>
+					    <p class="text-capitalize mb-1"><span>years experience</span>: 2 years</p>
+					    <p class="text-center mt-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+					  </div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+					<div class="card verticalBox">
+					  <img src="https://onlineaupairs.co.za/storage/app/public/uploads/user-profile.png" class="img-fluid card-img-top" alt="">
+					  <div class="card-body">
+					  	<div class="pos-icon">
+					  		<a href="javaScript:;" class="wishBtn"><i class="fa-regular fa-heart"></i></a>
+					  	</div>
+					    <p class="text-capitalize mb-1"><span>name</span>: JANE</p>
+					    <p class="text-capitalize mb-1"><span>age</span>: 28</p>
+					    <p class="text-capitalize mb-1"><span>area</span>: Nebraska, Grand Island</p>
+					    <p class="text-capitalize mb-1"><span>availability</span>: date</p>
+					    <p class="text-capitalize mb-1"><span>years experience</span>: 2 years</p>
+					    <p class="text-center mt-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+					  </div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+					<div class="card verticalBox">
+					  <img src="https://onlineaupairs.co.za/storage/app/public/uploads/user-profile.png" class="img-fluid card-img-top" alt="">
+					  <div class="card-body">
+					  	<div class="pos-icon">
+					  		<a href="javaScript:;" class="wishBtn"><i class="fa-regular fa-heart"></i></a>
+					  	</div>
+					    <p class="text-capitalize mb-1"><span>name</span>: JANE</p>
+					    <p class="text-capitalize mb-1"><span>age</span>: 28</p>
+					    <p class="text-capitalize mb-1"><span>area</span>: Nebraska, Grand Island</p>
+					    <p class="text-capitalize mb-1"><span>availability</span>: date</p>
+					    <p class="text-capitalize mb-1"><span>years experience</span>: 2 years</p>
+					    <p class="text-center mt-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+					  </div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+					<div class="card verticalBox">
+					  <img src="https://onlineaupairs.co.za/storage/app/public/uploads/user-profile.png" class="img-fluid card-img-top" alt="">
+					  <div class="card-body">
+					  	<div class="pos-icon">
+					  		<a href="javaScript:;" class="wishBtn"><i class="fa-regular fa-heart"></i></a>
+					  	</div>
+					    <p class="text-capitalize mb-1"><span>name</span>: JANE</p>
+					    <p class="text-capitalize mb-1"><span>age</span>: 28</p>
+					    <p class="text-capitalize mb-1"><span>area</span>: Nebraska, Grand Island</p>
+					    <p class="text-capitalize mb-1"><span>availability</span>: date</p>
+					    <p class="text-capitalize mb-1"><span>years experience</span>: 2 years</p>
+					    <p class="text-center mt-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+					  </div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+					<div class="card verticalBox">
+					  <img src="https://onlineaupairs.co.za/storage/app/public/uploads/user-profile.png" class="img-fluid card-img-top" alt="">
+					  <div class="card-body">
+					  	<div class="pos-icon">
+					  		<a href="javaScript:;" class="wishBtn"><i class="fa-regular fa-heart"></i></a>
+					  	</div>
+					    <p class="text-capitalize mb-1"><span>name</span>: JANE</p>
+					    <p class="text-capitalize mb-1"><span>age</span>: 28</p>
+					    <p class="text-capitalize mb-1"><span>area</span>: Nebraska, Grand Island</p>
+					    <p class="text-capitalize mb-1"><span>availability</span>: date</p>
+					    <p class="text-capitalize mb-1"><span>years experience</span>: 2 years</p>
+					    <p class="text-center mt-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+					  </div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

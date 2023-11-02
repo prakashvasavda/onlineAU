@@ -21,10 +21,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <h2>CANDIDATES</h2>
+                    <h2><a href="javaScript:;">For CANDIDATES</a></h2>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <h2>family</h2>
+                    <h2><a href="javaScript:;">For family</a></h2>
                 </div>
             </div>
         </div>
