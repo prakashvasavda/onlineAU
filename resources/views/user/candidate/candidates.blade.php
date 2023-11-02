@@ -14,28 +14,34 @@
 				{{-- <h2>Find babysitting jobs</h2> --}}
 				{{-- <p>26 families matching your search</p> --}}
 			</div>
-			<div class="row result-list">
-				@if(isset($candidates) && count($candidates) > 0)
-					@foreach($candidates as $key => $value)
-						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-								<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
-								<div class="card">
-								    <div class="row g-0">
-								        <div class="col-md-4">
-								           	@if(isset($value->profile))
-								            	<img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" alt="">
-								            @else
-								            	<img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="">
-								            @endif
-								        </div>
-								        <div class="col-md-8">
-								            <div class="card-body">
-								            	<div class="pos-icon">
-								            		<div class="spinner-border" role="status" id="spinner{{$value->id}}" style="display: none;">
-													  <span class="visually-hidden">Loading...</span>
-													</div>
 
-								            		@if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
+			<div class="search-box profileSrc">
+	        	<form class="w-100 d-flex flex-row justify-content-center align-items-center">
+		        	<div class="form-input">
+		        		<input type="text" name="" placeholder="Search here" class="form-field">
+					</div>
+					<div class="form-input-btn">
+						<a href="javaScript:;" class="btn src-icon"><i class="fa fa-search"></i></a>
+					</div>
+				</form>
+	        </div>
+
+			<div class="favorites-section">
+				<div class="container">
+					<div class="row">
+						@if(isset($candidates) && count($candidates) > 0)
+							@foreach($candidates as $key => $value)
+								<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+									<div class="card verticalBox">
+									 	@if(isset($value->profile))
+							            	<img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" alt="">
+							            @else
+							            	<img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="">
+							            @endif
+									  	<div class="card-body">
+										  	<div class="pos-icon">
+										  		<span>
+										  			@if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
 								            			@if(isset($value->candidate_favorited_by) && is_string($value->candidate_favorited_by))
 								            				@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
 								            					<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
@@ -49,38 +55,38 @@
 								         				<span class="disabled-heart"><i class="far fa-heart"></i></span>
 								            		@else
 								            			<i class="fa-regular fa-heart" onclick="event.preventDefault(); window.location.href = '{{ route('user-login') }}';"></i>
-								            		@endif								            		
-								            	</div>
-								                <h5 class="card-title">{{ $value->name }}</h5>
-								                <p class="card-text">{{ $value->area }}</p>
-								                <p class="card-text">
-								                	<small>
-								                		<span>
-								                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
-										                	 	@for($i = 0; $i < 5; $i++)
-															        @if($i < max(explode(",", $value->review_rating_count)))
-															            <i class="fa-solid fa-star"></i>
-															        @else
-															            <i class="fa-regular fa-star"></i>
-															        @endif
-														   	 	@endfor
-												            @else
-												            	@for($i=0; $i<5; $i++)
-												                	<i class="fa-regular fa-star"></i>
-												                @endfor
-											                @endif 
-										                </span>
-									                	<span>{{ isset($value->total_reviews) ? $value->total_reviews : 0 }} Reviews</span>
-									                </small>
-									            </p>
-								            </div>
-								        </div>
-								    </div>
+								            		@endif		
+										  		</span>
+										  	</div>
+										    <p class="text-capitalize mb-1"><span>name</span>: {{ ucfirst($value->name) }}</p>
+										    <p class="text-capitalize mb-1"><span>age</span>: {{ $value->age }}</p>
+										    <p class="text-capitalize mb-1"><span>area</span>: {{ ucfirst($value->area) }}</p>
+										    <p class="text-capitalize mb-1"><span>availability</span>: 10/02/2023</p>
+										    <p class="text-capitalize mb-1"><span>years experience</span>: {{ $value->childcare_experience }}</p>
+										    <p class="text-center mt-3">
+										    	<span>
+						                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
+								                	 	@for($i = 0; $i < 5; $i++)
+													        @if($i < max(explode(",", $value->review_rating_count)))
+													            <i class="fa-solid fa-star"></i>
+													        @else
+													            <i class="fa-regular fa-star"></i>
+													        @endif
+												   	 	@endfor
+										            @else
+										            	@for($i=0; $i<5; $i++)
+										                	<i class="fa-regular fa-star"></i>
+										                @endfor
+									                @endif 
+								                </span>
+										    </p>
+									  	</div>
+									</div>
 								</div>
-							</a>
-						</div>
-					@endforeach
-				@endif
+							@endforeach
+						@endif
+					</div>
+				</div>
 			</div>
 
 			@if(request()->is('candidates/*'))
