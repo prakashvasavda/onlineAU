@@ -86,12 +86,16 @@
                             <p>{{ isset($payment->item_name) ? $payment->item_name : '-' }}<br></p>
                             <b>Date</b><br>
                             <p>{{ isset($payment->created_at) ? $payment->created_at : '-' }}</p>
+                            <b>Package Name</b><br>
+                            <p>{{ isset($user_subscription->package_name) ? $user_subscription->package_name : '-' }}</p>
                             <b>Amount</b><br>
                             <p>{{ isset($payment->amount_gross) ? $payment->amount_gross : '-' }}</p>
+                            <b>Package End Date</b><br>
+                            <p>{{ isset($user_subscription->end_date) ? $user_subscription->end_date : '-' }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+               {{--  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="card border-light">
                         <h4 class="card-header">Notes</h4>
                         <div class="card-body">
@@ -99,8 +103,8 @@
                             <p><a class="show-dialog" href="#" data-bs-toggle="modal" data-bs-target="#dialog-invoice-notes">Add details for expense or tax declarations</a></p>
                         </div>
                     </div>
-                </div>
-                <div class="col-12">
+                </div> --}}
+               {{--  <div class="col-12">
                     <div class="form-input loader-overlay-wrapper">
                         <p class="mb-3 text-center">This is where you can download payment receipts for all completed bookings and your premium subscription.</p>
                         <div class="btn-main d-flex flex-wrap justify-content-center align-item-center">
@@ -117,7 +121,7 @@
                             <a href="#" style="vertical-align: middle; pointer-events: none;">subscribe</a>
                         </p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -158,7 +162,8 @@
                                 <form method="POST" id="form_one" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="amount" value="1500">
-                                    <input type="hidden" name="item_name" value="self placement">
+                                    <input type="hidden" name="item_name" value="au-pair self placement package">
+                                    <input type="hidden" name="end_date" value="60">
                                     <a href="#" onclick="document.getElementById('form_one').submit(); return false;">
                                         <div class="pricing-box">
                                             <div class="name-box">SELF PLACEMENT PACKAGE</div>
@@ -179,7 +184,8 @@
                                 <form method="POST" id="form_two" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="amount" value="3000">
-                                    <input type="hidden" name="item_name" value="private placement">
+                                    <input type="hidden" name="item_name" value="au-pair private placement package">
+                                    <input type="hidden" name="end_date" value="365">
                                     <a href="#" onclick="document.getElementById('form_two').submit(); return false;">
                                         <div class="pricing-box">
                                             <div class="name-box">PRIVATE PLACEMENT PACKAGE</div>
@@ -209,7 +215,8 @@
                                 <form method="POST" id="form_three" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="amount" value="3000">
-                                    <input type="hidden" name="item_name" value="private placement">
+                                    <input type="hidden" name="item_name" value="nannies self placement package">
+                                    <input type="hidden" name="end_date" value="60">
                                     <a href="#" onclick="document.getElementById('form_three').submit(); return false;">
                                         <div class="pricing-box">
                                             <div class="name-box">SELF PLACEMENT PACKAGE</div>
@@ -229,7 +236,8 @@
                                 <form method="POST" id="form_four" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="amount" value="3000">
-                                    <input type="hidden" name="item_name" value="private placement">
+                                    <input type="hidden" name="item_name" value="nannies private placement package">
+                                    <input type="hidden" name="end_date" value="365">
                                     <a href="#" onclick="document.getElementById('form_four').submit(); return false;">
                                          <div class="pricing-box">
                                             <div class="name-box">PRIVATE PLACEMENT PACKAGE</div>
@@ -251,14 +259,15 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="pricing-plans-main">
                         <div class="title-main">
-                            <h2>babysitters / pet sitters</h2>
+                            <h2>babysitters</h2>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                                 <form method="POST" id="form_five" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="amount" value="250">
-                                    <input type="hidden" name="item_name" value="one month">
+                                    <input type="hidden" name="item_name" value="babysitters 1 month package">
+                                    <input type="hidden" name="end_date" value="30">
                                     <a href="#" onclick="document.getElementById('form_five').submit(); return false;">
                                         <div class="pricing-box">
                                             <div class="name-box">1 MONTH PACKAGE</div>
@@ -276,8 +285,56 @@
                                 <form method="POST" id="form_six" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="amount" value="500">
-                                    <input type="hidden" name="item_name" value="two month">
+                                    <input type="hidden" name="item_name" value="babysitters 2 month package">
+                                    <input type="hidden" name="end_date" value="60">
                                     <a href="#" onclick="document.getElementById('form_six').submit(); return false;">
+                                        <div class="pricing-box">
+                                            <div class="name-box">2 MONTH PACKAGE</div>
+                                            <div class="price-box display-6">R 500</div>
+                                            <ul class="features">
+                                                <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 2 months.</li>
+                                                <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </form>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="pricing-plans-main">
+                        <div class="title-main">
+                            <h2>pet sitters</h2>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <form method="POST" id="form_seven" action="{{ route('payment-process') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="amount" value="250">
+                                    <input type="hidden" name="item_name" value="pet sitters 1 month package">
+                                    <input type="hidden" name="end_date" value="30">
+                                    <a href="#" onclick="document.getElementById('form_seven').submit(); return false;">
+                                        <div class="pricing-box">
+                                            <div class="name-box">1 MONTH PACKAGE</div>
+                                            <div class="price-box display-6">R 250</div>
+                                            <ul class="features">
+                                                <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to a months.</li>
+                                                <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <form method="POST" id="form_eight" action="{{ route('payment-process') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="amount" value="500">
+                                    <input type="hidden" name="item_name" value="pet sitter 2 month package">
+                                    <input type="hidden" name="end_date" value="60">
+                                    <a href="#" onclick="document.getElementById('form_eight').submit(); return false;">
                                         <div class="pricing-box">
                                             <div class="name-box">2 MONTH PACKAGE</div>
                                             <div class="price-box display-6">R 500</div>

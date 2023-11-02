@@ -4,22 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\User\SubscriptionController;
 use Illuminate\Http\Request;
+use App\UserSubscription;
+use Carbon\Carbon;
 use App\Payment;
 use Session;
-
-/*
-    $return_url = 'http://localhost/onlineAU/public/api/payment/success';
-    $cancel_url = 'http://localhost/onlineAU/public/api/payment/cancel';
-    $notify_url = 'http://localhost/onlineAU/public/api/payment/notify';
-*/
-
 
 class PaymentController extends Controller{
 
     public function process_payment(Request $request){
-        /*package details*/
-        $input          = Session::has('frontUser') ? $request->all() : Session::get('guestUser');
-
         /*Merchant details*/
         $merchant_id    = 10031315;
         $merchant_key   = 'sbijrnrrkonrs';
@@ -32,7 +24,7 @@ class PaymentController extends Controller{
 
         /*add user subscription*/
         $subscription       = new SubscriptionController();
-        $user_subscription  = $subscription->add_user_subscription($input, $custom_int1);
+        $user_subscription  = $subscription->add_user_subscription($request->all(), $custom_int1);
 
         /*Transaction details*/
         $amount         = isset($request->amount)    ? $request->amount     : null;
@@ -81,8 +73,6 @@ class PaymentController extends Controller{
     }
 
     public function payment_success(Request $request){
-        $payment = Payment::latest()->first();
-        $payment->update(['status' => 1]);
         return redirect()->route('transactions');
     }
 
@@ -97,8 +87,13 @@ class PaymentController extends Controller{
         $data                           = $request->all();
         $data['user_id']                = $request->custom_int1;
         $data['user_subscription_id']   = $request->custom_int2;
-        $status                         = Payment::create($data);
+        $payment                        = Payment::create($data);
 
         \Log::info(print_r($request->all(), true));
+
+        if(isset($request->custom_int1) && !empty($payment)){
+            $user_subscription = UserSubscription::where('user_id', $request->custom_int1)->latest()->first();
+            $update_status     = !empty($user_subscription) ? $user_subscription->update(['status' => 1]) : null;
+        }
     }
 }

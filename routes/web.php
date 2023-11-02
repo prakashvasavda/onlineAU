@@ -50,6 +50,7 @@ Route::get('sign-up', 'HomeController@sign_up')->name('sign-up');
 /*PUBLIC PAYMENT ROUTE*/
 Route::any('/payment/process', 'PaymentController@process_payment')->name('payment-process');
 
+
 /*Terms and Conditions*/
 Route::get('{service}/terms-and-condition', 'HomeController@terms_and_conditions')->name('terms_and_conditions');
 

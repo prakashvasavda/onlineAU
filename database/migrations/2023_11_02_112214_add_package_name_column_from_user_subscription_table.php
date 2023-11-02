@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnsToFrontUsers extends Migration
+class AddPackageNameColumnFromUserSubscriptionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnsToFrontUsers extends Migration
      */
     public function up()
     {
-        Schema::table('front_users', function (Blueprint $table) {
-            
+        Schema::table('user_subscriptions', function (Blueprint $table) {
+            $table->string('package_name')->after('package_id')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddColumnsToFrontUsers extends Migration
      */
     public function down()
     {
-        Schema::table('front_users', function (Blueprint $table) {
+        Schema::table('user_subscriptions', function (Blueprint $table) {
             //
         });
     }
