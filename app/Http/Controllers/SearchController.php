@@ -9,8 +9,7 @@ use DB;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         $data = $request->all();
         if (empty($data['search'])) {
             return redirect()->route('home');

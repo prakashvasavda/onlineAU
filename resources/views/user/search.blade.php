@@ -26,7 +26,13 @@
 								<div class="card">
 								    <div class="row g-0">
 								        <div class="col-md-4">
-								            <img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" alt="">
+								           	<span class="user-profile-section">
+										  		@if(isset($value->profile))
+									            	<img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" alt="" style=" max-height: 225px; width:100%;">
+									            @else
+									            	<img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="" style=" max-height: 225px; width:100%">
+									            @endif
+										  	</span>
 								        </div>
 								        <div class="col-md-8">
 								            <div class="card-body">
@@ -35,17 +41,21 @@
 								                <p class="card-text">{{ $value->area }}</p>
 								                <p class="card-text">
 								                	<small>
-								                		<span>
-								                			@if(isset($value->review_rating_count) && !empty($value->review_rating_count))
-											                	@for($i=0; $i<$value->review_rating_count; $i++)
-												                	<i class="fa-solid fa-star"></i>
-												                @endfor
+								                		<span class="user-reviews-section">
+								                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
+										                	 	@for($i = 0; $i < 5; $i++)
+															        @if($i < max(explode(",", $value->review_rating_count)))
+															            <i class="fa-solid fa-star"></i>
+															        @else
+															            <i class="fa-regular fa-star"></i>
+															        @endif
+														   	 	@endfor
 												            @else
 												            	@for($i=0; $i<5; $i++)
 												                	<i class="fa-regular fa-star"></i>
 												                @endfor
-											                @endif
-										                </span>
+											                @endif 
+									                	</span>
 									                	<span>{{ isset($value->total_reviews) ? $value->total_reviews : 0 }} Reviews</span>
 									                </small>
 									            </p>

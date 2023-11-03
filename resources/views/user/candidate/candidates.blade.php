@@ -16,12 +16,14 @@
 			</div>
 			
 			<div class="search-box profileSrc">
-	        	<form class="w-100 d-flex flex-row justify-content-center align-items-center">
+	        	<form method="post" id="search_form" action="{{ route('search') }}" class="w-100 d-flex flex-row justify-content-center align-items-center">
+		        	@csrf
 		        	<div class="form-input">
-		        		<input type="text" name="" placeholder="Search here" class="form-field">
+		        		<input type="text" placeholder="Enter Area or City" id="search-field" class="form-field address-input" name="search" required>
+		        		<input type="hidden" name="type" value="candidate">
 					</div>
 					<div class="form-input-btn">
-						<a href="javaScript:;" class="btn src-icon"><i class="fa fa-search"></i></a>
+						<a href="#" onclick="document.getElementById('search_form').submit(); return false;" class="btn src-icon"><i class="fa fa-search"></i></a>
 					</div>
 				</form>
 	        </div>
