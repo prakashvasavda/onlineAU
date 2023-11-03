@@ -1,6 +1,10 @@
 @extends('layouts.register')
-
 @section('content')
+<style type="text/css">
+    span.text-danger{
+        font-size: .875em;
+    }
+</style>
 <div class="container">
     <div class="title-main">
         <h2>Welcome to Online Au-Pairs</h2>
@@ -14,13 +18,25 @@
         <input type="hidden" value="{{ Route::current()->parameter('service') }}" name="role">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="name">Full Name <span class="text-danger">*</span></label>
+                <label for="name">Name <span class="text-danger">*</span></label>
                 <input type="text" id="name" name="name" placeholder="" class="form-field @error('name') is-invalid @enderror" value="{{ old('name') }}" >
                 @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="surname">SurName <span class="text-danger">*</span></label>
+                <input type="text" id="surname" name="surname" placeholder="" class="form-field" value="{{ old('name') }}" >
+                @if ($errors->has('surname'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('surname') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">

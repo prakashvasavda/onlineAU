@@ -1,6 +1,10 @@
 @extends('layouts.main')
 @section('content')
-
+<style type="text/css">
+    span.text-danger{
+        font-size: .875em;
+    }
+</style>
 <div class="single-form-section">
     <div class="container">
         <div class="title-main">
@@ -29,7 +33,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input mb-3">
-                    <label for="name">Full Name <span class="text-danger">*</span></label>
+                    <label for="name"> Name <span class="text-danger">*</span></label>
                     <input type="text" id="name" name="name" placeholder="" class="form-field @error('name') is-invalid @enderror"  value="{{ old('name') }}">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -38,7 +42,22 @@
                     @enderror
 
                 </div>
+
                 <div class="form-input">
+                    <div class="form-input">
+                       <label for="surname"> SurName <span class="text-danger">*</span></label>
+                        <input type="text" id="surname" name="surname" placeholder="" class="form-field"  value="{{ old('surname') }}">
+                         @if ($errors->has('surname'))
+                            <span class="text-danger">
+                                <strong>{{ $errors->first('surname') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+               <div class="form-input">
                     <div class="form-input">
                         <label for="email">Email Address <span class="text-danger">*</span></label>
                         <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="" class="form-field @error('email') is-invalid @enderror">
@@ -111,40 +130,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="language">Add Language <span class="text-danger">*</span></label>
-                    <select id="language" name="home_language" multiple class="form-field @error('home_language') is-invalid @enderror" >
-                        <option value="" disabled="disabled">Select</option>
-                        <option value="english" {{ old('home_language') === 'english' ? 'selected' : '' }}>English</option>
-                        <option value="afrikaans" {{ old('home_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
-                        <option value="zulu (isizulu)" {{ old('home_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
-                        <option value="xhosa (isixhosa)" {{ old('home_language') === 'xhosa (isixhosa)' ? 'selected' : '' }}>Xhosa (isiXhosa)</option>
-                        <option value="northern sotho (sesotho sa leboa)" {{ old('home_language') === 'northern sotho (sesotho sa leboa)' ? 'selected' : '' }}>Northern Sotho (Sesotho sa Leboa)</option>
-                        <option value="sotho (sesotho)" {{ old('home_language') === 'sotho (sesotho)' ? 'selected' : '' }}>Sotho (Sesotho)</option>
-                        <option value="swazi (siswati)" {{ old('home_language') === 'swazi (siswati)' ? 'selected' : '' }}>Swazi (siSwati)</option>
-                        <option value="tsonga (xitsonga)" {{ old('home_language') === 'tsonga (xitsonga)' ? 'selected' : '' }}>Tsonga (Xitsonga)</option>
-                        <option value="tswana (setswana)" {{ old('home_language') === 'tswana (setswana)' ? 'selected' : '' }}>Tswana (Setswana)</option>
-                        <option value="venda (tshivenda)" {{ old('home_language') === 'venda (tshivenda)' ? 'selected' : '' }}>Venda (Tshivenda)</option>
-                        <option value="southern ndebele (isindebele)" {{ old('home_language') === 'southern ndebele (isindebele)' ? 'selected' : '' }}>Southern Ndebele (isiNdebele)</option>
-                        <option value="spanish" {{ old('home_language') === 'spanish' ? 'selected' : '' }}>Spanish</option>
-                        <option value="french" {{ old('home_language') === 'french' ? 'selected' : '' }}>French</option>
-                        <option value="hindi" {{ old('home_language') === 'hindi' ? 'selected' : '' }}>Hindi</option>
-                        <option value="arabic" {{ old('home_language') === 'arabic' ? 'selected' : '' }}>Arabic</option>
-                        <option value="bengali" {{ old('home_language') === 'bengali' ? 'selected' : '' }}>Bengali</option>
-                        <option value="portuguese" {{ old('home_language') === 'portuguese' ? 'selected' : '' }}>Portuguese</option>
-                        <option value="russian" {{ old('home_language') === 'russian' ? 'selected' : '' }}>Russian</option>
-                        <option value="japanese" {{ old('home_language') === 'japanese' ? 'selected' : '' }}>Japanese</option>
-                        <option value="punjabi" {{ old('home_language') === 'punjabi' ? 'selected' : '' }}>Punjabi</option>
-                        <option value="german" {{ old('home_language') === 'german' ? 'selected' : '' }}>German</option>
-                    </select>
-                    @error('home_language')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="no_children">Number of children <span class="text-danger">*</span></label>
@@ -194,6 +180,41 @@
             </div>
 
             <div id="more_childern" class="row p-0 m-0"></div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="language">Add Language <span class="text-danger">*</span></label>
+                    <select id="language" name="home_language" multiple class="form-field @error('home_language') is-invalid @enderror" >
+                        <option value="" disabled="disabled">Select</option>
+                        <option value="english" {{ old('home_language') === 'english' ? 'selected' : '' }}>English</option>
+                        <option value="afrikaans" {{ old('home_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
+                        <option value="zulu (isizulu)" {{ old('home_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
+                        <option value="xhosa (isixhosa)" {{ old('home_language') === 'xhosa (isixhosa)' ? 'selected' : '' }}>Xhosa (isiXhosa)</option>
+                        <option value="northern sotho (sesotho sa leboa)" {{ old('home_language') === 'northern sotho (sesotho sa leboa)' ? 'selected' : '' }}>Northern Sotho (Sesotho sa Leboa)</option>
+                        <option value="sotho (sesotho)" {{ old('home_language') === 'sotho (sesotho)' ? 'selected' : '' }}>Sotho (Sesotho)</option>
+                        <option value="swazi (siswati)" {{ old('home_language') === 'swazi (siswati)' ? 'selected' : '' }}>Swazi (siSwati)</option>
+                        <option value="tsonga (xitsonga)" {{ old('home_language') === 'tsonga (xitsonga)' ? 'selected' : '' }}>Tsonga (Xitsonga)</option>
+                        <option value="tswana (setswana)" {{ old('home_language') === 'tswana (setswana)' ? 'selected' : '' }}>Tswana (Setswana)</option>
+                        <option value="venda (tshivenda)" {{ old('home_language') === 'venda (tshivenda)' ? 'selected' : '' }}>Venda (Tshivenda)</option>
+                        <option value="southern ndebele (isindebele)" {{ old('home_language') === 'southern ndebele (isindebele)' ? 'selected' : '' }}>Southern Ndebele (isiNdebele)</option>
+                        <option value="spanish" {{ old('home_language') === 'spanish' ? 'selected' : '' }}>Spanish</option>
+                        <option value="french" {{ old('home_language') === 'french' ? 'selected' : '' }}>French</option>
+                        <option value="hindi" {{ old('home_language') === 'hindi' ? 'selected' : '' }}>Hindi</option>
+                        <option value="arabic" {{ old('home_language') === 'arabic' ? 'selected' : '' }}>Arabic</option>
+                        <option value="bengali" {{ old('home_language') === 'bengali' ? 'selected' : '' }}>Bengali</option>
+                        <option value="portuguese" {{ old('home_language') === 'portuguese' ? 'selected' : '' }}>Portuguese</option>
+                        <option value="russian" {{ old('home_language') === 'russian' ? 'selected' : '' }}>Russian</option>
+                        <option value="japanese" {{ old('home_language') === 'japanese' ? 'selected' : '' }}>Japanese</option>
+                        <option value="punjabi" {{ old('home_language') === 'punjabi' ? 'selected' : '' }}>Punjabi</option>
+                        <option value="german" {{ old('home_language') === 'german' ? 'selected' : '' }}>German</option>
+                    </select>
+                    @error('home_language')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
@@ -281,7 +302,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="family_location">Preferred babysitting location </label>
                     <ul class="radio-box-list">
@@ -296,7 +317,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="family_profile_see">Who can see your profile? </label>
                     <ul class="radio-box-list">

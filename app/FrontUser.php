@@ -51,6 +51,23 @@ class FrontUser extends Model
         'email_verified_at',
         'remember_token',
         'other_services',
+        'south_african_citizen',
+        'working_permit',
+        'ages_of_children_you_worked_with',
+        'first_aid',
+        'smoker_or_non_smoker',
+        'available_date',
+        'about_yourself',
+        'comfortable_with_light_housework',
+        'petrol_reimbursement',
+        'experience_with_animals',
+        'do_you_like_animals',
+        'surname',
+        'terms_and_conditions',
+        'cell_number',
+        'start_date',
+        'duration_needed',
+        'candidate_duties',
     ];
 
     public function needs_babysitter(){

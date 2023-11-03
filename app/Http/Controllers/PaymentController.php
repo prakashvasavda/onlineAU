@@ -17,10 +17,10 @@ class PaymentController extends Controller{
         $merchant_key   = 'sbijrnrrkonrs';
 
         /*Buyer details*/
-        $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : Session::get('guestUser')['name'];
-        $name_last      = Session::has('frontUser') ? Session::get('frontUser')->name  : Session::get('guestUser')['name'];
-        $email_address  = Session::has('frontUser') ? Session::get('frontUser')->email : Session::get('guestUser')['email'];
-        $custom_int1    = Session::has('frontUser') ? Session::get('frontUser')->id    : Session::get('guestUser')['user_id'];  //user_id
+        $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : (Session::get('guestUser')['name'] ?? null);
+        $name_last      = Session::has('frontUser') ? Session::get('frontUser')->name  : (Session::get('guestUser')['name']) ?? null;
+        $email_address  = Session::has('frontUser') ? Session::get('frontUser')->email : (Session::get('guestUser')['email'] ?? null);
+        $custom_int1    = Session::has('frontUser') ? Session::get('frontUser')->id    : (Session::get('guestUser')['user_id'] ?? null);  //user_id
 
         /*add user subscription*/
         $subscription       = new SubscriptionController();
@@ -51,8 +51,8 @@ class PaymentController extends Controller{
             'name_last'     => $name_last,
             'email_address' => $email_address,
             'm_payment_id'  => $m_payment_id,
-            'custom_int1'   => $custom_int1,   //user_id
-            'custom_int2'   => 1,             //user_sunscription_id
+            'custom_int1'   => $custom_int1,                 //user_id
+            'custom_int2'   => $user_subscription->id,      //user_sunscription_id
         );
 
         $ch = curl_init();
