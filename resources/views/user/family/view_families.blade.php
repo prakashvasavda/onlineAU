@@ -13,6 +13,18 @@
 				{{-- <h2>Find babysitting jobs</h2> --}}
 				{{-- <p>26 families matching your search</p> --}}
 			</div>
+
+			<div class="search-box profileSrc">
+	        	<form class="w-100 d-flex flex-row justify-content-center align-items-center">
+		        	<div class="form-input">
+		        		<input type="text" name="" placeholder="Search here" class="form-field">
+					</div>
+					<div class="form-input-btn">
+						<a href="javaScript:;" class="btn src-icon"><i class="fa fa-search"></i></a>
+					</div>
+				</form>
+	        </div>
+
 			<div class="favorites-section">
 				<div class="container">
 					<div class="title-main">
