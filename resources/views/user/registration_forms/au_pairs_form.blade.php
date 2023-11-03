@@ -324,23 +324,16 @@
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
-                <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
-                    <option value="" disabled>Select</option>
-                    <option value="baby" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("baby", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Baby</option>
-                    <option value="gradeschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("gradeschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Gradeschooler</option>
-                    <option value="toddler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("toddler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Toddler</option>
-                    <option value="teenager" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("teenager", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Teenager</option>
-                    <option value="preschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("preschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Preschooler</option>
-                </select>
-                @if ($errors->has('ages_of_children_you_worked_with'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
-                    </span>
-                @endif
-            </div>
+            <label for="about_yourself">Tell us a bit more about yourself? </label>
+            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
+            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+            @if ($errors->has('about_yourself'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('about_yourself') }}</strong>
+                </span>
+            @endif
         </div>
+
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
@@ -375,14 +368,22 @@
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label for="about_yourself">Tell us a bit more about yourself? </label>
-            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
-            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-            @if ($errors->has('about_yourself'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('about_yourself') }}</strong>
-                </span>
-            @endif
+            <div class="form-input">
+                <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
+                <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
+                    <option value="" disabled>Select</option>
+                    <option value="baby" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("baby", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Baby</option>
+                    <option value="gradeschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("gradeschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Gradeschooler</option>
+                    <option value="toddler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("toddler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Toddler</option>
+                    <option value="teenager" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("teenager", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Teenager</option>
+                    <option value="preschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("preschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Preschooler</option>
+                </select>
+                @if ($errors->has('ages_of_children_you_worked_with'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
+                    </span>
+                @endif
+            </div>
         </div>
 
         <div class="col-12">
