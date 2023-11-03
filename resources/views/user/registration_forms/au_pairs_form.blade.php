@@ -268,7 +268,7 @@
                 <label for="vehicle">Do you have your own vehicle</label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="vehicle" value="yes" {{ old('vehicle') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="vehicle" value="no" {{ old('vehicle') == "yes" ? "checked" : '' }}>No</li>
+                    <li><input type="radio" name="vehicle" value="no" {{ old('vehicle') == "no" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
         </div>

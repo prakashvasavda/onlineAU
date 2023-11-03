@@ -188,11 +188,11 @@
                 <label for="animals_comfortable_with">Which animals do you feel comfortable working with <span class="text-danger">*</span></label>
                 <select id="animals_comfortable_with" multiple name="animals_comfortable_with[]" class="form-field">
                     <option value="" disabled>Select</option>
-                    <option value="dogs" {{ old('animals_comfortable_with') == "dogs" ? "selected" : " " }}>Dogs</option>
-                    <option value="cats" {{ old('animals_comfortable_with') == "cats" ? "selected" : " " }}>Cats</option>
-                    <option value="hamsters_and_guinea_pigs" {{ old('animals_comfortable_with') == "hamsters_and_guinea_pigs" ? "selected" : " " }}>Hamsters &amp; Guinea pigs</option>
-                    <option value="reptiles" {{ old('animals_comfortable_with') == "reptiles" ? "selected" : " " }}>Reptiles</option>
-                    <option value="spiders" {{ old('animals_comfortable_with') == "spiders" ? "selected" : " " }}>Spiders</option>
+                    <option value="dogs" {{ !empty(old('animals_comfortable_with')) && in_array("dogs", old('animals_comfortable_with')) ? "selected" : " " }}>Dogs</option>
+                    <option value="cats" {{ !empty(old('animals_comfortable_with')) && in_array("cats", old('animals_comfortable_with')) ? "selected" : " " }}>Cats</option>
+                    <option value="hamsters_and_guinea_pigs" {{!empty(old('animals_comfortable_with')) && in_array("hamsters_and_guinea_pigs", old('animals_comfortable_with')) ? "selected" : " " }}>Hamsters &amp; Guinea pigs</option>
+                    <option value="reptiles" {{!empty(old('animals_comfortable_with')) && in_array("reptiles", old('animals_comfortable_with')) ? "selected" : " " }}>Reptiles</option>
+                    <option value="spiders" {{ !empty(old('animals_comfortable_with')) && in_array("spiders", old('animals_comfortable_with')) ? "selected" : " " }}>Spiders</option>
                 </select> 
                 @if ($errors->has('animals_comfortable_with'))
                     <span class="text-danger">

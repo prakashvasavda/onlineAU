@@ -68,6 +68,8 @@ class FrontUser extends Model
         'start_date',
         'duration_needed',
         'candidate_duties',
+        'what_do_you_need',
+        'animals_comfortable_with',
     ];
 
     public function needs_babysitter(){

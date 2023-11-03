@@ -270,7 +270,7 @@
                 <label for="vehicle">Do you have your own vehicle</label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="vehicle" value="yes" {{ old('vehicle') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="vehicle" value="no" {{ old('vehicle') == "yes" ? "checked" : '' }}>No</li>
+                    <li><input type="radio" name="vehicle" value="no" {{ old('vehicle') == "no" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
         </div>
@@ -408,17 +408,17 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="salary_expectation">What is your hourly rate</label>
+                <label for="salary_expectation">What is your hourly rate <span class="text-danger">*</span></label>
                     <div class="input-group mb-1">
                         <span class="input-group-text">R</span>
                             <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="" value="{{old('salary_expectation')}}">
                         <span class="input-group-text">hr</span>
                     </div>
-                @error('salary_expectation')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                @if ($errors->has('salary_expectation'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('salary_expectation') }}</strong>
                     </span>
-                @enderror
+                @endif
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -555,6 +555,24 @@
                 @enderror
             </div>
         </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-none">
+            <div class="form-input">
+                <div class="form-input d-flex flex-wrap mb-2">
+                    <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions" checked autocomplete="off">
+                    <label class="form-check-label" for="terms_and_conditions"> 
+                        <p><a href="{{ route('terms-and-conditions', ['service' => 'candidate']) }}">Accept Terms and Conditions </a><span class="text-danger">*</span></p>
+                    </label>
+                </div>
+
+                @if ($errors->has('terms_and_conditions'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('terms_and_conditions') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="col-12">
             <div class="form-input-btn text-center">
                 <input type="submit" class="btn btn-primary round" value="signup">
