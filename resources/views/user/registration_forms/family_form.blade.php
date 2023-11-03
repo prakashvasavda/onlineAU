@@ -1,10 +1,5 @@
 @extends('layouts.main')
 @section('content')
-<style type="text/css">
-    span.text-danger{
-        font-size: .875em;
-    }
-</style>
 <div class="single-form-section">
     <div class="container">
         <div class="title-main">
@@ -216,32 +211,14 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="what_do_you_need">What do you need <span class="text-danger">*</span></label>
-                    <select id="what_do_you_need" name="what_do_you_need" class="form-field">
-                        <option selected="selected" disabled>Select</option>
-                        <option value="babysitter" {{ old('what_do_you_need') == "babysitter" ? "selected" : " " }}>Babysitter</option>
-                        <option value="babysitter" {{ old('what_do_you_need') == "babysitter" ? "selected" : " " }}>Petsitter</option>
-                        <option value="babysitter" {{ old('what_do_you_need') == "babysitter" ? "selected" : " " }}>Babysitter</option>
-                        <option value="babysitter" {{ old('what_do_you_need') == "babysitter" ? "selected" : " " }}>Babysitter</option>
-                    </select>
-                    @if ($errors->has('what_do_you_need'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('what_do_you_need') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="what_do_you_need">What do you need<span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
                     <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" checked value="babysitter" {{ old('family_types_babysitter') === 'babysitter' ? 'checked' : '' }}><label>Babysitter</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="petsitter" {{ old('family_types_babysitter') === 'petsitter' ? 'checked' : '' }}><label>Petsitter</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="au_pair" {{ old('family_types_babysitter') === 'au_pair' ? 'checked' : '' }}><label>Au-Pair</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_types_babysitter" value="nanny" {{ old('family_types_babysitter') === 'nanny' ? 'checked' : '' }}><label>Nanny</label></li>
+                        <li class="radio-box-item"><input type="radio" name="what_do_you_need" checked value="babysitter" {{ old('what_do_you_need') === 'babysitter' ? 'checked' : '' }}><label>Babysitter</label></li>
+                        <li class="radio-box-item"><input type="radio" name="what_do_you_need" value="petsitter" {{ old('what_do_you_need') === 'petsitter' ? 'checked' : '' }}><label>Petsitter</label></li>
+                        <li class="radio-box-item"><input type="radio" name="what_do_you_need" value="au_pair" {{ old('what_do_you_need') === 'au_pair' ? 'checked' : '' }}><label>Au-Pair</label></li>
+                        <li class="radio-box-item"><input type="radio" name="what_do_you_need" value="nanny" {{ old('what_do_you_need') === 'nanny' ? 'checked' : '' }}><label>Nanny</label></li>
                     </ul>
                 </div>
             </div>
@@ -302,7 +279,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="family_location">Preferred babysitting location </label>
                     <ul class="radio-box-list">
@@ -317,12 +294,12 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="family_profile_see">Who can see your profile? </label>
                     <ul class="radio-box-list">
                         <li class="radio-box-item"><input type="radio" checked name="family_profile_see" value="everyone" {{ old('family_profile_see') === "everyone" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Babysits users, public search engines, and job boards can iew your profile."><label>Everyone</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_profile_see" value="only babysits users" {{ old('family_profile_see') === "only babysits users" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get."><label>Only Babysits users</label></li>
+                        <li class="radio-box-item"><input type="radio" name="family_profile_see" value="only online au-pair users" {{ old('family_profile_see') === "only online au-pair users" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get."><label>Only Online Au-Pair users</label></li>
                     </ul>
                 </div>
             </div>
@@ -596,11 +573,13 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <div class="form-input d-flex flex-wrap mb-2">
                         <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions" autocomplete="off">
-                        <label class="form-check-label" for="terms_and_conditions">Accept Terms and Conditions <span class="text-danger">*</span></label>
+                        <label class="form-check-label" for="terms_and_conditions"> 
+                            <p><a href="{{ route('terms-and-conditions', ['service' => 'candidate']) }}">Accept Terms and Conditions </a><span class="text-danger">*</span></p>
+                        </label>
                     </div>
 
                     @if ($errors->has('terms_and_conditions'))

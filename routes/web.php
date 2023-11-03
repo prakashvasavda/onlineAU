@@ -49,7 +49,7 @@ Route::get('sign-up/family', 'HomeController@families')->name('sign-up-family');
 Route::any('/payment/process', 'PaymentController@process_payment')->name('payment-process');
 
 /*Terms and Conditions*/
-Route::get('{service}/terms-and-condition', 'HomeController@terms_and_conditions')->name('terms_and_conditions');
+Route::get('{service}/terms-and-condition', 'HomeController@terms_and_conditions')->name('terms-and-conditions');
 
 Route::group(['middleware' => 'frontendauth'], function () {
     /*FAMILY TRANSACTIONS ROUTES*/

@@ -10,9 +10,8 @@
         <h2>Welcome to Online Au-Pairs</h2>
         <h3>sign up to be {{isset($type) ? $type : ''}}</h3>
     </div>
-    @include('flash.flash-message')
-
-
+    @include('flash.front-message')
+    
     <form method="POST" class="row" action="{{ route('store_candidate') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value="{{ Route::current()->parameter('service') }}" name="role">
@@ -410,7 +409,11 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="salary_expectation">What is your hourly rate</label>
-                <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation') }}">
+                    <div class="input-group mb-1">
+                        <span class="input-group-text">R</span>
+                            <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="" value="{{old('salary_expectation')}}">
+                        <span class="input-group-text">hr</span>
+                    </div>
                 @error('salary_expectation')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

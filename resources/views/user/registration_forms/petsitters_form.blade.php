@@ -1,17 +1,11 @@
 @extends('layouts.register')
 @section('content')
-<style type="text/css">
-    span.text-danger{
-        font-size: .875em;
-    }
-</style>
 <div class="container">
     <div class="title-main">
         <h2>Welcome to Online Au-Pairs</h2>
         <h3>sign up to be {{isset($type) ? $type : ''}}</h3>
     </div>
-    @include('flash.flash-message')
-
+    @include('flash.front-message')
 
     <form method="POST" class="row" action="{{ route('store_candidate') }}" enctype="multipart/form-data">
         @csrf
@@ -144,16 +138,21 @@
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label for="about_yourself">Tell us a bit more about yourself? </label>
-            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
-            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-            @if ($errors->has('about_yourself'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('about_yourself') }}</strong>
-                </span>
-            @endif
+            <div class="form-input">
+                <label for="salary_expectation">What is your hourly rate</label>
+                <div class="input-group mb-1">
+                    <span class="input-group-text">R</span>
+                        <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="" value="{{old('salary_expectation')}}">
+                    <span class="input-group-text">hr</span>
+                </div>
+                @error('salary_expectation')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
         </div>
-
+       
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="home_language">Home Language</label>
@@ -187,8 +186,8 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="animals_comfortable_with">Which animals do you feel comfortable working with <span class="text-danger">*</span></label>
-                <select id="animals_comfortable_with" name="petrol_reimbursement" class="form-field">
-                    <option selected="selected" disabled>Select</option>
+                <select id="animals_comfortable_with" multiple name="animals_comfortable_with[]" class="form-field">
+                    <option value="" disabled>Select</option>
                     <option value="dogs" {{ old('animals_comfortable_with') == "dogs" ? "selected" : " " }}>Dogs</option>
                     <option value="cats" {{ old('animals_comfortable_with') == "cats" ? "selected" : " " }}>Cats</option>
                     <option value="hamsters_and_guinea_pigs" {{ old('animals_comfortable_with') == "hamsters_and_guinea_pigs" ? "selected" : " " }}>Hamsters &amp; Guinea pigs</option>
@@ -222,7 +221,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="do_you_like_animals">“Do you like animals?</label>
+                <label for="do_you_like_animals">Do you like animals?</label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="do_you_like_animals" value="yes" {{ old('do_you_like_animals') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="do_you_like_animals" value="no" {{ old('do_you_like_animals') == "no" ? "checked" : '' }}>No</li>
@@ -230,15 +229,6 @@
             </div>
         </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="chronical_medication">Are you on any chronical medication</label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="chronical_medication" value="yes" {{ old('chronical_medication') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="chronical_medication" value="no" {{ old('chronical_medication') == "no" ? "checked" : '' }}>No</li>
-                </ul>
-            </div>
-        </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="drivers_license">Do you have your drivers license</label>
@@ -266,25 +256,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="childcare_experience">How many years of childcare experience do you have</label>
-                <select id="childcare_experience" name="childcare_experience" class="form-field">
-                    <option value="" selected="selected" disabled="disabled">Select</option>
-                    <option value="6 months" {{ old('childcare_experience') == "6 months" ? "selected" : '' }}>6 Months</option>
-                    <option value="1 years" {{ old('childcare_experience') == "1 years" ? "selected" : '' }}>1 year</option>
-                    <option value="1.5 years" {{ old('childcare_experience') == "1.5 years" ? "selected" : '' }}>1.5 years</option>
-                    <option value="2 years" {{ old('childcare_experience') == "2 years" ? "selected" : '' }}>2 years</option>
-                    <option value="2.5 years" {{ old('childcare_experience') == "2.5 years" ? "selected" : '' }}>2.5 years</option>
-                    <option value="3 years" {{ old('childcare_experience') == "3 years" ? "selected" : '' }}>3 years</option>
-                    <option value="3.5 years" {{ old('childcare_experience') == "3.5 years" ? "selected" : '' }}>3.5 years</option>
-                    <option value="4 years" {{ old('childcare_experience') == "4 years" ? "selected" : '' }}>4 years</option>
-                    <option value="4.5 years" {{ old('childcare_experience') == "4.5 years" ? "selected" : '' }}>4.5 years</option>
-                    <option value="5 years" {{ old('childcare_experience') == "5 years" ? "selected" : '' }}>5 years</option>
-                    <option value="5+ years" {{ old('childcare_experience') == "5+ years" ? "selected" : '' }}>5+ years</option>
-                </select>
-            </div>
-        </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="experience_special_needs">Do you have experience with special needs</label>
@@ -388,18 +360,17 @@
             @endforeach
         @endif
 
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="salary_expectation">What is your salary expectation/hourly rate</label>
-                <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation') }}">
-                @error('salary_expectation')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
+            <label for="about_yourself">Tell us a bit more about yourself? </label>
+            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
+            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+            @if ($errors->has('about_yourself'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('about_yourself') }}</strong>
+                </span>
+            @endif
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
@@ -539,7 +510,9 @@
             <div class="form-input">
                 <div class="form-input d-flex flex-wrap mb-2">
                     <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions" autocomplete="off">
-                    <label class="form-check-label" for="terms_and_conditions">Accept Terms and Conditions <span class="text-danger">*</span></label>
+                    <label class="form-check-label" for="terms_and_conditions"> 
+                        <p><a href="{{ route('terms-and-conditions', ['service' => 'candidate']) }}">Accept Terms and Conditions </a><span class="text-danger">*</span></p>
+                    </label>
                 </div>
 
                 @if ($errors->has('terms_and_conditions'))

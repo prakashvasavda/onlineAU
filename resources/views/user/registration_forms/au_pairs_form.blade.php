@@ -1,18 +1,12 @@
 @extends('layouts.register')
 @section('content')
-<style type="text/css">
-    span.text-danger{
-        font-size: .875em;
-    }
-</style>
 <div class="container">
     <div class="title-main">
         <h2>Welcome to Online Au-Pairs</h2>
         <h3>sign up to be {{isset($type) ? $type : ''}}</h3>
     </div>
-    @include('flash.flash-message')
-
-
+    @include('flash.front-message')
+    
     <form method="POST" class="row" action="{{ route('store_candidate') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value="{{ Route::current()->parameter('service') }}" name="role">
@@ -287,6 +281,17 @@
                 </ul>
             </div>
         </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="experience_special_needs">Do you have experience with special needs</label>
+                <ul class="d-flex flex-wrap">
+                    <li><input type="radio" name="experience_special_needs" value="yes" {{ old('experience_special_needs') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="experience_special_needs" value="no" {{ old('experience_special_needs') == "no" ? "checked" : '' }}>No</li>
+                </ul>
+            </div>
+        </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="childcare_experience">How many years of childcare experience do you have</label>
@@ -308,16 +313,6 @@
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="experience_special_needs">Do you have experience with special needs</label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="experience_special_needs" value="yes" {{ old('experience_special_needs') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="experience_special_needs" value="no" {{ old('experience_special_needs') == "no" ? "checked" : '' }}>No</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <label for="special_needs_specifications">If YES Please specify. </label>
             <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications') }}</textarea>
             <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
@@ -331,9 +326,9 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
-                <select id="ages_of_children_you_worked_with" name="ages_of_children_you_worked_with[]" class="form-field ">
-                    <option selected="selected" disabled>Select</option>
-                    <option selected="selected" value="baby" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("baby", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Baby</option>
+                <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
+                    <option value="" disabled>Select</option>
+                    <option value="baby" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("baby", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Baby</option>
                     <option value="gradeschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("gradeschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Gradeschooler</option>
                     <option value="toddler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("toddler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Toddler</option>
                     <option value="teenager" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("teenager", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Teenager</option>
@@ -634,7 +629,9 @@
             <div class="form-input">
                 <div class="form-input d-flex flex-wrap mb-2">
                     <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions" autocomplete="off">
-                    <label class="form-check-label" for="terms_and_conditions">Accept Terms and Conditions <span class="text-danger">*</span></label>
+                    <label class="form-check-label" for="terms_and_conditions"> 
+                        <p><a href="{{ route('terms-and-conditions', ['service' => 'candidate']) }}">Accept Terms and Conditions </a><span class="text-danger">*</span></p>
+                    </label>
                 </div>
 
                 @if ($errors->has('terms_and_conditions'))

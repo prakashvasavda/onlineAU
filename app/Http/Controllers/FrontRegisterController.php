@@ -163,7 +163,6 @@ class FrontRegisterController extends Controller
             "updated_at"                        => date("Y-m-d H:i:s"),
             "south_african_citizen"             => isset($request->south_african_citizen) ? $request->south_african_citizen : null,
             "working_permit"                    => isset($request->working_permit) ? $request->working_permit : null,
-            "ages_of_children_you_worked_with"  => isset($request->ages_of_children_you_worked_with) ? $request->ages_of_children_you_worked_with : null,
             "first_aid"                         => isset($request->first_aid) ? $request->first_aid : null,
             "smoker_or_non_smoker"              => isset($request->smoker_or_non_smoker) ? $request->smoker_or_non_smoker : null,
             "available_date"                    => isset($request->available_date) ? $request->available_date : null,
@@ -174,6 +173,8 @@ class FrontRegisterController extends Controller
             "do_you_like_animals"               => isset($request->do_you_like_animals) ? $request->do_you_like_animals : null,
             "surname"                           => isset($request->surname) ? $request->surname : null,
             "terms_and_conditions"              => isset($request->terms_and_conditions) ? 1 : 0,
+            "animals_comfortable_with"          => isset($request->animals_comfortable_with) ? json_encode($request->animals_comfortable_with) : null,
+            "ages_of_children_you_worked_with"  => isset($request->ages_of_children_you_worked_with) ? json_encode($request->ages_of_children_you_worked_with) : null,
 
         ]);
 
@@ -318,11 +319,13 @@ class FrontRegisterController extends Controller
             'role'                          => 'family',
             "created_at"                    => date("Y-m-d H:i:s"),
             "updated_at"                    => date("Y-m-d H:i:s"),
+            
             "cell_number"                   => isset($request->cell_number) ? $request->cell_number : null,
             "start_date"                    => isset($request->start_date) ? $request->start_date : null,
             "duration_needed"               => isset($request->duration_needed) ? $request->duration_needed : null,
             "candidate_duties"              => isset($request->candidate_duties) ? $request->candidate_duties : null,
             "surname"                       => isset($request->surname) ? $request->surname : null,
+            "what_do_you_need"              => isset($request->what_do_you_need) ? json_encode($request->what_do_you_need) : null,
         ]);
 
         $status              = $this->store_need_babysitter($data, $familyId);

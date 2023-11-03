@@ -1,17 +1,11 @@
 @extends('layouts.register')
 @section('content')
-<style type="text/css">
-    span.text-danger{
-        font-size: .875em;
-    }
-</style>
 <div class="container">
     <div class="title-main">
         <h2>Welcome to Online Au-Pairs</h2>
         <h3>sign up to be {{isset($type) ? $type : ''}}</h3>
     </div>
-    @include('flash.flash-message')
-
+    @include('flash.front-message')
 
     <form method="POST" class="row" action="{{ route('store_candidate') }}" enctype="multipart/form-data">
         @csrf
@@ -248,9 +242,9 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
-                <select id="ages_of_children_you_worked_with" name="ages_of_children_you_worked_with[]" class="form-field ">
-                    <option selected="selected" disabled>Select</option>
-                    <option selected="selected" value="baby" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("baby", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Baby</option>
+                <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
+                    <option value="" disabled>Select</option>
+                    <option value="baby" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("baby", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Baby</option>
                     <option value="gradeschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("gradeschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Gradeschooler</option>
                     <option value="toddler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("toddler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Toddler</option>
                     <option value="teenager" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("teenager", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Teenager</option>
@@ -513,7 +507,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="salary_expectation">What is your salary expectation/hourly rate</label>
+                <label for="salary_expectation">What is your salary expectation</label>
                 <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation') }}">
                 @error('salary_expectation')
                     <span class="invalid-feedback" role="alert">
@@ -661,7 +655,9 @@
             <div class="form-input">
                 <div class="form-input d-flex flex-wrap mb-2">
                     <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions" autocomplete="off">
-                    <label class="form-check-label" for="terms_and_conditions">Accept Terms and Conditions <span class="text-danger">*</span></label>
+                    <label class="form-check-label" for="terms_and_conditions"> 
+                        <p><a href="{{ route('terms-and-conditions', ['service' => 'candidate']) }}">Accept Terms and Conditions </a><span class="text-danger">*</span></p>
+                    </label>
                 </div>
 
                 @if ($errors->has('terms_and_conditions'))
