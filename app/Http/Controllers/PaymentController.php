@@ -23,8 +23,9 @@ class PaymentController extends Controller{
         $custom_int1    = Session::has('frontUser') ? Session::get('frontUser')->id    : (Session::get('guestUser')['user_id'] ?? null);  //user_id
 
         /*add user subscription*/
-        $subscription       = new SubscriptionController();
-        $user_subscription  = $subscription->add_user_subscription($request->all(), $custom_int1);
+        $subscription           = new SubscriptionController();
+        $user_subscription      = $subscription->add_user_subscription($request->all(), $custom_int1);
+        $user_subscription_id   = isset($user_subscription->id) ? $user_subscription->id : null;
 
         /*Transaction details*/
         $amount         = isset($request->amount)    ? $request->amount     : null;
@@ -52,7 +53,7 @@ class PaymentController extends Controller{
             'email_address' => $email_address,
             'm_payment_id'  => $m_payment_id,
             'custom_int1'   => $custom_int1,                 //user_id
-            'custom_int2'   => $user_subscription->id,      //user_sunscription_id
+            'custom_int2'   => $user_subscription_id,       //user_sunscription_id
         );
 
         $ch = curl_init();
