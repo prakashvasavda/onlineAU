@@ -13,68 +13,67 @@
 				{{-- <h2>Find babysitting jobs</h2> --}}
 				{{-- <p>26 families matching your search</p> --}}
 			</div>
-
-			<div class="title-main mb-5">
-	            <h2>Favorites</h2>
-	        </div>
-
-			<div class="row result-list">
-				@if(isset($families) && !empty($families))
-					@foreach($families as $key => $value)
-						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-							<a href="{{ route('family-detail', ['id' => $value->id]) }}">
-								<div class="card">
-								    <div class="row g-0">
-								        <div class="col-md-4">
-								        	@if(isset($value->profile))
-								        		<img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" class="img-fluid" alt="">
-								            @else
-								            	<img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="">
-								            @endif
-								        </div>
-								        <div class="col-md-8">
-								            <div class="card-body">
-								            	<div class="pos-icon">
-								            		@if(isset($value->family_favorited_by) && is_string($value->family_favorited_by))
-								            			@if(in_array($user->id, explode(",", $value->family_favorited_by)))
-								            				<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="addCandidateFavoriteFamily(event, '{{ $value->id }}')"></i>
-								            			@else
-								            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="addCandidateFavoriteFamily(event, '{{ $value->id }}')"></i>
-								            			@endif
-								            		@else
-								            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="addCandidateFavoriteFamily(event, '{{ $value->id }}')"></i>
-								            		@endif
-								            	</div>
-								                <h5 class="card-title">{{ $value->name }}</h5>
-								                <p class="card-text">{{ $value->area }}</p>
-								                <p class="card-text">
-								                	<small>
-								                		<span>
-								                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
-										                	 	@for($i = 0; $i < 5; $i++)
-															        @if($i < max(explode(",", $value->review_rating_count)))
-															            <i class="fa-solid fa-star"></i>
-															        @else
-															            <i class="fa-regular fa-star"></i>
-															        @endif
-														   	 	@endfor
-												            @else
-												            	@for($i=0; $i<5; $i++)
-												                	<i class="fa-regular fa-star"></i>
-												                @endfor
-											                @endif 
-										                </span>
-								                		<span>{{ isset($value->total_reviews) ? $value->total_reviews : 0 }} Reviews</span>
-								                </small>
-								                </p>
-								            </div>
-								        </div>
-								    </div>
+			<div class="favorites-section">
+				<div class="container">
+					<div class="title-main">
+			            <h2>Favorites</h2>
+			        </div>
+					<div class="row">
+						@if(isset($families) && !empty($families))
+							@foreach($families as $key => $value)
+								<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+									<a href="{{ route('family-detail', ['id' => $value->id]) }}">
+										<div class="card verticalBox">
+										  	<span class="user-profile-section">
+										  		@if(isset($value->profile))
+									            	<img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" alt="" style=" max-height: 225px; width:100%;">
+									            @else
+									            	<img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="" style=" max-height: 225px; width:100%">
+									            @endif
+										  	</span>
+										  	<div class="card-body">
+											  	<div class="pos-icon">
+											  		<span class="user-favorite-section">
+											  			@if(isset($value->family_favorited_by) && is_string($value->family_favorited_by))
+									            			@if(in_array($user->id, explode(",", $value->family_favorited_by)))
+									            				<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="addCandidateFavoriteFamily(event, '{{ $value->id }}')"></i>
+									            			@else
+									            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="addCandidateFavoriteFamily(event, '{{ $value->id }}')"></i>
+									            			@endif
+									            		@else
+									            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="addCandidateFavoriteFamily(event, '{{ $value->id }}')"></i>
+									            		@endif
+											  		</span>
+											  	</div>
+											    <p class="text-capitalize mb-1"><span>name</span>: {{ isset($value->name) ? strtoupper($value->name) : "-" }}</p>
+											    <p class="text-capitalize mb-1"><span>area</span>: {{ isset($value->area) ? $value->area : "-" }}</p>
+											    <p class="text-capitalize mb-1"><span>availability</span>: {{ isset($value->available_date) ? $value->available_date : "-" }}</p>
+											    <p class="text-capitalize mb-1"><span>years experience</span>: {{ isset($value->childcare_experience) ? $value->childcare_experience : "-" }}</p>
+											    <p class="text-center mt-3">
+							                		<span>
+							                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
+									                	 	@for($i = 0; $i < 5; $i++)
+														        @if($i < max(explode(",", $value->review_rating_count)))
+														            <i class="fa-solid fa-star"></i>
+														        @else
+														            <i class="fa-regular fa-star"></i>
+														        @endif
+													   	 	@endfor
+											            @else
+											            	@for($i=0; $i<5; $i++)
+											                	<i class="fa-regular fa-star"></i>
+											                @endfor
+										                @endif 
+									                </span>
+											    </p>
+										  	</div>
+										</div>
+									</a>
 								</div>
-							</a>
-						</div>
-					@endforeach
-				@endif
+							@endforeach
+						@endif
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
