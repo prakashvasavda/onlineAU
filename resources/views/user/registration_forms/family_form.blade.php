@@ -40,7 +40,7 @@
 
                 <div class="form-input">
                     <div class="form-input">
-                       <label for="surname"> SurName <span class="text-danger">*</span></label>
+                       <label for="surname"> Surname <span class="text-danger">*</span></label>
                         <input type="text" id="surname" name="surname" placeholder="" class="form-field"  value="{{ old('surname') }}">
                          @if ($errors->has('surname'))
                             <span class="text-danger">
