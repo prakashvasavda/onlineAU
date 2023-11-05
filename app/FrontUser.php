@@ -70,6 +70,9 @@ class FrontUser extends Model
         'candidate_duties',
         'what_do_you_need',
         'animals_comfortable_with',
+
+        'gender_of_children',
+        'live_in_or_live_out',
     ];
 
     public function needs_babysitter(){
