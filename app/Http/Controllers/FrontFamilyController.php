@@ -82,13 +82,20 @@ class FrontFamilyController extends Controller{
             'family_city'                   => "required",
             'home_language'                 => "required",
             'no_children'                   => "required",
-            'describe_kids'                 => "required|array",
-            'family_types_babysitter'       => "required",
             'family_location'               => "required",
-            'family_babysitter_comfortable' => "required",
             'family_profile_see'            => "required",
             'family_notifications'          => "required",
             'family_description'            => "required",
+
+            /*new fields*/
+            'surname'                       => "required",
+            'id_number'                     => "required",
+            'cell_number'                   => "required",
+            'start_date'                    => "required",
+            'duration_needed'               => "required",
+            'petrol_reimbursement'          => "required",
+            'live_in_or_live_out'           => "required", //not added in db
+            'candidate_duties'              => "required",
         ],[
             'profile.required_if'   => 'The profile field is required',
             'describe_kids.array'   =>  'Invalid selected value',   
