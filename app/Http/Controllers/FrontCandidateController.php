@@ -66,6 +66,8 @@ class FrontCandidateController extends Controller{
             return view('user.candidate.aupairs_manage_profile', $data);
         }elseif(Session::get('frontUser')->role == 'nannies'){
             return view('user.candidate.nannies_manage_profile', $data);
+        }elseif(Session::get('frontUser')->role == 'petsitters'){
+            return view('user.candidate.petsitters_manage_profile', $data);
         }else{
             return view('user.candidate.manage_profile', $data);
         }

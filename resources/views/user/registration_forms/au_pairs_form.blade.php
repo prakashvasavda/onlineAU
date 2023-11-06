@@ -325,7 +325,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <label for="about_yourself">Tell us a bit more about yourself? </label>
-            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
+            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
             <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
             @if ($errors->has('about_yourself'))
                 <span class="text-danger">
