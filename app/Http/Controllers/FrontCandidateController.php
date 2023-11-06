@@ -60,7 +60,13 @@ class FrontCandidateController extends Controller{
         $data['afternoon_availability']         = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
         $data['evening_availability']           = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']             = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
-        return view('user.candidate.manage_profile', $data);
+        
+
+        if(Session::get('frontUser')->role == 'au-pairs'){
+            return view('user.candidate.aupairs_manage_profile', $data);
+        }else{
+            return view('user.candidate.manage_profile', $data);
+        }
     }
 
     public function update_candidate(Request $request, $candidateId){
