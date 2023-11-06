@@ -6,6 +6,7 @@ use App\Http\Controllers\User\SubscriptionController;
 use Illuminate\Http\Request;
 use App\UserSubscription;
 use Carbon\Carbon;
+use App\FrontUser;
 use App\Payment;
 use Session;
 
@@ -95,6 +96,19 @@ class PaymentController extends Controller{
         if(isset($request->custom_int1) && !empty($payment)){
             $user_subscription = UserSubscription::where('user_id', $request->custom_int1)->latest()->first();
             $update_status     = !empty($user_subscription) ? $user_subscription->update(['status' => 1]) : null;
+            $user              = FrontUser::find($request->custom_int1)->toArray();
+
+            $message = '<p>Hello Admin,</p>
+            <p>The below candidate has completed his payment</p>
+            <p>Name: ' . $user['name']. '</p>
+            <p>Email: ' . $user['email'] . '</p>';
+
+            $data = [
+                'emailTo' => 'prakash.v.php@gmail.com',
+                'name'    => 'admin',  
+            ];
+
+            $this->send_mail($data, $message);
         }
     }
 }
