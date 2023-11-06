@@ -28,8 +28,8 @@
 					<div class="ftr-menu">
 						<h5>Get In Touch</h5>
 						<ul>
-							<li>Call: <a href="javaScript:;">+27 123 123 1234</a></li>
-							<li>Email: <a href="javaScript:;">info@onlineaupair.co.za</a></li>
+							<li>Call: <a href="javaScript:;">079 037 8053</a></li>
+							<li>Email: <a href="javaScript:;" style="text-transform: lowercase !important;">info@onlineaupairs.co.za</a></li>
 						</ul>
 					</div>
 				</div>
