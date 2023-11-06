@@ -64,6 +64,8 @@ class FrontCandidateController extends Controller{
 
         if(Session::get('frontUser')->role == 'au-pairs'){
             return view('user.candidate.aupairs_manage_profile', $data);
+        }elseif(Session::get('frontUser')->role == 'nannies'){
+            return view('user.candidate.nannies_manage_profile', $data);
         }else{
             return view('user.candidate.manage_profile', $data);
         }
@@ -75,6 +77,8 @@ class FrontCandidateController extends Controller{
             'age'                   => 'required',
             'id_number'             => "required",
             'salary_expectation'    => "required",
+
+            'surname'               => "required",
         ]);
 
         $candidate              = FrontUser::findorFail($candidateId);

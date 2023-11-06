@@ -41,11 +41,12 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+
                 </div>
-                
-                <div class="form-input">
+
+                <div class="form-input mb-3">
                     <label for="surname">Surname <span class="text-danger">*</span></label>
-                    <input type="text" id="surname" name="surname" placeholder="" class="form-field" value="{{ old('name', $candidate->surname) }}" >
+                    <input type="text" id="surname" name="surname" placeholder="" class="form-field" value="{{ old('surname', isset($candidate->surname) ? $candidate->surname : null) }}" >
                     @if ($errors->has('surname'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('surname') }}</strong>
@@ -92,6 +93,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="contact_number">Contact Number</label>
@@ -121,7 +123,17 @@
                 </div>
             </div>
             
-
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="situated">Situated</label>
+                    <input type="text" id="situated" name="situated" placeholder="" class="form-field @error('situated') is-invalid @enderror"  value="{{ old('situated', isset($candidate->situated) ? $candidate->situated : null) }}">
+                    @error('situated')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="area">Area Pin <span class="text-danger">*</span></label>
@@ -241,6 +253,94 @@
                     </select>
                 </div>
             </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="south_african_citizen">Are you a South African citizen? </label>
+                    <ul class="d-flex flex-wrap" >
+                        <li><input type="radio" checked name="south_african_citizen" value="yes" {{ old('south_african_citizen', $candidate->south_african_citizen) === "yes" ? "checked" : '' }} >Yes</li>
+                        <li><input type="radio" name="south_african_citizen" value="no" {{ old('south_african_citizen', $candidate->south_african_citizen) === "no" ? "checked" : '' }} >No</li>
+                    </ul>
+                    @if ($errors->has('south_african_citizen'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('south_african_citizen') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="working_permit">If NO do you have a working permit? </label>
+                    <ul class="d-flex flex-wrap">
+                        <li><input type="radio" checked name="working_permit" value="yes" {{ old('working_permit', $candidate->working_permit) === "yes" ? "checked" : '' }} >Yes</li>
+                        <li><input type="radio" name="working_permit" value="no" {{ old('working_permit', $candidate->working_permit) === "no" ? "checked" : '' }} >No</li>
+                    </ul>
+                    @if ($errors->has('working_permit'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('working_permit') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
+                    <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
+                        <option value="" disabled>Select</option>
+                        <option value="baby" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("baby", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Baby</option>
+                        <option value="gradeschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("gradeschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Gradeschooler</option>
+                        <option value="toddler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("toddler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Toddler</option>
+                        <option value="teenager" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("teenager", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Teenager</option>
+                        <option value="preschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("preschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Preschooler</option>
+                    </select>
+                    @if ($errors->has('ages_of_children_you_worked_with'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="first_aid">Do you have first aid? </label>
+                    <ul class="d-flex flex-wrap" >
+                        <li><input type="radio" checked name="first_aid" value="yes" {{ old('first_aid', $candidate->first_aid) === "yes" ? "checked" : '' }} >Yes</li>
+                        <li><input type="radio" name="first_aid" value="no" {{ old('first_aid', $candidate->first_aid) === "no" ? "checked" : '' }} >No</li>
+                    </ul>
+                    @if ($errors->has('first_aid'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('first_aid') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
+                    <ul class="radio-box-list">
+                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="smoker" {{ $candidate->smoker_or_non_smoker == 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
+                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ $candidate->smoker_or_non_smoker == 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="available_date">From which date would you be available? <span class="text-danger">*</span></label>
+                    <input type="date" id="available_date" name="available_date" value="{{ old('available_date', $candidate->available_date) }}" class="form-field">
+                    @if ($errors->has('available_date'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('available_date') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="disabilities">Disabilities</label>
@@ -294,39 +394,14 @@
                     </ul>
                 </div>
             </div>
-            
-
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="experience_special_needs">Do you have experience with special needs</label>
+                    <label for="car_accident">Have you ever been in a car accident</label>
                     <ul class="d-flex flex-wrap">
-                        <li><input type="radio" name="experience_special_needs" value="yes" {{ isset($candidate->experience_special_needs) && $candidate->experience_special_needs == 'yes' ? 'checked' : null }}>Yes</li>
-                        <li><input type="radio" name="experience_special_needs" value="no" {{ isset($candidate->experience_special_needs) && $candidate->experience_special_needs == 'no' ? 'checked' : null }}>No</li>
+                        <li><input type="radio" name="car_accident" value="yes" {{ isset($candidate->car_accident) && $candidate->car_accident == 'yes' ? 'checked' : null }}>Yes</li>
+                        <li><input type="radio" name="car_accident" value="no" {{ isset($candidate->car_accident) && $candidate->car_accident == 'no' ? 'checked' : null }}>No</li>
                     </ul>
                 </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="about_yourself">Tell us a bit more about yourself? </label>
-                <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
-                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-                @if ($errors->has('about_yourself'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('about_yourself') }}</strong>
-                    </span>
-                @endif
-            </div>
-
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="special_needs_specifications">If YES Please specify. </label>
-                <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications', $candidate->special_needs_specifications) }}</textarea>
-                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-                @if ($errors->has('special_needs_specifications'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('special_needs_specifications') }}</strong>
-                    </span>
-                @endif
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -349,154 +424,16 @@
                 </div>
             </div>
 
-
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="car_accident">Have you ever been in a car accident</label>
+                    <label for="experience_special_needs">Do you have experience with special needs</label>
                     <ul class="d-flex flex-wrap">
-                        <li><input type="radio" name="car_accident" value="yes" {{ isset($candidate->car_accident) && $candidate->car_accident == 'yes' ? 'checked' : null }}>Yes</li>
-                        <li><input type="radio" name="car_accident" value="no" {{ isset($candidate->car_accident) && $candidate->car_accident == 'no' ? 'checked' : null }}>No</li>
+                        <li><input type="radio" name="experience_special_needs" value="yes" {{ isset($candidate->experience_special_needs) && $candidate->experience_special_needs == 'yes' ? 'checked' : null }}>Yes</li>
+                        <li><input type="radio" name="experience_special_needs" value="no" {{ isset($candidate->experience_special_needs) && $candidate->experience_special_needs == 'no' ? 'checked' : null }}>No</li>
                     </ul>
                 </div>
             </div>
 
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="first_aid">Do you have first aid?</label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="first_aid" value="yes" {{ old('first_aid', $candidate->first_aid) == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="first_aid" value="no" {{ old('first_aid', $candidate->first_aid) == "no" ? "checked" : '' }}>No</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
-                <ul class="radio-box-list">
-                    <li class="radio-box-item"><input type="radio" name="$candidate->smoker_or_non_smoker" value="smoker" {{ $candidate->smoker_or_non_smoker == 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
-                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ $candidate->smoker_or_non_smoker == 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="available_date">From which date would you be available? <span class="text-danger">*</span></label>
-                <input type="date" id="available_date" name="available_date" value="{{ old('available_date', $candidate->available_date) }}" class="form-field">
-                @if ($errors->has('available_date'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('available_date') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
-                <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
-                    <option value="" disabled>Select</option>
-                    <option value="baby" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("baby", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Baby</option>
-                    <option value="gradeschooler" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("gradeschooler", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Gradeschooler</option>
-                    <option value="toddler" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("toddler", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Toddler</option>
-                    <option value="teenager" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("teenager", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Teenager</option>
-                    <option value="preschooler" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("preschooler", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Preschooler</option>
-                </select>
-                @if ($errors->has('ages_of_children_you_worked_with'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-
-
-
-        <div class="col-12">
-            <div class="form-inputs" id="dynamic_field">
-                <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
-                <div class="icon-option all-in-one">
-                    <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
-                </div>
-
-                @if(isset($previous_experience) && !$previous_experience->isEmpty())
-                    @foreach($previous_experience as $key => $value)
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="daterange">Date range</label>
-                                    <input type="text" id="daterange" name="daterange[]" class="form-field" placeholder=""  value="{{ old('daterange[]', isset($value->daterange) ? $value->daterange : null) }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="heading">Heading</label>
-                                    <input type="text" id="heading" name="heading[]" class="form-field" placeholder="" value="{{ old('heading[]', isset($value->heading) ? $value->heading : null) }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="description">Description</label>
-                                    <input type="text" id="description" name="description[]" class="form-field" placeholder="" value="{{ old('description[]', isset($value->description) ? $value->description : null) }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="reference">Reference Name</label>
-                                    <input type="text" id="reference" name="reference[]" class="form-field" placeholder="" value="{{ old('reference[]', isset($value->reference) ? $value->reference : null) }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="tel_number">Tel Number</label>
-                                    <input type="text" id="tel_number" name="tel_number[]" class="form-field" placeholder=""value="{{ old('tel_number[]', isset($value->tel_number) ? $value->tel_number : null) }}">
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="daterange">Date range</label>
-                                    <input type="text" id="daterange" name="daterange[]" value="10/01/2023 - 12/15/2023" class="form-field" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="heading">Heading</label>
-                                    <input type="text" id="heading" name="heading[]" class="form-field" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="description">Description</label>
-                                    <input type="text" id="description" name="description[]" class="form-field" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="reference">Reference Name</label>
-                                    <input type="text" id="reference" name="reference[]" class="form-field" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="tel_number">Tel Number</label>
-                                    <input type="text" id="tel_number" name="tel_number[]" class="form-field" placeholder="">
-                                </div>
-                            </div>
-                        </div>
-                @endif
-            </div>
-        </div>
-
-            <div class="row">
-                
-            </div>
-            
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="salary_expectation">What is your salary expectation</label>
@@ -508,6 +445,116 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="first_aid">Would you be comfortable with doing light housework as well </label>
+                    <ul class="d-flex flex-wrap" >
+                        <li><input type="radio" checked name="comfortable_with_light_housework" value="yes" {{ old('comfortable_with_light_housework', $candidate->comfortable_with_light_housework) === "yes" ? "checked" : '' }} >Yes</li>
+                        <li><input type="radio" name="comfortable_with_light_housework" value="no" {{ old('comfortable_with_light_housework', $candidate->comfortable_with_light_housework) === "no" ? "checked" : '' }} >No</li>
+                    </ul>
+                    @if ($errors->has('comfortable_with_light_housework'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('comfortable_with_light_housework') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-inputs" id="dynamic_field">
+                    <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                    <div class="icon-option all-in-one">
+                        <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
+                    </div>
+
+                    @if(isset($previous_experience) && !$previous_experience->isEmpty())
+                        @foreach($previous_experience as $key => $value)
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="daterange">Date range</label>
+                                        <input type="text" id="daterange" name="daterange[]" class="form-field" placeholder=""  value="{{ old('daterange[]', isset($value->daterange) ? $value->daterange : null) }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="heading">Heading</label>
+                                        <input type="text" id="heading" name="heading[]" class="form-field" placeholder="" value="{{ old('heading[]', isset($value->heading) ? $value->heading : null) }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="description">Description</label>
+                                        <input type="text" id="description" name="description[]" class="form-field" placeholder="" value="{{ old('description[]', isset($value->description) ? $value->description : null) }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="reference">Reference Name</label>
+                                        <input type="text" id="reference" name="reference[]" class="form-field" placeholder="" value="{{ old('reference[]', isset($value->reference) ? $value->reference : null) }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="tel_number">Tel Number</label>
+                                        <input type="text" id="tel_number" name="tel_number[]" class="form-field" placeholder=""value="{{ old('tel_number[]', isset($value->tel_number) ? $value->tel_number : null) }}">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="daterange">Date range</label>
+                                        <input type="text" id="daterange" name="daterange[]" value="10/01/2023 - 12/15/2023" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="heading">Heading</label>
+                                        <input type="text" id="heading" name="heading[]" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="description">Description</label>
+                                        <input type="text" id="description" name="description[]" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="reference">Reference Name</label>
+                                        <input type="text" id="reference" name="reference[]" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="tel_number">Tel Number</label>
+                                        <input type="text" id="tel_number" name="tel_number[]" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="row">
+                
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="about_yourself">Tell us a bit more about yourself? </label>
+                <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
+                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+                @if ($errors->has('about_yourself'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('about_yourself') }}</strong>
+                    </span>
+                @endif
+            </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
