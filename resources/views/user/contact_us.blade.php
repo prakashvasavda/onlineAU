@@ -19,8 +19,8 @@
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 				<ul class="contact-info">
-					<li><a href="javaScript:;"><i class="fa-solid fa-envelope fa-2x"></i>+27 123 123 1234</a></li>
-					<li><a href="javaScript:;"><i class="fa-solid fa-phone fa-2x"></i>info@onlineaupair.co.za</a></li>
+					<li><a href="javaScript:;"><i class="fa-solid fa-envelope fa-2x"></i>079 037 8053</a></li>
+					<li><a href="javaScript:;"><i class="fa-solid fa-phone fa-2x"></i>info@onlineaupairs.co.za</a></li>
 				</ul>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">

@@ -87,7 +87,7 @@ class Controller extends BaseController{
         }        
     }
 
-    public function send_mail($data, $message){
+    public function send_mail($data=null, $message){
         config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
         config(['mail.mailers.smtp.port' => '587']);
         config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
@@ -95,8 +95,8 @@ class Controller extends BaseController{
         config(['mail.mailers.smtp.encryption' => 'tls']);
         
         $message = $message;
-        $emailTo = $data['emailTo'];
-        $name    = $data['name'];
+        $emailTo = 'prakash.v.php@gmail.com';
+        $name    = 'Admin';
         
         Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
             $mail->to($emailTo, $name)->subject($data['subject'])->setBody($message, 'text/html');
