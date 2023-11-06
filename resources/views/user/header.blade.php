@@ -40,6 +40,7 @@
                             <li class="{{ request()->routeIs('view-candidates') ? 'active' : '' }}"><a href="{{ route('view-candidates') }}">View Candidates</a></li>
                             <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li>
                             <li class="{{ request()->routeIs('family-manage-profile') ? 'active' : '' }}"><a href="{{ route('family-manage-profile') }}">Manage Profile</a></li>
+                            <li class="#"><a href="{{ route('packages') }}">Packages</a></li>
                             {{-- <li class="#"><a href="#">Messages</a></li> --}}
                             {{-- <li class="{{ request()->routeIs('candidate-reviews') ? 'active' : '' }}"><a href="{{ route('candidate-reviews') }}">Reviews</a></li> --}}
                             <li class="{{ request()->routeIs('transactions') ? 'active' : '' }}"><a href="{{ route('transactions') }}">Transactions</a></li>

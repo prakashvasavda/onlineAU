@@ -55,6 +55,10 @@ Route::group(['middleware' => 'frontendauth'], function () {
     /*FAMILY TRANSACTIONS ROUTES*/
     Route::get('transactions', 'FrontFamilyController@transactions')->name('transactions');
 
+    Route::get('/packages', function () {
+        return view('user.family.pricing');
+    })->name('packages');
+
     /*USER CANDIDATE ROUTES*/
     Route::post('store-candidate-reviews', 'FrontCandidateController@store_candidate_reviews')->name('store-candidate-reviews');
     Route::get('candidate/manage-profile', 'FrontCandidateController@manage_profile')->name('candidate-manage-profile');
