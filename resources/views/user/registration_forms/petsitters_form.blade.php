@@ -229,47 +229,9 @@
             </div>
         </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="drivers_license">Do you have your drivers license</label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="drivers_license" value="yes" {{ old('drivers_license') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="drivers_license" value="no" {{ old('drivers_license') == "no" ? "checked" : '' }}>No</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="vehicle">Do you have your own vehicle</label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="vehicle" value="yes" {{ old('vehicle') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="vehicle" value="no" {{ old('vehicle') == "yes" ? "checked" : '' }}>No</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="car_accident">Have you ever been in a car accident</label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="car_accident" value="yes" {{ old('car_accident') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="car_accident" value="no" {{ old('car_accident') == "no" ? "checked" : '' }}>No</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="experience_special_needs">Do you have experience with special needs</label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="experience_special_needs" value="yes" {{ old('experience_special_needs') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="experience_special_needs" value="no" {{ old('experience_special_needs') == "no" ? "checked" : '' }}>No</li>
-                </ul>
-            </div>
-        </div>
-
         <div class="col-12">
             <div class="form-inputs" id="dynamic_field">
-                <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                <label class="mb-2 fst-italic">List your previous petsitting work experience with contactable references.</label>
                 <div class="icon-option all-in-one">
                     <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
                 </div>
@@ -315,7 +277,7 @@
                     <div class="col-12">
                         <div class="form-inputs" id="dynamic_field">
                             <div class="row mt-4" id="row{{ isset($key) ? $key : null }}">
-                                <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                                <label class="mb-2 fst-italic">List your previous petsitting work experience with contactable references.</label>
                                 <div class="icon-option all-in-one">
                                     <a href="javaScript:;" class="btn btn-danger delete-btn" id="{{ isset($key) ? $key : null }}"><i class="fa-solid fa-trash-can"></i></a>
                                 </div>
