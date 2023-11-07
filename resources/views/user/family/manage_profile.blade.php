@@ -378,9 +378,9 @@
                         <li class="radio-box-item"><input type="radio" name="family_location" value="at our home" class="form-field @error('family_location') is-invalid @enderror" {{ isset($family->family_location) && $family->family_location == "at our home" ? "checked" : '' }}><label>At our home</label></li>
                         <li class="radio-box-item"><input type="radio" name="family_location" value="at the babysitter's" class="form-field @error('family_location') is-invalid @enderror" {{ isset($family->family_location) && $family->family_location == "at the babysitter's" ? "checked" : '' }}><label>At the babysitter's</label></li>
                     </ul>
-                    @if ($errors->has('last_name'))
+                    @if ($errors->has('family_location'))
                         <span class="text-danger">
-                            <strong>{{ $errors->first('last_name') }}</strong>
+                            <strong>{{ $errors->first('family_location') }}</strong>
                         </span>
                     @endif
                 </div>

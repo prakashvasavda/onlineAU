@@ -29,11 +29,11 @@
                   <th width="10%">ID</th>
                   <th width="10%">Name</th>
                   <th width="10%">Email</th>
-                  <th width="10%">Contact Number</th>
+                  <th width="15%">Contact</th>
                   <th width="10%">Gender</th>
-                  <th width="10%">Age</th>
-                  <th width="10%">Area</th>                  
-                  <th width="20%">Action</th>
+                  {{-- <th width="10%">Age</th> --}}
+                  {{-- <th width="10%">Area</th>  --}}                 
+                  <th width="15%">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,8 +65,8 @@ $(document).ready(function () {
         { "data": "email" },
         { "data": "contact_number" },
         { "data": "gender" },
-        { "data": "age" },
-        { "data": "area" },
+        // { "data": "age" },
+        // { "data": "area" },
         { "data": "options" },
       ],
       "columnDefs": [

@@ -101,9 +101,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::any('statusCandidates', 'AdminController@statusCandidates')->name('admin.statusCandidates');
     Route::any('destroyCandidates', 'AdminController@destroyCandidates')->name('admin.destroyCandidates');
     Route::any('get_candidates', 'AdminController@get_candidates')->name('admin.get_candidates');
-    Route::get('families', 'AdminController@families')->name('admin.families');
     Route::any('destroyFamilies', 'AdminController@destroyFamilies')->name('admin.destroyFamilies');
-    Route::any('get_families', 'AdminController@get_families')->name('admin.get_families');
     Route::any('features/{id}', 'AdminController@features')->name('admin.features');
 
     Route::get('contact', 'AdminController@contact')->name('admin.contact');
@@ -122,6 +120,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::put('update-candidate/{id}', 'CandidateController@update')->name('admin.update-candidate');
 
     /*ADMIN FAMILY ROUTES*/
+    Route::get('families', 'FamilyController@index')->name('admin.families');
+    Route::any('get_families', 'FamilyController@get_families')->name('admin.get_families');
     Route::get('edit-family/{id}', 'FamilyController@edit')->name('admin.edit-family');
     Route::put('update-family/{id}', 'FamilyController@update')->name('admin.update-family');
 
