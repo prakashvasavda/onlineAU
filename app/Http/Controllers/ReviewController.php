@@ -16,7 +16,6 @@ class ReviewController extends Controller{
         $candidate_reviews  = FrontUser::Join('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')->select('front_users.*', 'candidate_reviews.review_note', 'candidate_reviews.id AS review_id');
         $family_reviews     = FrontUser::Join('family_reviews', 'front_users.id', '=', 'family_reviews.family_id')->select('front_users.*', 'family_reviews.review_note', 'family_reviews.id AS review_id');
         $data               = $candidate_reviews->union($family_reviews)->get();
-
         
         if($request->ajax()){
             
@@ -56,12 +55,10 @@ class ReviewController extends Controller{
         //
     }
 
-    public function destroy(Request $request, $id){
-       if($request->role != "family"){
-            $delete_status = CandidateReview::where('id', $request->review_id)->delete();
-            return response()->json('success', 200);
-       }
-        $delete_status = FrontUser::where('id', $request->review_id)->delete();
-        return response()->json('success', 200);
+    public function destroy(Request $request, $id) {
+        $reviewModel = ($request->role != "family") ? CandidateReview::class : FamilyReview::class;
+        $delete_status = $reviewModel::where('id', $request->review_id)->delete();
+        return response()->json($delete_status ? 'success' : 'error', $delete_status ? 200 : 404);
     }
+
 }
