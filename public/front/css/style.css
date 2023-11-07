@@ -1236,6 +1236,20 @@ header {
     padding: 80px 0;
     background-color: var(--dust-storm);
 }
+.simple-content-main h1 {
+    font-family: var(--bellefair-font);
+    color: var(--primary);
+}
+.simple-content-main h2, 
+.simple-content-main p, 
+.simple-content-main li {
+    font-family: var(--montserrat-font);
+    color: var(--gray-text);
+}
+.simple-content-main ol, 
+.simple-content-main ul {
+    padding-left: 2rem;
+}
 .title-main {
     text-align: center;
 }
