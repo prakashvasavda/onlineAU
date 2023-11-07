@@ -32,7 +32,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input mb-3">
-                    <label for="name">Full Name <span class="text-danger">*</span></label>
+                    <label for="name">Name <span class="text-danger">*</span></label>
                     <input type="text" id="name" name="name" placeholder="" class="form-field @error('name') is-invalid @enderror"  value="{{ old('name', isset($family->name) ? $family->name : '') }}">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
