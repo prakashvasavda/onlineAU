@@ -198,16 +198,16 @@ class FrontRegisterController extends Controller
         config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
         config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
         config(['mail.mailers.smtp.encryption' => 'tls']);
-        $message = '<p>Hello Admin,</p>
-            <p>New Candidate Registration, Please check below detail and then make status action on the admin side. .</p>
-            <p>Name: ' . $request->name . '</p>
-            <p>Email: ' . $request->email . '</p>';
-        $emailTo = 'prakash.v.php@gmail.com';
-        $name    = 'Admin';
-        Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
-            $mail->to($emailTo, $name)->subject('New Candidate Registration')->setBody($message, 'text/html');
-            $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
-        });
+        // $message = '<p>Hello Admin,</p>
+        //     <p>New Candidate Registration, Please check below detail and then make status action on the admin side. .</p>
+        //     <p>Name: ' . $request->name . '</p>
+        //     <p>Email: ' . $request->email . '</p>';
+        // $emailTo = 'prakash.v.php@gmail.com';
+        // $name    = 'Admin';
+        // Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
+        //     $mail->to($emailTo, $name)->subject('New Candidate Registration')->setBody($message, 'text/html');
+        //     $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
+        // });
 
         return redirect()->route('sign-up-family');
     }

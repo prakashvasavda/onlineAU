@@ -14,7 +14,7 @@
             
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label>Profile Photo <span class="text-danger">*</span></label>
+                    <label>Profile Photo</label>
                     <div class="box">
                         <div class="js--image-preview"></div>
                         <div class="upload-options">
@@ -136,7 +136,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="area">Area Pin <span class="text-danger">*</span></label>
+                    <label for="area">Area Pin</label>
                     <input type="number" id="area" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror"  value="{{ old('area', isset($candidate->area) ? $candidate->area : null) }}">
                     @error('area')
                         <span class="invalid-feedback" role="alert">
@@ -209,11 +209,11 @@
                     <label for="animals_comfortable_with">Which animals do you feel comfortable working with <span class="text-danger">*</span></label>
                     <select id="animals_comfortable_with" multiple name="animals_comfortable_with[]" class="form-field">
                         <option value="" disabled>Select</option>
-                        <option value="dogs" {{ !empty(old('animals_comfortable_with')) && in_array("dogs", old('animals_comfortable_with')) ? "selected" : " " }}>Dogs</option>
-                        <option value="cats" {{ !empty(old('animals_comfortable_with')) && in_array("cats", old('animals_comfortable_with')) ? "selected" : " " }}>Cats</option>
-                        <option value="hamsters_and_guinea_pigs" {{!empty(old('animals_comfortable_with')) && in_array("hamsters_and_guinea_pigs", old('animals_comfortable_with')) ? "selected" : " " }}>Hamsters &amp; Guinea pigs</option>
-                        <option value="reptiles" {{!empty(old('animals_comfortable_with')) && in_array("reptiles", old('animals_comfortable_with')) ? "selected" : " " }}>Reptiles</option>
-                        <option value="spiders" {{ !empty(old('animals_comfortable_with')) && in_array("spiders", old('animals_comfortable_with')) ? "selected" : " " }}>Spiders</option>
+                        <option value="dogs" {{ isset($candidate->animals_comfortable_with) && in_array("dogs", $candidate->animals_comfortable_with) ? "selected" : "" }}>Dogs</option>
+                        <option value="cats" {{ isset($candidate->animals_comfortable_with) && in_array("cats", $candidate->animals_comfortable_with) ? "selected" : "" }}>Cats</option>
+                        <option value="hamsters_and_guinea_pigs" {{ isset($candidate->animals_comfortable_with) && in_array("hamsters_and_guinea_pigs", $candidate->animals_comfortable_with) ? "selected" : "" }}>Hamsters &amp; Guinea pigs</option>
+                        <option value="reptiles" {{ isset($candidate->animals_comfortable_with) && in_array("reptiles", $candidate->animals_comfortable_with) ? "selected" : "" }}>Reptiles</option>
+                        <option value="spiders" {{ isset($candidate->animals_comfortable_with) && in_array("spiders", $candidate->animals_comfortable_with) ? "selected" : "" }}>Spiders</option>
                     </select> 
                     @if ($errors->has('animals_comfortable_with'))
                         <span class="text-danger">
@@ -277,6 +277,22 @@
                         <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
                         <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
                     </select>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="salary_expectation">What is your hourly rate <span class="text-danger">*</span></label>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text">R</span>
+                            <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="" value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
+                        <span class="input-group-text">hr</span>
+                    </div>
+                    @if ($errors->has('salary_expectation'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('salary_expectation') }}</strong>
+                        </span>
+                    @endif
                 </div>
             </div>
 
@@ -362,18 +378,6 @@
 
             <div class="row">
                 
-            </div>
-            
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="salary_expectation">What is your salary expectation/hourly rate</label>
-                    <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
-                    @error('salary_expectation')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
             </div>
             
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -513,7 +517,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-input">
-                        <label for="password">Password <span class="text-danger">*</span></label>
+                        <label for="password">Password </label>
                         <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -553,7 +557,7 @@
 
 
         $(window).on("load", function () {
-            var file = "{{ isset($candidate->profile) ? $candidate->profile : null }}";
+            var file = "{{ isset($candidate->profile) ? $candidate->profile : "front-user.png" }}";
             if(file !== null){
                 $('.js--image-preview').addClass('js--no-default');
                 $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="">');

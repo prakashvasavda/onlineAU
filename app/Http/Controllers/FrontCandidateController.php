@@ -55,6 +55,7 @@ class FrontCandidateController extends Controller{
         $data['candidate']                                      = FrontUser::findOrFail($candidateId);
         $data['candidate']['other_services']                    = !empty($data['candidate']->other_services) ? json_decode($data['candidate']->other_services) : array();
         $data['candidate']['ages_of_children_you_worked_with']  = !empty($data['candidate']->ages_of_children_you_worked_with) ? json_decode($data['candidate']->ages_of_children_you_worked_with) : array();
+        $data['candidate']['animals_comfortable_with']          = !empty($data['candidate']->animals_comfortable_with) ? json_decode($data['candidate']->animals_comfortable_with) : array();
         $data['availability']                                   = NeedsBabysitter::where('family_id', $candidateId)->first();
         $data['previous_experience']                            = PreviousExperience::where('candidate_id', $candidateId)->get();
         $data['morning_availability']                           = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();

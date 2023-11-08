@@ -132,24 +132,24 @@
                 <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
                 <ul class="radio-box-list">
                     <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" checked value="smoker" {{ old('smoker_or_non_smoker') === 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
-                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'non_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
                 </ul>
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="salary_expectation">What is your hourly rate</label>
+                <label for="salary_expectation">What is your hourly rate <span class="text-danger">*</span></label>
                 <div class="input-group mb-1">
                     <span class="input-group-text">R</span>
                         <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="" value="{{old('salary_expectation')}}">
                     <span class="input-group-text">hr</span>
                 </div>
-                @error('salary_expectation')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                @if ($errors->has('salary_expectation'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('salary_expectation') }}</strong>
                     </span>
-                @enderror
+                @endif
             </div>
         </div>
        
