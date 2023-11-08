@@ -323,7 +323,7 @@
                     <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
                     <ul class="radio-box-list">
                         <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="smoker" {{ $candidate->smoker_or_non_smoker == 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
-                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ $candidate->smoker_or_non_smoker == 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ $candidate->smoker_or_non_smoker == 'non_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
                     </ul>
                 </div>
             </div>
@@ -644,7 +644,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                         <th>Night: 21:00 – 00:00</th>
+                                        <th>Night: 21:00 – 00:00</th>
                                         <td>
                                             <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ isset($night_availability) && in_array("mo_night", $night_availability ) ? 'checked' : '' }}></label>
                                         </td>
