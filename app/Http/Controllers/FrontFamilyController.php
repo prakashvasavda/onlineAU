@@ -107,9 +107,9 @@ class FrontFamilyController extends Controller{
         $input['password']                      = !empty($request->password) ? Hash::make($request->password) : $family->password;
         $input['email']                         = !empty($request->email) ? $request->email : $candidate->email;
         $input['role']                          = $family->role;
-        $input['family_special_need_option']    = isset($request->family_special_need_option) ? 1 : 0;
+        $input['family_special_need_option']    = isset($request->family_special_need_option) && isset($request->family_special_need_value) ? 1 : 0;
         $input['family_babysitter_comfortable'] = isset($request->family_babysitter_comfortable) ? json_encode($request->family_babysitter_comfortable) : null;
-        $input['family_special_need_value']     = isset($request->family_special_need_value) ? json_encode($request->family_special_need_value) : null;
+        $input['family_special_need_value']     = isset($request->family_special_need_value) && isset($request->family_special_need_option) ? json_encode($request->family_special_need_value) : null;
         $input['profile']                       = $request->hasFile('profile') ? $this->store_image($request->file('profile')) : $family->profile;
         $input['no_children']                   = isset($request->age) && is_array($request->age) ? count($request->age) : $request->no_children;
         $input['describe_kids']                 = isset($request->describe_kids) ? json_encode($request->describe_kids) : null;
@@ -118,7 +118,7 @@ class FrontFamilyController extends Controller{
         $availability                           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_family_calender($input, $familyId) : 0;
         $update_status                          = $family->update($input);
 
-        return redirect()->back()->with('success', 'Profile updated successfully.');
+        return redirect()->back()->with('success', 'profile updated successfully.');
     }
 
    

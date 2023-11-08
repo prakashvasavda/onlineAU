@@ -175,8 +175,8 @@
                             <div class="form-input">
                                 <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                                 <select id="gender_of_children" name="gender_of_children[]" class="form-field">
-                                    <option value="male" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("male", $family->gender_of_children))? 'selected' : '' }}>Male</option>
-                                    <option value="female" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("female", $family->gender_of_children))? 'selected' : '' }}>Female</option>
+                                    <option value="male" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "male" ? "selected" : "" }}>Male</option>
+                                    <option value="female" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "female" ? "selected" : "" }}>Female</option>
                                 </select>
                                 @if ($errors->has('gender_of_children'))
                                     <span class="text-danger">
@@ -211,8 +211,8 @@
                     <div class="form-input">
                         <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                         <select id="gender_of_children" name="gender_of_children[]" class="form-field">
-                            <option value="male" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("male", $family->gender_of_children))? 'selected' : '' }}>Male</option>
-                            <option value="female" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("female", $family->gender_of_children))? 'selected' : '' }}>Female</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                         </select>
                         @if ($errors->has('gender_of_children'))
                             <span class="text-danger">
@@ -250,8 +250,8 @@
                                 <div class="form-input">
                                     <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                                     <select id="gender_of_children" name="gender_of_children[]" class="form-field">
-                                        <option value="male" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("male", $family->gender_of_children))? 'selected' : '' }}>Male</option>
-                                        <option value="female" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("female", $family->gender_of_children))? 'selected' : '' }}>Female</option>
+                                        <option value="male" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "male" ? "selected" : "" }}>Male</option>
+                                        <option value="female" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "female" ? "selected" : "" }}>Female</option>
                                     </select>
                                     @if ($errors->has('gender_of_children'))
                                         <span class="text-danger">

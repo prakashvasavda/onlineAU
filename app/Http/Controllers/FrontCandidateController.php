@@ -79,7 +79,6 @@ class FrontCandidateController extends Controller{
             'age'                   => 'required',
             'id_number'             => "required",
             'salary_expectation'    => "required",
-
             'surname'               => "required",
         ]);
 
