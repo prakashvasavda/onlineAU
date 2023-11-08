@@ -170,7 +170,7 @@ class FrontFamilyController extends Controller{
         ->where('front_users.status', '1')
         ->orderByRaw('LOCATE(?, family_favorite_candidate) DESC, family_favorite_candidate ASC', [$data['user']->id])
         ->distinct()
-        ->get();
+        ->simplePaginate(9);
 
         return view('user.candidate.view_candidates', $data);
     }
