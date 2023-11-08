@@ -50,27 +50,30 @@ class FrontCandidateController extends Controller{
     }
 
     public function manage_profile(){
-        $candidateId                            = Session::get('frontUser')->id;
-        $data['menu']                           = "manage profile";
-        $data['candidate']                      = FrontUser::findOrFail($candidateId);
-        $data['candidate']['other_services']    = !empty($data['candidate']->other_services) ? json_decode($data['candidate']->other_services) : array();
-        $data['availability']                   = NeedsBabysitter::where('family_id', $candidateId)->first();
-        $data['previous_experience']            = PreviousExperience::where('candidate_id', $candidateId)->get();
-        $data['morning_availability']           = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability']         = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']           = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']             = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        $candidateId                                            = Session::get('frontUser')->id;
+        $data['menu']                                           = "manage profile";
+        $data['candidate']                                      = FrontUser::findOrFail($candidateId);
+        $data['candidate']['other_services']                    = !empty($data['candidate']->other_services) ? json_decode($data['candidate']->other_services) : array();
+        $data['candidate']['ages_of_children_you_worked_with']  = !empty($data['candidate']->ages_of_children_you_worked_with) ? json_decode($data['candidate']->ages_of_children_you_worked_with) : array();
+        $data['availability']                                   = NeedsBabysitter::where('family_id', $candidateId)->first();
+        $data['previous_experience']                            = PreviousExperience::where('candidate_id', $candidateId)->get();
+        $data['morning_availability']                           = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
+        $data['afternoon_availability']                         = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
+        $data['evening_availability']                           = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
+        $data['night_availability']                             = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
         
 
-        if(Session::get('frontUser')->role == 'au-pairs'){
-            return view('user.candidate.aupairs_manage_profile', $data);
-        }elseif(Session::get('frontUser')->role == 'nannies'){
-            return view('user.candidate.nannies_manage_profile', $data);
-        }elseif(Session::get('frontUser')->role == 'petsitters'){
-            return view('user.candidate.petsitters_manage_profile', $data);
-        }else{
-            return view('user.candidate.manage_profile', $data);
-        }
+        $role = strtolower(Session::get('frontUser')->role);
+        
+        $candidate_profile_forms = [
+            'au-pairs'      => 'user.candidate.aupairs_manage_profile',
+            'nannies'       => 'user.candidate.nannies_manage_profile',
+            'petsitters'    => 'user.candidate.petsitters_manage_profile',
+            'babysitters'   => 'user.candidate.babysitters_manage_profile',
+        ];
+
+        $view = $candidate_profile_forms[$role] ?? 'user.home';
+        return view($view, $data);
     }
 
     public function update_candidate(Request $request, $candidateId){
