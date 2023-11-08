@@ -79,7 +79,7 @@ class HomeController extends Controller
             return $query->where('front_users.role', $status);
         })
         ->distinct()
-        ->simplePaginate(3);
+        ->simplePaginate(9);
     
        
         return view('user.candidate.candidates', $data);

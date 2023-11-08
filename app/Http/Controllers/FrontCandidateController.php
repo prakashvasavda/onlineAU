@@ -170,7 +170,7 @@ class FrontCandidateController extends Controller{
         ->where('front_users.role', 'family')
         ->where('front_users.status', '1')
         ->distinct()
-        ->get();
+        ->simplePaginate(9);
 
         return view('user.family.view_families', $data);
     }

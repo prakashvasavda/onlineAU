@@ -31,7 +31,7 @@ class SearchController extends Controller
             ->where('front_users.status', '1')
             ->where('front_users.area', 'like', '%'.$request->search_query.'%')
             ->distinct()
-            ->simplePaginate(6);
+            ->simplePaginate(9);
 
         }else{
             $search = FrontUser::leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT family_id) as family_favorite_candidate FROM family_favorite_candidates GROUP BY candidate_id) as family_favorites'), 'front_users.id', '=', 'family_favorites.candidate_id')
@@ -48,7 +48,7 @@ class SearchController extends Controller
             ->where('front_users.status', '1')
             ->where('front_users.area', 'like', '%'.$request->search_query.'%')
             ->distinct()
-            ->simplePaginate(6);
+            ->simplePaginate(9);
         }
 
         $data['search']         = isset($search) && !empty($search) ? $search : array();

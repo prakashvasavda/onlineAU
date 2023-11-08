@@ -18,7 +18,7 @@
 	        	<form method="post" id="search_form" action="{{ route('search') }}" class="w-100 d-flex flex-row justify-content-center align-items-center">
 		        	@csrf
 		        	<div class="form-input">
-		        		<input type="text" placeholder="Enter Area or City" id="search-field" class="form-field address-input" name="search" required>
+		        		<input type="text" placeholder="Enter Area or City" id="search-field" class="form-field address-input" name="search_query" required>
 		        		<input type="hidden" name="type" value="family">
 					</div>
 					<div class="form-input-btn">
@@ -89,6 +89,15 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="mb-4">
+				<nav aria-label="Page navigation example">
+				  	<ul class="pagination justify-content-center">
+				    	{{ isset($families) ? $families->links() : null }}
+				  </ul>
+				</nav>
+			</div>
+
 		</div>
 	</div>
 </div>
