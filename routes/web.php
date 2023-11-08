@@ -97,10 +97,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('packages', 'AdminController@packages')->name('admin.packages');
     Route::post('update-password', 'AdminController@update_password')->name('admin.update-password');
     Route::post('store_features', 'AdminController@store_features')->name('admin.store_features');
-    Route::get('candidates', 'AdminController@candidates')->name('admin.candidates');
     Route::any('statusCandidates', 'AdminController@statusCandidates')->name('admin.statusCandidates');
     Route::any('destroyCandidates', 'AdminController@destroyCandidates')->name('admin.destroyCandidates');
-    Route::any('get_candidates', 'AdminController@get_candidates')->name('admin.get_candidates');
     Route::any('destroyFamilies', 'AdminController@destroyFamilies')->name('admin.destroyFamilies');
     Route::any('features/{id}', 'AdminController@features')->name('admin.features');
 
@@ -116,6 +114,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('delete-review/{id}', 'ReviewController@destroy')->name('admin.delete-review');
 
     /*ADMIN CANDIDATE ROUTES*/
+    Route::get('candidates', 'CandidateController@index')->name('admin.candidates');
+    Route::any('get_candidates', 'CandidateController@get_candidates')->name('admin.get_candidates');
     Route::get('edit-candidate/{id}', 'CandidateController@edit')->name('admin.edit-candidate');
     Route::put('update-candidate/{id}', 'CandidateController@update')->name('admin.update-candidate');
 
