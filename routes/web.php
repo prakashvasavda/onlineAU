@@ -33,7 +33,7 @@ Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');
 Route::post('store-contact', 'HomeController@store_contact')->name('store-contact');
 
 /*PUBLIC SEARCH ROUTES*/
-Route::any('search', 'SearchController@index')->name('search');
+Route::any('search/{search_parameters?}', 'SearchController@index')->name('search');
 
 /*PUBLIC CANDIDATE ROUTES*/
 Route::get('candidates', 'HomeController@candidates')->name('candidates');

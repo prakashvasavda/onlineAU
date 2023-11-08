@@ -63,15 +63,14 @@
 <div class="search-box search-elem">
     <a href="javaScript:;" class="close btn btn-primary round">x</a>
     <div class="inner row">
-        <form name="frm" method="post" action="{{ route('search') }}">
+        <form name="frm" method="GET" action="{{ route('search') }}">
             <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12 mx-auto">
                 <div class="w-100 input-group d-flex flex-direction-row flex-wrap align-items-center">
-                        @csrf
                         <select class="form-field" required name="type">
                             <option value="family">Search for Family</option>
                             <option value="candidate">Search for Candidate</option>
                         </select>
-                        <input type="text" placeholder="Enter Area or City" id="search-field" class="form-field address-input" name="search" required>
+                        <input type="text" placeholder="Enter Area or City" id="search-field" class="form-field address-input" name="search_query" required>
                         <div class="input-group-append">
                             <button id="" type="submit" class="submit btn btn-link text-secondary"><i class="fa fa-search"></i></button>
                         </div>

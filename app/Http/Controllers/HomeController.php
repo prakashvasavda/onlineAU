@@ -61,6 +61,7 @@ class HomeController extends Controller
 
     public function candidates($service=null){
         $data['menu']       = "candidates";
+
         $data['user']       = Session::has('frontUser') ? Session::get('frontUser') : null;
         $data['candidates'] = FrontUser::leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT family_id) as family_favorite_candidate FROM family_favorite_candidates GROUP BY candidate_id) as family_favorites'), 'front_users.id', '=', 'family_favorites.candidate_id')
         ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
@@ -78,7 +79,9 @@ class HomeController extends Controller
             return $query->where('front_users.role', $status);
         })
         ->distinct()
-        ->get();
+        ->simplePaginate(3);
+    
+       
         return view('user.candidate.candidates', $data);
     }
 

@@ -68,6 +68,17 @@
 					@endforeach
 				@endif
 			</div>
+
+			@if(isset($search) && isset($type) && isset($search_query))
+				<div class="mb-4">
+					<nav aria-label="Page navigation example">
+					  	<ul class="pagination justify-content-center">
+					    	{{ $search->appends(['type' => $type, 'search_query' => $search_query])->links() }}
+					  	</ul>
+					</nav>
+				</div>
+			@endif
+
 		</div>
 	</div>
 </div>

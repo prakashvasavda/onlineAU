@@ -93,6 +93,16 @@
 				</div>
 			</div>
 
+			<div class="mb-4">
+				<nav aria-label="Page navigation example">
+				  	<ul class="pagination justify-content-center">
+				    	{{ isset($candidates) ? $candidates->links() : null }}
+				  </ul>
+				</nav>
+			</div>
+			
+
+			
 			@if(request()->is('candidates/*'))
 				<div class="btn-main text-center mb-4">
 		            <a href="{{ route('candidates') }}" class="btn btn-primary round">view all candidates</a>
