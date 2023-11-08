@@ -16,10 +16,10 @@
 			</div>
 			
 			<div class="search-box profileSrc">
-	        	<form method="post" id="search_form" action="{{ route('search') }}" class="w-100 d-flex flex-row justify-content-center align-items-center">
+	        	<form method="GET" id="search_form" action="{{ route('search') }}" class="w-100 d-flex flex-row justify-content-center align-items-center">
 		        	@csrf
 		        	<div class="form-input">
-		        		<input type="text" placeholder="Enter Area or City" id="search-field" class="form-field address-input" name="search" required>
+		        		<input type="text" placeholder="Enter Area or City" id="search-field" class="form-field address-input" name="search_query" required>
 		        		<input type="hidden" name="type" value="candidate">
 					</div>
 					<div class="form-input-btn">
