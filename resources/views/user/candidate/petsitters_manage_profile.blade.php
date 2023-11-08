@@ -169,7 +169,7 @@
                     <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
                     <ul class="radio-box-list">
                         <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" checked value="smoker" {{ old('smoker_or_non_smoker', $candidate->smoker_or_non_smoker) == 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
-                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker', $candidate->smoker_or_non_smoker) == 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker', $candidate->smoker_or_non_smoker) == 'non_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
                     </ul>
                 </div>
             </div>
