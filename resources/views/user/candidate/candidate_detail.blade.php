@@ -23,6 +23,7 @@
                         SPECIALITY: {{ $candidate->role ? strtoupper($candidate->role) : "-" }}<br>
                         @if(isset($candidate->other_services)) OTHER SPECIALITY: {{ strtoupper($candidate->other_services) }}<br>  @endif
                         HOURLY RATE: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
+                        ABOUT ME: {{ $candidate->about_yourself ? strtoupper($candidate->about_yourself) : "-" }}<br>
                         <span id="candidate_contact" style="display: none;">
                             @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
                                 CONTACT NUMBER: {{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}<br>
