@@ -25,7 +25,7 @@
                         HOURLY RATE: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
                         <span id="candidate_contact" style="display: none;">
                             @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
-                                CONTACT NUMBER: R{{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}<br>
+                                CONTACT NUMBER: {{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}<br>
                                 EMAIL: {{ strtoupper($candidate->email) }}
                             @endif
                         </span>
@@ -398,7 +398,7 @@ function equalHeight(resize) {
 }
 
 function displayContact(event){
-    var payments_status = {{ isset($payments->payment_status) ? 1 : 0 }};
+    var payments_status = {{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == 1) ? 1 : 0 }};
     if(payments_status == 0){
         event.preventDefault();
         $(".payment_alert_msg").css("display", "block");
