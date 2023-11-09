@@ -30,15 +30,17 @@ class SubscriptionController extends Controller{
 
     public function check_subscription_status($user_id){
         $user_subscription = UserSubscription::where('user_id', $user_id)->latest()->first();
-        if(!isset($user_subscription) || empty($user_subscription)){
+     
+        if(!isset($user_subscription) || empty($user_subscription) || $user_subscription->status == 0){
             return 0;
         }
 
-        /*check if user sunscription is expired*/
+        /*check if user subscription is expired*/
         if(Carbon::now() > Carbon::parse($user_subscription->end_date)){
             $user_subscription->update(['status' => 0]);
             return 0;
         }
+        
         return 1;
     }  
 }
