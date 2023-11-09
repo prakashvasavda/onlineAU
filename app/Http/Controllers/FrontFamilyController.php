@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\User\SubscriptionController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -229,6 +230,11 @@ class FrontFamilyController extends Controller{
 
     public function transactions(){
         $data['menu']                = "transactions";
+
+        /*check user subscription status*/
+        $subscription                                         = new SubscriptionController();
+        $Session::get('frontUser')->user_subscription_status  = $subscription->check_subscription_status(Session::get('frontUser')->id);
+
         $data['user_subscription']   = UserSubscription::where('user_id', Session::get('frontUser')->id)->where('status', 1)->latest()->first();
         $data['payment']             = Payment::where('user_id', Session::get('frontUser')->id)->where('user_subscription_id', $data['user_subscription']->id)->latest()->first();
         return view('user.family.pricing', $data);
