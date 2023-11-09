@@ -152,9 +152,8 @@ class FrontFamilyController extends Controller{
             return $availability->id;
         }        
     }
-
     
-    public function view_candidates(){
+    public function view_candidates($service = null){
         $data['menu']       = "view candidates";
         $data['user']       = Session::get('frontUser');
         $data['candidates'] = FrontUser::leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT family_id) as family_favorite_candidate FROM family_favorite_candidates GROUP BY candidate_id) as family_favorites'), 'front_users.id', '=', 'family_favorites.candidate_id')
@@ -170,6 +169,9 @@ class FrontFamilyController extends Controller{
         ->where('front_users.role', '!=', 'family')
         ->where('front_users.status', '1')
         ->orderByRaw('LOCATE(?, family_favorite_candidate) DESC, family_favorite_candidate ASC', [$data['user']->id])
+        ->when($service, function ($query, $service) {
+            return $query->where('front_users.role', $service);
+        })
         ->distinct()
         ->simplePaginate(9);
 

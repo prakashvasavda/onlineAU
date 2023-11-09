@@ -70,7 +70,7 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('family/manage-profile', 'FrontFamilyController@manage_profile')->name('family-manage-profile');
     Route::put('update-family/{id}', 'FrontFamilyController@update_family')->name('update-family');
     Route::get('all-candidates', 'FrontFamilyController@view_all_candidates')->name('all-candidates');
-    Route::get('view-candidates', 'FrontFamilyController@view_candidates')->name('view-candidates');
+    Route::get('view-candidates/{service?}', 'FrontFamilyController@view_candidates')->name('view-candidates');
     Route::post('store-family-favourite-candidate', 'FrontFamilyController@store_family_favourite_candidate')->name('store-family-favourite-candidate');
     Route::get('candidate/reviews', 'FrontFamilyController@reviews')->name('candidate-reviews');
 

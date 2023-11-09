@@ -7,12 +7,12 @@
 	
 </style>
 <div class="search-section no-banner">
-	{{-- <ul class="filter-option">
-		<li><a href="javaScript:;">Type of babysitter needed</a></li>
-		<li><a href="javaScript:;">Children</a></li>
-		<li><a href="javaScript:;">Verifications</a></li>
-		<li><a href="javaScript:;">More filters</a></li>
-	</ul> --}}
+	<ul class="filter-option">
+		<li><a href="{{ route('view-candidates', ['service' => 'au-pairs']) }}">Au-Pairs</a></li>
+		<li><a href="{{ route('view-candidates', ['service' => 'babysitters']) }}">Babysitters</a></li>
+		<li><a href="{{ route('view-candidates', ['service' => 'nannies']) }}">Nannies</a></li>
+		<li><a href="{{ route('view-candidates', ['service' => 'petsitters']) }}">Pet Sitters</a></li>
+	</ul>
 	<div class="search-inner">
 		<div class="container">
 			<div class="title-main title-box">
