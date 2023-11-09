@@ -8,7 +8,7 @@
 		<li><a href="javaScript:;">More filters</a></li>
 	</ul> --}}
 	<div class="search-inner">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="title-main title-box">
 				@if($type == "family")
 					<h2>Find Family</h2>
