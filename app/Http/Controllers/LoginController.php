@@ -7,6 +7,7 @@ use App\Mail\CustomForgotPasswordMail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Http\Controllers\User\SubscriptionController;
 use Session;
 use Mail;
 
@@ -30,6 +31,12 @@ class LoginController extends Controller
 
         $user = FrontUser::where('email', $request->email)->first();
         if ($user && Hash::check($request->password, $user->password)) {
+ 
+            /*check user subscription status*/
+            $subscription                       = new SubscriptionController();
+            $subscription_status                = $user->role == "family" ? $subscription->check_subscription_status($user->id) : null;
+            $user['user_subscription_status']   = $subscription_status;
+
             Session::put('frontUser', $user);
             return redirect()->route('home');
         } else {

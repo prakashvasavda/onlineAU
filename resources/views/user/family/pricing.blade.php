@@ -72,7 +72,7 @@
     }
 </style>
 
-@if(isset($user_subscription) && now()->lt($end_date))
+@if(isset($user_subscription) && !empty($user_subscription))
     <div class="single-form-section">
         <div class="container">
             <div class="title-main mb-5">
