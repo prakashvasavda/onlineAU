@@ -237,7 +237,7 @@ class FrontFamilyController extends Controller{
         $frontUser['user_subscription_status']  = $subscription->check_subscription_status(Session::get('frontUser')->id);
         Session::put('frontUser', $frontUser);
 
-        $data['user_subscription']   = UserSubscription::where('user_id', Session::get('frontUser')->id)->where('status', 1)->latest()->first();
+        $data['user_subscription']   = UserSubscription::where('user_id', Session::get('frontUser')->id)->latest()->first();
         $data['payment']             = isset($data['user_subscription']) ? Payment::where('user_id', Session::get('frontUser')->id)->where('user_subscription_id', $data['user_subscription']->id)->latest()->first() : null;
         return view('user.family.pricing', $data);
     }
