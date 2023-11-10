@@ -17,7 +17,20 @@
 </section>
 <section class="content">
     <div class="container-fluid">
+        
         @include('flash.flash-message')
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <strong>There were some errors:</strong>
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-primary">
@@ -73,7 +86,7 @@
 
 
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="age">Age <span class="text-danger">*</span></label>
                                         <input type="number" id="age" name="age" placeholder="" class="form-control"  value="{{ old('age', isset($candidate->age) ? $candidate->age : null) }}">
@@ -153,7 +166,7 @@
 
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="area">Area Pin <span class="text-danger">*</span></label>
+                                        <label for="area">Area Pin </label>
                                         <input type="number" id="area" name="area" placeholder="" class="form-control"  value="{{ old('area', isset($candidate->area) ? $candidate->area : null) }}">
                                         @error('area')
                                             <span class="invalid-feedback" role="alert">
@@ -401,9 +414,9 @@
                                 <div class="col-12">
                                     <div class="form-group" id="dynamic_field">
                                         <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
-                                        <div class="icon-option all-in-one">
+                                        {{-- <div class="icon-option all-in-one">
                                             <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fas fa-plus"></i></a>
-                                        </div>
+                                        </div> --}}
 
                                         @if(isset($previous_experience) && !$previous_experience->isEmpty())
                                             @foreach($previous_experience as $key => $value)
@@ -481,13 +494,18 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="salary_expectation">What is your salary expectation/hourly rate</label>
-                                        <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-control @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
-                                        @error('salary_expectation')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                        <label for="salary_expectation">What is your hourly rate</label>
+                                        <div class="input-group mb-1">
+                                            <span class="input-group-text">R</span>
+                                                <input type="text" name="salary_expectation" id="salary_expectation" class="form-control" placeholder="" value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : '') }}">
+                                            <span class="input-group-text">hr</span>
+                                        </div>
+                                        <p class="fw-light small">Average rate that other families offer: R16,34<br>For your safety and protection, only pay through Online Au-Pairs.</p>
+                                        @if ($errors->has('salary_expectation'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('salary_expectation') }}</strong>
                                             </span>
-                                        @enderror
+                                        @endif
                                     </div>
                                 </div>
 
@@ -495,7 +513,7 @@
                                     <div class="form-group">
                                         <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
                                         <div class="table-responsive">
-                                            <table class="table table-borderless table-sm">
+                                            <table class="table table-bordered table-sm">
                                                 <tbody>
                                                         <tr>
                                                             <td></td>
@@ -508,7 +526,7 @@
                                                             <th>Su</th>
                                                         </tr>
                                                         <tr>
-                                                            <th>Morning</th>
+                                                            <th>Morning: 07:00 – 13:00</th>
                                                             <td>
                                                                 <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ isset($morning) && in_array("mo_morning", $morning ) ? 'checked' : '' }}></label>
                                                             </td>
@@ -532,7 +550,7 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Afternoon</th>
+                                                            <th>Afternoon: 13:00 – 17:00</th>
                                                             <td>
                                                                 <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ isset($afternoon) && in_array("mo_afternoon", $afternoon ) ? 'checked' : '' }}></label>
                                                             </td>
@@ -556,7 +574,7 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Evening</th>
+                                                            <th>Evening: 17:00 – 21:00</th>
                                                             <td>
                                                                 <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ isset($evening) && in_array("mo_evening", $evening ) ? 'checked' : '' }}></label>
                                                             </td>
@@ -580,7 +598,7 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Night</th>
+                                                            <th>Night: 21:00 – 00:00</th>
                                                             <td>
                                                                 <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ isset($night) && in_array("mo_night", $night ) ? 'checked' : '' }}></label>
                                                             </td>
