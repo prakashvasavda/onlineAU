@@ -17,7 +17,19 @@
 </section>
 <section class="content">
     <div class="container-fluid">
+
         @include('flash.flash-message')
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <strong>There were some errors:</strong>
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-primary">
@@ -204,35 +216,8 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="religion">Religion</label>
-                                        <select id="religion" name="religion" class="form-control">
-                                            <option value="" selected="selected" disabled="disabled">Select one</option>
-                                            <option value="african traditional &amp; Diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>
-                                            <option value="agnostic" {{ isset($candidate->religion) && $candidate->religion == 'agnostic' ? 'selected' : null }}>Agnostic</option>
-                                            <option value="atheist" {{ isset($candidate->religion) && $candidate->religion == 'atheist' ? 'selected' : null }}>Atheist</option>
-                                            <option value="baha'i" {{ isset($candidate->religion) && $candidate->religion == "baha'i" ? 'selected' : null }}>Baha'i</option>
-                                            <option value="buddhism" {{ isset($candidate->religion) && $candidate->religion == 'buddhism' ? 'selected' : null }}>Buddhism</option>
-                                            <option value="cao dai" {{ isset($candidate->religion) && $candidate->religion == "cao dai" ? 'selected' : null }}>Cao Dai</option>
-                                            <option value="chinese traditional religion" {{ isset($candidate->religion) && $candidate->religion == "chinese traditional religion" ? 'selected' : null }}>Chinese traditional religion</option>
-                                            <option value="christianity" {{ isset($candidate->religion) && $candidate->religion == "christianity" ? 'selected' : null }}>Christianity</option>
-                                            <option value="hinduism" {{ isset($candidate->religion) && $candidate->religion == "hinduism" ? 'selected' : null }}>Hinduism</option>
-                                            <option value="islam" {{ isset($candidate->religion) && $candidate->religion == "islam" ? 'selected' : null }}>Islam</option>
-                                            <option value="jainism" {{ isset($candidate->religion) && $candidate->religion == "jainism" ? 'selected' : null }}>Jainism</option>
-                                            <option value="juche" {{ isset($candidate->religion) && $candidate->religion == "juche" ? 'selected' : null }}>Juche</option>
-                                            <option value="judaism" {{ isset($candidate->religion) && $candidate->religion == "judaism" ? 'selected' : null }}>Judaism</option>
-                                            <option value="neo-paganism" {{ isset($candidate->religion) && $candidate->religion == "neo-paganism" ? 'selected' : null }}>Neo-Paganism</option>
-                                            <option value="nonreligious" {{ isset($candidate->religion) && $candidate->religion == "nonreligious" ? 'selected' : null }}>Nonreligious</option>
-                                            <option value="rastafarianism" {{ isset($candidate->religion) && $candidate->religion == "rastafarianism" ? 'selected' : null }}>Rastafarianism</option>
-                                            <option value="secular" {{ isset($candidate->religion) && $candidate->religion == "secular" ? 'selected' : null }}>Secular</option>
-                                            <option value="shinto" {{ isset($candidate->religion) && $candidate->religion == "shinto" ? 'selected' : null }}>Shinto</option>
-                                            <option value="sikhism" {{ isset($candidate->religion) && $candidate->religion == "sikhism" ? 'selected' : null }}>Sikhism</option>
-                                            <option value="spiritism" {{ isset($candidate->religion) && $candidate->religion == "spiritism" ? 'selected' : null }}>Spiritism</option>
-                                            <option value="tenrikyo" {{ isset($candidate->religion) && $candidate->religion == "tenrikyo" ? 'selected' : null }}>Tenrikyo</option>
-                                            <option value="unitarian-universalism" {{ isset($candidate->religion) && $candidate->religion == "unitarian-universalism" ? 'selected' : null }}>Unitarian-Universalism</option>
-                                            <option value="zoroastrianism" {{ isset($candidate->religion) && $candidate->religion == "zoroastrianism" ? 'selected' : null }}>Zoroastrianism</option>
-                                            <option value="primal-indigenous" {{ isset($candidate->religion) && $candidate->religion == "primal-indigenous" ? 'selected' : null }}>primal-indigenous</option>
-                                            <option value="other" {{ isset($candidate->religion) && $candidate->religion == "other" ? 'selected' : null }}>Other</option>
-                                        </select>
+                                        <label for="disabilities">Disabilities</label>
+                                        <input type="text" id="disabilities" name="disabilities" placeholder="" class="form-control" value="{{ old('disabilities', isset($candidate->disabilities) ? $candidate->disabilities : null) }}">
                                     </div>
                                 </div>
 
@@ -301,45 +286,6 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="additional_language">Additional Language</label>
-                                        <select id="additional_language" name="additional_language" multiple class="form-control">
-                                            <option value="" selected="selected" disabled="disabled">Select one</option>
-                                            <option value="english" {{ isset($candidate->additional_language) && $candidate->additional_language == "english" ? 'selected' : null }}>English</option>
-                                            <option value="afrikaans" {{ isset($candidate->additional_language) && $candidate->additional_language == "afrikaans" ? 'selected' : null }}>Afrikaans</option>
-                                            <option value="zulu (isizulu)" {{ isset($candidate->additional_language) && $candidate->additional_language == "zulu (isizulu)" ? 'selected' : null }}>Zulu (isiZulu)</option>
-                                            <option value="xhosa (isixhosa)"  {{ isset($candidate->additional_language) && $candidate->additional_language == "xhosa (isixhosa)" ? 'selected' : null }}>Xhosa (isiXhosa)</option>
-                                            <option value="northern sotho (sesotho sa leboa)"  {{ isset($candidate->additional_language) && $candidate->additional_language == "northern sotho (sesotho sa leboa)" ? 'selected' : null }}>Northern Sotho (Sesotho sa Leboa)</option>
-                                            <option value="sotho (sesotho)" {{ isset($candidate->additional_language) && $candidate->additional_language == "otho (sesotho)" ? 'selected' : null }}>Sotho (Sesotho)</option>
-                                            <option value="swazi (siswati)" {{ isset($candidate->additional_language) && $candidate->additional_language == "wazi (siswati)" ? 'selected' : null }}>Swazi (siSwati)</option>
-                                            <option value="tsonga (xitsonga)" {{ isset($candidate->additional_language) && $candidate->additional_language == "tsonga (xitsonga)" ? 'selected' : null }}>Tsonga (Xitsonga)</option>
-                                            <option value="tswana (setswana)" {{ isset($candidate->additional_language) && $candidate->additional_language == "tswana (setswana)" ? 'selected' : null }}>Tswana (Setswana)</option>
-                                            <option value="venda (tshivenda)" {{ isset($candidate->additional_language) && $candidate->additional_language == "venda (tshivenda)" ? 'selected' : null }}>Venda (Tshivenda)</option>
-                                            <option value="southern ndebele (isindebele)" {{ isset($candidate->additional_language) && $candidate->additional_language == "southern ndebele (isindebele)" ? 'selected' : null }}>Southern Ndebele (isiNdebele)</option>
-                                            <option value="spanish" {{ isset($candidate->additional_language) && $candidate->additional_language == "spanish" ? 'selected' : null }}>Spanish</option>
-                                            <option value="french" {{ isset($candidate->additional_language) && $candidate->additional_language == "french" ? 'selected' : null }}>French</option>
-                                            <option value="hindi" {{ isset($candidate->additional_language) && $candidate->additional_language == "hindi" ? 'selected' : null }}>Hindi</option>
-                                            <option value="arabic" {{ isset($candidate->additional_language) && $candidate->additional_language == "arabic" ? 'selected' : null }}>Arabic</option>
-                                            <option value="bengali" {{ isset($candidate->additional_language) && $candidate->additional_language == "bengali" ? 'selected' : null }}>Bengali</option>
-                                            <option value="portuguese" {{ isset($candidate->additional_language) && $candidate->additional_language == "portuguese" ? 'selected' : null }}>Portuguese</option>
-                                            <option value="russian" {{ isset($candidate->additional_language) && $candidate->additional_language == "russian" ? 'selected' : null }}>Russian</option>
-                                            <option value="japanese" {{ isset($candidate->additional_language) && $candidate->additional_language == "japanese" ? 'selected' : null }}>Japanese</option>
-                                            <option value="punjabi" {{ isset($candidate->additional_language) && $candidate->additional_language == "punjabi" ? 'selected' : null }}>Punjabi</option>
-                                            <option value="german" {{ isset($candidate->additional_language) && $candidate->additional_language == "german" ? 'selected' : null }}>German</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="disabilities">Disabilities</label>
-                                        <input type="text" id="disabilities" name="disabilities" placeholder="" class="form-control" value="{{ old('disabilities', isset($candidate->disabilities) ? $candidate->disabilities : null) }}">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
                                         <label for="experience_with_animals">Do you have experience with animals?</label>
                                         <ul class="flex-wrap">
                                             <li><input type="radio" name="experience_with_animals" value="yes" {{ old('experience_with_animals', $candidate->experience_with_animals) == "yes" ? "checked" : '' }}>&nbsp; Yes</li>
@@ -359,29 +305,6 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="marital_status">Marital Status</label>
-                                        <select class="form-control" name="marital_status">
-                                            <option selected disabled>select</option>
-                                            <option value="married" {{ isset($candidate->marital_status) && $candidate->marital_status == 'married' ? 'selected' : null }}>married</option>
-                                            <option value="single" {{ isset($candidate->marital_status) && $candidate->marital_status == 'single' ? 'selected' : null }}>Single</option>
-                                            <option value="in a relationship" {{ isset($candidate->marital_status) && $candidate->marital_status == "in a relationship" ? 'selected' : null }}>In a relationship</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="dependants">Do you have any dependants</label>
-                                        <select class="form-control" name="dependants">
-                                            <option selected disabled>select</option>
-                                            <option value="yes" {{ isset($candidate->dependants) && $candidate->dependants == 'yes' ? 'selected' : null }}>Yes</option>
-                                            <option value="no" {{ isset($candidate->dependants) && $candidate->dependants == 'no' ? 'selected' : null }}>No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -394,42 +317,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="drivers_license">Do you have your drivers license</label>
-                                        <select class="form-control" name="drivers_license">
-                                            <option selected>select</option>
-                                            <option value="yes" {{ isset($candidate->drivers_license) && $candidate->drivers_license == 'yes' ? 'selected' : null }}>Yes</option>
-                                            <option value="no" {{ isset($candidate->drivers_license) && $candidate->drivers_license == 'no' ? 'selected' : null }}>No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="vehicle">Do you have your own vehicle</label>
-                                        <select class="form-control" name="vehicle">
-                                            <option selected>select</option>
-                                            <option value="yes" {{ isset($candidate->vehicle) && $candidate->vehicle == 'yes' ? 'selected' : null }}>Yes</option>
-                                            <option value="no" {{ isset($candidate->vehicle) && $candidate->vehicle == 'no' ? 'selected' : null }}>No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="car_accident">Have you ever been in a car accident</label>
-                                        <select class="form-control" name="car_accident">
-                                            <option selected>select</option>
-                                            <option value="yes" {{ isset($candidate->car_accident) && $candidate->car_accident == 'yes' ? 'selected' : null }}>Yes</option>
-                                            <option value="no" {{ isset($candidate->car_accident) && $candidate->car_accident == 'no' ? 'selected' : null }}>No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label for="childcare_experience">How many years of childcare experience do you have</label>
@@ -446,17 +334,6 @@
                                             <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 yearsyearsyears" ? "selected" : '' }}>4.5 years</option>
                                             <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
                                             <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="experience_special_needs">Do you have experience with special needs</label>
-                                        <select class="form-control" name="experience_special_needs">
-                                            <option selected>select</option>
-                                            <option value="yes" {{ isset($candidate->experience_special_needs) && $candidate->experience_special_needs == 'yes' ? 'selected' : null }}>Yes</option>
-                                            <option value="no" {{ isset($candidate->experience_special_needs) && $candidate->experience_special_needs == 'no' ? 'selected' : null }}>No</option>
                                         </select>
                                     </div>
                                 </div>
@@ -547,7 +424,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label for="about_yourself">Tell us a bit more about yourself? </label>
-                                        <textarea id="about_yourself" name="about_yourself" class="form-control" rows="5" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
+                                        <textarea id="about_yourself" name="about_yourself" class="form-control" rows="8" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
                                         <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                                         @if ($errors->has('about_yourself'))
                                             <span class="text-danger">
