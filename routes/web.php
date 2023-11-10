@@ -45,16 +45,18 @@ Route::get('candidates/{service}', 'HomeController@candidates')->name('candidate
 Route::get('sign-up/candidate', 'HomeController@sign_up')->name('sign-up-candidate');
 Route::get('sign-up/family', 'HomeController@families')->name('sign-up-family');
 
-/*PUBLIC PAYMENT ROUTE*/
-Route::any('/payment/process', 'PaymentController@process_payment')->name('payment-process');
-
 /*Terms and Conditions*/
 Route::get('{service}/terms-and-condition', 'HomeController@terms_and_conditions')->name('terms-and-conditions');
 
+/*package route*/
+Route::get('packages', 'HomeController@packages')->name('packages');
+
 Route::group(['middleware' => 'frontendauth'], function () {
+    /* REDIRECT TO PAYMENT GATEWAY */
+    Route::any('/payment/process', 'PaymentController@process_payment')->name('payment-process');
+
     /*TRANSACTIONS ROUTES*/
     Route::get('transactions', 'FrontFamilyController@transactions')->name('transactions');
-    Route::get('packages', 'FrontFamilyController@transactions')->name('packages');
     
     /*USER CANDIDATE ROUTES*/
     Route::post('store-candidate-reviews', 'FrontCandidateController@store_candidate_reviews')->name('store-candidate-reviews');

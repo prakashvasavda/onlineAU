@@ -119,4 +119,9 @@ class HomeController extends Controller
             return view('user.family_terms_and_conditions');
         }
     }
+
+    public function packages(){
+        $data['menu'] =  "packages";
+        return view('user.packages');
+    }
 }

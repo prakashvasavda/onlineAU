@@ -14,6 +14,10 @@ class SearchController extends Controller
         if(!$request->has('search_query') || !$request->has('type')){
             return redirect()->route('home');
         }
+
+        $splited_string = is_string($request->search_query) ? preg_split('/[\s,]+/', $request->search_query)  : null;
+        $search_query   = isset($splited_string) && is_array($splited_string) ? array_filter($splited_string) : array($request->search_query);
+
         
         if($request->type == "family") {
             $search = FrontUser::leftJoin(DB::raw('(SELECT family_id, GROUP_CONCAT(DISTINCT candidate_id) as candidate_favorite_families FROM candidate_favorite_families GROUP BY family_id) as candidate_favorites'), 'front_users.id', '=', 'candidate_favorites.family_id')
@@ -27,9 +31,13 @@ class SearchController extends Controller
                 'reviews.total_reviews'
             )
             ->leftJoin(DB::raw('(SELECT family_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM family_reviews GROUP BY family_id) as reviews'), 'front_users.id', '=', 'reviews.family_id')
+            ->where(function ($query) use ($search_query) {
+                foreach ($search_query as $keyword) {
+                    $query->orWhere('front_users.area', 'like', '%' . $keyword . '%');
+                }
+            })
             ->where('front_users.role', 'family')
             ->where('front_users.status', '1')
-            ->where('front_users.area', 'like', '%'.$request->search_query.'%')
             ->distinct()
             ->simplePaginate(9);
 
@@ -44,9 +52,13 @@ class SearchController extends Controller
                 'reviews.total_reviews'
             )
             ->leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM candidate_reviews GROUP BY candidate_id) as reviews'), 'front_users.id', '=', 'reviews.candidate_id')
+            ->where(function ($query) use ($search_query) {
+                foreach ($search_query as $keyword) {
+                    $query->orWhere('front_users.area', 'like', '%' . $keyword . '%');
+                }
+            })
             ->where('front_users.role', '!=', 'family')
             ->where('front_users.status', '1')
-            ->where('front_users.area', 'like', '%'.$request->search_query.'%')
             ->distinct()
             ->simplePaginate(9);
         }
