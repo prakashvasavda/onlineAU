@@ -713,7 +713,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="salary_expectation">What is your salary expectation/hourly rate</label>
+                                        <label for="salary_expectation">What is your salary expectation</label>
                                         <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-control @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
                                         @error('salary_expectation')
                                             <span class="invalid-feedback" role="alert">
