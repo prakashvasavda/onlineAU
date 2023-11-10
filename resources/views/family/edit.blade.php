@@ -18,6 +18,18 @@
 <section class="content">
     <div class="container-fluid">
         @include('flash.flash-message')
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <strong>There were some errors:</strong>
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif 
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-primary">
@@ -30,18 +42,25 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="profile">Profile Picture</label>
-                                        <input type="file" id="profile" name="profile" placeholder="" class="form-control" value="{{ old('profile', isset($family->profile) ? $family->profile : null) }}">
-                                        @if ($errors->has('profile'))
-                                            <span class="text-danger">
-                                                <strong>{{ $errors->first('profile') }}</strong>
-                                            </span>
-                                        @endif
+                                    <div class="form-input">
+                                        <label>Candidate Photo</label>
+                                        <div class="box">
+                                            <div class="js--image-preview"></div>
+                                            <div class="upload-options">
+                                                <label>
+                                                    <input type="hidden" name="hidden_profile" value="{{ isset($family->profile) ? 'true' : 'false' }}">
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
+                                    @if ($errors->has('profile'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('profile') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
 
-                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Name <span class="text-danger">*</span></label>
                                         <input type="text" id="name" name="name" placeholder="" class="form-control"  value="{{ old('name', isset($family->name) ? $family->name : '') }}">
@@ -51,35 +70,40 @@
                                             </span>
                                         @endif
                                     </div>
+                                    
+
+                                    <div class="form-group">
+                                        <label for="surname"> Surname <span class="text-danger">*</span></label>
+                                        <input type="text" id="surname" name="surname" placeholder="" class="form-control"  value="{{ old('surname', isset($family->surname) ? $family->surname : '') }}">
+                                        @if ($errors->has('surname'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('surname') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email Address <span class="text-danger">*</span></label>
+                                        <input type="email" id="email" name="email" value="{{ old('email', isset($family->email) ? $family->email : '') }}" placeholder="" class="form-control" autocomplete="off">
+                                        @if ($errors->has('email'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-input">
-                                        <div class="form-input">
-                                           <label for="surname"> Surname <span class="text-danger">*</span></label>
-                                            <input type="text" id="surname" name="surname" placeholder="" class="form-control"  value="{{ old('surname', isset($family->surname) ? $family->surname : '') }}">
-                                             @if ($errors->has('surname'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('surname') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <div class="form-group">
-                                            <label for="email">Email Address <span class="text-danger">*</span></label>
-                                            <input type="email" id="email" name="email" value="{{ old('email', isset($family->email) ? $family->email : '') }}" placeholder="" class="form-control" autocomplete="off">
-                                            @if ($errors->has('email'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
+                                        <label for="profile">Profile Picture  <span class="text-danger">*</span></label>
+                                        <input type="file" id="profile" name="profile" placeholder="" class="form-control" value="{{ old('profile', isset($family->profile) ? $family->profile : null) }}">
+                                        @if ($errors->has('profile'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('profile') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -195,12 +219,12 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label for="what_do_you_need">What do you need<span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
-                                        <select class="form-control" name="what_do_you_need">
-                                            <option value="" disabled>select</option>
-                                            <option value="babysitter" {{ old('what_do_you_need') || $family->what_do_you_need == 'babysitter' ? 'selected' : '' }}>Babysitter</option>
-                                            <option value="petsitter" {{ old('what_do_you_need') || $family->what_do_you_need == 'petsitter' ? 'selected' : '' }}>Petsitter</option>
-                                            <option value="au_pair" {{ old('what_do_you_need') || $family->what_do_you_need == 'au_pair' ? 'selected' : '' }}>Au-Pair</option>
-                                            <option value="nanny" {{ old('what_do_you_need') || $family->what_do_you_need == 'nanny' ? 'selected' : '' }}>Nanny</option>
+                                        <select id="what_do_you_need" multiple name="what_do_you_need[]" class="form-control">
+                                            <option value="" disabled>Select</option>
+                                            <option value="babysitter" {{ (!empty($family->what_do_you_need) && in_array("babysitter", $family->what_do_you_need))? 'selected' : '' }}>Babysitter</option>
+                                            <option value="petsitter" {{ (!empty($family->what_do_you_need) && in_array("petsitter", $family->what_do_you_need))? 'selected' : '' }}>Petsitter</option>
+                                            <option value="au_pair" {{ (!empty($family->what_do_you_need) && in_array("au_pair", $family->what_do_you_need))? 'selected' : '' }}>Au-Pair</option>
+                                            <option value="nanny" {{ (!empty($family->what_do_you_need) && in_array("nanny", $family->what_do_you_need))? 'selected' : '' }}>Nanny</option>
                                         </select>
                                     </div>
                                 </div>
@@ -742,35 +766,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            
-                           
-
-                            
-
-                            
-
-                         
-
-                           
-                          
-
-                            
-
-                          
-
-                           
-                           
-
-
-                            
-
-                          
-
-                           
-
-                            
+                            </div>                        
                         </div>
                         <div class="card-footer">
                             <button type="submit" id="submitButton" class="btn btn-primary">Update</button>
@@ -781,4 +777,15 @@
         </div>
     </div>
 </section>
+@endsection
+@section('js')
+<script type="text/javascript">
+    $(window).on("load", function () {
+        var file = "{{ isset($family->profile) ? $family->profile : null }}";
+        if(file !== null){
+            $('.js--image-preview').addClass('js--no-default');
+            $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="" width = "200px" heiht = "200px" >');
+        }
+    });
+</script>
 @endsection

@@ -123,6 +123,8 @@ class FamilyController extends Controller
         $data['family']['family_babysitter_comfortable']    = !empty($data['family']->family_babysitter_comfortable) ? json_decode($data['family']->family_babysitter_comfortable, true) : array();
         $data['family']['family_special_need_value']        = !empty($data['family']->family_special_need_value) ? json_decode($data['family']->family_special_need_value, true) : array();
         $data['family']['describe_kids']                    = !empty($data['family']->describe_kids) ? json_decode($data['family']->describe_kids): array();
+        $data['family']['gender_of_children']               = !empty($data['family']->gender_of_children) ? json_decode($data['family']->gender_of_children, true) : array();
+        $data['family']['what_do_you_need']                 = !empty($data['family']->what_do_you_need) ? json_decode($data['family']->what_do_you_need, true) : array();
         $data['availability']                               = NeedsBabysitter::where('family_id', $familyId)->first();
         $data['previous_experience']                        = PreviousExperience::where('candidate_id', $familyId)->get();
         $data['morning_availability']                       = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
@@ -143,10 +145,8 @@ class FamilyController extends Controller
             'family_city'                   => "required",
             'home_language'                 => "required",
             'no_children'                   => "required",
-            'describe_kids'                 => "required|array",
             'family_types_babysitter'       => "required",
             'family_location'               => "required",
-            'family_babysitter_comfortable' => "required",
             'family_profile_see'            => "required",
             'family_notifications'          => "required",
             'family_description'            => "required",
