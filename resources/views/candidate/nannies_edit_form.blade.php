@@ -153,18 +153,6 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="situated">Situated</label>
-                                        <input type="text" id="situated" name="situated" placeholder="" class="form-control"  value="{{ old('situated', isset($candidate->situated) ? $candidate->situated : null) }}">
-                                        @error('situated')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
                                         <label for="area">Area Pin <span class="text-danger">*</span></label>
                                         <input type="number" id="area" name="area" placeholder="" class="form-control"  value="{{ old('area', isset($candidate->area) ? $candidate->area : null) }}">
                                         @error('area')
@@ -344,11 +332,11 @@
                                         <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
                                         <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-control">
                                             <option value="" disabled>Select</option>
-                                            <option value="baby" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("baby", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Baby</option>
-                                            <option value="gradeschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("gradeschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Gradeschooler</option>
-                                            <option value="toddler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("toddler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Toddler</option>
-                                            <option value="teenager" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("teenager", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Teenager</option>
-                                            <option value="preschooler" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("preschooler", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>Preschooler</option>
+                                            <option value="baby" {{ (!empty($candidate->ages_of_children_you_worked_with) && in_array("baby", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Baby</option>
+                                            <option value="gradeschooler" {{ (!empty($candidate->ages_of_children_you_worked_with) && in_array("gradeschooler", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Gradeschooler</option>
+                                            <option value="toddler" {{ (!empty($candidate->ages_of_children_you_worked_with) && in_array("toddler", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Toddler</option>
+                                            <option value="teenager" {{ (!empty($candidate->ages_of_children_you_worked_with) && in_array("teenager", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Teenager</option>
+                                            <option value="preschooler" {{ (!empty($candidate->ages_of_children_you_worked_with) && in_array("preschooler", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Preschooler</option>
                                         </select>
                                         @if ($errors->has('ages_of_children_you_worked_with'))
                                             <span class="text-danger">
