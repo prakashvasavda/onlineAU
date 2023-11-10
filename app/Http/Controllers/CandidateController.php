@@ -83,7 +83,7 @@ class CandidateController extends Controller{
                 $postnestedData['status']         = $status;
                 $url                              = url('admin/view_candidates/' . $post_val->id);
                 $edit_url                         = url('admin/edit-candidate/' . $post_val->id);
-                $postnestedData['options']        = "   <a href='" . $url . "' title='View' class='btn btn-info btn-sm'><i class='fas fa-eye'></i></a> 
+                $postnestedData['options']        = "   <a href='" . $url . "' title='View' class='btn btn-info btn-sm d-none'><i class='fas fa-eye'></i></a> 
                                                         <a title='Delete' href='javascript:void(0)' class='btn btn-danger btn-sm' onClick='removeCandidates(" . $post_val->id . ")'><i class='fas fa-trash'></i></a>
                                                         <a href='" . $edit_url . "' title='Edit' class='btn btn-primary btn-sm'><i class='fa fa-edit'></i></a> 
                                                     ";
