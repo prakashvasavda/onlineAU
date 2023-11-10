@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\CandidateFavoriteFamily;
 use App\FamilyFavoriteCandidate;
@@ -160,6 +161,8 @@ class FamilyController extends Controller
             'petrol_reimbursement'          => "required",
             'live_in_or_live_out'           => "required",
             'candidate_duties'              => "required",
+            'describe_kids'                 => "required",
+            'family_babysitter_comfortable' => "required",
         ],[
             'profile.required_if'   => 'The profile field is required',
             'describe_kids.array'   =>  'Invalid selected value',   

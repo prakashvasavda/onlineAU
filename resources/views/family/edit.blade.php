@@ -460,11 +460,11 @@
                                             <option value="affectionate" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("affectionate", $family->describe_kids)) ? "selected" : " " }}>Affectionate</option>
                                             <option value="independent" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("independent", $family->describe_kids)) ? "selected" : " " }}>Independent</option>
                                         </select>
-                                        @error('describe_kids')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                        @if ($errors->has('describe_kids'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('describe_kids') }}</strong>
                                             </span>
-                                        @enderror
+                                        @endif
                                     </div>
                                 </div>
 
@@ -472,17 +472,17 @@
                                     <div class="form-group">
                                         <label for="family_babysitter_comfortable">We need a babysitter comfortable with <span class="text-danger">*</span></label>
                                         <select id="family_babysitter_comfortable" name="family_babysitter_comfortable[]" multiple class="form-control" >
-                                            <option value="" disabled="disabled">Select</option>
+                                            <option disabled="disabled">Select</option>
                                             <option value="pets" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("pets", $family->family_babysitter_comfortable) ? 'selected' : null}}>Pets</option>
                                             <option value="cooking" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("cooking", $family->family_babysitter_comfortable) ? 'selected' : null}}>Cooking</option>
                                             <option value="chores" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("chores", $family->family_babysitter_comfortable) ? 'selected' : null}}>Chores</option>
                                             <option value="homeworkassistance" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("homeworkassistance", $family->family_babysitter_comfortable) ? 'selected' : null}}>Homework assistance</option>
                                         </select>
-                                         @error('family_babysitter_comfortable')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                        @if ($errors->has('family_babysitter_comfortable'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('family_babysitter_comfortable') }}</strong>
                                             </span>
-                                        @enderror
+                                        @endif
                                     </div>
                                 </div>
                             </div>

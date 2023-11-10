@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\PreviousExperience;
 use App\NeedsBabysitter;
 use App\FrontUser;
+use Session;
+use Mail;
+
 
 
 class CandidateController extends Controller{
