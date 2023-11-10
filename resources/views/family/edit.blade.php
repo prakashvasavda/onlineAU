@@ -222,10 +222,10 @@
                                         <label for="what_do_you_need">What do you need<span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
                                         <select id="what_do_you_need" multiple name="what_do_you_need[]" class="form-control">
                                             <option value="" disabled>Select</option>
-                                            <option value="babysitter" {{ (!empty($family->what_do_you_need) && in_array("babysitter", $family->what_do_you_need))? 'selected' : '' }}>Babysitter</option>
-                                            <option value="petsitter" {{ (!empty($family->what_do_you_need) && in_array("petsitter", $family->what_do_you_need))? 'selected' : '' }}>Petsitter</option>
-                                            <option value="au_pair" {{ (!empty($family->what_do_you_need) && in_array("au_pair", $family->what_do_you_need))? 'selected' : '' }}>Au-Pair</option>
-                                            <option value="nanny" {{ (!empty($family->what_do_you_need) && in_array("nanny", $family->what_do_you_need))? 'selected' : '' }}>Nanny</option>
+                                            <option value="babysitter" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("babysitter", $family->what_do_you_need))? 'selected' : '' }}>Babysitter</option>
+                                            <option value="petsitter" {{ (!empty($family->what_do_you_need)&& is_array($family->what_do_you_need) && in_array("petsitter", $family->what_do_you_need))? 'selected' : '' }}>Petsitter</option>
+                                            <option value="au_pair" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("au_pair", $family->what_do_you_need))? 'selected' : '' }}>Au-Pair</option>
+                                            <option value="nanny" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("nanny", $family->what_do_you_need))? 'selected' : '' }}>Nanny</option>
                                         </select>
                                     </div>
                                 </div>
@@ -442,18 +442,18 @@
                                     <div class="form-group">
                                         <label for="describe_kids">Describe your kids in 3 words <span class="text-danger">*</span></label>
                                         <select id="describe_kids" name="describe_kids[]" multiple class="form-control" >
-                                            <option value="energetic" {{ (isset($family->describe_kids) && in_array("energetic", $family->describe_kids)) ? "selected" : " " }}>Energetic</option>
-                                            <option value="curious" {{ (isset($family->describe_kids) && in_array("curious", $family->describe_kids)) ? "selected" : " " }}>Curious</option>
-                                            <option value="sporty" {{ (isset($family->describe_kids) && in_array("sporty", $family->describe_kids)) ? "selected" : " " }}>Sporty</option>
-                                            <option value="creative" {{ (isset($family->describe_kids) && in_array("creative", $family->describe_kids)) ? "selected" : " " }}>Creative</option>
-                                            <option value="friendly" {{ (isset($family->describe_kids) && in_array("friendly", $family->describe_kids)) ? "selected" : " " }}>Friendly</option>
-                                            <option value="talkative" {{ (isset($family->describe_kids) && in_array("talkative", $family->describe_kids)) ? "selected" : " " }}>Talkative</option>
-                                            <option value="calm" {{ (isset($family->describe_kids) && in_array("calm", $family->describe_kids)) ? "selected" : " " }}>Calm</option>
-                                            <option value="playful" {{ (isset($family->describe_kids) && in_array("playful", $family->describe_kids)) ? "selected" : " " }}>Playful</option>
-                                            <option value="funny" {{ (isset($family->describe_kids) && in_array("funny", $family->describe_kids)) ? "selected" : " " }}>Funny</option>
-                                            <option value="intelligent" {{ (isset($family->describe_kids) && in_array("intelligent", $family->describe_kids)) ? "selected" : " " }}>Intelligent</option>
-                                            <option value="affectionate" {{ (isset($family->describe_kids) && in_array("affectionate", $family->describe_kids)) ? "selected" : " " }}>Affectionate</option>
-                                            <option value="independent" {{ (isset($family->describe_kids) && in_array("independent", $family->describe_kids)) ? "selected" : " " }}>Independent</option>
+                                            <option value="energetic" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("energetic", $family->describe_kids)) ? "selected" : " " }}>Energetic</option>
+                                            <option value="curious" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("curious", $family->describe_kids)) ? "selected" : " " }}>Curious</option>
+                                            <option value="sporty" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("sporty", $family->describe_kids)) ? "selected" : " " }}>Sporty</option>
+                                            <option value="creative" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && is_array($family->describe_kids) && in_array("creative", $family->describe_kids)) ? "selected" : " " }}>Creative</option>
+                                            <option value="friendly" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("friendly", $family->describe_kids)) ? "selected" : " " }}>Friendly</option>
+                                            <option value="talkative" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("talkative", $family->describe_kids)) ? "selected" : " " }}>Talkative</option>
+                                            <option value="calm" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("calm", $family->describe_kids)) ? "selected" : " " }}>Calm</option>
+                                            <option value="playful" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("playful", $family->describe_kids)) ? "selected" : " " }}>Playful</option>
+                                            <option value="funny" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("funny", $family->describe_kids)) ? "selected" : " " }}>Funny</option>
+                                            <option value="intelligent" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("intelligent", $family->describe_kids)) ? "selected" : " " }}>Intelligent</option>
+                                            <option value="affectionate" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("affectionate", $family->describe_kids)) ? "selected" : " " }}>Affectionate</option>
+                                            <option value="independent" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("independent", $family->describe_kids)) ? "selected" : " " }}>Independent</option>
                                         </select>
                                         @error('describe_kids')
                                             <span class="invalid-feedback" role="alert">
@@ -468,10 +468,10 @@
                                         <label for="family_babysitter_comfortable">We need a babysitter comfortable with <span class="text-danger">*</span></label>
                                         <select id="family_babysitter_comfortable" name="family_babysitter_comfortable[]" multiple class="form-control" >
                                             <option value="" disabled="disabled">Select</option>
-                                            <option value="pets" {{ isset($family->family_babysitter_comfortable) && in_array("pets", $family->family_babysitter_comfortable) ? 'selected' : null}}>Pets</option>
-                                            <option value="cooking" {{ isset($family->family_babysitter_comfortable) && in_array("cooking", $family->family_babysitter_comfortable) ? 'selected' : null}}>Cooking</option>
-                                            <option value="chores" {{ isset($family->family_babysitter_comfortable) && in_array("chores", $family->family_babysitter_comfortable) ? 'selected' : null}}>Chores</option>
-                                            <option value="homeworkassistance" {{ isset($family->family_babysitter_comfortable) && in_array("homeworkassistance", $family->family_babysitter_comfortable) ? 'selected' : null}}>Homework assistance</option>
+                                            <option value="pets" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("pets", $family->family_babysitter_comfortable) ? 'selected' : null}}>Pets</option>
+                                            <option value="cooking" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("cooking", $family->family_babysitter_comfortable) ? 'selected' : null}}>Cooking</option>
+                                            <option value="chores" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("chores", $family->family_babysitter_comfortable) ? 'selected' : null}}>Chores</option>
+                                            <option value="homeworkassistance" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("homeworkassistance", $family->family_babysitter_comfortable) ? 'selected' : null}}>Homework assistance</option>
                                         </select>
                                          @error('family_babysitter_comfortable')
                                             <span class="invalid-feedback" role="alert">
