@@ -34,7 +34,7 @@
             <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Candidate</h3>
+                        <h3 class="card-title">Edit Family</h3>
                     </div>
                     <form method="POST" id="request_data" action="{{ route('admin.update-family', ['id' => $family->id]) }}" enctype="multipart/form-data">
                         @csrf
@@ -219,7 +219,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="what_do_you_need">What do you need<span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
+                                        <label for="what_do_you_need">What do you need <span class="text-danger">*</span><span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
                                         <select id="what_do_you_need" multiple name="what_do_you_need[]" class="form-control">
                                             <option value="" disabled>Select</option>
                                             <option value="babysitter" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("babysitter", $family->what_do_you_need))? 'selected' : '' }}>Babysitter</option>
@@ -227,6 +227,11 @@
                                             <option value="au_pair" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("au_pair", $family->what_do_you_need))? 'selected' : '' }}>Au-Pair</option>
                                             <option value="nanny" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("nanny", $family->what_do_you_need))? 'selected' : '' }}>Nanny</option>
                                         </select>
+                                         @if ($errors->has('start_date'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('start_date') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -485,13 +490,18 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="family_types_babysitter">Type of babysitter needed <span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
+                                        <label for="family_types_babysitter">Type of babysitter needed <span class="text-danger">*</span><span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
                                         <select class="form-control" name="family_types_babysitter">
                                             <option selected disabled>select</option>
                                             <option value="babysitter" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "babysitter" ? "selected" : ' ' }}>One</option>
                                             <option value="nanny" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "nanny" ? "selected" : ' ' }}>Nanny</option>
                                             <option value="other parent (parents-help-parents)" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "other parent (parents-help-parents)" ? "selected" : ' ' }}>Other parent</option>
                                         </select>
+                                        @error('family_types_babysitter')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
