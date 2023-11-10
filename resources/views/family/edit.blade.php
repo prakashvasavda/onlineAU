@@ -185,27 +185,27 @@
                                         <label for="language">Add Language <span class="text-danger">*</span></label>
                                         <select id="language" name="home_language" multiple class="form-control @error('home_language') is-invalid @enderror" >
                                             <option value="" disabled="disabled">Select</option>
-                                            <option value="english" {{ isset($family->home_language) && $family->home_language == "english" ? 'disabled' : null }}>English</option>
-                                            <option value="afrikaans" {{ isset($family->home_language) && $family->home_language == "afrikaans" ? 'disabled' : null }}>Afrikaans</option>
-                                            <option value="zulu (isizulu)" {{ isset($family->home_language) && $family->home_language == "zulu (isizulu)" ? 'disabled' : null }}>Zulu (isiZulu)</option>
-                                            <option value="xhosa (isixhosa)"  {{ isset($family->home_language) && $family->home_language == "xhosa (isixhosa)" ? 'disabled' : null }}>Xhosa (isiXhosa)</option>
-                                            <option value="northern sotho (sesotho sa leboa)"  {{ isset($family->home_language) && $family->home_language == "northern sotho (sesotho sa leboa)" ? 'disabled' : null }}>Northern Sotho (Sesotho sa Leboa)</option>
-                                            <option value="sotho (sesotho)" {{ isset($family->home_language) && $family->home_language == "otho (sesotho)" ? 'disabled' : null }}>Sotho (Sesotho)</option>
-                                            <option value="swazi (siswati)" {{ isset($family->home_language) && $family->home_language == "wazi (siswati)" ? 'disabled' : null }}>Swazi (siSwati)</option>
-                                            <option value="tsonga (xitsonga)" {{ isset($family->home_language) && $family->home_language == "tsonga (xitsonga)" ? 'disabled' : null }}>Tsonga (Xitsonga)</option>
-                                            <option value="tswana (setswana)" {{ isset($family->home_language) && $family->home_language == "tswana (setswana)" ? 'disabled' : null }}>Tswana (Setswana)</option>
-                                            <option value="venda (tshivenda)" {{ isset($family->home_language) && $family->home_language == "venda (tshivenda)" ? 'disabled' : null }}>Venda (Tshivenda)</option>
-                                            <option value="southern ndebele (isindebele)" {{ isset($family->home_language) && $family->home_language == "southern ndebele (isindebele)" ? 'disabled' : null }}>Southern Ndebele (isiNdebele)</option>
-                                            <option value="spanish" {{ isset($family->home_language) && $family->home_language == "spanish" ? 'disabled' : null }}>Spanish</option>
-                                            <option value="french" {{ isset($family->home_language) && $family->home_language == "french" ? 'disabled' : null }}>French</option>
-                                            <option value="hindi" {{ isset($family->home_language) && $family->home_language == "hindi" ? 'disabled' : null }}>Hindi</option>
-                                            <option value="arabic" {{ isset($family->home_language) && $family->home_language == "arabic" ? 'disabled' : null }}>Arabic</option>
-                                            <option value="bengali" {{ isset($family->home_language) && $family->home_language == "bengali" ? 'disabled' : null }}>Bengali</option>
-                                            <option value="portuguese" {{ isset($family->home_language) && $family->home_language == "portuguese" ? 'disabled' : null }}>Portuguese</option>
-                                            <option value="russian" {{ isset($family->home_language) && $family->home_language == "russian" ? 'disabled' : null }}>Russian</option>
-                                            <option value="japanese" {{ isset($family->home_language) && $family->home_language == "japanese" ? 'disabled' : null }}>Japanese</option>
-                                            <option value="punjabi" {{ isset($family->home_language) && $family->home_language == "punjabi" ? 'disabled' : null }}>Punjabi</option>
-                                            <option value="german" {{ isset($family->home_language) && $family->home_language == "german" ? 'disabled' : null }}>German</option>
+                                            <option value="english" {{ isset($family->home_language) && $family->home_language == "english" ? 'selected' : null }}>English</option>
+                                            <option value="afrikaans" {{ isset($family->home_language) && $family->home_language == "afrikaans" ? 'selected' : null }}>Afrikaans</option>
+                                            <option value="zulu (isizulu)" {{ isset($family->home_language) && $family->home_language == "zulu (isizulu)" ? 'selected' : null }}>Zulu (isiZulu)</option>
+                                            <option value="xhosa (isixhosa)"  {{ isset($family->home_language) && $family->home_language == "xhosa (isixhosa)" ? 'selected' : null }}>Xhosa (isiXhosa)</option>
+                                            <option value="northern sotho (sesotho sa leboa)"  {{ isset($family->home_language) && $family->home_language == "northern sotho (sesotho sa leboa)" ? 'selected' : null }}>Northern Sotho (Sesotho sa Leboa)</option>
+                                            <option value="sotho (sesotho)" {{ isset($family->home_language) && $family->home_language == "otho (sesotho)" ? 'selected' : null }}>Sotho (Sesotho)</option>
+                                            <option value="swazi (siswati)" {{ isset($family->home_language) && $family->home_language == "wazi (siswati)" ? 'selected' : null }}>Swazi (siSwati)</option>
+                                            <option value="tsonga (xitsonga)" {{ isset($family->home_language) && $family->home_language == "tsonga (xitsonga)" ? 'selected' : null }}>Tsonga (Xitsonga)</option>
+                                            <option value="tswana (setswana)" {{ isset($family->home_language) && $family->home_language == "tswana (setswana)" ? 'selected' : null }}>Tswana (Setswana)</option>
+                                            <option value="venda (tshivenda)" {{ isset($family->home_language) && $family->home_language == "venda (tshivenda)" ? 'selected' : null }}>Venda (Tshivenda)</option>
+                                            <option value="southern ndebele (isindebele)" {{ isset($family->home_language) && $family->home_language == "southern ndebele (isindebele)" ? 'selected' : null }}>Southern Ndebele (isiNdebele)</option>
+                                            <option value="spanish" {{ isset($family->home_language) && $family->home_language == "spanish" ? 'selected' : null }}>Spanish</option>
+                                            <option value="french" {{ isset($family->home_language) && $family->home_language == "french" ? 'selected' : null }}>French</option>
+                                            <option value="hindi" {{ isset($family->home_language) && $family->home_language == "hindi" ? 'selected' : null }}>Hindi</option>
+                                            <option value="arabic" {{ isset($family->home_language) && $family->home_language == "arabic" ? 'selected' : null }}>Arabic</option>
+                                            <option value="bengali" {{ isset($family->home_language) && $family->home_language == "bengali" ? 'selected' : null }}>Bengali</option>
+                                            <option value="portuguese" {{ isset($family->home_language) && $family->home_language == "portuguese" ? 'selected' : null }}>Portuguese</option>
+                                            <option value="russian" {{ isset($family->home_language) && $family->home_language == "russian" ? 'selected' : null }}>Russian</option>
+                                            <option value="japanese" {{ isset($family->home_language) && $family->home_language == "japanese" ? 'selected' : null }}>Japanese</option>
+                                            <option value="punjabi" {{ isset($family->home_language) && $family->home_language == "punjabi" ? 'selected' : null }}>Punjabi</option>
+                                            <option value="german" {{ isset($family->home_language) && $family->home_language == "german" ? 'selected' : null }}>German</option>
                                         </select>
                                         @error('home_language')
                                             <span class="invalid-feedback" role="alert">
@@ -222,14 +222,14 @@
                                         <label for="what_do_you_need">What do you need <span class="text-danger">*</span><span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
                                         <select id="what_do_you_need" multiple name="what_do_you_need[]" class="form-control">
                                             <option value="" disabled>Select</option>
-                                            <option value="babysitter" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("babysitter", $family->what_do_you_need))? 'disabled' : '' }}>Babysitter</option>
-                                            <option value="petsitter" {{ (!empty($family->what_do_you_need)&& is_array($family->what_do_you_need) && in_array("petsitter", $family->what_do_you_need))? 'disabled' : '' }}>Petsitter</option>
-                                            <option value="au_pair" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("au_pair", $family->what_do_you_need))? 'disabled' : '' }}>Au-Pair</option>
-                                            <option value="nanny" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("nanny", $family->what_do_you_need))? 'disabled' : '' }}>Nanny</option>
+                                            <option value="babysitter" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("babysitter", $family->what_do_you_need))? 'selected' : '' }}>Babysitter</option>
+                                            <option value="petsitter" {{ (!empty($family->what_do_you_need)&& is_array($family->what_do_you_need) && in_array("petsitter", $family->what_do_you_need))? 'selected' : '' }}>Petsitter</option>
+                                            <option value="au_pair" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("au_pair", $family->what_do_you_need))? 'selected' : '' }}>Au-Pair</option>
+                                            <option value="nanny" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("nanny", $family->what_do_you_need))? 'selected' : '' }}>Nanny</option>
                                         </select>
-                                         @if ($errors->has('what_do_you_need'))
+                                         @if ($errors->has('start_date'))
                                             <span class="text-danger">
-                                                <strong>{{ $errors->first('what_do_you_need') }}</strong>
+                                                <strong>{{ $errors->first('start_date') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -265,10 +265,10 @@
                                     <div class="form-group">
                                         <label for="petrol_reimbursement">Petrol Reimbursement <span class="text-danger">*</span></label>
                                         <select id="petrol_reimbursement" name="petrol_reimbursement" class="form-control">
-                                            <option disabled="disabled" disabled>Select</option>
-                                            <option value="aa_rates" {{ old('petrol_reimbursement', $family->petrol_reimbursement) == "aa_rates" ? "disabled" : " " }}>AA rates</option>
-                                            <option value="included_in_salary" {{ old('petrol_reimbursement', $family->petrol_reimbursement) == "included_in_salary" ? "disabled" : " " }}>Included in salary</option>
-                                            <option value="extra_amount" {{ old('petrol_reimbursement', $family->petrol_reimbursement) == "extra_amount" ? "disabled" : " " }}>Extra amount</option>
+                                            <option disabled>Select</option>
+                                            <option value="aa_rates" {{ old('petrol_reimbursement', $family->petrol_reimbursement) == "aa_rates" ? "selected" : " " }}>AA rates</option>
+                                            <option value="included_in_salary" {{ old('petrol_reimbursement', $family->petrol_reimbursement) == "included_in_salary" ? "selected" : " " }}>Included in salary</option>
+                                            <option value="extra_amount" {{ old('petrol_reimbursement', $family->petrol_reimbursement) == "extra_amount" ? "selected" : " " }}>Extra amount</option>
                                         </select>
                                         @if ($errors->has('petrol_reimbursement'))
                                             <span class="text-danger">
@@ -334,11 +334,11 @@
                                                 <div class="form-group">
                                                     <label for="age_children">Age of children <span class="text-danger">*</span></label>
                                                     <select id="age_children" name="age[]" class="form-control">
-                                                        <option value="baby" {{ $value == "baby" ? 'disabled' : '' }}>Baby</option>
-                                                        <option value="gradeschooler" {{ $value == "gradeschooler" ? 'disabled' : '' }}>Gradeschooler</option>
-                                                        <option value="toddler" {{ $value == "toddler" ? 'disabled' : '' }}>Toddler</option>
-                                                        <option value="teenager" {{ $value == "teenager" ? 'disabled' : '' }}>Teenager</option>
-                                                        <option value="preschooler" {{ $value == "preschooler" ? 'disabled' : '' }}>Preschooler</option>
+                                                        <option value="baby" {{ $value == "baby" ? 'selected' : '' }}>Baby</option>
+                                                        <option value="gradeschooler" {{ $value == "gradeschooler" ? 'selected' : '' }}>Gradeschooler</option>
+                                                        <option value="toddler" {{ $value == "toddler" ? 'selected' : '' }}>Toddler</option>
+                                                        <option value="teenager" {{ $value == "teenager" ? 'selected' : '' }}>Teenager</option>
+                                                        <option value="preschooler" {{ $value == "preschooler" ? 'selected' : '' }}>Preschooler</option>
                                                     </select>
                                                     @error('age')
                                                         <span class="invalid-feedback" role="alert">
@@ -352,8 +352,8 @@
                                                 <div class="form-group">
                                                     <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                                                     <select id="gender_of_children" name="gender_of_children[]" class="form-control">
-                                                        <option value="male" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("male", $family->gender_of_children))? 'disabled' : '' }}>Male</option>
-                                                        <option value="female" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("female", $family->gender_of_children))? 'disabled' : '' }}>Female</option>
+                                                        <option value="male" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("male", $family->gender_of_children))? 'selected' : '' }}>Male</option>
+                                                        <option value="female" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("female", $family->gender_of_children))? 'selected' : '' }}>Female</option>
                                                     </select>
                                                     @if ($errors->has('gender_of_children'))
                                                         <span class="text-danger">
@@ -369,7 +369,7 @@
                                         <div class="form-group">
                                             <label for="age_children">Age of children <span class="text-danger">*</span></label>
                                             <select id="age_children" name="age[]" class="form-control @error('age') is-invalid @enderror" >
-                                                <option value="" disabled="disabled" disabled>Select Age</option>
+                                                <option value="" disabled="disabled" selected>Select Age</option>
                                                 <option value="baby">Baby</option>
                                                 <option value="gradeschooler">Gradeschooler</option>
                                                 <option value="toddler">Toddler</option>
@@ -388,8 +388,8 @@
                                         <div class="form-group">
                                             <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                                             <select id="gender_of_children" name="gender_of_children[]" class="form-control">
-                                                <option value="male" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("male", $family->gender_of_children))? 'disabled' : '' }}>Male</option>
-                                                <option value="female" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("female", $family->gender_of_children))? 'disabled' : '' }}>Female</option>
+                                                <option value="male" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("male", $family->gender_of_children))? 'selected' : '' }}>Male</option>
+                                                <option value="female" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("female", $family->gender_of_children))? 'selected' : '' }}>Female</option>
                                             </select>
                                             @if ($errors->has('gender_of_children'))
                                                 <span class="text-danger">
@@ -409,11 +409,11 @@
                                                 <div class="form-group">
                                                     <label for="age_children">Age of children <span class="text-danger">*</span></label>
                                                     <select id="age_children" name="age[]" class="form-control" >
-                                                        <option value="baby" {{ $value == "baby" ? 'disabled' : '' }}>Baby</option>
-                                                        <option value="gradeschooler" {{ $value == "gradeschooler" ? 'disabled' : '' }}>Gradeschooler</option>
-                                                        <option value="toddler" {{ $value == "toddler" ? 'disabled' : '' }}>Toddler</option>
-                                                        <option value="teenager" {{ $value == "teenager" ? 'disabled' : '' }}>Teenager</option>
-                                                        <option value="preschooler" {{ $value == "preschooler" ? 'disabled' : '' }}>Preschooler</option>
+                                                        <option value="baby" {{ $value == "baby" ? 'selected' : '' }}>Baby</option>
+                                                        <option value="gradeschooler" {{ $value == "gradeschooler" ? 'selected' : '' }}>Gradeschooler</option>
+                                                        <option value="toddler" {{ $value == "toddler" ? 'selected' : '' }}>Toddler</option>
+                                                        <option value="teenager" {{ $value == "teenager" ? 'selected' : '' }}>Teenager</option>
+                                                        <option value="preschooler" {{ $value == "preschooler" ? 'selected' : '' }}>Preschooler</option>
                                                     </select>
                                                     @error('age')
                                                         <span class="invalid-feedback" role="alert">
@@ -427,8 +427,8 @@
                                                 <div class="form-group">
                                                     <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                                                     <select id="gender_of_children" name="gender_of_children[]" class="form-control">
-                                                        <option value="male" {{ $value == "male" ? 'disabled' : '' }}>Male</option>
-                                                        <option value="female" {{ $value == "male" ? 'disabled' : '' }}>Female</option>
+                                                        <option value="male" {{ $value == "male" ? 'selected' : '' }}>Male</option>
+                                                        <option value="female" {{ $value == "male" ? 'selected' : '' }}>Female</option>
                                                     </select>
                                                     @if ($errors->has('gender_of_children'))
                                                         <span class="text-danger">
@@ -447,18 +447,18 @@
                                     <div class="form-group">
                                         <label for="describe_kids">Describe your kids in 3 words <span class="text-danger">*</span></label>
                                         <select id="describe_kids" name="describe_kids[]" multiple class="form-control" >
-                                            <option value="energetic" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("energetic", $family->describe_kids)) ? "disabled" : " " }}>Energetic</option>
-                                            <option value="curious" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("curious", $family->describe_kids)) ? "disabled" : " " }}>Curious</option>
-                                            <option value="sporty" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("sporty", $family->describe_kids)) ? "disabled" : " " }}>Sporty</option>
-                                            <option value="creative" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && is_array($family->describe_kids) && in_array("creative", $family->describe_kids)) ? "disabled" : " " }}>Creative</option>
-                                            <option value="friendly" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("friendly", $family->describe_kids)) ? "disabled" : " " }}>Friendly</option>
-                                            <option value="talkative" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("talkative", $family->describe_kids)) ? "disabled" : " " }}>Talkative</option>
-                                            <option value="calm" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("calm", $family->describe_kids)) ? "disabled" : " " }}>Calm</option>
-                                            <option value="playful" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("playful", $family->describe_kids)) ? "disabled" : " " }}>Playful</option>
-                                            <option value="funny" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("funny", $family->describe_kids)) ? "disabled" : " " }}>Funny</option>
-                                            <option value="intelligent" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("intelligent", $family->describe_kids)) ? "disabled" : " " }}>Intelligent</option>
-                                            <option value="affectionate" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("affectionate", $family->describe_kids)) ? "disabled" : " " }}>Affectionate</option>
-                                            <option value="independent" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("independent", $family->describe_kids)) ? "disabled" : " " }}>Independent</option>
+                                            <option value="energetic" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("energetic", $family->describe_kids)) ? "selected" : " " }}>Energetic</option>
+                                            <option value="curious" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("curious", $family->describe_kids)) ? "selected" : " " }}>Curious</option>
+                                            <option value="sporty" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("sporty", $family->describe_kids)) ? "selected" : " " }}>Sporty</option>
+                                            <option value="creative" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && is_array($family->describe_kids) && in_array("creative", $family->describe_kids)) ? "selected" : " " }}>Creative</option>
+                                            <option value="friendly" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("friendly", $family->describe_kids)) ? "selected" : " " }}>Friendly</option>
+                                            <option value="talkative" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("talkative", $family->describe_kids)) ? "selected" : " " }}>Talkative</option>
+                                            <option value="calm" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("calm", $family->describe_kids)) ? "selected" : " " }}>Calm</option>
+                                            <option value="playful" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("playful", $family->describe_kids)) ? "selected" : " " }}>Playful</option>
+                                            <option value="funny" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("funny", $family->describe_kids)) ? "selected" : " " }}>Funny</option>
+                                            <option value="intelligent" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("intelligent", $family->describe_kids)) ? "selected" : " " }}>Intelligent</option>
+                                            <option value="affectionate" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("affectionate", $family->describe_kids)) ? "selected" : " " }}>Affectionate</option>
+                                            <option value="independent" {{ (isset($family->describe_kids) && is_array($family->describe_kids) && in_array("independent", $family->describe_kids)) ? "selected" : " " }}>Independent</option>
                                         </select>
                                         @error('describe_kids')
                                             <span class="invalid-feedback" role="alert">
@@ -473,10 +473,10 @@
                                         <label for="family_babysitter_comfortable">We need a babysitter comfortable with <span class="text-danger">*</span></label>
                                         <select id="family_babysitter_comfortable" name="family_babysitter_comfortable[]" multiple class="form-control" >
                                             <option value="" disabled="disabled">Select</option>
-                                            <option value="pets" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("pets", $family->family_babysitter_comfortable) ? 'disabled' : null}}>Pets</option>
-                                            <option value="cooking" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("cooking", $family->family_babysitter_comfortable) ? 'disabled' : null}}>Cooking</option>
-                                            <option value="chores" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("chores", $family->family_babysitter_comfortable) ? 'disabled' : null}}>Chores</option>
-                                            <option value="homeworkassistance" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("homeworkassistance", $family->family_babysitter_comfortable) ? 'disabled' : null}}>Homework assistance</option>
+                                            <option value="pets" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("pets", $family->family_babysitter_comfortable) ? 'selected' : null}}>Pets</option>
+                                            <option value="cooking" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("cooking", $family->family_babysitter_comfortable) ? 'selected' : null}}>Cooking</option>
+                                            <option value="chores" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("chores", $family->family_babysitter_comfortable) ? 'selected' : null}}>Chores</option>
+                                            <option value="homeworkassistance" {{ isset($family->family_babysitter_comfortable) && is_array($family->family_babysitter_comfortable) && in_array("homeworkassistance", $family->family_babysitter_comfortable) ? 'selected' : null}}>Homework assistance</option>
                                         </select>
                                          @error('family_babysitter_comfortable')
                                             <span class="invalid-feedback" role="alert">
@@ -493,9 +493,9 @@
                                         <label for="family_types_babysitter">Type of babysitter needed <span class="text-danger">*</span><span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
                                         <select class="form-control" name="family_types_babysitter">
                                             <option disabled>select</option>
-                                            <option value="babysitter" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "babysitter" ? "disabled" : ' ' }}>One</option>
-                                            <option value="nanny" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "nanny" ? "disabled" : ' ' }}>Nanny</option>
-                                            <option value="other parent (parents-help-parents)" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "other parent (parents-help-parents)" ? "disabled" : ' ' }}>Other parent</option>
+                                            <option value="babysitter" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "babysitter" ? "selected" : ' ' }}>One</option>
+                                            <option value="nanny" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "nanny" ? "selected" : ' ' }}>Nanny</option>
+                                            <option value="other parent (parents-help-parents)" {{ isset($family->family_types_babysitter) && $family->family_types_babysitter == "other parent (parents-help-parents)" ? "selected" : ' ' }}>Other parent</option>
                                         </select>
                                         @error('family_types_babysitter')
                                             <span class="invalid-feedback" role="alert">
@@ -510,8 +510,8 @@
                                         <label for="family_location">Preferred babysitting location </label>
                                         <select class="form-control" name="family_location">
                                             <option disabled>select</option>
-                                            <option value="at our home" {{ isset($family->family_location) && $family->family_location == "at our home" ? "disabled" : '' }}>At our home</option>
-                                            <option value="at the babysitter's" {{ isset($family->family_location) && $family->family_location == "at the babysitter's" ? "disabled" : '' }}>At the babysitter's</option>
+                                            <option value="at our home" {{ isset($family->family_location) && $family->family_location == "at our home" ? "selected" : '' }}>At our home</option>
+                                            <option value="at the babysitter's" {{ isset($family->family_location) && $family->family_location == "at the babysitter's" ? "selected" : '' }}>At the babysitter's</option>
                                         </select>
 
                                         @if ($errors->has('last_name'))
@@ -529,8 +529,8 @@
                                         <label for="family_profile_see">Who can see your profile? </label>
                                         <select class="form-control" name="family_profile_see">
                                             <option disabled>select</option>
-                                            <option value="everyone" {{ old('family_profile_see') === "everyone" ? "disabled" : '' }}>Everyone</option>
-                                            <option value="only babysits users" {{ old('family_profile_see') === "only babysits users" ? "disabled" : '' }}>Only Babysits users</option>
+                                            <option value="everyone" {{ old('family_profile_see') === "everyone" ? "selected" : '' }}>Everyone</option>
+                                            <option value="only babysits users" {{ old('family_profile_see') === "only babysits users" ? "selected" : '' }}>Only Babysits users</option>
                                         </select>
                                     </div>
                                 </div>
@@ -539,9 +539,9 @@
                                     <div class="form-group">
                                         <label for="family_notifications">Do you want to get notifications from new babysitters in your area? </label>
                                         <select class="form-control" name="family_notifications">
-                                            <option disabled>select</option>
-                                            <option value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'disabled' : '' }}>Yes</option>
-                                            <option value="no" {{ isset($family->family_notifications) && $family->family_notifications == "no" ? 'disabled' : '' }}>No</option>
+                                            <option selected>select</option>
+                                            <option value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'selected' : '' }}>Yes</option>
+                                            <option value="no" {{ isset($family->family_notifications) && $family->family_notifications == "no" ? 'selected' : '' }}>No</option>
                                         </select>
 
                                         @if ($errors->has('family_notifications'))
