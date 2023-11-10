@@ -29,9 +29,28 @@
                         @method('PUT')
                         <div class="card-body">
                             <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label>Candidate Photo</label>
+                                        <div class="box">
+                                            <div class="js--image-preview"></div>
+                                            <div class="upload-options">
+                                                <label>
+                                                    <input type="hidden" name="hidden_profile" value="{{ isset($candidate->profile) ? 'true' : 'false' }}">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('profile'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('profile') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Full Name <span class="text-danger">*</span></label>
+                                        <label for="name">Name <span class="text-danger">*</span></label>
                                         <input type="text" id="name" name="name" placeholder="" class="form-control" value="{{ old('name', isset($candidate->name) ? $candidate->name : null) }}" >
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -39,9 +58,22 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>
 
-                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="surname">Surname <span class="text-danger">*</span></label>
+                                        <input type="text" id="surname" name="surname" placeholder="" class="form-control" value="{{ old('surname', $candidate->surname) }}" >
+                                        @if ($errors->has('surname'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('surname') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>        
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="age">Age <span class="text-danger">*</span></label>
                                         <input type="number" id="age" name="age" placeholder="" class="form-control"  value="{{ old('age', isset($candidate->age) ? $candidate->age : null) }}">
@@ -623,4 +655,15 @@
         </div>
     </div>
 </section>
+@endsection
+@section('js')
+<script type="text/javascript">
+    $(window).on("load", function () {
+        var file = "{{ isset($candidate->profile) ? $candidate->profile : null }}";
+        if(file !== null){
+            $('.js--image-preview').addClass('js--no-default');
+            $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="" width = "100px" height = "100px" >');
+        }
+    });
+</script>
 @endsection
