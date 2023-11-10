@@ -65,6 +65,7 @@ class FrontFamilyController extends Controller{
         $data['family']['family_special_need_value']        = !empty($data['family']->family_special_need_value) ? json_decode($data['family']->family_special_need_value, true) : array();
         $data['family']['describe_kids']                    = !empty($data['family']->describe_kids) ? json_decode($data['family']->describe_kids): array();
         $data['family']['gender_of_children']               = !empty($data['family']->gender_of_children) ? json_decode($data['family']->gender_of_children, true) : array();
+        $data['family']['what_do_you_need']                 = !empty($data['family']->what_do_you_need) ? json_decode($data['family']->what_do_you_need, true) : array();
         $data['availability']                               = NeedsBabysitter::where('family_id', $familyId)->first();
         $data['previous_experience']                        = PreviousExperience::where('candidate_id', $familyId)->get();
         $data['morning_availability']                       = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
@@ -115,6 +116,7 @@ class FrontFamilyController extends Controller{
         $input['no_children']                   = isset($request->age) && is_array($request->age) ? count($request->age) : $request->no_children;
         $input['describe_kids']                 = isset($request->describe_kids) ? json_encode($request->describe_kids) : null;
         $input['gender_of_children']            = isset($request->gender_of_children) ? json_encode($request->gender_of_children) : null;
+        $input['what_do_you_need']              = isset($request->what_do_you_need) ? json_encode($request->what_do_you_need) : null;
 
         $availability                           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_family_calender($input, $familyId) : 0;
         $update_status                          = $family->update($input);

@@ -10,8 +10,14 @@
 @media screen and (min-width:992px) and (max-width:1020px) {
 	.candidate-contact .btn {font-size: 19px;}
 }
+@media screen and (min-width: 992px) and (max-width: 1299px) {
+    .pricing-plans .row .col-lg-6 .row .col-lg-4 {flex: 0 0 auto;width: 50%;}
+}
 @media screen and (min-width:991px) and (max-width:1025px) {
 	.banner-content h2 {font-size: 56px;}
+}
+@media screen and (max-width:991px) {
+	.steps-section-list .steps-section .border-end {border: 0px !important;}
 }
 @media screen and (min-width:768px) and (max-width:991px) {
 	header {padding: 24px 0;}
@@ -20,6 +26,7 @@
 	.title-main h2 {font-size: 36px;}
 	.candidate-content h3, .contact-inner h3, .sign-now h3, .service-name, .title-main h3, 
 	.contact-section form.contact-form h3 {font-size: 30px;}
+	.banner-btn-list {gap:10px;}
 	.banner-content h2 {font-size: 52px;}
 	.subTitleBox h3 {font-size: 24px;}
 	.step-contentBox p {font-size: 18px;}
@@ -33,7 +40,7 @@
 	.about-candidate-box h4 {font-size: 18px;}
 	.can-avail-table table td, .can-avail-table table th {font-size: 20px;max-width: 125px;min-width: 125px;}
 }
-@media screen and (max-width:768px) {
+@media screen and (max-width:991px) {
 	.menu-wrapper .logo-main {
 		padding: 0;
 	}
@@ -45,6 +52,9 @@
 	header {padding: 14px 0;}
 }
 @media screen and (max-width:767px) {
+	.py-5 {padding-top: 4rem!important;padding-bottom: 4rem!important;}
+	.pt-5 {padding-top: 4rem!important;}
+    .row.row-gap-5 {row-gap: 4rem;}
 	.single-form-section {padding: 60px 0;}
 	.favorites-section, .pricing-plans, .candidate-info, .services-section, .about-section, .steps-section, .available-candidates, .contact-section {padding: 60px 0;}
 	.other-option .text:before, .other-option .text:after {width: 36%;}
@@ -52,6 +62,7 @@
 	.subTitleBox h3 {font-size: 24px;}
 	.step-contentBox p {font-size: 18px;}
 	.candidate-detail h4 {font-size: 26px;}
+	.banner-btn-list {align-items: flex-start;gap: 10px;}
 	.step-list {gap: 30px;}
 	.step-item {gap: 15px;}
 	.step-img {text-align: left;}

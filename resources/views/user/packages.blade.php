@@ -1,76 +1,5 @@
 @extends('layouts.main')
 @section('content')
-<style>
-    .py-5 {
-        padding-top: 5rem!important;
-        padding-bottom: 5rem!important;
-    }
-    .pt-5 {
-        padding-top: 5rem!important;
-    }
-    .row.row-gap-5 {
-        row-gap: 5rem;
-    }
-    .pricing-box {
-        border: 1px solid var(--secondary);
-        display: flex;
-        flex-flow: column;
-        height: 100%;
-        word-break: break-all;
-    }
-    .pricing-box .name-box {
-        background-color: var(--secondary);
-        text-align: center;
-        padding: 1.1rem;
-        color: var(--white);
-        text-transform: uppercase;
-        font-family: var(--bellefair-font);
-        font-size: 1.2rem;
-        line-height: 1.3;
-    }
-    .pricing-box .price-box {
-        background-color: var(--primary);
-        text-align: center;
-        padding: 0.7rem;
-        color: var(--white);
-        text-transform: uppercase;
-        font-family: var(--montserrat-font);
-        line-height: 1.3;
-        font-weight: 600;
-    }
-    .pricing-box .features {
-        flex: 1 0 auto;
-        padding: 2rem 1.6rem;
-        display: flex;
-        flex-flow: column;
-        gap: 8px;
-    }
-    .pricing-box .features li {
-        color: var(--gray-text);
-        text-transform: unset;
-        font-family: var(--montserrat-font);
-        font-size: 15px;
-        line-height: 1.3;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-    .pricing-box .features li svg, .pricing-box .features li i {
-        margin-right: 8px;
-        margin-top: 6px;
-        width: 5px;
-        height: 5px;
-        font-size: 5px;
-    }
-    @media screen and (min-width: 992px) and (max-width: 1299px) {
-        .pricing-plans .row .col-lg-6 .row .col-lg-4 {flex: 0 0 auto;width: 50%;}
-    }
-    @media screen and (max-width: 767px) {
-        .py-5 {padding-top: 4rem!important;padding-bottom: 4rem!important;}
-        .pt-5 {padding-top: 4rem!important;}
-        .row.row-gap-5 {row-gap: 4rem;}
-    }
-</style>
 <div class="pricing-plans no-banner">
     <div class="container">
         <div class="row row-gap-5 justify-content-center">
@@ -81,7 +10,7 @@
                     </div>
 
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <form method="POST" id="form_one" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="1500">
@@ -103,7 +32,7 @@
                         </div>
                         
 
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <form method="POST" id="form_two" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="3000">
@@ -134,7 +63,7 @@
                     </div>
 
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <form method="POST" id="form_three" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="3000">
@@ -155,7 +84,7 @@
                             </form>
                         </div>
 
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <form method="POST" id="form_four" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="3000">
@@ -185,7 +114,7 @@
                         <h2>babysitters</h2>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <form method="POST" id="form_five" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="250">
@@ -204,7 +133,7 @@
                             </form>
                         </div>
 
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <form method="POST" id="form_six" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="500">
@@ -232,7 +161,7 @@
                         <h2>pet sitters</h2>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <form method="POST" id="form_seven" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="250">
@@ -251,7 +180,7 @@
                             </form>
                         </div>
 
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <form method="POST" id="form_eight" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="500">

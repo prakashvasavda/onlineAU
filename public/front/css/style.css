@@ -211,7 +211,8 @@ input[type="radio"]:checked:before {
 .radio-box-item {
     position: relative;
 }
-.radio-box-item input[type="radio"] {
+.radio-box-item input[type="radio"], 
+.radio-box-item input[type="checkbox"] {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -232,6 +233,8 @@ input[type="radio"]:checked:before {
     padding: 8px 18px;
     margin: 0;
 }
+.radio-box-item input[type="checkbox"]:checked~label, 
+.radio-box-item input[type="checkbox"]:hover~label, 
 .radio-box-item input[type="radio"]:hover~label, 
 .radio-box-item input[type="radio"]:checked~label {
     background-color: var(--tan);
@@ -1161,6 +1164,12 @@ header {
 .py-5 {
     padding-top: 5rem!important;
     padding-bottom: 5rem!important;
+}
+.pt-5 {
+    padding-top: 5rem!important;
+}
+.row.row-gap-5 {
+    row-gap: 5rem;
 }
 
 .banner-section {
@@ -2107,4 +2116,58 @@ header {
 }
 span.text-danger{
     font-size: .875em;
+}
+.pricing-plans-main form {
+    height: 100%;
+}
+.pricing-box {
+    border: 1px solid var(--secondary);
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    word-break: break-all;
+}
+.pricing-box .name-box {
+    background-color: var(--secondary);
+    text-align: center;
+    padding: 1.4rem;
+    color: var(--white);
+    text-transform: uppercase;
+    font-family: var(--bellefair-font);
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+.pricing-box .price-box {
+    background-color: var(--primary);
+    text-align: center;
+    padding: 0.7rem;
+    color: var(--white);
+    text-transform: uppercase;
+    font-family: var(--montserrat-font);
+    line-height: 1.3;
+    font-weight: 600;
+}
+.pricing-box .features {
+    flex: 1 0 auto;
+    padding: 2rem 1.6rem;
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+}
+.pricing-box .features li {
+    color: var(--gray-text);
+    text-transform: unset;
+    font-family: var(--montserrat-font);
+    font-size: 15px;
+    line-height: 1.3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.pricing-box .features li svg, .pricing-box .features li i {
+    margin-right: 8px;
+    margin-top: 6px;
+    width: 5px;
+    height: 5px;
+    font-size: 5px;
 }
