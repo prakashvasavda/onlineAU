@@ -40,7 +40,7 @@
                         @csrf
                         @method('PUT')
                         <div class="card-body">
-                            <div class="row">
+                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-input">
                                         <label>Candidate Photo</label>
@@ -63,25 +63,28 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Name <span class="text-danger">*</span></label>
-                                        <input type="text" id="name" name="name" placeholder="" class="form-control"  value="{{ old('name', isset($family->name) ? $family->name : '') }}">
-                                         @if ($errors->has('name'))
-                                            <span class="text-danger">
-                                                <strong>{{ $errors->first('name') }}</strong>
+                                        <input type="text" id="name" name="name" placeholder="" class="form-control" value="{{ old('name', isset($family->name) ? $family->name : null) }}" >
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
                                             </span>
-                                        @endif
+                                        @enderror
                                     </div>
-                                    
 
                                     <div class="form-group">
-                                        <label for="surname"> Surname <span class="text-danger">*</span></label>
-                                        <input type="text" id="surname" name="surname" placeholder="" class="form-control"  value="{{ old('surname', isset($family->surname) ? $family->surname : '') }}">
+                                        <label for="surname">Surname <span class="text-danger">*</span></label>
+                                        <input type="text" id="surname" name="surname" placeholder="" class="form-control" value="{{ old('surname', $family->surname) }}" >
                                         @if ($errors->has('surname'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('surname') }}</strong>
                                             </span>
                                         @endif
-                                    </div>
+                                    </div>        
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label for="email">Email Address <span class="text-danger">*</span></label>
                                         <input type="email" id="email" name="email" value="{{ old('email', isset($family->email) ? $family->email : '') }}" placeholder="" class="form-control" autocomplete="off">
@@ -92,16 +95,14 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="profile">Profile Picture  <span class="text-danger">*</span></label>
-                                        <input type="file" id="profile" name="profile" placeholder="" class="form-control" value="{{ old('profile', isset($family->profile) ? $family->profile : null) }}">
-                                        @if ($errors->has('profile'))
+                                        <label for="email">Password </label>
+                                        <input type="password" id="password" name="password" placeholder="" class="form-control @error('password') is-invalid @enderror"  value="" readonly onfocus="this.removeAttribute('readonly');">
+                                        @if ($errors->has('password'))
                                             <span class="text-danger">
-                                                <strong>{{ $errors->first('profile') }}</strong>
+                                                <strong>{{ $errors->first('password') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -111,11 +112,11 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="email">Password </label>
-                                        <input type="password" id="password" name="password" placeholder="" class="form-control @error('password') is-invalid @enderror"  value="" readonly onfocus="this.removeAttribute('readonly');">
-                                        @if ($errors->has('password'))
+                                        <label for="profile">Profile Picture  <span class="text-danger">*</span></label>
+                                        <input type="file" id="profile" name="profile" placeholder="" class="form-control" value="{{ old('profile', isset($family->profile) ? $family->profile : null) }}">
+                                        @if ($errors->has('profile'))
                                             <span class="text-danger">
-                                                <strong>{{ $errors->first('password') }}</strong>
+                                                <strong>{{ $errors->first('profile') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -784,7 +785,7 @@
         var file = "{{ isset($family->profile) ? $family->profile : null }}";
         if(file !== null){
             $('.js--image-preview').addClass('js--no-default');
-            $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="" width = "200px" heiht = "200px" >');
+            $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="" width = "100px" height = "100px" >');
         }
     });
 </script>
