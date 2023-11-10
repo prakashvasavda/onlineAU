@@ -13,7 +13,7 @@ class SubscriptionController extends Controller{
         $data['user_id']        = $user_id;
         $data['package_id']     = 0;
         $data['package_name']   = isset($input['item_name']) ? $input['item_name'] : null;
-        $data['status']         = 0;
+        $data['status']         = "inactive";
         $data['start_date']     = date("Y-m-d");
         $data['end_date']       = isset($input['end_date']) ? Carbon::now()->addDays($input['end_date'])->format('Y-m-d') : null;
         return UserSubscription::create($data);
@@ -30,17 +30,19 @@ class SubscriptionController extends Controller{
 
     public function check_subscription_status($user_id){
         $user_subscription = UserSubscription::where('user_id', $user_id)->latest()->first();
-     
-        if(!isset($user_subscription) || empty($user_subscription) || $user_subscription->status == 0){
-            return 0;
+        
+        /*inactive*/
+        if(!isset($user_subscription) || empty($user_subscription) || $user_subscription->status == "inactive"){
+            return "inactive";
         }
 
-        /*check if user subscription is expired*/
+        /*expired*/
         if(Carbon::now() > Carbon::parse($user_subscription->end_date)){
             $user_subscription->update(['status' => 0]);
-            return 0;
+            return "expired";
         }
         
-        return 1;
+        /*active*/
+        return "active";
     }  
 }

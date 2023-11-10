@@ -95,7 +95,7 @@ class PaymentController extends Controller{
 
         if(isset($request->custom_int1) && !empty($payment)){
             $user_subscription = UserSubscription::where('user_id', $request->custom_int1)->latest()->first();
-            $update_status     = !empty($user_subscription) ? $user_subscription->update(['status' => 1]) : null;
+            $update_status     = !empty($user_subscription) ? $user_subscription->update(['status' => 'active']) : null;
         }
     }
 }

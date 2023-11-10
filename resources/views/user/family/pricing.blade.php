@@ -72,7 +72,7 @@
     }
 </style>
 
-@if(session()->has('frontUser') && session()->get('frontUser')['user_subscription_status'] == 1)
+@if(session()->has('frontUser') && session()->get('frontUser')['user_subscription_status'] == "active")
     <div class="single-form-section">
         <div class="container">
             <div class="title-main mb-5">

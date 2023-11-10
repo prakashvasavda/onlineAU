@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSpecialNeedsSpecificationsToFrontUsersTable extends Migration
+class ChangeStatusColumnTypeFromIntegerToVarcharFromUserSubscriptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddSpecialNeedsSpecificationsToFrontUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('front_users', function (Blueprint $table) {
-            $table->string('experience_special_needs')->after('ages_of_children_you_worked_with')->nullable();
+        Schema::table('user_subscriptions', function (Blueprint $table) {
+            $table->string('status')->default('inactive')->change();
         });
     }
 
@@ -25,7 +25,7 @@ class AddSpecialNeedsSpecificationsToFrontUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('front_users', function (Blueprint $table) {
+        Schema::table('user_subscriptions', function (Blueprint $table) {
             //
         });
     }

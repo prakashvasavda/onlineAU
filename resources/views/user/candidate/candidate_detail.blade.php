@@ -400,7 +400,7 @@ function equalHeight(resize) {
 }
 
 function displayContact(event){
-    var payments_status = {{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == 1) ? 1 : 0 }};
+    var payments_status = {{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == "active") ? "active" : "inactive" }};
     if(payments_status == 0){
         event.preventDefault();
         $(".payment_alert_msg").css("display", "block");

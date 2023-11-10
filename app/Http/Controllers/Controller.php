@@ -87,20 +87,20 @@ class Controller extends BaseController{
         }        
     }
 
-    public function send_mail($data=null, $message){
-        config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
-        config(['mail.mailers.smtp.port' => '587']);
-        config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
-        config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
-        config(['mail.mailers.smtp.encryption' => 'tls']);
+    // public function send_mail($data=null, $message){
+    //     config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
+    //     config(['mail.mailers.smtp.port' => '587']);
+    //     config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
+    //     config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
+    //     config(['mail.mailers.smtp.encryption' => 'tls']);
         
-        $message = $message;
-        $emailTo = 'prakash.v.php@gmail.com';
-        $name    = 'Admin';
+    //     $message = $message;
+    //     $emailTo = 'prakash.v.php@gmail.com';
+    //     $name    = 'Admin';
         
-        Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
-            $mail->to($emailTo, $name)->subject($data['subject'])->setBody($message, 'text/html');
-            $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
-        });
-    }
+    //     Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
+    //         $mail->to($emailTo, $name)->subject($data['subject'])->setBody($message, 'text/html');
+    //         $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
+    //     });
+    // }
 }

@@ -39,10 +39,13 @@
                             <li class="{{ request()->routeIs('view-candidates') ? 'active' : '' }}"><a href="{{ route('view-candidates') }}">View Candidates</a></li>
                             <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li>
                             <li class="{{ request()->routeIs('family-manage-profile') ? 'active' : '' }}"><a href="{{ route('family-manage-profile') }}">Manage Profile</a></li>
-                            @if(session()->get('frontUser')->user_subscription_status == 1)
+                            
+                            @if(session()->get('frontUser')->user_subscription_status == "active")
                                 <li class="{{ request()->routeIs('transactions') ? 'active' : '' }}"><a href="{{ route('transactions') }}">Transactions</a></li>
+                            @elseif(session()->get('frontUser')->user_subscription_status == "expired")
+                                <li class="{{ request()->routeIs('packages') ? 'active' : '' }}"><a href="{{ route('packages') }}">Reniew Plan</a></li>
                             @else
-                                <li class="#"><a href="{{ route('packages') }}">Packages</a></li>
+                                <li class="{{ request()->routeIs('packages') ? 'active' : '' }}"><a href="{{ route('packages') }}">Packages</a></li>
                             @endif
                         @endif
                         
