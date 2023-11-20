@@ -40,7 +40,7 @@
                         @csrf
                         @method('PUT')
                         <div class="card-body">
-                             <div class="row">
+                            <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-input">
                                         <label>Candidate Photo</label>
@@ -463,8 +463,8 @@
                                     <div class="form-group">
                                         <label for="family_profile_see">Who can see your profile? </label>
                                         <ul class="radio-box-list">
-                                            <li class="radio-box-item"><input type="radio" checked name="family_profile_see" value="everyone" {{ old('family_profile_see') === "everyone" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Babysits users, public search engines, and job boards can iew your profile."><label>&nbsp;Everyone</label></li>
-                                            <li class="radio-box-item"><input type="radio" name="family_profile_see" value="only_online_au_pair_users" {{ old('family_profile_see') === "only_online_au_pair_users" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get."><label>&nbsp;Only Online Au-Pair users</label></li>
+                                            <li class="radio-box-item"><input type="radio" name="family_profile_see" value="everyone" {{ isset($family->family_profile_see) && $family->family_profile_see == "everyone" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Babysits users, public search engines, and job boards can iew your profile."><label>&nbsp;Everyone</label></li>
+                                            <li class="radio-box-item"><input type="radio" name="family_profile_see" value="only_online_au_pair_users" {{ isset($family->family_profile_see) && $family->family_profile_see == "only_online_au_pair_users" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get."><label>&nbsp;Only Online Au-Pair users</label></li>
                                         </ul>
                                     </div>
                                 </div>
