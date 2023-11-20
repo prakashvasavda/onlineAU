@@ -146,12 +146,10 @@ class FamilyController extends Controller
             'family_city'                   => "required",
             'home_language'                 => "required",
             'no_children'                   => "required",
-            // 'family_types_babysitter'       => "required",
             'family_location'               => "required",
             'family_profile_see'            => "required",
             'family_notifications'          => "required",
             'family_description'            => "required",
-
             'surname'                       => "required",
             'id_number'                     => "required",
             'cell_number'                   => "required",
@@ -161,8 +159,6 @@ class FamilyController extends Controller
             'petrol_reimbursement'          => "required",
             'live_in_or_live_out'           => "required",
             'candidate_duties'              => "required",
-            // 'describe_kids'                 => "required",
-            // 'family_babysitter_comfortable' => "required",
         ],[
             'profile.required_if'   => 'The profile field is required',
             'describe_kids.array'   =>  'Invalid selected value',   
@@ -180,14 +176,14 @@ class FamilyController extends Controller
         $input['no_children']                   = isset($request->age) && is_array($request->age) ? count($request->age) : $request->no_children;
         $input['describe_kids']                 = isset($request->describe_kids) ? json_encode($request->describe_kids) : null;
         $availability                           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_family_calender($input, $familyId) : 0;
+        $input['gender_of_children']            = isset($request->gender_of_children) ? json_encode($request->gender_of_children) : null;
         $update_status                          = $family->update($input);
 
         return redirect()->back()->with('success', 'family profile updated successfully.');
     }
 
     
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }
