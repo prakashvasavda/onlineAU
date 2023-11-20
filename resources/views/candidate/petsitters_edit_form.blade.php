@@ -320,7 +320,7 @@
 
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="childcare_experience">How many years of childcare experience do you have</label>
+                                        <label for="childcare_experience">How many years of petsitting experience do you have</label>
                                         <select id="childcare_experience" name="childcare_experience" class="form-control">
                                             <option value="" selected="selected" disabled="disabled">Select</option>
                                             <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
@@ -562,13 +562,17 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label for="salary_expectation">What is your salary expectation/hourly rate</label>
-                                        <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-control @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
-                                        @error('salary_expectation')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                        <label for="salary_expectation">What is your hourly rate <span class="text-danger">*</span></label>
+                                        <div class="input-group mb-1">
+                                            <span class="input-group-text">R</span>
+                                                <input type="text" name="salary_expectation" id="salary_expectation" class="form-control" placeholder="" value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
+                                            <span class="input-group-text">hr</span>
+                                        </div>
+                                        @if ($errors->has('salary_expectation'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('salary_expectation') }}</strong>
                                             </span>
-                                        @enderror
+                                        @endif
                                     </div>
                                 </div>
 
@@ -603,7 +607,7 @@
 @section('js')
 <script type="text/javascript">
     $(window).on("load", function () {
-        var file = "{{ isset($candidate->profile) ? $candidate->profile : null }}";
+        var file = "{{ isset($candidate->profile) ? $candidate->profile : "front-user.png" }}";
         if(file !== null){
             $('.js--image-preview').addClass('js--no-default');
             $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="" width = "100px" height = "100px" >');
