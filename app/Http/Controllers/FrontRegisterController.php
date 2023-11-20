@@ -303,22 +303,24 @@ class FrontRegisterController extends Controller
             'salary_expectation'            => $request->salary_expectation,
             'family_description'            => $request->family_description,
             'family_special_need_option'    => isset($request->family_special_need_option) ? 1 : 0,
-            'family_special_need_value'     => json_encode($request->family_special_need_value),
+            'family_special_need_value'     => isset($request->family_special_need_option) ? json_encode($request->family_special_need_value) : null,
             'status'                        => 1,
             'role'                          => 'family',
             "created_at"                    => date("Y-m-d H:i:s"),
             "updated_at"                    => date("Y-m-d H:i:s"),
-            "cell_number"                   => isset($request->cell_number) ? $request->cell_number : null,
-            "start_date"                    => isset($request->start_date) ? $request->start_date : null,
-            "duration_needed"               => isset($request->duration_needed) ? $request->duration_needed : null,
-            "candidate_duties"              => isset($request->candidate_duties) ? $request->candidate_duties : null,
-            "surname"                       => isset($request->surname) ? $request->surname : null,
-            "what_do_you_need"              => isset($request->what_do_you_need) ? json_encode($request->what_do_you_need) : null,
+            "cell_number"                   => $request->cell_number,
+            "start_date"                    => $request->start_date,
+            "duration_needed"               => $request->duration_needed,
+            "candidate_duties"              => $request->candidate_duties,
+            "surname"                       => $request->surname,
+            "what_do_you_need"              => json_encode($request->what_do_you_need),
+            'petrol_reimbursement'          => $request->petrol_reimbursement,
+            'id_number'                     => $request->id_number,
         ]);
 
         $status              = $this->store_need_babysitter($data, $familyId);
         $package             = Packages::find($request->package);
-        //$mail_sent_status    = $this->send_notification_email($request->all(), 'family');
+        //$mail_sent_status  = $this->send_notification_email($request->all(), 'family');
 
         $data['user_id']        = $familyId;
         $data['profile']        = null;

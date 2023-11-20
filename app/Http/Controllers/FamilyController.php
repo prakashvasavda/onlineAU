@@ -75,7 +75,7 @@ class FamilyController extends Controller
                 $postnestedData['id']             = $key + 1;
                 $postnestedData['name']           = $post_val->name;
                 $postnestedData['email']          = $post_val->email;
-                $postnestedData['contact_number'] = $post_val->contact_number;
+                $postnestedData['cell_number']    = $post_val->cell_number;
                 $postnestedData['gender']         = $post_val->gender;
                 $postnestedData['age']            = $post_val->age;
                 $postnestedData['area']           = $post_val->area;
@@ -146,7 +146,7 @@ class FamilyController extends Controller
             'family_city'                   => "required",
             'home_language'                 => "required",
             'no_children'                   => "required",
-            'family_types_babysitter'       => "required",
+            // 'family_types_babysitter'       => "required",
             'family_location'               => "required",
             'family_profile_see'            => "required",
             'family_notifications'          => "required",
@@ -161,8 +161,8 @@ class FamilyController extends Controller
             'petrol_reimbursement'          => "required",
             'live_in_or_live_out'           => "required",
             'candidate_duties'              => "required",
-            'describe_kids'                 => "required",
-            'family_babysitter_comfortable' => "required",
+            // 'describe_kids'                 => "required",
+            // 'family_babysitter_comfortable' => "required",
         ],[
             'profile.required_if'   => 'The profile field is required',
             'describe_kids.array'   =>  'Invalid selected value',   
@@ -173,9 +173,9 @@ class FamilyController extends Controller
         $input['password']                      = !empty($request->password) ? Hash::make($request->password) : $family->password;
         $input['email']                         = !empty($request->email) ? $request->email : $candidate->email;
         $input['role']                          = $family->role;
-        $input['family_special_need_option']    = isset($request->family_special_need_option) ? 1 : 0;
-        $input['family_babysitter_comfortable'] = isset($request->family_babysitter_comfortable) ? json_encode($request->family_babysitter_comfortable) : null;
-        $input['family_special_need_value']     = isset($request->family_special_need_value) ? json_encode($request->family_special_need_value) : null;
+        $input['family_special_need_option']    = isset($request->family_special_need_option) && isset($request->family_special_need_value) ? 1 : 0;
+        $input['family_babysitter_comfortable'] = isset($request->family_babysitter_comfortable)  ? json_encode($request->family_babysitter_comfortable) : null;
+        $input['family_special_need_value']     = isset($request->family_special_need_value) && isset($request->family_special_need_option) ? json_encode($request->family_special_need_value) : null;
         $input['profile']                       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
         $input['no_children']                   = isset($request->age) && is_array($request->age) ? count($request->age) : $request->no_children;
         $input['describe_kids']                 = isset($request->describe_kids) ? json_encode($request->describe_kids) : null;

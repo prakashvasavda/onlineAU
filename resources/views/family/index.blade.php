@@ -29,7 +29,7 @@
                   <th width="10%">ID</th>
                   <th width="10%">Name</th>
                   <th width="10%">Email</th>
-                  <th width="15%">Contact</th>
+                  <th width="15%">Cell Number</th>
                   <th width="10%">Gender</th>
                   {{-- <th width="10%">Age</th> --}}
                   {{-- <th width="10%">Area</th>  --}}                 
@@ -63,7 +63,7 @@ $(document).ready(function () {
         { "data": "id" },
         { "data": "name" },
         { "data": "email" },
-        { "data": "contact_number" },
+        { "data": "cell_number" },
         { "data": "gender" },
         // { "data": "age" },
         // { "data": "area" },
