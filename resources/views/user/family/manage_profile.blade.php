@@ -175,8 +175,8 @@
                             <div class="form-input">
                                 <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                                 <select id="gender_of_children" name="gender_of_children[]" class="form-field">
-                                    <option value="male" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "male" ? "selected" : "" }}>Male</option>
-                                    <option value="female" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "female" ? "selected" : "" }}>Female</option>
+                                    <option value="male" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "male" ? 'selected' : '' }}>Male</option>
+                                    <option value="female" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "female" ? 'selected' : '' }}>Female</option>
                                 </select>
                                 @if ($errors->has('gender_of_children'))
                                     <span class="text-danger">
@@ -250,8 +250,8 @@
                                 <div class="form-input">
                                     <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                                     <select id="gender_of_children" name="gender_of_children[]" class="form-field">
-                                        <option value="male" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "male" ? "selected" : "" }}>Male</option>
-                                        <option value="female" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "female" ? "selected" : "" }}>Female</option>
+                                        <option value="male" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "male" ? 'selected' : '' }}>Male</option>
+                                        <option vfalue="female" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "female" ? 'selected' : '' }}>Female</option>
                                     </select>
                                     @if ($errors->has('gender_of_children'))
                                         <span class="text-danger">
@@ -440,7 +440,7 @@
                 <div class="form-input">
                     <label for="family_notifications">Do you want to get notifications from new babysitters in your area? </label>
                     <ul class="d-flex flex-wrap" >
-                         <li><input type="radio" checked name="family_notifications" value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'checked' : '' }}>Yes</li>
+                        <li><input type="radio" checked name="family_notifications" value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'checked' : '' }}>Yes</li>
                         <li><input type="radio" name="family_notifications" value="no" {{ isset($family->family_notifications) && $family->family_notifications == "no" ? 'checked' : '' }}>No</li>
                     </ul>
                     @if ($errors->has('family_notifications'))

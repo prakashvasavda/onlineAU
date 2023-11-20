@@ -474,12 +474,10 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label for="family_notifications">Do you want to get notifications from new babysitters in your area? </label>
-                                        <select class="form-control" name="family_notifications">
-                                            <option selected>select</option>
-                                            <option value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'selected' : '' }}>Yes</option>
-                                            <option value="no" {{ isset($family->family_notifications) && $family->family_notifications == "no" ? 'selected' : '' }}>No</option>
-                                        </select>
-
+                                            <ul class="radio-box-list" >
+                                                <li><input type="radio" checked name="family_notifications" value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'checked' : '' }}>&nbsp;Yes</li>
+                                                <li><input type="radio" name="family_notifications" value="no" {{ isset($family->family_notifications) && $family->family_notifications == "no" ? 'checked' : '' }}>&nbsp;No</li>
+                                            </ul>
                                         @if ($errors->has('family_notifications'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('family_notifications') }}</strong>
