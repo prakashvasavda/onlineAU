@@ -1,0 +1,49 @@
+.signature,
+.dr_blom_consent_signature,
+.code_of_conduct_signature, .medical_signature, .prescription_chart_signature, .patient_belongings_list_signature, .medication_list_signature {
+  width: 210px;
+  height: 100px;
+  border: 2px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.signature-image{
+  width: 210px;
+  height: 100px;
+  /*border: 2px solid #ccc; */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.img-wrap {
+    position: relative;
+    /*display: inline-block;*/
+    border: 2px solid #ccc;
+    font-size: 0;
+}
+.img-wrap .delete-signature {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 100;
+    background-color: #FFF;
+    padding: 5px 2px 2px;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 1;
+    text-align: center;
+    /*font-size: 22px;*/
+    line-height: 10px;
+    border-radius: 50%;
+}
+.img-wrap:hover .delete-signature {
+    opacity: 1;
+}
+.progressbar .stepUrl .p_icon img{    width: 100% !important;    max-width: 80px;    height: auto;    aspect-ratio: 1/1;    object-fit: contain;}
+.box_pos_topRight {  position: absolute;  top: 8px;  right: 8px;  display: inline-flex;}.box_pos_topRight i {  font-size: 1rem;  color: #1C9400;}
+.alert {width: 100%}
+.card-body .row .row {  margin-left: 0;  margin-right: 0;  width: 100%;}
+.card-body .row label {  width: 100%;}
+.box_pos_bottomRight {  position: absolute;  bottom: 8px;  right: 8px;  display: inline-flex;}.box_pos_topRight i {  font-size: 1rem;  color: #1C9400;}

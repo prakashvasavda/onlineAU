@@ -3,25 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use App\CandidateFavoriteFamily;
-use App\FamilyFavoriteCandidate;
-use App\FamilyReview;
-use App\CandidateReview;
-use App\FrontUser;
-use App\NeedsBabysitter;
-use App\PreviousExperience;
-use Validator;
-use Session;
-use DB;
+use App\Models\CandidateFavoriteFamily;
+use App\Models\FamilyFavoriteCandidate;
+use App\Models\FamilyReview;
+use App\Models\CandidateReview;
+use App\Models\FrontUser;
+use App\Models\NeedsBabysitter;
+use App\Models\PreviousExperience;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 
 class Controller extends BaseController{
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, ValidatesRequests;
 
     public function store_previous_experience($input, $candidateId){
         $previous_experiance =  PreviousExperience::where('candidate_id', $candidateId)->get()->toArray();
@@ -57,9 +59,9 @@ class Controller extends BaseController{
                 $imageName = null;
             }
         }
-
         return $imageName;
     }
+
 
     public function store_candidate_calender($input, $candidateId){
         $candidate = FrontUser::find($candidateId);

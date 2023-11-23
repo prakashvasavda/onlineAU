@@ -4,11 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\UserSubscription;
+use App\Models\UserSubscription;
 use Carbon\Carbon;
 
 
 class SubscriptionController extends Controller{
+    
     public function add_user_subscription($input, $user_id){
         $data['user_id']        = $user_id;
         $data['package_id']     = 0;

@@ -7,136 +7,216 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Online AU-PAIRS - Admin Panel</title>
+    <title>{{ config('app.name', 'au-pairs') }}</title>
+
     <!-- Fonts -->
-  <!-- Google Font: Source Sans Pro -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/front/images/favicon/apple-touch-icon.png') }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/front/images/favicon/favicon-32x32.png') }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/front/images/favicon/favicon-16x16.png') }}">
-  <link rel="shortcut icon" href="{{ asset('/front/images/favicon/favicon.ico') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
-  <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-  @yield('css')
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/select2/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/iCheck/flat/blue.css')}}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/iCheck/all.css')}}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/jqvmap/jqvmap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <style>
+        a{text-decoration: none!important;}
+        .form-control-sm { padding: 0.25rem 0.9rem;}
+    </style>
 </head>
-<body>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('admin.index') }}" class="nav-link">Home</a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-@include('elements.sidebar')
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="{{ url('/') }}" class="nav-link">Home</a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" id="left-menubar" style="min-height:0!important; overflow-x: hidden;">
+            <a href="{{url('/')}}" class="brand-link" style="text-align: center">
+                <span class="brand-text font-weight-light"><b>AU-PAIRS ADMIN</b></span>
+            </a>
 
+            <div class="sidebar">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item has-treeview @if(isset($menu) && $menu=='User') menu-open  @endif" style="border-bottom: 1px solid #4f5962; margin-bottom: 4.5%;">
+                            <a href="#" class="nav-link @if(isset($menu) && $menu=='User') active  @endif">
+                                <img src=" {{url('assets/dist/img/AdminLTELogo.png')}}" class="img-circle elevation-2" alt="User Image" style="width: 2.1rem; margin-right: 1.5%;">
+                                <p style="padding-right: 6.5%;">
+                                    {{ ucfirst(Auth::user()->name) }}
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <?php $eid = \Illuminate\Support\Facades\Auth::user()->id; ?>
+                                    <a href="{{ url('admin/profile/'.$eid.'/edit') }}" class="nav-link @if(isset($menu) && $menu=='User') active @endif">
+                                        <i class="nav-icon fa fa-edit"></i><p class="text-warning">Edit Profile</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        <i class="nav-icon fa fa-sign-out-alt"></i><p class="text-danger">Log out</p>
+                                    </a>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    @yield('content')
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-<!--   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0-rc
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('admin') }}" class="nav-link @if($menu=='Dashboard') active @endif">
+                                <i class="nav-icon fa fa-tachometer-alt"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+
+                        
+                        <li class="nav-item @if(in_array($menu, ['family','add family'])) menu-is-opening menu-open @endif">
+                            <a href="#" class="nav-link @if(in_array($menu, ['family','Patient'])) active @endif">
+                                <i class="nav-icon fa fa-users"></i>
+                                <p>Families<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.families') }}" class="nav-link @if($menu=='family') active @endif">
+                                        <i class="fa fa-users nav-icon"></i>
+                                        <p>Manage Families</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item @if(in_array($menu, ['aupairs','nannies', 'babysitters', 'petsitters'])) menu-is-opening menu-open @endif">
+                            <a href="#" class="nav-link @if(in_array($menu, ['Stock Category','Stock'])) active @endif">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Candidates<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('admin.candidates.aupairs')}}" class="nav-link @if($menu=='aupairs') active @endif">
+                                        <i class="fa fa-home nav-icon"></i>
+                                        <p>Manage Au-Pairs</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.candidates.babysitters')}}" class="nav-link @if($menu=='babysitters') active @endif">
+                                        <i class="fa fa-baby nav-icon"></i>
+                                        <p>Manage Babysitters</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.candidates.petsitters')}}" class="nav-link @if($menu=='petsitters') active @endif">
+                                        <i class="fa fa-dog nav-icon"></i>
+                                        <p>Manage Patisittes</p>
+                                    </a>
+                                </li>
+
+                                 <li class="nav-item">
+                                    <a href="{{route('admin.candidates.nannies')}}" class="nav-link @if($menu=='nannies') active @endif">
+                                        <i class="fa fa-user-nurse nav-icon"></i>
+                                        <p>Manage Nannies</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('admin/reviews') }}" class="nav-link @if($menu=='reviews') active @endif">
+                                <i class="nav-icon fa fa-comments"></i>
+                                <p>Reviews</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('admin/transactions') }}" class="nav-link @if($menu=='transactions') active @endif">
+                                <i class="nav-icon fa fa-money-bill"></i>
+                                <p>Transactions</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        @yield('content')
+
+        <footer class="main-footer">
+            <strong>{{ config('app.name', 'TWR') }} Admin</strong>
+        </footer>
     </div>
-  </footer> -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-<!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script src="{{ URL('assets/plugins/jquery/jquery.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script>
+    $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <script src="{{ URL('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/select2/select2.full.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/chart.js/Chart.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/sparklines/sparkline.js')}}"></script>
+    <script src="{{ URL('assets/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/moment/moment.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <script src="{{ URL('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+    <script src="{{ URL('assets/dist/js/adminlte.js')}}"></script>
+    <script src="{{ URL('assets/dist/js/demo.js')}}"></script>
+    <script src="{{ URL('assets/dist/js/custom.js')}}"></script>
+    <script src="{{ URL('assets/dist/js/pages/dashboard.js')}}"></script>
+    <script src="{{ URL('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/iCheck/icheck.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="{{ URL::asset('assets/plugins/ladda/spin.min.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/ladda/ladda.min.js')}}"></script>
 
-<!-- Bootstrap 4 -->
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- ChartJS -->
-<script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
-<!-- Sparkline -->
-<script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
-<!-- JQVMap -->
-<script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-<!-- jQuery Knob Chart -->
-<script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-<!-- daterangepicker -->
-<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-<!-- Summernote -->
-<script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-<script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
-<!-- overlayScrollbars -->
-<script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
-<script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
-<script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-@yield('js')
+    <script>
+        Ladda.bind( 'input[type=submit]' );
+        $(function () {
+            $('.select2').select2();
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass   : 'iradio_flat-green'
+            });
+        });
+    </script>
+
+    @yield('jquery')
+
 </body>
 </html>
