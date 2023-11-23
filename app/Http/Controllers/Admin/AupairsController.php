@@ -77,7 +77,7 @@ class AupairsController extends Controller{
         $input['password']                      = !empty($request->password) ? Hash::make($request->password) : $candidate->password;
         $input['email']                         = !empty($request->email) ? $request->email : $candidate->email;
         $input['role']                          = $candidate->role;
-        $input['profile']                       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $candidate->profile;
+        $input['profile']                       = $request->has('profile') ? $this->store_image($request->file('profile')) : $candidate->profile;
         $input['other_services']                = !empty($request->other_services) ? json_encode($request->other_services) : null;
         $input['animals_comfortable_with']      = !empty($request->animals_comfortable_with) ? json_encode($request->animals_comfortable_with) : null;
         $experiance             = !empty($input['daterange']) ? $this->store_previous_experience($input, $id) : 0;

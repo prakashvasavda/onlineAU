@@ -447,7 +447,7 @@
                                         <div class="form-group">
                                             <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-sm">
+                                                <table class="table table-borderless table-sm">
                                                     <tbody>
                                                             <tr>
                                                                 <td></td>
@@ -618,7 +618,7 @@
 <script type="text/javascript">
 
     $(window).on("load", function () {
-        var file = "{{ isset($family->profile) ? $family->profile : null }}";
+        var file = "{{ isset($candidate->profile) ? $candidate->profile : null }}";
         if(file !== null){
             $('.js--image-preview').addClass('js--no-default');
             $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="" width = "100px" height = "100px" >');
