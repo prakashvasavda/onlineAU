@@ -538,6 +538,7 @@
                                     </tr>
                                 </tbody>
                         </table>
+                        <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
                     </div>
                     @error('morning')
                         <span class="invalid-feedback" role="alert">
