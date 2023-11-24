@@ -331,21 +331,16 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="childcare_experience">How many years of childcare experience do you have</label>
-                    <select id="childcare_experience" name="childcare_experience" class="form-field">
-                        <option value="" selected="selected" disabled="disabled">Select</option>
-                        <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
-                        <option value="1 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1 years" ? "selected" : '' }}>1 years</option>
-                        <option value="1.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1.5 years" ? "selected" : '' }}>1.5 years</option>
-                        <option value="2 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2 years" ? "selected" : '' }}>2 years</option>
-                        <option value="2.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2.5 years" ? "selected" : '' }}>2.5 years</option>
-                        <option value="3 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3 yearsyearsyears" ? "selected" : '' }}>3 years</option>
-                        <option value="3.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3.5 yearsyears" ? "selected" : '' }}>3.5 years</option>
-                        <option value="4 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4 years" ? "selected" : '' }}>4 years</option>
-                        <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 yearsyearsyears" ? "selected" : '' }}>4.5 years</option>
-                        <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
-                        <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
-                    </select>
+                    <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
+                    <ul class="radio-box-list">
+                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="live_in" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live_in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
+                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
+                    </ul>
+                    @if ($errors->has('live_in_or_live_out'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('live_in_or_live_out') }}</strong>
+                        </span>
+                    @endif
                 </div>
             </div>
 
@@ -398,11 +393,11 @@
                 <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
                 <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
                     <option value="" disabled>Select</option>
-                    <option value="baby" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("baby", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Baby</option>
-                    <option value="gradeschooler" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("gradeschooler", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Gradeschooler</option>
-                    <option value="toddler" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("toddler", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Toddler</option>
-                    <option value="teenager" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("teenager", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Teenager</option>
-                    <option value="preschooler" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("preschooler", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>Preschooler</option>
+                    <option value="0_12_months" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("0_12_months", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>0-12 months</option>
+                    <option value="1_3_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("1_3_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>1-3 years</option>
+                    <option value="4_7_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("4_7_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>4-7 years</option>
+                    <option value="8_13_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("8_13_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>8-13 years</option>
+                    <option value="13_16_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("13_16_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>13-16 years</option>
                 </select>
                 @if ($errors->has('ages_of_children_you_worked_with'))
                     <span class="text-danger">
@@ -622,6 +617,7 @@
                                     </tr>
                                 </tbody>
                         </table>
+                        <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
                     </div>
                     @error('morning')
                         <span class="invalid-feedback" role="alert">
@@ -631,20 +627,38 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="form-input">
-                        <label for="password">Password <span class="text-danger">*</span></label>
-                        <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="childcare_experience">How many years of childcare experience do you have</label>
+                    <select id="childcare_experience" name="childcare_experience" class="form-field">
+                        <option value="" selected="selected" disabled="disabled">Select</option>
+                        <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
+                        <option value="1 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1 years" ? "selected" : '' }}>1 years</option>
+                        <option value="1.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1.5 years" ? "selected" : '' }}>1.5 years</option>
+                        <option value="2 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2 years" ? "selected" : '' }}>2 years</option>
+                        <option value="2.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2.5 years" ? "selected" : '' }}>2.5 years</option>
+                        <option value="3 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3 yearsyearsyears" ? "selected" : '' }}>3 years</option>
+                        <option value="3.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3.5 yearsyears" ? "selected" : '' }}>3.5 years</option>
+                        <option value="4 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4 years" ? "selected" : '' }}>4 years</option>
+                        <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 yearsyearsyears" ? "selected" : '' }}>4.5 years</option>
+                        <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
+                        <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
+                    </select>
                 </div>
             </div>
 
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="password">Password <span class="text-danger">*</span></label>
+                    <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+           
             <div class="col-12">
                 <div class="form-input-btn text-center">
                     <input type="submit" class="btn btn-primary round" value="update">
