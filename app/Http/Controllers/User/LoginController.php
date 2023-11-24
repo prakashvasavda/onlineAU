@@ -36,7 +36,7 @@ class LoginController extends Controller{
             $subscription_status                = $user->role == "family" ? $subscription->check_subscription_status($user->id) : null;
             $user['user_subscription_status']   = $subscription_status;
             Session::put('frontUser', $user);
-            return $user->role == "family" ? redirect()->route('view-candidates') : redirect()->route('home');
+            return $user->role == "family" ? redirect()->route('view-candidates') : redirect()->route('view-families');
         } else {
             return back()->withErrors(['email' => 'Invalid credentials']);
         }

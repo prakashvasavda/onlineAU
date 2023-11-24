@@ -30,7 +30,7 @@
 			<div class="favorites-section">
 				<div class="container">
 					<div class="title-main">
-			            <h2>Favorites</h2>
+			            <h2>All Families</h2>
 			        </div>
 					<div class="row">
 						@if(isset($families) && !empty($families))

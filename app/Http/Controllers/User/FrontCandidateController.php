@@ -167,7 +167,7 @@ class FrontCandidateController extends Controller{
             'reviews.total_reviews'
         )
         ->leftJoin(DB::raw('(SELECT family_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM family_reviews GROUP BY family_id) as reviews'), 'front_users.id', '=', 'reviews.family_id')
-        ->where('family_favorite_candidates.candidate_id', Session::get('frontUser')->id) //families who have liked this camdidate
+        // ->where('family_favorite_candidates.candidate_id', Session::get('frontUser')->id) //families who have liked this camdidate
         ->where('front_users.role', 'family')
         ->where('front_users.status', '1')
         ->distinct()
