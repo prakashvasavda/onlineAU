@@ -94,6 +94,7 @@
                              <h4>{{ isset($candidate->home_language) ? ucfirst($candidate->home_language) : '-' }}</h4>
                         </div>
                     </li>
+
                     <li class="equalHeight">
                         <div class="about-candidate-title">
                             <img src="{{ url('front/images/marital-status-icon1.png') }}" alt="">
@@ -103,6 +104,19 @@
                             <h4>{{ isset($candidate->marital_status) ? ucfirst($candidate->marital_status) : '-' }}</h4>
                         </div>
                     </li>
+
+                    @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs' ||  $candidate->role == 'babysitters')
+                        <li class="equalHeight">
+                            <div class="about-candidate-title">
+                                <img src="{{ url('front/images/firstAid-icon1.png') }}" alt="">
+                                <h4>FIRST AID:</h4>
+                            </div>
+                            <div class="about-candidate-content">
+                                <h4>{{ isset($candidate->first_aid) ? ucfirst($candidate->first_aid) : '-' }}</h4>
+                            </div>
+                        </li>
+                    @endif
+
                 </ul>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -143,6 +157,18 @@
                             <h4>{{ isset($candidate->dependants) ? ucfirst($candidate->dependants) : '-' }}</h4>
                         </div>
                     </li>
+
+                    @if($candidate->role == 'au-pairs' ||  $candidate->role == 'nannies')
+                        <li class="equalHeight">
+                            <div class="about-candidate-title">
+                                <img src="{{ url('front/images/marital-status-icon1.png') }}" alt="">
+                                <h4>LIVE-IN OR LIVE-OUT:</h4>
+                            </div>
+                            <div class="about-candidate-content">
+                                <h4>{{ isset($candidate->live_in_or_live_out) ? ucfirst($candidate->live_in_or_live_out) : '-' }}</h4>
+                            </div>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
