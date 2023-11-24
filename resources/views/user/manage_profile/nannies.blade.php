@@ -289,11 +289,11 @@
                     <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
                     <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
                         <option value="" disabled>Select</option>
-                        <option value="baby" {{ !empty($candidate->ages_of_children_you_worked_with) && in_array("baby", $candidate->ages_of_children_you_worked_with) ? "selected" : "" }}>Baby</option>
-                        <option value="gradeschooler" {{ !empty($candidate->ages_of_children_you_worked_with) && in_array("gradeschooler", $candidate->ages_of_children_you_worked_with) ? "selected" : "" }}>Gradeschooler</option>
-                        <option value="toddler" {{ !empty($candidate->ages_of_children_you_worked_with) && in_array("toddler", $candidate->ages_of_children_you_worked_with) ? "selected" : "" }}>Toddler</option>
-                        <option value="teenager" {{ !empty($candidate->ages_of_children_you_worked_with) && in_array("teenager", $candidate->ages_of_children_you_worked_with) ? "selected" : "" }}>Teenager</option>
-                        <option value="preschooler" {{ !empty($candidate->ages_of_children_you_worked_with) && in_array("preschooler", $candidate->ages_of_children_you_worked_with) ? "selected" : "" }}>Preschooler</option>
+                        <option value="0_12_months" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("0_12_months", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>0-12 months</option>
+                        <option value="1_3_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("1_3_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>1-3 years</option>
+                        <option value="4_7_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("4_7_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>4-7 years</option>
+                        <option value="8_13_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("8_13_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>8-13 years</option>
+                        <option value="13_16_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("13_16_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>13-16 years</option>
                     </select>
                     @if ($errors->has('ages_of_children_you_worked_with'))
                         <span class="text-danger">
@@ -302,6 +302,7 @@
                     @endif
                 </div>
             </div>
+
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
@@ -320,11 +321,8 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
-                    <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="smoker" {{ $candidate->smoker_or_non_smoker == 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
-                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ $candidate->smoker_or_non_smoker == 'non_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
-                    </ul>
+                    <label for="disabilities">Disabilities</label>
+                    <input type="text" id="disabilities" name="disabilities" placeholder="" class="form-field" value="{{ old('disabilities', isset($candidate->disabilities) ? $candidate->disabilities : null) }}">
                 </div>
             </div>
 
@@ -340,11 +338,13 @@
                 </div>
             </div>
 
-
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="disabilities">Disabilities</label>
-                    <input type="text" id="disabilities" name="disabilities" placeholder="" class="form-field" value="{{ old('disabilities', isset($candidate->disabilities) ? $candidate->disabilities : null) }}">
+                    <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
+                    <ul class="radio-box-list">
+                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="smoker" {{ $candidate->smoker_or_non_smoker == 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
+                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ $candidate->smoker_or_non_smoker == 'non_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                    </ul>
                 </div>
             </div>
 
@@ -406,21 +406,16 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="childcare_experience">How many years of childcare experience do you have</label>
-                    <select id="childcare_experience" name="childcare_experience" class="form-field">
-                        <option value="" selected="selected" disabled="disabled">Select</option>
-                        <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
-                        <option value="1 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1 years" ? "selected" : '' }}>1 years</option>
-                        <option value="1.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1.5 years" ? "selected" : '' }}>1.5 years</option>
-                        <option value="2 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2 years" ? "selected" : '' }}>2 years</option>
-                        <option value="2.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2.5 years" ? "selected" : '' }}>2.5 years</option>
-                        <option value="3 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3 yearsyearsyears" ? "selected" : '' }}>3 years</option>
-                        <option value="3.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3.5 yearsyears" ? "selected" : '' }}>3.5 years</option>
-                        <option value="4 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4 years" ? "selected" : '' }}>4 years</option>
-                        <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 yearsyearsyears" ? "selected" : '' }}>4.5 years</option>
-                        <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
-                        <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
-                    </select>
+                    <label for="first_aid">Would you be comfortable with doing light housework as well </label>
+                    <ul class="d-flex flex-wrap" >
+                        <li><input type="radio" checked name="comfortable_with_light_housework" value="yes" {{ old('comfortable_with_light_housework', $candidate->comfortable_with_light_housework) === "yes" ? "checked" : '' }} >Yes</li>
+                        <li><input type="radio" name="comfortable_with_light_housework" value="no" {{ old('comfortable_with_light_housework', $candidate->comfortable_with_light_housework) === "no" ? "checked" : '' }} >No</li>
+                    </ul>
+                    @if ($errors->has('comfortable_with_light_housework'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('comfortable_with_light_housework') }}</strong>
+                        </span>
+                    @endif
                 </div>
             </div>
 
@@ -436,6 +431,22 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
+                    <label for="live_in_or_live_out">Live in / Live out </label>
+                    <ul class="radio-box-list">
+                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="live_in" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live_in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
+                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
+                    </ul>
+                    @if ($errors->has('live_in_or_live_out'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('live_in_or_live_out') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
                     <label for="salary_expectation">What is your salary expectation</label>
                     <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
                     @error('salary_expectation')
@@ -448,16 +459,21 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="first_aid">Would you be comfortable with doing light housework as well </label>
-                    <ul class="d-flex flex-wrap" >
-                        <li><input type="radio" checked name="comfortable_with_light_housework" value="yes" {{ old('comfortable_with_light_housework', $candidate->comfortable_with_light_housework) === "yes" ? "checked" : '' }} >Yes</li>
-                        <li><input type="radio" name="comfortable_with_light_housework" value="no" {{ old('comfortable_with_light_housework', $candidate->comfortable_with_light_housework) === "no" ? "checked" : '' }} >No</li>
-                    </ul>
-                    @if ($errors->has('comfortable_with_light_housework'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('comfortable_with_light_housework') }}</strong>
-                        </span>
-                    @endif
+                    <label for="childcare_experience">How many years of childcare experience do you have</label>
+                    <select id="childcare_experience" name="childcare_experience" class="form-field">
+                        <option value="" selected="selected" disabled="disabled">Select</option>
+                        <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
+                        <option value="1 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1 years" ? "selected" : '' }}>1 years</option>
+                        <option value="1.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1.5 years" ? "selected" : '' }}>1.5 years</option>
+                        <option value="2 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2 years" ? "selected" : '' }}>2 years</option>
+                        <option value="2.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2.5 years" ? "selected" : '' }}>2.5 years</option>
+                        <option value="3 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3 yearsyearsyears" ? "selected" : '' }}>3 years</option>
+                        <option value="3.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3.5 yearsyears" ? "selected" : '' }}>3.5 years</option>
+                        <option value="4 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4 years" ? "selected" : '' }}>4 years</option>
+                        <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 yearsyearsyears" ? "selected" : '' }}>4.5 years</option>
+                        <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
+                        <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
+                    </select>
                 </div>
             </div>
 
@@ -669,6 +685,7 @@
                                     </tr>
                                 </tbody>
                         </table>
+                        <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
                     </div>
                     @error('morning')
                         <span class="invalid-feedback" role="alert">
