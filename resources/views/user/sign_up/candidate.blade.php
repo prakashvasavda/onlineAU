@@ -239,7 +239,7 @@
                         <h3>REQUIREMENTS:</h3>
                     </div>
                     <ul class="requirements-list">
-                        <li>19 YEARS OR OLDER.</li>
+                        <li>18 YEARS OR OLDER.</li>
                         <li>VALID DRIVER’S LICENSE.</li>
                         <li>MINIMUM OF 2 CONTACTABLE REFERENCES.</li>
                         <li>CLEAN CRIMINAL RECORD.</li>
