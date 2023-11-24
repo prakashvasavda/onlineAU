@@ -331,7 +331,7 @@
         <p>{{ isset($reviews->review_note) ? $reviews->review_note : 'No review' }}</p>
         <!-- write-review-form -->
         <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 me-auto">
-            @if(session()->has('frontUser') && session()->get('frontUser') == "family")
+            @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
                 <form class="mt-5" name="candidate_review_form" action="{{ route('store-candidate-reviews') }}" enctype="multipart/form-data" method="post">
                     @csrf
                     <input type="hidden" name="family_id" value="{{ isset($loginUser->role) && $loginUser->role == 'family' ? $loginUser->id : null }}">
