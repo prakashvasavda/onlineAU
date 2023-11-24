@@ -12,20 +12,23 @@
                     <h2>Welcome candidates</h2>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <ul class="banner-btn-list">
-                        <li>
-                            <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-aupairs-works" class="btn btn-light">I am an Au-Pair</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-nannies-works" class="btn btn-light">I am a Nanny</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-babysitters-works" class="btn btn-light">I am a Babysitter</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-petsitters-works" class="btn btn-light">I am a Pet sitter</a>
-                        </li>
-                    </ul>
+                    <div class="signUp d-flex flex-row align-items-center justify-content-end gap-3">
+                        <h2 class="text-capitalize mb-0">I am a..</h2>
+                        <ul class="banner-btn-list">
+                            <li>
+                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-aupairs-works" class="btn btn-light">I am an Au-Pair</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-nannies-works" class="btn btn-light">I am a Nanny</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-babysitters-works" class="btn btn-light">I am a Babysitter</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-petsitters-works" class="btn btn-light">I am a Pet sitter</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

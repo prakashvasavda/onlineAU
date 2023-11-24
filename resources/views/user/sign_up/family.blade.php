@@ -17,7 +17,7 @@
         <div class="title-main mb-5">
             <h2>family registration</h2>
         </div>
-        <div class="subTitleBox mb-5">
+        <div class="subTitleBox text-center mb-5">
             <h3>how it works:</h3>
         </div>
         <ul class="step-list">
