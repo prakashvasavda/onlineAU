@@ -161,7 +161,7 @@
                     @if($candidate->role == 'au-pairs' ||  $candidate->role == 'nannies')
                         <li class="equalHeight">
                             <div class="about-candidate-title">
-                                <img src="{{ url('front/images/marital-status-icon1.png') }}" alt="">
+                                <img src="{{ url('front/images/home-live-in-icon1.png') }}" alt="">
                                 <h4>LIVE-IN OR LIVE-OUT:</h4>
                             </div>
                             <div class="about-candidate-content">
