@@ -22,7 +22,13 @@
                         LOCATION: {{ $candidate->area ? strtoupper($candidate->area) : "-" }}<br>
                         SPECIALITY: {{ $candidate->role ? strtoupper($candidate->role) : "-" }}<br>
                         @if(isset($candidate->other_services)) OTHER SPECIALITY: {{ strtoupper($candidate->other_services) }}<br>  @endif
-                        HOURLY RATE: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
+                        
+                        @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs')
+                            SALARY: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
+                        @else
+                            HOURLY RATE: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
+                        @endif
+
                         <span id="candidate_contact" style="display: none;">
                             @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
                                 CONTACT NUMBER: {{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}<br>
