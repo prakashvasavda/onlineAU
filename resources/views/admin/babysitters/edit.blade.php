@@ -329,22 +329,21 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="marital_status">Marital Status</label>
-                                            <select class="form-control" name="marital_status">
-                                                <option selected disabled>select</option>
-                                                <option value="married" {{ isset($candidate->marital_status) && $candidate->marital_status == 'married' ? 'selected' : null }}>married</option>
-                                                <option value="single" {{ isset($candidate->marital_status) && $candidate->marital_status == 'single' ? 'selected' : null }}>Single</option>
-                                                <option value="in a relationship" {{ isset($candidate->marital_status) && $candidate->marital_status == "in a relationship" ? 'selected' : null }}>In a relationship</option>
-                                            </select>
+                                            <ul class="radio-box">
+                                                <li class="radio-box-item"><input type="radio" name="marital_status" value="married" {{ isset($candidate->marital_status) && $candidate->marital_status == 'married' ? 'checked' : null }}><label>&nbsp;Married</label></li>
+                                                <li class="radio-box-item"><input type="radio" name="marital_status" value="single" {{ isset($candidate->marital_status) && $candidate->marital_status == 'single' ? 'checked' : null }}><label>&nbsp;Single</label></li>
+                                                <li class="radio-box-item"><input type="radio" name="marital_status" value="in a relationship" {{ isset($candidate->marital_status) && $candidate->marital_status == "in a relationship" ? 'checked' : null }}><label>&nbsp;In a Relationship</label></li>
+                                            </ul>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="dependants">Do you have any dependants</label>
-                                            <select class="form-control" name="dependants">
-                                                <option selected disabled>select</option>
-                                                <option value="yes" {{ isset($candidate->dependants) && $candidate->dependants == 'yes' ? 'selected' : null }}>Yes</option>
-                                                <option value="no" {{ isset($candidate->dependants) && $candidate->dependants == 'no' ? 'selected' : null }}>No</option>
-                                            </select>
+                                            <ul class="radio-box">
+                                                <li><input type="radio" name="dependants" value="yes" {{ isset($candidate->dependants) && $candidate->dependants == 'yes' ? 'checked' : null }}>&nbsp; Yes</li>
+                                                <li><input type="radio" name="dependants" value="no"  {{ isset($candidate->dependants) && $candidate->dependants == 'no' ? 'checked' : null }}>&nbsp; No</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -353,21 +352,20 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="chronical_medication">Are you on any chronical medication</label>
-                                            <select class="form-control" name="chronical_medication">
-                                                <option selected disabled>select</option>
-                                                <option value="yes" {{ isset($candidate->chronical_medication) && $candidate->chronical_medication == 'yes' ? 'selected' : null }}>Yes</option>
-                                                <option value="no" {{ isset($candidate->chronical_medication) && $candidate->chronical_medication == 'no' ? 'selected' : null }}>No</option>
-                                            </select>
+                                            <ul class="radio-box">
+                                                <li><input type="radio" name="chronical_medication" value="yes" {{ isset($candidate->chronical_medication) && $candidate->chronical_medication == 'yes' ? 'checked' : null }}>&nbsp; Yes</li>
+                                                <li><input type="radio" name="chronical_medication" value="no" {{ isset($candidate->chronical_medication) && $candidate->chronical_medication == 'no' ? 'checked' : null }}>&nbsp; No</li>
+                                            </ul>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="drivers_license">Do you have your drivers license</label>
-                                            <select class="form-control" name="drivers_license">
-                                                <option selected>select</option>
-                                                <option value="yes" {{ isset($candidate->drivers_license) && $candidate->drivers_license == 'yes' ? 'selected' : null }}>Yes</option>
-                                                <option value="no" {{ isset($candidate->drivers_license) && $candidate->drivers_license == 'no' ? 'selected' : null }}>No</option>
-                                            </select>
+                                            <ul class="radio-box">
+                                                <li><input type="radio" name="drivers_license" value="yes" {{ isset($candidate->drivers_license) && $candidate->drivers_license == 'yes' ? 'checked' : null }}>&nbsp;Yes</li>
+                                                <li><input type="radio" name="drivers_license" value="no" {{ isset($candidate->drivers_license) && $candidate->drivers_license == 'no' ? 'checked' : null }}>&nbsp;No</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -376,21 +374,20 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="vehicle">Do you have your own vehicle</label>
-                                            <select class="form-control" name="vehicle">
-                                                <option selected>select</option>
-                                                <option value="yes" {{ isset($candidate->vehicle) && $candidate->vehicle == 'yes' ? 'selected' : null }}>Yes</option>
-                                                <option value="no" {{ isset($candidate->vehicle) && $candidate->vehicle == 'no' ? 'selected' : null }}>No</option>
-                                            </select>
+                                            <ul class="radio-box">
+                                                <li><input type="radio" name="vehicle" value="yes" {{ isset($candidate->vehicle) && $candidate->vehicle == 'yes' ? 'checked' : null }}>&nbsp;Yes</li>
+                                                <li><input type="radio" name="vehicle" value="no" {{ isset($candidate->vehicle) && $candidate->vehicle == 'no' ? 'checked' : null }}>&nbsp;No</li>
+                                            </ul>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="car_accident">Have you ever been in a car accident</label>
-                                            <select class="form-control" name="car_accident">
-                                                <option selected>select</option>
-                                                <option value="yes" {{ isset($candidate->car_accident) && $candidate->car_accident == 'yes' ? 'selected' : null }}>Yes</option>
-                                                <option value="no" {{ isset($candidate->car_accident) && $candidate->car_accident == 'no' ? 'selected' : null }}>No</option>
-                                            </select>
+                                            <ul class="radio-box">
+                                                <li><input type="radio" name="car_accident" value="yes" {{ isset($candidate->car_accident) && $candidate->car_accident == 'yes' ? 'checked' : null }}>&nbsp;Yes</li>
+                                                <li><input type="radio" name="car_accident" value="no" {{ isset($candidate->car_accident) && $candidate->car_accident == 'no' ? 'checked' : null }}>&nbsp;No</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -641,6 +638,7 @@
                                                             </tr>
                                                         </tbody>
                                                 </table>
+                                                <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
                                             </div>
                                             @error('morning')
                                                 <span class="invalid-feedback" role="alert">

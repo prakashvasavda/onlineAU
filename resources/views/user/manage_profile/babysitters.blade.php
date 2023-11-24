@@ -256,6 +256,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="dependants">Do you have any dependants</label>
@@ -265,6 +266,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="chronical_medication">Are you on any chronical medication</label>
@@ -274,6 +276,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="drivers_license">Do you have your drivers license</label>
@@ -283,6 +286,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="vehicle">Do you have your own vehicle</label>
@@ -292,6 +296,7 @@
                     </ul>
                 </div>
             </div>
+            
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="car_accident">Have you ever been in a car accident</label>
