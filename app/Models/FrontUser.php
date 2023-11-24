@@ -85,4 +85,12 @@ class FrontUser extends Model
     public function previous_experience(){
         return $this->hasMany(PreviousExperience::class, 'candidate_id');
     }
+
+    protected static function boot(){
+        parent::boot();
+        static::deleting(function ($front_user) {
+            $front_user->needs_babysitter()->delete(); 
+        });
+    }
+
 }
