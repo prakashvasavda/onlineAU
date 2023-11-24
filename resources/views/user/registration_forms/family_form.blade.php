@@ -12,7 +12,7 @@
             @csrf
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label>Profile Photo <span class="text-danger">*</span></label>
+                    <label>Profile Photo</label>
                     <div class="box">
                         <div class="js--image-preview"></div>
                         <div class="upload-options">
@@ -35,7 +35,6 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-
                 </div>
 
                 <div class="form-input">
@@ -142,13 +141,13 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="age_children">Age of children <span class="text-danger">*</span></label>
+                    <label for="age_children">Age of children </label>
                     <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
-                        <option selected="selected" value="Baby">Baby</option>
-                        <option value="gradeschooler" {{ (!empty(old('age')) && in_array("gradeschooler", old('age')))? 'selected' : '' }}>Gradeschooler</option>
-                        <option value="toddler" {{ (!empty(old('age')) && in_array("toddler", old('age')))? 'selected' : '' }}>Toddler</option>
-                        <option value="teenager" {{ (!empty(old('age')) && in_array("teenager", old('age')))? 'selected' : '' }}>Teenager</option>
-                        <option value="preschooler" {{ (!empty(old('age')) && in_array("preschooler", old('age')))? 'selected' : '' }}>Preschooler</option>
+                        <option value="0_12_months" {{ (!empty(old('age')) && in_array("0_12_months", old('age')))? 'selected' : '' }}>0-12 Months</option>
+                        <option value="1_3_years" {{ (!empty(old('age')) && in_array("1_3_years", old('age')))? 'selected' : '' }}>1-3 Years</option>
+                        <option value="4_7_years" {{ (!empty(old('age')) && in_array("4_7_years", old('age')))? 'selected' : '' }}>4-7 Years</option>
+                        <option value="8_13_years" {{ (!empty(old('age')) && in_array("8_13_years", old('age')))? 'selected' : '' }}>8-13 Years</option>
+                        <option value="13_16_years" {{ (!empty(old('age')) && in_array("13_16_years", old('age')))? 'selected' : '' }}>13-16 Years</option>
                     </select>
                     @error('age')
                         <span class="invalid-feedback" role="alert">
@@ -160,9 +159,8 @@
 
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
+                    <label for="gender_of_children">Gender of children </label>
                     <select id="gender_of_children" name="gender_of_children[]" class="form-field">
-                        <option selected="selected" disabled>Select</option>
                         <option value="male" {{ (!empty(old('gender_of_children')) && in_array("male", old('gender_of_children')))? 'selected' : '' }}>Male</option>
                         <option value="female" {{ (!empty(old('gender_of_children')) && in_array("female", old('gender_of_children')))? 'selected' : '' }}>Female</option>
                     </select>
@@ -284,33 +282,7 @@
                     @endif
                 </div>
             </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="family_location">Preferred babysitting location </label>
-                    <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" name="family_location" checked value="at our home" {{ old('family_location') === "at our home" ? 'checked' : '' }} class="form-field @error('family_location') is-invalid @enderror"><label>At our home</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_location" value="at the babysitter's" {{ old('family_location') === "at the babysitter's" ? 'checked' : '' }} class="form-field @error('family_location') is-invalid @enderror"><label>At the babysitter's</label></li>
-                    </ul>
-                    @if ($errors->has('last_name'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('last_name') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="family_profile_see">Who can see your profile? </label>
-                    <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" checked name="family_profile_see" value="everyone" {{ old('family_profile_see') === "everyone" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Babysits users, public search engines, and job boards can iew your profile."><label>Everyone</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_profile_see" value="only online au-pair users" {{ old('family_profile_see') === "only online au-pair users" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get."><label>Only Online Au-Pair users</label></li>
-                    </ul>
-                </div>
-            </div>
-           
-
+          
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="candidate_duties">What will be the candidate’s duties. <span class="text-danger">*</span></label>
                 <textarea id="candidate_duties" name="candidate_duties" class="form-field" rows="5" >{{ old('candidate_duties') }}</textarea>
@@ -323,7 +295,7 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="family_description">Tell a little about your family, so babysitters can get to know you. <span class="text-danger">*</span></label>
+                <label for="family_description">Tell a little about your family, so babysitters can get to know you.</label>
                 <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" >{{ old('family_description') }}</textarea>
                 <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                 @if ($errors->has('family_description'))
@@ -338,10 +310,27 @@
                     <label for="">What hourly rate are you willing to pay? </label>
                     <div class="input-group mb-1">
                         <span class="input-group-text">R</span>
-                            <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="" value="{{old('salary_expectation')}}">
+                            <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{old('hourly_rate_pay')}}">
                         <span class="input-group-text">hr</span>
                     </div>
                     <p class="fw-light small">Average rate that other families offer: R16,34<br>For your safety and protection, only pay through Online Au-Pairs.</p>
+                    @if ($errors->has('hourly_rate_pay'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="salary_expectation">What is your salary expectation</label>
+                    <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation') }}">
+                    @if ($errors->has('salary_expectation'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('salary_expectation') }}</strong>
+                        </span>
+                    @endif
                 </div>
             </div>
 
@@ -360,7 +349,6 @@
                 </div>
             </div>
 
-            
             <div class="col-6">
                 <div class="form-input">
                     <label for="">When do you need a babysitter? </label>
@@ -475,30 +463,10 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
                     </div>
                 </div>
             </div>
-
-           {{--  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="package">Payment Plan  <span class="text-danger">*</span></label>
-                    <select id="package" name="package" class="form-field" >
-                        <option selected="selected" disabled>select</option>
-                        @if(isset($packages) && !empty($packages))
-                            @foreach($packages as $key => $value)
-                                <option value="{{ $value->id }}" {{ !empty(old('package')) && old('package') == $value->id ? "selected" : ""}}>{{ $value->name }}</option>
-                            @endforeach 
-                        @endif
-                    </select>
-                    @if ($errors->has('package'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('package') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div> --}}
-           
-            
 
             <div class="col-12">
                 <div class="form-input switch-input">
@@ -635,11 +603,11 @@ $(document).ready(function() {
                         <div class="form-input">
                             <label for="age_children">Age of children</label>
                             <select name="age[]" class="form-field" >
-                                <option value="Baby" selected="selected">Baby</option>
-                                <option value="Gradeschooler">Gradeschooler</option>
-                                <option value="Toddler">Toddler</option>
-                                <option value="Teenager">Teenager</option>
-                                <option value="Preschooler">Preschooler</option>
+                                <option value="0_12_months">0-12 Months</option>
+                                <option value="1_3_years">1-3 Years</option>
+                                <option value="4_7_years">4-7 Years</option>
+                                <option value="8_13_years">8-13 Years</option>
+                                <option value="13_16_years">13-16 Years</option>
                             </select>
                         </div>
                     </div> 
@@ -648,7 +616,6 @@ $(document).ready(function() {
                         <div class="form-input">
                             <label for="gender_of_children">Gender of children</label>
                             <select name="gender_of_children[]" class="form-field">
-                            <option selected="selected" disabled>Select</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option></select>
                         </div>

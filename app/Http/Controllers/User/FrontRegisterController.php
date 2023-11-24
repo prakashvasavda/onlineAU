@@ -234,17 +234,13 @@ class FrontRegisterController extends Controller{
         $rules = [
             'name'                          => "required",
             'age'                           => "required",
-            'profile'                       => "required",
             'email'                         => "required|email|unique:front_users,email",
             'password'                      => "required",
             'family_address'                => "required",
             'family_city'                   => "required",
             'home_language'                 => "required",
             'no_children'                   => "required",
-            'family_location'               => "required",
-            'family_profile_see'            => "required",
             'family_notifications'          => "required",
-            'family_description'            => "required",
             'cell_number'                   => "required",
             'id_number'                     => "required",
             'start_date'                    => "required",
@@ -253,7 +249,6 @@ class FrontRegisterController extends Controller{
             'candidate_duties'              => "required",
             'terms_and_conditions'          => "required",
             'surname'                       => "required",
-            'what_do_you_need'              => "required",
         ];
         $message = [
             'name'                          => "The Name must be required",
@@ -266,11 +261,7 @@ class FrontRegisterController extends Controller{
             'home_language'                 => "The Home language must be required",
             'no_children'                   => "The No children must be required",
             'family_types_babysitter'       => "The Family types babysitter must be required",
-            'family_location'               => "The Family location must be required",
-            'family_profile_see'            => "The Family profile see must be required",
             'family_notifications'          => "The Family notifications must be required",
-            'family_description'            => "The Family description must be required",
-            'package'                       => "The payment plan is required",
         ];
 
         $validator = Validator::make($data, $rules, $message);
@@ -303,7 +294,7 @@ class FrontRegisterController extends Controller{
             'family_profile_see'            => $request->family_profile_see,
             'family_notifications'          => $request->family_notifications,
             'salary_expectation'            => $request->salary_expectation,
-            'family_description'            => $request->family_description,
+            'family_description'            => isset($request->family_description) ? $request->family_description : null,
             'family_special_need_option'    => isset($request->family_special_need_option) ? 1 : 0,
             'family_special_need_value'     => isset($request->family_special_need_option) ? json_encode($request->family_special_need_value) : null,
             'status'                        => 1,
