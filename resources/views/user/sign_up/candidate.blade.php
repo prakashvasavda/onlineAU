@@ -16,16 +16,16 @@
                         <h2 class="text-capitalize mb-0">I am a..</h2>
                         <ul class="banner-btn-list">
                             <li>
-                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-aupairs-works" class="btn btn-light">I am an Au-Pair</a>
+                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-aupairs-works" class="btn btn-light">Au-Pair</a>
                             </li>
                             <li>
-                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-nannies-works" class="btn btn-light">I am a Nanny</a>
+                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-nannies-works" class="btn btn-light">Nanny</a>
                             </li>
                             <li>
-                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-babysitters-works" class="btn btn-light">I am a Babysitter</a>
+                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-babysitters-works" class="btn btn-light">Babysitter</a>
                             </li>
                             <li>
-                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-petsitters-works" class="btn btn-light">I am a Pet sitter</a>
+                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-petsitters-works" class="btn btn-light">Pet sitter</a>
                             </li>
                         </ul>
                     </div>
