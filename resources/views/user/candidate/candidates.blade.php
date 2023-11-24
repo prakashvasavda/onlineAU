@@ -64,7 +64,7 @@
 											    <p class="text-capitalize mb-1"><span>name</span>: {{ ucfirst($value->name) }}</p>
 											    <p class="text-capitalize mb-1"><span>age</span>: {{ $value->age }}</p>
 											    <p class="text-capitalize mb-1"><span>area</span>: {{ ucfirst($value->area) }}</p>
-											    <p class="text-capitalize mb-1"><span>availability</span>: 10/02/2023</p>
+											    <p class="text-capitalize mb-1"><span>available from</span>: {{$value->available_date}}</p>
 											    <p class="text-capitalize mb-1"><span>years experience</span>: {{ $value->childcare_experience }}</p>
 											    <p class="text-center mt-3">
 											    	<span>
