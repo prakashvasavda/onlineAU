@@ -35,3 +35,39 @@ $(document).ready(function(){
         });
     });
 });
+
+
+/*change user status function*/
+function changeUserStatus(user_id, role=null){
+    event.preventDefault();
+    var user_status = $("#status_checkbox"+user_id).is(":checked") ? 1 : 0;
+
+    swal({
+        title: "Are you sure?",
+        text: "Do you want to change the status for this user",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes, Delete',
+        cancelButtonText: "No, cancel",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+            $.ajax({
+                url: "{{url('admin/change-user-status')}}",
+                type: "POST",
+                data: {_token: '{{csrf_token()}}', user_status:user_status, user_id:user_id },
+                success: function(response){
+                    //if(response.status == 200){
+                        //$('#familyTable').DataTable().ajax.reload();
+                        swal("Deleted", "Status changed successfully!", "success");
+                    //}
+                }
+            });
+        } else {
+            swal("Cancelled", "Your data safe!", "error");
+        }
+    });
+}

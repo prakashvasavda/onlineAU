@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -167,7 +166,7 @@
         @yield('content')
 
         <footer class="main-footer">
-            <strong>{{ config('app.name', 'TWR') }} Admin</strong>
+            <strong>{{ config('app.name', 'ONLINE AU-PAIR') }} Admin</strong>
         </footer>
     </div>
 
@@ -203,7 +202,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="{{ URL::asset('assets/plugins/ladda/spin.min.js')}}"></script>
     <script src="{{ URL::asset('assets/plugins/ladda/ladda.min.js')}}"></script>
-
+    
     <script>
         Ladda.bind( 'input[type=submit]' );
         $(function () {

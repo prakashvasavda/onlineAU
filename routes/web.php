@@ -144,4 +144,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     /*transactions*/
     Route::resource('transactions', TransactionsController::class)->names('admin.transactions');
+
+    /*user status*/
+    Route::post('chenge-user-status', function(){
+        return response()->json('true', 200);
+    });
 });

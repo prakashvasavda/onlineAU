@@ -24,7 +24,10 @@ class FamilyController extends Controller{
     
     public function view_families(Request $request){
         $data['menu']   = "family";
-        $families       = FrontUser::where('role', 'family')->get();
+        $families       = FrontUser::leftJoin('user_subscriptions', 'front_users.id', '=', 'user_subscriptions.user_id')
+                        ->select('front_users.*', 'user_subscriptions.package_name', 'user_subscriptions.status AS payment_status')
+                        ->get();
+
         
         if($request->ajax()){
             return DataTables::of($families)
@@ -36,10 +39,25 @@ class FamilyController extends Controller{
                     $btn .= '<span data-toggle="tooltip" title="Delete Family" data-trigger="hover">
                                 <button class="btn btn-sm btn-danger delete-review" type="button" data-id="' . $row->id . '" onclick="deleteFamily(' . $row->id . ', \'' . $row->role . '\')"><i class="fa fa-trash"></i></button>
                             </span>';
-
                     return $btn;
                 })
-                ->rawColumns(['action'])
+
+                ->addColumn('payment', function ($row) {
+                    if($row->payment_status == 1){
+                        return $payment = '<span class="badge badge-success">paid</span>';
+                    }else{
+                        return $payment = '<span class="badge badge-danger">pending</span>';
+                    }
+                })
+
+                ->addColumn('user_status', function ($row) {
+                    if($row->status == 1){
+                        return $status_btn = '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" checked onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
+                    }else{
+                        return $status_btn = '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
+                    }
+                })
+                ->rawColumns(['action', 'payment', 'user_status'])
                 ->make(true);
         }
 
