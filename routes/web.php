@@ -50,8 +50,7 @@ Route::get('candidate-detail/{id}', [FrontFamilyController::class, 'candidate_de
 Route::get('candidates/{service}', [HomeController::class, 'candidates'])->name('candidates-service');
 
 /* SIGN UP ROUTES */
-Route::get('sign-up/candidate', [HomeController::class, 'sign_up'])->name('sign-up-candidate');
-Route::get('sign-up/family', [HomeController::class, 'families'])->name('sign-up-family');
+Route::get('sign-up/{service}', [HomeController::class, 'sign_up'])->name('sign-up');
 
 /* Terms and Conditions */
 Route::get('{service}/terms-and-condition', [HomeController::class, 'terms_and_conditions'])->name('terms-and-conditions');

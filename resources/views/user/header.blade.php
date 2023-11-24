@@ -20,11 +20,11 @@
                                 </ul>
                             </li>
                             
-                            <li class="{{ request()->routeIs('sign-up-candidate') || request()->routeIs('sign-up-family') ? 'active' : '' }}">
-                                <a href="{{ route('sign-up-candidate') }}">sign up</a>
+                            <li class="{{ request()->is('sign-up/*') ? 'active' : '' }}">
+                                <a href="{{ route('sign-up', ['service' => 'candidate']) }}">sign up</a>
                                 <ul>
-                                    <li><a href="{{ route('sign-up-candidate') }}">candidates</a></li>
-                                    <li><a href="{{ route('sign-up-family') }}">family</a></li>
+                                    <li><a href="{{ route('sign-up', ['service' => 'candidate']) }}">candidates</a></li>
+                                    <li><a href="{{ route('sign-up', ['service' => 'family']) }}">family</a></li>
                                 </ul>
                             </li>
                         @elseif(session()->get('frontUser')->role != "family")

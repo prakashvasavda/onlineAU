@@ -211,7 +211,7 @@ class FrontRegisterController extends Controller{
         //     $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
         // });
 
-        return redirect()->route('sign-up-family');
+        return redirect()->route('sign-up', ['service' => 'family']);
     }
 
     public function store_need_babysitter($input, $candidateId){

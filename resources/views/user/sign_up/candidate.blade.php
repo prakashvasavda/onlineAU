@@ -14,16 +14,16 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <ul class="banner-btn-list">
                         <li>
-                            <a href="{{ route('sign-up-candidate') }}#how-aupairs-works" class="btn btn-light">Au-Pair</a>
+                            <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-aupairs-works" class="btn btn-light">Au-Pair</a>
                         </li>
                         <li>
-                            <a href="{{ route('sign-up-candidate') }}#how-nannies-works" class="btn btn-light">Nanny</a>
+                            <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-nannies-works" class="btn btn-light">Nanny</a>
                         </li>
                         <li>
-                            <a href="{{ route('sign-up-candidate') }}#how-babysitters-works" class="btn btn-light">Babysitter</a>
+                            <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-babysitters-works" class="btn btn-light">Babysitter</a>
                         </li>
                         <li>
-                            <a href="{{ route('sign-up-candidate') }}#how-petsitters-works" class="btn btn-light">Pet sitter</a>
+                            <a href="{{ route('sign-up', ['service' => 'candidate']) }}#how-petsitters-works" class="btn btn-light">Pet sitter</a>
                         </li>
                     </ul>
                 </div>
