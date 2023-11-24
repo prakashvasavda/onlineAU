@@ -266,11 +266,11 @@
                                 <form method="POST" id="form_five" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="amount" value="250">
-                                    <input type="hidden" name="item_name" value="babysitters 1 month package">
+                                    <input type="hidden" name="item_name" value="self placement subscription">
                                     <input type="hidden" name="end_date" value="30">
                                     <a href="#" onclick="document.getElementById('form_five').submit(); return false;">
                                         <div class="pricing-box">
-                                            <div class="name-box">1 MONTH PACKAGE</div>
+                                            <div class="name-box">SELF PLACEMENT SUBSCRIPTION</div>
                                             <div class="price-box display-6">R 250</div>
                                             <ul class="features">
                                                 <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to a months.</li>
@@ -285,11 +285,11 @@
                                 <form method="POST" id="form_six" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="amount" value="500">
-                                    <input type="hidden" name="item_name" value="babysitters 2 month package">
+                                    <input type="hidden" name="item_name" value="private placement subscription">
                                     <input type="hidden" name="end_date" value="60">
                                     <a href="#" onclick="document.getElementById('form_six').submit(); return false;">
                                         <div class="pricing-box">
-                                            <div class="name-box">2 MONTH PACKAGE</div>
+                                            <div class="name-box">PRIVATE PLACEMENT SUBSCRIPTION</div>
                                             <div class="price-box display-6">R 500</div>
                                             <ul class="features">
                                                 <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 2 months.</li>
@@ -313,11 +313,11 @@
                                 <form method="POST" id="form_seven" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="amount" value="250">
-                                    <input type="hidden" name="item_name" value="pet sitters 1 month package">
+                                    <input type="hidden" name="item_name" value="self placement subscription">
                                     <input type="hidden" name="end_date" value="30">
                                     <a href="#" onclick="document.getElementById('form_seven').submit(); return false;">
                                         <div class="pricing-box">
-                                            <div class="name-box">1 MONTH PACKAGE</div>
+                                            <div class="name-box">SELF PLACEMENT SUBSCRIPTION</div>
                                             <div class="price-box display-6">R 250</div>
                                             <ul class="features">
                                                 <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to a months.</li>
@@ -332,11 +332,11 @@
                                 <form method="POST" id="form_eight" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="amount" value="500">
-                                    <input type="hidden" name="item_name" value="pet sitter 2 month package">
+                                    <input type="hidden" name="item_name" value="private placement subscription">
                                     <input type="hidden" name="end_date" value="60">
                                     <a href="#" onclick="document.getElementById('form_eight').submit(); return false;">
                                         <div class="pricing-box">
-                                            <div class="name-box">2 MONTH PACKAGE</div>
+                                            <div class="name-box">PRIVATE PLACEMENT SUBSCRIPTION</div>
                                             <div class="price-box display-6">R 500</div>
                                             <ul class="features">
                                                 <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 2 months.</li>
