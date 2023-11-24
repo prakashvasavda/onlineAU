@@ -492,7 +492,6 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
-                <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
                 <div class="table-responsive">
                     <table class="table table-borderless table-sm">
                         <tbody>
@@ -604,6 +603,7 @@
                                 </tr>
                             </tbody>
                     </table>
+                    <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
                 </div>
                 @error('morning')
                     <span class="invalid-feedback" role="alert">
