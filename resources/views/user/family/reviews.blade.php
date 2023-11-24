@@ -3,10 +3,10 @@
 @include('flash.front-message')
 <div class="search-section no-banner">
 	<ul class="filter-option">
-		<li><a href="javaScript:;">Type of babysitter needed</a></li>
-		<li><a href="javaScript:;">Children</a></li>
-		<li><a href="javaScript:;">Verifications</a></li>
-		<li><a href="javaScript:;">More filters</a></li>
+		<li><a href="{{ route('reviews', ['service' => 'au-pairs']) }}">Au-Pairs</a></li>
+		<li><a href="{{ route('reviews', ['service' => 'babysitters']) }}">Babysitters</a></li>
+		<li><a href="{{ route('reviews', ['service' => 'nannies']) }}">Nannies</a></li>
+		<li><a href="{{ route('reviews', ['service' => 'petsitters']) }}">Pet Sitters</a></li>
 	</ul>
 	<div class="search-inner">
 		<div class="container-fluid">

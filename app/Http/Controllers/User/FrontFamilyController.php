@@ -207,7 +207,7 @@ class FrontFamilyController extends Controller{
         return view('user.candidate.candidate_detail', $data);
     }
 
-    public function reviews(){
+    public function reviews($service = null){
         $data['menu']       = "review";
         $data['candidates'] = FrontUser::leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT family_id) as family_favorite_candidate FROM family_favorite_candidates GROUP BY candidate_id) as family_favorites'), 'front_users.id', '=', 'family_favorites.candidate_id')
         ->leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
@@ -221,6 +221,10 @@ class FrontFamilyController extends Controller{
         ->leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM candidate_reviews GROUP BY candidate_id) as reviews'), 'front_users.id', '=', 'reviews.candidate_id')
         ->where('front_users.role', '!=', 'family')
         ->where('front_users.status', '1')
+        ->where('candidate_reviews.family_id', Session::get('frontUser')->id)
+        ->when($service, function ($query, $service) {
+            return $query->where('front_users.role', $service);
+        })
         ->distinct()
         ->get();
 

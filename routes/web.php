@@ -81,7 +81,6 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('all-candidates', [FrontFamilyController::class, 'view_all_candidates'])->name('all-candidates');
     Route::get('view-candidates/{service?}', [FrontFamilyController::class, 'view_candidates'])->name('view-candidates');
     Route::post('store-family-favourite-candidate', [FrontFamilyController::class, 'store_family_favourite_candidate'])->name('store-family-favourite-candidate');
-    Route::get('reviews', [FrontFamilyController::class, 'reviews'])->name('reviews');
 
     /* USER CANDIDATE MANAGE calender ROUTES */
     Route::get('candidate/manage-calender', [FrontCandidateController::class, 'edit_candidate_calender'])->name('candidate-manage-calender');
@@ -93,6 +92,10 @@ Route::group(['middleware' => 'frontendauth'], function () {
 
     /* USER SUBSCRIPTIONS */
     Route::post('cancel-user-subscription', [SubscriptionController::class, 'cancel_user_subscription'])->name('cancel-user-subscription');
+
+    /*REVIEW*/
+    Route::get('reviews/{service?}', [FrontFamilyController::class, 'reviews'])->name('reviews');
+
 });
 
 
