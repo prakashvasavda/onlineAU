@@ -81,17 +81,11 @@ class FrontFamilyController extends Controller{
         $request->validate([
             'name'                          => "required",
             'age'                           => "required",
-            'profile'                       => "required_if:hidden_profile,false",
             'family_address'                => "required",
             'family_city'                   => "required",
             'home_language'                 => "required",
             'no_children'                   => "required",
-            'family_location'               => "required",
-            'family_profile_see'            => "required",
             'family_notifications'          => "required",
-            'family_description'            => "required",
-
-            /*new fields*/
             'surname'                       => "required",
             'id_number'                     => "required",
             'cell_number'                   => "required",

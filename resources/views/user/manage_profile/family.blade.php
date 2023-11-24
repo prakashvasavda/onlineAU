@@ -13,7 +13,7 @@
             @method('PUT')
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label>Profile Photo <span class="text-danger">*</span></label>
+                    <label>Profile Photo </label>
                     <div class="box">
                         <div class="js--image-preview"></div>
                         <div class="upload-options">
@@ -157,11 +157,11 @@
                             <div class="form-input">
                                 <label for="age_children">Age of children <span class="text-danger">*</span></label>
                                 <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
-                                    <option value="baby" {{ $value == "baby" ? 'selected' : '' }}>Baby</option>
-                                    <option value="gradeschooler" {{ $value == "gradeschooler" ? 'selected' : '' }}>Gradeschooler</option>
-                                    <option value="toddler" {{ $value == "toddler" ? 'selected' : '' }}>Toddler</option>
-                                    <option value="teenager" {{ $value == "teenager" ? 'selected' : '' }}>Teenager</option>
-                                    <option value="preschooler" {{ $value == "preschooler" ? 'selected' : '' }}>Preschooler</option>
+                                    <option value="0_12_months" {{ $value == "0_12_months" ? 'selected' : '' }}>0-12 Months</option>
+                                    <option value="1_3_years" {{ $value == "1_3_years" ? 'selected' : '' }}>1-3 Years</option>
+                                    <option value="4_7_years" {{ $value == "4_7_years" ? 'selected' : '' }}>4-7 Years</option>
+                                    <option value="8_13_years" {{ $value == "8_13_years" ? 'selected' : '' }}>8-13 Years</option>
+                                    <option value="13_16_years" {{ $value == "13_16_years" ? 'selected' : '' }}>13-16 Years</option>
                                 </select>
                                 @error('age')
                                     <span class="invalid-feedback" role="alert">
@@ -193,11 +193,11 @@
                         <label for="age_children">Age of children <span class="text-danger">*</span></label>
                         <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
                             <option value="" disabled="disabled" selected>Select Age</option>
-                            <option value="baby">Baby</option>
-                            <option value="gradeschooler">Gradeschooler</option>
-                            <option value="toddler">Toddler</option>
-                            <option value="teenager">Teenager</option>
-                            <option value="preschooler">Preschooler</option>
+                            <option value="0_12_months">0-12 Months</option>
+                            <option value="1_3_years">1-3 Years</option>
+                            <option value="4_7_years">4-7 Years</option>
+                            <option value="8_13_years">8-13 Years</option>
+                            <option value="13_16_years">13-16 Years</option>
                         </select>
                         @error('age')
                             <span class="invalid-feedback" role="alert">
@@ -232,11 +232,11 @@
                                 <div class="form-input">
                                     <label for="age_children">Age of children <span class="text-danger">*</span></label>
                                     <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
-                                        <option value="baby" {{ $value == "baby" ? 'selected' : '' }}>Baby</option>
-                                        <option value="gradeschooler" {{ $value == "gradeschooler" ? 'selected' : '' }}>Gradeschooler</option>
-                                        <option value="toddler" {{ $value == "toddler" ? 'selected' : '' }}>Toddler</option>
-                                        <option value="teenager" {{ $value == "teenager" ? 'selected' : '' }}>Teenager</option>
-                                        <option value="preschooler" {{ $value == "preschooler" ? 'selected' : '' }}>Preschooler</option>
+                                        <option value="0_12_months" {{ $value == "0_12_months" ? 'selected' : '' }}>0-12 Months</option>
+                                        <option value="1_3_years" {{ $value == "1_3_years" ? 'selected' : '' }}>1-3 Years</option>
+                                        <option value="4_7_years" {{ $value == "4_7_years" ? 'selected' : '' }}>4-7 Years</option>
+                                        <option value="8_13_years" {{ $value == "8_13_years" ? 'selected' : '' }}>8-13 Years</option>
+                                        <option value="13_16_years" {{ $value == "13_16_years" ? 'selected' : '' }}>13-16 Years</option>
                                     </select>
                                     @error('age')
                                         <span class="invalid-feedback" role="alert">
@@ -375,33 +375,7 @@
                     @endif
                 </div>
             </div>
-
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="family_location">Preferred babysitting location </label>
-                    <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" name="family_location" value="at our home" class="form-field @error('family_location') is-invalid @enderror" {{ isset($family->family_location) && $family->family_location == "at our home" ? "checked" : '' }}><label>At our home</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_location" value="at the babysitter's" class="form-field @error('family_location') is-invalid @enderror" {{ isset($family->family_location) && $family->family_location == "at the babysitter's" ? "checked" : '' }}><label>At the babysitter's</label></li>
-                    </ul>
-                    @if ($errors->has('family_location'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('family_location') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-            
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="family_profile_see">Who can see your profile? </label>
-                    <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" checked name="family_profile_see" value="everyone" {{ old('family_profile_see') === "everyone" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Babysits users, public search engines, and job boards can iew your profile."><label>Everyone</label></li>
-                        <li class="radio-box-item"><input type="radio" name="family_profile_see" value="only_online_au_pair_users" {{ old('family_profile_see') === "only_online_au_pair_users" ? "checked" : '' }} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="primary-tooltip" data-bs-title="Only babysits users can view your profile. this may reduce the responses you get."><label>Only Online Au-Pair users</label></li>
-                    </ul>
-                </div>
-            </div>
-
+        
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="candidate_duties">What will be the candidate’s duties. <span class="text-danger">*</span></label>
                 <textarea id="candidate_duties" name="candidate_duties" class="form-field" rows="5" >{{ old('candidate_duties', isset($family->candidate_duties) ? $family->candidate_duties : '') }}</textarea>
@@ -414,7 +388,7 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="family_description">Tell a little about your family, so babysitters can get to know you. <span class="text-danger">*</span></label>
+                <label for="family_description">Tell a little about your family, so babysitters can get to know you.</label>
                 <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" >{{ old('family_description', isset($family->family_description) ? $family->family_description : '') }}</textarea>
                 <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                 @if ($errors->has('family_description'))
@@ -429,10 +403,22 @@
                     <label for="">What hourly rate are you willing to pay? </label>
                     <div class="input-group mb-1">
                         <span class="input-group-text">R</span>
-                            <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="" value="{{ old('salary_expectation', isset($family->salary_expectation) ? $family->salary_expectation : '') }}">
+                            <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{ old('hourly_rate_pay', isset($family->hourly_rate_pay) ? $family->hourly_rate_pay : '') }}">
                         <span class="input-group-text">hr</span>
                     </div>
                     <p class="fw-light small">Average rate that other families offer: R16,34<br>For your safety and protection, only pay through Online Au-Pairs.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="salary_expectation">What is your salary expectation</label>
+                    <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror" value="{{ old('salary_expectation', isset($family->salary_expectation) ? $family->salary_expectation : '') }}">
+                    @if ($errors->has('salary_expectation'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('salary_expectation') }}</strong>
+                        </span>
+                    @endif
                 </div>
             </div>
 
@@ -565,6 +551,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
                     </div>
                 </div>
             </div>
@@ -688,11 +675,11 @@ $(document).ready(function() {
                         <div class="form-input">
                             <label for="age_children">Age of children</label>
                             <select name="age[]" class="form-field" >
-                                <option value="Baby"="selected">Baby</option>
-                                <option value="Gradeschooler">Gradeschooler</option>
-                                <option value="Toddler">Toddler</option>
-                                <option value="Teenager">Teenager</option>
-                                <option value="Preschooler">Preschooler</option>
+                                <option value="0_12_months">0-12 Months</option>
+                                <option value="1_3_years">1-3 Years</option>
+                                <option value="4_7_years">4-7 Years</option>
+                                <option value="8_13_years">8-13 Years</option>
+                                <option value="13_16_years">13-16 Years</option>
                             </select>
                         </div>
                     </div> 
