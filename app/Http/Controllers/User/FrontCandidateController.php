@@ -68,10 +68,10 @@ class FrontCandidateController extends Controller{
         $role = strtolower(Session::get('frontUser')->role);
         
         $candidate_profile_forms = [
-            'au-pairs'      => 'user.candidate.aupairs_manage_profile',
-            'nannies'       => 'user.candidate.nannies_manage_profile',
-            'petsitters'    => 'user.candidate.petsitters_manage_profile',
-            'babysitters'   => 'user.candidate.babysitters_manage_profile',
+            'au-pairs'      => 'user.manage_profile.aupairs',
+            'nannies'       => 'user.manage_profile.nannies',
+            'petsitters'    => 'user.manage_profile.petsitters',
+            'babysitters'   => 'user.manage_profile.babysitters',
         ];
 
         $view = $candidate_profile_forms[$role] ?? 'user.home';

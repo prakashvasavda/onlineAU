@@ -74,7 +74,7 @@ class FrontFamilyController extends Controller{
         $data['evening_availability']                       = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']                         = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
         $data['family']['age']                              = !empty($data['family']->age) ? json_decode($data['family']->age, true) : array();
-        return view('user.family.manage_profile', $data);
+        return view('user.manage_profile.family', $data);
     }
 
     public function update_family(Request $request, $familyId){

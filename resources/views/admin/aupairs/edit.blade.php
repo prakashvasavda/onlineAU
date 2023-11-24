@@ -171,13 +171,20 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="situated">Situated</label>
-                                            <input type="text" id="situated" name="situated" placeholder="" class="form-control"  value="{{ old('situated', isset($candidate->situated) ? $candidate->situated : null) }}">
-                                            @error('situated')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                            <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
+                                            <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-control">
+                                                <option value="" disabled>Select</option>
+                                                <option value="0_12_months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0_12_months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
+                                                <option value="1_3_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("1_3_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>1-3 years</option>
+                                                <option value="4_7_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("4_7_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>4-7 years</option>
+                                                <option value="8_13_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("8_13_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>8-13 years</option>
+                                                <option value="13_16_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("13_16_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>13-16 years</option>
+                                            </select>
+                                            @if ($errors->has('ages_of_children_you_worked_with'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
                                                 </span>
-                                            @enderror
+                                            @endif
                                         </div>
                                     </div>
 
@@ -487,11 +494,14 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="available_date">From which date would you be available? <span class="text-danger">*</span></label>
-                                            <input type="date" id="available_date" name="available_date" value="{{ old('available_date', $candidate->available_date) }}" class="form-control">
-                                            @if ($errors->has('available_date'))
+                                            <label for="live_in_or_live_out">Live in / Live out </label>
+                                            <ul class="radio-box-list">
+                                                <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_in" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live_in" ? 'checked' : '' }} class="form-field"><label>&nbsp; Live in</label></li>
+                                                <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live_out" ? 'checked' : '' }} class="form-field"><label> &nbsp;Live out</label></li>
+                                            </ul>
+                                            @if ($errors->has('live_in_or_live_out'))
                                                 <span class="text-danger">
-                                                    <strong>{{ $errors->first('available_date') }}</strong>
+                                                    <strong>{{ $errors->first('live_in_or_live_out') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -596,6 +606,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
+                                            <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
                                             <div class="table-responsive">
                                                 <table class="table table-borderless table-sm">
                                                     <tbody>
@@ -747,6 +758,21 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="available_date">From which date would you be available? <span class="text-danger">*</span></label>
+                                            <input type="date" id="available_date" name="available_date" value="{{ old('available_date', $candidate->available_date) }}" class="form-control">
+                                            @if ($errors->has('available_date'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('available_date') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="card-footer">
                                 <button type="submit" id="submitButton" class="btn btn-primary">Update</button>
