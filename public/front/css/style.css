@@ -1237,9 +1237,13 @@ header {
     gap: 16px;
 }
 .banner-btn-list a.btn {
-    min-width: 320px;
+    min-width: 300px;
     font-weight: 600;
     text-align: left;
+    --bs-btn-color: var(--primary);
+}
+.banner-content .signUp {
+    flex-wrap: wrap;
 }
 .steps-section {
     padding: 80px 0;
@@ -1861,8 +1865,8 @@ header {
 .pricing-plans {
     padding: 80px 0;
 }
-.favorites-section .row, 
-.pricing-plans .row {
+/*.pricing-plans .row, */
+.favorites-section .row {
     row-gap: 30px;
 }
 .favorites-section .title-main, 
