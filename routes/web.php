@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+/*general*/
+use App\Http\Controllers\Controller;
+
 /*user*/
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\LoginController;
@@ -21,7 +24,6 @@ use App\Http\Controllers\Admin\NanniesController;
 use App\Http\Controllers\Admin\PetsittersController;
 use App\Http\Controllers\Admin\ReviewsController;
 use App\Http\Controllers\Admin\TransactionsController;
-
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -146,7 +148,5 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('transactions', TransactionsController::class)->names('admin.transactions');
 
     /*user status*/
-    Route::post('chenge-user-status', function(){
-        return response()->json('true', 200);
-    });
+    Route::post('change-user-status', [Controller::class, 'change_user_status'])->name('admin.change-user-status');
 });

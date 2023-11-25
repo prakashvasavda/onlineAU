@@ -20,6 +20,7 @@ use App\Models\PreviousExperience;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 
 class Controller extends BaseController{
@@ -89,20 +90,30 @@ class Controller extends BaseController{
         }        
     }
 
-    // public function send_mail($data=null, $message){
-    //     config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
-    //     config(['mail.mailers.smtp.port' => '587']);
-    //     config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
-    //     config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
-    //     config(['mail.mailers.smtp.encryption' => 'tls']);
+    public function send_mail($data=null, $message){
+        config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
+        config(['mail.mailers.smtp.port' => '587']);
+        config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
+        config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
+        config(['mail.mailers.smtp.encryption' => 'tls']);
         
-    //     $message = $message;
-    //     $emailTo = 'prakash.v.php@gmail.com';
-    //     $name    = 'Admin';
+        $message = $message;
+        $emailTo = 'prakash.v.php@gmail.com';
+        $name    = 'Admin';
         
-    //     Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
-    //         $mail->to($emailTo, $name)->subject($data['subject'])->setBody($message, 'text/html');
-    //         $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
-    //     });
-    // }
+        Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
+            $mail->to($emailTo, $name)->subject($data['subject'])->setBody($message, 'text/html');
+            $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
+        });
+    }
+
+    public function change_user_status(Request $request){
+        $frontUser = FrontUser::find($request->id);
+        if(empty($frontUser)){
+            return response()->json(['message' => 'record not found', 'status' => 404], 404);
+        }
+        
+        $frontUser->update(['status' => $request->status]);
+        return response()->json(['status'  => 200], 200);
+    }
 }

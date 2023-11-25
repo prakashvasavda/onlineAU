@@ -25,7 +25,7 @@ class FamilyController extends Controller{
     public function view_families(Request $request){
         $data['menu']   = "family";
         $families       = FrontUser::leftJoin('user_subscriptions', 'front_users.id', '=', 'user_subscriptions.user_id')
-                        ->select('front_users.*', 'user_subscriptions.package_name', 'user_subscriptions.status AS payment_status')
+                        ->select('front_users.*', 'user_subscriptions.package_name', 'user_subscriptions.status AS user_payment_status')
                         ->get();
 
         
@@ -42,11 +42,11 @@ class FamilyController extends Controller{
                     return $btn;
                 })
 
-                ->addColumn('payment', function ($row) {
-                    if($row->payment_status == 1){
-                        return $payment = '<span class="badge badge-success">paid</span>';
+                ->addColumn('payment_status', function ($row) {
+                    if($row->user_payment_status == 1){
+                        return $payment_btn = '<span class="badge badge-success">paid</span>';
                     }else{
-                        return $payment = '<span class="badge badge-danger">pending</span>';
+                        return $payment_btn = '<span class="badge badge-danger">pending</span>';
                     }
                 })
 
@@ -57,7 +57,7 @@ class FamilyController extends Controller{
                         return $status_btn = '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
                     }
                 })
-                ->rawColumns(['action', 'payment', 'user_status'])
+                ->rawColumns(['action', 'payment_status', 'user_status'])
                 ->make(true);
         }
 

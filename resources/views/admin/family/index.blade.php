@@ -1,67 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<style>
-.status_switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.status_switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.status_slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.status_slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .status_slider {
-  background-color: #2196F3;
-}
-
-input:focus + .status_slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .status_slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.status_slider.round {
-  border-radius: 34px;
-}
-
-.status_slider.round:before {
-  border-radius: 50%;
-}
-
-</style>
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -98,13 +36,13 @@ input:checked + .status_slider:before {
                             <table id="familyTable" class="table table-bordered table-striped dataTable display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th width="15">Name</th>
-                                        <th width="15">Email</th>
-                                        <th width="15">Cell Number</th>
-                                        <th width="20">Package</th>
-                                        <th width="10">Payment</th>
-                                        <th width="10">Status</th>
-                                        <th width="15">Action</th>
+                                        <th style="width: 15%;">Name</th>
+                                        <th style="width: 15%;">Email</th>
+                                        <th style="width: 15%;">Cell Number</th>
+                                        <th style="width: 25%;">Package</th>
+                                        <th style="width: 10%;">Payment</th>
+                                        <th style="width: 10%;">Status</th>
+                                        <th style="width: 10%;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -131,7 +69,7 @@ input:checked + .status_slider:before {
                 {data: 'email', name: 'email'},
                 {data: 'cell_number', name: 'cell_number'},
                 {data: 'package_name', name: 'package_name'},
-                {data: 'payment', name: 'payment', orderable: false, searchable: false},
+                {data: 'payment_status', name: 'payment_status', orderable: false, searchable: false},
                 {data: 'user_status', name: 'user_status', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]

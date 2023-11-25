@@ -40,7 +40,8 @@ $(document).ready(function(){
 /*change user status function*/
 function changeUserStatus(user_id, role=null){
     event.preventDefault();
-    var user_status = $("#status_checkbox"+user_id).is(":checked") ? 1 : 0;
+    var status = $("#status_checkbox"+user_id).is(":checked") ? 1 : 0;
+    var token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
         title: "Are you sure?",
@@ -48,7 +49,7 @@ function changeUserStatus(user_id, role=null){
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
-        confirmButtonText: 'Yes, Delete',
+        confirmButtonText: 'Yes, Change',
         cancelButtonText: "No, cancel",
         closeOnConfirm: false,
         closeOnCancel: false
@@ -56,18 +57,18 @@ function changeUserStatus(user_id, role=null){
     function(isConfirm) {
         if (isConfirm) {
             $.ajax({
-                url: "{{url('admin/change-user-status')}}",
+                url: "change-user-status",
                 type: "POST",
-                data: {_token: '{{csrf_token()}}', user_status:user_status, user_id:user_id },
+                data: {_token: token, status:status, id:user_id },
                 success: function(response){
-                    //if(response.status == 200){
-                        //$('#familyTable').DataTable().ajax.reload();
+                    if(response.status == 200){
                         swal("Deleted", "Status changed successfully!", "success");
-                    //}
+                    }
                 }
             });
         } else {
-            swal("Cancelled", "Your data safe!", "error");
+            $('.table').DataTable().ajax.reload();
+            swal("Cancelled", "Status change canceled!", "error");
         }
     });
 }
