@@ -17,13 +17,14 @@ function changeUserStatus(user_id, role=null){
     },
     function(isConfirm) {
         if (isConfirm) {
+            swal(showProgressAlert("Processing...", "Please wait"));
             $.ajax({
                 url: base_path + "admin/change-user-status", //base_path is defined in the app layouts folder
                 type: "POST",
                 data: {_token: token, status:status, id:user_id },
                 success: function(response){
                     if(response.status == 200){
-                        swal("Deleted", "Status changed successfully!", "success");
+                        swal("Success", "Status changed successfully!", "success");
                     }
                 }
             });
@@ -32,4 +33,14 @@ function changeUserStatus(user_id, role=null){
             swal("Cancelled", "Status change canceled!", "error");
         }
     });
+}
+
+function showProgressAlert(title, text){
+    return {
+        title: title,
+        text: text,
+        imageUrl: "https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/AjaxLoader.gif",
+        showConfirmButton: false,
+        allowOutsideClick: false
+    };
 }
