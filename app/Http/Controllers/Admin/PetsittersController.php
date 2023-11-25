@@ -31,14 +31,12 @@ class PetsittersController extends Controller{
 
                     return $btn;
                 })
-                ->addColumn('status', function ($row) {
-                    if ($row->status == 0) {
-                        $status_btn = '<input type="checkbox" class="statusChanged" name="status" value="' . $row->id . '" data-bootstrap-switch data-off-color="danger" data-on-color="success">';
-                    } else {
-                        $status_btn = '<input type="checkbox" class="statusChanged" name="status" value="' . $row->id . '" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">';
+               ->addColumn('status', function ($row) {
+                    if($row->status == 1){
+                        return $status_btn = '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" checked onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
+                    }else{
+                        return $status_btn = '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
                     }
-
-                    return $status_btn;
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);
