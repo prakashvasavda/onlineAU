@@ -168,9 +168,13 @@
         @yield('content')
 
         <footer class="main-footer">
-            <strong>{{ config('app.name', 'ONLINE AU-PAIR') }} Admin</strong>
+            <strong>{{ config('app.name', 'AU-PAIRS') }} Admin</strong>
         </footer>
     </div>
+
+    <script>
+        var base_path = '{{ url('/') }}/';
+    </script>
 
     <script src="{{ URL('assets/plugins/jquery/jquery.min.js')}}"></script>
     <script src="{{ URL('assets/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
