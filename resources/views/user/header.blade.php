@@ -25,6 +25,7 @@
                                 <ul>
                                     <li><a href="{{ route('sign-up', ['service' => 'candidate']) }}">candidates</a></li>
                                     <li><a href="{{ route('sign-up', ['service' => 'family']) }}">family</a></li>
+                                    <li><a href="{{ route('family-register', ['service' => 'family-petsitting']) }}">PetSitting</a></li>
                                 </ul>
                             </li>
                         @elseif(session()->get('frontUser')->role != "family")

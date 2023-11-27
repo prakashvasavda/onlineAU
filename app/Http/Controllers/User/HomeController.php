@@ -85,6 +85,7 @@ class HomeController extends Controller{
     }
 
     public function sign_up($service){
+        $data['service'] = $service;
         $data['candidates'] = FrontUser::leftJoin('candidate_reviews', 'front_users.id', '=', 'candidate_reviews.candidate_id')
         ->select(
             'front_users.*',
@@ -98,7 +99,7 @@ class HomeController extends Controller{
         ->distinct()
         ->get();
 
-        return $service == 'family' ? view('user.sign_up.family', $data) : view('user.sign_up.candidate');
+        return $service == 'family' || $service == 'family-petsitting' ? view('user.sign_up.family', $data) : view('user.sign_up.candidate');
     }
 
     public function user_logout(){

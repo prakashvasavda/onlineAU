@@ -97,8 +97,8 @@
                         </li>
 
                         
-                        <li class="nav-item @if(in_array($menu, ['family','add family'])) menu-is-opening menu-open @endif">
-                            <a href="#" class="nav-link @if(in_array($menu, ['family','Patient'])) active @endif">
+                        <li class="nav-item @if(in_array($menu, ['family','family petsitting'])) menu-is-opening menu-open @endif">
+                            <a href="#" class="nav-link @if(in_array($menu, ['family','family petsitting'])) active @endif">
                                 <i class="nav-icon fa fa-users"></i>
                                 <p>Families<i class="fas fa-angle-left right"></i></p>
                             </a>
@@ -107,6 +107,15 @@
                                     <a href="{{ route('admin.families') }}" class="nav-link @if($menu=='family') active @endif">
                                         <i class="fa fa-users nav-icon"></i>
                                         <p>Manage Families</p>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ url('admin/family-petsitting') }}" class="nav-link @if($menu=='family petsitting') active @endif">
+                                        <i class="fa fa-dog nav-icon"></i>
+                                        <p>Manage Petisitting</p>
                                     </a>
                                 </li>
                             </ul>

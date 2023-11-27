@@ -76,6 +76,11 @@ class FrontUser extends Model
         'gender_of_children',
         'live_in_or_live_out',
         'special_needs_specifications',
+        'type_of_pet',
+        'how_many_pets',
+        'number_of_pets',
+        'pet_medication_or_disabilities',
+        'pet_medication_or_disabilities_specification',
     ];
 
     public function needs_babysitter(){

@@ -223,10 +223,10 @@ class FrontRegisterController extends Controller{
         return NeedsBabysitter::create($data);
     }
 
-    public function family_register(){
+    public function family_register($service){
         $data['menu']       = "family registration";
         $data['packages']   = packages::all();
-        return view('user.registration_forms.family_form', $data);
+        return $service == "family" ? view('user.registration_forms.family_form', $data) : view('user.registration_forms.family_petsitting_form', $data); 
     }
 
     public function store_family(Request $request){

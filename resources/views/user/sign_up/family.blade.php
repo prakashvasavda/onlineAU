@@ -71,7 +71,7 @@
             </li>
         </ul>
         <div class="btn-main text-center">
-            <a href="{{ route('family-register') }}" class="btn btn-primary round" id="available-candidates">register my family now</a>
+            <a href="{{ route('family-register', ['service' => $service]) }}" class="btn btn-primary round" id="available-candidates">register my family now</a>
         </div>
     </div>
 </div>

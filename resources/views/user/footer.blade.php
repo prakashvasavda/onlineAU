@@ -20,7 +20,7 @@
 						<h5>Family</h5>
 						<ul>
 							<li><a href="{{ route('sign-up', ['service' => 'family']) }}#howWorks">How it Works</a></li>
-							<li><a href="{{ route('family-register') }}">Register my family</a></li>
+							<li><a href="{{ route('family-register', ['service' => 'family']) }}">Register my family</a></li>
 						</ul>
 					</div>
 				</div>

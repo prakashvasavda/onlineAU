@@ -13,6 +13,7 @@ use App\Http\Controllers\User\FrontFamilyController;
 use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\FrontCandidateController;
 use App\Http\Controllers\User\SubscriptionController;
+use App\Http\Controllers\User\FrontFamilyPetsittingController;
 
 /*admin*/
 use App\Http\Controllers\Admin\DashboardController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Admin\NanniesController;
 use App\Http\Controllers\Admin\PetsittersController;
 use App\Http\Controllers\Admin\ReviewsController;
 use App\Http\Controllers\Admin\TransactionsController;
+use App\Http\Controllers\Admin\FamilyPetsittingController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -32,7 +34,10 @@ Route::get('user-login', [LoginController::class, 'index'])->name('user-login');
 Route::get('candidate-register/{service}', [FrontRegisterController::class, 'index'])->name('candidate-register');
 Route::post('store_candidate', [FrontRegisterController::class, 'store_candidate'])->name('store_candidate');
 
-Route::get('family-register', [FrontRegisterController::class, 'family_register'])->name('family-register');
+/*family reegistration*/
+Route::get('family-register/{service?}', [FrontRegisterController::class, 'family_register'])->name('family-register');
+Route::resource('family-petsitting', FrontFamilyPetsittingController::class)->names('family-petsitting');
+
 Route::post('store_family', [FrontRegisterController::class, 'store_family'])->name('store_family');
 Route::post('check-login', [LoginController::class, 'check_login'])->name('check-login');
 Route::get('forgot-password', [LoginController::class, 'forgot_password'])->name('forgot-password');
@@ -60,10 +65,10 @@ Route::get('{service}/terms-and-condition', [HomeController::class, 'terms_and_c
 /* Package route */
 Route::get('packages', [HomeController::class, 'packages'])->name('packages');
 
-Route::group(['middleware' => 'frontendauth'], function () {
-    /* REDIRECT TO PAYMENT GATEWAY */
-    Route::any('/payment/process', [PaymentController::class, 'process_payment'])->name('payment-process');
+/*procceed with payment*/
+Route::any('/payment/process', [PaymentController::class, 'process_payment'])->name('payment-process');
 
+Route::group(['middleware' => 'frontendauth'], function () {
     /* TRANSACTIONS ROUTES */
     Route::get('transactions', [FrontFamilyController::class, 'transactions'])->name('transactions');
 
@@ -97,7 +102,6 @@ Route::group(['middleware' => 'frontendauth'], function () {
 
     /*REVIEW*/
     Route::get('reviews/{service?}', [FrontFamilyController::class, 'reviews'])->name('reviews');
-
 });
 
 
@@ -149,4 +153,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     /*user status*/
     Route::post('change-user-status', [Controller::class, 'change_user_status'])->name('admin.change-user-status');
+
+    /*family petisittimg*/
+    Route::resource('family-petsitting', FamilyPetsittingController::class)->names('admin.family-petsitting');
 });

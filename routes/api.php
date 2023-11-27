@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\PaymentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-/*Payfast api response route*/
-Route::any('/payment/notify', 'PaymentController@payment_notify')->name('payment-notify');
-Route::any('/payment/success', 'PaymentController@payment_success')->name('payment-success');
-Route::any('/payment/cancel', 'PaymentController@payment_cancel')->name('payment-cancel');
+/*Payfast api routes*/
+Route::any('/payment/notify', [PaymentController::class, 'payment_notify'])->name('payment-notify');
+Route::any('/payment/success', [PaymentController::class, 'payment_success'])->name('payment-success');
+Route::any('/payment/cancel', [PaymentController::class, 'payment_cancel'])->name('payment-cancel');
