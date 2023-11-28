@@ -53,7 +53,7 @@
                             <li><a href="{{ route('user-logout') }}">Logout</a></li>
                             <li><a href="javaScript:;" class="search-btn"><i class="fa fa-search"></i></a></li>
                         @else
-                            <li class="#"><a href="{{ route('packages') }}">Packages</a></li>
+                            <li class="{{ request()->routeIs('packages') ? 'active' : '' }}"><a href="{{ route('packages') }}">Packages</a></li>
                             <li><a href="{{ route('contact-us') }}">Contact us</a></li>
                             <li class="{{ request()->is('user-login') ? 'active' : '' }}"><a href="{{ route('user-login') }}">Login</a></li>
                             <li><a href="javaScript:;" class="search-btn"><i class="fa fa-search"></i></a></li>

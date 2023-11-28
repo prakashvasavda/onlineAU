@@ -26,6 +26,9 @@
                                             <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
+                                        <div class="btn-main text-center p-4 pt-0">
+                                            <a href="#" class="btn btn-primary round">Add to Cart</a>
+                                        </div>
                                     </div>
                                 </a>
                             </form>
@@ -48,6 +51,9 @@
                                             <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
+                                        <div class="btn-main text-center p-4 pt-0">
+                                            <a href="#" class="btn btn-primary round">Add to Cart</a>
+                                        </div>
                                     </div>
                                 </a>
                             </form>
@@ -79,6 +85,9 @@
                                             <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
+                                        <div class="btn-main text-center p-4 pt-0">
+                                            <a href="#" class="btn btn-primary round">Add to Cart</a>
+                                        </div>
                                     </div>
                                 </a>
                             </form>
@@ -100,6 +109,9 @@
                                             <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
+                                        <div class="btn-main text-center p-4 pt-0">
+                                            <a href="#" class="btn btn-primary round">Add to Cart</a>
+                                        </div>
                                     </div>
                                 </a>
                             </form>
@@ -128,6 +140,9 @@
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to a months.</li>
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
+                                        <div class="btn-main text-center p-4 pt-0">
+                                            <a href="#" class="btn btn-primary round">Add to Cart</a>
+                                        </div>
                                     </div>
                                 </a>
                             </form>
@@ -147,6 +162,9 @@
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 2 months.</li>
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
+                                        <div class="btn-main text-center p-4 pt-0">
+                                            <a href="#" class="btn btn-primary round">Add to Cart</a>
+                                        </div>
                                     </div>
                                 </a>
                             </form>   
@@ -175,6 +193,9 @@
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to a months.</li>
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
+                                        <div class="btn-main text-center p-4 pt-0">
+                                            <a href="#" class="btn btn-primary round">Add to Cart</a>
+                                        </div>
                                     </div>
                                 </a>
                             </form>
@@ -194,6 +215,9 @@
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 2 months.</li>
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
+                                        <div class="btn-main text-center p-4 pt-0">
+                                            <a href="#" class="btn btn-primary round">Add to Cart</a>
+                                        </div>
                                     </div>
                                 </a>
                             </form>   
