@@ -14,6 +14,7 @@ use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\FrontCandidateController;
 use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\User\FrontFamilyPetsittingController;
+use App\Http\Controllers\User\CartController;
 
 /*admin*/
 use App\Http\Controllers\Admin\DashboardController;
@@ -68,6 +69,12 @@ Route::get('packages', [HomeController::class, 'packages'])->name('packages');
 
 /*procceed with payment*/
 Route::any('/payment/process', [PaymentController::class, 'process_payment'])->name('payment-process');
+
+/*user cart routes*/
+Route::resource('cart', CartController::class)->names('cart');
+
+/*checkout*/
+Route::get('checkout', [HomeController::class, 'checkout'])->name('checkout');
 
 Route::group(['middleware' => 'frontendauth'], function () {
     /* TRANSACTIONS ROUTES */

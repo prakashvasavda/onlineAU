@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Session;
 class PaymentController extends Controller{
 
     public function process_payment(Request $request){
+        if(!Session::has('frontUser') || Session::get('guestUser')){
+            return redirect()->route('sign-up', ['service' => 'family']);
+        }
+
         /*Merchant details*/
         $merchant_id    = 10031315;
         $merchant_key   = 'sbijrnrrkonrs';

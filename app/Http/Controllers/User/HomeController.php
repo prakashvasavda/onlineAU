@@ -119,4 +119,8 @@ class HomeController extends Controller{
         $data['menu'] =  "packages";
         return view('user.packages');
     }
+
+    public function checkout(){
+        return view('user.home.checkout');
+    }
 }
