@@ -31,6 +31,9 @@ class LoginController extends Controller{
         $user = FrontUser::where('email', $request->email)->first();
         
         if ($user && Hash::check($request->password, $user->password)) {
+            if($user->status != 1){
+                return back()->withErrors(['email' => 'your account has been suspended']);
+            }
             /*check user subscription status*/
             $subscription                       = new SubscriptionController();
             $subscription_status                = $user->role == "family" ? $subscription->check_subscription_status($user->id) : null;
