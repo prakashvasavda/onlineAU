@@ -38,7 +38,7 @@
                                     <tr>
                                         <th style="width: 15%;">Name</th>
                                         <th style="width: 15%;">Email</th>
-                                        <th style="width: 15%;">Cell Number</th>
+                                        <th style="width: 15%;">Create At</th>
                                         <th style="width: 25%;">Package</th>
                                         <th style="width: 10%;">Payment</th>
                                         <th style="width: 10%;">Status</th>
@@ -63,11 +63,12 @@
             responsive: true,
             processing: true,
             serverSide: true,
+            order: [[2, 'desc']],
             ajax: "{{ route('admin.families') }}",
             columns: [
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
-                {data: 'cell_number', name: 'cell_number'},
+                {data: 'formatted_created_at', name: 'formatted_created_at'},
                 {data: 'package_name', name: 'package_name'},
                 {data: 'payment_status', name: 'payment_status', orderable: false, searchable: false},
                 {data: 'user_status', name: 'user_status', orderable: false, searchable: false},

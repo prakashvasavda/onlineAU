@@ -26,6 +26,9 @@ class FamilyController extends Controller{
         $data['menu']   = "family";
         $families       = FrontUser::leftJoin('user_subscriptions', 'front_users.id', '=', 'user_subscriptions.user_id')
                         ->select('front_users.*', 'user_subscriptions.package_name', 'user_subscriptions.status AS user_payment_status')
+                        ->selectRaw("DATE_FORMAT(front_users.created_at, '%Y-%m-%d') as formatted_created_at")
+                        ->distinct()
+                        ->orderBy('created_at', 'ASC')
                         ->get();
 
         
