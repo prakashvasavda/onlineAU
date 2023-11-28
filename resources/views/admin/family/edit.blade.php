@@ -182,9 +182,9 @@
                                                 <option value="au_pair" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("au_pair", $family->what_do_you_need))? 'selected' : '' }}>Au-Pair</option>
                                                 <option value="nanny" {{ (!empty($family->what_do_you_need) && is_array($family->what_do_you_need) && in_array("nanny", $family->what_do_you_need))? 'selected' : '' }}>Nanny</option>
                                             </select>
-                                             @if ($errors->has('start_date'))
+                                             @if ($errors->has('what_do_you_need'))
                                                 <span class="text-danger">
-                                                    <strong>{{ $errors->first('start_date') }}</strong>
+                                                    <strong>{{ $errors->first('what_do_you_need') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
