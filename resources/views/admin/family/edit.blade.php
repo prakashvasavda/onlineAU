@@ -332,7 +332,7 @@
                                         </div>
                                     </div>
 
-                                    @if(isset($family->age) && !empty($family->age))
+                                    @if(isset($family->age) && !empty($family->age) && is_array($family->age))
                                         @foreach($family->age as $key => $value)
                                             @if ($key >= 1)  
                                                 @break  
@@ -409,7 +409,7 @@
                                 </div>
 
                                 <div id="more_childern" class="row p-0">
-                                    @if(isset($family->age) && !empty($family->age))
+                                    @if(isset($family->age) && !empty($family->age) && is_array($family->age))
                                         @foreach($family->age as $key => $value)
                                             @if ($key >= 1) 
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
