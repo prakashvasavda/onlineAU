@@ -142,7 +142,7 @@
                                 <li class="nav-item">
                                     <a href="{{route('admin.candidates.petsitters')}}" class="nav-link @if($menu=='petsitters') active @endif">
                                         <i class="fa fa-dog nav-icon"></i>
-                                        <p>Manage Patisittes</p>
+                                        <p>Manage Petsitters</p>
                                     </a>
                                 </li>
 
