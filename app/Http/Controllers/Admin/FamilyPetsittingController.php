@@ -89,12 +89,36 @@ class FamilyPetsittingController extends Controller
         $data['afternoon_availability']                     = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
         $data['evening_availability']                       = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']                         = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        $data['family']['type_of_pet']                      = !empty($data['family']->type_of_pet) ? json_decode($data['family']->type_of_pet, true) : array();
+        $data['family']['how_many_pets']                    = !empty($data['family']->how_many_pets) ? json_decode($data['family']->how_many_pets, true) : array();
         return view('admin.family_petsitting.edit', $data);
     }
 
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, string $id){
+        $request->validate([
+            'name'                          => "required",
+            'family_address'                => "required",
+            'surname'                       => "required",
+            'id_number'                     => "required",
+            'cell_number'                   => "required",
+            'start_date'                    => "required",
+            'duration_needed'               => "required",
+            'candidate_duties'              => "required",
+        ],[
+            'profile.required_if'   => 'The profile field is required',
+        ]);
+
+        $family                                 = FrontUser::find($id);
+        $input                                  = $request->all();
+        $input['password']                      = !empty($request->password) ? Hash::make($request->password) : $family->password;
+        $input['email']                         = !empty($request->email) ? $request->email : $candidate->email;
+        $input['role']                          = $family->role;
+        $input['profile']                       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
+        $input['type_of_pet']                   = isset($request->type_of_pet) ? json_encode($request->type_of_pet) : null;
+        $input['how_many_pets']                 = isset($request->how_many_pets) ? json_encode($request->how_many_pets) : null;
+        $calender                               = $this->store_family_calender($input, $id);
+        $update_status                          = $family->update($input);
+        return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 
     /**

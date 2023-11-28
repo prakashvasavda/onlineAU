@@ -8,7 +8,7 @@
         </div>
         @include('flash.front-message')
 
-        <form class="row" name="frm" action="{{ url('family-petsitting') }}" enctype="multipart/form-data" method="post">
+        <form class="row" name="frm" action="{{ route('store-family-petsitting') }}" enctype="multipart/form-data" method="post">
             @csrf
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
@@ -153,10 +153,10 @@
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="gender_of_children">How many pets </label>
-                    <input type="number" id="how_many_pets" name="how_many_pets" value="1" placeholder="" class="form-field @error('number_of_pets') is-invalid @enderror" >
-                    @if ($errors->has('gender_of_children'))
+                    <input type="number" id="gender_of_children" name="how_many_pets[]" value="" placeholder="" class="form-field" >
+                    @if ($errors->has('how_many_pets'))
                         <span class="text-danger">
-                            <strong>{{ $errors->first('gender_of_children') }}</strong>
+                            <strong>{{ $errors->first('how_many_pets') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -384,7 +384,7 @@ $(document).ready(function() {
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-input">
                             <label for="gender_of_children">How many pets</label>
-                            <input type="number" id="how_many_pets" name="how_many_pets" value="1" placeholder="" class="form-field" >
+                            <input type="number" id="gender_of_children" name="how_many_pets[]" value="1" placeholder="" class="form-field" >
                         </div>
                     </div>
                 `);

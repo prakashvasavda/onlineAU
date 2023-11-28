@@ -28,7 +28,7 @@
                                     <li><a href="{{ route('family-register', ['service' => 'family-petsitting']) }}">PetSitting</a></li>
                                 </ul>
                             </li>
-                        @elseif(session()->get('frontUser')->role != "family")
+                        @elseif(session()->get('frontUser')->role != "family" && session()->get('frontUser')->role != "family-petsitting")
                              {{-- candidate manu --}}
                             <li class="{{ request()->routeIs('view-families') ? 'active' : '' }}"><a href="{{ route('view-families') }}">View Families</a></li>
                             <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li>

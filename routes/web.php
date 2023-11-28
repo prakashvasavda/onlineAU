@@ -34,11 +34,12 @@ Route::get('user-login', [LoginController::class, 'index'])->name('user-login');
 Route::get('candidate-register/{service}', [FrontRegisterController::class, 'index'])->name('candidate-register');
 Route::post('store_candidate', [FrontRegisterController::class, 'store_candidate'])->name('store_candidate');
 
-/*family reegistration*/
 Route::get('family-register/{service?}', [FrontRegisterController::class, 'family_register'])->name('family-register');
-Route::resource('family-petsitting', FrontFamilyPetsittingController::class)->names('family-petsitting');
 
+/*fanily registration*/
 Route::post('store_family', [FrontRegisterController::class, 'store_family'])->name('store_family');
+Route::post('store-family-petsitting', [FrontFamilyPetsittingController::class, 'store'])->name('store-family-petsitting');
+
 Route::post('check-login', [LoginController::class, 'check_login'])->name('check-login');
 Route::get('forgot-password', [LoginController::class, 'forgot_password'])->name('forgot-password');
 Route::post('check-user', [LoginController::class, 'check_user'])->name('check-user');
@@ -102,6 +103,9 @@ Route::group(['middleware' => 'frontendauth'], function () {
 
     /*REVIEW*/
     Route::get('reviews/{service?}', [FrontFamilyController::class, 'reviews'])->name('reviews');
+
+    /*family petissiting*/
+    Route::resource('family-petsitting', FrontFamilyPetsittingController::class)->names('family-petsitting');
 });
 
 

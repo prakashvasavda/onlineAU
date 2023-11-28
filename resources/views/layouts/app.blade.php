@@ -114,7 +114,7 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ url('admin/family-petsitting') }}" class="nav-link @if($menu=='family petsitting') active @endif">
-                                        <i class="fa fa-dog nav-icon"></i>
+                                        <i class="fa fa-cat nav-icon"></i>
                                         <p>Manage Petisitting</p>
                                     </a>
                                 </li>

@@ -74,7 +74,19 @@ class FrontFamilyController extends Controller{
         $data['evening_availability']                       = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']                         = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
         $data['family']['age']                              = !empty($data['family']->age) ? json_decode($data['family']->age, true) : array();
-        return view('user.manage_profile.family', $data);
+        
+        /*family pettisittimg*/ 
+        $data['family']['type_of_pet']                      = !empty($data['family']->type_of_pet) ? json_decode($data['family']->type_of_pet, true) : array();
+        $data['family']['how_many_pets']                    = !empty($data['family']->how_many_pets) ? json_decode($data['family']->how_many_pets, true) : array();
+
+        $role = strtolower(Session::get('frontUser')->role);
+        $family_profile_forms = [
+            'family'                => 'user.manage_profile.family',
+            'family-petsitting'     => 'user.manage_profile.family_petsitting',
+        ];
+
+        $view = $family_profile_forms[$role] ?? 'user.home';
+        return view($view, $data);
     }
 
     public function update_family(Request $request, $familyId){
