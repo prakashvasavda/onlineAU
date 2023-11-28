@@ -2129,7 +2129,8 @@ span.text-danger{
     display: flex;
     flex-flow: column;
     height: 100%;
-    word-break: break-all;
+    /*word-break: break-all;*/
+    word-wrap: break-word;
 }
 .pricing-box .name-box {
     background-color: var(--secondary);
