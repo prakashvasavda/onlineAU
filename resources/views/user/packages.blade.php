@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="aupairs_first">
                             <form method="POST" id="form_one" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="1500">
@@ -22,7 +22,7 @@
                                 <input type="hidden" name="end_date" value="60">
                                 <a href="#" onclick="return false; document.getElementById('form_one').submit(); return false;">
                                     <div class="pricing-box">
-                                        <div class="name-box">SELF PLACEMENT PACKAGE</div>
+                                        <div class="name-box">SELF PLACEMENT PACKAGE test</div>
                                         <div class="price-box display-6">R 1500</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You are your own agent.</li>
@@ -31,14 +31,14 @@
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addToCart('au-pair self placement package')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('au-pair self placement package', 'aupairs_first')" data-id="first_package" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
                             </form>
                         </div>
                         
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="aupairs_second">
                             <form method="POST" id="form_two" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="3000">
@@ -55,7 +55,7 @@
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addToCart('au-pair private placement package')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('au-pair private placement package', 'aupairs_second')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="nannies_first">
                             <form method="POST" id="form_three" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="3000">
@@ -89,14 +89,14 @@
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addToCart('nannies self placement package')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('nannies self placement package', 'nannies_first')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
                             </form>
                         </div>
 
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="nannies_second">
                             <form method="POST" id="form_four" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="3000">
@@ -113,7 +113,7 @@
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addToCart('nannies private placement package')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('nannies private placement package', 'nannies_second')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -129,7 +129,7 @@
                         <h2>babysitters</h2>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="babysitters_first">
                             <form method="POST" id="form_five" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="250">
@@ -144,14 +144,14 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addToCart('babysitters self placement subscription')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('babysitters self placement subscription', 'babysitters_first')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
                             </form>
                         </div>
 
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="babysitters_second">
                             <form method="POST" id="form_six" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="500">
@@ -166,7 +166,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addToCart('babysitters private placement subscription')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('babysitters private placement subscription', 'babysitters_second')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -182,7 +182,7 @@
                         <h2>pet sitters</h2>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="petsitters_first">
                             <form method="POST" id="form_seven" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="250">
@@ -197,14 +197,14 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addToCart('pet sitters self placement subscription')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('pet sitters self placement subscription', 'petsitters_first')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
                             </form>
                         </div>
 
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="petsitters_second">
                             <form method="POST" id="form_eight" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="500">
@@ -219,7 +219,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addToCart('pet sitters private placement subscription')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('pet sitters private placement subscription', 'petsitters_second')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -252,17 +252,24 @@
         });
     }
 
-    function addToCart(package_name){
+    function addItemToCart(package_name, block_id){
         event.preventDefault();
+
+        $('#'+block_id).css({
+          'pointer-events': 'none',
+          'opacity': '0.4'
+        });
+
         $.ajax({
             type: "POST",
             url: "{{ url('cart') }}",
             data: {
                     _token: "{{ csrf_token() }}",
                     package_name:package_name,
+                    block_id: block_id,
             },
             success: function (response) {
-                $('.counterNumber').text(response.cart_total);
+                $('.counterNumber').text(response.total_items);
             }
         });
     }

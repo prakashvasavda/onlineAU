@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Session;
 class PaymentController extends Controller{
 
     public function process_payment(Request $request){
-        if(!Session::has('frontUser') || Session::get('guestUser')){
+        if((!Session::has('frontUser') && !Session::has('guestUser')) || empty(Session::get('cart'))){
             return redirect()->route('sign-up', ['service' => 'family']);
         }
 
@@ -31,8 +31,8 @@ class PaymentController extends Controller{
 
         /*add user subscription*/
         $subscription           = new SubscriptionController();
-        $user_subscription      = $subscription->add_user_subscription($request->all(), $custom_int1);
-        $user_subscription_id   = isset($user_subscription->id) ? $user_subscription->id : null;
+        $user_subscription      = $subscription->add_user_subscription(Session::get('cart'), $custom_int1);
+        $user_subscription_id   = isset($user_subscription) && is_array($user_subscription) ? implode(',', $user_subscription) : null;
 
         /*Transaction details*/
         $amount         = isset($request->amount)    ? $request->amount     : null;
@@ -94,14 +94,14 @@ class PaymentController extends Controller{
 
         $data                           = $request->all();
         $data['user_id']                = $request->custom_int1;
-        $data['user_subscription_id']   = $request->custom_int2;
+        $data['user_subscription_id']   = 0; //$request->custom_int2;
         $payment                        = Payment::create($data);
 
         \Log::info(print_r($request->all(), true));
 
-        if(isset($request->custom_int1) && !empty($payment)){
-            $user_subscription = UserSubscription::where('user_id', $request->custom_int1)->latest()->first();
-            $update_status     = !empty($user_subscription) ? $user_subscription->update(['status' => 'active']) : null;
-        }
+        // if(isset($request->custom_int1) && !empty($payment)){
+        //     $user_subscription = UserSubscription::where('user_id', $request->custom_int1)->latest()->first();
+        //     $update_status     = !empty($user_subscription) ? $user_subscription->update(['status' => 'active']) : null;
+        // }
     }
 }
