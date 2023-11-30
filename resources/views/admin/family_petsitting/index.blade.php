@@ -68,7 +68,7 @@
             columns: [
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
-                {data: 'created_at', name: 'created_at'},
+                {data: 'formatted_created_at', name: 'formatted_created_at'},
                 {data: 'payment_status', name: 'payment_status', orderable: false, searchable: false},
                 {data: 'user_status', name: 'user_status', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
