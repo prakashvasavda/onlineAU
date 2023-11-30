@@ -28,12 +28,12 @@ class FamilyController extends Controller{
         $data['menu']   = "family";
                 
         if($request->ajax()){
-            $families = FrontUser::select('*')
+            $response = FrontUser::select('*')
                         ->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as formatted_created_at")
                         ->where('role', 'family')
                         ->get();
 
-            return DataTables::of($families)
+            return DataTables::of($response)
                 ->addColumn('action', function ($row) {
                     $btn = '<span data-toggle="tooltip" title="Edit Family" data-trigger="hover">
                                 <a href="'.url('admin/edit-family/'.$row->id).'" class="btn btn-sm btn-primary edit-family" type="button" data-id="' . $row->id . '"><i class="fa fa-pen"></i></a>

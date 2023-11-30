@@ -39,6 +39,7 @@
                                         <th style="width: 15%;">Name</th>
                                         <th style="width: 15%;">Email</th>
                                         <th style="width: 15%;">Created At</th>
+                                        <th style="width: 15%;">Payment</th>
                                         <th style="width: 10%;">Status</th>
                                         <th style="width: 10%;">Action</th>
                                     </tr>
@@ -68,6 +69,7 @@
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'created_at', name: 'created_at'},
+                {data: 'payment_status', name: 'payment_status', orderable: false, searchable: false},
                 {data: 'user_status', name: 'user_status', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
