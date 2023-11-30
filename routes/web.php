@@ -161,6 +161,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     /*transactions*/
     Route::resource('transactions', TransactionsController::class)->names('admin.transactions');
+    Route::get('get-user-subsctiptions/{id}', [TransactionsController::class, 'get_user_subsctiptions'])->name('admin.get-user-subsctiptions');
 
     /*user status*/
     Route::post('change-user-status', [Controller::class, 'change_user_status'])->name('admin.change-user-status');

@@ -39,8 +39,6 @@
                                         <th style="width: 15%;">Name</th>
                                         <th style="width: 15%;">Email</th>
                                         <th style="width: 15%;">Create At</th>
-                                        <th style="width: 25%;">Package</th>
-                                        <th style="width: 10%;">Payment</th>
                                         <th style="width: 10%;">Status</th>
                                         <th style="width: 10%;">Action</th>
                                     </tr>
@@ -54,6 +52,35 @@
             </div>
         </section>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">User Subscriptions</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                    <th scope="col">Package</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody id="subscriptionTable">
+                 
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Modal -->
 @endsection
 
 @section('jquery')
@@ -69,8 +96,6 @@
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'formatted_created_at', name: 'formatted_created_at'},
-                {data: 'package_name', name: 'package_name'},
-                {data: 'payment_status', name: 'payment_status', orderable: false, searchable: false},
                 {data: 'user_status', name: 'user_status', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
@@ -107,6 +132,24 @@
                 swal("Cancelled", "Your data safe!", "error");
             }
         });
+    }
+
+    function viewSubscriptions(user_id, role){
+        event.preventDefault();
+        $.ajax({
+            url: "{{url('admin/get-user-subsctiptions')}}/"+user_id,
+            type: "GET",
+            data: {_token: '{{csrf_token()}}' },
+            success: function(response){
+                $("#subscriptionTable").empty();
+                $('#subscriptionTable').append(response);
+                $('#exampleModal').modal('toggle'); 
+            }
+        });
+    }
+
+    function closeModal(){
+        $('#exampleModal').modal('toggle'); 
     }
 </script>
 @endsection
