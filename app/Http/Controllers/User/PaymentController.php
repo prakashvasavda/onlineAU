@@ -68,7 +68,7 @@ class PaymentController extends Controller{
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $response = curl_exec($ch);
+        $api_response = curl_exec($ch);
 
         if (curl_errno($ch)) {
             echo 'cURL Error: ' . curl_error($ch);
@@ -76,7 +76,8 @@ class PaymentController extends Controller{
 
         curl_close($ch);
 
-        return $response;
+        $this->clear_sessions();
+        return $api_response;
     }
 
     public function payment_success(Request $request){
@@ -114,6 +115,16 @@ class PaymentController extends Controller{
                         'status' => 'active'
                     ]);
             }
+        }
+    }
+
+    private function clear_sessions(){
+        if(Session::has('guestUser')){
+            Session::forget('guestUser');
+        }
+
+        if (session::has('cart')) {
+            Session::forget('cart');
         }
     }
 }
