@@ -24,12 +24,6 @@ class FamilyController extends Controller{
     
     public function view_families(Request $request){
         $data['menu']   = "family";
-        // $families       = FrontUser::leftJoin('user_subscriptions', 'front_users.id', '=', 'user_subscriptions.user_id')
-        //                 ->select('front_users.*', 'user_subscriptions.package_name', 'user_subscriptions.status AS user_payment_status')
-        //                 ->selectRaw("DATE_FORMAT(front_users.created_at, '%Y-%m-%d') as formatted_created_at")
-        //                 ->distinct()
-        //                 ->orderBy('created_at', 'ASC')
-        //                 ->get();
 
         $families = FrontUser::where('role', 'family')
                     ->select('*')
@@ -44,23 +38,17 @@ class FamilyController extends Controller{
                                 <a href="'.url('admin/edit-family/'.$row->id).'" class="btn btn-sm btn-primary edit-family" type="button" data-id="' . $row->id . '"><i class="fa fa-pen"></i></a>
                             </span>';
 
+                    $btn .= '<span data-toggle="tooltip" title="view subscriptions" data-trigger="hover">
+                                <button class="btn btn-sm btn-info view subscriptions" type="button" data-id="' . $row->id . '" onclick="viewSubscriptions(' . $row->id . ', \'' . $row->role . '\')"><i class="fa fa-eye"></i></button>
+                            </span>';
+
+
                     $btn .= '<span data-toggle="tooltip" title="Delete Family" data-trigger="hover">
                                 <button class="btn btn-sm btn-danger delete-review" type="button" data-id="' . $row->id . '" onclick="deleteFamily(' . $row->id . ', \'' . $row->role . '\')"><i class="fa fa-trash"></i></button>
                             </span>';
 
-                     $btn .= '<span data-toggle="tooltip" title="view subscriptions" data-trigger="hover">
-                                <button class="btn btn-sm btn-info view subscriptions" type="button" data-id="' . $row->id . '" onclick="viewSubscriptions(' . $row->id . ', \'' . $row->role . '\')"><i class="fa fa-eye"></i></button>
-                            </span>';
                     return $btn;
                 })
-
-                // ->addColumn('payment_status', function ($row) {
-                //     if($row->user_payment_status == 1){
-                //         return $payment_btn = '<span class="badge badge-success">paid</span>';
-                //     }else{
-                //         return $payment_btn = '<span class="badge badge-danger">pending</span>';
-                //     }
-                // })
 
                 ->addColumn('user_status', function ($row) {
                     if($row->status == 1){
@@ -69,7 +57,6 @@ class FamilyController extends Controller{
                         return $status_btn = '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
                     }
                 })
-                // ->rawColumns(['action', 'payment_status', 'user_status'])
                 ->rawColumns(['action', 'user_status'])
                 ->make(true);
         }

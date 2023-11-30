@@ -38,9 +38,7 @@
                                     <tr>
                                         <th style="width: 15%;">Name</th>
                                         <th style="width: 15%;">Email</th>
-                                        <th style="width: 15%;">Cell Number</th>
-                                        <th style="width: 25%;">Package</th>
-                                        <th style="width: 10%;">Payment</th>
+                                        <th style="width: 15%;">Created At</th>
                                         <th style="width: 10%;">Status</th>
                                         <th style="width: 10%;">Action</th>
                                     </tr>
@@ -54,6 +52,7 @@
             </div>
         </section>
     </div>
+@include ('admin.includes.modal')
 @endsection
 
 @section('jquery')
@@ -63,13 +62,12 @@
             responsive: true,
             processing: true,
             serverSide: true,
+            order: [[2, 'desc']],
             ajax: "{{ url('admin/family-petsitting') }}",
             columns: [
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
-                {data: 'cell_number', name: 'cell_number'},
-                {data: 'package_name', name: 'package_name'},
-                {data: 'payment_status', name: 'payment_status', orderable: false, searchable: false},
+                {data: 'created_at', name: 'created_at'},
                 {data: 'user_status', name: 'user_status', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
@@ -91,11 +89,13 @@
         },
         function(isConfirm) {
             if (isConfirm) {
+                swal(showProgressAlert("Processing...", "Please wait"));
                 $.ajax({
                     url: "{{url('admin/family-petsitting')}}/"+user_id,
                     type: "DELETE",
                     data: {_token: '{{csrf_token()}}' },
                     success: function(response){
+                        console.log(response);
                         if(response.status == 200){
                             $('#familyPetsittingTable').DataTable().ajax.reload();
                             swal("Deleted", "Record successfully deleted!", "success");

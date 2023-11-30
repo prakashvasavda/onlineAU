@@ -44,3 +44,22 @@ function showProgressAlert(title, text){
         allowOutsideClick: false
     };
 }
+
+/*view user subscriptions*/
+function viewSubscriptions(user_id, role){
+    event.preventDefault();
+    $.ajax({
+        url: base_path + "admin/get-user-subsctiptions/" + user_id,
+        type: "GET",
+        data: {_token:$('meta[name="csrf-token"]').attr('content') },
+        success: function(response){
+            $("#subscriptionTable").empty();
+            $('#subscriptionTable').append(response);
+            $('#subscriptionsModal').modal('toggle'); 
+        }
+    });
+}
+
+function closeModal(){
+    $('#subscriptionsModal').modal('toggle'); 
+}

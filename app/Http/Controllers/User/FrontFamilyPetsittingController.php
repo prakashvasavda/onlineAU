@@ -44,6 +44,8 @@ class FrontFamilyPetsittingController extends Controller{
         
         $input['status']        = 0;
         $input['role']          = 'family-petsitting';
+        $input['created_at']    = date("Y-m-d H:i:s");
+        $input['updated_at']    = date("Y-m-d H:i:s");
 
         $familyId   = FrontUser::insertGetId($input);
         $calender   = $this->store_family_calender($request->all(), $familyId);
@@ -79,16 +81,18 @@ class FrontFamilyPetsittingController extends Controller{
             'profile.required_if'   => 'The profile field is required',
         ]);
 
-        $family                                 = FrontUser::find($id);
-        $input                                  = $request->all();
-        $input['password']                      = !empty($request->password) ? Hash::make($request->password) : $family->password;
-        $input['email']                         = !empty($request->email) ? $request->email : $candidate->email;
-        $input['role']                          = $family->role;
-        $input['profile']                       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
-        $input['type_of_pet']                   = isset($request->type_of_pet) ? json_encode($request->type_of_pet) : null;
-        $input['how_many_pets']                 = isset($request->how_many_pets) ? json_encode($request->how_many_pets) : null;
-        $calender                               = $this->store_family_calender($input, $id);
-        $update_status                          = $family->update($input);
+        $family                  = FrontUser::find($id);
+        $input                   = $request->all();
+        $input['password']       = !empty($request->password) ? Hash::make($request->password) : $family->password;
+        $input['email']          = !empty($request->email) ? $request->email : $candidate->email;
+        $input['role']           = $family->role;
+        $input['profile']        = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
+        $input['type_of_pet']    = isset($request->type_of_pet) ? json_encode($request->type_of_pet) : null;
+        $input['how_many_pets']  = isset($request->how_many_pets) ? json_encode($request->how_many_pets) : null;
+        $input['updated_at']     = date("Y-m-d H:i:s");
+
+        $calender                = $this->store_family_calender($input, $id);
+        $update_status           = $family->update($input);
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 

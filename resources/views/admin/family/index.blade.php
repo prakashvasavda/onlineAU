@@ -52,35 +52,7 @@
             </div>
         </section>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">User Subscriptions</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <table class="table table-sm table-bordered">
-              <thead>
-                <tr>
-                    <th scope="col">Package</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Status</th>
-                </tr>
-              </thead>
-              <tbody id="subscriptionTable">
-                 
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End of Modal -->
+@include ('admin.includes.modal')
 @endsection
 
 @section('jquery')
@@ -117,6 +89,7 @@
         },
         function(isConfirm) {
             if (isConfirm) {
+                swal(showProgressAlert("Processing...", "Please wait"));
                 $.ajax({
                     url: "{{url('admin/delete-family')}}/"+user_id,
                     type: "DELETE",
@@ -132,24 +105,6 @@
                 swal("Cancelled", "Your data safe!", "error");
             }
         });
-    }
-
-    function viewSubscriptions(user_id, role){
-        event.preventDefault();
-        $.ajax({
-            url: "{{url('admin/get-user-subsctiptions')}}/"+user_id,
-            type: "GET",
-            data: {_token: '{{csrf_token()}}' },
-            success: function(response){
-                $("#subscriptionTable").empty();
-                $('#subscriptionTable').append(response);
-                $('#exampleModal').modal('toggle'); 
-            }
-        });
-    }
-
-    function closeModal(){
-        $('#exampleModal').modal('toggle'); 
     }
 </script>
 @endsection
