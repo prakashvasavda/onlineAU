@@ -6,6 +6,10 @@
             <p style="font-size: small;">Please add your preferred packages to your basket and proceed to checkout. After payment has been received your profile will be activated and you will be granted access</p>
         </div>
 
+         <div id="test">
+                            
+                        </div>
+
         <div class="row row-gap-5 justify-content-center">
             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                 <div class="pricing-plans-main">
@@ -254,7 +258,13 @@
 
     function addItemToCart(package_name, block_id){
         event.preventDefault();
-
+        
+        var checkUser = {{ session()->has('frontUser') || session()->has('guestUser') ? "true" : "false" }};
+        
+        if(checkUser == false){
+            return false;
+        }
+        
         $('#'+block_id).css({
           'pointer-events': 'none',
           'opacity': '0.4'
