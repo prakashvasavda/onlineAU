@@ -114,8 +114,8 @@
                                     <thead>
                                         <tr>
                                             <th class="product-name">Product</th>
-                                            <th class="product-price">Price</th>
                                             <th class="product-date">Date</th>
+                                            <th class="product-price">Price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -129,8 +129,8 @@
                                                 @endphp
                                                 <tr>
                                                     <td>{{ $value['name'] }}</td>
-                                                    <td>{{ $value['price'] }}</td>
                                                     <td>{{ date('d-m-Y', strtotime($value['created_at'])); }}</td>
+                                                    <td>{{ $value['price'] }}</td>
                                                 </tr>
                                             @endforeach
                                         @else
