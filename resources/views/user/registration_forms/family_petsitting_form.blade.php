@@ -153,7 +153,7 @@
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="gender_of_children">How many pets </label>
-                    <input type="number" id="gender_of_children" name="how_many_pets[]" value="" placeholder="" class="form-field" >
+                    <input type="number" id="gender_of_children" name="how_many_pets[]" value="1" placeholder="" class="form-field" >
                     @if ($errors->has('how_many_pets'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('how_many_pets') }}</strong>
