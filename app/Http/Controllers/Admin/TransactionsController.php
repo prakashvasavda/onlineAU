@@ -37,7 +37,7 @@ class TransactionsController extends Controller{
                 $row .= '<tr>';
                 $row .= '<td>'.$value['name'].'</td>';
                 $row .= '<td>'.$value['price'].'</td>';
-                $row .= '<td><span class="badge badge-pill ' . ($value['status'] == 'active' ? 'badge-primary' : ($value['status'] == 'inactive' ? 'badge-secondary' : 'badge-warning')) . '">' . ($value['status'] == 'active' ? 'active' : ($value['status'] == 'inactive' ? 'inactive' : 'expired')) . '</span></td>';
+                $row .= '<td><span class="badge badge-pill ' . ($value['status'] == 'active' ? 'badge-success' : ($value['status'] == 'inactive' ? 'badge-secondary' : 'badge-warning')) . '">' . ($value['status'] == 'active' ? 'paid' : ($value['status'] == 'inactive' ? 'pending' : 'expired')) . '</span></td>';
                 $row .= '</td>';
                 $row .= '</tr>';
             }
