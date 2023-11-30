@@ -24,6 +24,7 @@ class SubscriptionController extends Controller{
                 'start_date'    => date("Y-m-d"),
                 'end_date'      => isset($value['duration']) ? Carbon::now()->addDays($value['duration'])->format('Y-m-d') : null,
                 'status'        => 'inactive',
+                'created_at'    => Carbon::now(),
             ];
 
             $user_subscription_ids[]  = UserSubscription::insertGetId($data);

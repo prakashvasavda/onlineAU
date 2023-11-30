@@ -40,6 +40,7 @@
                             <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Support</a></li>
                             <li class="{{ request()->routeIs('family-manage-profile') ? 'active' : '' }}"><a href="{{ route('family-manage-profile') }}">Manage Profile</a></li>
                             <li class="{{ request()->is('reviews') ? 'active' : '' }}"><a href="{{ route('reviews') }}">Reviews</a></li>
+                            {{-- subscription status --}}
                             @if(session()->get('frontUser')->user_subscription_status == "active")
                                 <li class="{{ request()->routeIs('transactions') ? 'active' : '' }}"><a href="{{ route('transactions') }}">Transactions</a></li>
                             @elseif(session()->get('frontUser')->user_subscription_status == "expired")
@@ -47,11 +48,15 @@
                             @else
                                 <li class="{{ request()->routeIs('packages') ? 'active' : '' }}"><a href="{{ route('packages') }}">Packages</a></li>
                             @endif
+                        
                         @endif
                         
                         @if(session()->has('frontUser'))
                             <li><a href="{{ route('user-logout') }}">Logout</a></li>
                             <li><a href="javaScript:;" class="search-btn"><i class="fa fa-search"></i></a></li>
+                            @if(session()->get('frontUser')->role == "family" || session()->get('frontUser')->role == "family-petsitting")
+                                <li><a href="{{ route('checkout') }}" class="cart-icon {{ request()->routeIs('checkout') ? 'active' : '' }}"><i class="fa-solid fa-cart-shopping"></i><span class="counterNumber">{{ session()->has('cart') ? count(session()->get('cart')) : 0 }}</span></a></li>
+                            @endif
                         @else
                             <li class="#"><a href="{{ route('packages') }}">Packages</a></li>
                             <li><a href="{{ route('contact-us') }}">Contact us</a></li>
