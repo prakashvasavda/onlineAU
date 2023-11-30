@@ -29,12 +29,12 @@
                             HOURLY RATE: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
                         @endif
 
-                        <span id="candidate_contact" style="display: none;">
-                            @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
+                        @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
+                            <span id="candidate_contact" style="display: none;">
                                 CONTACT NUMBER: {{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}<br>
                                 EMAIL: {{ strtoupper($candidate->email) }}
-                            @endif
-                        </span>
+                             </span>
+                        @endif
                     </h3>
                 </div>
             </div>
@@ -432,8 +432,8 @@ function equalHeight(resize) {
 }
 
 function displayContact(event){
-    var payments_status = {{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == "active") ? "active" : "inactive" }};
-    if(payments_status == 0){
+    var payments_status = '{{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == "active") ? "active" : "inactive" }}';
+    if(payments_status == 'inactive'){
         event.preventDefault();
         $(".payment_alert_msg").css("display", "block");
         return false;
