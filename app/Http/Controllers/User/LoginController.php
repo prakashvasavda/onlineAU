@@ -32,7 +32,7 @@ class LoginController extends Controller{
         
         if ($user && Hash::check($request->password, $user->password)) {
             if($user->status != 1){
-                return back()->withErrors(['email' => 'your account has been suspended']);
+                return back()->withErrors(['email' => 'your account is inactive']);
             }
             /*check user subscription status*/
             $subscription                       = new SubscriptionController();
