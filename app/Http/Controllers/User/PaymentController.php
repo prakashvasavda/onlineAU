@@ -23,7 +23,7 @@ class PaymentController extends Controller{
         $merchant_id    = 10031315;
         $merchant_key   = 'sbijrnrrkonrs';
 
-        /*Buyer details*/
+        /*user details*/
         $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : (Session::get('guestUser')['name'] ?? null);
         $name_last      = Session::has('frontUser') ? Session::get('frontUser')->name  : (Session::get('guestUser')['name']) ?? null;
         $email_address  = Session::has('frontUser') ? Session::get('frontUser')->email : (Session::get('guestUser')['email'] ?? null);
@@ -31,14 +31,13 @@ class PaymentController extends Controller{
 
         /*add user subscription*/
         $subscription           = new SubscriptionController();
-        $user_subscription      = $subscription->add_user_subscription(Session::get('cart'), $custom_int1);
-        $user_subscription_id   = isset($user_subscription) && is_array($user_subscription) ? implode(',', $user_subscription) : null;
+        $response               = $subscription->add_user_subscription(Session::get('cart'), $custom_int1);
 
-        /*Transaction details*/
-        $amount         = isset($request->amount)    ? $request->amount     : null;
-        $item_name      = isset($request->item_name) ? $request->item_name  : null;
-        $m_payment_id   = rand();
-        
+        /*if user subsctiption failed try again with registration*/
+        if(empty($response['user_subscription_ids']) || empty($response['amount']) || empty($response['item_name'])){
+            return redirect()->route('sign-up', ['service' => 'family']);
+        }
+
         /*Merchant detail urls*/
         $return_url     = 'https://onlineaupairs.co.za/public/api/payment/success';
         $cancel_url     = 'https://onlineaupairs.co.za/public/api/payment/cancel';
@@ -50,17 +49,17 @@ class PaymentController extends Controller{
         $data = array(
             'merchant_id'   => $merchant_id,
             'merchant_key'  => $merchant_key,
-            'amount'        => $amount,
-            'item_name'     => $item_name,
+            'amount'        => $response['amount'],
+            'item_name'     => $response['item_name'],
             'return_url'    => $return_url,
             'cancel_url'    => $cancel_url,
             'notify_url'    => $notify_url,
             'name_first'    => $name_first,
             'name_last'     => $name_last,
             'email_address' => $email_address,
-            'm_payment_id'  => $m_payment_id,
-            'custom_int1'   => $custom_int1,                 //user_id
-            'custom_int2'   => $user_subscription_id,       //user_sunscription_id
+            'm_payment_id'  => time().uniqid(),
+            'custom_int1'   => $custom_int1,                              //user_id
+            'custom_str1'   => $response['user_subscription_ids'],       //user_sunscription_id
         );
 
         $ch = curl_init();
@@ -92,6 +91,12 @@ class PaymentController extends Controller{
         header( 'HTTP/1.0 200 OK' );
         flush();
 
+        $validatedData = $request->validate([
+            'custom_int1'   => 'required', //for user id
+            'custom_str1'   => 'required', //for user subscription id
+        ]);
+
+
         $data                           = $request->all();
         $data['user_id']                = $request->custom_int1;
         $data['user_subscription_id']   = 0; //$request->custom_int2;
@@ -99,9 +104,16 @@ class PaymentController extends Controller{
 
         \Log::info(print_r($request->all(), true));
 
-        // if(isset($request->custom_int1) && !empty($payment)){
-        //     $user_subscription = UserSubscription::where('user_id', $request->custom_int1)->latest()->first();
-        //     $update_status     = !empty($user_subscription) ? $user_subscription->update(['status' => 'active']) : null;
-        // }
+        if (!empty($payment)) {
+            $userSubscriptionIds = is_string($request->custom_str1) ? explode(",", $request->custom_str1) : null;
+
+            if (!empty($userSubscriptionIds) && is_array($userSubscriptionIds)) {
+                UserSubscription::whereIn('id', $userSubscriptionIds)
+                    ->update([
+                        'payment_id' => $payment->id,
+                        'status' => 'active'
+                    ]);
+            }
+        }
     }
 }
