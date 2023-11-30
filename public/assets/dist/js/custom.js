@@ -48,11 +48,13 @@ function showProgressAlert(title, text){
 /*view user subscriptions*/
 function viewSubscriptions(user_id, role){
     event.preventDefault();
+    swal(showProgressAlert("Processing...", "Please wait"));
     $.ajax({
         url: base_path + "admin/get-user-subsctiptions/" + user_id,
         type: "GET",
         data: {_token:$('meta[name="csrf-token"]').attr('content') },
         success: function(response){
+            swal.close();
             $("#subscriptionTable").empty();
             $('#subscriptionTable').append(response);
             $('#subscriptionsModal').modal('toggle'); 
