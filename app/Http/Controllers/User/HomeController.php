@@ -103,7 +103,8 @@ class HomeController extends Controller{
     }
 
     public function user_logout(){
-        Session::forget('frontUser');
+        // Session::forget('frontUser');
+        Session::flush();
         return redirect()->route('home');
     }
 
