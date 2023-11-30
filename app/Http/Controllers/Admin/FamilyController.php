@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use App\Models\NeedsBabysitter;
 use App\Models\CandidateReview;
 use App\Models\FamilyReview;
 use App\Models\FrontUser;
+use App\Models\UserSubscription;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -24,14 +26,13 @@ class FamilyController extends Controller{
     
     public function view_families(Request $request){
         $data['menu']   = "family";
-
-        $families = FrontUser::where('role', 'family')
-                    ->select('*')
-                    ->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as formatted_created_at")
-                    ->get();
-
-        
+                
         if($request->ajax()){
+            $families = FrontUser::select('*')
+                        ->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as formatted_created_at")
+                        ->where('role', 'family')
+                        ->get();
+
             return DataTables::of($families)
                 ->addColumn('action', function ($row) {
                     $btn = '<span data-toggle="tooltip" title="Edit Family" data-trigger="hover">
@@ -50,6 +51,20 @@ class FamilyController extends Controller{
                     return $btn;
                 })
 
+                ->addColumn('payment_status', function ($row) {
+                    $subscription   = new SubscriptionController();
+                    $payment_status = $subscription->check_subscription_status($row->id);
+                    if($payment_status == 'inactive'){
+                        return $payment_btn = '<span class="badge badge-dark">inactive</span>';
+                    }elseif($payment_status == 'pending'){
+                        return $payment_btn = '<span class="badge badge-danger">pending</span>';
+                    }elseif($payment_status == 'expired'){
+                        return $payment_btn = '<span class="badge badge-warning">expired</span>';
+                    }else{
+                        return $payment_btn = '<span class="badge badge-success">active</span>';
+                    }
+                })
+
                 ->addColumn('user_status', function ($row) {
                     if($row->status == 1){
                         return $status_btn = '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" checked onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
@@ -57,7 +72,7 @@ class FamilyController extends Controller{
                         return $status_btn = '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
                     }
                 })
-                ->rawColumns(['action', 'user_status'])
+                ->rawColumns(['action','payment_status', 'user_status'])
                 ->make(true);
         }
 

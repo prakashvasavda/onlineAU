@@ -23,7 +23,7 @@ class SubscriptionController extends Controller{
                 'package_name'  => isset($value['item_name']) ? $value['item_name'] : null,
                 'start_date'    => date("Y-m-d"),
                 'end_date'      => isset($value['duration']) ? Carbon::now()->addDays($value['duration'])->format('Y-m-d') : null,
-                'status'        => 'inactive',
+                'status'        => 'pending',
                 'created_at'    => Carbon::now(),
             ];
 
@@ -52,16 +52,32 @@ class SubscriptionController extends Controller{
     } 
 
     public function check_subscription_status($user_id){
-        $user_subscription = UserSubscription::where('user_id', $user_id)->latest()->first();
+        $user_subscription = UserSubscription::where('user_id', $user_id)->orderBy('end_date', 'desc')->first();
         
         /*inactive*/
-        if(!isset($user_subscription) || empty($user_subscription) || $user_subscription->status == "inactive"){
+        if(empty($user_subscription)){
             return "inactive";
         }
 
-        /*expired*/
-        if(Carbon::now() > Carbon::parse($user_subscription->end_date)){
-            $user_subscription->update(['status' => 0]);
+        /*pending*/
+        if($user_subscription->status == "pending" && Carbon::now() < Carbon::parse($user_subscription->end_date)){
+            return "pending";
+        }
+
+        /*update pending status*/
+        if($user_subscription->status == "pending" && Carbon::now() > Carbon::parse($user_subscription->end_date)){
+            $user_subscription->update(['status' => 'expired']);
+            return "expired";
+        }
+
+        /*update active status*/
+        if($user_subscription->status == "active" && Carbon::now() > Carbon::parse($user_subscription->end_date)){
+            $user_subscription->update(['status' => 'expired']);
+            return "expired";
+        }
+
+        /*payment expired*/
+        if($user_subscription->status == "expired"){
             return "expired";
         }
         
