@@ -38,7 +38,7 @@
 								            <div class="card-body">
 								            	<div class="pos-icon"><i class="fa-regular fa-heart"></i></div>
 								                <h5 class="card-title">{{ $value->name }}</h5>
-								                <p class="card-text">{{  $value->role == "family" ? $value->family_address :  $value->area }}</p>
+								                <p class="card-text">{{  isset($value->family_address) ? $value->family_address : $value->area }}</p>
 								                <p class="card-text">
 								                	<small>
 								                		<span class="user-reviews-section">
