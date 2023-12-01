@@ -35,7 +35,7 @@ class SearchController extends Controller{
             ->leftJoin(DB::raw('(SELECT family_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM family_reviews GROUP BY family_id) as reviews'), 'front_users.id', '=', 'reviews.family_id')
             ->where(function ($query) use ($search_query) {
                 foreach ($search_query as $keyword) {
-                    $query->orWhere('front_users.area', 'like', '%' . $keyword . '%');
+                    $query->orWhere('front_users.family_address', 'like', '%' . $keyword . '%');
                 }
             })
             ->where('front_users.role', 'family')
