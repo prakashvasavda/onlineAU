@@ -133,6 +133,7 @@ class FamilyController extends Controller{
         $input['describe_kids']                 = isset($request->describe_kids) ? json_encode($request->describe_kids) : null;
         $availability                           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_family_calender($input, $familyId) : 0;
         $input['gender_of_children']            = isset($request->gender_of_children) ? json_encode($request->gender_of_children) : null;
+        $input['what_do_you_need']              = isset($request->what_do_you_need) ? json_encode($request->what_do_you_need) : null;
         $update_status                          = $family->update($input);
 
         return redirect()->back()->with('success', 'family profile updated successfully.');

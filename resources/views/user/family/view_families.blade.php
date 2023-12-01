@@ -35,6 +35,10 @@
 					<div class="row">
 						@if(isset($families) && !empty($families))
 							@foreach($families as $key => $value)
+							@php
+								$decoded_value = isset($value->what_do_you_need) && is_string($value->what_do_you_need) ? json_decode($value->what_do_you_need) : null;
+								$what_do_you_need = !empty($decoded_value) && is_array($decoded_value) ? implode(", ", $decoded_value) : null;
+							@endphp
 								<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 									<a href="{{ route('family-detail', ['id' => $value->id]) }}">
 										<div class="card verticalBox">
@@ -60,9 +64,9 @@
 											  		</span>
 											  	</div>
 											    <p class="text-capitalize mb-1"><span>name</span>: {{ isset($value->name) ? strtoupper($value->name) : "-" }}</p>
-											    <p class="text-capitalize mb-1"><span>area</span>: {{ isset($value->area) ? $value->area : "-" }}</p>
-											    <p class="text-capitalize mb-1"><span>available from</span>: {{ isset($value->available_date) ? $value->available_date : "-" }}</p>
-											    <p class="text-capitalize mb-1"><span>years experience</span>: {{ isset($value->childcare_experience) ? $value->childcare_experience : "-" }}</p>
+											    <p class="text-capitalize mb-1"><span>area</span>: {{ isset($value->family_address) ? $value->family_address : "-" }}</p>
+											    <p class="text-capitalize mb-1"><span>need a</span>: {{ isset($what_do_you_need) ? $what_do_you_need : "-" }}</p>
+											    <p class="text-capitalize mb-1"><span>start date</span>: {{ isset($value->start_date) ? $value->start_date : "-" }}</p>
 											    <p class="text-center mt-3">
 							                		<span>
 							                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
