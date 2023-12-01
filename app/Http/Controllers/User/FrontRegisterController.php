@@ -318,10 +318,9 @@ class FrontRegisterController extends Controller{
         $data['user_id']        = $familyId;
         $data['profile']        = null;
 
-        /*redirect to payment packages*/
+         /*redirect to payment packages*/
         Session::put('guestUser', $data);
-
-        return view('user.family.pricing');
+        return redirect()->to('packages');
     }
 
     public function send_notification_email($data, $role){
