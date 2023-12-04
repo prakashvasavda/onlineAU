@@ -26,9 +26,9 @@
                             OTHER SPECIALITY: {{ $candidate->other_services ? strtoupper($candidate->other_services) : "-" }}<br> 
                             
                             @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs')
-                                SALARY: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
+                                SALARY: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
                             @else
-                                HOURLY RATE: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
+                                HOURLY RATE: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
                             @endif
                         @endif
 
