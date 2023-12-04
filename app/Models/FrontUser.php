@@ -81,6 +81,7 @@ class FrontUser extends Model
         'number_of_pets',
         'pet_medication_or_disabilities',
         'pet_medication_or_disabilities_specification',
+        'hourly_rate_pay',
     ];
 
     public function needs_babysitter(){
