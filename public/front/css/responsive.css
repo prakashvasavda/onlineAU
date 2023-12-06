@@ -23,6 +23,10 @@
 @media screen and (max-width:991px) {
 	.steps-section-list .steps-section .border-end {border: 0px !important;}
 	.stellarnav a.cart-icon .counterNumber {top: 9px;left: 21px;}
+	.cart-table-sec-main {width: 100%;padding-right: 0px;}
+    .cart-collaterals-sec-main {width: 100%;padding-left: 0px;}
+    .table-arrows {display: flex;}
+    .shift-table table {white-space: nowrap;}
 }
 @media screen and (min-width:768px) and (max-width:991px) {
 	header {padding: 24px 0;}
@@ -99,7 +103,7 @@
 	.contact-section form.contact-form h3 {font-size: 26px;}
 	.single-form-section .title-main h2~h3 {margin-top: 35px;}
 	.single-form-section .title-main {margin: 0 0 20px;}
-	.banner-content h2 {font-size: 40px;}
+	.banner-content h2 {font-size: 38px;}
 	.subTitleBox h3 {font-size: 22px;}
 	.pricing-card .btn, .candidate-availability .btn-main .btn, .candidate-contact .btn, .contact-inner .btn, .sign-now .btn, .contact-section form.contact-form input[type="submit"], .single-form-section form.row .btn, .available-candidates .btn-main .btn, .steps-section .btn-main .btn {font-size: 18px;}
 	.candidate-detail h4 {font-size: 24px;}
@@ -115,16 +119,17 @@
 	.menu-wrapper .logo-main img {max-width: 160px;}
 	.cpyRight-section p {font-size: 12px;}
 	.other-option .text:before, .other-option .text:after {width: 30%;}
-	.step-contentBox p {font-size: 17px;}
-	.candidate-detail h4 {font-size: 23px;}
+	.step-contentBox p {font-size: 15px;}
+	.candidate-detail h4 {font-size: 22px;}
 	.contact-section form.contact-form {padding: 26px 16px;}
-	.contact-info a {font-size: 17px;}
-	.about-content p {font-size: 17px;}
-	.contact-inner p {font-size: 16px;}
+	.about-candidate-box h4 {font-size: 16px;}
+	.contact-info a {font-size: 15px;}
+	.about-content p {font-size: 15px;}
+	.contact-inner p {font-size: 15px;}
 	.review-section h2 {font-size: 22px;}
-	.review-section p {font-size: 17px;}
-	.card-body>* {font-size: 17px;}
-	.pricing-card .features li {font-size: 17px;}
+	.review-section p {font-size: 15px;}
+	.card-body>* {font-size: 15px;}
+	.pricing-card .features li {font-size: 15px;}
 }
 @media screen and (max-width:370px) {
 	.other-option .text:before, .other-option .text:after {width: 27%;}

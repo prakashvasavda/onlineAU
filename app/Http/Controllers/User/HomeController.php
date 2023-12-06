@@ -117,7 +117,6 @@ class HomeController extends Controller{
 
     public function packages(){
         $data['menu'] =  "packages";
-        session()->flash('success', 'Please add your preferred packages to your basket and proceed to checkout. After payment has been received, your profile will be activated, and you will be granted access!');
         return view('user.packages');
     }
 

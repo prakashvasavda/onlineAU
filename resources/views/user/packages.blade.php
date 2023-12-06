@@ -2,7 +2,11 @@
 @section('content')
 <div class="pricing-plans no-banner">
     <div class="container">
-        @include('flash.front-message')
+        <div class="alert alert-primary alert-dismissible" role="alert">
+            <p><strong>Success!</strong> Please add your preferred packages to your basket and proceed to checkout. After payment has been received, your profile will be activated, and you will be granted access!'
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            </button>
+        </div>
         <div class="row row-gap-5 justify-content-center">
             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                 <div class="pricing-plans-main">

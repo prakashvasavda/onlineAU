@@ -15,15 +15,16 @@
     color: var(--white);
 }
 
-body{margin: 0px;padding: 0px;font-weight: normal;font-style: normal;font-size: 18px;line-height: 1.2;font-family: var(--montserrat-font);color: var(--gray-text);}
+body{margin: 0px;padding: 0px;word-wrap: break-word;font-weight: normal;font-style: normal;font-size: 18px;line-height: 1.2;font-family: var(--montserrat-font);color: var(--gray-text);}
 ul,ol{margin: 0;padding: 0px;}
 li{list-style-type:none !important;}
 ol li{list-style-type:unset !important;}
 img{max-width:100%;}
 input.text,input[type="text"],input[type="button"],input[type="submit"],input[type="email"],input[type="tel"],textarea,.input-checkbox{-webkit-appearance: none;border-radius: 0;-webkit-border-radius:0;-webkit-box-shadow:none;box-shadow:none;outline:0;}
-h1,h2,h3,h4,h5,h6,p{margin:0px;line-height: normal;}
+h1,h2,h3,h4,h5,h6,p{margin:0px;line-height: normal;word-break: break-word;}
 a{color: var(--primary);cursor: pointer;text-decoration:none !important;transition:all .4s;-webkit-transition:all .4s;-moz-transition:all .4s;-ms-transition:all .4s;-o-transition:all .4s;}
 a:focus{text-decoration:none;outline:0;}
+a:hover {color: var(--primary);}
 button:focus-visible {outline:0;}
 .TC{text-align:center;}
 .TL{text-align:left;}
@@ -645,6 +646,13 @@ header~.no-banner {
 .single-form-section form.row {
     position: relative;
     row-gap: 20px;
+}
+.shift-table {
+    position: relative;
+}
+.shift-table .table-arrows {
+    width: 100%;
+    z-index: 1;
 }
 .single-form-section .form-input .table-responsive {
     max-width: 600px;
@@ -1829,6 +1837,32 @@ header {
 .can-avail-table {
     background-color: var(--light-gray);
     padding: 20px;
+    position: relative;
+}
+.table-arrows {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: none;
+}
+.can-avail-table .table-arrows {
+    width: calc(100% - 40px);
+}
+.table-arrows a {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+.table-arrows a:first-child {
+    text-align: left;
+}
+.table-arrows a:last-child {
+    text-align: right;
+}
+.table-arrows a:hover {
+    color: var(--gray-text);
 }
 .can-avail-table table td, 
 .can-avail-table table th {
@@ -1995,6 +2029,7 @@ header {
 .favorites-section .card.verticalBox img {
     max-height: 100%;
     aspect-ratio: 16/11;
+    object-fit: cover;
 }
 .card.verticalBox .card-body {
     background-color: var(--light-gray);
@@ -2143,6 +2178,9 @@ span.text-danger{
 .pricing-plans-main form {
     height: 100%;
 }
+.pricing-plans-main .row {
+    row-gap: 30px;
+}
 .pricing-box {
     border: 1px solid var(--secondary);
     display: flex;
@@ -2287,13 +2325,12 @@ span.text-danger{
     justify-content: center;
     padding-top: 14px;
 }
-@media screen and (max-width:991px) {
-    .cart-table-sec-main {
-        width: 100%;
-        padding-right: 0px;
-    }
-    .cart-collaterals-sec-main {
-        width: 100%;
-        padding-left: 0px;
-    }
+.alert .btn-close {
+    opacity: .9;
+}
+.alert-primary .btn-close {
+    filter: brightness(0) invert(1);
+}
+#dynamic_field label.fst-italic {
+    padding-right: 55px;
 }
