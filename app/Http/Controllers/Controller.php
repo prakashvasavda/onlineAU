@@ -126,6 +126,7 @@ class Controller extends BaseController{
                     ->select('packages.candidate', 'user_subscriptions.*')
                     ->where('user_subscriptions.end_date', '>',  Carbon::now())
                     ->where('user_subscriptions.status', 'active')
+                    ->where('user_subscriptions.user_id', $user_id)
                     ->get()->pluck('candidate')->toArray();
         
         $response = !empty($candidates) ? implode(",", $candidates) : null;
