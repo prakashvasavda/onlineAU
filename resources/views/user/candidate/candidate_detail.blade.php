@@ -59,10 +59,6 @@
                         <a href="{{ route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                     @endif
                 </div>
-
-                <span class="text-danger payment_alert_msg" style="margin-left: 10px; display: none;">
-                    <strong style="font-size: small;">Please complete your payments</strong>
-                </span>
             </div>
         </div>
     </div>
@@ -312,9 +308,6 @@
                 <a href="{{ route('candidates') }}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
             @endif
         </div>
-        <span class="text-danger payment_alert_msg" style="margin-left: 220px; display: none;">
-            <strong style="font-size: small;">Please complete your payments</strong>
-        </span>
     </div>
 </div>
 
@@ -446,7 +439,12 @@ function displayContact(event){
     var payments_status = '{{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == "active") ? "active" : "inactive" }}';
     if(payments_status == 'inactive'){
         event.preventDefault();
-        $(".payment_alert_msg").css("display", "block");
+        $(".payment_alert_msg").remove();
+        $('.candidate-contact').after(
+            ` <span class="text-danger payment_alert_msg" style="margin-left: 10px;">
+                <strong style="font-size: small;">Please complete your payments</strong>
+            </span>`
+        );
         return false;
     }
     $(".payment_alert_msg").css("display", "none");
