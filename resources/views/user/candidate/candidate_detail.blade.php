@@ -38,11 +38,13 @@
                             SALARY: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
                         @endif
 
-                        @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
-                            <span id="candidate_contact" style="display: none;">
-                                CONTACT NUMBER: {{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}<br>
-                                EMAIL: {{ strtoupper($candidate->email) }}
-                             </span>
+                        @if(session()->has('frontUser') && session()->get('frontUser')->role == "family" && session()->get('frontUser')->user_subscription_status == "active")
+                            @if(isset(session()->get('frontUser')->purchased_candidates) && in_array($candidate->role, explode(',', session()->get('frontUser')->purchased_candidates)))
+                                <span id="candidate_contact" style="display: none;">
+                                    CONTACT NUMBER: {{ $candidate->contact_number ? strtoupper($candidate->contact_number) : "-" }}<br>
+                                    EMAIL: {{ strtoupper($candidate->email) }}
+                                </span>
+                            @endif
                         @endif
                     </h3>
                 </div>

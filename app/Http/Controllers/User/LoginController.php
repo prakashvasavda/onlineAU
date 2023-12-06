@@ -38,6 +38,13 @@ class LoginController extends Controller{
             $subscription                       = new SubscriptionController();
             $subscription_status                = $user->role == "family" ? $subscription->check_subscription_status($user->id) : null;
             $user['user_subscription_status']   = $subscription_status;
+
+            /*get family paid candidates*/
+            if($user->role == "family" && $subscription_status == "active"){
+                $purchased_candidates = $this->get_purchased_candidates($user->id);
+                $user['purchased_candidates'] = $purchased_candidates;
+            }
+
             Session::put('frontUser', $user);
             return $user->role == "family" || $user->role == "family-petsitting" ? redirect()->route('view-candidates') : redirect()->route('view-families');
         } else {

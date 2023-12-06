@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Packages;
+use Carbon\Carbon;
+
+
 
 
 class Controller extends BaseController{
@@ -115,5 +119,16 @@ class Controller extends BaseController{
         
         $frontUser->update(['status' => $request->status]);
         return response()->json(['status'  => 200], 200);
+    }
+
+    public function get_purchased_candidates($user_id){
+        $candidates = Packages::leftJoin('user_subscriptions', 'packages.id', '=', 'user_subscriptions.package_id')
+                    ->select('packages.candidate', 'user_subscriptions.*')
+                    ->where('user_subscriptions.end_date', '>',  Carbon::now())
+                    ->where('user_subscriptions.status', 'active')
+                    ->get()->pluck('candidate')->toArray();
+        
+        $response = !empty($candidates) ? implode(",", $candidates) : null;
+        return $response;
     }
 }
