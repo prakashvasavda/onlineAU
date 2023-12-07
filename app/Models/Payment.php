@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DateTimeInterface;
+
 
 
 class Payment extends Model
@@ -34,4 +36,8 @@ class Payment extends Model
         'payment_status',
         'signature',
     ];
+
+    protected function serializeDate(DateTimeInterface $date): string{
+        return $date->format('Y-m-d H:i:s');
+    }
 }

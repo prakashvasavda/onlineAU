@@ -39,7 +39,8 @@
                                         <th>Name</th>
                                         <th>Payment ID</th>
                                         <th>Amount</th>
-                                        <th>Item Name</th>
+                                        <th>Package Name</th>
+                                        <th>Created At</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,6 +66,7 @@
                 {data: 'm_payment_id', name: 'm_payment_id'},
                 {data: 'amount_net', name: 'amount_net'},
                 {data: 'item_name', name: 'item_name'},
+                {data: 'created_at', name: 'created_at'},
             ]
         });
     });
