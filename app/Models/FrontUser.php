@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class FrontUser extends Model
 {
     use HasFactory;
@@ -92,11 +93,21 @@ class FrontUser extends Model
         return $this->hasMany(PreviousExperience::class, 'candidate_id');
     }
 
-    protected static function boot(){
-        parent::boot();
-        static::deleting(function ($front_user) {
-            $front_user->needs_babysitter()->delete(); 
-        });
+    public function candidate_reviews(){
+        return $this->hasMany(CandidateReview::class, 'candidate_id');
     }
 
+    public function family_reviews(){
+        return $this->hasMany(FamilyReview::class, 'family_id');
+    }
+
+    protected static function boot(){
+        parent::boot();
+
+        static::deleting(function ($front_user) {
+            $front_user->needs_babysitter()->delete();
+            $front_user->candidate_reviews()->delete();
+            $front_user->family_reviews()->delete();
+        });
+    }
 }

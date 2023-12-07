@@ -18,4 +18,8 @@ class FamilyReview extends Model
         'review_note',
         'date',
     ];
+
+    public function front_user(){
+        return $this->belongsTo(FrontUser::class, 'family_id', 'id');
+    }
 }
