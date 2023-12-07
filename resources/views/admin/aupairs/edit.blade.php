@@ -775,7 +775,8 @@
 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" id="submitButton" class="btn btn-primary">Update</button>
+                                <a href="{{ route('admin.candidates.aupairs') }}" ><button class="btn btn-default" type="button">Back</button></a>
+                                <button type="submit" id="submitButton" class="btn btn-info float-right">Update</button>
                             </div>
                         </form>
                        
