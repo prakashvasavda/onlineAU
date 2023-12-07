@@ -59,8 +59,8 @@
                                 <li><a href="{{ route('checkout') }}" class="cart-icon {{ request()->routeIs('checkout') ? 'active' : '' }}"><i class="fa-solid fa-cart-shopping"></i><span class="counterNumber">{{ session()->has('cart') ? count(session()->get('cart')) : 0 }}</span></a></li>
                             @endif
                         @else
-                            <li class="#"><a href="{{ route('packages') }}">Packages</a></li>
-                            <li><a href="{{ route('contact-us') }}">Contact us</a></li>
+                            <li class="{{ request()->routeIs('packages') ? 'active' : '' }}"><a href="{{ route('packages') }}">Packages</a></li>
+                            <li class="{{ request()->routeIs('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Contact us</a></li>
                             <li class="{{ request()->is('user-login') ? 'active' : '' }}"><a href="{{ route('user-login') }}">Login</a></li>
                             <li><a href="javaScript:;" class="search-btn"><i class="fa fa-search"></i></a></li>
                             {{-- guest user checkout --}}
