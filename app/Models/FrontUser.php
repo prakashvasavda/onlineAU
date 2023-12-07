@@ -101,6 +101,10 @@ class FrontUser extends Model
         return $this->hasMany(FamilyReview::class, 'family_id');
     }
 
+    public function user_subscriptions(){
+        return $this->hasMany(UserSubscription::class, 'user_id');
+    }
+
     protected static function boot(){
         parent::boot();
 
@@ -108,6 +112,7 @@ class FrontUser extends Model
             $front_user->needs_babysitter()->delete();
             $front_user->candidate_reviews()->delete();
             $front_user->family_reviews()->delete();
+            $front_user->user_subscriptions()->delete();
         });
     }
 }

@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserSubscription extends Model
-{
+class UserSubscription extends Model{
     use HasFactory;
     protected $guarded = [];
     protected $table   = 'user_subscriptions';
+
+    public function front_user(){
+        return $this->belongsTo(FrontUser::class, 'user_id', 'id');
+    }
 }
