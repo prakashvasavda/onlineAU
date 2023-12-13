@@ -231,7 +231,7 @@
             </div>
         </div>
         <div class="btn-main text-center mt-5">
-            <a href="#" class="btn btn-secondary round fw-bold">Checkout</a>
+            <a href="{{ route('checkout') }}" class="btn btn-secondary round fw-bold">Checkout</a>
         </div>
     </div>
 </div>
