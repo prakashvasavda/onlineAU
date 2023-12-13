@@ -29,7 +29,7 @@
       </div>
       <div class="form-input text-end">
             <p>Forgot your <a href="{{ route('forgot-password') }}">Password</a> ?</p>
-            <p>Not registered yet? <a href="{{ route('family-register', ['service' => 'family']) }}">Please click here and register your family</a> .</p>
+            <p>Not registered yet? <a href="{{ route('sign-up', ['service' => 'candidate']) }}">Please click here to register</a>.</p>
       </div>
 
       <!-- <div class="form-input d-flex flex-wrap justify-content-start align-items-center">
