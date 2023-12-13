@@ -231,9 +231,12 @@
 
         <div class="col-12">
             <div class="form-inputs" id="dynamic_field">
-                <label class="mb-2 fst-italic">List your previous petsitting work experience with contactable references.</label>
-                <div class="icon-option all-in-one">
-                    <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
+                <div class="d-flex flex-row justify-content-between align-items-start">
+                    <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                    <div class="icon-option all-in-one d-flex flex-row">
+                        <p>Add Reference</p>
+                        <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
