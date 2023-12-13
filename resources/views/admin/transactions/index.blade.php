@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="card-body table-responsive">
-                            <table id="transactionsTable" class="table table-bordered table-striped">
+                            <table id="transactionsTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -58,6 +58,7 @@
 <script type="text/javascript">
     $(function () {
         var table = $('#transactionsTable').DataTable({
+            responsive: true,
             processing: true,
             serverSide: true,
             ajax: "{{ url('admin/transactions') }}",

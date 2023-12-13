@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="card-body table-responsive">
-                            <table id="reviewTable" class="table table-bordered table-striped">
+                            <table id="reviewTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
