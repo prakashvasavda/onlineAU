@@ -351,7 +351,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="">When do you need a babysitter? </label>
+                    <label for="">Days and hours needed. </label>
                     <div class="shift-table">
                         <div class="table-arrows">
                             <a href="javaScript:;" id="left-button"><i class="fa-solid fa-chevron-left"></i></a>

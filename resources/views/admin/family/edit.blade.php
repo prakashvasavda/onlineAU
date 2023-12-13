@@ -511,7 +511,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">When do you need a babysitter? </label>
+                                            <label for="">Days and hours needed.</label>
                                             <div class="table-responsive">
                                                 <table class="table table-borderless table-sm">
                                                     <tbody>

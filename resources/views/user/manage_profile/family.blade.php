@@ -439,7 +439,7 @@
 
             <div class="col-6">
                 <div class="form-input">
-                    <label for="">When do you need a candidate? </label>
+                    <label for="">Days and hours needed.</label>
                     <div class="table-responsive">
                         <table class="table table-borderless table-sm">
                             <tbody>
