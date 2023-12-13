@@ -6,7 +6,8 @@
             <h2>Welcome to Online Au-Pairs</h2>
             <h3>{{ isset($menu) ? ucfirst($menu) : null }}</h3>
         </div>
-        @include('flash.flash-message')
+        
+        @include('flash.front-message')
         <form method="POST" class="row" action="{{ route('update-candidate', ['id' => $candidate->id]) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -32,7 +33,7 @@
                 @endif
             </div>
 
-             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input mb-3">
                     <label for="name">Full Name <span class="text-danger">*</span></label>
                     <input type="text" id="name" name="name" placeholder="" class="form-field @error('name') is-invalid @enderror" value="{{ old('name', isset($candidate->name) ? $candidate->name : null) }}" >
@@ -43,6 +44,19 @@
                     @enderror
 
                 </div>
+
+                <div class="form-input">
+                    <label for="surname">Surname <span class="text-danger">*</span></label>
+                    <input type="text" id="surname" name="surname" placeholder="" class="form-field" value="{{ old('name', $candidate->surname) }}" >
+                    @if ($errors->has('surname'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('surname') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <div class="form-input">
                         <label for="email">Email Address <span class="text-danger">*</span></label>
@@ -248,12 +262,21 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="marital_status">Marital Status</label>
-                    <ul class="radio-box-list d-flex flex-wrap">
-                        <li class="radio-box-item"><input type="radio" name="marital_status" value="married" {{ isset($candidate->marital_status) && $candidate->marital_status == 'married' ? 'checked' : null }}><label>Married</label></li>
-                        <li class="radio-box-item"><input type="radio" name="marital_status" value="single" {{ isset($candidate->marital_status) && $candidate->marital_status == 'single' ? 'checked' : null }}><label>Single</label></li>
-                        <li class="radio-box-item"><input type="radio" name="marital_status" value="in a relationship" {{ isset($candidate->marital_status) && $candidate->marital_status == "in a relationship" ? 'checked' : null }}><label>In a Relationship</label></li>
-                    </ul>
+                    <label for="childcare_experience">How many years of childcare experience do you have</label>
+                    <select id="childcare_experience" name="childcare_experience" class="form-field">
+                        <option value="" selected="selected" disabled="disabled">Select</option>
+                        <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
+                        <option value="1 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1 years" ? "selected" : '' }}>1 years</option>
+                        <option value="1.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1.5 years" ? "selected" : '' }}>1.5 years</option>
+                        <option value="2 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2 years" ? "selected" : '' }}>2 years</option>
+                        <option value="2.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2.5 years" ? "selected" : '' }}>2.5 years</option>
+                        <option value="3 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3 yearsyearsyears" ? "selected" : '' }}>3 years</option>
+                        <option value="3.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3.5 yearsyears" ? "selected" : '' }}>3.5 years</option>
+                        <option value="4 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4 years" ? "selected" : '' }}>4 years</option>
+                        <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 yearsyearsyears" ? "selected" : '' }}>4.5 years</option>
+                        <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
+                        <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
+                    </select>
                 </div>
             </div>
 
@@ -309,23 +332,15 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="childcare_experience">How many years of childcare experience do you have</label>
-                    <select id="childcare_experience" name="childcare_experience" class="form-field">
-                        <option value="" selected="selected" disabled="disabled">Select</option>
-                        <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
-                        <option value="1 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1 years" ? "selected" : '' }}>1 years</option>
-                        <option value="1.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1.5 years" ? "selected" : '' }}>1.5 years</option>
-                        <option value="2 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2 years" ? "selected" : '' }}>2 years</option>
-                        <option value="2.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2.5 years" ? "selected" : '' }}>2.5 years</option>
-                        <option value="3 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3 yearsyearsyears" ? "selected" : '' }}>3 years</option>
-                        <option value="3.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3.5 yearsyears" ? "selected" : '' }}>3.5 years</option>
-                        <option value="4 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4 years" ? "selected" : '' }}>4 years</option>
-                        <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 yearsyearsyears" ? "selected" : '' }}>4.5 years</option>
-                        <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
-                        <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
-                    </select>
+                    <label for="marital_status">Marital Status</label>
+                    <ul class="radio-box-list d-flex flex-wrap">
+                        <li class="radio-box-item"><input type="radio" name="marital_status" value="married" {{ isset($candidate->marital_status) && $candidate->marital_status == 'married' ? 'checked' : null }}><label>Married</label></li>
+                        <li class="radio-box-item"><input type="radio" name="marital_status" value="single" {{ isset($candidate->marital_status) && $candidate->marital_status == 'single' ? 'checked' : null }}><label>Single</label></li>
+                        <li class="radio-box-item"><input type="radio" name="marital_status" value="in a relationship" {{ isset($candidate->marital_status) && $candidate->marital_status == "in a relationship" ? 'checked' : null }}><label>In a Relationship</label></li>
+                    </ul>
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="experience_special_needs">Do you have experience with special needs</label>
@@ -337,9 +352,12 @@
             </div>
             <div class="col-12">
                 <div class="form-inputs" id="dynamic_field">
-                    <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
-                    <div class="icon-option all-in-one">
-                        <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
+                    <div class="d-flex flex-row justify-content-between align-items-start">
+                        <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                        <div class="icon-option all-in-one d-flex flex-row">
+                            <p>Add Reference</p>
+                            <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
+                        </div>
                     </div>
 
                     @if(isset($previous_experience) && !$previous_experience->isEmpty())
