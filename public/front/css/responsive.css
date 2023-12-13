@@ -93,6 +93,8 @@
 	.favorites-section .card img.img-fluid {max-height: unset;aspect-ratio: 1/.8;}
 	.banner-content .signUp {justify-content: flex-start !important;gap: 0.5rem !important;}
 	.row.row-gap-5 {row-gap: 4rem;}
+	.form-inputs .d-flex.flex-row {flex-flow: column !important;}
+	.form-inputs .d-flex.flex-row .icon-option.all-in-one {margin-left: auto;flex-flow: row !important;}
 }
 @media screen and (max-width:575px) {
 	.ftr-menu h5 {font-size: 24px;margin: 0 0 8px;}

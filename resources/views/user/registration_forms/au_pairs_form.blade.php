@@ -385,10 +385,12 @@
 
         <div class="col-12">
             <div class="form-inputs" id="dynamic_field">
-                <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
-            
-                <div class="icon-option all-in-one">
-                    <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
+                <div class="d-flex flex-row justify-content-between align-items-start">
+                    <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                    <div class="icon-option all-in-one d-flex flex-row">
+                        <p>Add Reference</p>
+                        <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -492,118 +494,124 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
-                <div class="table-responsive">
-                    <table class="table table-borderless table-sm">
-                        <tbody>
-                                <tr>
-                                    <td></td>
-                                    <th>Mo</th>
-                                    <th>Tu</th>
-                                    <th>We</th>
-                                    <th>Th</th>
-                                    <th>Fr</th>
-                                    <th>Sa</th>
-                                    <th>Su</th>
-                                </tr>
-                                <tr>
-                                    <th>Morning: 07:00 – 13:00</th>
-                                    <td>
-                                        <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ (old('morning') !== null && in_array("mo_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="morning[]" value="tu_morning" id="" {{ (old('morning') !== null && in_array("tu_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="morning[]" value="we_morning" id="" {{ (old('morning') !== null && in_array("we_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="morning[]" value="th_morning" id="" {{ (old('morning') !== null && in_array("th_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="morning[]" value="fr_morning" id="" {{ (old('morning') !== null && in_array("fr_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="morning[]" value="sa_morning" id="" {{ (old('morning') !== null && in_array("sa_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="morning[]" value="su_morning" id="" {{ (old('morning') !== null && in_array("su_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Afternoon: 13:00 – 17:00</th>
-                                    <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ (old('afternoon') !== null && in_array("mo_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" id="" {{ (old('afternoon') !== null && in_array("tu_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="we_afternoon" id="" {{ (old('afternoon') !== null && in_array("we_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="th_afternoon" id="" {{ (old('afternoon') !== null && in_array("th_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" id="" {{ (old('afternoon') !== null && in_array("fr_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" id="" {{ (old('afternoon') !== null && in_array("sa_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="su_afternoon" id="" {{ (old('afternoon') !== null && in_array("su_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Evening: 17:00 – 21:00</th>
-                                    <td>
-                                        <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ (old('evening') !== null && in_array("mo_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="evening[]" value="tu_evening" id="" {{ (old('evening') !== null && in_array("tu_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="evening[]" value="we_evening" id="" {{ (old('evening') !== null && in_array("we_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="evening[]" value="th_evening" id="" {{ (old('evening') !== null && in_array("th_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="evening[]" value="fr_evening" id="" {{ (old('evening') !== null && in_array("fr_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="evening[]" value="sa_evening" id="" {{ (old('evening') !== null && in_array("sa_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="evening[]" value="su_evening" id="" {{ (old('evening') !== null && in_array("su_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Night: 21:00 – 00:00</th>
-                                    <td>
-                                        <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ (old('night') !== null && in_array("mo_night", old('night'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="night[]" value="tu_night" id="" {{ (old('night') !== null && in_array("tu_night", old('night'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="night[]" value="we_night" id="" {{ (old('night') !== null && in_array("we_night", old('night'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="night[]" value="th_night" id="" {{ (old('night') !== null && in_array("th_night", old('night'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="night[]" value="fr_night" id="" {{ (old('night') !== null && in_array("fr_night", old('night'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="night[]" value="sa_night" id="" {{ (old('night') !== null && in_array("sa_night", old('night'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                    <td>
-                                        <label><input type="checkbox" name="night[]" value="su_night" id="" {{ (old('night') !== null && in_array("su_night", old('night'))) ? 'checked' : '' }}></label>
-                                    </td>
-                                </tr>
-                            </tbody>
-                    </table>
-                    <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
+                <div class="shift-table">
+                    <div class="table-arrows">
+                        <a href="javaScript:;" id="left-button"><i class="fa-solid fa-chevron-left"></i></a>
+                        <a href="javaScript:;" id="right-button"><i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-sm">
+                            <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <th>Mo</th>
+                                        <th>Tu</th>
+                                        <th>We</th>
+                                        <th>Th</th>
+                                        <th>Fr</th>
+                                        <th>Sa</th>
+                                        <th>Su</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Morning: 07:00 – 13:00</th>
+                                        <td>
+                                            <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ (old('morning') !== null && in_array("mo_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="morning[]" value="tu_morning" id="" {{ (old('morning') !== null && in_array("tu_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="morning[]" value="we_morning" id="" {{ (old('morning') !== null && in_array("we_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="morning[]" value="th_morning" id="" {{ (old('morning') !== null && in_array("th_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="morning[]" value="fr_morning" id="" {{ (old('morning') !== null && in_array("fr_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="morning[]" value="sa_morning" id="" {{ (old('morning') !== null && in_array("sa_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="morning[]" value="su_morning" id="" {{ (old('morning') !== null && in_array("su_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Afternoon: 13:00 – 17:00</th>
+                                        <td>
+                                            <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ (old('afternoon') !== null && in_array("mo_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" id="" {{ (old('afternoon') !== null && in_array("tu_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="afternoon[]" value="we_afternoon" id="" {{ (old('afternoon') !== null && in_array("we_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="afternoon[]" value="th_afternoon" id="" {{ (old('afternoon') !== null && in_array("th_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" id="" {{ (old('afternoon') !== null && in_array("fr_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" id="" {{ (old('afternoon') !== null && in_array("sa_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="afternoon[]" value="su_afternoon" id="" {{ (old('afternoon') !== null && in_array("su_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Evening: 17:00 – 21:00</th>
+                                        <td>
+                                            <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ (old('evening') !== null && in_array("mo_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="evening[]" value="tu_evening" id="" {{ (old('evening') !== null && in_array("tu_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="evening[]" value="we_evening" id="" {{ (old('evening') !== null && in_array("we_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="evening[]" value="th_evening" id="" {{ (old('evening') !== null && in_array("th_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="evening[]" value="fr_evening" id="" {{ (old('evening') !== null && in_array("fr_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="evening[]" value="sa_evening" id="" {{ (old('evening') !== null && in_array("sa_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="evening[]" value="su_evening" id="" {{ (old('evening') !== null && in_array("su_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Night: 21:00 – 00:00</th>
+                                        <td>
+                                            <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ (old('night') !== null && in_array("mo_night", old('night'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="night[]" value="tu_night" id="" {{ (old('night') !== null && in_array("tu_night", old('night'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="night[]" value="we_night" id="" {{ (old('night') !== null && in_array("we_night", old('night'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="night[]" value="th_night" id="" {{ (old('night') !== null && in_array("th_night", old('night'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="night[]" value="fr_night" id="" {{ (old('night') !== null && in_array("fr_night", old('night'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="night[]" value="sa_night" id="" {{ (old('night') !== null && in_array("sa_night", old('night'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" name="night[]" value="su_night" id="" {{ (old('night') !== null && in_array("su_night", old('night'))) ? 'checked' : '' }}></label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                        </table>
+                        <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
+                    </div>
                 </div>
                 @error('morning')
                     <span class="invalid-feedback" role="alert">

@@ -2334,3 +2334,14 @@ span.text-danger{
 #dynamic_field label.fst-italic {
     padding-right: 55px;
 }
+#dynamic_field .d-flex label.fst-italic {
+    padding-right: 0px;
+}
+.form-inputs .d-flex .icon-option.all-in-one {
+    position: relative;
+    align-items: center;
+}
+.form-inputs .d-flex .icon-option.all-in-one p {
+    font-size: .775rem;
+    min-width: 95px;
+}
