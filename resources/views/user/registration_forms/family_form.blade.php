@@ -295,7 +295,7 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="family_description">Tell a little about your family, so babysitters can get to know you.</label>
+                <label for="family_description">Tell a little about your family, so candidates can get to know you.</label>
                 <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" >{{ old('family_description') }}</textarea>
                 <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                 @if ($errors->has('family_description'))
@@ -336,8 +336,8 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="family_notifications">Do you want to get notifications from new babysitters in your area? </label>
-                    <ul class="d-flex flex-wrap" >
+                    <label for="family_notifications">Do you want to get notifications from new candidates in your area? </label>
+                    <ul class="d-flex flex-wrap">
                         <li><input type="radio" checked name="family_notifications" value="yes" {{ old('family_notifications') === "yes" ? "checked" : '' }} >Yes</li>
                         <li><input type="radio" name="family_notifications" value="no" {{ old('family_notifications') === "no" ? "checked" : '' }} >No</li>
                     </ul>
@@ -468,7 +468,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
+                            <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the candidate as needed</p>
                         </div>
                     </div>
                 </div>
