@@ -86,7 +86,6 @@ class FrontRegisterController extends Controller{
             'contact_number'                    => $request->contact_number,
             'email'                             => $request->email,
             'password'                          => Hash::make($request->password),
-            // 'situated'                       => $request->situated,
             'area'                              => $request->area,
             'gender'                            => $request->gender,
             'ethnicity'                         => $request->ethnicity,
@@ -122,7 +121,9 @@ class FrontRegisterController extends Controller{
             "terms_and_conditions"              => isset($request->terms_and_conditions) ? 1 : 0,
             "animals_comfortable_with"          => isset($request->animals_comfortable_with) ? json_encode($request->animals_comfortable_with) : null,
             "ages_of_children_you_worked_with"  => isset($request->ages_of_children_you_worked_with) ? json_encode($request->ages_of_children_you_worked_with) : null,
-
+            "hourly_rate_pay"                   => isset($request->hourly_rate_pay) ? $request->hourly_rate_pay : null,
+            "other_services"                    => isset($request->other_services) ? json_encode($request->other_services) : null,
+            'situated'                          => isset($request->situated) ? $request->situated : null,
         ]);
 
         foreach ($data['daterange'] as $key => $value) {
