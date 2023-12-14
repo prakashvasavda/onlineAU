@@ -179,6 +179,7 @@ class FrontRegisterController extends Controller{
             'candidate_duties'              => "required",
             'terms_and_conditions'          => "required",
             'surname'                       => "required",
+            'live_in_or_live_out'           => "required",
         ];
         $message = [
             'name'                          => "The Name must be required",
@@ -239,6 +240,8 @@ class FrontRegisterController extends Controller{
             "what_do_you_need"              => json_encode($request->what_do_you_need),
             'petrol_reimbursement'          => $request->petrol_reimbursement,
             'id_number'                     => $request->id_number,
+            'live_in_or_live_out'           => $request->live_in_or_live_out,
+            'hourly_rate_pay'               => isset($request->hourly_rate_pay) ? $request->hourly_rate_pay : null,
         ]);
 
         $status              = $this->store_need_babysitter($data, $familyId);
