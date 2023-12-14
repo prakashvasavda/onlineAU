@@ -272,8 +272,8 @@
                 <div class="form-input">
                     <label for="live_in_or_live_out">Live in / Live out </label>
                     <ul class="radio-box-list">
-                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="at our home" {{ old('live_in_or_live_out') === "live_in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
-                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="at the babysitter's" {{ old('live_in_or_live_out') === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
+                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_in" {{ old('live_in_or_live_out') === "live_in" ? 'checked' : '' }} class="form-field" checked><label>Live in</label></li>
+                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out') === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
                     </ul>
                     @if ($errors->has('live_in_or_live_out'))
                         <span class="text-danger">
