@@ -63,10 +63,12 @@ class BabysittersController extends Controller{
     public function update_babysitters_candidate(Request $request, $id){
         $request->validate([
             'name'                  => 'required',
-            'age'                   => 'required',
-            'id_number'             => "required",
-            'salary_expectation'    => "required",
+            'age'                   => 'required|gt:18|lt:40',
+            'id_number'             => 'required|min:10|max:10',
             'surname'               => "required",
+            'hourly_rate_pay'       => 'sometimes|required',
+            'contact_number'        => 'nullable|min:10|max:10|regex:/[0-9]{9}/',
+            'area'                  => 'required',
         ]);
 
 

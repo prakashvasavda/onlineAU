@@ -85,23 +85,23 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="id_number">ID Number <span class="text-danger">*</span></label>
-                    <input type="number" id="id_number" name="id_number" placeholder="" class="form-field @error('id_number') is-invalid @enderror"  value="{{ old('id_number', isset($candidate->id_number) ? $candidate->id_number : null) }}">
-                    @error('id_number')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                    <input type="number" id="id_number" name="id_number" placeholder="" class="form-field"  value="{{ old('id_number', isset($candidate->id_number) ? $candidate->id_number : null) }}">
+                    @if ($errors->has('id_number'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('id_number') }}</strong>
                         </span>
-                    @enderror
+                    @endif
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="contact_number">Contact Number</label>
-                    <input type="number" id="contact_number" name="contact_number" placeholder="" class="form-field @error('contact_number') is-invalid @enderror"  value="{{ old('contact_number', isset($candidate->contact_number) ? $candidate->contact_number : null) }}">
-                    @error('contact_number')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                    <input type="number" id="contact_number" name="contact_number" placeholder="" class="form-field"  value="{{ old('contact_number', isset($candidate->contact_number) ? $candidate->contact_number : null) }}">
+                    @if ($errors->has('contact_number'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('contact_number') }}</strong>
                         </span>
-                    @enderror
+                    @endif
                 </div>
             </div>
 
@@ -487,7 +487,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
+                    <label for="day_hour">What are your available days and hours</label>
                     <div class="table-responsive">
                         <table class="table table-borderless table-sm">
                             <tbody>

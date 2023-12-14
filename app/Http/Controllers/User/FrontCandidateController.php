@@ -87,7 +87,7 @@ class FrontCandidateController extends Controller{
             'surname'               => "required",
             'hourly_rate_pay'       => 'sometimes|required',
             'contact_number'        => 'nullable|min:10|max:10|regex:/[0-9]{9}/',
-            'area'                  => 'required|string',
+            'area'                  => 'required',
         ],[
             'hourly_rate_pay'       => 'The hourly rate amount field is required',
         ]);

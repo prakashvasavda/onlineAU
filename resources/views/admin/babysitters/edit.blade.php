@@ -134,11 +134,11 @@
                                         <div class="form-group">
                                             <label for="id_number">ID Number <span class="text-danger">*</span></label>
                                             <input type="number" id="id_number" name="id_number" placeholder="" class="form-control"  value="{{ old('id_number', isset($candidate->id_number) ? $candidate->id_number : null) }}">
-                                            @error('id_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                            @if ($errors->has('id_number'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('id_number') }}</strong>
                                                 </span>
-                                            @enderror
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -148,11 +148,11 @@
                                         <div class="form-group">
                                             <label for="contact_number">Contact Number</label>
                                             <input type="number" id="contact_number" name="contact_number" placeholder="" class="form-control"  value="{{ old('contact_number', isset($candidate->contact_number) ? $candidate->contact_number : null) }}">
-                                            @error('contact_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                            @if ($errors->has('contact_number'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('contact_number') }}</strong>
                                                 </span>
-                                            @enderror
+                                            @endif
                                         </div>
                                     </div>
 
@@ -509,16 +509,16 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="salary_expectation">What is your hourly rate</label>
+                                            <label for="hourly_rate_pay">What is your hourly rate</label>
                                             <div class="input-group mb-1">
                                                 <span class="input-group-text">R</span>
-                                                    <input type="text" name="salary_expectation" id="salary_expectation" class="form-control" placeholder="" value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : '') }}">
+                                                    <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-control" placeholder="" value="{{ old('hourly_rate_pay', isset($candidate->hourly_rate_pay) ? $candidate->hourly_rate_pay : '') }}">
                                                 <span class="input-group-text">hr</span>
                                             </div>
                                             <p class="fw-light small">Average rate that other families offer: R16,34<br>For your safety and protection, only pay through Online Au-Pairs.</p>
-                                            @if ($errors->has('salary_expectation'))
+                                            @if ($errors->has('hourly_rate_pay'))
                                                 <span class="text-danger">
-                                                    <strong>{{ $errors->first('salary_expectation') }}</strong>
+                                                    <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -526,7 +526,45 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
+                                            <label for="other_services">Other Services </label>
+                                            <select id="other_services" name="other_services[]" multiple class="form-control">
+                                                <option value="au-airs" {{ isset($candidate->role) && $candidate->role == "au-pairs" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("au-airs", $candidate->other_services)) ? "selected" : "" }}>Au-Pairs</option>
+                                                <option value="nannies" {{ isset($candidate->role) && $candidate->role == "nannies" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("nannies", $candidate->other_services)) ? "selected" : "" }}>Nannies</option>
+                                                <option value="babysitters" {{ isset($candidate->role) && $candidate->role == "babysitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) &&  in_array("babysitters", $candidate->other_services)) ? "selected" : "" }}>babysitters</option>
+                                                <option value="petsitters" {{ isset($candidate->role) && $candidate->role == "petsitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("petsitters", $candidate->other_services)) ? "selected" : "" }}>petsitters</option>
+                                            </select>
+                                            @if ($errors->has('other_services'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('other_services') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="ages_of_children_you_worked_with">Ages of children you worked with</label>
+                                            <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-control" size="10" style="height: 100%;">
+                                                <option value="" disabled>Select</option>
+                                                <option value="0_12_months" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("0_12_months", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>0-12 months</option>
+                                                <option value="1_3_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("1_3_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>1-3 years</option>
+                                                <option value="4_7_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("4_7_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>4-7 years</option>
+                                                <option value="8_13_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("8_13_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>8-13 years</option>
+                                                <option value="13_16_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("13_16_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>13-16 years</option>
+                                            </select>
+                                            @if ($errors->has('ages_of_children_you_worked_with'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="day_hour">What are your available days and hours </label>
                                             <div class="table-responsive">
                                                 <table class="table table-borderless table-sm">
                                                     <tbody>
@@ -649,24 +687,6 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="other_services">Other Services </label>
-                                            <select id="other_services" name="other_services[]" multiple class="form-control">
-                                                <option value="au-airs" {{ isset($candidate->role) && $candidate->role == "au-pairs" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("au-airs", $candidate->other_services)) ? "selected" : "" }}>Au-Pairs</option>
-                                                <option value="nannies" {{ isset($candidate->role) && $candidate->role == "nannies" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("nannies", $candidate->other_services)) ? "selected" : "" }}>Nannies</option>
-                                                <option value="babysitters" {{ isset($candidate->role) && $candidate->role == "babysitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) &&  in_array("babysitters", $candidate->other_services)) ? "selected" : "" }}>babysitters</option>
-                                                <option value="petsitters" {{ isset($candidate->role) && $candidate->role == "petsitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("petsitters", $candidate->other_services)) ? "selected" : "" }}>petsitters</option>
-                                            </select>
-                                            @if ($errors->has('other_services'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('other_services') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="card-footer">
                                 <a href="{{ route('admin.candidates.babysitters') }}" ><button class="btn btn-default" type="button">Back</button></a>
@@ -685,7 +705,7 @@
 <script type="text/javascript">
 
     $(window).on("load", function () {
-        var file = "{{ isset($candidate->profile) ? $candidate->profile : null }}";
+        var file = "{{ isset($candidate->profile) ? $candidate->profile : 'user-profile.png' }}";
         if(file !== null){
             $('.js--image-preview').addClass('js--no-default');
             $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="" width = "100px" height = "100px" >');
