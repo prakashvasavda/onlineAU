@@ -560,7 +560,7 @@
 
 
         $(window).on("load", function () {
-            var file = "{{ isset($candidate->profile) ? $candidate->profile : "front-user.png" }}";
+            var file = "{{ isset($candidate->profile) ? $candidate->profile : 'user-profile.png' }}";
             if(file !== null){
                 $('.js--image-preview').addClass('js--no-default');
                 $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="">');
