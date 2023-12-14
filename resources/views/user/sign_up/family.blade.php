@@ -95,9 +95,9 @@
                                 @endif
                             </div>
                             <div class="candidate-detail">
-                                <h4>{{ $candidate_list['name'] }}</h4>
-                                <h5>{{ ucfirst($candidate_list['role']) }}</h5>
-                                <h6>{{ $candidate_list['ethnicity'] }}</h6>
+                                <h4>{{ isset($candidate_list['name']) ? $candidate_list['name'] : "-" }}</h4>
+                                <h5>{{ isset($candidate_list['role']) ? ucfirst($candidate_list['role']) : "-" }}</h5>
+                                <h6>{{ isset($candidate_list['ethnicity']) ? $candidate_list['ethnicity'] : "-" }}</h6>
                                 <div class="rating">
                                     <span>
                                         @if(isset($candidate_list->review_rating_count) && is_string($candidate_list->review_rating_count))
