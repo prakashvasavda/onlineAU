@@ -165,7 +165,7 @@
                     <label for="religion">Religion</label>
                     <select id="religion" name="religion" class="form-field">
                         <option value="" selected="selected" disabled="disabled">Select one</option>
-                        <option value="african traditional &amp; Diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>
+                        <option value="african traditional and diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional and diasporic' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>
                         <option value="agnostic" {{ isset($candidate->religion) && $candidate->religion == 'agnostic' ? 'selected' : null }}>Agnostic</option>
                         <option value="atheist" {{ isset($candidate->religion) && $candidate->religion == 'atheist' ? 'selected' : null }}>Atheist</option>
                         <option value="baha'i" {{ isset($candidate->religion) && $candidate->religion == "baha'i" ? 'selected' : null }}>Baha'i</option>
@@ -227,7 +227,7 @@
                 <div class="form-input">
                     <label for="additional_language">Additional Language</label>
                     <select id="additional_language" name="additional_language" multiple class="form-field">
-                        <option value="" selected="selected" disabled="disabled">Select one</option>
+                        <option value="" disabled="disabled">Select one</option>
                         <option value="english" {{ isset($candidate->additional_language) && $candidate->additional_language == "english" ? 'selected' : null }}>English</option>
                         <option value="afrikaans" {{ isset($candidate->additional_language) && $candidate->additional_language == "afrikaans" ? 'selected' : null }}>Afrikaans</option>
                         <option value="zulu (isizulu)" {{ isset($candidate->additional_language) && $candidate->additional_language == "zulu (isizulu)" ? 'selected' : null }}>Zulu (isiZulu)</option>
@@ -462,7 +462,7 @@
                     <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger">*</span></label>
                         <div class="input-group mb-1">
                             <span class="input-group-text">R</span>
-                                <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{ old('hourly_rate_pay', isset($family->hourly_rate_pay) ? $family->hourly_rate_pay : '') }}">
+                                <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{ old('hourly_rate_pay', isset($candidate->hourly_rate_pay) ? $candidate->hourly_rate_pay : '') }}">
                             <span class="input-group-text">hr</span>
                         </div>
                     @if ($errors->has('hourly_rate_pay'))

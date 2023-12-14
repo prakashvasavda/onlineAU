@@ -40,83 +40,28 @@ class FrontRegisterController extends Controller{
     public function store_candidate(Request $request){
         $data  = $request->all();
         $rules = [
-            'name'                                  => 'required',
-            'age'                                   => 'required',
-            'password'                              => "required",
-            'id_number'                             => 'required',
-            // 'contact_number'                        => 'required',
-            'email'                                 => 'required|email|unique:front_users,email',
-            // 'area'                                  => 'required',
-            // 'gender'                                => 'required',
-            // 'ethnicity'                             => 'required',
-            // 'religion'                              => 'required',
-            // 'additional_language'                   => 'required',
-            // 'disabilities'                          => 'required',
-            // 'marital_status'                        => 'required',
-            // 'dependants'                            => 'required',
-            // 'chronical_medication'                  => 'required',
-            // 'drivers_license'                       => 'required',
-            // 'vehicle'                               => 'required',
-            // 'car_accident'                          => 'required',
-            // 'childcare_experience'                  => 'required',
-            // 'special_needs_specifications'          => 'required',
-            // 'ages_of_children_you_worked_with.*'    => 'required',
-            // 'first_aid'                             => 'required',
-            // 'smoker_or_non_smoker'                  => 'required',
-            // 'available_date'                        => 'required',
-            // 'about_yourself'                        => 'required',
-            // 'daterange.*'                           => 'required',
-            // 'heading.*'                             => 'required',
-            // 'description.*'                         => 'required',
-            // 'reference.*'                           => 'required',
-            // 'tel_number.*'                          => 'required',
-            'salary_expectation'                    => 'required',
-            // 'morning.*'                             => 'required_without_all:afternoon.*,evening.*,night.*',
-            // 'afternoon.*'                           => 'required',
-            // 'evening.*'                             => 'required',
-            // 'night.*'                               => 'required',
-            
-
-            'terms_and_conditions'                      => 'required',
-            'surname'                                   => 'required',
-
-
-            // 'south_african_citizen'                  => 'required',
-            // 'working_permit'                         => 'required',
-            // 'ages_of_children_you_worked_with.*'     => 'required',
-            // 'first_aid'                              => 'required',
-            // 'smoker_or_non_smoker'                   => 'required',
-            // 'available_date'                         => 'required',
-            // 'about_yourself'                         => 'required',
-            // 'comfortable_with_light_housework'       => 'required',
-            // 'dependants'                             => 'required',
-            // 'experience_special_needs'               => 'required',
-
-           
-            // 'home_language'                             => 'required',
-            // 'petrol_reimbursement'                      => 'required',
-            // 'experience_with_animals'                   => 'required',
-            // 'do_you_like_animals'                       => 'required',
+            'name'                         => 'required',
+            'age'                          => 'required|gt:18|lt:40',
+            'password'                     => "required",
+            'id_number'                    => 'required|min:10|max:10',
+            'email'                        => 'required|email|unique:front_users,email',
+            'salary_expectation'           => 'sometimes|required',
+            'hourly_rate_pay'              => 'sometimes|required',
+            'terms_and_conditions'         => 'required',
+            'surname'                      => 'required',
+            'contact_number'               => 'nullable|min:10|max:10|regex:/[0-9]{9}/',
+            'area'                         => 'required',
         ];
 
 
         $message = [
             'name'               => 'The Name field isrequired',
-            'age'                => 'The Age field is required',
-            // 'profile'            => 'The Profile must be required',
-            'id_number'          => 'The Id Number field is required',
-            // 'contact_number'  => 'The Contact Number must be required',
             'email'              => 'The Email field is required',
             'password'           => 'The Password field is required',
-            // 'gender'          => 'The Gender must be required',
-            // 'marital_status'  => 'The Marital Status must be required',
-            // 'drivers_license' => 'The Drivers License must be required',
             'salary_expectation' => 'The salary expectation is required',
-            'morning.*'          => 'The morning hours are required',
-            'afternoon.*'        => 'The afternoon hours are required',
-            'evening.*'          => 'The evening hours are required',
-            'night.*'            => 'The night hours are required',
+            'hourly_rate_pay'    => 'The hourly rate amount field is required',
         ];
+
         $validator = Validator::make($data, $rules, $message);
         if ($validator->fails()) {
             return back()->withInput()
@@ -194,22 +139,6 @@ class FrontRegisterController extends Controller{
         }
 
         $status = $this->store_need_babysitter($data, $candidateId);
-
-        config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
-        config(['mail.mailers.smtp.port' => '587']);
-        config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
-        config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
-        config(['mail.mailers.smtp.encryption' => 'tls']);
-        // $message = '<p>Hello Admin,</p>
-        //     <p>New Candidate Registration, Please check below detail and then make status action on the admin side. .</p>
-        //     <p>Name: ' . $request->name . '</p>
-        //     <p>Email: ' . $request->email . '</p>';
-        // $emailTo = 'prakash.v.php@gmail.com';
-        // $name    = 'Admin';
-        // Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
-        //     $mail->to($emailTo, $name)->subject('New Candidate Registration')->setBody($message, 'text/html');
-        //     $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
-        // });
 
         return redirect()->route('sign-up', ['service' => 'family']);
     }
@@ -333,7 +262,7 @@ class FrontRegisterController extends Controller{
             <p>New'.$role.'Registration, Please check below detail and then make status action on the admin side. .</p>
             <p>Name: ' . $data['name']. '</p>
             <p>Email: ' . $data['email'] . '</p>';
-        $emailTo = 'prakash.v.php@gmail.com';
+        $emailTo = 'emmanuel.k.php@gmail.com';
         $name    = 'Admin';
         Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
             $mail->to($emailTo, $name)->subject('New Candidate Registration')->setBody($message, 'text/html');
