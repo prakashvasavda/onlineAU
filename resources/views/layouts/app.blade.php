@@ -105,8 +105,8 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('admin.families') }}" class="nav-link @if($menu=='family') active @endif">
-                                        <i class="fa fa-users nav-icon"></i>
-                                        <p>Manage Families</p>
+                                        <i class="fa fa-user-friends nav-icon"></i>
+                                        <p>General Families</p>
                                     </a>
                                 </li>
                             </ul>
@@ -114,8 +114,8 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ url('admin/family-petsitting') }}" class="nav-link @if($menu=='family petsitting') active @endif">
-                                        <i class="fa fa-cat nav-icon"></i>
-                                        <p>Manage Petisitting</p>
+                                        <i class="fa fa-restroom nav-icon"></i>
+                                        <p>Family Petisitting</p>
                                     </a>
                                 </li>
                             </ul>
