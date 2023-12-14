@@ -699,7 +699,7 @@ $(document).ready(function() {
     });
 
     $(window).on("load", function () {
-        var file = "{{ isset($family->profile) ? $family->profile : 'user-profile.png' }}";
+        var file = "{{ isset($family->profile) ? $family->profile : 'front-user.png' }}";
         if(file !== null){
             $('.js--image-preview').addClass('js--no-default');
             $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="">');
