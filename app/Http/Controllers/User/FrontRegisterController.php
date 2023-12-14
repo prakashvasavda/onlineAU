@@ -244,12 +244,15 @@ class FrontRegisterController extends Controller{
         $package             = Packages::find($request->package);
         //$mail_sent_status  = $this->send_notification_email($request->all(), 'family');
 
-        $data['user_id']        = $familyId;
-        $data['profile']        = null;
+       
+        /*redirect to payment packages*/
+        //$data['user_id']        = $familyId;
+        //$data['profile']        = null;
 
-         /*redirect to payment packages*/
-        Session::put('guestUser', $data);
-        return redirect()->to('packages');
+        //Session::put('guestUser', $data);
+        //return redirect()->to('packages');
+
+        return redirect()->route('user-login');
     }
 
     public function send_notification_email($data, $role){

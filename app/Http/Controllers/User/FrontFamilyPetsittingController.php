@@ -42,7 +42,7 @@ class FrontFamilyPetsittingController extends Controller{
         $input['how_many_pets'] = isset($request->how_many_pets) ? json_encode($request->how_many_pets) : null;
         $input['password']      = Hash::make($request->password);
         
-        $input['status']        = 0;
+        $input['status']        = 1;
         $input['role']          = 'family-petsitting';
         $input['created_at']    = date("Y-m-d H:i:s");
         $input['updated_at']    = date("Y-m-d H:i:s");
@@ -50,12 +50,16 @@ class FrontFamilyPetsittingController extends Controller{
         $familyId   = FrontUser::insertGetId($input);
         $calender   = $this->store_family_calender($request->all(), $familyId);
 
-        $input['user_id']        = $familyId;
-        $input['profile']        = null;
+        
 
         /*redirect to payment packages*/
-        Session::put('guestUser', $input);
-        return redirect()->to('packages');
+        //$input['user_id']        = $familyId;
+        //$input['profile']        = null;
+
+        //Session::put('guestUser', $input);
+        //return redirect()->to('packages');
+
+        return redirect()->route('user-login');
     }
 
 
