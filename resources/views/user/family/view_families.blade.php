@@ -63,27 +63,12 @@
 									            		@endif
 											  		</span>
 											  	</div>
-											    <p class="text-capitalize mb-1"><span>name</span>: {{ isset($value->name) ? strtoupper($value->name) : "-" }}</p>
-											    <p class="text-capitalize mb-1"><span>area</span>: {{ isset($value->family_address) ? $value->family_address : "-" }}</p>
-											    <p class="text-capitalize mb-1"><span>need a</span>: {{ isset($what_do_you_need) ? $what_do_you_need : "-" }}</p>
+											    <p class="text-capitalize mb-1"><span>surname</span>: {{ isset($value->surname) ? ucfirst($value->surname) : "-" }}</p>
+											    <p class="text-capitalize mb-1"><span>city</span>: {{ isset($value->family_city) ? ucfirst($value->family_address) : "-" }}</p>
 											    <p class="text-capitalize mb-1"><span>start date</span>: {{ isset($value->start_date) ? $value->start_date : "-" }}</p>
-											    <p class="text-center mt-3">
-							                		<span>
-							                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
-									                	 	@for($i = 0; $i < 5; $i++)
-														        @if($i < max(explode(",", $value->review_rating_count)))
-														            <i class="fa-solid fa-star"></i>
-														        @else
-														            <i class="fa-regular fa-star"></i>
-														        @endif
-													   	 	@endfor
-											            @else
-											            	@for($i=0; $i<5; $i++)
-											                	<i class="fa-regular fa-star"></i>
-											                @endfor
-										                @endif 
-									                </span>
-											    </p>
+											   	<p class="text-capitalize mb-1"><span>hourly rate</span>: {{ isset($value->hourly_rate_pay) ? 'R'.$value->hourly_rate_pay : '-' }} </p>
+											   	<p class="text-capitalize mb-1"><span>Salary</span>: {{ isset($value->salary_expectation) ? 'R'.$value->salary_expectation : '-' }} </p>
+											   	<p class="text-capitalize mb-1"><span>what the family needs</span>: {{ isset($what_do_you_need) ? ucfirst($what_do_you_need) : "-" }}</p>
 										  	</div>
 										</div>
 									</a>
