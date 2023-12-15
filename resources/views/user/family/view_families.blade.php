@@ -50,7 +50,7 @@
 									            @endif
 										  	</span>
 										  	<div class="card-body">
-											  	<div class="pos-icon">
+											  	{{-- <div class="pos-icon">
 											  		<span class="user-favorite-section">
 											  			@if(isset($value->family_favorited_by) && is_string($value->family_favorited_by))
 									            			@if(in_array($user->id, explode(",", $value->family_favorited_by)))
@@ -62,7 +62,7 @@
 									            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="addCandidateFavoriteFamily(event, '{{ $value->id }}')"></i>
 									            		@endif
 											  		</span>
-											  	</div>
+											  	</div> --}}
 											    <p class="text-capitalize mb-1"><span>surname</span>: {{ isset($value->surname) ? ucfirst($value->surname) : "-" }}</p>
 											    <p class="text-capitalize mb-1"><span>city</span>: {{ isset($value->family_city) ? ucfirst($value->family_address) : "-" }}</p>
 											    <p class="text-capitalize mb-1"><span>start date</span>: {{ isset($value->start_date) ? $value->start_date : "-" }}</p>
