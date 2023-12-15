@@ -55,7 +55,7 @@
                             <h4>Ages of children:</h4>
                         </div>
                         <div class="about-candidate-content">
-                            <h4>{{ isset($family->age) ? substr_replace(str_replace("_", " ", $family->age), ' - ', 2, -10) : '-' }}</h4>
+                            <h4>{{ isset($family->age) ? str_replace("_", " - ", $family->age) : '-' }}</h4>
                         </div>
                     </li>
 
@@ -119,7 +119,7 @@
                             <h4>Duration Needed:</h4>
                         </div>
                         <div class="about-candidate-content">
-                            <h4>{{ isset($family->duration_needed) ? strtoupper($family->duration_needed) ." MONTHS" : '-' }}</h4>
+                            <h4>{{ isset($family->duration_needed) ? strtoupper($family->duration_needed) : '-' }}</h4>
                         </div>
                     </li>
                 </ul>
