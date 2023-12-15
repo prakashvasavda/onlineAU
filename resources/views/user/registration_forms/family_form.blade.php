@@ -143,11 +143,11 @@
                 <div class="form-input">
                     <label for="age_children">Age of children </label>
                     <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
-                        <option value="0_12_months" {{ (!empty(old('age')) && in_array("0_12_months", old('age')))? 'selected' : '' }}>0-12 Months</option>
-                        <option value="1_3_years" {{ (!empty(old('age')) && in_array("1_3_years", old('age')))? 'selected' : '' }}>1-3 Years</option>
-                        <option value="4_7_years" {{ (!empty(old('age')) && in_array("4_7_years", old('age')))? 'selected' : '' }}>4-7 Years</option>
-                        <option value="8_13_years" {{ (!empty(old('age')) && in_array("8_13_years", old('age')))? 'selected' : '' }}>8-13 Years</option>
-                        <option value="13_16_years" {{ (!empty(old('age')) && in_array("13_16_years", old('age')))? 'selected' : '' }}>13-16 Years</option>
+                        <option value="0-12 months" {{ (!empty(old('age')) && in_array("0-12 months", old('age')))? 'selected' : '' }}>0-12 Months</option>
+                        <option value="1-3 years" {{ (!empty(old('age')) && in_array("1-3 years", old('age')))? 'selected' : '' }}>1-3 Years</option>
+                        <option value="4-7 years" {{ (!empty(old('age')) && in_array("4-7 years", old('age')))? 'selected' : '' }}>4-7 Years</option>
+                        <option value="8-13 years" {{ (!empty(old('age')) && in_array("8-13 years", old('age')))? 'selected' : '' }}>8-13 Years</option>
+                        <option value="13-16 years" {{ (!empty(old('age')) && in_array("13-16 years", old('age')))? 'selected' : '' }}>13-16 Years</option>
                     </select>
                     @error('age')
                         <span class="invalid-feedback" role="alert">
@@ -609,11 +609,11 @@ $(document).ready(function() {
                         <div class="form-input">
                             <label for="age_children">Age of children</label>
                             <select name="age[]" class="form-field" >
-                                <option value="0_12_months">0-12 Months</option>
-                                <option value="1_3_years">1-3 Years</option>
-                                <option value="4_7_years">4-7 Years</option>
-                                <option value="8_13_years">8-13 Years</option>
-                                <option value="13_16_years">13-16 Years</option>
+                                <option value="0-12 months">0-12 Months</option>
+                                <option value="1-3 years">1-3 Years</option>
+                                <option value="4-7 years">4-7 Years</option>
+                                <option value="8-13 years">8-13 Years</option>
+                                <option value="13-16 years">13-16 Years</option>
                             </select>
                         </div>
                     </div> 
