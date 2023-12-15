@@ -68,7 +68,7 @@
 											    <p class="text-capitalize mb-1"><span>start date</span>: {{ isset($value->start_date) ? $value->start_date : "-" }}</p>
 											   	<p class="text-capitalize mb-1"><span>hourly rate</span>: {{ isset($value->hourly_rate_pay) ? 'R'.$value->hourly_rate_pay : '-' }} </p>
 											   	<p class="text-capitalize mb-1"><span>Salary</span>: {{ isset($value->salary_expectation) ? 'R'.$value->salary_expectation : '-' }} </p>
-											   	<p class="text-capitalize mb-1"><span>what the family needs</span>: {{ isset($what_do_you_need) ? ucfirst($what_do_you_need) : "-" }}</p>
+											   	<p class="text-capitalize mb-1"><span>what the family needs</span>: {{ isset($what_do_you_need) ? ucfirst(str_replace("_", "-", $what_do_you_need)) : "-" }}</p>
 										  	</div>
 										</div>
 									</a>
