@@ -258,8 +258,8 @@
                                 <div class="row">   
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="duration_needed">Duration needed <span class="text-danger">*</span></label>
-                                            <input type="text" id="duration_needed" name="duration_needed" placeholder="duration needed" value="{{ old('duration_needed', isset($family->duration_needed) ? $family->duration_needed : '') }}" class="form-control">
+                                            <label for="duration_needed">Duration needed (In Months)<span class="text-danger">*</span></label>
+                                            <input type="number" id="duration_needed" name="duration_needed" placeholder="duration needed" value="{{ old('duration_needed', isset($family->duration_needed) ? $family->duration_needed : '') }}" class="form-control">
                                             @if ($errors->has('duration_needed'))
                                                 <span class="text-danger">
                                                     <strong>{{ $errors->first('duration_needed') }}</strong>

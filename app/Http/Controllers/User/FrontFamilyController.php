@@ -92,17 +92,16 @@ class FrontFamilyController extends Controller{
     public function update_family(Request $request, $familyId){
         $request->validate([
             'name'                          => "required",
-            'age'                           => "required",
             'family_address'                => "required",
             'family_city'                   => "required",
             'home_language'                 => "required",
             'no_children'                   => "required",
             'family_notifications'          => "required",
             'surname'                       => "required",
-            'id_number'                     => "required",
-            'cell_number'                   => "required",
+            'id_number'                     => 'required|min:10|max:10',
+            'cell_number'                   => 'required|min:10|max:10|regex:/[0-9]{9}/',
             'start_date'                    => "required",
-            'duration_needed'               => "required",
+            'duration_needed'               => "required|numeric|gt:1",
             'petrol_reimbursement'          => "required",
             'live_in_or_live_out'           => "required", //not added in db
             'candidate_duties'              => "required",

@@ -163,7 +163,6 @@ class FrontRegisterController extends Controller{
         $data  = $request->all();
         $rules = [
             'name'                          => "required",
-            'age'                           => "required",
             'email'                         => "required|email|unique:front_users,email",
             'password'                      => "required",
             'family_address'                => "required",
@@ -171,10 +170,10 @@ class FrontRegisterController extends Controller{
             'home_language'                 => "required",
             'no_children'                   => "required",
             'family_notifications'          => "required",
-            'cell_number'                   => "required",
-            'id_number'                     => "required",
+            'cell_number'                   => 'required|min:10|max:10|regex:/[0-9]{9}/',
+            'id_number'                     => 'required|min:10|max:10',
             'start_date'                    => "required",
-            'duration_needed'               => "required",
+            'duration_needed'               => "required|numeric|gt:1",
             'petrol_reimbursement'          => "required",
             'candidate_duties'              => "required",
             'terms_and_conditions'          => "required",

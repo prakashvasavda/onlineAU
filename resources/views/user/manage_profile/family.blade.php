@@ -334,8 +334,8 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="duration_needed">Duration needed <span class="text-danger">*</span></label>
-                    <input type="text" id="duration_needed" name="duration_needed" value="{{ old('duration_needed', isset($family->duration_needed) ? $family->duration_needed : '') }}" class="form-field">
+                    <label for="duration_needed">Duration needed (In Months)<span class="text-danger">*</span></label>
+                    <input type="number" id="duration_needed" name="duration_needed" value="{{ old('duration_needed', isset($family->duration_needed) ? $family->duration_needed : '') }}" class="form-field">
                     @if ($errors->has('duration_needed'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('duration_needed') }}</strong>
