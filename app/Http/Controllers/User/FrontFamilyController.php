@@ -193,30 +193,38 @@ class FrontFamilyController extends Controller{
         return view('user.candidate.all_candidates', $data);
     }
 
-    public function candidate_detail($candidateId){
-        $data['menu']                           = 'candidate detail';
-        $data['candidate']                      = FrontUser::where('id', $candidateId)->where('status', '1')->first();
-        $data['availability']                   = NeedsBabysitter::where('family_id', $candidateId)->first();
-        $data['payments']                       = Session::has('frontUser') ? Payment::where('user_id', Session::get('frontUser')->id)->first() : null;
-        $data['candidate']['other_services']    = isset($data['candidate']->other_services) ? implode(", ", json_decode($data['candidate']->other_services, true)) : null;
-        $data['morning_availability']           = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability']         = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']           = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']             = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
-    
-        $data['reviews'] = CandidateReview::select(['review_note', 'review_rating_count'])
-            ->selectSub(function ($query) use ($candidateId) {
+    public function family_detail($familyId){
+        $data['menu']                           = 'family detail';
+        $data['family']                         = FrontUser::where('id', $familyId)->where('role', 'family')->where('status', '1')->first();
+        $data['availability']                   = NeedsBabysitter::where('family_id', $familyId)->first(); 
+        $data['morning_availability']           = isset($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
+        $data['afternoon_availability']         = isset($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
+        $data['evening_availability']           = isset($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
+        $data['night_availability']             = isset($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+       
+
+        $data['reviews'] = FamilyReview::select(['review_note', 'review_rating_count'])
+            ->selectSub(function ($query) use ($familyId) {
                 $query->selectRaw('COUNT(*)')
-                    ->from('candidate_reviews')
-                    ->where('candidate_id', $candidateId);
+                    ->from('family_reviews')
+                    ->where('family_id', $familyId);
             }, 'total_reviews')
-            ->where('candidate_id', $candidateId)
+            ->where('family_id', $familyId)
             ->latest('updated_at')
             ->first();
+        
+        $what_do_you_need   = isset($data['family']->what_do_you_need) && is_string($data['family']->what_do_you_need) ? json_decode($data['family']->what_do_you_need, true) : null;
+        $age_of_children    = isset($data['family']->age) && is_string($data['family']->age) ? json_decode($data['family']->age, true) : null;
+        $gender_of_children = isset($data['family']->gender_of_children) && is_string($data['family']->gender_of_children) ? json_decode($data['family']->gender_of_children, true) : null;
 
+        $data['family']['gender_of_children'] = !empty($gender_of_children) && is_array($gender_of_children) ? implode(", ", $gender_of_children) : null;
+        $data['family']['what_do_you_need']   = !empty($what_do_you_need) && is_array($what_do_you_need) ? implode(", ", $what_do_you_need) : null;
+        $data['family']['age']                = !empty($age_of_children) && is_array($age_of_children) ? implode(", ", $age_of_children) : null;
+        
         $data['loginUser'] = Session::has('frontUser') ? Session::get('frontUser') : null;
-        $data['favourite'] = Session::has('frontUser') ? FamilyFavoriteCandidate::where('candidate_id', $candidateId)->where('family_id', Session::get('frontUser')->id)->first() : null;
-        return view('user.candidate.candidate_detail', $data);
+        $data['favourite'] = Session::has('frontUser') ? CandidateFavoriteFamily::where('candidate_id', Session::get('frontUser')->id)->where('family_id', $familyId)->first() : null;
+        
+        return view('user.family.family_detail', $data);
     }
 
     public function reviews($service = null){

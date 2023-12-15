@@ -16,6 +16,8 @@ use App\Models\PreviousExperience;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use App\Models\Payment;
+
 
 class FrontCandidateController extends Controller{
     
@@ -181,28 +183,30 @@ class FrontCandidateController extends Controller{
         return view('user.family.view_families', $data);
     }
 
-    public function family_detail($familyId){
-        $data['menu']                       = 'family detail';
-        $data['family']                     = FrontUser::where('id', $familyId)->where('role', 'family')->where('status', '1')->first();
-        $data['availability']               = NeedsBabysitter::where('family_id', $familyId)->first(); //candidate availablity records
-        $data['morning_availability']       = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability']     = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']       = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']         = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
-        
-        $data['reviews'] = FamilyReview::select(['review_note', 'review_rating_count'])
-            ->selectSub(function ($query) use ($familyId) {
+    public function candidate_detail($candidateId){
+        $data['menu']                           = 'candidate detail';
+        $data['candidate']                      = FrontUser::where('id', $candidateId)->where('status', '1')->first();
+        $data['availability']                   = NeedsBabysitter::where('family_id', $candidateId)->first();
+        $data['payments']                       = Session::has('frontUser') ? Payment::where('user_id', Session::get('frontUser')->id)->first() : null;
+        $data['candidate']['other_services']    = isset($data['candidate']->other_services) ? implode(", ", json_decode($data['candidate']->other_services, true)) : null;
+        $data['morning_availability']           = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
+        $data['afternoon_availability']         = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
+        $data['evening_availability']           = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
+        $data['night_availability']             = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+    
+        $data['reviews'] = CandidateReview::select(['review_note', 'review_rating_count'])
+            ->selectSub(function ($query) use ($candidateId) {
                 $query->selectRaw('COUNT(*)')
-                    ->from('family_reviews')
-                    ->where('family_id', $familyId);
+                    ->from('candidate_reviews')
+                    ->where('candidate_id', $candidateId);
             }, 'total_reviews')
-            ->where('family_id', $familyId)
+            ->where('candidate_id', $candidateId)
             ->latest('updated_at')
             ->first();
 
         $data['loginUser'] = Session::has('frontUser') ? Session::get('frontUser') : null;
-        $data['favourite'] = Session::has('frontUser') ? CandidateFavoriteFamily::where('candidate_id', Session::get('frontUser')->id)->where('family_id', $familyId)->first() : null;
-        return view('user.family.family_detail', $data);
+        $data['favourite'] = Session::has('frontUser') ? FamilyFavoriteCandidate::where('candidate_id', $candidateId)->where('family_id', Session::get('frontUser')->id)->first() : null;
+        return view('user.candidate.candidate_detail', $data);
     }
 
     public function reviews(){

@@ -55,7 +55,7 @@ Route::any('search/{search_parameters?}', [SearchController::class, 'index'])->n
 
 /* PUBLIC CANDIDATE ROUTES */
 Route::get('candidates', [HomeController::class, 'candidates'])->name('candidates');
-Route::get('candidate-detail/{id}', [FrontFamilyController::class, 'candidate_detail'])->name('candidate-detail');
+Route::get('candidate-detail/{id}', [FrontCandidateController::class, 'candidate_detail'])->name('candidate-detail');
 Route::get('candidates/{service}', [HomeController::class, 'candidates'])->name('candidates-service');
 
 /* SIGN UP ROUTES */
@@ -85,7 +85,7 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('candidate/manage-profile', [FrontCandidateController::class, 'manage_profile'])->name('candidate-manage-profile');
     Route::put('update-candidate/{id}', [FrontCandidateController::class, 'update_candidate'])->name('update-candidate');
     Route::get('view-families', [FrontCandidateController::class, 'view_families'])->name('view-families');
-    Route::get('family-detail/{id}', [FrontCandidateController::class, 'family_detail'])->name('family-detail');
+    Route::get('family-detail/{id}', [FrontFamilyController::class, 'family_detail'])->name('family-detail');
     Route::post('store-candidate-favorite-family', [FrontCandidateController::class, 'store_candidate_favorite_family'])->name('store-candidate-favorite-family');
     Route::get('family/reviews', [FrontCandidateController::class, 'reviews'])->name('family-reviews');
 
