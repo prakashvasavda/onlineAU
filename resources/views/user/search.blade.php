@@ -22,7 +22,7 @@
 				@if(isset($search))
 					@foreach($search as $value)
 						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-							<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
+							<a href="{{ $value->role == 'family' ? route('family-detail', ['id' => $value->id]) : route('candidate-detail', ['id' => $value->id]) }}">
 								<div class="card">
 								    <div class="row g-0">
 								        <div class="col-md-4">
