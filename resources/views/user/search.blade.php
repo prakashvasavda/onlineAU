@@ -21,6 +21,11 @@
 			<div class="row result-list">
 				@if(isset($search))
 					@foreach($search as $value)
+						@php
+							$decoded_value = isset($value->what_do_you_need) && is_string($value->what_do_you_need) ? json_decode($value->what_do_you_need) : null;
+							$what_do_you_need = !empty($decoded_value) && is_array($decoded_value) ? implode(", ", $decoded_value) : null;
+						@endphp
+
 						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 							<a href="{{ $value->role == 'family' ? route('family-detail', ['id' => $value->id]) : route('candidate-detail', ['id' => $value->id]) }}">
 								<div class="card">
@@ -36,29 +41,39 @@
 								        </div>
 								        <div class="col-md-8">
 								            <div class="card-body">
-								            	<div class="pos-icon"><i class="fa-regular fa-heart"></i></div>
-								                <h5 class="card-title">{{ $value->name }}</h5>
-								                <p class="card-text">{{  isset($value->family_address) ? $value->family_address : $value->area }}</p>
-								                <p class="card-text">
-								                	<small>
-								                		<span class="user-reviews-section">
-								                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
-										                	 	@for($i = 0; $i < 5; $i++)
-															        @if($i < max(explode(",", $value->review_rating_count)))
-															            <i class="fa-solid fa-star"></i>
-															        @else
-															            <i class="fa-regular fa-star"></i>
-															        @endif
-														   	 	@endfor
-												            @else
-												            	@for($i=0; $i<5; $i++)
-												                	<i class="fa-regular fa-star"></i>
-												                @endfor
-											                @endif 
-									                	</span>
-									                	<span>{{ isset($value->total_reviews) ? $value->total_reviews : 0 }} Reviews</span>
-									                </small>
-									            </p>
+								            	@if($type != 'family')
+									            	<div class="pos-icon">
+									            		<i class="fa-regular fa-heart"></i>
+									            	</div>
+									            @endif
+
+								                <h5 class="card-title">{{ ucwords($value->name) }}</h5>
+								                <p class="card-text">{{ $type == 'family' ? ucwords($value->family_city) : ucwords($value->area) }}</p>
+								                
+								                @if($type == 'family')
+													<p class="card-text"><span class="fw-bolder">Looking For: </span>{{ isset($what_do_you_need) ? ucwords(str_replace("_", "-", $what_do_you_need)) : "-" }}</p>
+										        @else
+										        	<p class="card-text">
+									                	<small>
+									                		<span class="user-reviews-section">
+									                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
+											                	 	@for($i = 0; $i < 5; $i++)
+																        @if($i < max(explode(",", $value->review_rating_count)))
+																            <i class="fa-solid fa-star"></i>
+																        @else
+																            <i class="fa-regular fa-star"></i>
+																        @endif
+															   	 	@endfor
+													            @else
+													            	@for($i=0; $i<5; $i++)
+													                	<i class="fa-regular fa-star"></i>
+													                @endfor
+												                @endif 
+										                	</span>
+										                	<span>{{ isset($value->total_reviews) ? $value->total_reviews : 0 }} Reviews</span>
+										                </small>
+										            </p>
+										        @endif
 								            </div>
 								        </div>
 								    </div>
