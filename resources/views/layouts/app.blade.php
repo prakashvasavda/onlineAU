@@ -38,6 +38,9 @@
     <style>
         a{text-decoration: none!important;}
         .form-control-sm { padding: 0.25rem 0.9rem;}
+        body {
+            overflow-x: hidden;
+        }
     </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
