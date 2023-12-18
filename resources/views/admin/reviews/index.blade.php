@@ -36,10 +36,10 @@
                             <table id="reviewTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Review Note</th>
-                                        <th>Action</th>
+                                        <th style="width: 20%">Candidate Name</th>
+                                        <th style="width: 20%">Role</th>
+                                        <th style="width: 50%">Review Note</th>
+                                        <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
