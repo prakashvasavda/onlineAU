@@ -64,7 +64,7 @@
 											  		</span>
 											  	</div> --}}
 											    <p class="text-capitalize mb-1"><span>surname</span>: {{ isset($value->surname) ? ucfirst($value->surname) : "-" }}</p>
-											    <p class="text-capitalize mb-1"><span>city</span>: {{ isset($value->family_city) ? ucfirst($value->family_address) : "-" }}</p>
+											    <p class="text-capitalize mb-1"><span>city</span>: {{ isset($value->family_city) ? ucfirst($value->family_city) : "-" }}</p>
 											    <p class="text-capitalize mb-1"><span>start date</span>: {{ isset($value->start_date) ? $value->start_date : "-" }}</p>
 											   	<p class="text-capitalize mb-1"><span>hourly rate</span>: {{ isset($value->hourly_rate_pay) ? 'R'.$value->hourly_rate_pay : '-' }} </p>
 											   	<p class="text-capitalize mb-1"><span>Salary</span>: {{ isset($value->salary_expectation) ? 'R'.$value->salary_expectation : '-' }} </p>
