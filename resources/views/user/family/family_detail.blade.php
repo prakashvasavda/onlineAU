@@ -41,7 +41,7 @@
                 <ul class="about-candidate-box">
                     <li>
                         <div class="about-candidate-title">
-                            <img src="{{ url('front/images/dependants-icon1.png') }}" alt="">
+                            <img src="{{ url('front/images/home-live-in-icon1.png') }}" alt="">
                             <h4>Number of children:</h4>
                         </div>
                         <div class="about-candidate-content">
@@ -51,7 +51,7 @@
 
                     <li>
                         <div class="about-candidate-title">
-                            <img src="{{ url('front/images/dependants-icon1.png') }}" alt="">
+                            <img src="{{ url('front/images/auPairs-icon1.png') }}" alt="">
                             <h4>Ages of children:</h4>
                         </div>
                         <div class="about-candidate-content">
@@ -61,7 +61,7 @@
 
                     <li>
                         <div class="about-candidate-title">
-                            <img src="{{ url('front/images/dependants-icon1.png') }}" alt="">
+                            <img src="{{ url('front/images/childrens1.png') }}" alt="">
                             <h4>Gender of children:</h4>
                         </div>
                         <div class="about-candidate-content">
@@ -95,7 +95,7 @@
 
                     <li>
                         <div class="about-candidate-title">
-                            <img src="{{ url('front/images/marital-status-icon1.png') }}" alt="">
+                            <img src="{{ url('front/images/nannies-icon1.png') }}" alt="">
                             <h4>Duties of candidate:</h4>
                         </div>
                         <div class="about-candidate-content">
@@ -115,7 +115,7 @@
 
                     <li>
                         <div class="about-candidate-title">
-                            <img src="{{ url('front/images/years-experience-icon1.png') }}" alt="">
+                            <img src="{{ url('front/images/time.png') }}" alt="">
                             <h4>Duration Needed:</h4>
                         </div>
                         <div class="about-candidate-content">
