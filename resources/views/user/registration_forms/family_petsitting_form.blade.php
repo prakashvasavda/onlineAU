@@ -115,17 +115,17 @@
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
-                    @error('family_address')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                    @if ($errors->has('family_address'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('family_address') }}</strong>
                         </span>
-                    @enderror
+                    @endif
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="number_of_pets">Number of pets <span class="text-danger">*</span></label>
+                    <label for="number_of_pets">Number of pets</label>
                     <input type="number" id="no_children" name="number_of_pets" value="1" placeholder="" class="form-field @error('number_of_pets') is-invalid @enderror" >
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
@@ -164,6 +164,20 @@
 
             <div id="more_childern" class="row p-0 m-0"></div>
 
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities </label>
+                    <ul class="d-flex flex-wrap" >
+                        <li><input type="radio" name="pet_medication_or_disabilities" value="yes" {{ old('pet_medication_or_disabilities') === "yes" ? "checked" : '' }} >Yes</li>
+                        <li><input type="radio"checked name="pet_medication_or_disabilities" value="no" {{ old('pet_medication_or_disabilities') === "no" ? "checked" : '' }} >No</li>
+                    </ul>
+                    @if ($errors->has('pet_medication_or_disabilities'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('pet_medication_or_disabilities') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
@@ -172,32 +186,6 @@
                     @if ($errors->has('start_date'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('start_date') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="candidate_duties">What will be the candidate’s duties. <span class="text-danger">*</span></label>
-                <textarea id="candidate_duties" name="candidate_duties" class="form-field" rows="5" >{{ old('candidate_duties') }}</textarea>
-                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-                @if ($errors->has('candidate_duties'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('candidate_duties') }}</strong>
-                    </span>
-                @endif
-            </div>
-
-             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities? </label>
-                    <ul class="d-flex flex-wrap" >
-                        <li><input type="radio" checked name="pet_medication_or_disabilities" value="yes" {{ old('pet_medication_or_disabilities') === "yes" ? "checked" : '' }} >Yes</li>
-                        <li><input type="radio" name="pet_medication_or_disabilities" value="no" {{ old('pet_medication_or_disabilities') === "no" ? "checked" : '' }} >No</li>
-                    </ul>
-                    @if ($errors->has('pet_medication_or_disabilities'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('pet_medication_or_disabilities') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -215,8 +203,19 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="candidate_duties">What will be the candidate’s duties. <span class="text-danger">*</span></label>
+                <textarea id="candidate_duties" name="candidate_duties" class="form-field" rows="5" >{{ old('candidate_duties') }}</textarea>
+                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+                @if ($errors->has('candidate_duties'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('candidate_duties') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="">When do you need a petisitter? </label>
+                    <label for="">When do you need a petisitter </label>
                     <div class="shift-table">
                         <div class="table-arrows">
                             <a href="javaScript:;" id="left-button"><i class="fa-solid fa-chevron-left"></i></a>
