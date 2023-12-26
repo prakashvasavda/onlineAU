@@ -89,20 +89,10 @@
                 @enderror
             </div>
         </div>
-        {{-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="situated">Situated</label>
-                <input type="text" id="situated" name="situated" placeholder="" class="form-field @error('situated') is-invalid @enderror"  value="{{ old('situated') }}">
-                @error('situated')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div> --}}
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="area">Area </label>
+                <label for="area">Area <span class="text-danger">*</span></label>
                 <input type="text" id="" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror address-input"  value="{{ old('area') }}">
                 @error('area')
                     <span class="invalid-feedback" role="alert">
@@ -111,6 +101,7 @@
                 @enderror
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="gender">Gender</label>
@@ -284,6 +275,26 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
+                <label for="first_aid">Do you have first aid</label>
+                <ul class="d-flex flex-wrap">
+                    <li><input type="radio" name="first_aid" value="yes" {{ old('first_aid') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="first_aid" value="no" {{ old('first_aid') == "no" ? "checked" : '' }}>No</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
+                <ul class="radio-box-list">
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" checked value="smoker" {{ old('smoker_or_non_smoker') === 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
                 <label for="experience_special_needs">Do you have experience with special needs</label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="experience_special_needs" value="yes" {{ old('experience_special_needs') == "yes" ? "checked" : '' }}>Yes</li>
@@ -307,10 +318,8 @@
             </div>
         </div>
 
-       
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label for="special_needs_specifications">If YES Please specify. </label>
+            <label for="special_needs_specifications">If yes please specify. </label>
             <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications') }}</textarea>
             <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
             @if ($errors->has('special_needs_specifications'))
@@ -321,7 +330,7 @@
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label for="about_yourself">Tell us a bit more about yourself? </label>
+            <label for="about_yourself">Tell us a bit more about yourself</label>
             <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
             <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
             @if ($errors->has('about_yourself'))
@@ -331,42 +340,21 @@
             @endif
         </div>
 
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="first_aid">Do you have first aid?</label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="first_aid" value="yes" {{ old('first_aid') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="first_aid" value="no" {{ old('first_aid') == "no" ? "checked" : '' }}>No</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
-                <ul class="radio-box-list">
-                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" checked value="smoker" {{ old('smoker_or_non_smoker') === 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
-                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="available_date">From which date would you be available? <span class="text-danger">*</span></label>
-                <input type="date" id="available_date" name="available_date" value="{{ old('available_date') }}" class="form-field">
-                @if ($errors->has('available_date'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('available_date') }}</strong>
+                <label for="salary_expectation">What is your salary expectation <span class="text-danger">*</span></label>
+                <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation') }}">
+                @error('salary_expectation')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
                     </span>
-                @endif
+                @enderror
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
+                <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
                 <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
                     <option value="" disabled>Select</option>
                     <option value="0_12_months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0_12_months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
@@ -380,6 +368,38 @@
                         <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
                     </span>
                 @endif
+            </div>
+        </div>
+
+         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="password">Password <span class="text-danger">*</span></label>
+                <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="childcare_experience">How many years of childcare experience do you have</label>
+                <select id="childcare_experience" name="childcare_experience" class="form-field">
+                    <option value="" selected="selected" disabled="disabled">Select</option>
+                    <option value="6 months" {{ old('childcare_experience') == "6 months" ? "selected" : '' }}>6 Months</option>
+                    <option value="1 years" {{ old('childcare_experience') == "1 years" ? "selected" : '' }}>1 year</option>
+                    <option value="1.5 years" {{ old('childcare_experience') == "1.5 years" ? "selected" : '' }}>1.5 years</option>
+                    <option value="2 years" {{ old('childcare_experience') == "2 years" ? "selected" : '' }}>2 years</option>
+                    <option value="2.5 years" {{ old('childcare_experience') == "2.5 years" ? "selected" : '' }}>2.5 years</option>
+                    <option value="3 years" {{ old('childcare_experience') == "3 years" ? "selected" : '' }}>3 years</option>
+                    <option value="3.5 years" {{ old('childcare_experience') == "3.5 years" ? "selected" : '' }}>3.5 years</option>
+                    <option value="4 years" {{ old('childcare_experience') == "4 years" ? "selected" : '' }}>4 years</option>
+                    <option value="4.5 years" {{ old('childcare_experience') == "4.5 years" ? "selected" : '' }}>4.5 years</option>
+                    <option value="5 years" {{ old('childcare_experience') == "5 years" ? "selected" : '' }}>5 years</option>
+                    <option value="5+ years" {{ old('childcare_experience') == "5+ years" ? "selected" : '' }}>5+ years</option>
+                </select>
             </div>
         </div>
 
@@ -480,18 +500,18 @@
             @endforeach
         @endif
 
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="salary_expectation">What is your salary expectation</label>
-                <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation') }}">
-                @error('salary_expectation')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                <label for="available_date">From which date would you be available <span class="text-danger">*</span></label>
+                <input type="date" id="available_date" name="available_date" value="{{ old('available_date') }}" class="form-field">
+                @if ($errors->has('available_date'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('available_date') }}</strong>
                     </span>
-                @enderror
+                @endif
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
@@ -619,38 +639,6 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="password">Password <span class="text-danger">*</span></label>
-                <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="childcare_experience">How many years of childcare experience do you have</label>
-                <select id="childcare_experience" name="childcare_experience" class="form-field">
-                    <option value="" selected="selected" disabled="disabled">Select</option>
-                    <option value="6 months" {{ old('childcare_experience') == "6 months" ? "selected" : '' }}>6 Months</option>
-                    <option value="1 years" {{ old('childcare_experience') == "1 years" ? "selected" : '' }}>1 year</option>
-                    <option value="1.5 years" {{ old('childcare_experience') == "1.5 years" ? "selected" : '' }}>1.5 years</option>
-                    <option value="2 years" {{ old('childcare_experience') == "2 years" ? "selected" : '' }}>2 years</option>
-                    <option value="2.5 years" {{ old('childcare_experience') == "2.5 years" ? "selected" : '' }}>2.5 years</option>
-                    <option value="3 years" {{ old('childcare_experience') == "3 years" ? "selected" : '' }}>3 years</option>
-                    <option value="3.5 years" {{ old('childcare_experience') == "3.5 years" ? "selected" : '' }}>3.5 years</option>
-                    <option value="4 years" {{ old('childcare_experience') == "4 years" ? "selected" : '' }}>4 years</option>
-                    <option value="4.5 years" {{ old('childcare_experience') == "4.5 years" ? "selected" : '' }}>4.5 years</option>
-                    <option value="5 years" {{ old('childcare_experience') == "5 years" ? "selected" : '' }}>5 years</option>
-                    <option value="5+ years" {{ old('childcare_experience') == "5+ years" ? "selected" : '' }}>5+ years</option>
-                </select>
             </div>
         </div>
 
