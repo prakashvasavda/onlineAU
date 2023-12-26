@@ -502,7 +502,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="available_date">From which date would you be available <span class="text-danger">*</span></label>
+                <label for="available_date">From which date would you be available </label>
                 <input type="date" id="available_date" name="available_date" value="{{ old('available_date') }}" class="form-field">
                 @if ($errors->has('available_date'))
                     <span class="text-danger">
