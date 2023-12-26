@@ -20,21 +20,16 @@ class FrontRegisterController extends Controller{
     
     public function index($type){
         $data['type'] = $type == 'nannies' ? 'a nanny' : ($type == 'babysitters' ? 'a babysitter' : ($type == 'petsitters' ? 'A Petsitter' : 'an au-pair'));
+        $registration_forms = [
+            'au-pairs'              => 'user.registration_forms.au_pairs_form',
+            'petsitters'            => 'user.registration_forms.petsitters_form',
+            'nannies'               => 'user.registration_forms.nannies_form',
+            'babysitters'           => 'user.registration_forms.babysitters_form'
+        ];
 
-        if (session()->has('frontUser')) {
-            return redirect()->route('home');
-        }
-
-        switch ($type) {
-            case "au-pairs":
-                return view('user.registration_forms.au_pairs_form', $data);
-            case "petsitters":
-                return view('user.registration_forms.petsitters_form', $data);
-            case "nannies":
-                return view('user.registration_forms.nannies_form', $data);
-            default:
-                return view('user.registration_forms.babysitters_form', $data);
-        }
+        $service = strtolower($type);
+        $view    = isset($registration_forms[$service]) ? $registration_forms[$service] : 'user.home';
+        return view($view, $data);
     }
 
     public function store_candidate(Request $request){
