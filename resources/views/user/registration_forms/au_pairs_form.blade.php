@@ -36,26 +36,28 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="age">Age <span class="text-danger">*</span></label>
-                <input type="number" id="age" name="age" placeholder="" class="form-field @error('age') is-invalid @enderror"  value="{{ old('age') }}">
-                @error('age')
+                <label for="email">Email Address <span class="text-danger">*</span></label>
+                <input type="mail" id="email" name="email" placeholder="" class="form-field @error('email') is-invalid @enderror"  value="{{ old('email') }}" autocomplete="off">
+                @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="profile">Profile Picture </label>
-                <input type="file" id="profile" name="profile" placeholder="" class="form-field" >
-                @error('profile')
+                <label for="password">Password <span class="text-danger">*</span></label>
+                <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
+                @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="id_number">ID Number <span class="text-danger">*</span></label>
@@ -80,9 +82,9 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="email">Email Address <span class="text-danger">*</span></label>
-                <input type="mail" id="email" name="email" placeholder="" class="form-field @error('email') is-invalid @enderror"  value="{{ old('email') }}" autocomplete="off">
-                @error('email')
+                <label for="age">Age <span class="text-danger">*</span></label>
+                <input type="number" id="age" name="age" placeholder="" class="form-field @error('age') is-invalid @enderror"  value="{{ old('age') }}">
+                @error('age')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -211,10 +213,16 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="disabilities">Disabilities</label>
-                <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
+                <label for="profile">Profile Picture </label>
+                <input type="file" id="profile" name="profile" placeholder="" class="form-field" >
+                @error('profile')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="marital_status">Marital Status</label>
@@ -354,7 +362,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
+                <label for="ages_of_children_you_worked_with">Ages of children you worked with</label>
                 <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
                     <option value="" disabled>Select</option>
                     <option value="0_12_months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0_12_months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
@@ -371,15 +379,10 @@
             </div>
         </div>
 
-         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="password">Password <span class="text-danger">*</span></label>
-                <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                <label for="disabilities">Disabilities</label>
+                <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
             </div>
         </div>
 
