@@ -1,10 +1,5 @@
 @extends('layouts.register')
 @section('content')
-<style type="text/css">
-    span.text-danger{
-        font-size: .875em;
-    }
-</style>
 <div class="container">
     <div class="title-main">
         <h2>Welcome to Online Au-Pairs</h2>
@@ -17,7 +12,7 @@
         <input type="hidden" value="{{ Route::current()->parameter('service') }}" name="role">
          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="name">Name <span class="text-danger">*</span></label>
+                <label for="name">Name <span class="text-danger small">*</span></label>
                 <input type="text" id="name" name="name" placeholder="" class="form-field @error('name') is-invalid @enderror" value="{{ old('name') }}" >
                 @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -29,10 +24,10 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="surname">Surname <span class="text-danger">*</span></label>
+                <label for="surname">Surname <span class="text-danger small">*</span></label>
                 <input type="text" id="surname" name="surname" placeholder="" class="form-field" value="{{ old('name') }}" >
                 @if ($errors->has('surname'))
-                    <span class="text-danger">
+                    <span class="text-danger small">
                         <strong>{{ $errors->first('surname') }}</strong>
                     </span>
                 @endif
@@ -41,7 +36,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="email">Email Address <span class="text-danger">*</span></label>
+                <label for="email">Email Address <span class="text-danger small">*</span></label>
                 <input type="mail" id="email" name="email" placeholder="" class="form-field @error('email') is-invalid @enderror"  value="{{ old('email') }}" autocomplete="off">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -53,7 +48,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="password">Password <span class="text-danger">*</span></label>
+                <label for="password">Password <span class="text-danger small">*</span></label>
                 <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -65,7 +60,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="id_number">ID Number <span class="text-danger">*</span></label>
+                <label for="id_number">ID Number <span class="text-danger small">*</span></label>
                 <input type="number" id="id_number" name="id_number" placeholder="" class="form-field @error('id_number') is-invalid @enderror"  value="{{ old('id_number') }}">
                 @error('id_number')
                     <span class="invalid-feedback" role="alert">
@@ -89,7 +84,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="age">Age <span class="text-danger">*</span></label>
+                <label for="age">Age <span class="text-danger small">*</span></label>
                 <input type="number" id="age" name="age" placeholder="" class="form-field @error('age') is-invalid @enderror"  value="{{ old('age') }}">
                 @error('age')
                     <span class="invalid-feedback" role="alert">
@@ -238,10 +233,10 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="area">Area <span class="text-danger">*</span></label>
+                <label for="area">Area <span class="text-danger small">*</span></label>
                 <input type="text" id="area" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror address-input"  value="{{ old('area') }}">
                 @if ($errors->has('area'))
-                    <span class="text-danger">
+                    <span class="text-danger small">
                         <strong>{{ $errors->first('area') }}</strong>
                     </span>
                 @endif
@@ -330,7 +325,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
+                <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger small">*</span></label>
                 <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
                     <option value="" disabled>Select</option>
                     <option value="0_12_months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0_12_months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
@@ -340,7 +335,7 @@
                     <option value="13_16_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("13_16_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>13-16 years</option>
                 </select>
                 @if ($errors->has('ages_of_children_you_worked_with'))
-                    <span class="text-danger">
+                    <span class="text-danger small">
                         <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
                     </span>
                 @endif
@@ -356,10 +351,38 @@
                     <option value="petsitters" {{ !empty(old('other_services')) && is_array(old('other_services')) && in_array("petsitters", old('other_services')) ? "selected" : "" }}>petsitters</option>
                 </select>
                 @if ($errors->has('other_services'))
-                    <span class="text-danger">
+                    <span class="text-danger small">
                         <strong>{{ $errors->first('other_services') }}</strong>
                     </span>
                 @endif
+            </div>
+        </div>
+
+         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger small">*</span></label>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text">R</span>
+                            <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{old('hourly_rate_pay')}}">
+                        <span class="input-group-text">hr</span>
+                    </div>
+                @if ($errors->has('hourly_rate_pay'))
+                    <span class="text-danger small">
+                        <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="situated">Situated</label>
+                <input type="text" id="situated" name="situated" placeholder="" class="form-field @error('situated') is-invalid @enderror"  value="{{ old('situated') }}">
+                @error('situated')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
 
@@ -458,39 +481,10 @@
                 @endif
             @endforeach
         @endif
-
-
+ 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger">*</span></label>
-                    <div class="input-group mb-1">
-                        <span class="input-group-text">R</span>
-                            <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{old('hourly_rate_pay')}}">
-                        <span class="input-group-text">hr</span>
-                    </div>
-                @if ($errors->has('hourly_rate_pay'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="situated">Situated</label>
-                <input type="text" id="situated" name="situated" placeholder="" class="form-field @error('situated') is-invalid @enderror"  value="{{ old('situated') }}">
-                @error('situated')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-        
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
+                <label for="day_hour">What are your available days and hours </label>
                 <div class="table-responsive">
                     <table class="table table-borderless table-sm">
                         <tbody>
@@ -617,12 +611,12 @@
                 <div class="form-input d-flex flex-wrap mb-2">
                     <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions" checked autocomplete="off">
                     <label class="form-check-label" for="terms_and_conditions"> 
-                        <p><a href="{{ route('terms-and-conditions', ['service' => 'candidate']) }}" target="_blank">Accept Terms and Conditions </a><span class="text-danger">*</span></p>
+                        <p><a href="{{ route('terms-and-conditions', ['service' => 'candidate']) }}" target="_blank">Accept Terms and Conditions </a></p>
                     </label>
                 </div>
 
                 @if ($errors->has('terms_and_conditions'))
-                    <span class="text-danger">
+                    <span class="text-danger small">
                         <strong>{{ $errors->first('terms_and_conditions') }}</strong>
                     </span>
                 @endif
