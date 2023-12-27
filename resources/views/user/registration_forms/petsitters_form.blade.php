@@ -185,7 +185,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="animals_comfortable_with">Which animals do you feel comfortable working with <span class="text-danger">*</span></label>
+                <label for="animals_comfortable_with">Which animals do you feel comfortable working with </label>
                 <select id="animals_comfortable_with" multiple name="animals_comfortable_with[]" class="form-field">
                     <option value="" disabled>Select</option>
                     <option value="dogs" {{ !empty(old('animals_comfortable_with')) && in_array("dogs", old('animals_comfortable_with')) ? "selected" : " " }}>Dogs</option>
@@ -211,7 +211,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="experience_with_animals">Do you have experience with animals?</label>
+                <label for="experience_with_animals">Do you have experience with animals</label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="experience_with_animals" value="yes" {{ old('experience_with_animals') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="experience_with_animals" value="no" {{ old('experience_with_animals') == "no" ? "checked" : '' }}>No</li>
@@ -221,7 +221,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="do_you_like_animals">Do you like animals?</label>
+                <label for="do_you_like_animals">Do you like animals</label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="do_you_like_animals" value="yes" {{ old('do_you_like_animals') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="do_you_like_animals" value="no" {{ old('do_you_like_animals') == "no" ? "checked" : '' }}>No</li>
@@ -326,7 +326,7 @@
         @endif
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label for="about_yourself">Tell us a bit more about yourself? </label>
+            <label for="about_yourself">Tell us a bit more about yourself </label>
             <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
             <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
             @if ($errors->has('about_yourself'))
@@ -338,7 +338,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
+                <label for="day_hour">What are your available days and hours </label>
                 <div class="table-responsive">
                     <table class="table table-borderless table-sm">
                         <tbody>
