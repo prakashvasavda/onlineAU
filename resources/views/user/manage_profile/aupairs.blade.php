@@ -313,7 +313,7 @@
 
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="special_needs_specifications">If yes please specify. </label>
+                <label for="special_needs_specifications">If yes please specify</label>
                 <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications', $candidate->special_needs_specifications) }}</textarea>
                 <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                 @if ($errors->has('special_needs_specifications'))
