@@ -40,7 +40,7 @@
                 <div class="col-md-12">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title">Edit {{isset($menu) ? ucwords($menu) : ""}}</h3>
+                            <h3 class="card-title">{{isset($menu) ? ucwords($menu) : ""}} Form</h3>
                         </div>
 
                         <form method="POST" id="request_data" action="{{ route('admin.update-family', ['id' => $family->id]) }}" enctype="multipart/form-data">
