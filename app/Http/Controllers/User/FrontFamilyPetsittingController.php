@@ -13,15 +13,6 @@ use Illuminate\Support\Facades\Hash;
 
 class FrontFamilyPetsittingController extends Controller{
  
-    public function index()
-    {
-        //
-    }
-
-    public function create(){
-        //
-    }
-
     public function store(Request $request){
         $request->validate([
             'name'                          => "required",
@@ -62,15 +53,6 @@ class FrontFamilyPetsittingController extends Controller{
         return redirect()->route('user-login');
     }
 
-
-    public function show(string $id){
-        //
-    }
-
-    public function edit(string $id){
-        //
-    }
-
     public function update(Request $request, string $id){
         $request->validate([
             'name'                          => "required",
@@ -88,7 +70,7 @@ class FrontFamilyPetsittingController extends Controller{
         $family                  = FrontUser::find($id);
         $input                   = $request->all();
         $input['password']       = !empty($request->password) ? Hash::make($request->password) : $family->password;
-        $input['email']          = !empty($request->email) ? $request->email : $candidate->email;
+        $input['email']          = !empty($request->email) ? $request->email : $family->email;
         $input['role']           = $family->role;
         $input['profile']        = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
         $input['type_of_pet']    = isset($request->type_of_pet) ? json_encode($request->type_of_pet) : null;
@@ -98,10 +80,5 @@ class FrontFamilyPetsittingController extends Controller{
         $calender                = $this->store_family_calender($input, $id);
         $update_status           = $family->update($input);
         return redirect()->back()->with('success', 'Profile updated successfully.');
-    }
-
-    public function destroy(string $id)
-    {
-        //
     }
 }

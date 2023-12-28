@@ -39,14 +39,13 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-
                 </div>
 
                 <div class="form-input">
                     <div class="form-input">
                        <label for="surname"> Surname <span class="text-danger">*</span></label>
                         <input type="text" id="surname" name="surname" placeholder="" class="form-field"  value="{{ old('surname', isset($family->surname) ? $family->surname : '') }}">
-                         @if ($errors->has('surname'))
+                        @if ($errors->has('surname'))
                             <span class="text-danger">
                                 <strong>{{ $errors->first('surname') }}</strong>
                             </span>
@@ -55,17 +54,16 @@
                 </div>
             </div>
 
-
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                <div class="form-input">
                     <div class="form-input">
                         <label for="email">Email Address <span class="text-danger">*</span></label>
                         <input type="email" id="email" name="email" value="{{ old('email', isset($family->email) ? $family->email : '') }}" placeholder="" class="form-field @error('email') is-invalid @enderror" autocomplete="off">
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                        @if ($errors->has('email'))
+                            <span class="text-danger">
+                                <strong>{{ $errors->first('email') }}</strong>
                             </span>
-                        @enderror
+                        @endif
                     </div>
                 </div>
             </div>
@@ -254,7 +252,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities? </label>
+                    <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities </label>
                         <ul class="radio-box-list">
                             <li><input type="radio" name="pet_medication_or_disabilities" value="yes" {{ isset($family->pet_medication_or_disabilities) && $family->pet_medication_or_disabilities == "yes" ? 'checked' : '' }}>&nbsp;Yes</li>
                             <li><input type="radio" name="pet_medication_or_disabilities" value="no" {{ isset($family->pet_medication_or_disabilities) && $family->pet_medication_or_disabilities == "no" ? 'checked' : '' }}>&nbsp;No</li>
@@ -262,6 +260,18 @@
                     @if ($errors->has('pet_medication_or_disabilities'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('pet_medication_or_disabilities') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="start_date">Start date <span class="text-danger">*</span></label>
+                    <input type="date" id="start_date" name="start_date" value="{{ old('start_date', isset($family->start_date) ? $family->start_date : '') }}" class="form-field">
+                    @if ($errors->has('start_date'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('start_date') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -279,18 +289,6 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="start_date">Start date <span class="text-danger">*</span></label>
-                    <input type="date" id="start_date" name="start_date" value="{{ old('start_date', isset($family->start_date) ? $family->start_date : '') }}" class="form-field">
-                    @if ($errors->has('start_date'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('start_date') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="candidate_duties">What will be the candidate’s duties. <span class="text-danger">*</span></label>
                 <textarea id="candidate_duties" name="candidate_duties" class="form-field" rows="5" >{{ old('candidate_duties', isset($family->candidate_duties) ? $family->candidate_duties : '') }}</textarea>
                 <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
@@ -303,7 +301,7 @@
 
             <div class="col-6">
                 <div class="form-input">
-                    <label for="">When do you need a babysitter? </label>
+                    <label for="">When do you need a babysitter </label>
                     <div class="table-responsive">
                         <table class="table table-borderless table-sm">
                             <tbody>
