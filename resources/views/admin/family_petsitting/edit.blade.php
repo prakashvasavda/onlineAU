@@ -323,7 +323,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities? </label>
+                                            <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities </label>
                                                 <ul class="radio-box-list" >
                                                     <li><input type="radio" name="pet_medication_or_disabilities" value="yes" {{ isset($family->pet_medication_or_disabilities) && $family->pet_medication_or_disabilities == "yes" ? 'checked' : '' }}>&nbsp;Yes</li>
                                                     <li><input type="radio" name="pet_medication_or_disabilities" value="no" {{ isset($family->pet_medication_or_disabilities) && $family->pet_medication_or_disabilities == "no" ? 'checked' : '' }}>&nbsp;No</li>
@@ -337,7 +337,7 @@
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <label for="pet_medication_or_disabilities_specification">If yes please specify.</label>
+                                        <label for="pet_medication_or_disabilities_specification">If yes please specify</label>
                                         <textarea id="pet_medication_or_disabilities_specification" name="pet_medication_or_disabilities_specification" placeholder="" class="form-control" rows="2" >{{ old('pet_medication_or_disabilities_specification', isset($family->pet_medication_or_disabilities_specification) ? $family->pet_medication_or_disabilities_specification : '') }}</textarea>
                                         <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                                         @if ($errors->has('pet_medication_or_disabilities_specification'))
@@ -351,7 +351,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="candidate_duties">What will be the candidate’s duties. <span class="text-danger">*</span></label>
+                                            <label for="candidate_duties">What will be the candidate’s duties <span class="text-danger">*</span></label>
                                             <textarea id="candidate_duties" name="candidate_duties" class="form-control" rows="8" >{{ old('candidate_duties', isset($family->candidate_duties) ? $family->candidate_duties : '') }}</textarea>
                                             <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                                             @if ($errors->has('candidate_duties'))
@@ -364,7 +364,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">When do you need a babysitter? </label>
+                                            <label for="">When do you need a petsitter </label>
                                             <div class="table-responsive">
                                                 <table class="table table-borderless table-sm">
                                                     <tbody>

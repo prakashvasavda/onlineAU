@@ -294,7 +294,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="experience_with_animals">Do you have experience with animals?</label>
+                                            <label for="experience_with_animals">Do you have experience with animals</label>
                                             <ul class="flex-wrap">
                                                 <li><input type="radio" name="experience_with_animals" value="yes" {{ old('experience_with_animals', $candidate->experience_with_animals) == "yes" ? "checked" : '' }}>&nbsp; Yes</li>
                                                 <li><input type="radio" name="experience_with_animals" value="no" {{ old('experience_with_animals', $candidate->experience_with_animals) == "no" ? "checked" : '' }}>&nbsp; No</li>
@@ -304,7 +304,7 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="do_you_like_animals">Do you like animals?</label>
+                                            <label for="do_you_like_animals">Do you like animals</label>
                                             <ul class="flex-wrap">
                                                 <li><input type="radio" name="do_you_like_animals" value="yes" {{ old('do_you_like_animals', $candidate->do_you_like_animals) == "yes" ? "checked" : '' }}>&nbsp; Yes</li>
                                                 <li><input type="radio" name="do_you_like_animals" value="no" {{ old('do_you_like_animals', $candidate->do_you_like_animals) == "no" ? "checked" : '' }}>&nbsp; No</li>
@@ -431,7 +431,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="about_yourself">Tell us a bit more about yourself? </label>
+                                            <label for="about_yourself">Tell us a bit more about yourself</label>
                                             <textarea id="about_yourself" name="about_yourself" class="form-control" rows="8" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
                                             <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                                             @if ($errors->has('about_yourself'))
@@ -441,7 +441,6 @@
                                             @endif
                                         </div>
                                     </div>
-
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">

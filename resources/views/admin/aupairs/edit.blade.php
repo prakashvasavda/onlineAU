@@ -171,7 +171,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger">*</span></label>
+                                            <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
                                             <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-control">
                                                 <option value="" disabled>Select</option>
                                                 <option value="0_12_months" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("0_12_months", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>0-12 months</option>
@@ -472,7 +472,7 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="first_aid">Do you have first aid?</label>
+                                            <label for="first_aid">Do you have first aid</label>
                                             <ul class="flex-wrap">
                                                 <li><input type="radio" name="first_aid" value="yes" {{ old('first_aid', $candidate->first_aid) == "yes" ? "checked" : '' }}>&nbsp; Yes</li>
                                                 <li><input type="radio" name="first_aid" value="no" {{ old('first_aid', $candidate->first_aid) == "no" ? "checked" : '' }}>&nbsp; No</li>
@@ -592,7 +592,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="about_yourself">Tell us a bit more about yourself? </label>
+                                            <label for="about_yourself">Tell us a bit more about yourself </label>
                                             <textarea id="about_yourself" name="about_yourself" class="form-control" rows="5" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
                                             <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                                             @if ($errors->has('about_yourself'))
@@ -605,7 +605,7 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
+                                            <label for="day_hour">What are your available days and hours</label>
                                             <div class="table-responsive">
                                                 <table class="table table-borderless table-sm">
                                                     <tbody>
@@ -762,7 +762,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="available_date">From which date would you be available? <span class="text-danger">*</span></label>
+                                            <label for="available_date">From which date would you be available <span class="text-danger">*</span></label>
                                             <input type="date" id="available_date" name="available_date" value="{{ old('available_date', $candidate->available_date) }}" class="form-control">
                                             @if ($errors->has('available_date'))
                                                 <span class="text-danger">
