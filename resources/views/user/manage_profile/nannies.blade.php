@@ -136,8 +136,8 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="area">Area Pin <span class="text-danger">*</span></label>
-                    <input type="number" id="area" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror"  value="{{ old('area', isset($candidate->area) ? $candidate->area : null) }}">
+                    <label for="area">Area<span class="text-danger">*</span></label>
+                    <input type="text" id="area" name="area" placeholder="" class="form-field address-input @error('area') is-invalid @enderror"  value="{{ old('area', isset($candidate->area) ? $candidate->area : null) }}">
                     @error('area')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

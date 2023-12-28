@@ -105,7 +105,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="address">Your Address <span class="text-danger">*</span></label>
-                    <input type="text" id="address" name="family_address" placeholder="" class="form-field @error('family_address') is-invalid @enderror"  value="{{ old('family_address', isset($family->family_address) ? $family->family_address : '') }}">
+                    <input type="text" id="address" name="family_address" placeholder="" class="form-field address-input @error('family_address') is-invalid @enderror"  value="{{ old('family_address', isset($family->family_address) ? $family->family_address : '') }}">
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
