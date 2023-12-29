@@ -8,10 +8,10 @@
 </style>
 <div class="search-section no-banner">
 	<ul class="filter-option">
-		<li><a href="{{ route('view-candidates', ['service' => 'au-pairs']) }}">Au-Pairs</a></li>
-		<li><a href="{{ route('view-candidates', ['service' => 'babysitters']) }}">Babysitters</a></li>
-		<li><a href="{{ route('view-candidates', ['service' => 'nannies']) }}">Nannies</a></li>
-		<li><a href="{{ route('view-candidates', ['service' => 'petsitters']) }}">Pet Sitters</a></li>
+		<li class="{{ request()->is('view-candidates/au-pairs') 	? 'active' : '' }}"><a href="{{ route('view-candidates', ['service' => 'au-pairs']) }}">Au-Pairs</a></li>
+		<li class="{{ request()->is('view-candidates/babysitters') 	? 'active' : '' }}"><a href="{{ route('view-candidates', ['service' => 'babysitters']) }}">Babysitters</a></li>
+		<li class="{{ request()->is('view-candidates/nannies') 		? 'active' : '' }}"><a href="{{ route('view-candidates', ['service' => 'nannies']) }}">Nannies</a></li>
+		<li class="{{ request()->is('view-candidates/petsitters') 	? 'active' : '' }}"><a href="{{ route('view-candidates', ['service' => 'petsitters']) }}">Pet Sitters</a></li>
 	</ul>
 	<div class="search-inner">
 		<div class="container">
