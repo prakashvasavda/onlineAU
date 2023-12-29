@@ -131,7 +131,7 @@ class FrontFamilyController extends Controller{
     }
 
    
-    public function edit_family_calender(Request $request){
+    public function manage_calender(Request $request){
         $data['menu']                   = "manage calender";
         $data['candidate']              = FrontUser::findOrFail(Session::get('frontUser')->id);
         $data['availability']           = NeedsBabysitter::where('family_id', Session::get('frontUser')->id)->first();
@@ -259,11 +259,11 @@ class FrontFamilyController extends Controller{
 
        
         $data['payments'] = UserSubscription::leftJoin('packages', 'user_subscriptions.package_id', '=', 'packages.id')
-                ->select('user_subscriptions.*', 'packages.name', 'packages.price')
-                ->where('user_subscriptions.status', 'active')
-                ->where('user_id', Session::get('frontUser')->id)
-                ->get()
-                ->toArray();
+        ->select('user_subscriptions.*', 'packages.name', 'packages.price')
+        ->where('user_subscriptions.status', 'active')
+        ->where('user_id', Session::get('frontUser')->id)
+        ->get()
+        ->toArray();
 
         return view('user.family.transactions', $data);
     }

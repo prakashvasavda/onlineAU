@@ -123,11 +123,11 @@ class Controller extends BaseController{
 
     public function get_purchased_candidates($user_id){
         $candidates = Packages::leftJoin('user_subscriptions', 'packages.id', '=', 'user_subscriptions.package_id')
-                    ->select('packages.candidate', 'user_subscriptions.*')
-                    ->where('user_subscriptions.end_date', '>',  Carbon::now())
-                    ->where('user_subscriptions.status', 'active')
-                    ->where('user_subscriptions.user_id', $user_id)
-                    ->get()->pluck('candidate')->toArray();
+        ->select('packages.candidate', 'user_subscriptions.*')
+        ->where('user_subscriptions.end_date', '>',  Carbon::now())
+        ->where('user_subscriptions.status', 'active')
+        ->where('user_subscriptions.user_id', $user_id)
+        ->get()->pluck('candidate')->toArray();
         
         $response = !empty($candidates) ? implode(",", $candidates) : null;
         return $response;

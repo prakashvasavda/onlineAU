@@ -80,10 +80,10 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('view-candidates/{service?}', [FrontFamilyController::class, 'view_candidates'])->name('view-candidates');
     Route::post('store-family-favourite-candidate', [FrontFamilyController::class, 'store_family_favourite_candidate'])->name('store-family-favourite-candidate');
     /* candidate calender */
-    Route::get('candidate/manage-calender', [FrontCandidateController::class, 'edit_candidate_calender'])->name('candidate-manage-calender');
+    Route::get('candidate/manage-calender', [FrontCandidateController::class, 'manage_calender'])->name('candidate-manage-calender');
     Route::put('update-candidate-calender/{id}', [FrontCandidateController::class, 'update_candidate_calender'])->name('update-candidate-calender');
     /* family calender */
-    Route::get('family/manage-calender', [FrontFamilyController::class, 'edit_family_calender'])->name('family-manage-calender');
+    Route::get('family/manage-calender', [FrontFamilyController::class, 'manage_calender'])->name('family-manage-calender');
     Route::put('update-family-calender/{id}', [FrontFamilyController::class, 'update_family_calender'])->name('update-family-calender');
     /* subscriptions */
     Route::post('cancel-user-subscription', [SubscriptionController::class, 'cancel_user_subscription'])->name('cancel-user-subscription');

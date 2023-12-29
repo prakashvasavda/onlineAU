@@ -128,7 +128,7 @@ class FrontCandidateController extends Controller{
         return $status;
     }
 
-    public function edit_candidate_calender(Request $request){
+    public function manage_calender(Request $request){
         $data['menu']                   = "manage calender";
         $data['candidate']              = FrontUser::findOrFail(Session::get('frontUser')->id);
         $data['availability']           = NeedsBabysitter::where('family_id', Session::get('frontUser')->id)->first();
