@@ -69,7 +69,6 @@ class AupairsController extends Controller{
             'surname'               => "required",
         ]);
 
-
         $candidate                              = FrontUser::findorFail($id);
         $input                                  = $request->all();
         $input['password']                      = !empty($request->password) ? Hash::make($request->password) : $candidate->password;
@@ -78,9 +77,9 @@ class AupairsController extends Controller{
         $input['profile']                       = $request->has('profile') ? $this->store_image($request->file('profile')) : $candidate->profile;
         $input['other_services']                = !empty($request->other_services) ? json_encode($request->other_services) : null;
         $input['animals_comfortable_with']      = !empty($request->animals_comfortable_with) ? json_encode($request->animals_comfortable_with) : null;
-        $experiance             = !empty($input['daterange']) ? $this->store_previous_experience($input, $id) : 0;
-        $availability           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_candidate_calender($input, $id) : 0;
-        $update_status          = $candidate->update($input);
+        $experiance                             = !empty($input['daterange']) ? $this->store_previous_experience($input, $id) : 0;
+        $availability                           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_candidate_calender($input, $id) : 0;
+        $update_status                          = $candidate->update($input);
         return redirect()->back()->with('success', 'candidate profile updated successfully.');
     }
 
@@ -92,6 +91,7 @@ class AupairsController extends Controller{
         }
 
         $frontUser->delete();
+        
         $response = [
             'status'  => 200,
             'message' => 'record deleted successfully',
