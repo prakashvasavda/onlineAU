@@ -605,7 +605,7 @@ $(document).ready(function() {
             for (var i = no_children - 1; i >= 1; i--) {
                 $("#more_childern")
                 .append(`
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
                         <div class="form-input">
                             <label for="age_children">Age of children</label>
                             <select name="age[]" class="form-field" >
@@ -618,7 +618,7 @@ $(document).ready(function() {
                         </div>
                     </div> 
 
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
                         <div class="form-input">
                             <label for="gender_of_children">Gender of children</label>
                             <select name="gender_of_children[]" class="form-field">
