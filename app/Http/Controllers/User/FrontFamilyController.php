@@ -139,7 +139,7 @@ class FrontFamilyController extends Controller{
         $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
         $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
         $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
-        return view('user.family.family_manage_calender', $data);
+        return view('user.family.manage_calender', $data);
     }
 
     public function update_family_calender(Request $request, $familyId){
