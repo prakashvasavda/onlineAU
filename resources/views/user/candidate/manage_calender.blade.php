@@ -13,7 +13,7 @@
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ml-5"> 
             <div class="form-input">
-                <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
+                <label for="day_hour">What are your available days and hours</label>
                 <div class="">
                     <table class="table table-borderless table-sm" width="100%" style="">
                         <tbody>
