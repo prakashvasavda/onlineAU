@@ -400,7 +400,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="">What hourly rate are you willing to pay per day? </label>
+                    <label for="">What hourly rate are you willing to pay per day </label>
                     <div class="input-group mb-1">
                         <span class="input-group-text">R</span>
                             <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{ old('hourly_rate_pay', isset($family->hourly_rate_pay) ? $family->hourly_rate_pay : '') }}">
@@ -412,7 +412,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="salary_expectation">What salary are you willing to pay?</label>
+                    <label for="salary_expectation">What salary are you willing to pay</label>
                     <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror" value="{{ old('salary_expectation', isset($family->salary_expectation) ? $family->salary_expectation : '') }}">
                     @if ($errors->has('salary_expectation'))
                         <span class="text-danger">
@@ -424,7 +424,7 @@
 
              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="family_notifications">Do you want to get notifications from new candidates in your area? </label>
+                    <label for="family_notifications">Do you want to get notifications from new candidates in your area </label>
                     <ul class="d-flex flex-wrap" >
                         <li><input type="radio" checked name="family_notifications" value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'checked' : '' }}>Yes</li>
                         <li><input type="radio" name="family_notifications" value="no" {{ isset($family->family_notifications) && $family->family_notifications == "no" ? 'checked' : '' }}>No</li>
