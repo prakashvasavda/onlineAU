@@ -17,26 +17,18 @@
             <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
                 <div class="candidate-content">
                     <h3>
-                        NAME: {{ $candidate->name ? strtoupper($candidate->name) : "-"  }}<br>
+                        NAME:               {{ $candidate->name ? strtoupper($candidate->name)  : "-"  }}   <br>
+                        AGE:                {{ $candidate->age ? strtoupper($candidate->age)    : "-" }}    <br>
+                        LOCATION:           {{ $candidate->area ? strtoupper($candidate->area)  : "-" }}    <br>
+                        SPECIALITY:         {{ $candidate->role ? strtoupper($candidate->role)  : "-" }}    <br>
+                        OTHER SPECIALITY:   {{ $candidate->other_services ? strtoupper($candidate->other_services) : "-" }}<br> 
                         
-                        @if($candidate->role != 'family')
-                            AGE: {{ $candidate->age ? strtoupper($candidate->age) : "-" }}<br>
-                            LOCATION: {{ $candidate->area ? strtoupper($candidate->area) : "-" }}<br>
-                            SPECIALITY: {{ $candidate->role ? strtoupper($candidate->role) : "-" }}<br>
-                            OTHER SPECIALITY: {{ $candidate->other_services ? strtoupper($candidate->other_services) : "-" }}<br> 
-                            
-                            @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs')
-                                SALARY: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
-                            @else
-                                HOURLY RATE: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
-                            @endif
+                        @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs')
+                            SALARY: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
+                        @else
+                            HOURLY RATE: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
                         @endif
-
-                        @if($candidate->role == 'family')
-                            LOCATION: {{ $candidate->family_address ? strtoupper($candidate->family_address) : "-" }}<br>
-                            START DATE: {{ $candidate->start_date ? strtoupper($candidate->start_date) : "-" }}<br>
-                            SALARY: R{{ $candidate->salary_expectation ? strtoupper($candidate->salary_expectation) : "-" }}<br>
-                        @endif
+                       
 
                         @if(session()->has('frontUser') && session()->get('frontUser')->role == "family" && session()->get('frontUser')->user_subscription_status == "active")
                             @if(isset(session()->get('frontUser')->purchased_candidates) && in_array($candidate->role, explode(',', session()->get('frontUser')->purchased_candidates)))
