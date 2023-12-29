@@ -3,7 +3,7 @@
 <div class="pricing-plans no-banner">
     <div class="container">
         <div class="alert alert-primary alert-dismissible" role="alert">
-            <p><strong>Success!</strong> Please add your preferred packages to your basket and proceed to checkout. After payment has been received, your profile will be activated, and you will be granted access!'
+            <p><strong>Success!</strong> Please add your preferred packages to your basket and proceed to checkout. After payment has been received, your profile will be activated, and you will be granted access!</p>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
             </button>
         </div>
