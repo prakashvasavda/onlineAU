@@ -64,7 +64,7 @@ class PetsittersController extends Controller{
         $request->validate([
             'name'                  => 'required',
             'age'                   => 'required',
-            'id_number'             => "required",
+            'id_number'             => "required|min:13|max:13",
             'salary_expectation'    => "required",
             'surname'               => "required",
         ]);

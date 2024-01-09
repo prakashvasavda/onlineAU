@@ -112,7 +112,7 @@ class FamilyPetsittingController extends Controller
             'name'                          => "required",
             'family_address'                => "required",
             'surname'                       => "required",
-            'id_number'                     => "required",
+            'id_number'                     => "required|min:13|max:13",
             'cell_number'                   => "required",
             'start_date'                    => "required",
             'duration_needed'               => "required",

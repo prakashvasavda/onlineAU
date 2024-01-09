@@ -106,7 +106,7 @@ class FamilyController extends Controller{
             'no_children'                   => "required",
             'family_notifications'          => "required",
             'surname'                       => "required",
-            'id_number'                     => 'required|min:10|max:10',
+            'id_number'                     => 'required|min:13|max:13',
             'cell_number'                   => 'required|min:10|max:10|regex:/[0-9]{9}/',
             'start_date'                    => "required",
             'duration_needed'               => "required|numeric|gt:1",
