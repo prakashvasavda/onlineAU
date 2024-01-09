@@ -36,7 +36,7 @@ class LoginController extends Controller{
             }
             /*check user subscription status*/
             $subscription                       = new SubscriptionController();
-            $subscription_status                = $user->role == "family" ? $subscription->check_subscription_status($user->id) : null;
+            $subscription_status                = $user->role == "family" || $user->role == "family-petsitting" ? $subscription->check_subscription_status($user->id) : null;
             $user['user_subscription_status']   = $subscription_status;
 
             /*get family paid candidates*/
@@ -45,7 +45,9 @@ class LoginController extends Controller{
                 $user['purchased_candidates'] = $purchased_candidates;
             }
 
+            /*set user session*/
             Session::put('frontUser', $user);
+
             return $user->role == "family" || $user->role == "family-petsitting" ? redirect()->route('view-candidates') : redirect()->route('view-families');
         } else {
             return back()->withErrors(['email' => 'Invalid credentials']);
