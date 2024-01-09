@@ -44,13 +44,13 @@ class FrontFamilyPetsittingController extends Controller{
         
 
         /*redirect to payment packages*/
-        //$input['user_id']        = $familyId;
-        //$input['profile']        = null;
+        $input['user_id']        = $familyId;
+        $input['profile']        = null;
 
-        //Session::put('guestUser', $input);
-        //return redirect()->to('packages');
+        Session::put('guestUser', $input);
+        return redirect()->to('packages');
 
-        return redirect()->route('user-login');
+        //return redirect()->route('user-login');
     }
 
     public function update(Request $request, string $id){

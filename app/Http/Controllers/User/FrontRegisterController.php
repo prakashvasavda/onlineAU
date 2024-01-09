@@ -244,13 +244,13 @@ class FrontRegisterController extends Controller{
 
        
         /*redirect to payment packages*/
-        //$data['user_id']        = $familyId;
-        //$data['profile']        = null;
+        $data['user_id']        = $familyId;
+        $data['profile']        = null;
 
-        //Session::put('guestUser', $data);
-        //return redirect()->to('packages');
+        Session::put('guestUser', $data);
+        return redirect()->to('packages');
 
-        return redirect()->route('user-login');
+        //return redirect()->route('user-login');
     }
 
     public function send_notification_email($data, $role){
