@@ -40,7 +40,7 @@ class LoginController extends Controller{
             $user['user_subscription_status']   = $subscription_status;
 
             /*get family paid candidates*/
-            if($user->role == "family" && $subscription_status == "active"){
+            if(($user->role == "family" || $user->role == "family-petsitting") && $subscription_status == "active"){
                 $purchased_candidates = $this->get_purchased_candidates($user->id);
                 $user['purchased_candidates'] = $purchased_candidates;
             }
