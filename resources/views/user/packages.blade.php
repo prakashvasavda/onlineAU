@@ -32,7 +32,7 @@
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('au-pair self placement package', 'aupairs_first')" data-id="first_package" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('au-pair self placement package', 'aupairs_first')" data-id="first_package" class="btn btn-primary round" data-bs-toggle="modal" data-bs-target="#cartBtnModal">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -56,7 +56,7 @@
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('au-pair private placement package', 'aupairs_second')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('au-pair private placement package', 'aupairs_second')" class="btn btn-primary round" data-bs-toggle="modal" data-bs-target="#cartBtnModal">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -90,7 +90,7 @@
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('nannies self placement package', 'nannies_first')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('nannies self placement package', 'nannies_first')" class="btn btn-primary round" data-bs-toggle="modal" data-bs-target="#cartBtnModal">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -114,7 +114,7 @@
                                             <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('nannies private placement package', 'nannies_second')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('nannies private placement package', 'nannies_second')" class="btn btn-primary round" data-bs-toggle="modal" data-bs-target="#cartBtnModal">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -145,7 +145,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('babysitters self placement subscription', 'babysitters_first')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('babysitters self placement subscription', 'babysitters_first')" class="btn btn-primary round" data-bs-toggle="modal" data-bs-target="#cartBtnModal">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -167,7 +167,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('babysitters private placement subscription', 'babysitters_second')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('babysitters private placement subscription', 'babysitters_second')" class="btn btn-primary round" data-bs-toggle="modal" data-bs-target="#cartBtnModal">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -198,7 +198,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('pet sitters self placement subscription', 'petsitters_first')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('pet sitters self placement subscription', 'petsitters_first')" class="btn btn-primary round" data-bs-toggle="modal" data-bs-target="#cartBtnModal">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -220,7 +220,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('pet sitters private placement subscription', 'petsitters_second')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('pet sitters private placement subscription', 'petsitters_second')" class="btn btn-primary round" data-bs-toggle="modal" data-bs-target="#cartBtnModal">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -237,6 +237,28 @@
 </div>
 @endsection
 @section('script')
+
+<div class="modal fade" id="cartBtnModal" tabindex="-1" aria-labelledby="cartBtnModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cartBtnModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body p-4">
+        <h6 class="text-center pb-3">Go to checkout or add another package - content here</h6>
+        <div class="btns-main d-flex flex-md-row justify-content-center align-items-center gap-3">
+            <a href="javascript:;" class="btn btn-primary round">Go to Checkout</a>
+            <a href="javascript:;" class="btn btn-secondary round">Another Package</a>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
     function userSubscription(){
         var status = $('#subscribe_chkbx').is(':checked') ? 1 : 0;

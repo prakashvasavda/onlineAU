@@ -1369,6 +1369,7 @@ header {
 .step-contentBox {
     height: 100%;
     background-color: var(--light-gray);
+    border-radius: 30px;
     padding: 18px 30px;
     display: flex;
     justify-content: center;
@@ -1380,7 +1381,8 @@ header {
     font-weight: 400;
     font-family: var(--montserrat-font);
     color: var(--primary);
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
+    text-transform: unset;
     letter-spacing: normal;
 }
 .available-candidates .btn-main, 
@@ -1912,6 +1914,10 @@ header {
 }
 .modal-header {
     border-color: var(--dust-storm);
+}
+.modal>* {
+    color: var(--gray-text);
+    font-family: var(--montserrat-font);
 }
 
 .favorites-section, 
