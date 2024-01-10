@@ -29,7 +29,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You are your own agent.</li>
                                             <li><i class="fa-solid fa-circle"></i>Full access to all our available Candidates in your area for up to 2 months.</li>
                                             <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
-                                            <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
+                                            <li><i class="fa-solid fa-circle"></i>Template of employment contract available upon request.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
                                             <a href="#" onclick="addItemToCart('au-pair self placement package', 'aupairs_first')" data-id="first_package" class="btn btn-primary round">Add to Cart</a>
@@ -53,10 +53,11 @@
                                             <li><i class="fa-solid fa-circle"></i>We assign an agent to you.</li>
                                             <li><i class="fa-solid fa-circle"></i>We find the perfect candidate for your specific needs.</li>
                                             <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
-                                            <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
+                                            <li><i class="fa-solid fa-circle"></i>Template of employment contract available upon request.</li>
+                                            <li><i class="fa-solid fa-circle"></i>Admin fee will be applicable</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('au-pair private placement package', 'aupairs_second')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="{{ route('contact-us') }}" class="btn btn-primary round">Contact Us</a>
                                         </div>
                                     </div>
                                 </a>
@@ -87,7 +88,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You are your own agent.</li>
                                             <li><i class="fa-solid fa-circle"></i>Full access to all our available Candidates in your area for up to 2 months.</li>
                                             <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
-                                            <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
+                                            <li><i class="fa-solid fa-circle"></i>Template of employment contract available upon request.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
                                             <a href="#" onclick="addItemToCart('nannies self placement package', 'nannies_first')" class="btn btn-primary round">Add to Cart</a>
@@ -111,10 +112,11 @@
                                             <li><i class="fa-solid fa-circle"></i>We assign an agent to you.</li>
                                             <li><i class="fa-solid fa-circle"></i>We find the perfect candidate for your specific needs.</li>
                                             <li><i class="fa-solid fa-circle"></i>3 Month warranty</li>
-                                            <li><i class="fa-solid fa-circle"></i>Template of employment contract.</li>
+                                            <li><i class="fa-solid fa-circle"></i>Template of employment contract available upon request.</li>
+                                            <li><i class="fa-solid fa-circle"></i>Admin fee will be applicable</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('nannies private placement package', 'nannies_second')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="{{ route('contact-us') }}" class="btn btn-primary round">Contact Us</a>
                                         </div>
                                     </div>
                                 </a>
@@ -134,18 +136,18 @@
                             <form method="POST" id="form_five" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="250">
-                                <input type="hidden" name="item_name" value="self placement subscription">
+                                <input type="hidden" name="item_name" value="1 Month subscription">
                                 <input type="hidden" name="end_date" value="30">
                                 <a href="#" onclick="return false; document.getElementById('form_five').submit(); return false;">
                                     <div class="pricing-box">
-                                        <div class="name-box">SELF PLACEMENT SUBSCRIPTION</div>
+                                        <div class="name-box">1 Month subscription</div>
                                         <div class="price-box display-6">R 250</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to a months.</li>
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('babysitters self placement subscription', 'babysitters_first')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('babysitters 1 month subscription', 'babysitters_first')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -156,18 +158,18 @@
                             <form method="POST" id="form_six" action="{{ route('payment-process') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="amount" value="500">
-                                <input type="hidden" name="item_name" value="private placement subscription">
+                                <input type="hidden" name="item_name" value="2 Month subscription">
                                 <input type="hidden" name="end_date" value="60">
                                 <a href="#" onclick="return false; document.getElementById('form_six').submit(); return false;">
                                     <div class="pricing-box">
-                                        <div class="name-box">PRIVATE PLACEMENT SUBSCRIPTION</div>
+                                        <div class="name-box">2 Month subscription</div>
                                         <div class="price-box display-6">R 500</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 2 months.</li>
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('babysitters private placement subscription', 'babysitters_second')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('babysitters 2 month subscription', 'babysitters_second')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -191,14 +193,14 @@
                                 <input type="hidden" name="end_date" value="30">
                                 <a href="javascript void(0)" onclick="return false; document.getElementById('form_seven').submit(); return false;">
                                     <div class="pricing-box">
-                                        <div class="name-box">SELF PLACEMENT SUBSCRIPTION</div>
+                                        <div class="name-box">1 Month subscription</div>
                                         <div class="price-box display-6">R 250</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to a months.</li>
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('pet sitters self placement subscription', 'petsitters_first')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('pet sitters 1 month subscription', 'petsitters_first')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -213,14 +215,14 @@
                                 <input type="hidden" name="end_date" value="60">
                                 <a href="#" onclick="return false; document.getElementById('form_eight').submit(); return false;">
                                     <div class="pricing-box">
-                                        <div class="name-box">PRIVATE PLACEMENT SUBSCRIPTION</div>
+                                        <div class="name-box">2 Month subscription</div>
                                         <div class="price-box display-6">R 500</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 2 months.</li>
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('pet sitters private placement subscription', 'petsitters_second')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('pet sitters 2 month subscription', 'petsitters_second')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
