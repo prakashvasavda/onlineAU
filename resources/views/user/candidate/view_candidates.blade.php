@@ -214,7 +214,7 @@ function storeFamilyFavoriteCandidate(event, candidate_id){
 function handleClick(id){
 	event.preventDefault();
 	var candidateClass = $("#candidate-"+id).attr('class');
-	if(candidateClass == "inactive-candidate"){
+	if(candidateClass && candidateClass == "inactive-candidate"){
 		$("#warning-modal-label").html("Warning");
 		$("#warning-modal-body").html("The candidate you've selected is not included in the purchased package.");
 		$('#warning-modal').modal('show');
