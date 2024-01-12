@@ -68,7 +68,7 @@
 												  	</div>
 												    <p class="text-capitalize mb-1"><span>name</span>: {{ isset($value->name) ? strtoupper($value->name) : "-" }}</p>
 												    <p class="text-capitalize mb-1"><span>age</span>: {{ isset($value->age) ? $value->age : "-" }}</p>
-												    <p class="text-capitalize mb-1"><span>area</span>: {{ isset($value->area) ? $value->area : "-" }}</p>
+												    <p class="text-capitalize mb-1" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis"><span>area</span>: {{ isset($value->area) ? $value->area : "-" }}</p>
 												    <p class="text-capitalize mb-1"><span>available from</span>: {{ isset($value->available_date) ? $value->available_date : "-" }}</p>
 												    <p class="text-capitalize mb-1"><span>years experience</span>: {{ isset($value->childcare_experience) ? $value->childcare_experience : "-" }}</p>
 												    <p class="text-center mt-3">
@@ -134,7 +134,7 @@
 												  	</div>
 												    <p class="text-capitalize mb-1"><span>name</span>: {{ isset($value->name) ? strtoupper($value->name) : "-" }}</p>
 												    <p class="text-capitalize mb-1"><span>age</span>: {{ isset($value->age) ? $value->age : "-" }}</p>
-												    <p class="text-capitalize mb-1"><span>area</span>: {{ isset($value->area) ? $value->area : "-" }}</p>
+												    <p class="text-capitalize mb-1" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis"><span>area</span>: {{ isset($value->area) ? $value->area : "-" }}</p>
 												    <p class="text-capitalize mb-1"><span>available from</span>: {{ isset($value->available_date) ? $value->available_date : "-" }}</p>
 												    <p class="text-capitalize mb-1"><span>years experience</span>: {{ isset($value->childcare_experience) ? $value->childcare_experience : "-" }}</p>
 												    <p class="text-center mt-3">
