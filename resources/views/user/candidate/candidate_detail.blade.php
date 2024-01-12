@@ -17,10 +17,10 @@
             <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
                 <div class="candidate-content">
                     <h3>
-                        NAME:               {{ $candidate->name ? strtoupper($candidate->name)  : "-"  }}   <br>
-                        AGE:                {{ $candidate->age ? strtoupper($candidate->age)    : "-" }}    <br>
-                        LOCATION:           {{ $candidate->area ? strtoupper($candidate->area)  : "-" }}    <br>
-                        SPECIALITY:         {{ $candidate->role ? strtoupper($candidate->role)  : "-" }}    <br>
+                        NAME:               {{ $candidate->name ? strtoupper($candidate->name)  : "-"  }}    <br>
+                        AGE:                {{ $candidate->age  ? strtoupper($candidate->age)   : "-"  }}    <br>
+                        LOCATION:           {{ $candidate->area ? strtoupper($candidate->area)  : "-"  }}    <br>
+                        SPECIALITY:         {{ $candidate->role ? strtoupper($candidate->role)  : "-"  }}    <br>
                         OTHER SPECIALITY:   {{ $candidate->other_services ? strtoupper($candidate->other_services) : "-" }}<br> 
                         
                         @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs')

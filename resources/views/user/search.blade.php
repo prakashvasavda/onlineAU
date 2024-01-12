@@ -19,7 +19,7 @@
 				@endif
 			</div>
 			<div class="row result-list">
-				@if(isset($search))
+				@if(isset($search) && $search->isNotEmpty())
 					@foreach($search as $value)
 						@php
 							$decoded_value = isset($value->what_do_you_need) && is_string($value->what_do_you_need) ? json_decode($value->what_do_you_need) : null;
@@ -81,6 +81,10 @@
 							</a>
 						</div>
 					@endforeach
+				@else
+					<div class="text-center">
+			           <img src="{{ url('front/images/error-notFound-icon1-x-size.png') }}" alt="">
+			        </div>
 				@endif
 			</div>
 
