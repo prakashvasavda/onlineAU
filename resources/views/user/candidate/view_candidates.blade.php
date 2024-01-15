@@ -184,6 +184,7 @@
 <script type="text/javascript">
 function storeFamilyFavoriteCandidate(event, candidate_id){
 	event.preventDefault();
+	event.stopPropagation();
     var family_id = {{ session()->has('frontUser') ? session()->get('frontUser')->id : 0 }};
     var role = "{{ session()->has('frontUser') ? session()->get('frontUser')->role : " " }}";
 
