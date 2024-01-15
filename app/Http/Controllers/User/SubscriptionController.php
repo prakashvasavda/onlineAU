@@ -52,7 +52,10 @@ class SubscriptionController extends Controller{
     } 
 
     public function check_subscription_status($user_id){
-        $user_subscription = UserSubscription::where('user_id', $user_id)->orderBy('end_date', 'desc')->first();
+        $user_subscription = UserSubscription::where('user_id', $user_id)
+            ->where('status', 'active')
+            ->orderBy('end_date', 'desc')
+            ->first();
         
         /*inactive*/
         if(empty($user_subscription)){
