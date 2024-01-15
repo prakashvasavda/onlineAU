@@ -253,11 +253,13 @@ class FrontFamilyController extends Controller{
     public function transactions(){
         /*check user subscription status*/
         $subscription                           = new SubscriptionController();
+        
         $frontUser                              = Session::get('frontUser');
         $frontUser['user_subscription_status']  = $subscription->check_subscription_status(Session::get('frontUser')->id);
+        $frontUser['purchased_candidates']      = $this->get_purchased_candidates(Session::get('frontUser')->id);
+        
         Session::put('frontUser', $frontUser);
 
-       
         $data['payments'] = UserSubscription::leftJoin('packages', 'user_subscriptions.package_id', '=', 'packages.id')
         ->select('user_subscriptions.*', 'packages.name', 'packages.price')
         ->where('user_subscriptions.status', 'active')
