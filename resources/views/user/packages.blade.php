@@ -21,7 +21,7 @@
                                 <input type="hidden" name="amount" value="1500">
                                 <input type="hidden" name="item_name" value="au-pair self placement package">
                                 <input type="hidden" name="end_date" value="60">
-                                <a href="#" onclick="return false; document.getElementById('form_one').submit(); return false;">
+                                <a href="#" onclick="return false; document.getElementById('form_one').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
                                         <div class="name-box">SELF PLACEMENT PACKAGE</div>
                                         <div class="price-box display-6">R 1500</div>
@@ -45,7 +45,7 @@
                                 <input type="hidden" name="amount" value="3000">
                                 <input type="hidden" name="item_name" value="au-pair private placement package">
                                 <input type="hidden" name="end_date" value="365">
-                                <a href="#" onclick="return false; document.getElementById('form_two').submit(); return false;">
+                                <a href="#" onclick="return false; document.getElementById('form_two').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
                                         <div class="name-box">PRIVATE PLACEMENT PACKAGE</div>
                                         <div class="price-box display-6">R 3000</div>
@@ -80,7 +80,7 @@
                                 <input type="hidden" name="amount" value="3000">
                                 <input type="hidden" name="item_name" value="nannies self placement package">
                                 <input type="hidden" name="end_date" value="60">
-                                <a href="#" onclick="return false; document.getElementById('form_three').submit(); return false;">
+                                <a href="#" onclick="return false; document.getElementById('form_three').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
                                         <div class="name-box">SELF PLACEMENT PACKAGE</div>
                                         <div class="price-box display-6">R 1500</div>
@@ -104,7 +104,7 @@
                                 <input type="hidden" name="amount" value="3000">
                                 <input type="hidden" name="item_name" value="nannies private placement package">
                                 <input type="hidden" name="end_date" value="365">
-                                <a href="#" onclick="return false; document.getElementById('form_four').submit(); return false;">
+                                <a href="#" onclick="return false; document.getElementById('form_four').submit(); return false;" class="pricingBox-main">
                                      <div class="pricing-box">
                                         <div class="name-box">PRIVATE PLACEMENT PACKAGE</div>
                                         <div class="price-box display-6">R 3000</div>
@@ -138,7 +138,7 @@
                                 <input type="hidden" name="amount" value="250">
                                 <input type="hidden" name="item_name" value="1 Month subscription">
                                 <input type="hidden" name="end_date" value="30">
-                                <a href="#" onclick="return false; document.getElementById('form_five').submit(); return false;">
+                                <a href="#" onclick="return false; document.getElementById('form_five').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
                                         <div class="name-box">1 Month subscription</div>
                                         <div class="price-box display-6">R 250</div>
@@ -160,7 +160,7 @@
                                 <input type="hidden" name="amount" value="500">
                                 <input type="hidden" name="item_name" value="2 Month subscription">
                                 <input type="hidden" name="end_date" value="60">
-                                <a href="#" onclick="return false; document.getElementById('form_six').submit(); return false;">
+                                <a href="#" onclick="return false; document.getElementById('form_six').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
                                         <div class="name-box">2 Month subscription</div>
                                         <div class="price-box display-6">R 500</div>
@@ -191,7 +191,7 @@
                                 <input type="hidden" name="amount" value="250">
                                 <input type="hidden" name="item_name" value="pet sitters 1 month package">
                                 <input type="hidden" name="end_date" value="30">
-                                <a href="javascript void(0)" onclick="return false; document.getElementById('form_seven').submit(); return false;">
+                                <a href="javascript void(0)" onclick="return false; document.getElementById('form_seven').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
                                         <div class="name-box">1 Month subscription</div>
                                         <div class="price-box display-6">R 250</div>
@@ -213,7 +213,7 @@
                                 <input type="hidden" name="amount" value="500">
                                 <input type="hidden" name="item_name" value="pet sitter 2 month package">
                                 <input type="hidden" name="end_date" value="60">
-                                <a href="#" onclick="return false; document.getElementById('form_eight').submit(); return false;">
+                                <a href="#" onclick="return false; document.getElementById('form_eight').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
                                         <div class="name-box">2 Month subscription</div>
                                         <div class="price-box display-6">R 500</div>

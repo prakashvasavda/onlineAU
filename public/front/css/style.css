@@ -1372,10 +1372,11 @@ header {
     border-radius: 30px;
     padding: 18px 30px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 .step-contentBox p {
+    width: 100%;
     font-size: 20px;
     line-height: 1.2;
     font-weight: 400;
@@ -2194,6 +2195,10 @@ span.text-danger{
     height: 100%;
     /*word-break: break-all;*/
     word-wrap: break-word;
+}
+.pricing-box .pricingBox-main {
+    width: 100%;
+    height: 100%;
 }
 .pricing-box .name-box {
     background-color: var(--secondary);
