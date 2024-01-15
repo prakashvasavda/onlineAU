@@ -20,8 +20,8 @@ class PaymentController extends Controller{
         }
 
         /*Merchant details*/
-        $merchant_id    = 23863694;
-        $merchant_key   = 'fprf9bgifc2g9';
+        $merchant_id    = env('PAYFAST_MERCHANT_ID');
+        $merchant_key   = env('PAYFAST_MERCHANT_KEY');
 
         /*user details*/
         $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : (Session::get('guestUser')['name'] ?? null);
@@ -81,7 +81,7 @@ class PaymentController extends Controller{
     }
 
     public function payment_success(Request $request){
-        return redirect()->route('user-login');
+        return redirect()->route('transactions');
     }
 
     public function payment_cancel(Request $request){
