@@ -435,21 +435,25 @@ function handleClick(event){
     var paymentStatus      = "{{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == "active") ? true : false }}";
 
     if(!candidates ||candidates.length == 0 || !paymentStatus){
-        $("#warning-modal-label").html("Warning");
-        $("#warning-modal-body").html("Please complete your payment and subscription process.");
-        $('#warning-modal').modal('show');
+        showModal('Please complete your payment and subscription process');
         return false;
     }
 
     if(!candidates.includes(candidateService)){
-        $("#warning-modal-label").html("Warning");
-        $("#warning-modal-body").html("The candidate you've selected is not included in the purchased package.");
-        $('#warning-modal').modal('show');
+        showModal("The candidate you've selected is not included in the purchased package");
         return false;
     }
 
     $("#candidate_contact").css("display", "block");
     event.target.id == "bottom-contact-btn" ? $(window).scrollTop(0) : false;
+}
+
+function showModal($message){
+    $("#alert-modal-label").html("Warning");
+    $("#alert-modal-icon").html("<img src='{{ url('front/images/warning-icon1.png') }}' alt=''>");
+    $("#alert-modal-body").html($message);
+    $("#alert-modal-action-btn").attr('href', '{{ route('packages') }}').text('Go to Package');
+    $('#alert-modal').modal('show');
 }
 
 </script>

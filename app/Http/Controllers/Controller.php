@@ -7,6 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Symfony\Component\Mime\Part\HtmlPart;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Packages;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+
 
 
 class Controller extends BaseController{
@@ -103,10 +106,10 @@ class Controller extends BaseController{
         $emailTo = 'emmanuel.k.php@gmail.com';
         $name    = 'Admin';
         
-        \Mail::send([], [], function ($mail) use ($message, $emailTo, $name, $subject) {
-            $mail->to($emailTo, $name)->subject($subject)->setBody($message, 'text/html');
-            $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
-        });
+        // Mail::send([], [], function ($mail) use ($message, $emailTo, $name, $subject) {
+        //     $mail->to($emailTo, $name)->subject($subject)->html($message);
+        //     $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
+        // });
 
         return 1;
     }
@@ -143,10 +146,11 @@ class Controller extends BaseController{
         ];
 
         $messages  = [];
-
         $validator = Validator::make($data, $rules, $messages);
+        
+        $message   = '<p>Dear admin,</p>
+                      <p>The following Candidate'.$request->name.'is interested in the following  position'.$request->services.'</p>';
 
-        $message   = "<p>Dear admin <br><br>,The following Candidate: ".$request->name."is interested in the following  position:".$request->services.".</p>";
         $subject   = 'Candidate Application';
         $this->send_mail('', $subject, $message);
 
@@ -154,7 +158,7 @@ class Controller extends BaseController{
             'status'    => 200,
             'message'   => 'application send to admin successfully',
         ];
-
+        
         return response()->json($response, 200);
     }   
 }

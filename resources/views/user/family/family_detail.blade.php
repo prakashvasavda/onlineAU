@@ -309,13 +309,20 @@
                 services:   "{{ $family->what_do_you_need }}",
             },
             success: function(response) {
-                $("#warning-modal-label").html("Success");
-                $("#modal-icon").html("<img src='{{ url('front/images/success-check-icon1.png') }}' alt=''>");
-                $("#warning-modal-body").html("Your application have been sent to admin successfully.");
-                $("#go-to-package-btn").addClass("d-none");
-                $('#warning-modal').modal('show');
+                showModal('Your application have been sent to admin successfully');
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error: ' + status + ', ' + error);
             }
         });
+    }
+
+    function showModal(message){
+        $("#alert-modal-label").html("Success");
+        $("#alert-modal-icon").html("<img src='{{ url('front/images/success-check-icon1.png') }}' alt=''>");
+        $("#alert-modal-body").html(message);
+        $("#alert-modal-action-btn").attr('href', '{{ route('view-families') }}').text('Back to all families');
+        $('#alert-modal').modal('show');
     }
 </script>
 @endsection
