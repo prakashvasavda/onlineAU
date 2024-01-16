@@ -23,7 +23,7 @@
                                 <input type="hidden" name="end_date" value="60">
                                 <a href="#" onclick="return false; document.getElementById('form_one').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
-                                        <div class="name-box">SELF PLACEMENT PACKAGE</div>
+                                        <div class="name-box">Self placement package</div>
                                         <div class="price-box display-6">R 1500</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You are your own agent.</li>
@@ -47,7 +47,7 @@
                                 <input type="hidden" name="end_date" value="365">
                                 <a href="#" onclick="return false; document.getElementById('form_two').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
-                                        <div class="name-box">PRIVATE PLACEMENT PACKAGE</div>
+                                        <div class="name-box">Private placement package</div>
                                         <div class="price-box display-6">R 3000</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>We assign an agent to you.</li>
@@ -82,7 +82,7 @@
                                 <input type="hidden" name="end_date" value="60">
                                 <a href="#" onclick="return false; document.getElementById('form_three').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
-                                        <div class="name-box">SELF PLACEMENT PACKAGE</div>
+                                        <div class="name-box">Self placement package</div>
                                         <div class="price-box display-6">R 1500</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You are your own agent.</li>
@@ -106,7 +106,7 @@
                                 <input type="hidden" name="end_date" value="365">
                                 <a href="#" onclick="return false; document.getElementById('form_four').submit(); return false;" class="pricingBox-main">
                                      <div class="pricing-box">
-                                        <div class="name-box">PRIVATE PLACEMENT PACKAGE</div>
+                                        <div class="name-box">Private placement package</div>
                                         <div class="price-box display-6">R 3000</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>We assign an agent to you.</li>
@@ -140,7 +140,7 @@
                                 <input type="hidden" name="end_date" value="30">
                                 <a href="#" onclick="return false; document.getElementById('form_five').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
-                                        <div class="name-box">1 Month subscription</div>
+                                        <div class="name-box">1 month subscription</div>
                                         <div class="price-box display-6">R 250</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to a months.</li>
@@ -162,7 +162,7 @@
                                 <input type="hidden" name="end_date" value="60">
                                 <a href="#" onclick="return false; document.getElementById('form_six').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
-                                        <div class="name-box">2 Month subscription</div>
+                                        <div class="name-box">2 month subscription</div>
                                         <div class="price-box display-6">R 500</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 2 months.</li>
@@ -193,7 +193,7 @@
                                 <input type="hidden" name="end_date" value="30">
                                 <a href="javascript void(0)" onclick="return false; document.getElementById('form_seven').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
-                                        <div class="name-box">1 Month subscription</div>
+                                        <div class="name-box">1 month subscription</div>
                                         <div class="price-box display-6">R 250</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to a months.</li>
@@ -215,7 +215,7 @@
                                 <input type="hidden" name="end_date" value="60">
                                 <a href="#" onclick="return false; document.getElementById('form_eight').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
-                                        <div class="name-box">2 Month subscription</div>
+                                        <div class="name-box">2 month subscription</div>
                                         <div class="price-box display-6">R 500</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 2 months.</li>

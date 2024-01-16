@@ -2205,7 +2205,8 @@ span.text-danger{
     text-align: center;
     padding: 1.4rem;
     color: var(--white);
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
+    text-transform: unset;
     font-family: var(--bellefair-font);
     font-size: 1.2rem;
     line-height: 1.3;

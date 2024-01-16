@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>Register As An Au-pair And Fill Out Our Registration Form.</p>
+                                    <p>Register as an au-pair and fill out our registration form.</p>
                                 </div>
                             </div>
                         </li>
@@ -73,7 +73,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>You Will Then Have To Go Through The Screening Process. Which Will Include An Online Interview And Reference Checks.</p>
+                                    <p>You will then have to go through the screening process. which will include an online interview and reference checks.</p>
                                 </div>
                             </div>
                         </li>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>Create Your Profile And Apply For Available Positions.</p>
+                                    <p>Create your profile and apply for available positions.</p>
                                 </div>
                             </div>
                         </li>
@@ -96,12 +96,12 @@
                         <h3>REQUIREMENTS:</h3>
                     </div>
                     <ul class="requirements-list">
-                        <li>19 Years Or Older.</li>
-                        <li>Valid Driver’s License.</li>
-                        <li>Own Reliable Vehicle.</li>
-                        <li>Matric Certificate.</li>
-                        <li>Minimum Of 2 Contactable References.</li>
-                        <li>Clean Criminal Record.</li>
+                        <li>19 years or older.</li>
+                        <li>Valid driver’s license.</li>
+                        <li>Own reliable vehicle.</li>
+                        <li>Matric certificate.</li>
+                        <li>Minimum of 2 contactable references.</li>
+                        <li>Clean criminal record.</li>
                     </ul>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>Register As A Nanny And Fill Out Our Registration Form.</p>
+                                    <p>Register as a nanny and fill out our registration form.</p>
                                 </div>
                             </div>
                         </li>
@@ -147,7 +147,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>You Will Then Have To Go Through The Screening Process. Which Will Include An Online Interview And Reference Checks.</p>
+                                    <p>You will then have to go through the screening process. which will include an online interview and reference checks.</p>
                                 </div>
                             </div>
                         </li>
@@ -159,7 +159,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>Create Your Profile And Apply For Available Positions.</p>
+                                    <p>Create your profile and apply for available positions.</p>
                                 </div>
                             </div>
                         </li>
@@ -170,10 +170,10 @@
                         <h3>REQUIREMENTS:</h3>
                     </div>
                     <ul class="requirements-list">
-                        <li>23 Years Or Older.</li>
-                        <li>Minimum Of 2 Years’ Experience With Children.</li>
-                        <li>Minimum Of 2 Contactable References.</li>
-                        <li>Clean Criminal Record.</li>
+                        <li>23 years or older.</li>
+                        <li>Minimum of 2 years’ experience with children.</li>
+                        <li>Minimum of 2 contactable references.</li>
+                        <li>Clean criminal record.</li>
                     </ul>
                 </div>
             </div>
@@ -207,7 +207,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>Register As A Babysitter And Fill Out Our Registration Form.</p>
+                                    <p>Register as a babysitter and fill out our registration form.</p>
                                 </div>
                             </div>
                         </li>
@@ -219,7 +219,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>You Will Then Have To Go Through The Screening Process. Which Will Include An Online Interview And Reference Checks.</p>
+                                    <p>You will then have to go through the screening process. which will include an online interview and reference checks.</p>
                                 </div>
                             </div>
                         </li>
@@ -231,7 +231,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>Create Your Profile And Apply For Available Positions.</p>
+                                    <p>Create your profile and apply for available positions.</p>
                                 </div>
                             </div>
                         </li>
@@ -242,10 +242,10 @@
                         <h3>REQUIREMENTS:</h3>
                     </div>
                     <ul class="requirements-list">
-                        <li>18 Years Or Older.</li>
-                        <li>Valid Driver’s License.</li>
-                        <li>Minimum Of 2 Contactable References.</li>
-                        <li>Clean Criminal Record.</li>
+                        <li>18 years or older.</li>
+                        <li>Valid driver’s license.</li>
+                        <li>Minimum of 2 contactable references.</li>
+                        <li>Clean criminal record.</li>
                     </ul>
                 </div>
             </div>
@@ -279,7 +279,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>Register As A Pet Sitter And Fill Out Our Registration Form.</p>
+                                    <p>Register as a pet sitter and fill out our registration form.</p>
                                 </div>
                             </div>
                         </li>
@@ -291,7 +291,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>You Will Then Have To Go Through The Screening Process. Which Will Include An Online Interview And Reference Checks.</p>
+                                    <p>You will then have to go through the screening process. which will include an online interview and reference checks.</p>
                                 </div>
                             </div>
                         </li>
@@ -303,7 +303,7 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                 <div class="step-contentBox">
-                                    <p>Create Your Profile And Apply For Available Positions.</p>
+                                    <p>Create your profile and apply for available positions.</p>
                                 </div>
                             </div>
                         </li>
@@ -314,10 +314,10 @@
                         <h3>REQUIREMENTS:</h3>
                     </div>
                     <ul class="requirements-list">
-                        <li>18 Years Or Older.</li>
-                        <li>Experience With Animals.</li>
-                        <li>Minimum Of 2 Contactable References.</li>
-                        <li>Clean Criminal Record.</li>
+                        <li>18 years or older.</li>
+                        <li>Experience with animals.</li>
+                        <li>Minimum of 2 contactable references.</li>
+                        <li>Clean criminal record.</li>
                     </ul>
                 </div>
             </div>
