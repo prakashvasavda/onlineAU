@@ -25,6 +25,16 @@
                     </h3>
                 </div>
             </div>
+
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <div class="candidate-contact">
+                    @if(session()->has('frontUser'))
+                        <a href="javaScript:;" class="btn btn-primary round" onclick="handleApplication(event)">INTERESTED</a>
+                    @else
+                        <a href="{{ route('user-login') }}" class="btn btn-primary round">INTERESTED</a>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -251,31 +261,61 @@
         </div>
     </div>
 </div>
+@include ('user.includes.modal')
 @endsection
 
 @section('script')
 @parent
 <script type="text/javascript">
-function storeCandidateFavoriteFamily(){
-    var candidate_id = {{ isset($loginUser->role) ? $loginUser->id : 0 }};
-    if(candidate_id != 0){
+    function storeCandidateFavoriteFamily(){
+        var candidate_id = {{ isset($loginUser->role) ? $loginUser->id : 0 }};
+        if(candidate_id != 0){
+            $.ajax({
+                url: "{{ url('store-candidate-favorite-family') }}",
+                type: "POST",
+                data: {
+                    _token: '{{ csrf_token() }}', 
+                    family_id: {{ $family->id }},
+                    candidate_id: candidate_id,
+                },
+                success: function(response) {
+                    if(response.message == "success"){
+                        $('#favourite_button').removeClass("fa-regular").addClass("fa-solid");
+                    }else{
+                        $('#favourite_button').removeClass("fa-solid").addClass("fa-regular"); 
+                    }
+                }
+            });
+        }
+    }
+
+    /*send candidate application*/
+    function handleApplication(event){
+        event.preventDefault();
+        var isLoggedIn = "{{ session()->has('frontUser') ? true : false }}";
+        
+        if(!isLoggedIn){
+            return false;
+        }
+
         $.ajax({
-            url: "{{ url('store-candidate-favorite-family') }}",
+            url: "{{ route('send-candidate-application') }}",
             type: "POST",
             data: {
-                _token: '{{ csrf_token() }}', 
-                family_id: {{ $family->id }},
-                candidate_id: candidate_id,
+                _token:     "{{ csrf_token() }}", 
+                name:       "{{ session()->get('frontUser')->name }}",
+                surname:    "{{ session()->get('frontUser')->surname }}",
+                user_id:    "{{ session()->get('frontUser')->id }}",
+                services:   "{{ $family->what_do_you_need }}",
             },
             success: function(response) {
-                if(response.message == "success"){
-                    $('#favourite_button').removeClass("fa-regular").addClass("fa-solid");
-                }else{
-                    $('#favourite_button').removeClass("fa-solid").addClass("fa-regular"); 
-                }
+                $("#warning-modal-label").html("Success");
+                $("#modal-icon").html("<img src='{{ url('front/images/success-check-icon1.png') }}' alt=''>");
+                $("#warning-modal-body").html("Your application have been sent to admin successfully.");
+                $("#go-to-package-btn").addClass("d-none");
+                $('#warning-modal').modal('show');
             }
         });
     }
-}
 </script>
 @endsection

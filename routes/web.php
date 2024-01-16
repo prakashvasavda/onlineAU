@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-/* general */
+/* public */
 use App\Http\Controllers\Controller;
 /* user */
 use App\Http\Controllers\User\HomeController;
@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\PetsittersController;
 use App\Http\Controllers\Admin\ReviewsController;
 use App\Http\Controllers\Admin\TransactionsController;
 use App\Http\Controllers\Admin\FamilyPetsittingController;
+
 
 /* user auth routes */
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -72,6 +73,7 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('family-detail/{id}', [FrontFamilyController::class, 'family_detail'])->name('family-detail');
     Route::post('store-candidate-favorite-family', [FrontCandidateController::class, 'store_candidate_favorite_family'])->name('store-candidate-favorite-family');
     Route::get('family/reviews', [FrontCandidateController::class, 'reviews'])->name('family-reviews');
+    Route::post('send-candidate-application', [Controller::class, 'send_candidate_application'])->name('send-candidate-application');
     /* family */
     Route::post('store-family-review', [FrontFamilyController::class, 'store_family_review'])->name('store-family-review');
     Route::get('family/manage-profile', [FrontFamilyController::class, 'manage_profile'])->name('family-manage-profile');

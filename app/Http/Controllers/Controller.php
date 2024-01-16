@@ -25,8 +25,6 @@ use App\Models\Packages;
 use Carbon\Carbon;
 
 
-
-
 class Controller extends BaseController{
     use AuthorizesRequests, ValidatesRequests;
 
@@ -94,7 +92,7 @@ class Controller extends BaseController{
         }        
     }
 
-    public function send_mail($data=null, $message){
+    public function send_mail($data=null, $subject, $message){
         config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
         config(['mail.mailers.smtp.port' => '587']);
         config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
@@ -102,13 +100,15 @@ class Controller extends BaseController{
         config(['mail.mailers.smtp.encryption' => 'tls']);
         
         $message = $message;
-        $emailTo = 'prakash.v.php@gmail.com';
+        $emailTo = 'emmanuel.k.php@gmail.com';
         $name    = 'Admin';
         
-        Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
-            $mail->to($emailTo, $name)->subject($data['subject'])->setBody($message, 'text/html');
+        \Mail::send([], [], function ($mail) use ($message, $emailTo, $name, $subject) {
+            $mail->to($emailTo, $name)->subject($subject)->setBody($message, 'text/html');
             $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
         });
+
+        return 1;
     }
 
     public function change_user_status(Request $request){
@@ -132,4 +132,29 @@ class Controller extends BaseController{
         $response = !empty($candidates) ? implode(",", $candidates) : null;
         return $response;
     }
+
+    public function send_candidate_application(Request $request){
+        $data = $request->all();
+
+        $rules = [
+            'name'      => 'required',
+            'user_id'   => 'required',
+            'services'  => 'required',
+        ];
+
+        $messages  = [];
+
+        $validator = Validator::make($data, $rules, $messages);
+
+        $message   = "<p>Dear admin <br><br>,The following Candidate: ".$request->name."is interested in the following  position:".$request->services.".</p>";
+        $subject   = 'Candidate Application';
+        $this->send_mail('', $subject, $message);
+
+        $response = [
+            'status'    => 200,
+            'message'   => 'application send to admin successfully',
+        ];
+
+        return response()->json($response, 200);
+    }   
 }

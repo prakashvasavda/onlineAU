@@ -7,12 +7,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
       </div>
       <div class="modal-body p-4">
-        <div class="text-center mb-3">
+        <div class="text-center mb-3" id="modal-icon">
            <img src="{{ url('front/images/warning-icon1.png') }}" alt="">
         </div>
         <h6 class="text-center pb-3" id="warning-modal-body"></h6>
         <div class="btns-main d-flex flex-md-row justify-content-center align-items-center gap-3">
-            <a href="{{ route('packages') }}" class="btn btn-primary round">Go to Package</a>
+            <a href="{{ route('packages') }}" class="btn btn-primary round" id="go-to-package-btn">Go to Package</a>
             <a href="javascript:;" class="btn btn-secondary round" data-bs-dismiss="modal" aria-label="Close">Close</a>
         </div>
       </div>
