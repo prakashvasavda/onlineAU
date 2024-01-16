@@ -45,7 +45,7 @@
                 <div class="candidate-contact">
                     @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
                         <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="storeFamilyFavoriteCandidate()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
-                        <a href="javaScript:;" class="btn btn-primary round" onclick="displayContact(event)">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                        <a href="javaScript:;" class="btn btn-primary round" onclick="handleClick(event)">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                     @else
                         <p class="mb-2"><a href="{{ route('user-login') }}" class="btn icon-with-text btn-link p-0"><i class="fa-regular fa-heart" id="candidate_favourite"></i>Save</a></p>
                         <a href="{{ route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
@@ -293,7 +293,7 @@
         </div>
         <div class="btn-main d-flex flex-wrap justify-content-evenly align-items-center mt-5">
             @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
-                <a href="#" class="btn btn-primary round" onclick="displayContact(event)">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                <a href="#" class="btn btn-primary round" id="bottom-contact-btn" onclick="handleClick(event)">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                 <a href="{{ route('view-candidates') }}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
             @else
                 <a href="{{ route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
@@ -368,7 +368,7 @@
         </div>
     </div>
 </div>
-
+@include ('user.includes.modal')
 @endsection
 
 @section('script')
@@ -427,20 +427,29 @@ function equalHeight(resize) {
     }
 }
 
-function displayContact(event){
-    var payments_status = '{{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == "active") ? "active" : "inactive" }}';
-    if(payments_status == 'inactive'){
-        event.preventDefault();
-        $(".payment_alert_msg").remove();
-        $('.candidate-contact').after(
-            ` <span class="text-danger payment_alert_msg" style="margin-left: 10px;">
-                <strong style="font-size: small;">Please complete your payments</strong>
-            </span>`
-        );
+function handleClick(event){
+    event.preventDefault();
+    var purchaseCandidates = "{{ session()->has('frontUser') && isset(session()->get('frontUser')->purchased_candidates) ? session()->get('frontUser')->purchased_candidates : null }}";
+    var candidateService   = "{{ isset($candidate->role) ? $candidate->role : null }}";
+    var candidates         = purchaseCandidates ? purchaseCandidates.split(",") : null;
+    var paymentStatus      = "{{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == "active") ? true : false }}";
+
+    if(!candidates ||candidates.length == 0 || !paymentStatus){
+        $("#warning-modal-label").html("Warning");
+        $("#warning-modal-body").html("Please complete your payment and subscription process.");
+        $('#warning-modal').modal('show');
         return false;
     }
-    $(".payment_alert_msg").css("display", "none");
+
+    if(!candidates.includes(candidateService)){
+        $("#warning-modal-label").html("Warning");
+        $("#warning-modal-body").html("The candidate you've selected is not included in the purchased package.");
+        $('#warning-modal').modal('show');
+        return false;
+    }
+
     $("#candidate_contact").css("display", "block");
+    event.target.id == "bottom-contact-btn" ? $(window).scrollTop(0) : false;
 }
 
 </script>

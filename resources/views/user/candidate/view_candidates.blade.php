@@ -43,7 +43,7 @@
 							@foreach($candidates as $key => $value)
 								@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
 									<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-										<a onclick="handleClick({{$value->id}})" id={{"candidate-".$value->id}} class={{ isset(session()->get('frontUser')->purchased_candidates) && in_array($value->role, explode(",", session()->get('frontUser')->purchased_candidates)) ? "active-candidate" : "inactive-candidate" }} href="#">
+										<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
 											<div class="card verticalBox">
 											  	<span class="user-profile-section">
 											  		@if(isset($value->profile))
@@ -109,7 +109,7 @@
 							@foreach($candidates as $key => $value)
 								@if(!isset($value->candidate_favorited_by) || !in_array($user->id, explode(",", $value->candidate_favorited_by)))
 									<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-										<a onclick="handleClick({{$value->id}})" id={{"candidate-".$value->id}} class={{ isset(session()->get('frontUser')->purchased_candidates) && in_array($value->role, explode(",", session()->get('frontUser')->purchased_candidates)) ? "active-candidate" : "inactive-candidate" }} href="#">
+										<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
 											<div class="card verticalBox">
 											  	<span class="user-profile-section">
 											  		@if(isset($value->profile))
@@ -176,7 +176,6 @@
 		</div>
 	</div>
 </div>
-@include ('user.includes.modal')
 @endsection
 
 @section('script')
@@ -212,16 +211,5 @@ function storeFamilyFavoriteCandidate(event, candidate_id){
     }
 }
 
-function handleClick(id){
-	event.preventDefault();
-	var candidateClass = $("#candidate-"+id).attr('class');
-	if(candidateClass && candidateClass == "inactive-candidate"){
-		$("#warning-modal-label").html("Warning");
-		$("#warning-modal-body").html("The candidate you've selected is not included in the purchased package.");
-		$('#warning-modal').modal('show');
-		return false;
-	}
-	window.location.href = "{{ url('candidate-detail')}}"+ "/" + id;
-}
 </script>
 @endsection
