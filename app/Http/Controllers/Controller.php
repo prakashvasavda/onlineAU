@@ -27,7 +27,7 @@ use Carbon\Carbon;
 //use Illuminate\Support\Facades\Mail;
 
 use Mail;
-use App\Mail\TestMial;
+use App\Mail\CandidateApplication;
 
 
 
@@ -150,14 +150,11 @@ class Controller extends BaseController{
 
         $messages  = [];
         $validator = Validator::make($data, $rules, $messages);
-        
-        $message   = '<p>Dear admin,</p>
-                      <p>The following Candidate'.$request->name.'is interested in the following  position'.$request->services.'</p>';
+    
+        $services           = is_string($request->services) ? explode(',', $request->services) : [];
+        $data['services']   = $services;
 
-        $subject   = 'Candidate Application';
-        //$this->send_mail('', $subject, $message);
-
-        Mail::to('emmanuel.k.php@gmail.com')->send(new TestMial($data));
+        Mail::to('emmanuel.k.php@gmail.com')->send(new CandidateApplication($data));
 
         $response = [
             'status'    => 200,
