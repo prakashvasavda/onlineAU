@@ -7,9 +7,9 @@
             <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
                 <div class="candidate-img">
                     @if(isset($family->profile))
-                        <img src="{{ url('../storage/app/public/uploads/'.$family->profile) }}" alt="">
+                        <img src="{{ asset('storage/app/public/uploads/'.$family->profile) }}" alt="">
                     @else
-                        <img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="">
+                        <img src="{{ asset('storage/app/public/uploads/user-profile.png') }}" alt="">
                     @endif
                 </div>
             </div>

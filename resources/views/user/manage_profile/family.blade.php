@@ -702,7 +702,7 @@ $(document).ready(function() {
         var file = "{{ isset($family->profile) ? $family->profile : 'front-user.png' }}";
         if(file !== null){
             $('.js--image-preview').addClass('js--no-default');
-            $('.js--image-preview').html('<img src="{{ url('../storage/app/public/uploads/') }}/' + file + '" alt="">');
+            $('.js--image-preview').html('<img src="{{ asset('storage/app/public/uploads/') }}/' + file + '" alt="">');
         }
     });
 });

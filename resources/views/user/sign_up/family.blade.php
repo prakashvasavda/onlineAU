@@ -89,9 +89,9 @@
                         <div class="candidate-slide">
                             <div class="candidate-img">
                                 @if(isset($candidate_list["profile"]))
-                                    <img src="{{ url('../storage/app/public/uploads/'.$candidate_list["profile"]) }}" alt="">
+                                    <img src="{{ asset('storage/app/public/uploads/'.$candidate_list["profile"]) }}" alt="">
                                 @else
-                                    <img src="{{ url('../storage/app/public/uploads/user-profile.png') }}" alt="">
+                                    <img src="{{ asset('storage/app/public/uploads/user-profile.png') }}" alt="">
                                 @endif
                             </div>
                             <div class="candidate-detail">

@@ -22,7 +22,7 @@
 								<div class="card">
 								    <div class="row g-0">
 								        <div class="col-md-4">
-								            <img src="{{ url('../storage/app/public/uploads/'.$value->profile) }}" alt="">
+								            <img src="{{ asset('storage/app/public/uploads/'.$value->profile) }}" alt="">
 								        </div>
 								        <div class="col-md-8">
 								            <div class="card-body">
