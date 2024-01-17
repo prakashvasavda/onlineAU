@@ -55,22 +55,22 @@ class Controller extends BaseController{
         return $status;
     }
 
-    public function store_image($data, $path=null){
-        try {
-            $randomName = \Illuminate\Support\Str::random(20);
-            $extension = $data->getClientOriginalExtension();
-            $imageName = date('d-m-y') . '_' . $randomName . '.' . $extension;
-            $path = $data->storeAs('uploads', $imageName, 'public');
-        } catch (\Exception $e) {
-            $imageName = null; 
-        } finally {
-            if (!isset($imageName)) {
-                $imageName = null;
-            }
+    public function store_image($file, $path="profile"){
+        if(!$file){
+            return null;
         }
-        return $imageName;
-    }
 
+        $root = public_path('uploads/' . $path);
+        $name = uniqid() . "." . $file->getClientOriginalExtension();
+    
+        if (!file_exists($root)) {
+            mkdir($root, 0777, true);
+        }
+
+        $file->move($root, $name);
+
+        return $name;
+    }
 
     public function store_candidate_calender($input, $candidateId){
         $candidate = FrontUser::find($candidateId);

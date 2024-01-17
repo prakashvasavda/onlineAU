@@ -47,9 +47,9 @@
 											<div class="card verticalBox">
 											  	<span class="user-profile-section">
 											  		@if(isset($value->profile))
-										            	<img src="{{ asset('storage/app/public/uploads/'.$value->profile) }}" alt="" style=" max-height: 225px; width:100%;">
+										            	<img src="{{ asset('uploads/profile/'.$value->profile) }}" alt="" style=" max-height: 225px; width:100%;">
 										            @else
-										            	<img src="{{ asset('storage/app/public/uploads/user-profile.png') }}" alt="" style=" max-height: 225px; width:100%">
+										            	<img src="{{ asset('uploads/profile/user-profile.png') }}" alt="" style=" max-height: 225px; width:100%">
 										            @endif
 											  	</span>
 											  	<div class="card-body">
@@ -113,9 +113,9 @@
 											<div class="card verticalBox">
 											  	<span class="user-profile-section">
 											  		@if(isset($value->profile))
-										            	<img src="{{ asset('storage/app/public/uploads/'.$value->profile) }}" alt="" style=" max-height: 225px; width:100%">
+										            	<img src="{{ asset('uploads/profile/'.$value->profile) }}" alt="" style=" max-height: 225px; width:100%">
 										            @else
-										            	<img src="{{ asset('storage/app/public/uploads/user-profile.png') }}" alt="" style=" max-height: 225px; width:100%">
+										            	<img src="{{ asset('uploads/profile/user-profile.png') }}" alt="" style=" max-height: 225px; width:100%">
 										            @endif
 											  	</span>
 											  	<div class="card-body">

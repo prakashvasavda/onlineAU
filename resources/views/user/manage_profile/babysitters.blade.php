@@ -641,7 +641,7 @@
             var file = "{{ isset($candidate->profile) ? $candidate->profile : 'front-user.png' }}";
             if(file !== null){
                 $('.js--image-preview').addClass('js--no-default');
-                $('.js--image-preview').html('<img src="{{ asset('storage/app/public/uploads/') }}/' + file + '" alt="">');
+                $('.js--image-preview').html('<img src="{{ asset('uploads/profile/') }}/' + file + '" alt="">');
             }
         });
     });

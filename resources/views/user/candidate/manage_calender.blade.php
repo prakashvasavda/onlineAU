@@ -6,7 +6,7 @@
         <h2>Welcome to Online Au-Pairs</h2>
         <h3>Manage Calender</h3>
     </div>
-    @include('flash.flash-message')
+    @include('flash.front-message')
     <form method="POST" class="row" action="{{ route('update-candidate-calender', ['id' =>  Session::has('frontUser') ? Session::get('frontUser')->id : null]) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')

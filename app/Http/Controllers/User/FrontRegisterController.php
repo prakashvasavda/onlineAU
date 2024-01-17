@@ -65,18 +65,11 @@ class FrontRegisterController extends Controller{
                 ->with('message', 'There were some error try again');
         }
 
-        if($request->hasFile('profile') && !empty($request->file('profile'))){
-            $randomName = Str::random(20);
-            $extension  = $request->file('profile')->getClientOriginalExtension();
-            $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
-            $path       = $request->file('profile')->storeAs('uploads', $imageName, 'public');
-        }
-
        
         $candidateId = FrontUser::insertGetId([
             'name'                              => $request->name,
             'age'                               => $request->age,
-            'profile'                           => isset($imageName) ? $imageName : null,
+            'profile'                           => $request->hasFile('profile') ? $this->store_image($request->file('profile')) : null,
             'id_number'                         => $request->id_number,
             'contact_number'                    => $request->contact_number,
             'email'                             => $request->email,
@@ -197,18 +190,11 @@ class FrontRegisterController extends Controller{
                 ->with('message', 'There were some error try again');
         }
 
-        if($request->hasFile('profile') && !empty($request->file('profile'))){
-            $randomName = Str::random(20);
-            $extension  = $request->file('profile')->getClientOriginalExtension();
-            $imageName  = date('d-m-y') . '_' . $randomName . '.' . $extension;
-            $path       = $request->file('profile')->storeAs('uploads', $imageName, 'public');
-        }
-
         
         $familyId = FrontUser::insertGetId([
             'name'                          => $request->name,
             'age'                           => isset($request->age) ? json_encode($request->age) : null,
-            'profile'                       => isset($imageName) ? $imageName : null,
+            'profile'                       => $request->hasFile('profile') ? $this->store_image($request->file('profile')) : null,
             'email'                         => $request->email,
             'password'                      => Hash::make($request->password),
             'family_address'                => $request->family_address,

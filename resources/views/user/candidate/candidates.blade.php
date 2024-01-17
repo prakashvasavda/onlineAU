@@ -37,9 +37,9 @@
 									<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
 										<div class="card verticalBox">
 										 	@if(isset($value->profile))
-								            	<img src="{{ asset('storage/app/public/uploads/'.$value->profile) }}" alt="">
+								            	<img src="{{ asset('uploads/profile/'.$value->profile) }}" alt="">
 								            @else
-								            	<img src="{{ asset('storage/app/public/uploads/user-profile.png') }}" alt="">
+								            	<img src="{{ asset('uploads/profile/user-profile.png') }}" alt="">
 								            @endif
 										  	<div class="card-body">
 											  	<div class="pos-icon">
