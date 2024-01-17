@@ -146,13 +146,19 @@ class Controller extends BaseController{
             'name'      => 'required',
             'user_id'   => 'required',
             'services'  => 'required',
+            'family_id' => 'required',
         ];
 
         $messages  = [];
         $validator = Validator::make($data, $rules, $messages);
     
         $services           = is_string($request->services) ? explode(',', $request->services) : [];
-        $data['services']   = $services;
+        //$data['services']   = $services;
+        
+        $data = [
+            'services'  => $services,
+            'family_id' => $request->family_id,
+        ];
 
         Mail::to('emmanuel.k.php@gmail.com')->send(new CandidateApplication($data));
 

@@ -30,6 +30,7 @@
             </ul>
         @endif
     </p>
+    <p>(side note: this is the <a target="blank" href="{{ route('family-detail', ['id' => $data['family_id']]) }}">link</a>  the button was pressed on.)</p>
     <p>Kind regards</p>
 </body>
 </html>

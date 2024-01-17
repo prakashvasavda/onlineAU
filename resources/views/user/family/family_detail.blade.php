@@ -306,6 +306,7 @@
                 name:       "{{ session()->get('frontUser')->name }}",
                 surname:    "{{ session()->get('frontUser')->surname }}",
                 user_id:    "{{ session()->get('frontUser')->id }}",
+                family_id:  "{{ $family->id }}",
                 services:   "{{ $family->what_do_you_need }}",
             },
             success: function(response) {
