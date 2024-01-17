@@ -24,7 +24,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Packages;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
+//use Illuminate\Support\Facades\Mail;
+
+use Mail;
+use App\Mail\TestMial;
 
 
 
@@ -152,7 +155,9 @@ class Controller extends BaseController{
                       <p>The following Candidate'.$request->name.'is interested in the following  position'.$request->services.'</p>';
 
         $subject   = 'Candidate Application';
-        $this->send_mail('', $subject, $message);
+        //$this->send_mail('', $subject, $message);
+
+        Mail::to('emmanuel.k.php@gmail.com')->send(new TestMial($data));
 
         $response = [
             'status'    => 200,
