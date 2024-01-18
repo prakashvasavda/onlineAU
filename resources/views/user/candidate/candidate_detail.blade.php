@@ -3,7 +3,7 @@
 @include('flash.front-message')
 @php
     $services = [
-        "au-pairs"    => "ai-pair",
+        "au-pairs"   => "au-pair",
         "nannies"    => "nanny",
     ]
 @endphp
