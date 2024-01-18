@@ -39,9 +39,11 @@
 			            <h2>Favorites</h2>
 			        </div>
 					<div class="row">
+						@php $is_favorites_empty = true; @endphp
 						@if(isset($candidates) && !empty($candidates))
 							@foreach($candidates as $key => $value)
 								@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
+									@php $is_favorites_empty = false; @endphp
 									<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 										<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
 											<div class="card verticalBox">
@@ -94,6 +96,12 @@
 									</div>
 								@endif
 							@endforeach
+						@endif
+
+						@if($is_favorites_empty == true)
+							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 d-block m-auto">
+					           <img src="{{ url('front/images/error-notFound-icon1-x-size.png') }}" alt="">	
+					    	</div>
 						@endif
 					</div>
 				</div>
