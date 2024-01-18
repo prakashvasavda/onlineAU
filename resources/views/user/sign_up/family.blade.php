@@ -1,5 +1,4 @@
 @extends('layouts.main')
-
 @section('content')
 <div class="banner-section">
     <div class="banner-img">
@@ -97,7 +96,7 @@
                             <div class="candidate-detail">
                                 <h4>{{ isset($candidate_list['name']) ? $candidate_list['name'] : "-" }}</h4>
                                 <h5>{{ isset($candidate_list['role']) ? ucfirst($candidate_list['role']) : "-" }}</h5>
-                                <h6>{{ isset($candidate_list['ethnicity']) ? $candidate_list['ethnicity'] : "-" }}</h6>
+                                <h6  style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ isset($candidate_list['area']) ? $candidate_list['area'] : "-" }}</h6>
                                 <div class="rating">
                                     <span>
                                         @if(isset($candidate_list->review_rating_count) && is_string($candidate_list->review_rating_count))
