@@ -14,7 +14,7 @@
 					<h2>Find Family</h2>
 					<p>{{ count($search) }} families matching your search</p>
 				@else
-					<h2>Find AU-PAIRS jobs</h2>
+					<h2>Find Candidates</h2>
 					<p>{{ count($search) }} AU-PAIRS matching your search</p>
 				@endif
 			</div>
