@@ -21,8 +21,7 @@
                         AGE:                {{ $candidate->age  ? strtoupper($candidate->age)   : "-"  }}    <br>
                         LOCATION:           {{ $candidate->area ? strtoupper($candidate->area)  : "-"  }}    <br>
                         SPECIALITY:         {{ $candidate->role ? strtoupper($candidate->role)  : "-"  }}    <br>
-                        OTHER SPECIALITY:   {{ $candidate->other_services ? strtoupper($candidate->other_services) : "-" }}<br> 
-                        
+                         
                         @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs')
                             SALARY: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
                         @else
