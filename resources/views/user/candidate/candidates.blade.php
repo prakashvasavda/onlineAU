@@ -88,6 +88,10 @@
 									</a>
 								</div>
 							@endforeach
+						@else
+							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 d-block m-auto">
+					           <img src="{{ url('front/images/error-notFound-icon1-x-size.png') }}" alt="">	
+					    	</div>
 						@endif
 					</div>
 				</div>
