@@ -1,6 +1,12 @@
 @extends('layouts.main')
 @section('content')
 @include('flash.front-message')
+@php
+    $services = [
+        "au-pairs"    => "ai-pair",
+        "nannies"    => "nanny",
+    ]
+@endphp
 
 <div class="candidate-info">
     <div class="container">
@@ -17,10 +23,10 @@
             <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
                 <div class="candidate-content">
                     <h3>
-                        NAME:               {{ $candidate->name ? strtoupper($candidate->name)  : "-"  }}    <br>
-                        AGE:                {{ $candidate->age  ? strtoupper($candidate->age)   : "-"  }}    <br>
-                        LOCATION:           {{ $candidate->area ? strtoupper($candidate->area)  : "-"  }}    <br>
-                        SPECIALITY:         {{ $candidate->role ? strtoupper($candidate->role)  : "-"  }}    <br>
+                        NAME:        {{ $candidate->name ? strtoupper($candidate->name)  : "-"  }}    <br>
+                        AGE:         {{ $candidate->age  ? strtoupper($candidate->age)   : "-"  }}    <br>
+                        LOCATION:    {{ $candidate->area ? strtoupper($candidate->area)  : "-"  }}    <br>
+                        SPECIALITY:  {{ isset($services[$candidate->role]) ? strtoupper($services[$candidate->role])  : "-"  }} <br>
                          
                         @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs')
                             SALARY: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
