@@ -95,6 +95,7 @@ class HomeController extends Controller{
         )
         ->leftJoin(DB::raw('(SELECT candidate_id, GROUP_CONCAT(DISTINCT review_note) as review_note, GROUP_CONCAT(DISTINCT review_rating_count) as review_rating_count, COUNT(DISTINCT id) as total_reviews FROM candidate_reviews GROUP BY candidate_id) as reviews'), 'front_users.id', '=', 'reviews.candidate_id')
         ->where('front_users.role', '!=', 'family')
+        ->where('front_users.role', '!=', 'family-petsitting')
         ->where('front_users.status', '1')
         ->distinct()
         ->get();
