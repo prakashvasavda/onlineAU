@@ -36,7 +36,7 @@ class FrontRegisterController extends Controller{
         $data  = $request->all();
         $rules = [
             'name'                         => 'required',
-            'age'                          => 'required|gt:18|lt:40',
+            'age'                          => 'required|gt:18|lt:70',
             'password'                     => "required",
             'id_number'                    => 'required|min:13|max:13',
             'email'                        => 'required|email|unique:front_users,email',

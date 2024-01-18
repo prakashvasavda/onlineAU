@@ -83,7 +83,7 @@ class FrontCandidateController extends Controller{
     public function update_candidate(Request $request, $candidateId){
         $request->validate([
             'name'                  => 'required',
-            'age'                   => 'required|gt:18|lt:40',
+            'age'                   => 'required|gt:18|lt:70',
             'id_number'             => 'required|min:13|max:13',
             'salary_expectation'    => "sometimes|required",
             'surname'               => "required",
