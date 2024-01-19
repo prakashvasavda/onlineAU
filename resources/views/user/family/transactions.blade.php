@@ -129,7 +129,7 @@
                                                 @endphp
                                                 <tr>
                                                     <td>{{ $value['name'] }}</td>
-                                                    <td>{{ date('d-m-Y', strtotime($value['created_at'])); }}</td>
+                                                    <td>{{ date('d-m-Y', strtotime($value['created_at'])) }}</td>
                                                     <td>{{ $value['price'] }}</td>
                                                 </tr>
                                             @endforeach
