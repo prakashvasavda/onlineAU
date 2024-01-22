@@ -148,6 +148,21 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
+                                            <label for="type_of_id_number">Type of ID Number </label>
+                                            <ul class="radio-box-list">
+                                                <li class="radio-box-item"><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number', isset($family->type_of_id_number) ? $family->type_of_id_number : '') === "south_african" ? "checked" : '' }} >&nbsp;South African</li>
+                                                <li class="radio-box-item"><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number', isset($family->type_of_id_number) ? $family->type_of_id_number : '') === "other" ? "checked" : '' }} >&nbsp;Other</li>
+                                            </ul>
+                                            @if ($errors->has('type_of_id_number'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('type_of_id_number') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
                                             <label for="id_number">ID number <span class="text-danger">*</span></label>
                                             <input type="number" id="id_number" name="id_number" value="{{ old('id_number', isset($family->id_number) ? $family->id_number : '') }}" placeholder="" class="form-control">
                                             @if ($errors->has('id_number'))
@@ -156,18 +171,6 @@
                                                 </span>
                                             @endif
                                          </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                         <div class="form-group">
-                                            <label for="cell_number">Cell Number <span class="text-danger">*</span></label>
-                                            <input type="number" id="cell_number" name="cell_number" value="{{ old('cell_number', isset($family->cell_number) ? $family->cell_number : '') }}" placeholder="" class="form-control">
-                                            @if ($errors->has('cell_number'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('cell_number') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
 
@@ -244,15 +247,15 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="start_date">Start date <span class="text-danger">*</span></label>
-                                            <input type="date" id="start_date" name="start_date" value="{{ old('start_date', isset($family->start_date) ? $family->start_date : '') }}" class="form-control">
-                                            @if ($errors->has('start_date'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('start_date') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
+                                           <label for="cell_number">Cell Number <span class="text-danger">*</span></label>
+                                           <input type="number" id="cell_number" name="cell_number" value="{{ old('cell_number', isset($family->cell_number) ? $family->cell_number : '') }}" placeholder="" class="form-control">
+                                           @if ($errors->has('cell_number'))
+                                               <span class="text-danger">
+                                                   <strong>{{ $errors->first('cell_number') }}</strong>
+                                               </span>
+                                           @endif
+                                       </div>
+                                   </div>
                                 </div>
 
                                 <div class="row">   
@@ -625,6 +628,18 @@
                                                 </table>
                                                 <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the candidate as needed</p>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="start_date">Start date <span class="text-danger">*</span></label>
+                                            <input type="date" id="start_date" name="start_date" value="{{ old('start_date', isset($family->start_date) ? $family->start_date : '') }}" class="form-control">
+                                            @if ($errors->has('start_date'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('start_date') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

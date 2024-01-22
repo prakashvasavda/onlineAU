@@ -98,13 +98,14 @@ class FrontFamilyController extends Controller{
             'no_children'                   => "required",
             'family_notifications'          => "required",
             'surname'                       => "required",
-            'id_number'                     => 'required|min:13|max:13',
             'cell_number'                   => 'required|min:10|max:10|regex:/[0-9]{9}/',
             'start_date'                    => "required",
             'duration_needed'               => "required|numeric|gt:1",
             'petrol_reimbursement'          => "required",
             'live_in_or_live_out'           => "required", //not added in db
             'candidate_duties'              => "required",
+            'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'type_of_id_number'             => "required",
         ],[
             'profile.required_if'   => 'The profile field is required',
             'describe_kids.array'   =>  'Invalid selected value',   
@@ -113,7 +114,7 @@ class FrontFamilyController extends Controller{
         $family                                 = FrontUser::findorFail($familyId);
         $input                                  = $request->all();
         $input['password']                      = !empty($request->password) ? Hash::make($request->password) : $family->password;
-        $input['email']                         = !empty($request->email) ? $request->email : $candidate->email;
+        $input['email']                         = !empty($request->email) ? $request->email : $family->email;
         $input['role']                          = $family->role;
         $input['family_special_need_option']    = isset($request->family_special_need_option) && isset($request->family_special_need_value) ? 1 : 0;
         $input['family_babysitter_comfortable'] = isset($request->family_babysitter_comfortable) ? json_encode($request->family_babysitter_comfortable) : null;

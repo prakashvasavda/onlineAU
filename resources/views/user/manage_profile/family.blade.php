@@ -83,21 +83,26 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="type_of_id_number">Type of ID Number <span class="text-danger">*</span></label>
+                    <ul class="d-flex flex-wrap mt-2">
+                        <li><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number', isset($family->type_of_id_number) ? $family->type_of_id_number : '') === "south_african" ? "checked" : '' }} >South African</li>
+                        <li><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number', isset($family->type_of_id_number) ? $family->type_of_id_number : '') === "other" ? "checked" : '' }} >Other</li>
+                    </ul>
+                    @if ($errors->has('type_of_id_number'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('type_of_id_number') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="id_number">ID number <span class="text-danger">*</span></label>
                 <input type="number" id="id_number" name="id_number" value="{{ old('id_number', isset($family->id_number) ? $family->id_number : '') }}" placeholder="" class="form-field">
                 @if ($errors->has('id_number'))
                     <span class="text-danger">
                         <strong>{{ $errors->first('id_number') }}</strong>
-                    </span>
-                @endif
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="cell_number">Cell Number <span class="text-danger">*</span></label>
-                <input type="number" id="cell_number" name="cell_number" value="{{ old('cell_number', isset($family->cell_number) ? $family->cell_number : '') }}" placeholder="" class="form-field">
-                @if ($errors->has('cell_number'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('cell_number') }}</strong>
                     </span>
                 @endif
             </div>
@@ -265,6 +270,15 @@
                 @endif 
             </div>
 
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="cell_number">Cell Number <span class="text-danger">*</span></label>
+                <input type="number" id="cell_number" name="cell_number" value="{{ old('cell_number', isset($family->cell_number) ? $family->cell_number : '') }}" placeholder="" class="form-field">
+                @if ($errors->has('cell_number'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('cell_number') }}</strong>
+                    </span>
+                @endif
+            </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
@@ -315,6 +329,21 @@
                      @if ($errors->has('what_do_you_need'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('what_do_you_need') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="family_notifications">Do you want to get notifications from new candidates in your area </label>
+                    <ul class="d-flex flex-wrap" >
+                        <li><input type="radio" checked name="family_notifications" value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'checked' : '' }}>Yes</li>
+                        <li><input type="radio" name="family_notifications" value="no" {{ isset($family->family_notifications) && $family->family_notifications == "no" ? 'checked' : '' }}>No</li>
+                    </ul>
+                    @if ($errors->has('family_notifications'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('family_notifications') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -417,21 +446,6 @@
                     @if ($errors->has('salary_expectation'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('salary_expectation') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-
-             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="family_notifications">Do you want to get notifications from new candidates in your area </label>
-                    <ul class="d-flex flex-wrap" >
-                        <li><input type="radio" checked name="family_notifications" value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'checked' : '' }}>Yes</li>
-                        <li><input type="radio" name="family_notifications" value="no" {{ isset($family->family_notifications) && $family->family_notifications == "no" ? 'checked' : '' }}>No</li>
-                    </ul>
-                    @if ($errors->has('family_notifications'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('family_notifications') }}</strong>
                         </span>
                     @endif
                 </div>
