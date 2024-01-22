@@ -65,9 +65,10 @@ class NanniesController extends Controller{
         $request->validate([
             'name'                  => 'required',
             'age'                   => 'required',
-            'id_number'             => "required|min:13|max:13",
             'salary_expectation'    => "required",
             'surname'               => "required",
+            'id_number'             => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'type_of_id_number'     => "required",
         ]);
 
 
