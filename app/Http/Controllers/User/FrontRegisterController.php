@@ -45,7 +45,7 @@ class FrontRegisterController extends Controller{
             'surname'                      => 'required',
             'contact_number'               => 'nullable|min:10|max:10|regex:/[0-9]{9}/',
             'area'                         => 'required',
-            'id_number'                    => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'id_number'                    => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'type_of_id_number'            => "required",
         ];
 
@@ -158,7 +158,7 @@ class FrontRegisterController extends Controller{
             'no_children'                   => "required",
             'family_notifications'          => "required",
             'cell_number'                   => 'required|min:10|max:10|regex:/[0-9]{9}/',
-            'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'start_date'                    => "required",
             'duration_needed'               => "required|numeric|gt:1",
             'petrol_reimbursement'          => "required",

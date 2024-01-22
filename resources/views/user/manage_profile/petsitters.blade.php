@@ -84,8 +84,8 @@
                 <div class="form-input">
                     <label for="type_of_id_number">Type of ID Number <span class="text-danger">*</span></label>
                     <ul class="d-flex flex-wrap mt-2">
-                        <li><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number', isset($candidate->type_of_id_number) ? $candidate->type_of_id_number : '') === "south_african" ? "checked" : '' }} >South African</li>
-                        <li><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number', isset($candidate->type_of_id_number) ? $candidate->type_of_id_number : '') === "other" ? "checked" : '' }} >Other</li>
+                        <li><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number', isset($candidate->type_of_id_number) ? $candidate->type_of_id_number : '') === "south_african" ? "checked" : '' }} >South African ID</li>
+                        <li><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number', isset($candidate->type_of_id_number) ? $candidate->type_of_id_number : '') === "other" ? "checked" : '' }} >Foreign ID</li>
                     </ul>
                     @if ($errors->has('type_of_id_number'))
                         <span class="text-danger">
@@ -98,7 +98,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="id_number">ID Number <span class="text-danger">*</span></label>
-                    <input type="number" id="id_number" name="id_number" placeholder="" class="form-field @error('id_number') is-invalid @enderror"  value="{{ old('id_number', isset($candidate->id_number) ? $candidate->id_number : null) }}">
+                    <input type="text" id="id_number" name="id_number" placeholder="" class="form-field @error('id_number') is-invalid @enderror"  value="{{ old('id_number', isset($candidate->id_number) ? $candidate->id_number : null) }}">
                     @error('id_number')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

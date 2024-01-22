@@ -66,7 +66,7 @@ class PetsittersController extends Controller{
             'age'                   => 'required',
             'salary_expectation'    => "required",
             'surname'               => "required",
-            'id_number'             => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'id_number'             => 'required' . ($request->type_of_id_number == 'south_african' ? ' |numeric|digits:13' : ''),
             'type_of_id_number'     => "required",
         ]);
 

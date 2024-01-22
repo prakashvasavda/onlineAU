@@ -112,7 +112,7 @@ class FamilyController extends Controller{
             'petrol_reimbursement'          => "required",
             'live_in_or_live_out'           => "required", 
             'candidate_duties'              => "required",
-            'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? ' |numeric|digits:13' : ''),
             'type_of_id_number'             => "required",
         ],[
             'profile.required_if'   => 'The profile field is required',
