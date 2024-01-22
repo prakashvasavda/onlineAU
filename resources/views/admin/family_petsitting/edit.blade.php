@@ -131,21 +131,33 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="address">Your Address <span class="text-danger">*</span></label>
-                                            <input type="text" id="address" name="family_address" placeholder="" class="form-control @error('family_address') is-invalid @enderror"  value="{{ old('family_address', isset($family->family_address) ? $family->family_address : '') }}">
-                                            <div class="icon-option" style="display: none;">
-                                                <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
-                                            </div>
-                                            @error('family_address')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                           <label for="cell_number">Cell Number <span class="text-danger">*</span></label>
+                                           <input type="number" id="cell_number" name="cell_number" value="{{ old('cell_number', isset($family->cell_number) ? $family->cell_number : '') }}" placeholder="" class="form-control">
+                                           @if ($errors->has('cell_number'))
+                                               <span class="text-danger">
+                                                   <strong>{{ $errors->first('cell_number') }}</strong>
+                                               </span>
+                                           @endif
+                                       </div>
+                                   </div>
                                 </div>
 
                                 <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="type_of_id_number">Type of ID Number </label>
+                                            <ul class="radio-box-list">
+                                                <li class="radio-box-item"><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number', isset($family->type_of_id_number) ? $family->type_of_id_number : '') === "south_african" ? "checked" : '' }} >&nbsp;South African</li>
+                                                <li class="radio-box-item"><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number', isset($family->type_of_id_number) ? $family->type_of_id_number : '') === "other" ? "checked" : '' }} >&nbsp;Other</li>
+                                            </ul>
+                                            @if ($errors->has('type_of_id_number'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('type_of_id_number') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="id_number">ID number <span class="text-danger">*</span></label>
@@ -156,18 +168,6 @@
                                                 </span>
                                             @endif
                                          </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                         <div class="form-group">
-                                            <label for="cell_number">Cell Number <span class="text-danger">*</span></label>
-                                            <input type="number" id="cell_number" name="cell_number" value="{{ old('cell_number', isset($family->cell_number) ? $family->cell_number : '') }}" placeholder="" class="form-control">
-                                            @if ($errors->has('cell_number'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('cell_number') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
 
@@ -193,6 +193,23 @@
                                                     <strong>{{ $errors->first('start_date') }}</strong>
                                                 </span>
                                             @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="address">Your Address <span class="text-danger">*</span></label>
+                                            <input type="text" id="address" name="family_address" placeholder="" class="form-control @error('family_address') is-invalid @enderror"  value="{{ old('family_address', isset($family->family_address) ? $family->family_address : '') }}">
+                                            <div class="icon-option" style="display: none;">
+                                                <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
+                                            </div>
+                                            @error('family_address')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>

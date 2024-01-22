@@ -78,22 +78,6 @@ class FamilyPetsittingController extends Controller
         return view('admin.family_petsitting.index', $data);   
     }
 
-   
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(string $id)
-    {
-        //
-    }
-
     public function edit(string $id){
         $data['menu']                                       = "family petsitting";
         $data['family']                                     = FrontUser::findOrFail($id);
@@ -112,19 +96,20 @@ class FamilyPetsittingController extends Controller
             'name'                          => "required",
             'family_address'                => "required",
             'surname'                       => "required",
-            'id_number'                     => "required|min:13|max:13",
             'cell_number'                   => "required",
             'start_date'                    => "required",
             'duration_needed'               => "required",
             'candidate_duties'              => "required",
+            'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'type_of_id_number'             => "required",
         ],[
-            'profile.required_if'   => 'The profile field is required',
+            'profile.required_if'           => 'The profile field is required',
         ]);
 
         $family                                 = FrontUser::find($id);
         $input                                  = $request->all();
         $input['password']                      = !empty($request->password) ? Hash::make($request->password) : $family->password;
-        $input['email']                         = !empty($request->email) ? $request->email : $candidate->email;
+        $input['email']                         = !empty($request->email) ? $request->email : $family->email;
         $input['role']                          = $family->role;
         $input['profile']                       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
         $input['type_of_pet']                   = isset($request->type_of_pet) ? json_encode($request->type_of_pet) : null;

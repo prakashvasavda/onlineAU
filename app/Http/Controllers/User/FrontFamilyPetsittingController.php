@@ -59,11 +59,12 @@ class FrontFamilyPetsittingController extends Controller{
             'name'                          => "required",
             'family_address'                => "required",
             'surname'                       => "required",
-            'id_number'                     => "required|min:13|max:13",
             'cell_number'                   => "required",
             'start_date'                    => "required",
             'duration_needed'               => "required",
             'candidate_duties'              => "required",
+            'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'type_of_id_number'             => "required",
         ],[
             'profile.required_if'   => 'The profile field is required',
         ]);
