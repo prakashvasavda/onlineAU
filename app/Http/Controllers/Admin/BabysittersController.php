@@ -64,11 +64,12 @@ class BabysittersController extends Controller{
         $request->validate([
             'name'                  => 'required',
             'age'                   => 'required|gt:18|lt:70',
-            'id_number'             => 'required|min:13|max:13',
             'surname'               => "required",
             'hourly_rate_pay'       => 'sometimes|required',
             'contact_number'        => 'nullable|min:10|max:10|regex:/[0-9]{9}/',
             'area'                  => 'required',
+            'id_number'             => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'type_of_id_number'     => "required",
         ]);
 
 

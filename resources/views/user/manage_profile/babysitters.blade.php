@@ -42,7 +42,6 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-
                 </div>
 
                 <div class="form-input">
@@ -81,6 +80,21 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="type_of_id_number">Type of ID Number <span class="text-danger">*</span></label>
+                    <ul class="d-flex flex-wrap mt-2">
+                        <li><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number', isset($candidate->type_of_id_number) ? $candidate->type_of_id_number : '') === "south_african" ? "checked" : '' }} >South African</li>
+                        <li><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number', isset($candidate->type_of_id_number) ? $candidate->type_of_id_number : '') === "other" ? "checked" : '' }} >Other</li>
+                    </ul>
+                    @if ($errors->has('type_of_id_number'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('type_of_id_number') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
  
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
@@ -93,6 +107,7 @@
                     @endif
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="contact_number">Contact Number</label>
@@ -100,22 +115,6 @@
                     @if ($errors->has('contact_number'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('contact_number') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="other_services">Other Services </label>
-                    <select id="other_services" name="other_services[]" multiple class="form-field">
-                        <option value="au-pairs" {{ (isset($candidate->other_services) && is_array($candidate->other_services) && in_array("au-airs", $candidate->other_services)) ? "selected" : "" }}>Au-Pairs</option>
-                        <option value="nannies" {{ (isset($candidate->other_services) && is_array($candidate->other_services) && in_array("nannies", $candidate->other_services)) ? "selected" : "" }}>Nannies</option>
-                        <option value="petsitters" {{ (isset($candidate->other_services) && is_array($candidate->other_services) &&  in_array("petsitters", $candidate->other_services)) ? "selected" : "" }}>petsitters</option>
-                    </select>
-                    @if ($errors->has('other_services'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('other_services') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -371,6 +370,34 @@
                 </div>
             </div>
 
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="other_services">Other Services </label>
+                    <select id="other_services" name="other_services[]" multiple class="form-field">
+                        <option value="au-pairs" {{ (isset($candidate->other_services) && is_array($candidate->other_services) && in_array("au-airs", $candidate->other_services)) ? "selected" : "" }}>Au-Pairs</option>
+                        <option value="nannies" {{ (isset($candidate->other_services) && is_array($candidate->other_services) && in_array("nannies", $candidate->other_services)) ? "selected" : "" }}>Nannies</option>
+                        <option value="petsitters" {{ (isset($candidate->other_services) && is_array($candidate->other_services) &&  in_array("petsitters", $candidate->other_services)) ? "selected" : "" }}>petsitters</option>
+                    </select>
+                    @if ($errors->has('other_services'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('other_services') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="situated">Situated</label>
+                    <input type="text" id="situated" name="situated" placeholder="" class="form-field @error('situated') is-invalid @enderror"  value="{{ old('situated', isset($candidate->situated) ? $candidate->situated : null) }}">
+                    @error('situated')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
             <div class="col-12">
                 <div class="form-inputs" id="dynamic_field">
                     <div class="d-flex flex-row justify-content-between align-items-start">
@@ -470,18 +497,6 @@
                             <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
                         </span>
                     @endif
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="situated">Situated</label>
-                    <input type="text" id="situated" name="situated" placeholder="" class="form-field @error('situated') is-invalid @enderror"  value="{{ old('situated', isset($candidate->situated) ? $candidate->situated : null) }}">
-                    @error('situated')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
             </div>
 
