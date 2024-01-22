@@ -131,9 +131,9 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="id_number">ID Number <span class="text-danger">*</span></label>
-                                            <input type="number" id="id_number" name="id_number" placeholder="" class="form-control"  value="{{ old('id_number', isset($candidate->id_number) ? $candidate->id_number : null) }}">
-                                            @error('id_number')
+                                            <label for="area">Area<span class="text-danger">*</span></label>
+                                            <input type="text" id="area" name="area" placeholder="" class="form-control"  value="{{ old('area', isset($candidate->area) ? $candidate->area : null) }}">
+                                            @error('area')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -171,6 +171,35 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
+                                            <label for="type_of_id_number">Type of ID Number </label>
+                                            <ul class="radio-box-list">
+                                                <li class="radio-box-item"><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number', isset($candidate->type_of_id_number) ? $candidate->type_of_id_number : '') === "south_african" ? "checked" : '' }} >&nbsp;South African</li>
+                                                <li class="radio-box-item"><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number', isset($candidate->type_of_id_number) ? $candidate->type_of_id_number : '') === "other" ? "checked" : '' }} >&nbsp;Other</li>
+                                            </ul>
+                                            @if ($errors->has('type_of_id_number'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('type_of_id_number') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="id_number">ID Number <span class="text-danger">*</span></label>
+                                            <input type="number" id="id_number" name="id_number" placeholder="" class="form-control"  value="{{ old('id_number', isset($candidate->id_number) ? $candidate->id_number : null) }}">
+                                            @error('id_number')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
                                             <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
                                             <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-control">
                                                 <option value="" disabled>Select</option>
@@ -190,13 +219,13 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="area">Area<span class="text-danger">*</span></label>
-                                            <input type="text" id="area" name="area" placeholder="" class="form-control"  value="{{ old('area', isset($candidate->area) ? $candidate->area : null) }}">
-                                            @error('area')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                            <label for="available_date">From which date would you be available <span class="text-danger">*</span></label>
+                                            <input type="date" id="available_date" name="available_date" value="{{ old('available_date', $candidate->available_date) }}" class="form-control">
+                                            @if ($errors->has('available_date'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('available_date') }}</strong>
                                                 </span>
-                                            @enderror
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -592,6 +621,37 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
+                                            <label for="salary_expectation">What is your salary expectation</label>
+                                            <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-control @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
+                                            @error('salary_expectation')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="other_services">Other Services </label>
+                                            <select id="other_services" name="other_services[]" multiple class="form-control">
+                                                <option value="au-airs" {{ isset($candidate->role) && $candidate->role == "au-pairs" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("au-airs", $candidate->other_services)) ? "selected" : "" }}>Au-Pairs</option>
+                                                <option value="nannies" {{ isset($candidate->role) && $candidate->role == "nannies" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("nannies", $candidate->other_services)) ? "selected" : "" }}>Nannies</option>
+                                                <option value="babysitters" {{ isset($candidate->role) && $candidate->role == "babysitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) &&  in_array("babysitters", $candidate->other_services)) ? "selected" : "" }}>babysitters</option>
+                                                <option value="petsitters" {{ isset($candidate->role) && $candidate->role == "petsitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("petsitters", $candidate->other_services)) ? "selected" : "" }}>petsitters</option>
+                                            </select>
+                                            @if ($errors->has('other_services'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('other_services') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
                                             <label for="about_yourself">Tell us a bit more about yourself </label>
                                             <textarea id="about_yourself" name="about_yourself" class="form-control" rows="5" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
                                             <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
@@ -727,53 +787,8 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="salary_expectation">What is your salary expectation</label>
-                                            <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-control @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
-                                            @error('salary_expectation')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="other_services">Other Services </label>
-                                            <select id="other_services" name="other_services[]" multiple class="form-control">
-                                                <option value="au-airs" {{ isset($candidate->role) && $candidate->role == "au-pairs" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("au-airs", $candidate->other_services)) ? "selected" : "" }}>Au-Pairs</option>
-                                                <option value="nannies" {{ isset($candidate->role) && $candidate->role == "nannies" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("nannies", $candidate->other_services)) ? "selected" : "" }}>Nannies</option>
-                                                <option value="babysitters" {{ isset($candidate->role) && $candidate->role == "babysitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) &&  in_array("babysitters", $candidate->other_services)) ? "selected" : "" }}>babysitters</option>
-                                                <option value="petsitters" {{ isset($candidate->role) && $candidate->role == "petsitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("petsitters", $candidate->other_services)) ? "selected" : "" }}>petsitters</option>
-                                            </select>
-                                            @if ($errors->has('other_services'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('other_services') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="available_date">From which date would you be available <span class="text-danger">*</span></label>
-                                            <input type="date" id="available_date" name="available_date" value="{{ old('available_date', $candidate->available_date) }}" class="form-control">
-                                            @if ($errors->has('available_date'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('available_date') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
+
                             <div class="card-footer">
                                 <a href="{{ route('admin.candidates.aupairs') }}" ><button class="btn btn-default" type="button">Back</button></a>
                                 <button type="submit" id="submitButton" class="btn btn-info float-right">Update</button>

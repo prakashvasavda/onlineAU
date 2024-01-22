@@ -64,9 +64,10 @@ class AupairsController extends Controller{
         $request->validate([
             'name'                  => 'required',
             'age'                   => 'required',
-            'id_number'             => "required",
             'salary_expectation'    => "required",
             'surname'               => "required",
+            'id_number'             => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'type_of_id_number'     => "required",
         ]);
 
         $candidate                              = FrontUser::findorFail($id);
