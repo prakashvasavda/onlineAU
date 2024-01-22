@@ -38,7 +38,6 @@ class FrontRegisterController extends Controller{
             'name'                         => 'required',
             'age'                          => 'required|gt:18|lt:70',
             'password'                     => "required",
-            'id_number'                    => 'required|min:13|max:13',
             'email'                        => 'required|email|unique:front_users,email',
             'salary_expectation'           => 'sometimes|required',
             'hourly_rate_pay'              => 'sometimes|required',
@@ -46,13 +45,13 @@ class FrontRegisterController extends Controller{
             'surname'                      => 'required',
             'contact_number'               => 'nullable|min:10|max:10|regex:/[0-9]{9}/',
             'area'                         => 'required',
+            'id_number'                    => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'type_of_id_number'            => "required",
         ];
 
-
         $message = [
-            'name'               => 'The Name field isrequired',
-            'email'              => 'The Email field is required',
-            'password'           => 'The Password field is required',
+            'email'              => 'The email field is required',
+            'password'           => 'The password field is required',
             'salary_expectation' => 'The salary expectation is required',
             'hourly_rate_pay'    => 'The hourly rate amount field is required',
         ];
@@ -159,7 +158,7 @@ class FrontRegisterController extends Controller{
             'no_children'                   => "required",
             'family_notifications'          => "required",
             'cell_number'                   => 'required|min:10|max:10|regex:/[0-9]{9}/',
-            'id_number'                     => 'required|min:13|max:13',
+            'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
             'start_date'                    => "required",
             'duration_needed'               => "required|numeric|gt:1",
             'petrol_reimbursement'          => "required",
@@ -167,7 +166,9 @@ class FrontRegisterController extends Controller{
             'terms_and_conditions'          => "required",
             'surname'                       => "required",
             'live_in_or_live_out'           => "required",
+            'type_of_id_number'             => "required",
         ];
+
         $message = [
             'name'                          => "The Name must be required",
             'age'                           => "The Age must be required",

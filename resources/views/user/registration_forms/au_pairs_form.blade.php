@@ -60,6 +60,21 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
+                <label for="type_of_id_number">Type of ID Number <span class="text-danger">*</span></label>
+                <ul class="d-flex flex-wrap mt-2">
+                    <li><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number') === "south_african" ? "checked" : '' }} >South African</li>
+                    <li><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number') === "other" ? "checked" : '' }} >Other</li>
+                </ul>
+                @if ($errors->has('type_of_id_number'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('type_of_id_number') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
                 <label for="id_number">ID Number <span class="text-danger">*</span></label>
                 <input type="number" id="id_number" name="id_number" placeholder="" class="form-field @error('id_number') is-invalid @enderror"  value="{{ old('id_number') }}">
                 @if ($errors->has('id_number'))
@@ -69,17 +84,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="contact_number">Contact Number</label>
-                <input type="number" id="contact_number" name="contact_number" placeholder="" class="form-field @error('contact_number') is-invalid @enderror"  value="{{ old('contact_number') }}">
-                @error('contact_number')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
+        
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="age">Age <span class="text-danger">*</span></label>
@@ -182,35 +187,19 @@
                 </select>
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="additional_language">Additional Language</label>
-                <select id="additional_language" name="additional_language" class="form-field">
-                    <option value="" disabled="disabled">Select</option>
-                    <option value="english" {{ old('additional_language') === 'english' ? 'selected' : '' }}>English</option>
-                    <option value="afrikaans" {{ old('additional_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
-                    <option value="zulu (isizulu)" {{ old('additional_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
-                    <option value="xhosa (isixhosa)" {{ old('home_language') === 'xhosa (isixhosa)' ? 'selected' : '' }}>Xhosa (isiXhosa)</option>
-                    <option value="northern sotho (sesotho sa leboa)" {{ old('additional_language') === 'northern sotho (sesotho sa leboa)' ? 'selected' : '' }}>Northern Sotho (Sesotho sa Leboa)</option>
-                    <option value="sotho (sesotho)" {{ old('additional_language') === 'sotho (sesotho)' ? 'selected' : '' }}>Sotho (Sesotho)</option>
-                    <option value="swazi (siswati)" {{ old('additional_language') === 'swazi (siswati)' ? 'selected' : '' }}>Swazi (siSwati)</option>
-                    <option value="tsonga (xitsonga)" {{ old('additional_language') === 'tsonga (xitsonga)' ? 'selected' : '' }}>Tsonga (Xitsonga)</option>
-                    <option value="tswana (setswana)" {{ old('additional_language') === 'tswana (setswana)' ? 'selected' : '' }}>Tswana (Setswana)</option>
-                    <option value="venda (tshivenda)" {{ old('additional_language') === 'venda (tshivenda)' ? 'selected' : '' }}>Venda (Tshivenda)</option>
-                    <option value="southern ndebele (isindebele)" {{ old('additional_language') === 'southern ndebele (isindebele)' ? 'selected' : '' }}>Southern Ndebele (isiNdebele)</option>
-                    <option value="spanish" {{ old('additional_language') === 'spanish' ? 'selected' : '' }}>Spanish</option>
-                    <option value="french" {{ old('additional_language') === 'french' ? 'selected' : '' }}>French</option>
-                    <option value="hindi" {{ old('additional_language') === 'hindi' ? 'selected' : '' }}>Hindi</option>
-                    <option value="arabic" {{ old('additional_language') === 'arabic' ? 'selected' : '' }}>Arabic</option>
-                    <option value="bengali" {{ old('additional_language') === 'bengali' ? 'selected' : '' }}>Bengali</option>
-                    <option value="portuguese" {{ old('additional_language') === 'portuguese' ? 'selected' : '' }}>Portuguese</option>
-                    <option value="russian" {{ old('additional_language') === 'russian' ? 'selected' : '' }}>Russian</option>
-                    <option value="japanese" {{ old('additional_language') === 'japanese' ? 'selected' : '' }}>Japanese</option>
-                    <option value="punjabi" {{ old('additional_language') === 'punjabi' ? 'selected' : '' }}>Punjabi</option>
-                    <option value="german" {{ old('additional_language') === 'german' ? 'selected' : '' }}>German</option>
-                </select>
+                <label for="contact_number">Contact Number</label>
+                <input type="number" id="contact_number" name="contact_number" placeholder="" class="form-field @error('contact_number') is-invalid @enderror"  value="{{ old('contact_number') }}">
+                @error('contact_number')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="profile">Profile Picture </label>
@@ -512,6 +501,36 @@
                         <strong>{{ $errors->first('available_date') }}</strong>
                     </span>
                 @endif
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="additional_language">Additional Language</label>
+                <select id="additional_language" name="additional_language" class="form-field">
+                    <option value="" >Select</option>
+                    <option value="english" {{ old('additional_language') === 'english' ? 'selected' : '' }}>English</option>
+                    <option value="afrikaans" {{ old('additional_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
+                    <option value="zulu (isizulu)" {{ old('additional_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
+                    <option value="xhosa (isixhosa)" {{ old('home_language') === 'xhosa (isixhosa)' ? 'selected' : '' }}>Xhosa (isiXhosa)</option>
+                    <option value="northern sotho (sesotho sa leboa)" {{ old('additional_language') === 'northern sotho (sesotho sa leboa)' ? 'selected' : '' }}>Northern Sotho (Sesotho sa Leboa)</option>
+                    <option value="sotho (sesotho)" {{ old('additional_language') === 'sotho (sesotho)' ? 'selected' : '' }}>Sotho (Sesotho)</option>
+                    <option value="swazi (siswati)" {{ old('additional_language') === 'swazi (siswati)' ? 'selected' : '' }}>Swazi (siSwati)</option>
+                    <option value="tsonga (xitsonga)" {{ old('additional_language') === 'tsonga (xitsonga)' ? 'selected' : '' }}>Tsonga (Xitsonga)</option>
+                    <option value="tswana (setswana)" {{ old('additional_language') === 'tswana (setswana)' ? 'selected' : '' }}>Tswana (Setswana)</option>
+                    <option value="venda (tshivenda)" {{ old('additional_language') === 'venda (tshivenda)' ? 'selected' : '' }}>Venda (Tshivenda)</option>
+                    <option value="southern ndebele (isindebele)" {{ old('additional_language') === 'southern ndebele (isindebele)' ? 'selected' : '' }}>Southern Ndebele (isiNdebele)</option>
+                    <option value="spanish" {{ old('additional_language') === 'spanish' ? 'selected' : '' }}>Spanish</option>
+                    <option value="french" {{ old('additional_language') === 'french' ? 'selected' : '' }}>French</option>
+                    <option value="hindi" {{ old('additional_language') === 'hindi' ? 'selected' : '' }}>Hindi</option>
+                    <option value="arabic" {{ old('additional_language') === 'arabic' ? 'selected' : '' }}>Arabic</option>
+                    <option value="bengali" {{ old('additional_language') === 'bengali' ? 'selected' : '' }}>Bengali</option>
+                    <option value="portuguese" {{ old('additional_language') === 'portuguese' ? 'selected' : '' }}>Portuguese</option>
+                    <option value="russian" {{ old('additional_language') === 'russian' ? 'selected' : '' }}>Russian</option>
+                    <option value="japanese" {{ old('additional_language') === 'japanese' ? 'selected' : '' }}>Japanese</option>
+                    <option value="punjabi" {{ old('additional_language') === 'punjabi' ? 'selected' : '' }}>Punjabi</option>
+                    <option value="german" {{ old('additional_language') === 'german' ? 'selected' : '' }}>German</option>
+                </select>
             </div>
         </div>
 

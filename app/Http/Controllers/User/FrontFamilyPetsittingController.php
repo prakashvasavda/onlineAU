@@ -20,11 +20,12 @@ class FrontFamilyPetsittingController extends Controller{
             'password'                      => "required",
             'family_address'                => "required",
             'cell_number'                   => "required",
-            'id_number'                     => "required|min:13|max:13",
             'start_date'                    => "required",
             'duration_needed'               => "required",
             'candidate_duties'              => "required",
             'surname'                       => "required",
+            'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|min:13|max:13' : ''),
+            'type_of_id_number'             => "required",
         ]);
 
         $input                  = $request->except('_method', '_token', 'morning', 'afternoon', 'evening', 'night');

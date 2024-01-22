@@ -60,21 +60,24 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="id_number">ID Number <span class="text-danger small">*</span></label>
-                <input type="number" id="id_number" name="id_number" placeholder="" class="form-field @error('id_number') is-invalid @enderror"  value="{{ old('id_number') }}">
-                @error('id_number')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                <label for="type_of_id_number">Type of ID Number <span class="text-danger">*</span></label>
+                <ul class="d-flex flex-wrap mt-2">
+                    <li><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number') === "south_african" ? "checked" : '' }} >South African</li>
+                    <li><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number') === "other" ? "checked" : '' }} >Other</li>
+                </ul>
+                @if ($errors->has('type_of_id_number'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('type_of_id_number') }}</strong>
                     </span>
-                @enderror
+                @endif
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="contact_number">Contact Number</label>
-                <input type="number" id="contact_number" name="contact_number" placeholder="" class="form-field @error('contact_number') is-invalid @enderror"  value="{{ old('contact_number') }}">
-                @error('contact_number')
+                <label for="id_number">ID Number <span class="text-danger small">*</span></label>
+                <input type="number" id="id_number" name="id_number" placeholder="" class="form-field @error('id_number') is-invalid @enderror"  value="{{ old('id_number') }}">
+                @error('id_number')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -224,10 +227,16 @@
                 </select>
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="disabilities">Disabilities</label>
-                <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
+                <label for="contact_number">Contact Number</label>
+                <input type="number" id="contact_number" name="contact_number" placeholder="" class="form-field @error('contact_number') is-invalid @enderror"  value="{{ old('contact_number') }}">
+                @error('contact_number')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
 
@@ -383,6 +392,13 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="disabilities">Disabilities</label>
+                <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
             </div>
         </div>
 

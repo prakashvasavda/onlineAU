@@ -80,6 +80,22 @@
                 @enderror
             </div>
         </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="type_of_id_number">Type of ID Number <span class="text-danger">*</span></label>
+                <ul class="d-flex flex-wrap mt-2">
+                    <li><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number') === "south_african" ? "checked" : '' }} >South African</li>
+                    <li><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number') === "other" ? "checked" : '' }} >Other</li>
+                </ul>
+                @if ($errors->has('type_of_id_number'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('type_of_id_number') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="id_number">ID Number <span class="text-danger">*</span></label>
@@ -91,6 +107,7 @@
                 @enderror
             </div>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="contact_number">Contact Number</label>
@@ -105,12 +122,8 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="gender">Gender</label>
-                <ul class="radio-box-list d-flex flex-wrap">
-                    <li class="radio-box-item"><input type="radio" name="gender" value="male" {{ old('gender') == "male" ? "checked" : '' }}><label>Male</label></li>
-                    <li class="radio-box-item"><input type="radio" name="gender" value="female" {{ old('gender') == "female" ? "checked" : '' }}><label>Female</label></li>
-                    <li class="radio-box-item"><input type="radio" name="gender" value="other" {{ old('gender') == "other" ? "checked" : '' }}><label>Other</label></li>
-                </ul>
+                <label for="ethnicity">Ethnicity</label>
+                <input type="text" id="ethnicity" name="ethnicity" value="{{ old("ethnicity") }}" placeholder="" class="form-field">
             </div>
         </div>
 
@@ -220,20 +233,12 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="ages_of_children_you_worked_with">Ages of children you worked with </label>
-                <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
-                    <option value="" disabled>Select</option>
-                    <option value="0_12_months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0_12_months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
-                    <option value="1_3_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("1_3_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>1-3 years</option>
-                    <option value="4_7_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("4_7_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>4-7 years</option>
-                    <option value="8_13_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("8_13_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>8-13 years</option>
-                    <option value="13_16_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("13_16_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>13-16 years</option>
-                </select>
-                @if ($errors->has('ages_of_children_you_worked_with'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
-                    </span>
-                @endif
+                <label for="gender">Gender</label>
+                <ul class="radio-box-list d-flex flex-wrap">
+                    <li class="radio-box-item"><input type="radio" name="gender" value="male" {{ old('gender') == "male" ? "checked" : '' }}><label>Male</label></li>
+                    <li class="radio-box-item"><input type="radio" name="gender" value="female" {{ old('gender') == "female" ? "checked" : '' }}><label>Female</label></li>
+                    <li class="radio-box-item"><input type="radio" name="gender" value="other" {{ old('gender') == "other" ? "checked" : '' }}><label>Other</label></li>
+                </ul>
             </div>
         </div>
 
@@ -415,8 +420,20 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="ethnicity">Ethnicity</label>
-                <input type="text" id="ethnicity" name="ethnicity" value="{{ old("ethnicity") }}" placeholder="" class="form-field">
+                <label for="ages_of_children_you_worked_with">Ages of children you worked with </label>
+                <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
+                    <option value="" disabled>Select</option>
+                    <option value="0_12_months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0_12_months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
+                    <option value="1_3_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("1_3_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>1-3 years</option>
+                    <option value="4_7_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("4_7_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>4-7 years</option>
+                    <option value="8_13_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("8_13_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>8-13 years</option>
+                    <option value="13_16_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("13_16_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>13-16 years</option>
+                </select>
+                @if ($errors->has('ages_of_children_you_worked_with'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
 
