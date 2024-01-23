@@ -15,7 +15,7 @@
 					<p>{{ count($search) }} families matching your search</p>
 				@else
 					<h2>Find Candidates</h2>
-					<p>{{ count($search) }} AU-PAIRS matching your search</p>
+					<p>{{ count($search) }} candidates matching your search</p>
 				@endif
 			</div>
 			<div class="row result-list">
