@@ -117,11 +117,11 @@ class FrontRegisterController extends Controller{
         foreach ($data['daterange'] as $key => $value) {
             PreviousExperience::insertGetId([
                 'candidate_id' => $candidateId,
-                'daterange'    => $value,
-                'heading'      => $data['heading'][$key],
-                'description'  => $data['description'][$key],
-                'reference'    => $data['reference'][$key],
-                'tel_number'   => $data['tel_number'][$key],
+                'daterange'    => isset($value) ? $value : null,
+                'heading'      => isset($data['heading'][$key]) ? $data['heading'][$key] : null,
+                'description'  => isset($data['description'][$key]) ? $data['description'][$key] : null,
+                'reference'    => isset($data['reference'][$key]) ? $data['reference'][$key] : null,
+                'tel_number'   => isset($data['tel_number'][$key]) ? $data['tel_number'][$key] : null,
                 "created_at"   => date("Y-m-d H:i:s"),
                 "updated_at"   => date("Y-m-d H:i:s"),
             ]);
