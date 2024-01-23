@@ -111,6 +111,7 @@ class FrontRegisterController extends Controller{
             "hourly_rate_pay"                   => isset($request->hourly_rate_pay) ? $request->hourly_rate_pay : null,
             "other_services"                    => isset($request->other_services) ? json_encode($request->other_services) : null,
             'situated'                          => isset($request->situated) ? $request->situated : null,
+            'type_of_id_number'                 => $request->type_of_id_number,
         ]);
 
         foreach ($data['daterange'] as $key => $value) {
@@ -223,6 +224,7 @@ class FrontRegisterController extends Controller{
             'id_number'                     => $request->id_number,
             'live_in_or_live_out'           => $request->live_in_or_live_out,
             'hourly_rate_pay'               => isset($request->hourly_rate_pay) ? $request->hourly_rate_pay : null,
+            'type_of_id_number'             => $request->type_of_id_number,
         ]);
 
         $status              = $this->store_need_babysitter($data, $familyId);
