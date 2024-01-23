@@ -76,7 +76,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="id_number">ID Number <span class="text-danger small">*</span></label>
-                <input type="number" id="id_number" name="id_number" placeholder="" class="form-field @error('id_number') is-invalid @enderror"  value="{{ old('id_number') }}">
+                <input type="text" id="id_number" name="id_number" placeholder="" class="form-field @error('id_number') is-invalid @enderror"  value="{{ old('id_number') }}">
                 @error('id_number')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

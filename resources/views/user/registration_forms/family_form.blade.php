@@ -93,7 +93,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="id_number">ID Number <span class="text-danger">*</span></label>
-                <input type="number" id="id_number" name="id_number" value="{{ old('id_number') }}" placeholder="" class="form-field">
+                <input type="text" id="id_number" name="id_number" value="{{ old('id_number') }}" placeholder="" class="form-field">
                 @if ($errors->has('id_number'))
                     <span class="text-danger">
                         <strong>{{ $errors->first('id_number') }}</strong>
