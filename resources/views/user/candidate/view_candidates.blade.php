@@ -33,145 +33,151 @@
 				</form>
 	        </div>
 
-	        <div class="favorites-section">
-				<div class="container">
-					<div class="title-main">
-			            <h2>Favorites</h2>
-			        </div>
-					<div class="row">
-						@php $is_favorites_empty = true; @endphp
-						@if(isset($candidates) && !empty($candidates))
-							@foreach($candidates as $key => $value)
-								@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
-									@php $is_favorites_empty = false; @endphp
-									<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-										<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
-											<div class="card verticalBox">
-											  	<span class="user-profile-section">
-											  		@if(isset($value->profile))
-										            	<img src="{{ asset('uploads/profile/'.$value->profile) }}" alt="" style=" max-height: 225px; width:100%;">
-										            @else
-										            	<img src="{{ asset('uploads/profile/user-profile.png') }}" alt="" style=" max-height: 225px; width:100%">
-										            @endif
-											  	</span>
-											  	<div class="card-body">
-												  	<div class="pos-icon">
-												  		<span class="user-favorite-section">
-												  			@if(isset($value->candidate_favorited_by) && is_string($value->candidate_favorited_by))
-										            			@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
-										            				<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
-										            			@else
-										            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
-										            			@endif
-										            		@else
-										            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
-										            		@endif
-												  		</span>
-												  	</div>
-												    <p class="text-capitalize mb-1"><span>name</span>: {{ isset($value->name) ? strtoupper($value->name) : "-" }}</p>
-												    <p class="text-capitalize mb-1"><span>age</span>: {{ isset($value->age) ? $value->age : "-" }}</p>
-												    <p class="text-capitalize mb-1" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis"><span>area</span>: {{ isset($value->area) ? $value->area : "-" }}</p>
-												    <p class="text-capitalize mb-1"><span>available from</span>: {{ isset($value->available_date) ? $value->available_date : "-" }}</p>
-												    <p class="text-capitalize mb-1"><span>years experience</span>: {{ isset($value->childcare_experience) ? $value->childcare_experience : "-" }}</p>
-												    <p class="text-center mt-3">
-								                		<span class="user-reviews-section">
-								                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
-										                	 	@for($i = 0; $i < 5; $i++)
-															        @if($i < max(explode(",", $value->review_rating_count)))
-															            <i class="fa-solid fa-star"></i>
-															        @else
-															            <i class="fa-regular fa-star"></i>
-															        @endif
-														   	 	@endfor
-												            @else
-												            	@for($i=0; $i<5; $i++)
-												                	<i class="fa-regular fa-star"></i>
-												                @endfor
-											                @endif 
-									                	</span>
-												    </p>
-											  	</div>
-											</div>
-										</a>
-									</div>
-								@endif
-							@endforeach
-						@endif
+			@if(isset($candidates) && count($candidates) > 0)
+				<div class="favorites-section">
+					<div class="container">
+						<div class="title-main">
+							<h2>Favorites</h2>
+						</div>
+						<div class="row">
+							@php $is_favorites_empty = true; @endphp
+							@if(isset($candidates) && !empty($candidates))
+								@foreach($candidates as $key => $value)
+									@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
+										@php $is_favorites_empty = false; @endphp
+										<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+											<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
+												<div class="card verticalBox">
+													<span class="user-profile-section">
+														@if(isset($value->profile))
+															<img src="{{ asset('uploads/profile/'.$value->profile) }}" alt="" style=" max-height: 225px; width:100%;">
+														@else
+															<img src="{{ asset('uploads/profile/user-profile.png') }}" alt="" style=" max-height: 225px; width:100%">
+														@endif
+													</span>
+													<div class="card-body">
+														<div class="pos-icon">
+															<span class="user-favorite-section">
+																@if(isset($value->candidate_favorited_by) && is_string($value->candidate_favorited_by))
+																	@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
+																		<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+																	@else
+																		<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+																	@endif
+																@else
+																		<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+																@endif
+															</span>
+														</div>
+														<p class="text-capitalize mb-1"><span>name</span>: {{ isset($value->name) ? strtoupper($value->name) : "-" }}</p>
+														<p class="text-capitalize mb-1"><span>age</span>: {{ isset($value->age) ? $value->age : "-" }}</p>
+														<p class="text-capitalize mb-1" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis"><span>area</span>: {{ isset($value->area) ? $value->area : "-" }}</p>
+														<p class="text-capitalize mb-1"><span>available from</span>: {{ isset($value->available_date) ? $value->available_date : "-" }}</p>
+														<p class="text-capitalize mb-1"><span>years experience</span>: {{ isset($value->childcare_experience) ? $value->childcare_experience : "-" }}</p>
+														<p class="text-center mt-3">
+															<span class="user-reviews-section">
+																@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
+																	@for($i = 0; $i < 5; $i++)
+																		@if($i < max(explode(",", $value->review_rating_count)))
+																			<i class="fa-solid fa-star"></i>
+																		@else
+																			<i class="fa-regular fa-star"></i>
+																		@endif
+																	@endfor
+																@else
+																	@for($i=0; $i<5; $i++)
+																		<i class="fa-regular fa-star"></i>
+																	@endfor
+																@endif 
+															</span>
+														</p>
+													</div>
+												</div>
+											</a>
+										</div>
+									@endif
+								@endforeach
+							@endif
 
-						@if($is_favorites_empty == true)
-							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 d-block m-auto">
-					           <img src="{{ url('front/images/error-notFound-icon1-x-size.png') }}" alt="">	
-					    	</div>
-						@endif
+							@if($is_favorites_empty == true)
+								<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 d-block m-auto">
+									<img src="{{ url('front/images/error-notFound-icon1-x-size.png') }}" alt="">	
+								</div>
+							@endif
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="favorites-section mb-5">
-				<div class="container">
-					<div class="title-main">
-			           <h2>All Candidates</h2>
-			        </div>
-					<div class="row">
-						@if(isset($candidates) && !empty($candidates))
-							@foreach($candidates as $key => $value)
-								@if(!isset($value->candidate_favorited_by) || !in_array($user->id, explode(",", $value->candidate_favorited_by)))
-									<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-										<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
-											<div class="card verticalBox">
-											  	<span class="user-profile-section">
-											  		@if(isset($value->profile))
-										            	<img src="{{ asset('uploads/profile/'.$value->profile) }}" alt="" style=" max-height: 225px; width:100%">
-										            @else
-										            	<img src="{{ asset('uploads/profile/user-profile.png') }}" alt="" style=" max-height: 225px; width:100%">
-										            @endif
-											  	</span>
-											  	<div class="card-body">
-												  	<div class="pos-icon">
-												  		<span class="user-favorite-section">
-												  			@if(isset($value->candidate_favorited_by) && is_string($value->candidate_favorited_by))
-										            			@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
-										            				<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
-										            			@else
-										            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
-										            			@endif
-										            		@else
-										            				<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
-										            		@endif
-												  		</span>
-												  	</div>
-												    <p class="text-capitalize mb-1"><span>name</span>: {{ isset($value->name) ? strtoupper($value->name) : "-" }}</p>
-												    <p class="text-capitalize mb-1"><span>age</span>: {{ isset($value->age) ? $value->age : "-" }}</p>
-												    <p class="text-capitalize mb-1" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis"><span>area</span>: {{ isset($value->area) ? $value->area : "-" }}</p>
-												    <p class="text-capitalize mb-1"><span>available from</span>: {{ isset($value->available_date) ? $value->available_date : "-" }}</p>
-												    <p class="text-capitalize mb-1"><span>years experience</span>: {{ isset($value->childcare_experience) ? $value->childcare_experience : "-" }}</p>
-												    <p class="text-center mt-3">
-								                		<span class="user-reviews-section">
-								                			@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
-										                	 	@for($i = 0; $i < 5; $i++)
-															        @if($i < max(explode(",", $value->review_rating_count)))
-															            <i class="fa-solid fa-star"></i>
-															        @else
-															            <i class="fa-regular fa-star"></i>
-															        @endif
-														   	 	@endfor
-												            @else
-												            	@for($i=0; $i<5; $i++)
-												                	<i class="fa-regular fa-star"></i>
-												                @endfor
-											                @endif 
-									                	</span>
-												    </p>
-											  	</div>
-											</div>
-										</a>
-									</div>
-								@endif
-							@endforeach
-						@endif
+				<div class="favorites-section mb-5">
+					<div class="container">
+						<div class="title-main">
+						<h2>All Candidates</h2>
+						</div>
+						<div class="row">
+							@if(isset($candidates) && !empty($candidates))
+								@foreach($candidates as $key => $value)
+									@if(!isset($value->candidate_favorited_by) || !in_array($user->id, explode(",", $value->candidate_favorited_by)))
+										<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+											<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
+												<div class="card verticalBox">
+													<span class="user-profile-section">
+														@if(isset($value->profile))
+															<img src="{{ asset('uploads/profile/'.$value->profile) }}" alt="" style=" max-height: 225px; width:100%">
+														@else
+															<img src="{{ asset('uploads/profile/user-profile.png') }}" alt="" style=" max-height: 225px; width:100%">
+														@endif
+													</span>
+													<div class="card-body">
+														<div class="pos-icon">
+															<span class="user-favorite-section">
+																@if(isset($value->candidate_favorited_by) && is_string($value->candidate_favorited_by))
+																	@if(in_array($user->id, explode(",", $value->candidate_favorited_by)))
+																		<i class="fa-solid fa-heart" id="favBtn{{$value->id}}" onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+																	@else
+																		<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+																	@endif
+																@else
+																		<i class="fa-regular fa-heart" id="favBtn{{$value->id}}"  onclick="storeFamilyFavoriteCandidate(event, '{{ $value->id }}')"></i>
+																@endif
+															</span>
+														</div>
+														<p class="text-capitalize mb-1"><span>name</span>: {{ isset($value->name) ? strtoupper($value->name) : "-" }}</p>
+														<p class="text-capitalize mb-1"><span>age</span>: {{ isset($value->age) ? $value->age : "-" }}</p>
+														<p class="text-capitalize mb-1" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis"><span>area</span>: {{ isset($value->area) ? $value->area : "-" }}</p>
+														<p class="text-capitalize mb-1"><span>available from</span>: {{ isset($value->available_date) ? $value->available_date : "-" }}</p>
+														<p class="text-capitalize mb-1"><span>years experience</span>: {{ isset($value->childcare_experience) ? $value->childcare_experience : "-" }}</p>
+														<p class="text-center mt-3">
+															<span class="user-reviews-section">
+																@if(isset($value->review_rating_count) && is_string($value->review_rating_count))
+																	@for($i = 0; $i < 5; $i++)
+																		@if($i < max(explode(",", $value->review_rating_count)))
+																			<i class="fa-solid fa-star"></i>
+																		@else
+																			<i class="fa-regular fa-star"></i>
+																		@endif
+																	@endfor
+																@else
+																	@for($i=0; $i<5; $i++)
+																		<i class="fa-regular fa-star"></i>
+																	@endfor
+																@endif 
+															</span>
+														</p>
+													</div>
+												</div>
+											</a>
+										</div>
+									@endif
+								@endforeach
+							@endif
+						</div>
 					</div>
 				</div>
-			</div>
+			@else
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 d-block m-auto">
+					<img src="{{ url('front/images/error-notFound-icon1-x-size.png') }}" alt="">	
+				</div>
+			@endif
 
 			<div class="mb-4">
 				<nav aria-label="Page navigation example">
