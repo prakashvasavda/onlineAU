@@ -43,7 +43,10 @@
 								            <div class="card-body">
 								            	@if($type != 'family')
 									            	<div class="pos-icon">
-									            		<i class="fa-regular fa-heart"></i>
+														@php
+															$is_favorited = session()->has('frontUser') && isset($value->candidate_favorited_by) && is_string($value->candidate_favorited_by) && in_array(session()->get('frontUser')->id, explode(",", $value->candidate_favorited_by));
+														@endphp
+														<i class="fa-{{ $is_favorited ? 'solid' : 'regular' }} fa-heart" id="favBtn{{ $value->id }}"></i>
 									            	</div>
 									            @endif
 

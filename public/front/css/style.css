@@ -1330,6 +1330,7 @@ header {
 }
 .subTitleBox {
     background-color: var(--white);
+    border-radius: 15px;
     padding: 14px 16px 8px 16px;
     width: fit-content;
     width: -webkit-fit-content;
@@ -1502,6 +1503,7 @@ header {
 }
 .contact-section form.contact-form {
     background-color: var(--primary);
+    border-radius: 30px;
     padding: 26px;
     display: flex;
     flex-flow: column;
@@ -2190,6 +2192,8 @@ span.text-danger{
 }
 .pricing-box {
     border: 1px solid var(--secondary);
+    border-radius: 30px;
+    overflow: hidden;
     display: flex;
     flex-flow: column;
     height: 100%;
