@@ -196,7 +196,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="pet_medication_or_disabilities_specification">If yes please specify.</label>
-                <textarea id="pet_medication_or_disabilities_specification" name="pet_medication_or_disabilities_specification" placeholder="" class="form-field @error('pet_medication_or_disabilities_specification') is-invalid @enderror" rows="5" >{{ old('family_description') }}</textarea>
+                <textarea id="pet_medication_or_disabilities_specification" name="pet_medication_or_disabilities_specification" placeholder="" class="form-field @error('pet_medication_or_disabilities_specification') is-invalid @enderror" rows="5" >{{ old('pet_medication_or_disabilities_specification') }}</textarea>
                 <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
                 @if ($errors->has('pet_medication_or_disabilities_specification'))
                     <span class="text-danger">
