@@ -28,7 +28,7 @@
 
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div class="candidate-contact">
-                    @if(session()->has('frontUser'))
+                    @if(session()->has('frontUser') && session()->get('frontUser')->role != "family")
                         <a href="javaScript:;" class="btn btn-primary round" onclick="handleApplication(event)">INTERESTED</a>
                     @else
                         <a href="{{ route('user-login') }}" class="btn btn-primary round">INTERESTED</a>
