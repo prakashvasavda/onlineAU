@@ -4,7 +4,7 @@
 <style type="text/css">
 	.favorites-section, .pricing-plans {
      	padding: 10px 0; 
-	
+	}
 </style>
 <div class="search-section no-banner">
 	<ul class="filter-option">

@@ -33,7 +33,7 @@
 			            <h2>All Families</h2>
 			        </div>
 					<div class="row">
-						@if(isset($families) && !empty($families))
+						@if(isset($families) && count($families) > 0)
 							@foreach($families as $key => $value)
 							@php
 								$decoded_value = isset($value->what_do_you_need) && is_string($value->what_do_you_need) ? json_decode($value->what_do_you_need) : null;
@@ -74,6 +74,10 @@
 									</a>
 								</div>
 							@endforeach
+						@else
+							<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 d-block m-auto">
+								<img src="{{ url('front/images/error-notFound-icon1-x-size.png') }}" alt="">	
+							</div>
 						@endif
 					</div>
 				</div>
