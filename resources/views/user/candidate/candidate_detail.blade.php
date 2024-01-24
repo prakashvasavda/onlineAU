@@ -48,7 +48,7 @@
             </div>
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div class="candidate-contact">
-                    @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
+                    @if(session()->has('frontUser'))
                         <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="storeFamilyFavoriteCandidate()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
                         <a href="javaScript:;" class="btn btn-primary round" onclick="handleClick(event)">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                     @else
@@ -297,7 +297,7 @@
             </table>
         </div>
         <div class="btn-main d-flex flex-wrap justify-content-evenly align-items-center mt-5">
-            @if(session()->has('frontUser') && session()->get('frontUser')->role == "family")
+            @if(session()->has('frontUser'))
                 <a href="#" class="btn btn-primary round" id="bottom-contact-btn" onclick="handleClick(event)">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                 <a href="{{ route('view-candidates') }}" class="btn btn-primary round">BACK TO ALL CANDIDATES</a>
             @else
@@ -438,14 +438,20 @@ function handleClick(event){
     var candidateService   = "{{ isset($candidate->role) ? $candidate->role : null }}";
     var candidates         = purchaseCandidates ? purchaseCandidates.split(",") : null;
     var paymentStatus      = "{{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == "active") ? true : false }}";
+    var loggedInUserRole   = "{{ session()->get('frontUser')->role }}";
 
+    if(loggedInUserRole && loggedInUserRole !== "family"){
+        showModal('You need to be logged in as a family user to contact this candidate', '{{ route('packages') }}', 'Log Out');
+        return false;
+    }
+    
     if(!candidates ||candidates.length == 0 || !paymentStatus){
-        showModal('Please complete your payment and subscription process');
+        showModal('Please complete your subscription and payment process', '{{ route('packages') }}', 'Go to Package');
         return false;
     }
 
     if(!candidates.includes(candidateService)){
-        showModal("The candidate you've selected is not included in the purchased package");
+        showModal("The candidate you've selected is not included in the purchased package", '{{ route('packages') }}', 'Go to Package');
         return false;
     }
 
@@ -453,11 +459,11 @@ function handleClick(event){
     event.target.id == "bottom-contact-btn" ? $(window).scrollTop(0) : false;
 }
 
-function showModal($message){
+function showModal($message, $url, $text){
     $("#alert-modal-label").html("Warning");
     $("#alert-modal-icon").html("<img src='{{ url('front/images/warning-icon1.png') }}' alt=''>");
     $("#alert-modal-body").html($message);
-    $("#alert-modal-action-btn").attr('href', '{{ route('packages') }}').text('Go to Package');
+    $("#alert-modal-action-btn").attr('href', $url).text($text);
     $('#alert-modal').modal('show');
 }
 
