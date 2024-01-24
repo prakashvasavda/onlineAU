@@ -28,7 +28,7 @@
 
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div class="candidate-contact">
-                    @if(session()->has('frontUser') && session()->get('frontUser')->role != "family")
+                    @if(session()->has('frontUser'))
                         <a href="javaScript:;" class="btn btn-primary round" onclick="handleApplication(event)">INTERESTED</a>
                     @else
                         <a href="{{ route('user-login') }}" class="btn btn-primary round">INTERESTED</a>
@@ -292,9 +292,18 @@
     /*send candidate application*/
     function handleApplication(event){
         event.preventDefault();
-        var isLoggedIn = "{{ session()->has('frontUser') ? true : false }}";
-        
+        var isLoggedIn         = "{{ session()->has('frontUser') ? true : false }}";
+        var loggedInUserRole   = "{{ session()->get('frontUser')->role }}";
+
         if(!isLoggedIn){
+            return false;
+        }
+
+        if(loggedInUserRole && (loggedInUserRole == "family" || loggedInUserRole == "family-petsitting")){
+            var modalLabel    = "Warning";
+            var modalIcon     = "<img src='{{ url('front/images/warning-icon1.png') }}' alt=''>"; 
+            var message       = "Your need to be logged in as a candidate to be able to apply for the mentioned role"; 
+            showModal(modalLabel, modalIcon, message, "{{ route('user-logout') }}", "Log Out");
             return false;
         }
 
@@ -310,7 +319,10 @@
                 services:   "{{ $family->what_do_you_need }}",
             },
             success: function(response) {
-                showModal('Your application have been sent to admin successfully');
+                var modalLabel    = "Success";
+                var modalIcon     = "<img src='{{ url('front/images/success-check-icon1.png') }}' alt=''>"; 
+                var message       = "Your application have been sent to admin successfully"; 
+                showModal(modalLabel, modalIcon, message, "{{ route('view-families') }}", 'Back to all families');
             },
             error: function(xhr, status, error) {
                 console.error('AJAX Error: ' + status + ', ' + error);
@@ -318,11 +330,11 @@
         });
     }
 
-    function showModal(message){
-        $("#alert-modal-label").html("Success");
-        $("#alert-modal-icon").html("<img src='{{ url('front/images/success-check-icon1.png') }}' alt=''>");
+    function showModal(modalLabel, modalIcon, message, url, text){
+        $("#alert-modal-label").html(modalLabel);
+        $("#alert-modal-icon").html(modalIcon);
         $("#alert-modal-body").html(message);
-        $("#alert-modal-action-btn").attr('href', '{{ route('view-families') }}').text('Back to all families');
+        $("#alert-modal-action-btn").attr('href', url).text(text);
         $('#alert-modal').modal('show');
     }
 </script>

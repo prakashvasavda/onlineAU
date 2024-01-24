@@ -441,17 +441,17 @@ function handleClick(event){
     var loggedInUserRole   = "{{ session()->get('frontUser')->role }}";
 
     if(loggedInUserRole && loggedInUserRole !== "family"){
-        showModal('You need to be logged in as a family user to contact this candidate', '{{ route('packages') }}', 'Log Out');
+        showModal('You need to be logged in as a family user to contact this candidate', "{{ route('user-logout') }}", 'Log Out');
         return false;
     }
     
     if(!candidates ||candidates.length == 0 || !paymentStatus){
-        showModal('Please complete your subscription and payment process', '{{ route('packages') }}', 'Go to Package');
+        showModal('Please complete your subscription and payment process', "{{ route('packages') }}", 'Go to Package');
         return false;
     }
 
     if(!candidates.includes(candidateService)){
-        showModal("The candidate you've selected is not included in the purchased package", '{{ route('packages') }}', 'Go to Package');
+        showModal("The candidate you've selected is not included in the purchased package", "{{ route('packages') }}", 'Go to Package');
         return false;
     }
 
@@ -459,11 +459,11 @@ function handleClick(event){
     event.target.id == "bottom-contact-btn" ? $(window).scrollTop(0) : false;
 }
 
-function showModal($message, $url, $text){
+function showModal(message, url, text){
     $("#alert-modal-label").html("Warning");
     $("#alert-modal-icon").html("<img src='{{ url('front/images/warning-icon1.png') }}' alt=''>");
-    $("#alert-modal-body").html($message);
-    $("#alert-modal-action-btn").attr('href', $url).text($text);
+    $("#alert-modal-body").html(message);
+    $("#alert-modal-action-btn").attr('href', url).text(text);
     $('#alert-modal').modal('show');
 }
 
