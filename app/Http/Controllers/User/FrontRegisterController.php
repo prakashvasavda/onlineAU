@@ -50,8 +50,6 @@ class FrontRegisterController extends Controller{
         ];
 
         $message = [
-            'email'              => 'The email field is required',
-            'password'           => 'The password field is required',
             'salary_expectation' => 'The salary expectation is required',
             'hourly_rate_pay'    => 'The hourly rate amount field is required',
         ];
@@ -170,19 +168,7 @@ class FrontRegisterController extends Controller{
             'type_of_id_number'             => "required",
         ];
 
-        $message = [
-            'name'                          => "The Name must be required",
-            'age'                           => "The Age must be required",
-            'profile'                       => "The Profile must be required",
-            'email'                         => "The Email must be required",
-            'password'                      => "The Password must be required",
-            'family_address'                => "The Family address must be required",
-            'family_city'                   => "The Family city must be required",
-            'home_language'                 => "The Home language must be required",
-            'no_children'                   => "The No children must be required",
-            'family_types_babysitter'       => "The Family types babysitter must be required",
-            'family_notifications'          => "The Family notifications must be required",
-        ];
+        $message = [];
 
         $validator = Validator::make($data, $rules, $message);
         if ($validator->fails()) {
@@ -238,8 +224,6 @@ class FrontRegisterController extends Controller{
 
         Session::put('guestUser', $data);
         return redirect()->to('packages');
-
-        //return redirect()->route('user-login');
     }
 
     public function send_notification_email($data, $role){
