@@ -65,6 +65,7 @@ class FrontFamilyPetsittingController extends Controller{
             'candidate_duties'              => "required",
             'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'type_of_id_number'             => "required",
+            'email'                         => "required|email|unique:front_users,email," . session()->get('frontUser')->id,
         ],[
             'profile.required_if'   => 'The profile field is required',
         ]);

@@ -102,10 +102,12 @@ class FrontFamilyController extends Controller{
             'start_date'                    => "required",
             'duration_needed'               => "required|numeric|gt:1",
             'petrol_reimbursement'          => "required",
-            'live_in_or_live_out'           => "required", //not added in db
+            'live_in_or_live_out'           => "required", 
             'candidate_duties'              => "required",
             'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'type_of_id_number'             => "required",
+            'email'                         => "required|email|unique:front_users,email," . session()->get('frontUser')->id,
+
         ],[
             'profile.required_if'   => 'The profile field is required',
             'describe_kids.array'   =>  'Invalid selected value',   

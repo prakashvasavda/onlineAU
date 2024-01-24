@@ -91,6 +91,7 @@ class FrontCandidateController extends Controller{
             'area'                  => 'required',
             'id_number'             => 'required' . ($request->type_of_id_number == 'south_african' ? ' |numeric|digits:13' : ''),
             'type_of_id_number'     => "required",
+            'email'                 => "required|email|unique:front_users,email," . session()->get('frontUser')->id,
         ],[
             'hourly_rate_pay'       => 'The hourly rate amount field is required',
         ]);
