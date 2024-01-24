@@ -54,21 +54,21 @@ class FamilyPetsittingController extends Controller
                     $subscription   = new SubscriptionController();
                     $payment_status = $subscription->check_subscription_status($row->id);
                     if($payment_status == 'inactive'){
-                        return $payment_btn = '<span class="badge badge-dark">inactive</span>';
+                        return '<span class="badge badge-dark">inactive</span>';
                     }elseif($payment_status == 'pending'){
-                        return $payment_btn = '<span class="badge badge-danger">pending</span>';
+                        return '<span class="badge badge-danger">pending</span>';
                     }elseif($payment_status == 'expired'){
-                        return $payment_btn = '<span class="badge badge-warning">expired</span>';
+                        return '<span class="badge badge-warning">expired</span>';
                     }else{
-                        return $payment_btn = '<span class="badge badge-success">active</span>';
+                        return '<span class="badge badge-success">active</span>';
                     }
                 })
 
                 ->addColumn('user_status', function ($row) {
                     if($row->status == 1){
-                        return $status_btn = '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" checked onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
+                        return '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" checked onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
                     }else{
-                        return $status_btn = '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
+                        return '<label class="switch status_switch"><input type="checkbox" id="status_checkbox'.$row->id.'" onchange="changeUserStatus(' . $row->id . ')"><span class="status_slider round"></span></label>';
                     }
                 })
                 ->rawColumns(['action', 'user_status', 'payment_status'])
