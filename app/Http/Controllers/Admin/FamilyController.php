@@ -114,6 +114,7 @@ class FamilyController extends Controller{
             'candidate_duties'              => "required",
             'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? ' |numeric|digits:13' : ''),
             'type_of_id_number'             => "required",
+            'email'                         => "required|email|unique:front_users,email," . $familyId,
         ],[
             'profile.required_if'   => 'The profile field is required',
             'describe_kids.array'   =>  'Invalid selected value',   
