@@ -32,12 +32,20 @@ class TransactionsController extends Controller{
                 ->get()
                 ->toArray();
         $row  = '';
+
+        $subscriptions_status = [
+            'inactive'  => '<td><span class="badge badge-dark">inactive</span></td>',
+            'pending'   => '<td><span class="badge badge-danger">pending</span></td>',
+            'expired'   => '<td><span class="badge badge-warning">expired</span></td>',
+            'active'    => '<td><span class="badge badge-success">paid</span></td>',
+        ];
+
         if(isset($user_subscription) && !empty($user_subscription)){
             foreach($user_subscription as $key => $value) {
                 $row .= '<tr>';
                 $row .= '<td>'.$value['name'].'</td>';
                 $row .= '<td>'.$value['price'].'</td>';
-                $row .= '<td><span class="badge badge-pill ' . ($value['status'] == 'active' ? 'badge-success' : ($value['status'] == 'inactive' ? 'badge-secondary' : 'badge-warning')) . '">' . ($value['status'] == 'active' ? 'paid' : ($value['status'] == 'inactive' ? 'pending' : 'expired')) . '</span></td>';
+                $row .= isset($subscriptions_status[$value['status']]) ? $subscriptions_status[$value['status']] : "<td></td>";
                 $row .= '</td>';
                 $row .= '</tr>';
             }
@@ -48,50 +56,5 @@ class TransactionsController extends Controller{
         }
 
         return response()->json($row, 200);
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
