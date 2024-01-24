@@ -109,7 +109,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route('admin.families') }}" class="nav-link @if($menu=='family') active @endif">
                                         <i class="fa fa-user-friends nav-icon"></i>
-                                        <p>General Families</p>
+                                        <p>Manage Families</p>
                                     </a>
                                 </li>
                             </ul>
@@ -118,7 +118,7 @@
                                 <li class="nav-item">
                                     <a href="{{ url('admin/family-petsitting') }}" class="nav-link @if($menu=='family petsitting') active @endif">
                                         <i class="fa fa-restroom nav-icon"></i>
-                                        <p>Family Petisitting</p>
+                                        <p>Manage Petisitting</p>
                                     </a>
                                 </li>
                             </ul>
