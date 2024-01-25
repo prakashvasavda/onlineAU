@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\User\SubscriptionController;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Mail;
+use Mail;
+use App\Mail\ResetPassword;
+
+
 
 class LoginController extends Controller{
     
@@ -59,30 +62,23 @@ class LoginController extends Controller{
     }
 
     public function check_user(Request $request){
-        $valid = FrontUser::where('email',$request->email)->first();
-        if(isset($valid) && !empty($valid)) {
-            $emailTo = $request->email;
-            $name = $valid['name'];
+        $request->validate([            
+            'email' => 'required|email',
+        ]);
 
-            config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
-            config(['mail.mailers.smtp.port' => '587']);
-            config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
-            config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
-            config(['mail.mailers.smtp.encryption' => 'tls']);
-            $url = url('reset-password/'.base64_encode($emailTo));
-            $message = '<p>Hello '.$valid["name"].',</p>
-            <p>You are receiving this email because we received a password reset request for your account.</p>
-            <p>Click the following link to reset your password:</p>
-            <a href="'.$url.'">Reset Password</a>
-            <p>If you did not request a password reset, no further action is required.</p>';
-            Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
-                $mail->to($emailTo, $name)->subject('Password Reset Request')->setBody($message, 'text/html');
-                $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
-            });
-            return redirect()->back()->with('success', 'Forgot password mail send successfully.');
-        } else {
+        $valid = FrontUser::where('email',$request->email)->first();
+        
+        if(!isset($valid) || empty($valid)){
             return back()->withErrors(['email' => 'Email not match.']);
         }
+
+        $data = [
+            'url'   => url('reset-password/'.base64_encode($request->email)),
+            'name'  => $valid['name'],
+        ];
+
+        Mail::to($request->email)->send(new ResetPassword($data));
+        return redirect()->back()->with('success', 'Forgot password mail send successfully.');
     }
 
     public function reset_password($email){

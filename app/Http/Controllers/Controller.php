@@ -24,10 +24,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Packages;
 use Carbon\Carbon;
-//use Illuminate\Support\Facades\Mail;
-
 use Mail;
-use App\Mail\CandidateApplication;
+use App\Mail\ResetPassword;
 
 
 
@@ -104,11 +102,7 @@ class Controller extends BaseController{
         config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
         config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
         config(['mail.mailers.smtp.encryption' => 'tls']);
-        
-        $message = $message;
-        $emailTo = 'emmanuel.k.php@gmail.com';
-        $name    = 'Admin';
-        
+         
         // Mail::send([], [], function ($mail) use ($message, $emailTo, $name, $subject) {
         //     $mail->to($emailTo, $name)->subject($subject)->html($message);
         //     $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
@@ -153,8 +147,6 @@ class Controller extends BaseController{
         $validator = Validator::make($data, $rules, $messages);
     
         $services           = is_string($request->services) ? explode(',', $request->services) : [];
-        //$data['services']   = $services;
-        
         $data = [
             'services'  => $services,
             'family_id' => $request->family_id,

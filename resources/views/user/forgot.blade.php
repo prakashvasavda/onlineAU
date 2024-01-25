@@ -6,19 +6,7 @@
     <div class="title-main">
       <h3>Forgot Password</h3>
     </div>    
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>{{ $message }}</strong>
-    </div>
-    @endif
-
-    @if ($message = Session::get('errorM'))
-    <div class="alert alert-danger alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>{{ $message }}</strong>
-    </div>
-    @endif
+    @include('flash.front-message')
     <form method="POST" class="row" action="{{ route('check-user') }}">
         @csrf
       <div class="form-input">
