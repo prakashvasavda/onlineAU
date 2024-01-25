@@ -47,6 +47,7 @@ class FrontRegisterController extends Controller{
             'area'                         => 'required',
             'id_number'                    => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'type_of_id_number'            => "required",
+            'profile'                      => 'nullable|image|mimes:jpeg,jpg,png,gif',
         ];
 
         $message = [
@@ -166,6 +167,7 @@ class FrontRegisterController extends Controller{
             'surname'                       => "required",
             'live_in_or_live_out'           => "required",
             'type_of_id_number'             => "required",
+            'profile'                       => 'nullable|image|mimes:jpeg,jpg,png,gif',
         ];
 
         $message = [];
@@ -177,7 +179,6 @@ class FrontRegisterController extends Controller{
                 ->with('message_type', 'danger')
                 ->with('message', 'There were some error try again');
         }
-
         
         $familyId = FrontUser::insertGetId([
             'name'                          => $request->name,

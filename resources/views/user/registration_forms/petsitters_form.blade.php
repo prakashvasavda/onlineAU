@@ -72,11 +72,11 @@
             <div class="form-input">
                 <label for="profile">Profile Picture </label>
                 <input type="file" id="profile" name="profile" placeholder="" class="form-field" accept="image/*" >
-                @error('profile')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                @if ($errors->has('profile'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('profile') }}</strong>
                     </span>
-                @enderror
+                @endif
             </div>
         </div>
 
