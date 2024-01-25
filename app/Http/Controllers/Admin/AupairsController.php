@@ -69,6 +69,7 @@ class AupairsController extends Controller{
             'id_number'             => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'type_of_id_number'     => "required",
             'email'                 => "required|email|unique:front_users,email," .$id,
+            'profile'               => 'nullable|image|mimes:jpeg,jpg,png,gif',
         ]);
 
         $candidate                              = FrontUser::findorFail($id);
