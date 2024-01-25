@@ -71,7 +71,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="profile">Profile Picture </label>
-                <input type="file" id="profile" name="profile" placeholder="" class="form-field" >
+                <input type="file" id="profile" name="profile" placeholder="" class="form-field" accept="image/*" >
                 @error('profile')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

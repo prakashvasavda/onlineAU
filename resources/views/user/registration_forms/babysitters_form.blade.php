@@ -100,7 +100,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="profile">Profile Picture </label>
-                <input type="file" id="profile" name="profile" placeholder="" class="form-field" >
+                <input type="file" id="profile" name="profile" placeholder="" class="form-field" accept="image/*" >
                 @error('profile')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -334,7 +334,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="ages_of_children_you_worked_with">Ages of children you worked with? <span class="text-danger small">*</span></label>
+                <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger small">*</span></label>
                 <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
                     <option value="" disabled>Select</option>
                     <option value="0_12_months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0_12_months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
