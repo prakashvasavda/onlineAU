@@ -293,7 +293,7 @@
     function handleApplication(event){
         event.preventDefault();
         var isLoggedIn         = "{{ session()->has('frontUser') ? true : false }}";
-        var loggedInUserRole   = "{{ session()->get('frontUser')->role }}";
+        var loggedInUserRole   = "{{ session()->has('frontUser') ? session()->get('frontUser')->role : null }}";
 
         if(!isLoggedIn){
             return false;
@@ -312,11 +312,11 @@
             type: "POST",
             data: {
                 _token:     "{{ csrf_token() }}", 
-                name:       "{{ session()->get('frontUser')->name }}",
-                surname:    "{{ session()->get('frontUser')->surname }}",
-                user_id:    "{{ session()->get('frontUser')->id }}",
-                family_id:  "{{ $family->id }}",
-                services:   "{{ $family->what_do_you_need }}",
+                name:       "{{ session()->has('frontUser') ? session()->get('frontUser')->name : null }}",
+                surname:    "{{ session()->has('frontUser') ? session()->get('frontUser')->surname : null }}",
+                user_id:    "{{ session()->has('frontUser') ? session()->get('frontUser')->id : null }}",
+                family_id:  "{{ $family->id ? $family->id : null }}",
+                services:   "{{ $family->what_do_you_need ? $family->what_do_you_need : null }}",
             },
             success: function(response) {
                 var modalLabel    = "Success";
@@ -326,6 +326,7 @@
             },
             error: function(xhr, status, error) {
                 console.error('AJAX Error: ' + status + ', ' + error);
+                console.log('XHR:', xhr);
             }
         });
     }

@@ -438,7 +438,7 @@ function handleClick(event){
     var candidateService   = "{{ isset($candidate->role) ? $candidate->role : null }}";
     var candidates         = purchaseCandidates ? purchaseCandidates.split(",") : null;
     var paymentStatus      = "{{ (session()->has('frontUser') && session()->get('frontUser')->user_subscription_status == "active") ? true : false }}";
-    var loggedInUserRole   = "{{ session()->get('frontUser')->role }}";
+    var loggedInUserRole   = "{{ session()->has('frontUser') ? session()->get('frontUser')->role : null }}";
 
     if(loggedInUserRole && loggedInUserRole !== "family"){
         showModal('You need to be logged in as a family user to contact this candidate', "{{ route('user-logout') }}", 'Log Out');

@@ -28,7 +28,7 @@
           @enderror
       </div>
       <div class="form-input text-end">
-            <p>Forgot your <a href="{{ route('forgot-password') }}">Password</a> ?</p>
+            <p>Forgot your <a href="#">Password</a> ?</p>
             <p>Not registered yet? <a href="{{ route('sign-up', ['service' => 'candidate']) }}">Please click here to register</a>.</p>
       </div>
 

@@ -116,8 +116,8 @@ class FamilyController extends Controller{
             'type_of_id_number'             => "required",
             'email'                         => "required|email|unique:front_users,email," . $familyId,
         ],[
-            'profile.required_if'   => 'The profile field is required',
-            'describe_kids.array'   =>  'Invalid selected value',   
+            'profile.required_if'           => 'The profile field is required',
+            'describe_kids.array'           =>  'Invalid selected value',   
         ]);
 
         $family                                 = FrontUser::findorFail($familyId);

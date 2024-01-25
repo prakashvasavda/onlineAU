@@ -68,6 +68,7 @@ class PetsittersController extends Controller{
             'surname'               => "required",
             'id_number'             => 'required' . ($request->type_of_id_number == 'south_african' ? ' |numeric|digits:13' : ''),
             'type_of_id_number'     => "required",
+            'email'                 => "required|email|unique:front_users,email," . $id,
         ]);
 
 
@@ -89,7 +90,7 @@ class PetsittersController extends Controller{
         $frontUser = FrontUser::find($id);
 
         if(empty($frontUser)){
-            return response()->json(['message' => 'record not found', 'status' => 404], 404);
+            return response()->json(['message' => 'record not found', 'status' => 404], 200);
         }
 
         $frontUser->delete();

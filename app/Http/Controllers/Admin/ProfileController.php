@@ -9,32 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 
-class ProfileController extends Controller
-{
-    
-    public function index()
-    {
-        //
-    }
-
-   
-    public function create()
-    {
-        //
-    }
-
-   
-    public function store(Request $request)
-    {
-        //
-    }
-
-    
-    public function show(string $id){
-
-    }
-
-    
+class ProfileController extends Controller{
+        
     public function edit(string $id){
         $data['menu']   = "User";
         $data['users']  = User::find($id);
@@ -59,11 +35,5 @@ class ProfileController extends Controller
         $input = $request->except('_method', '_token', 'password_confirmation');
         User::whereId(auth()->user()->id)->update($input);
         return back()->with('success', 'Profile updated Successfully');
-    }
-
-   
-    public function destroy(string $id)
-    {
-        //
     }
 }
