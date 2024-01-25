@@ -11,9 +11,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Packages;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Mail;
+use App\Mail\CandidateRegistration;
 
 
 class FrontRegisterController extends Controller{
@@ -63,7 +64,6 @@ class FrontRegisterController extends Controller{
                 ->with('message', 'There were some error try again');
         }
 
-       
         $candidateId = FrontUser::insertGetId([
             'name'                              => $request->name,
             'age'                               => $request->age,
@@ -127,7 +127,7 @@ class FrontRegisterController extends Controller{
         }
 
         $status = $this->store_need_babysitter($data, $candidateId);
-
+        Mail::to('emmanuel.k.php@gmail.com')->send(new CandidateRegistration($data));
         return redirect()->route('sign-up', ['service' => 'family']);
     }
 
@@ -216,32 +216,12 @@ class FrontRegisterController extends Controller{
 
         $status              = $this->store_need_babysitter($data, $familyId);
         $package             = Packages::find($request->package);
-        //$mail_sent_status  = $this->send_notification_email($request->all(), 'family');
 
-       
         /*redirect to payment packages*/
         $data['user_id']        = $familyId;
         $data['profile']        = null;
 
         Session::put('guestUser', $data);
         return redirect()->to('packages');
-    }
-
-    public function send_notification_email($data, $role){
-        config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
-        config(['mail.mailers.smtp.port' => '587']);
-        config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
-        config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
-        config(['mail.mailers.smtp.encryption' => 'tls']);
-        $message = '<p>Hello Admin,</p>
-            <p>New'.$role.'Registration, Please check below detail and then make status action on the admin side. .</p>
-            <p>Name: ' . $data['name']. '</p>
-            <p>Email: ' . $data['email'] . '</p>';
-        $emailTo = 'emmanuel.k.php@gmail.com';
-        $name    = 'Admin';
-        Mail::send([], [], function ($mail) use ($message, $emailTo, $name) {
-            $mail->to($emailTo, $name)->subject('New Candidate Registration')->setBody($message, 'text/html');
-            $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
-        });
     }
 }
