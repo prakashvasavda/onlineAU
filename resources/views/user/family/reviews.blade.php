@@ -15,7 +15,7 @@
 				{{-- <p>26 families matching your search</p> --}}
 			</div>
 			<div class="row result-list">
-				@if(isset($candidates) && !empty($candidates))
+				@if(isset($candidates) && !$candidates->isEmpty()))
 					@foreach($candidates as $key => $value)
 						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 							<a href="{{ route('candidate-detail', ['id' => $value->id]) }}">
@@ -27,7 +27,10 @@
 								        <div class="col-md-8">
 								            <div class="card-body">
 								            	<div class="pos-icon">
-								            		<i class="{{ isset($value->family_favorite_candidate) ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
+													@php
+														$is_favorited = session()->has('frontUser') && isset($value->candidate_favorited_by) && is_string($value->candidate_favorited_by) && in_array(session()->get('frontUser')->id, explode(",", $value->candidate_favorited_by));
+													@endphp
+													<i class="fa-{{ $is_favorited ? 'solid' : 'regular' }} fa-heart" id="favBtn{{ $value->id }}"></i>
 								            	</div>
 								                <h5 class="card-title">{{ $value->name }}</h5>
 								                <p class="card-text">{{ $value->area }}</p>
@@ -58,6 +61,10 @@
 							</a>
 						</div>
 					@endforeach
+				@else
+					<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 d-block m-auto">
+			           <img src="{{ url('front/images/error-notFound-icon1-x-size.png') }}" alt="">	
+			    	</div>
 				@endif
 			</div>
 		</div>
