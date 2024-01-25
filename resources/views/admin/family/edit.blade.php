@@ -120,7 +120,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="profile">Profile Picture</label>
-                                            <input type="file" id="profile" name="profile" placeholder="" class="form-control" value="{{ old('profile', isset($family->profile) ? $family->profile : null) }}">
+                                            <input type="file" id="profile" name="profile" placeholder="" class="form-control" accept="image/*" value="{{ old('profile', isset($family->profile) ? $family->profile : null) }}">
                                             @if ($errors->has('profile'))
                                                 <span class="text-danger">
                                                     <strong>{{ $errors->first('profile') }}</strong>
