@@ -25,7 +25,7 @@ use Illuminate\Http\Request;
 use App\Models\Packages;
 use Carbon\Carbon;
 use Mail;
-use App\Mail\ResetPassword;
+use App\Mail\CandidateApplication;
 
 
 
