@@ -27,34 +27,40 @@ class LoginController extends Controller{
 
     public function check_login(Request $request){
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'email'     => 'required|email',
+            'password'  => 'required',
         ]);
 
         $user = FrontUser::where('email', $request->email)->first();
-        
-        if ($user && Hash::check($request->password, $user->password)) {
-            if($user->status != 1){
-                return back()->withErrors(['email' => 'your account is inactive']);
-            }
-            /*check user subscription status*/
-            $subscription                       = new SubscriptionController();
-            $subscription_status                = $user->role == "family" || $user->role == "family-petsitting" ? $subscription->check_subscription_status($user->id) : null;
-            $user['user_subscription_status']   = $subscription_status;
 
-            /*get family paid candidates*/
-            if(($user->role == "family" || $user->role == "family-petsitting") && $subscription_status == "active"){
-                $purchased_candidates = $this->get_purchased_candidates($user->id);
-                $user['purchased_candidates'] = $purchased_candidates;
-            }
-
-            /*set user session*/
-            Session::put('frontUser', $user);
-
-            return $user->role == "family" || $user->role == "family-petsitting" ? redirect()->route('view-candidates') : redirect()->route('view-families');
-        } else {
+        /* check if the user it authnticated */
+        if(!$user || !Hash::check($request->password, $user->password)){
             return back()->withErrors(['email' => 'Invalid credentials']);
         }
+        
+        /* check if user account is inactive */
+        if($user->status != 1){
+            return back()->withErrors(['email' => 'your account is inactive']);
+        }
+            
+        /*check for the expired user subscriptions*/
+        $subscription                       = new SubscriptionController();
+        $update_status                      = $user->role == "family" || $user->role == "family-petsitting" ? $subscription->update_subscription_status($user->id) : null;
+
+        /* get current user subscription status */
+        $subscription_status                = $user->role == "family" || $user->role == "family-petsitting" ? $subscription->check_subscription_status($user->id) : null;
+        $user['user_subscription_status']   = $subscription_status;
+
+        /*get family paid candidates*/
+        if(($user->role == "family" || $user->role == "family-petsitting") && $subscription_status == "active"){
+            $purchased_candidates = $this->get_purchased_candidates($user->id);
+            $user['purchased_candidates'] = $purchased_candidates;
+        }
+
+        /*set user session*/
+        Session::put('frontUser', $user);
+
+        return $user->role == "family" || $user->role == "family-petsitting" ? redirect()->route('view-candidates') : redirect()->route('view-families');
     }
 
     public function forgot_password(){

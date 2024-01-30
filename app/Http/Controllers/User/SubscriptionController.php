@@ -30,7 +30,6 @@ class SubscriptionController extends Controller{
             $user_subscription_ids[]  = UserSubscription::insertGetId($data);
             $package_ids[]            = isset($value['id']) ? $value['id'] : null;
             $item_names[]             = isset($value['item_name']) ? $value['item_name'] : null;
-
         }
 
         $response = [
@@ -52,6 +51,7 @@ class SubscriptionController extends Controller{
     } 
 
     public function check_subscription_status($user_id){
+        /* track user subscription based on the longest purchased package */
         $user_subscription = UserSubscription::where('user_id', $user_id)
             ->orderBy('end_date', 'desc')
             ->first();
@@ -61,29 +61,45 @@ class SubscriptionController extends Controller{
             return "inactive";
         }
 
-        /*pending*/
+        /*payment pending*/
         if($user_subscription->status == "pending" && Carbon::now() < Carbon::parse($user_subscription->end_date)){
             return "pending";
         }
 
-        /*update pending status*/
+        /*update pending status to expired status*/
         if($user_subscription->status == "pending" && Carbon::now() > Carbon::parse($user_subscription->end_date)){
-            $user_subscription->update(['status' => 'expired']);
             return "expired";
         }
 
-        /*update active status*/
+        /*update active status to expired status*/
         if($user_subscription->status == "active" && Carbon::now() > Carbon::parse($user_subscription->end_date)){
-            $user_subscription->update(['status' => 'expired']);
             return "expired";
         }
 
-        /*payment expired*/
+        /*subscription expired*/
         if($user_subscription->status == "expired"){
             return "expired";
         }
         
-        /*active*/
+        /*subscription is active*/
         return "active";
-    }  
+    }
+    
+    public function update_subscription_status($user_id){
+        $user_subscriptions = UserSubscription::where('user_id', $user_id)
+            ->where('status', 'active')
+            ->get();
+        
+        if(!isset($user_subscriptions) || $user_subscriptions->isEmpty()){
+            return false;
+        }
+
+        foreach ($user_subscriptions as $user_subscription) {
+            if (Carbon::now() > Carbon::parse($user_subscription->end_date)) {
+                $user_subscription->update(['status' => 'expired']);
+            }
+        }
+
+        return true;
+    }
 }
