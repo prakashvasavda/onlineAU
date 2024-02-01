@@ -43,7 +43,7 @@
 	</div>
 	<div class="cpyRight-section">
 		<div class="container">
-			<p>Copyright Online Au-Pairs 2023 - All Rights Reserved | Designed and developed by <a href="https://gsdm.co.za/" target="_blank">GSDM Agency</a></p>
+			<p>Copyright Online Au-Pairs 2023 - All Rights Reserved | Designed and Developed by <a href="https://gsdm.co.za/" target="_blank">Octrotus Online Solutions</a></p>
 		</div>
 	</div>
 </footer>
