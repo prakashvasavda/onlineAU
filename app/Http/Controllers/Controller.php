@@ -152,7 +152,7 @@ class Controller extends BaseController{
             'family_id' => $request->family_id,
         ];
 
-        Mail::to('emmanuel.k.php@gmail.com')->send(new CandidateApplication($data));
+        Mail::to('info@onlineaupairs.co.za')->send(new CandidateApplication($data));
 
         $response = [
             'status'    => 200,

@@ -127,7 +127,7 @@ class FrontRegisterController extends Controller{
         }
 
         $status = $this->store_need_babysitter($data, $candidateId);
-        Mail::to('emmanuel.k.php@gmail.com')->send(new CandidateRegistration($data));
+        Mail::to('info@onlineaupairs.co.za')->send(new CandidateRegistration($data));
         return redirect()->route('sign-up', ['service' => 'family']);
     }
 
