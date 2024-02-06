@@ -35,28 +35,54 @@ class FrontRegisterController extends Controller{
 
     public function store_candidate(Request $request){
         $data  = $request->all();
+        
         $rules = [
-            'name'                         => 'required',
+            'name'                         => "required|max:50",
             'age'                          => 'required|gt:18|lt:70',
-            'password'                     => "required",
-            'email'                        => 'required|email|unique:front_users,email',
-            'salary_expectation'           => 'sometimes|required',
-            'hourly_rate_pay'              => 'sometimes|required',
+            'email'                        => 'required|email', //required|email|unique:front_users,email
+            'salary_expectation'           => 'required|numeric|digits_between:2,10',
+            'hourly_rate_pay'              => 'required|numeric|digits_between:2,5',
             'terms_and_conditions'         => 'required',
-            'surname'                      => 'required',
-            'contact_number'               => 'nullable|min:10|max:10|regex:/[0-9]{9}/',
-            'area'                         => 'required',
+            'surname'                      => 'required|max:50',
+            'contact_number'               => 'required|min:10|max:10|regex:/[0-9]{9}/',
+            'area'                         => 'required|max:100',
             'id_number'                    => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'type_of_id_number'            => "required",
-            'profile'                      => 'nullable|image|mimes:jpeg,jpg,png,gif',
+            'profile'                      => 'required|image|mimes:jpeg,jpg,png,gif',
+            'ethnicity'                    => "required|regex:/^[\pL\s\-]+$/u|max:50",
+            'gender'                       => "required",
+            'religion'                     => "required", 
+            'home_language'                => "required",
+            'password' => [
+                'required',
+                'string',
+                'min:8',                    // must be at least 10 characters in length
+                'regex:/[a-z]/',            // must contain at least one lowercase letter
+                'regex:/[A-Z]/',            // must contain at least one uppercase letter
+                'regex:/[0-9]/',            // must contain at least one digit
+                'regex:/[@$!%*#?&]/',       // must contain a special character
+            ],
         ];
 
+        if(isset($request->role) && $request->role == "au-pairs"){
+            $rules['marital_status']           = 'required';
+            $rules['dependants']               = 'required';
+            $rules['dependants']               = 'required';
+            $rules['chronical_medication']     = "required";
+        }
+
         $message = [
-            'salary_expectation' => 'The salary expectation is required',
-            'hourly_rate_pay'    => 'The hourly rate amount field is required',
+            'ethnicity.regex'       => "The ethnicity field can only contain letters",
+            'salary_expectation'    => 'The salary expectation field is required',
+            'hourly_rate_pay'       => 'The hourly rate amount field is required',
+            'password.required'     => 'The password field is required.',
+            'password.string'       => 'The password must be a string.',
+            'password.min'          => 'The password must be at least 8 characters in length.',
+            'password.regex'        => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
         ];
 
         $validator = Validator::make($data, $rules, $message);
+
         if ($validator->fails()) {
             return back()->withInput()
                 ->withErrors($validator)
