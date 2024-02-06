@@ -30,11 +30,11 @@
                 <div class="form-input mb-3">
                     <label for="name"> Name <span class="text-danger">*</span></label>
                     <input type="text" id="name" name="name" placeholder="" class="form-field @error('name') is-invalid @enderror"  value="{{ old('name') }}">
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                    @if ($errors->has('name'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('name') }}</strong>
                         </span>
-                    @enderror
+                    @endif
                 </div>
 
                 <div class="form-input">
@@ -54,19 +54,19 @@
                <div class="form-input">
                     <div class="form-input">
                         <label for="email">Email Address <span class="text-danger">*</span></label>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="" class="form-field @error('email') is-invalid @enderror">
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="" class="form-field @error('email') is-invalid @enderror"> 
+                        @if ($errors->has('email'))
+                            <span class="text-danger">
+                                <strong>{{ $errors->first('email') }}</strong>
                             </span>
-                        @enderror
+                        @endif
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="email">Password </label>
+                    <label for="email">Password  <span class="text-danger">*</span></label>
                     <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror"  value="" readonly onfocus="this.removeAttribute('readonly');">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -133,7 +133,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="no_children">Number of children <span class="text-danger">*</span></label>
-                    <input type="number" id="no_children" name="no_children" value="1" placeholder="" class="form-field @error('no_children') is-invalid @enderror" >
+                    <input type="number" id="no_children" name="no_children" value="{{ old('no_children', 1) }}" placeholder="" class="form-field @error('no_children') is-invalid @enderror" >
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
@@ -146,7 +146,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="age_children">Age of children </label>
+                    <label for="age_children">Age of children <span class="text-danger">*</span></label>
                     <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
                         <option value="0-12 months" {{ (!empty(old('age')) && in_array("0-12 months", old('age')))? 'selected' : '' }}>0-12 Months</option>
                         <option value="1-3 years" {{ (!empty(old('age')) && in_array("1-3 years", old('age')))? 'selected' : '' }}>1-3 Years</option>
@@ -164,7 +164,7 @@
 
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="gender_of_children">Gender of children </label>
+                    <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                     <select id="gender_of_children" name="gender_of_children[]" class="form-field">
                         <option value="male" {{ (!empty(old('gender_of_children')) && in_array("male", old('gender_of_children')))? 'selected' : '' }}>Male</option>
                         <option value="female" {{ (!empty(old('gender_of_children')) && in_array("female", old('gender_of_children')))? 'selected' : '' }}>Female</option>
@@ -226,7 +226,7 @@
 
              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="what_do_you_need">What do you need<span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
+                    <label for="what_do_you_need">What do you need <span class="text-danger">*</span> <span class="ms-2 d-none" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="primary-tooltip" data-bs-title="To save money, you can also choose to occasionally look after each other's children. We call this parents-help-parents."><i class="fa-solid fa-circle-question"></i></span></label>
                     <select id="what_do_you_need" multiple name="what_do_you_need[]" class="form-field">
                         <option value="" disabled>Select</option>
                         <option value="babysitter" {{ (!empty(old('what_do_you_need')) && in_array("babysitter", old('what_do_you_need')))? 'selected' : '' }}>Babysitter</option>
@@ -244,7 +244,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="family_notifications">Do you want to get notifications from new candidates in your area </label>
+                    <label for="family_notifications">Do you want to get notifications from new candidates in your area <span class="text-danger">*</span></label>
                     <ul class="d-flex flex-wrap mt-2">
                         <li><input type="radio" checked name="family_notifications" value="yes" {{ old('family_notifications') === "yes" ? "checked" : '' }} >Yes</li>
                         <li><input type="radio" name="family_notifications" value="no" {{ old('family_notifications') === "no" ? "checked" : '' }} >No</li>
@@ -300,7 +300,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="live_in_or_live_out">Live in / Live out </label>
+                    <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
                     <ul class="radio-box-list">
                         <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_in" {{ old('live_in_or_live_out') === "live_in" ? 'checked' : '' }} class="form-field" checked><label>Live in</label></li>
                         <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out') === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
@@ -314,9 +314,9 @@
             </div>
           
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="candidate_duties">What will be the candidate’s duties. <span class="text-danger">*</span></label>
+                <label for="candidate_duties">What will be the candidate’s duties <span class="text-danger">*</span></label>
                 <textarea id="candidate_duties" name="candidate_duties" class="form-field" rows="5" >{{ old('candidate_duties') }}</textarea>
-                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+                <p class="text-end fw-light fst-italic small">Maximum 200 Characters</p>
                 @if ($errors->has('candidate_duties'))
                     <span class="text-danger">
                         <strong>{{ $errors->first('candidate_duties') }}</strong>
@@ -325,9 +325,9 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="family_description">Tell a little about your family, so candidates can get to know you.</label>
+                <label for="family_description">Tell a little about your family, so candidates can get to know you <span class="text-danger">*</span></label>
                 <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" >{{ old('family_description') }}</textarea>
-                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+                <p class="text-end fw-light fst-italic small">Maximum 200 Characters</p>
                 @if ($errors->has('family_description'))
                     <span class="text-danger">
                         <strong>{{ $errors->first('family_description') }}</strong>
@@ -337,7 +337,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="">What hourly rate are you willing to pay? </label>
+                    <label for="">What hourly rate are you willing to pay <span class="text-danger">*</span></label>
                     <div class="input-group mb-1">
                         <span class="input-group-text">R</span>
                             <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{old('hourly_rate_pay')}}">
@@ -354,7 +354,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="salary_expectation">What salary are you willing to pay?</label>
+                    <label for="salary_expectation">What salary are you willing to pay <span class="text-danger">*</span></label>
                     <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation') }}">
                     @if ($errors->has('salary_expectation'))
                         <span class="text-danger">
@@ -622,7 +622,7 @@ $(document).ready(function() {
                 .append(`
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
                         <div class="form-input">
-                            <label for="age_children">Age of children</label>
+                            <label for="age_children">Age of children <span class="text-danger">*</span></label>
                             <select name="age[]" class="form-field" >
                                 <option value="0-12 months">0-12 Months</option>
                                 <option value="1-3 years">1-3 Years</option>
@@ -635,7 +635,7 @@ $(document).ready(function() {
 
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
                         <div class="form-input">
-                            <label for="gender_of_children">Gender of children</label>
+                            <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                             <select name="gender_of_children[]" class="form-field">
                             <option value="male">Male</option>
                             <option value="female">Female</option></select>
@@ -645,6 +645,10 @@ $(document).ready(function() {
             }
         }
     });
+});
+
+$(window).on('load', function(){
+    $("#no_children").keyup();
 });
 </script>
 @endsection

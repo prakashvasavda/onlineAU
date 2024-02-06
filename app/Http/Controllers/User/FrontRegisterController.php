@@ -148,31 +148,53 @@ class FrontRegisterController extends Controller{
 
     public function store_family(Request $request){
         $data  = $request->all();
+        
         $rules = [
-            'name'                          => "required",
-            'email'                         => "required|email|unique:front_users,email",
-            'password'                      => "required",
-            'family_address'                => "required",
-            'family_city'                   => "required",
+            'name'                          => "required|max:50",
+            'email'                         => 'required|email', //required|email|unique:front_users,email
+            'family_address'                => "required|max:100",
+            'family_city'                   => "required|max:100",
             'home_language'                 => "required",
-            'no_children'                   => "required",
+            'no_children'                   => "required|lte:5",
             'family_notifications'          => "required",
             'cell_number'                   => 'required|min:10|max:10|regex:/[0-9]{9}/',
             'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'start_date'                    => "required",
             'duration_needed'               => "required|numeric|gt:1",
             'petrol_reimbursement'          => "required",
-            'candidate_duties'              => "required",
+            'candidate_duties'              => "required|max:200",
             'terms_and_conditions'          => "required",
-            'surname'                       => "required",
+            'surname'                       => "required|max:50",
             'live_in_or_live_out'           => "required",
             'type_of_id_number'             => "required",
-            'profile'                       => 'nullable|image|mimes:jpeg,jpg,png,gif',
+            'profile'                       => "nullable|image|mimes:jpeg,jpg,png,gif",
+            'gender_of_children'            => ['required', 'array'],
+            'gender_of_children.*'          => ['required', 'in:male,female'],
+            'what_do_you_need'              => ['required', 'array'],
+            'family_description'            => "required|max:200",
+            'hourly_rate_pay'               => "required|numeric|digits_between:2,5",
+            'salary_expectation'            => "required|numeric|digits_between:2,10",
+            'password' => [
+                'required',
+                'string',
+                'min:8',                    // must be at least 10 characters in length
+                'regex:/[a-z]/',            // must contain at least one lowercase letter
+                'regex:/[A-Z]/',            // must contain at least one uppercase letter
+                'regex:/[0-9]/',            // must contain at least one digit
+                'regex:/[@$!%*#?&]/',       // must contain a special character
+            ],
         ];
 
-        $message = [];
+        $message = [
+            'no_children'       => 'The number of children field is required.',
+            'password.required' => 'The password field is required.',
+            'password.string'   => 'The password must be a string.',
+            'password.min'      => 'The password must be at least 8 characters in length.',
+            'password.regex'    => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
+        ];
 
         $validator = Validator::make($data, $rules, $message);
+
         if ($validator->fails()) {
             return back()->withInput()
                 ->withErrors($validator)
