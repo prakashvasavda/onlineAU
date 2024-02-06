@@ -15,17 +15,34 @@ class FrontFamilyPetsittingController extends Controller{
  
     public function store(Request $request){
         $request->validate([
-            'name'                          => "required",
-            'email'                         => "required|email|unique:front_users,email",
-            'password'                      => "required",
-            'family_address'                => "required",
-            'cell_number'                   => "required",
+            'name'                          => "required|max:50",
+            'email'                         => 'required|email', //required|email|unique:front_users,email
+            'family_address'                => "required|max:100",
+            'cell_number'                   => "required|min:10|max:10|regex:/[0-9]{9}/",
             'start_date'                    => "required",
-            'duration_needed'               => "required",
-            'candidate_duties'              => "required",
-            'surname'                       => "required",
+            'duration_needed'               => "required|numeric|gt:1|lt:24",
+            'candidate_duties'              => "required|max:200",
+            'surname'                       => "required|max:50",
             'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'type_of_id_number'             => "required",
+            'number_of_pets'                => "required|lte:10",
+            'pet_medication_or_disabilities'=> "required",
+            'pet_medication_specify'        => "required_if:pet_medication_or_disabilities,==,yes|max:200",
+            'password' => [
+                'required',
+                'string',
+                'min:8',                    // must be at least 10 characters in length
+                'regex:/[a-z]/',            // must contain at least one lowercase letter
+                'regex:/[A-Z]/',            // must contain at least one uppercase letter
+                'regex:/[0-9]/',            // must contain at least one digit
+                'regex:/[@$!%*#?&]/',       // must contain a special character
+            ],
+        ],[
+            'password.required'                  => 'The password field is required.',
+            'password.string'                    => 'The password must be a string.',
+            'password.min'                       => 'The password must be at least 8 characters in length.',
+            'password.regex'                     => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
+            'pet_medication_specify.required_if' => "Specification field is required when you have selected yes on the above field.",
         ]);
 
         $input                  = $request->except('_method', '_token', 'morning', 'afternoon', 'evening', 'night');
@@ -42,16 +59,12 @@ class FrontFamilyPetsittingController extends Controller{
         $familyId   = FrontUser::insertGetId($input);
         $calender   = $this->store_family_calender($request->all(), $familyId);
 
-        
-
         /*redirect to payment packages*/
         $input['user_id']        = $familyId;
         $input['profile']        = null;
 
         Session::put('guestUser', $input);
         return redirect()->to('packages');
-
-        //return redirect()->route('user-login');
     }
 
     public function update(Request $request, string $id){

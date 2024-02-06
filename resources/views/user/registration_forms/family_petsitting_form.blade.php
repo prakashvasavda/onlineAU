@@ -66,7 +66,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="email">Password </label>
+                    <label for="email">Password <span class="text-danger">*</span></label>
                     <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror"  value="" readonly onfocus="this.removeAttribute('readonly');">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -128,8 +128,8 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="number_of_pets">Number of pets</label>
-                    <input type="number" id="no_children" name="number_of_pets" value="1" placeholder="" class="form-field @error('number_of_pets') is-invalid @enderror" >
+                    <label for="number_of_pets">Number of pets <span class="text-danger">*</span></label>
+                    <input type="number" id="no_children" name="number_of_pets" value="{{ old('number_of_pets', 1) }}" placeholder="" class="form-field @error('number_of_pets') is-invalid @enderror" >
                     <div class="icon-option" style="display: none;">
                         <a href="javaScript:;" class="btn btn-info edit-btn"><i class="fa-solid fa-pencil"></i></a>
                     </div>
@@ -142,7 +142,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="type_of_pet">Type of pet</label>
+                    <label for="type_of_pet">Type of pet <span class="text-danger">*</span></label>
                     <select id="type_of_pet" name="type_of_pet[]" class="form-field ">
                         <option value="dog">Dog</option>
                         <option value="cat">Cat</option>
@@ -155,7 +155,7 @@
 
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="gender_of_children">How many pets </label>
+                    <label for="gender_of_children">How many pets <span class="text-danger">*</span></label>
                     <input type="number" id="gender_of_children" name="how_many_pets[]" value="1" placeholder="" class="form-field" >
                     @if ($errors->has('how_many_pets'))
                         <span class="text-danger">
@@ -169,10 +169,10 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities </label>
+                    <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities <span class="text-danger">*</span></label>
                     <ul class="d-flex flex-wrap" >
-                        <li><input type="radio" name="pet_medication_or_disabilities" value="yes" {{ old('pet_medication_or_disabilities') === "yes" ? "checked" : '' }} >Yes</li>
-                        <li><input type="radio"checked name="pet_medication_or_disabilities" value="no" {{ old('pet_medication_or_disabilities') === "no" ? "checked" : '' }} >No</li>
+                        <li><input type="radio" checked name="pet_medication_or_disabilities" value="yes" {{ old('pet_medication_or_disabilities') == "yes" ? "checked" : '' }} >Yes</li>
+                        <li><input type="radio" name="pet_medication_or_disabilities" value="no" {{ old('pet_medication_or_disabilities') == "no" ? "checked" : '' }} >No</li>
                     </ul>
                     @if ($errors->has('pet_medication_or_disabilities'))
                         <span class="text-danger">
@@ -195,12 +195,12 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="pet_medication_or_disabilities_specification">If yes please specify.</label>
-                <textarea id="pet_medication_or_disabilities_specification" name="pet_medication_or_disabilities_specification" placeholder="" class="form-field @error('pet_medication_or_disabilities_specification') is-invalid @enderror" rows="5" >{{ old('pet_medication_or_disabilities_specification') }}</textarea>
-                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-                @if ($errors->has('pet_medication_or_disabilities_specification'))
+                <label for="pet_medication_specify">If yes please specify.</label>
+                <textarea id="pet_medication_specify" name="pet_medication_specify" placeholder="" class="form-field @error('pet_medication_specify') is-invalid @enderror" rows="5" >{{ old('pet_medication_specify') }}</textarea>
+                <p class="text-end fw-light fst-italic small">Maximum 200 Characters</p>
+                @if ($errors->has('pet_medication_specify'))
                     <span class="text-danger">
-                        <strong>{{ $errors->first('pet_medication_or_disabilities_specification') }}</strong>
+                        <strong>{{ $errors->first('pet_medication_specify') }}</strong>
                     </span>
                 @endif
             </div>
@@ -208,7 +208,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="candidate_duties">What will be the candidate’s duties. <span class="text-danger">*</span></label>
                 <textarea id="candidate_duties" name="candidate_duties" class="form-field" rows="5" >{{ old('candidate_duties') }}</textarea>
-                <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+                <p class="text-end fw-light fst-italic small">Maximum 200 Characters</p>
                 @if ($errors->has('candidate_duties'))
                     <span class="text-danger">
                         <strong>{{ $errors->first('candidate_duties') }}</strong>
@@ -390,7 +390,7 @@ $(document).ready(function() {
                 .append(`
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-input">
-                            <label for="type_of_pet">Type of pet</label>
+                            <label for="type_of_pet">Type of pet <span class="text-danger">*</span></label>
                             <select name="type_of_pet[]" class="form-field" >
                                 <option value="dog">Dog</option>
                                 <option value="cat">Cat</option>
@@ -403,7 +403,7 @@ $(document).ready(function() {
 
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-input">
-                            <label for="gender_of_children">How many pets</label>
+                            <label for="gender_of_children">How many pets <span class="text-danger">*</span></label>
                             <input type="number" id="gender_of_children" name="how_many_pets[]" value="1" placeholder="" class="form-field" >
                         </div>
                     </div>
@@ -411,6 +411,10 @@ $(document).ready(function() {
             }
         }
     });
+});
+
+$(window).on('load', function(){
+    $("#no_children").keyup();
 });
 </script>
 @endsection
