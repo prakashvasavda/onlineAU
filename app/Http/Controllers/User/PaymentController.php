@@ -23,6 +23,10 @@ class PaymentController extends Controller{
         $merchant_id    = env('PAYFAST_MERCHANT_ID');
         $merchant_key   = env('PAYFAST_MERCHANT_KEY');
 
+        /*for testing purpose*/
+        //$merchant_id    = 10031315;
+        //$merchant_key   = 'sbijrnrrkonrs';
+
         /*user details*/
         $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : (Session::get('guestUser')['name'] ?? null);
         $name_last      = Session::has('frontUser') ? Session::get('frontUser')->name  : (Session::get('guestUser')['name']) ?? null;
