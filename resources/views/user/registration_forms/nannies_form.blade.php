@@ -122,15 +122,20 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="ethnicity">Ethnicity</label>
+                <label for="ethnicity">Ethnicity <span class="text-danger">*</span></label>
                 <input type="text" id="ethnicity" name="ethnicity" value="{{ old("ethnicity") }}" placeholder="" class="form-field">
             </div>
+            @error('ethnicity')
+                <span class="text-danger">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="area">Area <span class="text-danger">*</span></label>
-                <input type="text" id="" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror address-input"  value="{{ old('area') }}">
+                <input type="text" id="area" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror address-input"  value="{{ old('area') }}">
                 @error('area')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -141,7 +146,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="religion">Religion</label>
+                <label for="religion">Religion <span class="text-danger">*</span></label>
                 <select id="religion" name="religion" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select one</option>
                     <option value="african traditional and diasporic" {{ old('religion') == "african traditional and diasporic" ? "selected" : ''}}>African Traditional &amp; Diasporic</option>
@@ -171,12 +176,17 @@
                     <option value="other" {{ old('religion') == "other" ? "selected" : ''}}>Other</option>
                 </select>
             </div>
+            @error('religion')
+                <span class="text-danger">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="home_language">Home Language</label>
+                <label for="home_language">Home Language <span class="text-danger">*</span></label>
                 <select id="home_language" name="home_language" class="form-field">
-                    <option value="" selected="selected" disabled="disabled">Select one</option>
+                    <option value="" >Select</option>
                     <option value="english" {{ old('home_language') === 'english' ? 'selected' : '' }}>English</option>
                     <option value="afrikaans" {{ old('home_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
                     <option value="zulu (isizulu)" {{ old('home_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
@@ -200,12 +210,17 @@
                     <option value="german" {{ old('home_language') === 'german' ? 'selected' : '' }}>German</option>
                 </select>
             </div>
+            @if ($errors->has('home_language'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('home_language') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="additional_language">Additional Language</label>
+                <label for="additional_language">Additional Language <span class="text-danger">*</span></label>
                 <select id="additional_language" name="additional_language" class="form-field">
-                    <option value="" disabled="disabled">Select</option>
+                    <option value="" >Select</option>
                     <option value="english" {{ old('additional_language') === 'english' ? 'selected' : '' }}>English</option>
                     <option value="afrikaans" {{ old('additional_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
                     <option value="zulu (isizulu)" {{ old('additional_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
@@ -229,22 +244,32 @@
                     <option value="german" {{ old('additional_language') === 'german' ? 'selected' : '' }}>German</option>
                 </select>
             </div>
+            @if ($errors->has('additional_language'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('additional_language') }}</strong>
+                </span>
+            @endif
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="gender">Gender</label>
+                <label for="gender">Gender <span class="text-danger">*</span></label>
                 <ul class="radio-box-list d-flex flex-wrap">
                     <li class="radio-box-item"><input type="radio" name="gender" value="male" {{ old('gender') == "male" ? "checked" : '' }}><label>Male</label></li>
                     <li class="radio-box-item"><input type="radio" name="gender" value="female" {{ old('gender') == "female" ? "checked" : '' }}><label>Female</label></li>
                     <li class="radio-box-item"><input type="radio" name="gender" value="other" {{ old('gender') == "other" ? "checked" : '' }}><label>Other</label></li>
                 </ul>
             </div>
+            @if ($errors->has('gender'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('gender') }}</strong>
+                </span>
+            @endif
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="south_african_citizen">Are you a South African citizen </label>
+                <label for="south_african_citizen">Are you a South African citizen <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap" >
                     <li><input type="radio" checked name="south_african_citizen" value="yes" {{ old('south_african_citizen') === "yes" ? "checked" : '' }} >Yes</li>
                     <li><input type="radio" name="south_african_citizen" value="no" {{ old('south_african_citizen') === "no" ? "checked" : '' }} >No</li>
@@ -259,7 +284,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="working_permit">If no do you have a working permit </label>
+                <label for="working_permit">If no do you have a working permit <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" checked name="working_permit" value="yes" {{ old('working_permit') === "yes" ? "checked" : '' }} >Yes</li>
                     <li><input type="radio" name="working_permit" value="no" {{ old('working_permit') === "no" ? "checked" : '' }} >No</li>
@@ -274,7 +299,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="first_aid">Do you have first aid </label>
+                <label for="first_aid">Do you have first aid <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap" >
                     <li><input type="radio" checked name="first_aid" value="yes" {{ old('first_aid') === "yes" ? "checked" : '' }} >Yes</li>
                     <li><input type="radio" name="first_aid" value="no" {{ old('first_aid') === "no" ? "checked" : '' }} >No</li>
@@ -289,17 +314,17 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="smoker_or_non_smoker">Smoker / Non-Smoker</label>
+                <label for="smoker_or_non_smoker">Smoker / Non-Smoker <span class="text-danger">*</span></label>
                 <ul class="radio-box-list">
                     <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" checked value="smoker" {{ old('smoker_or_non_smoker') === 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
-                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'non_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
                 </ul>
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="first_aid">Would you be comfortable with doing light housework as well </label>
+                <label for="first_aid">Would you be comfortable with doing light housework as well <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap" >
                     <li><input type="radio" checked name="comfortable_with_light_housework" value="yes" {{ old('comfortable_with_light_housework') === "yes" ? "checked" : '' }} >Yes</li>
                     <li><input type="radio" name="comfortable_with_light_housework" value="no" {{ old('comfortable_with_light_housework') === "no" ? "checked" : '' }} >No</li>
@@ -314,10 +339,10 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="live_in_or_live_out">Live in / Live out </label>
+                <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
                 <ul class="radio-box-list">
-                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="at our home" {{ old('live_in_or_live_out') === "live_in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
-                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="at the babysitter's" {{ old('live_in_or_live_out') === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
+                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="live_in" {{ old('live_in_or_live_out') === "live_in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
+                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out') === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
                 </ul>
                 @if ($errors->has('live_in_or_live_out'))
                     <span class="text-danger">
@@ -329,62 +354,92 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="marital_status">Marital Status</label>
+                <label for="marital_status">Marital Status <span class="text-danger">*</span></label>
                 <ul class="radio-box-list d-flex flex-wrap">
                     <li class="radio-box-item"><input type="radio" name="marital_status" value="married" {{ old('marital_status') == "married" ? "checked" : ''}}><label>Married</label></li>
                     <li class="radio-box-item"><input type="radio" name="marital_status" value="single" {{ old('marital_status') == "single" ? "checked" : ''}}><label>Single</label></li>
                     <li class="radio-box-item"><input type="radio" name="marital_status" value="in a relationship" {{ old('marital_status') == "in a relationship" ? "checked" : ''}}><label>In a Relationship</label></li>
                 </ul>
             </div>
+            @if ($errors->has('marital_status'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('marital_status') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="dependants">Do you have any dependants</label>
+                <label for="dependants">Do you have any dependants <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="dependants" value="yes" {{ old('dependants') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="dependants" value="no" {{ old('dependants') == "no" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
+            @if ($errors->has('dependants'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('dependants') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="chronical_medication">Are you on any chronical medication</label>
+                <label for="chronical_medication">Are you on any chronical medication <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="chronical_medication" value="yes" {{ old('chronical_medication') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="chronical_medication" value="no" {{ old('chronical_medication') == "no" ? "checked" : '' }}>No</li>
                 </ul>
             </div>
+            @if ($errors->has('chronical_medication'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('chronical_medication') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="drivers_license">Do you have your drivers license</label>
+                <label for="drivers_license">Do you have your drivers license <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="drivers_license" value="yes" {{ old('drivers_license') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="drivers_license" value="no" {{ old('drivers_license') == "no" ? "checked" : '' }}>No</li>
                 </ul>
+                @if ($errors->has('drivers_license'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('drivers_license') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="vehicle">Do you have your own vehicle</label>
+                <label for="vehicle">Do you have your own vehicle <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="vehicle" value="yes" {{ old('vehicle') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="vehicle" value="no" {{ old('vehicle') == "yes" ? "checked" : '' }}>No</li>
+                    <li><input type="radio" name="vehicle" value="no" {{ old('vehicle') == "no" ? "checked" : '' }}>No</li>
                 </ul>
+                @if ($errors->has('vehicle'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('vehicle') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="car_accident">Have you ever been in a car accident</label>
+                <label for="car_accident">Have you ever been in a car accident <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="car_accident" value="yes" {{ old('car_accident') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="car_accident" value="no" {{ old('car_accident') == "no" ? "checked" : '' }}>No</li>
                 </ul>
+                @if ($errors->has('car_accident'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('car_accident') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="childcare_experience">How many years of childcare experience do you have</label>
+                <label for="childcare_experience">How many years of childcare experience do you have <span class="text-danger">*</span></label>
                 <select id="childcare_experience" name="childcare_experience" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select</option>
                     <option value="6 months" {{ old('childcare_experience') == "6 months" ? "selected" : '' }}>6 Months</option>
@@ -400,34 +455,71 @@
                     <option value="5+ years" {{ old('childcare_experience') == "5+ years" ? "selected" : '' }}>5+ years</option>
                 </select>
             </div>
+            @if ($errors->has('childcare_experience'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('childcare_experience') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="experience_special_needs">Do you have experience with special needs</label>
+                <label for="experience_special_needs">Do you have experience with special needs <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="experience_special_needs" value="yes" {{ old('experience_special_needs') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="experience_special_needs" value="no" {{ old('experience_special_needs') == "no" ? "checked" : '' }}>No</li>
                 </ul>
+                @if ($errors->has('experience_special_needs'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('experience_special_needs') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="disabilities">Disabilities</label>
+                <label for="disabilities">Disabilities <span class="text-danger">*</span></label>
                 <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
             </div>
+            @if ($errors->has('disabilities'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('disabilities') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <label for="special_needs_specifications">If yes please specify. </label>
+            <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications') }}</textarea>
+            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+            @if ($errors->has('special_needs_specifications'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('special_needs_specifications') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <label for="about_yourself">Tell us a bit more about yourself <span class="text-danger">*</span></label>
+            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
+            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+            @if ($errors->has('about_yourself'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('about_yourself') }}</strong>
+                </span>
+            @endif
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="ages_of_children_you_worked_with">Ages of children you worked with </label>
+                <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
                 <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
                     <option value="" disabled>Select</option>
-                    <option value="0_12_months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0_12_months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
-                    <option value="1_3_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("1_3_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>1-3 years</option>
-                    <option value="4_7_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("4_7_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>4-7 years</option>
-                    <option value="8_13_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("8_13_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>8-13 years</option>
-                    <option value="13_16_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("13_16_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>13-16 years</option>
+                    <option value="0-12 months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0-12 months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
+                    <option value="1-3 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("1-3 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>1-3 years</option>
+                    <option value="4-7 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("4-7 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>4-7 years</option>
+                    <option value="8-13 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("8-13 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>8-13 years</option>
+                    <option value="13-16 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("13-16 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>13-16 years</option>
                 </select>
                 @if ($errors->has('ages_of_children_you_worked_with'))
                     <span class="text-danger">
@@ -555,18 +647,7 @@
                 @endif
             @endforeach
         @endif
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label for="about_yourself">Tell us a bit more about yourself </label>
-            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
-            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-            @if ($errors->has('about_yourself'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('about_yourself') }}</strong>
-                </span>
-            @endif
-        </div>
-
+        
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="day_hour">What are your available days and hours</label>
@@ -586,97 +667,97 @@
                                 <tr>
                                     <th>Morning: 07:00 – 13:00</th>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ (old('morning') !== null && in_array("mo_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="mo_morning"  {{ (old('morning') !== null && in_array("mo_morning", old('morning'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="tu_morning" id="" {{ (old('morning') !== null && in_array("tu_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="tu_morning"  {{ (old('morning') !== null && in_array("tu_morning", old('morning'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="we_morning" id="" {{ (old('morning') !== null && in_array("we_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="we_morning"  {{ (old('morning') !== null && in_array("we_morning", old('morning'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="th_morning" id="" {{ (old('morning') !== null && in_array("th_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="th_morning"  {{ (old('morning') !== null && in_array("th_morning", old('morning'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="fr_morning" id="" {{ (old('morning') !== null && in_array("fr_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="fr_morning"  {{ (old('morning') !== null && in_array("fr_morning", old('morning'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="sa_morning" id="" {{ (old('morning') !== null && in_array("sa_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="sa_morning"  {{ (old('morning') !== null && in_array("sa_morning", old('morning'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="morning[]" value="su_morning" id="" {{ (old('morning') !== null && in_array("su_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="morning[]" value="su_morning"  {{ (old('morning') !== null && in_array("su_morning", old('morning'))) ? 'checked' : '' }}></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Afternoon: 13:00 – 17:00</th>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ (old('afternoon') !== null && in_array("mo_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="mo_afternoon"  {{ (old('afternoon') !== null && in_array("mo_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" id="" {{ (old('afternoon') !== null && in_array("tu_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="tu_afternoon"  {{ (old('afternoon') !== null && in_array("tu_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="we_afternoon" id="" {{ (old('afternoon') !== null && in_array("we_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="we_afternoon"  {{ (old('afternoon') !== null && in_array("we_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="th_afternoon" id="" {{ (old('afternoon') !== null && in_array("th_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="th_afternoon"  {{ (old('afternoon') !== null && in_array("th_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" id="" {{ (old('afternoon') !== null && in_array("fr_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="fr_afternoon"  {{ (old('afternoon') !== null && in_array("fr_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" id="" {{ (old('afternoon') !== null && in_array("sa_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="sa_afternoon"  {{ (old('afternoon') !== null && in_array("sa_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="afternoon[]" value="su_afternoon" id="" {{ (old('afternoon') !== null && in_array("su_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="afternoon[]" value="su_afternoon"  {{ (old('afternoon') !== null && in_array("su_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Evening: 17:00 – 21:00</th>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ (old('evening') !== null && in_array("mo_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="mo_evening"  {{ (old('evening') !== null && in_array("mo_evening", old('evening'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="tu_evening" id="" {{ (old('evening') !== null && in_array("tu_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="tu_evening"  {{ (old('evening') !== null && in_array("tu_evening", old('evening'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="we_evening" id="" {{ (old('evening') !== null && in_array("we_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="we_evening"  {{ (old('evening') !== null && in_array("we_evening", old('evening'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="th_evening" id="" {{ (old('evening') !== null && in_array("th_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="th_evening"  {{ (old('evening') !== null && in_array("th_evening", old('evening'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="fr_evening" id="" {{ (old('evening') !== null && in_array("fr_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="fr_evening"  {{ (old('evening') !== null && in_array("fr_evening", old('evening'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="sa_evening" id="" {{ (old('evening') !== null && in_array("sa_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="sa_evening"  {{ (old('evening') !== null && in_array("sa_evening", old('evening'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="evening[]" value="su_evening" id="" {{ (old('evening') !== null && in_array("su_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="evening[]" value="su_evening"  {{ (old('evening') !== null && in_array("su_evening", old('evening'))) ? 'checked' : '' }}></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Night: 21:00 – 00:00</th>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ (old('night') !== null && in_array("mo_night", old('night'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="mo_night"  {{ (old('night') !== null && in_array("mo_night", old('night'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="tu_night" id="" {{ (old('night') !== null && in_array("tu_night", old('night'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="tu_night"  {{ (old('night') !== null && in_array("tu_night", old('night'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="we_night" id="" {{ (old('night') !== null && in_array("we_night", old('night'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="we_night"  {{ (old('night') !== null && in_array("we_night", old('night'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="th_night" id="" {{ (old('night') !== null && in_array("th_night", old('night'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="th_night"  {{ (old('night') !== null && in_array("th_night", old('night'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="fr_night" id="" {{ (old('night') !== null && in_array("fr_night", old('night'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="fr_night"  {{ (old('night') !== null && in_array("fr_night", old('night'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="sa_night" id="" {{ (old('night') !== null && in_array("sa_night", old('night'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="sa_night"  {{ (old('night') !== null && in_array("sa_night", old('night'))) ? 'checked' : '' }}></label>
                                     </td>
                                     <td>
-                                        <label><input type="checkbox" name="night[]" value="su_night" id="" {{ (old('night') !== null && in_array("su_night", old('night'))) ? 'checked' : '' }}></label>
+                                        <label><input type="checkbox" name="night[]" value="su_night"  {{ (old('night') !== null && in_array("su_night", old('night'))) ? 'checked' : '' }}></label>
                                     </td>
                                 </tr>
                             </tbody>
@@ -717,7 +798,13 @@
 </div>
 @endsection
 @section('script')
+@parent
 <script type="text/javascript">
-
+$(document).ready(function() {
+    @if($errors->any())
+        var errorMessages = {!! json_encode($errors->toArray()) !!};
+        console.log(errorMessages);
+    @endif
+});
 </script>
 @endsection

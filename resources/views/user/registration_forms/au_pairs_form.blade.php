@@ -774,6 +774,7 @@
 </div>
 @endsection
 @section('script')
+@parent
 <script type="text/javascript">
 $(document).ready(function() {
     @if($errors->any())
