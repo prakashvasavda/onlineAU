@@ -40,8 +40,7 @@ class FrontRegisterController extends Controller{
             'name'                         => "required|max:50",
             'age'                          => 'required|gt:18|lt:70',
             'email'                        => 'required|email', //required|email|unique:front_users,email
-            'salary_expectation'           => 'required|numeric|digits_between:2,10',
-            'hourly_rate_pay'              => 'required|numeric|digits_between:2,5',
+            // 'hourly_rate_pay'              => 'required|numeric|digits_between:2,5',
             'terms_and_conditions'         => 'required',
             'surname'                      => 'required|max:50',
             'contact_number'               => 'required|min:10|max:10|regex:/[0-9]{9}/',
@@ -54,7 +53,7 @@ class FrontRegisterController extends Controller{
             'religion'                     => "required", 
             'home_language'                => "required",
             'disabilities'                 => "required|max:100",
-            'heading.*'                    => 'required|string|max:255', 
+            'heading.*'                    => 'required|max:255', 
             'password' => [
                 'required',
                 'string',
@@ -84,6 +83,7 @@ class FrontRegisterController extends Controller{
             $rules['available_date']                    = "required";
             $rules['available_date']                    = "required";
             $rules['additional_language']               = "required";
+            $rules['salary_expectation']                = "required|numeric|digits_between:2,10";
         }
 
         $message = [

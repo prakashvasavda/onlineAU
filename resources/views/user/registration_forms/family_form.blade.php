@@ -650,9 +650,11 @@ $(document).ready(function() {
         }
     });
 
-    var errorMessages = @json($errors->get('gender_of_children.*'));
-    var errorMessages = @json($errors->toArray());
-    console.log(errorMessages);
+    /*get validaton errors*/
+    @if($errors->any())
+        var errorMessages = {!! json_encode($errors->toArray()) !!};
+        console.log(errorMessages);
+    @endif
 });
 
 $(window).on('load', function(){

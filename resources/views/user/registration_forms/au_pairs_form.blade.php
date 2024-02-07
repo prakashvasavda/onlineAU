@@ -6,7 +6,6 @@
         <h3>sign up to be {{isset($type) ? $type : ''}}</h3>
     </div>
     @include('flash.front-message')
-    
     <form method="POST" class="row" action="{{ route('store_candidate') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value="{{ Route::current()->parameter('service') }}" name="role">
