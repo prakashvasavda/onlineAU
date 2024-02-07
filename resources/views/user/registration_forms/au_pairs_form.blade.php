@@ -99,7 +99,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="area">Area <span class="text-danger">*</span></label>
-                <input type="text" id="" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror address-input"  value="{{ old('area') }}">
+                <input type="text" id="area" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror address-input"  value="{{ old('area') }}">
                 @error('area')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -642,97 +642,97 @@
                                     <tr>
                                         <th>Morning: 07:00 – 13:00</th>
                                         <td>
-                                            <label><input type="checkbox" name="morning[]" value="mo_morning" id="" {{ (old('morning') !== null && in_array("mo_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="morning[]" value="mo_morning"  {{ (old('morning') !== null && in_array("mo_morning", old('morning'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="morning[]" value="tu_morning" id="" {{ (old('morning') !== null && in_array("tu_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="morning[]" value="tu_morning"  {{ (old('morning') !== null && in_array("tu_morning", old('morning'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="morning[]" value="we_morning" id="" {{ (old('morning') !== null && in_array("we_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="morning[]" value="we_morning"  {{ (old('morning') !== null && in_array("we_morning", old('morning'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="morning[]" value="th_morning" id="" {{ (old('morning') !== null && in_array("th_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="morning[]" value="th_morning"  {{ (old('morning') !== null && in_array("th_morning", old('morning'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="morning[]" value="fr_morning" id="" {{ (old('morning') !== null && in_array("fr_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="morning[]" value="fr_morning"  {{ (old('morning') !== null && in_array("fr_morning", old('morning'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="morning[]" value="sa_morning" id="" {{ (old('morning') !== null && in_array("sa_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="morning[]" value="sa_morning"  {{ (old('morning') !== null && in_array("sa_morning", old('morning'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="morning[]" value="su_morning" id="" {{ (old('morning') !== null && in_array("su_morning", old('morning'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="morning[]" value="su_morning"  {{ (old('morning') !== null && in_array("su_morning", old('morning'))) ? 'checked' : '' }}></label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Afternoon: 13:00 – 17:00</th>
                                         <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" id="" {{ (old('afternoon') !== null && in_array("mo_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="afternoon[]" value="mo_afternoon"  {{ (old('afternoon') !== null && in_array("mo_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" id="" {{ (old('afternoon') !== null && in_array("tu_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="afternoon[]" value="tu_afternoon"  {{ (old('afternoon') !== null && in_array("tu_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="we_afternoon" id="" {{ (old('afternoon') !== null && in_array("we_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="afternoon[]" value="we_afternoon"  {{ (old('afternoon') !== null && in_array("we_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="th_afternoon" id="" {{ (old('afternoon') !== null && in_array("th_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="afternoon[]" value="th_afternoon"  {{ (old('afternoon') !== null && in_array("th_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" id="" {{ (old('afternoon') !== null && in_array("fr_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="afternoon[]" value="fr_afternoon"  {{ (old('afternoon') !== null && in_array("fr_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" id="" {{ (old('afternoon') !== null && in_array("sa_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="afternoon[]" value="sa_afternoon"  {{ (old('afternoon') !== null && in_array("sa_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="su_afternoon" id="" {{ (old('afternoon') !== null && in_array("su_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="afternoon[]" value="su_afternoon"  {{ (old('afternoon') !== null && in_array("su_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Evening: 17:00 – 21:00</th>
                                         <td>
-                                            <label><input type="checkbox" name="evening[]" value="mo_evening" id="" {{ (old('evening') !== null && in_array("mo_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="evening[]" value="mo_evening"  {{ (old('evening') !== null && in_array("mo_evening", old('evening'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="evening[]" value="tu_evening" id="" {{ (old('evening') !== null && in_array("tu_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="evening[]" value="tu_evening"  {{ (old('evening') !== null && in_array("tu_evening", old('evening'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="evening[]" value="we_evening" id="" {{ (old('evening') !== null && in_array("we_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="evening[]" value="we_evening"  {{ (old('evening') !== null && in_array("we_evening", old('evening'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="evening[]" value="th_evening" id="" {{ (old('evening') !== null && in_array("th_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="evening[]" value="th_evening"  {{ (old('evening') !== null && in_array("th_evening", old('evening'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="evening[]" value="fr_evening" id="" {{ (old('evening') !== null && in_array("fr_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="evening[]" value="fr_evening"  {{ (old('evening') !== null && in_array("fr_evening", old('evening'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="evening[]" value="sa_evening" id="" {{ (old('evening') !== null && in_array("sa_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="evening[]" value="sa_evening"  {{ (old('evening') !== null && in_array("sa_evening", old('evening'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="evening[]" value="su_evening" id="" {{ (old('evening') !== null && in_array("su_evening", old('evening'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="evening[]" value="su_evening"  {{ (old('evening') !== null && in_array("su_evening", old('evening'))) ? 'checked' : '' }}></label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Night: 21:00 – 00:00</th>
                                         <td>
-                                            <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ (old('night') !== null && in_array("mo_night", old('night'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="night[]" value="mo_night"  {{ (old('night') !== null && in_array("mo_night", old('night'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="night[]" value="tu_night" id="" {{ (old('night') !== null && in_array("tu_night", old('night'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="night[]" value="tu_night"  {{ (old('night') !== null && in_array("tu_night", old('night'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="night[]" value="we_night" id="" {{ (old('night') !== null && in_array("we_night", old('night'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="night[]" value="we_night"  {{ (old('night') !== null && in_array("we_night", old('night'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="night[]" value="th_night" id="" {{ (old('night') !== null && in_array("th_night", old('night'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="night[]" value="th_night"  {{ (old('night') !== null && in_array("th_night", old('night'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="night[]" value="fr_night" id="" {{ (old('night') !== null && in_array("fr_night", old('night'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="night[]" value="fr_night"  {{ (old('night') !== null && in_array("fr_night", old('night'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="night[]" value="sa_night" id="" {{ (old('night') !== null && in_array("sa_night", old('night'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="night[]" value="sa_night"  {{ (old('night') !== null && in_array("sa_night", old('night'))) ? 'checked' : '' }}></label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="night[]" value="su_night" id="" {{ (old('night') !== null && in_array("su_night", old('night'))) ? 'checked' : '' }}></label>
+                                            <label><input type="checkbox" name="night[]" value="su_night"  {{ (old('night') !== null && in_array("su_night", old('night'))) ? 'checked' : '' }}></label>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -775,6 +775,11 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-
+$(document).ready(function() {
+    @if($errors->any())
+        var errorMessages = {!! json_encode($errors->toArray()) !!};
+        console.log(errorMessages);
+    @endif
+});
 </script>
 @endsection
