@@ -316,7 +316,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="candidate_duties">What will be the candidate’s duties <span class="text-danger">*</span></label>
                 <textarea id="candidate_duties" name="candidate_duties" class="form-field" rows="5" >{{ old('candidate_duties') }}</textarea>
-                <p class="text-end fw-light fst-italic small">Maximum 200 Characters</p>
+                <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
                 @if ($errors->has('candidate_duties'))
                     <span class="text-danger">
                         <strong>{{ $errors->first('candidate_duties') }}</strong>
@@ -327,7 +327,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="family_description">Tell a little about your family, so candidates can get to know you <span class="text-danger">*</span></label>
                 <textarea id="family_description" name="family_description" placeholder="" class="form-field @error('family_description') is-invalid @enderror" rows="5" >{{ old('family_description') }}</textarea>
-                <p class="text-end fw-light fst-italic small">Maximum 200 Characters</p>
+                <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
                 @if ($errors->has('family_description'))
                     <span class="text-danger">
                         <strong>{{ $errors->first('family_description') }}</strong>

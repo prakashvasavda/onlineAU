@@ -188,7 +188,7 @@ class FrontRegisterController extends Controller{
             'start_date'                    => "required",
             'duration_needed'               => "required|numeric|gt:1|lt:24",
             'petrol_reimbursement'          => "required",
-            'candidate_duties'              => "required|max:200",
+            'candidate_duties'              => "required|max:500",
             'terms_and_conditions'          => "required",
             'surname'                       => "required|max:50",
             'live_in_or_live_out'           => "required",
@@ -197,7 +197,7 @@ class FrontRegisterController extends Controller{
             'gender_of_children'            => ['required', 'array'],
             'gender_of_children.*'          => ['required', 'in:male,female'],
             'what_do_you_need'              => ['required', 'array'],
-            'family_description'            => "required|max:200",
+            'family_description'            => "required|max:500",
             'hourly_rate_pay'               => "required|numeric|digits_between:2,5",
             'salary_expectation'            => "required|numeric|digits_between:2,10",
             'password' => [
