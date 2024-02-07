@@ -169,7 +169,7 @@
                                 <h4>LIVE-IN OR LIVE-OUT:</h4>
                             </div>
                             <div class="about-candidate-content">
-                                <h4>{{ isset($candidate->live_in_or_live_out) ? ucfirst($candidate->live_in_or_live_out) : '-' }}</h4>
+                                <h4>{{ isset($candidate->live_in_or_live_out) ? ucfirst(str_replace("_", "-", $candidate->live_in_or_live_out)) : '-' }}</h4>
                             </div>
                         </li>
                     @endif

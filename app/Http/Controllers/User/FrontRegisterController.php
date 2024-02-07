@@ -53,6 +53,8 @@ class FrontRegisterController extends Controller{
             'gender'                       => "required",
             'religion'                     => "required", 
             'home_language'                => "required",
+            'disabilities'                 => "required|max:100",
+            'heading.*'                    => 'required|string|max:255', 
             'password' => [
                 'required',
                 'string',
@@ -65,20 +67,44 @@ class FrontRegisterController extends Controller{
         ];
 
         if(isset($request->role) && $request->role == "au-pairs"){
-            $rules['marital_status']           = 'required';
-            $rules['dependants']               = 'required';
-            $rules['dependants']               = 'required';
-            $rules['chronical_medication']     = "required";
+            $rules['marital_status']                    = 'required';
+            $rules['dependants']                        = 'required';
+            $rules['chronical_medication']              = "required";
+            $rules['drivers_license']                   = "required";
+            $rules['car_accident']                      = "required";
+            $rules['vehicle']                           = "required";
+            $rules['smoker_or_non_smoker']              = "required";
+            $rules['live_in_or_live_out']               = "required";
+            $rules['first_aid']                         = "required";
+            $rules['experience_special_needs']          = "required";
+            $rules['special_needs_specifications']      = "required_if:experience_special_needs,==,yes|max:500";
+            $rules['about_yourself']                    = "required|max:500";
+            $rules['ages_of_children_you_worked_with']  = "required";
+            $rules['childcare_experience']              = "required";
+            $rules['available_date']                    = "required";
+            $rules['available_date']                    = "required";
+            $rules['additional_language']               = "required";
         }
 
         $message = [
-            'ethnicity.regex'       => "The ethnicity field can only contain letters",
-            'salary_expectation'    => 'The salary expectation field is required',
-            'hourly_rate_pay'       => 'The hourly rate amount field is required',
-            'password.required'     => 'The password field is required.',
-            'password.string'       => 'The password must be a string.',
-            'password.min'          => 'The password must be at least 8 characters in length.',
-            'password.regex'        => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
+            'heading.*.required'                    => 'The heading field is required.',
+            'first_aid.required'                    => "Please specify whether you have first aid training.",
+            'experience_special_needs.required'     => "Please indicate whether you have experience with special needs.",
+            'live_in_or_live_out.required'          => "Please specify whether you prefer to live in or live out.",
+            'smoker_or_non_smoker.required'         => "Please indicate whether you are a smoker or non-smoker",
+            'drivers_license.required'              => "Please indicate whether you have a driver's license",
+            'marital_status.required'               => "Please select your marital status",
+            'dependants.required'                   => "Please indicate whether you have any dependants.",
+            'chronical_medication.required'         => "Please specify whether you are currently on any chronic medication.",
+            'car_accident.required'                 => "Please indicate whether you have ever been in a car accident",
+            'vehicle.required'                      => "Please select whether you have your own vehicle.",
+            'ethnicity.regex'                       => "The ethnicity field can only contain letters",
+            'salary_expectation.required'           => 'The salary expectation field is required',
+            'hourly_rate_pay.required'              => 'The hourly rate amount field is required',
+            'password.required'                     => 'The password field is required.',
+            'password.string'                       => 'The password must be a string.',
+            'password.min'                          => 'The password must be at least 8 characters in length.',
+            'password.regex'                        => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
         ];
 
         $validator = Validator::make($data, $rules, $message);
@@ -194,12 +220,14 @@ class FrontRegisterController extends Controller{
             'live_in_or_live_out'           => "required",
             'type_of_id_number'             => "required",
             'profile'                       => "nullable|image|mimes:jpeg,jpg,png,gif",
-            'gender_of_children'            => ['required', 'array'],
-            'gender_of_children.*'          => ['required', 'in:male,female'],
+            'gender_of_children'            => "required|array",
+            'gender_of_children.*'          => "required|in:male,female",
             'what_do_you_need'              => ['required', 'array'],
             'family_description'            => "required|max:500",
             'hourly_rate_pay'               => "required|numeric|digits_between:2,5",
             'salary_expectation'            => "required|numeric|digits_between:2,10",
+            'age'                           => "required|array",
+            'age.*'                         => "required|in:0-12 months,1-3 years,4-7 years,8-13 years,13-16 years",
             'password' => [
                 'required',
                 'string',
@@ -212,11 +240,15 @@ class FrontRegisterController extends Controller{
         ];
 
         $message = [
-            'no_children'       => 'The number of children field is required.',
-            'password.required' => 'The password field is required.',
-            'password.string'   => 'The password must be a string.',
-            'password.min'      => 'The password must be at least 8 characters in length.',
-            'password.regex'    => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
+            'age.*.in'                      => 'Invalid selected age.',
+            'age.*.required'                => 'The age field is required.',
+            'gender_of_children.*.in'       => 'Invalid gender selected for a child.',
+            'gender_of_children.*.required' => 'The gender field is required.',
+            'no_children'                   => 'The number of children field is required.',
+            'password.required'             => 'The password field is required.',
+            'password.string'               => 'The password must be a string.',
+            'password.min'                  => 'The password must be at least 8 characters in length.',
+            'password.regex'                => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
         ];
 
         $validator = Validator::make($data, $rules, $message);

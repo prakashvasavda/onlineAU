@@ -162,28 +162,6 @@ $('.close').on('click', function () {
     $(this).searchBox('close');
 });
 
-/*start-arrow-on-click-table-scroll*/
-$("#right-button").click(function() {
-  event.preventDefault();
-  $(".table-responsive").animate(
-    {
-      scrollLeft: "+=300px"
-    },
-    "slow"
-  );
-});
-
-$("#left-button").click(function() {
-  event.preventDefault();
-  $(".table-responsive").animate(
-    {
-      scrollLeft: "-=300px"
-    },
-    "slow"
-  );
-});
-/*end-arrow-on-click-table-scroll*/
-
 function initAutocomplete() {
     var inputs = document.querySelectorAll('.address-input');
 

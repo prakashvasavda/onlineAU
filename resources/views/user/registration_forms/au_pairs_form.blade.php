@@ -327,9 +327,9 @@
                     <li><input type="radio" name="first_aid" value="yes" {{ old('first_aid') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="first_aid" value="no" {{ old('first_aid') == "no" ? "checked" : '' }}>No</li>
                 </ul>
-                @if ($errors->has('car_accident'))
+                @if ($errors->has('first_aid'))
                     <span class="text-danger">
-                        <strong>{{ $errors->first('car_accident') }}</strong>
+                        <strong>{{ $errors->first('first_aid') }}</strong>
                     </span>
                 @endif
             </div>
@@ -340,7 +340,7 @@
                 <label for="smoker_or_non_smoker">Smoker / Non-Smoker <span class="text-danger">*</span></label>
                 <ul class="radio-box-list">
                     <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" checked value="smoker" {{ old('smoker_or_non_smoker') === 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
-                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'none_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'non_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
                 </ul>
                 @if ($errors->has('smoker_or_non_smoker'))
                     <span class="text-danger">
@@ -357,9 +357,9 @@
                     <li><input type="radio" name="experience_special_needs" value="yes" {{ old('experience_special_needs') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="experience_special_needs" value="no" {{ old('experience_special_needs') == "no" ? "checked" : '' }}>No</li>
                 </ul>
-                @if ($errors->has('smoker_or_non_smoker'))
+                @if ($errors->has('experience_special_needs'))
                     <span class="text-danger">
-                        <strong>{{ $errors->first('smoker_or_non_smoker') }}</strong>
+                        <strong>{{ $errors->first('experience_special_needs') }}</strong>
                     </span>
                 @endif
             </div>
@@ -369,8 +369,8 @@
             <div class="form-input">
                 <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
                 <ul class="radio-box-list">
-                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="at our home" {{ old('live_in_or_live_out') === "live_in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
-                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="at the babysitter's" {{ old('live_in_or_live_out') === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
+                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="live_in" {{ old('live_in_or_live_out') === "live in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
+                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out') === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
                 </ul>
                 @if ($errors->has('live_in_or_live_out'))
                     <span class="text-danger">
@@ -383,7 +383,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <label for="special_needs_specifications">If yes please specify. </label>
             <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications') }}</textarea>
-            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
             @if ($errors->has('special_needs_specifications'))
                 <span class="text-danger">
                     <strong>{{ $errors->first('special_needs_specifications') }}</strong>
@@ -392,9 +392,9 @@
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label for="about_yourself">Tell us a bit more about yourself</label>
+            <label for="about_yourself">Tell us a bit more about yourself <span class="text-danger">*</span></label>
             <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
-            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
             @if ($errors->has('about_yourself'))
                 <span class="text-danger">
                     <strong>{{ $errors->first('about_yourself') }}</strong>
@@ -416,14 +416,14 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="ages_of_children_you_worked_with">Ages of children you worked with</label>
+                <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
                 <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
                     <option value="" disabled>Select</option>
-                    <option value="0_12_months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0_12_months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
-                    <option value="1_3_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("1_3_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>1-3 years</option>
-                    <option value="4_7_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("4_7_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>4-7 years</option>
-                    <option value="8_13_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("8_13_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>8-13 years</option>
-                    <option value="13_16_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("13_16_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>13-16 years</option>
+                    <option value="0-12 months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0-12 months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
+                    <option value="1-3 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("1-3 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>1-3 years</option>
+                    <option value="4-7 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("4-7 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>4-7 years</option>
+                    <option value="8-13 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("8-13 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>8-13 years</option>
+                    <option value="13-16 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("13-16 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>13-16 years</option>
                 </select>
                 @if ($errors->has('ages_of_children_you_worked_with'))
                     <span class="text-danger">
@@ -435,14 +435,19 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="disabilities">Disabilities</label>
+                <label for="disabilities">Disabilities <span class="text-danger">*</span></label>
                 <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
             </div>
+            @if ($errors->has('disabilities'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('disabilities') }}</strong>
+                </span>
+            @endif
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="childcare_experience">How many years of childcare experience do you have</label>
+                <label for="childcare_experience">How many years of childcare experience do you have <span class="text-danger">*</span></label>
                 <select id="childcare_experience" name="childcare_experience" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select</option>
                     <option value="6 months" {{ old('childcare_experience') == "6 months" ? "selected" : '' }}>6 Months</option>
@@ -458,6 +463,11 @@
                     <option value="5+ years" {{ old('childcare_experience') == "5+ years" ? "selected" : '' }}>5+ years</option>
                 </select>
             </div>
+            @if ($errors->has('childcare_experience'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('childcare_experience') }}</strong>
+                </span>
+            @endif
         </div>
 
         <div class="col-12">
@@ -482,6 +492,11 @@
                             <label for="heading">Heading</label>
                             <input type="text" id="heading" name="heading[]" value="{{ isset(old('heading')[0]) ? old('heading')[0] : null }}" class="form-field" placeholder="">
                         </div>
+                        @error('heading.0')
+                            <span class="text-danger">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-input">
@@ -559,7 +574,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="available_date">From which date would you be available </label>
+                <label for="available_date">From which date would you be available <span class="text-danger">*</span></label>
                 <input type="date" id="available_date" name="available_date" value="{{ old('available_date') }}" class="form-field">
                 @if ($errors->has('available_date'))
                     <span class="text-danger">
@@ -571,7 +586,7 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="additional_language">Additional Language</label>
+                <label for="additional_language">Additional Language <span class="text-danger">*</span></label>
                 <select id="additional_language" name="additional_language" class="form-field">
                     <option value="" >Select</option>
                     <option value="english" {{ old('additional_language') === 'english' ? 'selected' : '' }}>English</option>
@@ -597,6 +612,11 @@
                     <option value="german" {{ old('additional_language') === 'german' ? 'selected' : '' }}>German</option>
                 </select>
             </div>
+            @if ($errors->has('additional_language'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('additional_language') }}</strong>
+                </span>
+            @endif
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">

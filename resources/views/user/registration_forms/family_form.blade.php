@@ -148,14 +148,15 @@
                 <div class="form-input">
                     <label for="age_children">Age of children <span class="text-danger">*</span></label>
                     <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
+                        {{-- <option value="" >Select</option> --}}
                         <option value="0-12 months" {{ (!empty(old('age')) && in_array("0-12 months", old('age')))? 'selected' : '' }}>0-12 Months</option>
                         <option value="1-3 years" {{ (!empty(old('age')) && in_array("1-3 years", old('age')))? 'selected' : '' }}>1-3 Years</option>
                         <option value="4-7 years" {{ (!empty(old('age')) && in_array("4-7 years", old('age')))? 'selected' : '' }}>4-7 Years</option>
                         <option value="8-13 years" {{ (!empty(old('age')) && in_array("8-13 years", old('age')))? 'selected' : '' }}>8-13 Years</option>
                         <option value="13-16 years" {{ (!empty(old('age')) && in_array("13-16 years", old('age')))? 'selected' : '' }}>13-16 Years</option>
                     </select>
-                    @error('age')
-                        <span class="invalid-feedback" role="alert">
+                    @error('age.0')
+                        <span class="text-danger">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -166,14 +167,15 @@
                 <div class="form-input">
                     <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                     <select id="gender_of_children" name="gender_of_children[]" class="form-field">
+                        {{-- <option value="" >Select</option> --}}
                         <option value="male" {{ (!empty(old('gender_of_children')) && in_array("male", old('gender_of_children')))? 'selected' : '' }}>Male</option>
                         <option value="female" {{ (!empty(old('gender_of_children')) && in_array("female", old('gender_of_children')))? 'selected' : '' }}>Female</option>
                     </select>
-                    @if ($errors->has('gender_of_children'))
+                    @error('gender_of_children.0')
                         <span class="text-danger">
-                            <strong>{{ $errors->first('gender_of_children') }}</strong>
+                            <strong>{{ $message }}</strong>
                         </span>
-                    @endif
+                    @enderror
                 </div>
             </div>
 
@@ -620,7 +622,7 @@ $(document).ready(function() {
             for (var i = no_children - 1; i >= 1; i--) {
                 $("#more_childern")
                 .append(`
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-2">
                         <div class="form-input">
                             <label for="age_children">Age of children <span class="text-danger">*</span></label>
                             <select name="age[]" class="form-field" >
@@ -633,18 +635,24 @@ $(document).ready(function() {
                         </div>
                     </div> 
 
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-2">
                         <div class="form-input">
                             <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                             <select name="gender_of_children[]" class="form-field">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option></select>
+                                <option value="" >Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
                         </div>
                     </div>
                 `);
             }
         }
     });
+
+    var errorMessages = @json($errors->get('gender_of_children.*'));
+    var errorMessages = @json($errors->toArray());
+    console.log(errorMessages);
 });
 
 $(window).on('load', function(){
