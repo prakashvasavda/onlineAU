@@ -133,7 +133,6 @@ class FrontRegisterController extends Controller{
             $rules['hourly_rate_pay']                   = "required|numeric|digits_between:2,5";
         }
 
-
         $message = [
             'heading.*.required'                    => 'The heading field is required.',
             'first_aid.required'                    => "Please specify whether you have first aid training.",
