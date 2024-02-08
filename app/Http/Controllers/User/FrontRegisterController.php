@@ -50,7 +50,7 @@ class FrontRegisterController extends Controller{
             'profile'                      => 'required|image|mimes:jpeg,jpg,png,gif',
             'ethnicity'                    => "required|regex:/^[\pL\s\-]+$/u|max:50",
             'gender'                       => "required",
-            'religion'                     => "required", 
+            // 'religion'                     => "required", 
             'home_language'                => "required",
             'disabilities'                 => "required|max:100",
             // 'heading.*'                    => 'required|max:255', 
@@ -83,8 +83,9 @@ class FrontRegisterController extends Controller{
             $rules['available_date']                    = "required";
             $rules['additional_language']               = "required";
             $rules['salary_expectation']                = "required|numeric|digits_between:2,10";
+            $rules['hourly_rate_pay']                   = "required|numeric|digits_between:2,5";
+            $rules['religion']                          = "required";
         }
-
 
         if(isset($request->role) && $request->role == "nannies"){
             $rules['additional_language']               = "required";
@@ -107,6 +108,8 @@ class FrontRegisterController extends Controller{
             $rules['available_date']                    = "required";
             $rules['salary_expectation']                = "required|numeric|digits_between:2,10";  
             $rules['chronical_medication']              = "required";
+            $rules['hourly_rate_pay']                   = "required|numeric|digits_between:2,5";
+            $rules['religion']                          = "required";
         }
 
         if(isset($request->role) && $request->role == "babysitters"){
@@ -131,9 +134,23 @@ class FrontRegisterController extends Controller{
             $rules['salary_expectation']                = "required|numeric|digits_between:2,10";  
             $rules['chronical_medication']              = "required";
             $rules['hourly_rate_pay']                   = "required|numeric|digits_between:2,5";
+            $rules['religion']                          = "required";
+        }
+
+        if(isset($request->role) && $request->role == "petsitters"){
+            $rules['working_permit']                    = "required_if:south_african_citizen,==,no";
+            $rules['smoker_or_non_smoker']              = "required";
+            $rules['special_needs_specifications']      = "required_if:experience_special_needs,==,yes|max:500";
+            $rules['about_yourself']                    = "required|max:500";
+            $rules['salary_expectation']                = "required|numeric|digits_between:2,10";  
+            $rules['situated']                          = "required|max:50";
+            $rules['animals_comfortable_with']          = "required";
+            $rules['experience_with_animals']           = "required";
+            $rules['do_you_like_animals']               = "required";
         }
 
         $message = [
+            'experience_with_animals'               => 'Please specify whether you have experience with animals',
             'heading.*.required'                    => 'The heading field is required.',
             'first_aid.required'                    => "Please specify whether you have first aid training.",
             'experience_special_needs.required'     => "Please indicate whether you have experience with special needs.",
