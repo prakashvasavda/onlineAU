@@ -20,7 +20,6 @@
                 @enderror
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="surname">Surname <span class="text-danger">*</span></label>
@@ -32,7 +31,6 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="email">Email Address <span class="text-danger">*</span></label>
@@ -44,7 +42,6 @@
                 @enderror
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="password">Password <span class="text-danger">*</span></label>
@@ -56,7 +53,6 @@
                 @enderror
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="type_of_id_number">Type of ID Number <span class="text-danger">*</span></label>
@@ -71,7 +67,6 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="id_number">ID Number <span class="text-danger">*</span></label>
@@ -83,7 +78,6 @@
                 @endif
             </div>
         </div>
-        
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="age">Age <span class="text-danger">*</span></label>
@@ -95,7 +89,6 @@
                 @enderror
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="area">Area <span class="text-danger">*</span></label>
@@ -107,7 +100,6 @@
                 @enderror
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="gender">Gender <span class="text-danger">*</span></label>
@@ -563,8 +555,6 @@
                 </div>
             </div>
         </div>
-
-
         @if(old('daterange') && is_array(old('daterange')))
             @foreach(old('daterange') as $key => $value)
                 @if(isset($key) && $key >= 1)

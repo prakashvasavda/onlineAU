@@ -8,7 +8,7 @@
         </div>
         @include('flash.front-message')
 
-      <form class="row" name="frm" action="{{ route('update-family', ['id' => $family->id]) }}" enctype="multipart/form-data" method="POST">
+        <form class="row" name="frm" action="{{ route('update-family', ['id' => $family->id]) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -152,8 +152,7 @@
                 </div>
             </div>
 
-
-             @if(isset($family->age) && !empty($family->age) && is_array($family->age))
+            @if(isset($family->age) && !empty($family->age) && is_array($family->age))
                 @foreach($family->age as $key => $value)
                     @if ($key >= 1)  
                         @break  
