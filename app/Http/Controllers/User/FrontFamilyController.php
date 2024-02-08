@@ -90,31 +90,66 @@ class FrontFamilyController extends Controller{
     }
 
     public function update_family(Request $request, $familyId){
-        $request->validate([
-            'name'                          => "required",
-            'family_address'                => "required",
-            'family_city'                   => "required",
+        $input                              = $request->all();
+
+        $rules = [
+            'name'                          => "required|max:50",
+            'email'                         => 'required|email', //required|email|unique:front_users,email
+            'family_address'                => "required|max:100",
+            'family_city'                   => "required|max:100",
             'home_language'                 => "required",
-            'no_children'                   => "required",
+            'no_children'                   => "required|lte:5",
             'family_notifications'          => "required",
-            'surname'                       => "required",
-            'cell_number'                   => 'required|min:10|max:10|regex:/[0-9]{9}/',
-            'start_date'                    => "required",
-            'duration_needed'               => "required|numeric|gt:1",
-            'petrol_reimbursement'          => "required",
-            'live_in_or_live_out'           => "required", 
-            'candidate_duties'              => "required",
+            'cell_number'                   => "required|min:10|max:10|regex:/[0-9]{9}/",
             'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
+            'start_date'                    => "required",
+            'duration_needed'               => "required|numeric|gt:1|lt:24",
+            'petrol_reimbursement'          => "required",
+            'candidate_duties'              => "required|max:500",
+            'surname'                       => "required|max:50",
+            'live_in_or_live_out'           => "required",
             'type_of_id_number'             => "required",
-            'email'                         => "required|email|unique:front_users,email," . session()->get('frontUser')->id,
             'profile'                       => 'nullable|image|mimes:jpeg,jpg,png,gif',
-        ],[
-            'profile.required_if'   => 'The profile field is required',
-            'describe_kids.array'   =>  'Invalid selected value',   
-        ]);
+            'gender_of_children'            => "required|array",
+            'gender_of_children.*'          => "required|in:male,female",
+            'what_do_you_need'              => ['required', 'array'],
+            'family_description'            => "required|max:500",
+            'hourly_rate_pay'               => "required|numeric|digits_between:2,5",
+            'salary_expectation'            => "required|numeric|digits_between:2,10",
+            // 'age'                           => "required|array",
+            // 'age.*'                         => "nullable|in:0-12 months,1-3 years,4-7 years,8-13 years,13-16 years",
+            'password' => [
+                'nullable',
+                'string',
+                'min:8',                    // must be at least 10 characters in length
+                'regex:/[a-z]/',            // must contain at least one lowercase letter
+                'regex:/[A-Z]/',            // must contain at least one uppercase letter
+                'regex:/[0-9]/',            // must contain at least one digit
+                'regex:/[@$!%*#?&]/',       // must contain a special character
+            ],
+        ];
+
+        $message = [
+            'age.*.in'                      => 'Invalid selected age.',
+            'age.*.required'                => 'The age field is required.',
+            'gender_of_children.*.in'       => 'Invalid gender selected for a child.',
+            'gender_of_children.*.required' => 'The gender field is required.',
+            'no_children'                   => 'The number of children field is required.',
+            'password.string'               => 'The password must be a string.',
+            'password.min'                  => 'The password must be at least 8 characters in length.',
+            'password.regex'                => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
+        ];
+
+        $validator = Validator::make($input, $rules, $message);
+
+        if ($validator->fails()) {
+            return back()->withInput()
+                ->withErrors($validator)
+                ->with('message_type', 'danger')
+                ->with('message', 'There were some error try again');
+        }
 
         $family                                 = FrontUser::findorFail($familyId);
-        $input                                  = $request->all();
         $input['password']                      = !empty($request->password) ? Hash::make($request->password) : $family->password;
         $input['email']                         = !empty($request->email) ? $request->email : $family->email;
         $input['role']                          = $family->role;

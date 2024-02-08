@@ -17,8 +17,7 @@ use Mail;
 use App\Mail\CandidateRegistration;
 
 
-class FrontRegisterController extends Controller{
-    
+class FrontRegisterController extends Controller{    
     public function index($type){
         $data['type'] = $type == 'nannies' ? 'a nanny' : ($type == 'babysitters' ? 'a babysitter' : ($type == 'petsitters' ? 'A Petsitter' : 'an au-pair'));
         $registration_forms = [
@@ -40,7 +39,6 @@ class FrontRegisterController extends Controller{
             'name'                         => "required|max:50",
             'age'                          => 'required|gt:18|lt:70',
             'email'                        => 'required|email', //required|email|unique:front_users,email
-            // 'hourly_rate_pay'              => 'required|numeric|digits_between:2,5',
             'terms_and_conditions'         => 'required',
             'surname'                      => 'required|max:50',
             'contact_number'               => 'required|min:10|max:10|regex:/[0-9]{9}/',
@@ -50,7 +48,6 @@ class FrontRegisterController extends Controller{
             'profile'                      => 'required|image|mimes:jpeg,jpg,png,gif',
             'ethnicity'                    => "required|regex:/^[\pL\s\-]+$/u|max:50",
             'gender'                       => "required",
-            // 'religion'                     => "required", 
             'home_language'                => "required",
             'disabilities'                 => "required|max:100",
             // 'heading.*'                    => 'required|max:255', 

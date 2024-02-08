@@ -339,7 +339,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="">What hourly rate are you willing to pay <span class="text-danger">*</span></label>
+                    <label for="">What hourly rate are you willing to pay per day <span class="text-danger">*</span></label>
                     <div class="input-group mb-1">
                         <span class="input-group-text">R</span>
                             <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{old('hourly_rate_pay')}}">
