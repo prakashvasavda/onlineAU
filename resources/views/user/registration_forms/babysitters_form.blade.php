@@ -109,36 +109,51 @@
             </div>
         </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="marital_status">Marital Status</label>
+                <label for="marital_status">Marital Status <span class="text-danger">*</span></label>
                 <ul class="radio-box-list d-flex flex-wrap">
                     <li class="radio-box-item"><input type="radio" name="marital_status" value="married" {{ old('marital_status') == "married" ? "checked" : ''}}><label>Married</label></li>
                     <li class="radio-box-item"><input type="radio" name="marital_status" value="single" {{ old('marital_status') == "single" ? "checked" : ''}}><label>Single</label></li>
                     <li class="radio-box-item"><input type="radio" name="marital_status" value="in a relationship" {{ old('marital_status') == "in a relationship" ? "checked" : ''}}><label>In a Relationship</label></li>
                 </ul>
+                @if ($errors->has('marital_status'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('marital_status') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="gender">Gender</label>
+                <label for="gender">Gender <span class="text-danger">*</span></label>
                 <ul class="radio-box-list d-flex flex-wrap">
                     <li class="radio-box-item"><input type="radio" name="gender" value="male" {{ old('gender') == "male" ? "checked" : '' }}><label>Male</label></li>
                     <li class="radio-box-item"><input type="radio" name="gender" value="female" {{ old('gender') == "female" ? "checked" : '' }}><label>Female</label></li>
                     <li class="radio-box-item"><input type="radio" name="gender" value="other" {{ old('gender') == "other" ? "checked" : '' }}><label>Other</label></li>
                 </ul>
+                @if ($errors->has('gender'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('gender') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="ethnicity">Ethnicity</label>
+                <label for="ethnicity">Ethnicity <span class="text-danger">*</span></label>
                 <input type="text" id="ethnicity" name="ethnicity" value="{{ old("ethnicity") }}" placeholder="" class="form-field">
+                @if ($errors->has('ethnicity'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('ethnicity') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="religion">Religion</label>
+                <label for="religion">Religion <span class="text-danger">*</span></label>
                 <select id="religion" name="religion" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select one</option>
                     <option value="african traditional and diasporic" {{ old('religion') == "african traditional and diasporic" ? "selected" : ''}}>African Traditional &amp; Diasporic</option>
@@ -167,11 +182,16 @@
                     <option value="primal-indigenous" {{ old('religion') == "primal-indigenous" ? "selected" : ''}}>primal-indigenous</option>
                     <option value="other" {{ old('religion') == "other" ? "selected" : ''}}>Other</option>
                 </select>
+                @if ($errors->has('religion'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('religion') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="home_language">Home Language</label>
+                <label for="home_language">Home Language <span class="text-danger">*</span></label>
                 <select id="home_language" name="home_language" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select one</option>
                     <option value="english" {{ old('home_language') === 'english' ? 'selected' : '' }}>English</option>
@@ -196,13 +216,18 @@
                     <option value="punjabi" {{ old('home_language') === 'punjabi' ? 'selected' : '' }}>Punjabi</option>
                     <option value="german" {{ old('home_language') === 'german' ? 'selected' : '' }}>German</option>
                 </select>
+                @if ($errors->has('home_language'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('home_language') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="additional_language">Additional Language</label>
+                <label for="additional_language">Additional Language <span class="text-danger">*</span></label>
                 <select id="additional_language" name="additional_language" class="form-field">
-                    <option value="" disabled="disabled">Select</option>
+                    <option value="" >Select</option>
                     <option value="english" {{ old('additional_language') === 'english' ? 'selected' : '' }}>English</option>
                     <option value="afrikaans" {{ old('additional_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
                     <option value="zulu (isizulu)" {{ old('additional_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
@@ -226,8 +251,12 @@
                     <option value="german" {{ old('additional_language') === 'german' ? 'selected' : '' }}>German</option>
                 </select>
             </div>
+            @if ($errors->has('additional_language'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('additional_language') }}</strong>
+                </span>
+            @endif
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="contact_number">Contact Number</label>
@@ -254,67 +283,119 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="dependants">Do you have any dependants</label>
+                <label for="dependants">Do you have any dependants <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="dependants" value="yes" {{ old('dependants') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="dependants" value="no" {{ old('dependants') == "no" ? "checked" : '' }}>No</li>
                 </ul>
+                @if ($errors->has('dependants'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('dependants') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="chronical_medication">Are you on any chronical medication</label>
+                <label for="chronical_medication">Are you on any chronical medication <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="chronical_medication" value="yes" {{ old('chronical_medication') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="chronical_medication" value="no" {{ old('chronical_medication') == "no" ? "checked" : '' }}>No</li>
                 </ul>
+                @if ($errors->has('chronical_medication'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('chronical_medication') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="drivers_license">Do you have your drivers license</label>
+                <label for="drivers_license">Do you have your drivers license <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="drivers_license" value="yes" {{ old('drivers_license') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="drivers_license" value="no" {{ old('drivers_license') == "no" ? "checked" : '' }}>No</li>
                 </ul>
+                @if ($errors->has('drivers_license'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('drivers_license') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="vehicle">Do you have your own vehicle</label>
+                <label for="vehicle">Do you have your own vehicle <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="vehicle" value="yes" {{ old('vehicle') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="vehicle" value="no" {{ old('vehicle') == "no" ? "checked" : '' }}>No</li>
                 </ul>
+                @if ($errors->has('vehicle'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('vehicle') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="car_accident">Have you ever been in a car accident</label>
+                <label for="car_accident">Have you ever been in a car accident <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="car_accident" value="yes" {{ old('car_accident') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="car_accident" value="no" {{ old('car_accident') == "no" ? "checked" : '' }}>No</li>
                 </ul>
+                @if ($errors->has('car_accident'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('car_accident') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="experience_special_needs">Do you have experience with special needs</label>
+                <label for="experience_special_needs">Do you have experience with special needs <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="experience_special_needs" value="yes" {{ old('experience_special_needs') == "yes" ? "checked" : '' }}>Yes</li>
                     <li><input type="radio" name="experience_special_needs" value="no" {{ old('experience_special_needs') == "no" ? "checked" : '' }}>No</li>
                 </ul>
+                @if ($errors->has('experience_special_needs'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('experience_special_needs') }}</strong>
+                    </span>
+                @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="childcare_experience">How many years of childcare experience do you have</label>
+                <label for="first_aid">Do you have first aid <span class="text-danger">*</span></label>
+                <ul class="d-flex flex-wrap">
+                    <li><input type="radio" name="first_aid" value="yes" {{ old('first_aid') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="first_aid" value="no" {{ old('first_aid') == "no" ? "checked" : '' }}>No</li>
+                </ul>
+                @if ($errors->has('first_aid'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('first_aid') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="smoker_or_non_smoker">Smoker / Non-Smoker <span class="text-danger">*</span></label>
+                <ul class="radio-box-list">
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" checked value="smoker" {{ old('smoker_or_non_smoker') === 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
+                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ old('smoker_or_non_smoker') === 'non_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                </ul>
+                @if ($errors->has('smoker_or_non_smoker'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('smoker_or_non_smoker') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="childcare_experience">How many years of childcare experience do you have <span class="text-danger">*</span></label>
                 <select id="childcare_experience" name="childcare_experience" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select</option>
                     <option value="6 months" {{ old('childcare_experience') == "6 months" ? "selected" : '' }}>6 Months</option>
@@ -330,8 +411,12 @@
                     <option value="5+ years" {{ old('childcare_experience') == "5+ years" ? "selected" : '' }}>5+ years</option>
                 </select>
             </div>
+            @if ($errors->has('childcare_experience'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('childcare_experience') }}</strong>
+                </span>
+            @endif
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger small">*</span></label>
@@ -351,7 +436,7 @@
             </div>
         </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-none">
             <div class="form-input">
                 <label for="other_services">Other Services </label>
                 <select id="other_services" name="other_services[]" multiple class="form-field">
@@ -366,8 +451,7 @@
                 @endif
             </div>
         </div>
-
-         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger small">*</span></label>
                     <div class="input-group mb-1">
@@ -382,26 +466,17 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="situated">Situated</label>
-                <input type="text" id="situated" name="situated" placeholder="" class="form-field @error('situated') is-invalid @enderror"  value="{{ old('situated') }}">
-                @error('situated')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="disabilities">Disabilities</label>
+                <label for="disabilities">Disabilities <span class="text-danger fw-bolder">*</span></label>
                 <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
             </div>
+            @if ($errors->has('disabilities'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('disabilities') }}</strong>
+                </span>
+            @endif
         </div>
-
         <div class="col-12">
             <div class="form-inputs" id="dynamic_field">
                 <div class="d-flex flex-row justify-content-between align-items-start">
@@ -497,6 +572,17 @@
                 @endif
             @endforeach
         @endif
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <label for="about_yourself">Tell us a bit more about yourself <span class="text-danger">*</span></label>
+            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
+            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+            @if ($errors->has('about_yourself'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('about_yourself') }}</strong>
+                </span>
+            @endif
+        </div>
  
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">

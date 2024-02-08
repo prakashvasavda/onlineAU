@@ -174,6 +174,39 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
+                <label for="disabilities">Disabilities <span class="text-danger">*</span></label>
+                <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
+            </div>
+            @if ($errors->has('disabilities'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('disabilities') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="contact_number">Contact Number <span class="text-danger">*</span></label>
+                <input type="number" id="contact_number" name="contact_number" placeholder="" class="form-field @error('contact_number') is-invalid @enderror"  value="{{ old('contact_number') }}">
+                @error('contact_number')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="profile">Profile Picture <span class="text-danger">*</span></label>
+                <input type="file" id="profile" name="profile" placeholder="" class="form-field" accept="image/*" >
+                @if ($errors->has('profile'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('profile') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
                 <label for="home_language">Home Language <span class="text-danger">*</span></label>
                 <select id="home_language" name="home_language" class="form-field">
                     <option value="" selected="selected" disabled="disabled">Select one</option>
@@ -206,31 +239,40 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="contact_number">Contact Number <span class="text-danger">*</span></label>
-                <input type="number" id="contact_number" name="contact_number" placeholder="" class="form-field @error('contact_number') is-invalid @enderror"  value="{{ old('contact_number') }}">
-                @error('contact_number')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                <label for="additional_language">Additional Language <span class="text-danger">*</span></label>
+                <select id="additional_language" name="additional_language" class="form-field">
+                    <option value="" >Select</option>
+                    <option value="english" {{ old('additional_language') === 'english' ? 'selected' : '' }}>English</option>
+                    <option value="afrikaans" {{ old('additional_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
+                    <option value="zulu (isizulu)" {{ old('additional_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
+                    <option value="xhosa (isixhosa)" {{ old('home_language') === 'xhosa (isixhosa)' ? 'selected' : '' }}>Xhosa (isiXhosa)</option>
+                    <option value="northern sotho (sesotho sa leboa)" {{ old('additional_language') === 'northern sotho (sesotho sa leboa)' ? 'selected' : '' }}>Northern Sotho (Sesotho sa Leboa)</option>
+                    <option value="sotho (sesotho)" {{ old('additional_language') === 'sotho (sesotho)' ? 'selected' : '' }}>Sotho (Sesotho)</option>
+                    <option value="swazi (siswati)" {{ old('additional_language') === 'swazi (siswati)' ? 'selected' : '' }}>Swazi (siSwati)</option>
+                    <option value="tsonga (xitsonga)" {{ old('additional_language') === 'tsonga (xitsonga)' ? 'selected' : '' }}>Tsonga (Xitsonga)</option>
+                    <option value="tswana (setswana)" {{ old('additional_language') === 'tswana (setswana)' ? 'selected' : '' }}>Tswana (Setswana)</option>
+                    <option value="venda (tshivenda)" {{ old('additional_language') === 'venda (tshivenda)' ? 'selected' : '' }}>Venda (Tshivenda)</option>
+                    <option value="southern ndebele (isindebele)" {{ old('additional_language') === 'southern ndebele (isindebele)' ? 'selected' : '' }}>Southern Ndebele (isiNdebele)</option>
+                    <option value="spanish" {{ old('additional_language') === 'spanish' ? 'selected' : '' }}>Spanish</option>
+                    <option value="french" {{ old('additional_language') === 'french' ? 'selected' : '' }}>French</option>
+                    <option value="hindi" {{ old('additional_language') === 'hindi' ? 'selected' : '' }}>Hindi</option>
+                    <option value="arabic" {{ old('additional_language') === 'arabic' ? 'selected' : '' }}>Arabic</option>
+                    <option value="bengali" {{ old('additional_language') === 'bengali' ? 'selected' : '' }}>Bengali</option>
+                    <option value="portuguese" {{ old('additional_language') === 'portuguese' ? 'selected' : '' }}>Portuguese</option>
+                    <option value="russian" {{ old('additional_language') === 'russian' ? 'selected' : '' }}>Russian</option>
+                    <option value="japanese" {{ old('additional_language') === 'japanese' ? 'selected' : '' }}>Japanese</option>
+                    <option value="punjabi" {{ old('additional_language') === 'punjabi' ? 'selected' : '' }}>Punjabi</option>
+                    <option value="german" {{ old('additional_language') === 'german' ? 'selected' : '' }}>German</option>
+                </select>
             </div>
+            @if ($errors->has('additional_language'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('additional_language') }}</strong>
+                </span>
+            @endif
         </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="profile">Profile Picture <span class="text-danger">*</span></label>
-                <input type="file" id="profile" name="profile" placeholder="" class="form-field" accept="image/*" >
-                @if ($errors->has('profile'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('profile') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="marital_status">Marital Status <span class="text-danger">*</span></label>
@@ -246,7 +288,6 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="dependants">Do you have any dependants <span class="text-danger">*</span></label>
@@ -318,7 +359,6 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="first_aid">Do you have first aid <span class="text-danger">*</span></label>
@@ -333,7 +373,6 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="smoker_or_non_smoker">Smoker / Non-Smoker <span class="text-danger">*</span></label>
@@ -348,7 +387,6 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="experience_special_needs">Do you have experience with special needs <span class="text-danger">*</span></label>
@@ -363,7 +401,6 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
@@ -378,7 +415,6 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <label for="special_needs_specifications">If yes please specify. </label>
             <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications') }}</textarea>
@@ -389,7 +425,6 @@
                 </span>
             @endif
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <label for="about_yourself">Tell us a bit more about yourself <span class="text-danger">*</span></label>
             <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
@@ -400,7 +435,6 @@
                 </span>
             @endif
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="salary_expectation">What is your salary expectation <span class="text-danger">*</span></label>
@@ -412,7 +446,6 @@
                 @enderror
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
@@ -431,19 +464,17 @@
                 @endif
             </div>
         </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="disabilities">Disabilities <span class="text-danger">*</span></label>
-                <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
+                <label for="available_date">From which date would you be available <span class="text-danger">*</span></label>
+                <input type="date" id="available_date" name="available_date" value="{{ old('available_date') }}" class="form-field">
+                @if ($errors->has('available_date'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('available_date') }}</strong>
+                    </span>
+                @endif
             </div>
-            @if ($errors->has('disabilities'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('disabilities') }}</strong>
-                </span>
-            @endif
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="childcare_experience">How many years of childcare experience do you have <span class="text-danger">*</span></label>
@@ -468,7 +499,6 @@
                 </span>
             @endif
         </div>
-
         <div class="col-12">
             <div class="form-inputs" id="dynamic_field">
                 <div class="d-flex flex-row justify-content-between align-items-start">
@@ -570,54 +600,6 @@
                 @endif
             @endforeach
         @endif
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="available_date">From which date would you be available <span class="text-danger">*</span></label>
-                <input type="date" id="available_date" name="available_date" value="{{ old('available_date') }}" class="form-field">
-                @if ($errors->has('available_date'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('available_date') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="additional_language">Additional Language <span class="text-danger">*</span></label>
-                <select id="additional_language" name="additional_language" class="form-field">
-                    <option value="" >Select</option>
-                    <option value="english" {{ old('additional_language') === 'english' ? 'selected' : '' }}>English</option>
-                    <option value="afrikaans" {{ old('additional_language') === 'afrikaans' ? 'selected' : '' }}>Afrikaans</option>
-                    <option value="zulu (isizulu)" {{ old('additional_language') === 'zulu (isizulu)' ? 'selected' : '' }}>Zulu (isiZulu)</option>
-                    <option value="xhosa (isixhosa)" {{ old('home_language') === 'xhosa (isixhosa)' ? 'selected' : '' }}>Xhosa (isiXhosa)</option>
-                    <option value="northern sotho (sesotho sa leboa)" {{ old('additional_language') === 'northern sotho (sesotho sa leboa)' ? 'selected' : '' }}>Northern Sotho (Sesotho sa Leboa)</option>
-                    <option value="sotho (sesotho)" {{ old('additional_language') === 'sotho (sesotho)' ? 'selected' : '' }}>Sotho (Sesotho)</option>
-                    <option value="swazi (siswati)" {{ old('additional_language') === 'swazi (siswati)' ? 'selected' : '' }}>Swazi (siSwati)</option>
-                    <option value="tsonga (xitsonga)" {{ old('additional_language') === 'tsonga (xitsonga)' ? 'selected' : '' }}>Tsonga (Xitsonga)</option>
-                    <option value="tswana (setswana)" {{ old('additional_language') === 'tswana (setswana)' ? 'selected' : '' }}>Tswana (Setswana)</option>
-                    <option value="venda (tshivenda)" {{ old('additional_language') === 'venda (tshivenda)' ? 'selected' : '' }}>Venda (Tshivenda)</option>
-                    <option value="southern ndebele (isindebele)" {{ old('additional_language') === 'southern ndebele (isindebele)' ? 'selected' : '' }}>Southern Ndebele (isiNdebele)</option>
-                    <option value="spanish" {{ old('additional_language') === 'spanish' ? 'selected' : '' }}>Spanish</option>
-                    <option value="french" {{ old('additional_language') === 'french' ? 'selected' : '' }}>French</option>
-                    <option value="hindi" {{ old('additional_language') === 'hindi' ? 'selected' : '' }}>Hindi</option>
-                    <option value="arabic" {{ old('additional_language') === 'arabic' ? 'selected' : '' }}>Arabic</option>
-                    <option value="bengali" {{ old('additional_language') === 'bengali' ? 'selected' : '' }}>Bengali</option>
-                    <option value="portuguese" {{ old('additional_language') === 'portuguese' ? 'selected' : '' }}>Portuguese</option>
-                    <option value="russian" {{ old('additional_language') === 'russian' ? 'selected' : '' }}>Russian</option>
-                    <option value="japanese" {{ old('additional_language') === 'japanese' ? 'selected' : '' }}>Japanese</option>
-                    <option value="punjabi" {{ old('additional_language') === 'punjabi' ? 'selected' : '' }}>Punjabi</option>
-                    <option value="german" {{ old('additional_language') === 'german' ? 'selected' : '' }}>German</option>
-                </select>
-            </div>
-            @if ($errors->has('additional_language'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('additional_language') }}</strong>
-                </span>
-            @endif
-        </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="day_hour">What are your available days and hours</label>
