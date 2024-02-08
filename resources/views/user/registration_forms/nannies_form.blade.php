@@ -540,7 +540,6 @@
                 @endif
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="salary_expectation">What is your salary expectation <span class="text-danger">*</span></label>
@@ -552,7 +551,21 @@
                 @enderror
             </div>
         </div>
-
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger small">*</span></label>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text">R</span>
+                            <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{old('hourly_rate_pay')}}">
+                        <span class="input-group-text">hr</span>
+                    </div>
+                @if ($errors->has('hourly_rate_pay'))
+                    <span class="text-danger small">
+                        <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
         <div class="col-12">
             <div class="form-inputs" id="dynamic_field">
                 <div class="d-flex flex-row justify-content-between align-items-start">

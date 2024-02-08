@@ -448,6 +448,21 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
+                <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger small">*</span></label>
+                    <div class="input-group mb-1">
+                        <span class="input-group-text">R</span>
+                            <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{old('hourly_rate_pay')}}">
+                        <span class="input-group-text">hr</span>
+                    </div>
+                @if ($errors->has('hourly_rate_pay'))
+                    <span class="text-danger small">
+                        <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
                 <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
                 <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
                     <option value="" disabled>Select</option>
