@@ -134,7 +134,7 @@ class FrontFamilyController extends Controller{
             'age.*.required'                => 'The age field is required.',
             'gender_of_children.*.in'       => 'Invalid gender selected for a child.',
             'gender_of_children.*.required' => 'The gender field is required.',
-            'no_children'                   => 'The number of children field is required.',
+            'no_children.required'          => 'The number of children field is required.',
             'password.string'               => 'The password must be a string.',
             'password.min'                  => 'The password must be at least 8 characters in length.',
             'password.regex'                => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',

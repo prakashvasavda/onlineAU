@@ -50,7 +50,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-input">
-                                            <label>Candidate Photo</label>
+                                            <label>Candidate Photo <span class="text-danger">*</span></label>
                                             <div class="box">
                                                 <div class="js--image-preview"></div>
                                                 <div class="upload-options">
@@ -119,7 +119,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="profile">Profile Picture</label>
+                                            <label for="profile">Profile Picture <span class="text-danger">*</span></label>
                                             <input type="file" id="profile" name="profile" placeholder="" class="form-control" accept="image/*" value="{{ old('profile', isset($family->profile) ? $family->profile : null) }}">
                                             @if ($errors->has('profile'))
                                                 <span class="text-danger">
@@ -148,7 +148,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="type_of_id_number">Type of ID Number </label>
+                                            <label for="type_of_id_number">Type of ID Number <span class="text-danger">*</span></label>
                                             <ul class="radio-box-list">
                                                 <li class="radio-box-item"><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number', isset($family->type_of_id_number) ? $family->type_of_id_number : '') === "south_african" ? "checked" : '' }} >&nbsp;South Africa ID</li>
                                                 <li class="radio-box-item"><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number', isset($family->type_of_id_number) ? $family->type_of_id_number : '') === "other" ? "checked" : '' }} >&nbsp;Foreign ID</li>
@@ -292,7 +292,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="live_in_or_live_out">Live in / Live out </label>
+                                            <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
                                             <ul class="radio-box-list">
                                                 <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_in" {{ old('live_in_or_live_out', $family->live_in_or_live_out) === "live_in" ? 'checked' : '' }} class="form-field"><label>&nbsp; Live in</label></li>
                                                 <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out', $family->live_in_or_live_out) === "live_out" ? 'checked' : '' }} class="form-field"><label> &nbsp;Live out</label></li>
@@ -309,7 +309,7 @@
                                         <div class="form-group">
                                             <label for="candidate_duties">What will be the candidate’s duties. <span class="text-danger">*</span></label>
                                             <textarea id="candidate_duties" name="candidate_duties" class="form-control" rows="2" >{{ old('candidate_duties', isset($family->candidate_duties) ? $family->candidate_duties : '') }}</textarea>
-                                            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+                                            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
                                             @if ($errors->has('candidate_duties'))
                                                 <span class="text-danger">
                                                     <strong>{{ $errors->first('candidate_duties') }}</strong>
@@ -451,11 +451,10 @@
                                         @endforeach     
                                     @endif 
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="">What hourly rate are you willing to pay </label>
+                                            <label for="">What hourly rate are you willing to pay <span class="text-danger">*</span></label>
                                             <div class="input-group mb-1">
                                                 <span class="input-group-text">R</span>
                                                     <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-control" placeholder="" value="{{ old('hourly_rate_pay', isset($family->hourly_rate_pay) ? $family->hourly_rate_pay : '') }}">
@@ -469,10 +468,9 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="salary_expectation">What is your salary expectation</label>
+                                            <label for="salary_expectation">What is your salary expectation <span class="text-danger">*</span></label>
                                             <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-control @error('salary_expectation') is-invalid @enderror" value="{{ old('salary_expectation', isset($family->salary_expectation) ? $family->salary_expectation : '') }}">
                                             @if ($errors->has('salary_expectation'))
                                                 <span class="text-danger">
@@ -486,7 +484,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="family_notifications">Do you want to get notifications from new candidates in your area </label>
+                                            <label for="family_notifications">Do you want to get notifications from new candidates in your area <span class="text-danger">*</span></label>
                                                 <ul class="radio-box-list">
                                                     <li><input type="radio" checked name="family_notifications" value="yes" {{ isset($family->family_notifications) && $family->family_notifications == "yes" ? 'checked' : '' }}>&nbsp;Yes</li>
                                                     <li><input type="radio" name="family_notifications" value="no" {{ isset($family->family_notifications) && $family->family_notifications == "no" ? 'checked' : '' }}>&nbsp;No</li>
@@ -498,16 +496,16 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <label for="family_description">Tell a little about your family, so candidates can get to know you.</label>
-                                        <textarea id="family_description" name="family_description" placeholder="" class="form-control" rows="2" >{{ old('family_description', isset($family->family_description) ? $family->family_description : '') }}</textarea>
-                                        <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-                                        @if ($errors->has('family_description'))
-                                            <span class="text-danger">
-                                                <strong>{{ $errors->first('family_description') }}</strong>
-                                            </span>
-                                        @endif
+                                        <div class="form-group">
+                                            <label for="start_date">Start date <span class="text-danger">*</span></label>
+                                            <input type="date" id="start_date" name="start_date" value="{{ old('start_date', isset($family->start_date) ? $family->start_date : '') }}" class="form-control">
+                                            @if ($errors->has('start_date'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('start_date') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
 
@@ -630,20 +628,17 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="start_date">Start date <span class="text-danger">*</span></label>
-                                            <input type="date" id="start_date" name="start_date" value="{{ old('start_date', isset($family->start_date) ? $family->start_date : '') }}" class="form-control">
-                                            @if ($errors->has('start_date'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('start_date') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
+                                        <label for="family_description">Tell a little about your family, so candidates can get to know you. <span class="text-danger">*</span></label>
+                                        <textarea id="family_description" name="family_description" placeholder="" class="form-control" rows="7" >{{ old('family_description', isset($family->family_description) ? $family->family_description : '') }}</textarea>
+                                        <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+                                        @if ($errors->has('family_description'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('family_description') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group switch-input">
@@ -785,10 +780,10 @@
             for (var i = no_children - 1; i >= 1; i--) {
                 $("#more_childern")
                 .append(`
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="age_children">Age of children</label>
-                            <select name="age[]" class="form-field" >
+                            <label for="age_children">Age of children <span class="text-danger">*</span></label>
+                            <select name="age[]" class="form-control" >
                                 <option value="0-12 months">0-12 Months</option>
                                 <option value="1-3 years">1-3 Years</option>
                                 <option value="4-7 years">4-7 Years</option>
@@ -798,9 +793,9 @@
                         </div>
                     </div> 
 
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="gender_of_children">Gender of children</label>
+                            <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                             <select name="gender_of_children[]" class="form-control">
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -825,6 +820,12 @@
             closeOnCancel: false
         };
     }
+
+    /*for debuggging purpose*/
+    @if($errors->any())
+        var errorMessages = {!! json_encode($errors->toArray()) !!};
+        console.log(errorMessages);
+    @endif
 </script>
 @endsection
 
