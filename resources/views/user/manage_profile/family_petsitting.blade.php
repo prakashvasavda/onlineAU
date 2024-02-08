@@ -70,7 +70,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="email">Password </label>
+                    <label for="email">Password <span class="text-danger">*</span></label>
                     <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror"  value="" readonly onfocus="this.removeAttribute('readonly');">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -152,7 +152,7 @@
                     @else
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <div class="form-input">
-                                <label for="type_of_pet">Type of pet </label>
+                                <label for="type_of_pet">Type of pet <span class="text-danger">*</span></label>
                                 <select id="age_children" name="type_of_pet[]" class="form-field">
                                     <option value="dog" {{isset($value) && $value == "dog" ? "selected" : ""}}>Dog</option>
                                     <option value="cat" {{isset($value) && $value == "cat" ? "selected" : ""}}>Cat</option>
@@ -170,7 +170,7 @@
 
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <div class="form-input">
-                                <label for="gender_of_children">How many pets </label>
+                                <label for="gender_of_children">How many pets <span class="text-danger">*</span></label>
                                 <input type="number" id="gender_of_children" name="how_many_pets[]" value="{{ isset($family->how_many_pets[$key]) ? $family->how_many_pets[$key] : null }}" placeholder="" class="form-field">
                                 @if ($errors->has('how_many_pets'))
                                     <span class="text-danger">
@@ -184,7 +184,7 @@
             @else
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="form-input">
-                        <label for="age_children">Type of pet </label>
+                        <label for="age_children">Type of pet <span class="text-danger">*</span></label>
                         <select id="age_children" name="type_of_pet[]" class="form-field" >
                             <option value="dog">Dog</option>
                             <option value="cat">Cat</option>
@@ -202,7 +202,7 @@
 
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="form-input">
-                        <label for="gender_of_children">How many pets</label>
+                        <label for="gender_of_children">How many pets <span class="text-danger">*</span></label>
                         <input type="number" id="gender_of_children" name="how_many_pets[]" value="1" placeholder="" class="form-field">
                         @if ($errors->has('how_many_pets'))
                             <span class="text-danger">
@@ -220,7 +220,7 @@
                         @if ($key >= 1) 
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
                                  <div class="form-input">
-                                    <label for="type_of_pet">Type of pet </label>
+                                    <label for="type_of_pet">Type of pet <span class="text-danger">*</span></label>
                                     <select id="age_children" name="type_of_pet[]" class="form-field">
                                         <option value="dog" {{isset($value) && $value == "dog" ? "selected" : ""}}>Dog</option>
                                         <option value="cat" {{isset($value) && $value == "cat" ? "selected" : ""}}>Cat</option>
@@ -238,7 +238,7 @@
 
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
                                  <div class="form-input">
-                                    <label for="gender_of_children">How many pets</label>
+                                    <label for="gender_of_children">How many pets <span class="text-danger">*</span></label>
                                     <input type="number" id="gender_of_children" name="how_many_pets[]" value="{{ isset($family->how_many_pets[$key]) ? $family->how_many_pets[$key] : null }}" placeholder="" class="form-field">
                                     @if ($errors->has('how_many_pets'))
                                         <span class="text-danger">
@@ -251,11 +251,9 @@
                     @endforeach     
                 @endif 
             </div>
-
-
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities </label>
+                    <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities <span class="text-danger">*</span></label>
                         <ul class="radio-box-list">
                             <li><input type="radio" name="pet_medication_or_disabilities" value="yes" {{ isset($family->pet_medication_or_disabilities) && $family->pet_medication_or_disabilities == "yes" ? 'checked' : '' }}>&nbsp;Yes</li>
                             <li><input type="radio" name="pet_medication_or_disabilities" value="no" {{ isset($family->pet_medication_or_disabilities) && $family->pet_medication_or_disabilities == "no" ? 'checked' : '' }}>&nbsp;No</li>
@@ -471,7 +469,7 @@ $(document).ready(function() {
                 .append(`
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
                         <div class="form-input">
-                            <label for="type_of_pet">Type of pet</label>
+                            <label for="type_of_pet">Type of pet <span class="text-danger">*</span></label>
                             <select name="type_of_pet[]" class="form-field">
                                 <option value="dog">Dog</option>
                                 <option value="cat">Cat</option>
@@ -484,7 +482,7 @@ $(document).ready(function() {
 
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
                         <div class="form-input">
-                            <label for="gender_of_children">How many pets</label>
+                            <label for="gender_of_children">How many pets <span class="text-danger">*</span></label>
                             <input type="number" id="how_many_pets" name="how_many_pets" value="1" placeholder="" class="form-field" >
                         </div>
                     </div>

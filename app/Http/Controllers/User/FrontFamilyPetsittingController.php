@@ -69,19 +69,33 @@ class FrontFamilyPetsittingController extends Controller{
 
     public function update(Request $request, string $id){
         $request->validate([
-            'name'                          => "required",
-            'family_address'                => "required",
-            'surname'                       => "required",
-            'cell_number'                   => "required",
+            'name'                          => "required|max:50",
+            'email'                         => 'required|email', //required|email|unique:front_users,email
+            'family_address'                => "required|max:100",
+            'cell_number'                   => "required|min:10|max:10|regex:/[0-9]{9}/",
             'start_date'                    => "required",
-            'duration_needed'               => "required",
-            'candidate_duties'              => "required",
+            'duration_needed'               => "required|numeric|gte:1|lt:24",
+            'candidate_duties'              => "required|max:500",
+            'surname'                       => "required|max:50",
             'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'type_of_id_number'             => "required",
-            'email'                         => "required|email|unique:front_users,email," . session()->get('frontUser')->id,
-            'profile'                       => 'nullable|image|mimes:jpeg,jpg,png,gif',
+            'number_of_pets'                => "required|lte:10",
+            'pet_medication_or_disabilities'=> "required",
+            'pet_medication_specify'        => "required_if:pet_medication_or_disabilities,==,yes|max:500",
+            'password' => [
+                'nullable',
+                'string',
+                'min:8',                    // must be at least 10 characters in length
+                'regex:/[a-z]/',            // must contain at least one lowercase letter
+                'regex:/[A-Z]/',            // must contain at least one uppercase letter
+                'regex:/[0-9]/',            // must contain at least one digit
+                'regex:/[@$!%*#?&]/',       // must contain a special character
+            ],
         ],[
-            'profile.required_if'   => 'The profile field is required',
+            'password.string'                    => 'The password must be a string.',
+            'password.min'                       => 'The password must be at least 8 characters in length.',
+            'password.regex'                     => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
+            'pet_medication_specify.required_if' => "Specification field is required when you have selected yes on the above field.",
         ]);
 
         $family                  = FrontUser::find($id);

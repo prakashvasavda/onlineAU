@@ -273,7 +273,7 @@ class FrontRegisterController extends Controller{
             'cell_number'                   => "required|min:10|max:10|regex:/[0-9]{9}/",
             'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'start_date'                    => "required",
-            'duration_needed'               => "required|numeric|gt:1|lt:24",
+            'duration_needed'               => "required|numeric|gte:1|lt:24",
             'petrol_reimbursement'          => "required",
             'candidate_duties'              => "required|max:500",
             'terms_and_conditions'          => "required",
