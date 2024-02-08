@@ -363,37 +363,48 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="marital_status">Marital Status</label>
-                                            <select class="form-control" name="marital_status">
-                                                <option selected disabled>select</option>
-                                                <option value="married" {{ isset($candidate->marital_status) && $candidate->marital_status == 'married' ? 'selected' : null }}>married</option>
-                                                <option value="single" {{ isset($candidate->marital_status) && $candidate->marital_status == 'single' ? 'selected' : null }}>Single</option>
-                                                <option value="in a relationship" {{ isset($candidate->marital_status) && $candidate->marital_status == "in a relationship" ? 'selected' : null }}>In a relationship</option>
-                                            </select>
+                                            <label for="marital_status">Marital Status <span class="text-danger">*</span></label>
+                                            <ul class="flex-wrap">
+                                                <li class="radio-box-item"><input type="radio" name="marital_status" value="married" {{ isset($candidate->marital_status) && $candidate->marital_status == 'married' ? 'checked' : null }}><label>&nbsp;Married</label></li>
+                                                <li class="radio-box-item"><input type="radio" name="marital_status" value="single" {{ isset($candidate->marital_status) && $candidate->marital_status == 'single' ? 'checked' : null }}><label>&nbsp;Single</label></li>
+                                                <li class="radio-box-item"><input type="radio" name="marital_status" value="in a relationship" {{ isset($candidate->marital_status) && $candidate->marital_status == "in a relationship" ? 'checked' : null }}><label>&nbsp;In a Relationship</label></li>
+                                            </ul>
                                         </div>
+                                        @if ($errors->has('marital_status'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('marital_status') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="dependants">Do you have any dependants</label>
-                                            <select class="form-control" name="dependants">
-                                                <option selected disabled>select</option>
-                                                <option value="yes" {{ isset($candidate->dependants) && $candidate->dependants == 'yes' ? 'selected' : null }}>Yes</option>
-                                                <option value="no" {{ isset($candidate->dependants) && $candidate->dependants == 'no' ? 'selected' : null }}>No</option>
-                                            </select>
+                                            <label for="dependants">Do you have any dependants <span class="text-danger">*</span></label>
+                                            <ul class="flex-wrap">
+                                                <li><input type="radio" name="dependants" value="yes" {{ isset($candidate->dependants) && $candidate->dependants == 'yes' ? 'checked' : null }}>&nbsp;Yes</li>
+                                                <li><input type="radio" name="dependants" value="no"  {{ isset($candidate->dependants) && $candidate->dependants == 'no' ? 'checked' : null }}>&nbsp;No</li>
+                                            </ul>
                                         </div>
+                                        @if ($errors->has('dependants'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('dependants') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="chronical_medication">Are you on any chronical medication</label>
-                                            <select class="form-control" name="chronical_medication">
-                                                <option selected disabled>select</option>
-                                                <option value="yes" {{ isset($candidate->chronical_medication) && $candidate->chronical_medication == 'yes' ? 'selected' : null }}>Yes</option>
-                                                <option value="no" {{ isset($candidate->chronical_medication) && $candidate->chronical_medication == 'no' ? 'selected' : null }}>No</option>
-                                            </select>
+                                        <div class="form-input">
+                                            <label for="chronical_medication">Are you on any chronical medication <span class="text-danger">*</span></label>
+                                            <ul class="flex-wrap">
+                                                <li><input type="radio" name="chronical_medication" value="yes" {{ isset($candidate->chronical_medication) && $candidate->chronical_medication == 'yes' ? 'checked' : null }}>&nbsp;Yes</li>
+                                                <li><input type="radio" name="chronical_medication" value="no" {{ isset($candidate->chronical_medication) && $candidate->chronical_medication == 'no' ? 'checked' : null }}>&nbsp;No</li>
+                                            </ul>
                                         </div>
+                                        @if ($errors->has('chronical_medication'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('chronical_medication') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
