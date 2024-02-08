@@ -20,7 +20,6 @@
                         </div>
                     @endif
                 </div>
-               
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Edit {{isset($menu) ? ucwords($menu) : ""}}</h1>
@@ -50,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-input">
-                                            <label>Candidate Photo</label>
+                                            <label>Candidate Photo <span class="text-danger">*</span></label>
                                             <div class="box">
                                                 <div class="js--image-preview"></div>
                                                 <div class="upload-options">
@@ -119,7 +118,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="profile">Profile Picture</label>
+                                            <label for="profile">Profile Picture <span class="text-danger">*</span></label>
                                             <input type="file" id="profile" name="profile" placeholder="" class="form-control" value="{{ old('profile', isset($family->profile) ? $family->profile : null) }}" accept="image/*">
                                             @if ($errors->has('profile'))
                                                 <span class="text-danger">
@@ -141,11 +140,10 @@
                                        </div>
                                    </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="type_of_id_number">Type of ID Number </label>
+                                            <label for="type_of_id_number">Type of ID Number <span class="text-danger">*</span></label>
                                             <ul class="radio-box-list">
                                                 <li class="radio-box-item"><input type="radio" checked name="type_of_id_number" value="south_african" {{ old('type_of_id_number', isset($family->type_of_id_number) ? $family->type_of_id_number : '') === "south_african" ? "checked" : '' }} >&nbsp;South Africa ID</li>
                                                 <li class="radio-box-item"><input type="radio" name="type_of_id_number" value="other" {{ old('type_of_id_number', isset($family->type_of_id_number) ? $family->type_of_id_number : '') === "other" ? "checked" : '' }} >&nbsp;Foreign ID</li>
@@ -157,7 +155,6 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="id_number">ID number <span class="text-danger">*</span></label>
@@ -170,7 +167,6 @@
                                          </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
@@ -183,7 +179,6 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="start_date">Start date <span class="text-danger">*</span></label>
@@ -196,7 +191,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
@@ -213,7 +207,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
@@ -237,7 +230,7 @@
                                             @else
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <div class="form-group">
-                                                        <label for="type_of_pet">Type of pet </label>
+                                                        <label for="type_of_pet">Type of pet <span class="text-danger">*</span></label>
                                                         <select id="age_children" name="type_of_pet[]" class="form-control">
                                                             <option value="dog" {{isset($value) && $value == "dog" ? "selected" : ""}}>Dog</option>
                                                             <option value="cat" {{isset($value) && $value == "cat" ? "selected" : ""}}>Cat</option>
@@ -255,7 +248,7 @@
 
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <div class="form-group">
-                                                        <label for="gender_of_children">How many pets </label>
+                                                        <label for="gender_of_children">How many pets <span class="text-danger">*</span></label>
                                                         <input type="number" id="gender_of_children" name="how_many_pets[]" value="{{ isset($family->how_many_pets[$key]) ? $family->how_many_pets[$key] : null }}" placeholder="" class="form-control">
                                                         @if ($errors->has('how_many_pets'))
                                                             <span class="text-danger">
@@ -269,7 +262,7 @@
                                     @else
                                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                             <div class="form-group">
-                                                <label for="age_children">Type of pet </label>
+                                                <label for="age_children">Type of pet <span class="text-danger">*</span></label>
                                                 <select id="age_children" name="type_of_pet[]" class="form-control" >
                                                     <option value="dog">Dog</option>
                                                     <option value="cat">Cat</option>
@@ -284,10 +277,9 @@
                                                 @endif
                                             </div>
                                         </div>
-
                                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                             <div class="form-group">
-                                                <label for="gender_of_children">How many pets</label>
+                                                <label for="gender_of_children">How many pets<span class="text-danger">*</span></label>
                                                 <input type="number" id="gender_of_children" name="how_many_pets[]" value="1" placeholder="" class="form-control">
                                                 @if ($errors->has('how_many_pets'))
                                                     <span class="text-danger">
@@ -298,14 +290,13 @@
                                         </div>
                                     @endif 
                                 </div>
-
                                 <div id="more_childern" class="row p-0">
                                     @if(isset($family->type_of_pet) && !empty($family->type_of_pet) && is_array($family->type_of_pet))
                                         @foreach($family->type_of_pet as $key => $value)
                                             @if ($key >= 1) 
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                      <div class="form-group">
-                                                        <label for="type_of_pet">Type of pet </label>
+                                                        <label for="type_of_pet">Type of pet <span class="text-danger">*</span></label>
                                                         <select id="age_children" name="type_of_pet[]" class="form-control">
                                                             <option value="dog" {{isset($value) && $value == "dog" ? "selected" : ""}}>Dog</option>
                                                             <option value="cat" {{isset($value) && $value == "cat" ? "selected" : ""}}>Cat</option>
@@ -323,7 +314,7 @@
 
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                      <div class="form-group">
-                                                        <label for="gender_of_children">How many pets</label>
+                                                        <label for="gender_of_children">How many pets <span class="text-danger">*</span></label>
                                                         <input type="number" id="gender_of_children" name="how_many_pets[]" value="{{ isset($family->how_many_pets[$key]) ? $family->how_many_pets[$key] : null }}" placeholder="" class="form-control">
                                                         @if ($errors->has('how_many_pets'))
                                                             <span class="text-danger">
@@ -336,11 +327,10 @@
                                         @endforeach     
                                     @endif 
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities </label>
+                                            <label for="pet_medication_or_disabilities">Is your pet on any medication or have any disabilities <span class="text-danger">*</span></label>
                                                 <ul class="radio-box-list" >
                                                     <li><input type="radio" name="pet_medication_or_disabilities" value="yes" {{ isset($family->pet_medication_or_disabilities) && $family->pet_medication_or_disabilities == "yes" ? 'checked' : '' }}>&nbsp;Yes</li>
                                                     <li><input type="radio" name="pet_medication_or_disabilities" value="no" {{ isset($family->pet_medication_or_disabilities) && $family->pet_medication_or_disabilities == "no" ? 'checked' : '' }}>&nbsp;No</li>
@@ -352,25 +342,23 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <label for="pet_medication_or_disabilities_specification">If yes please specify</label>
-                                        <textarea id="pet_medication_or_disabilities_specification" name="pet_medication_or_disabilities_specification" placeholder="" class="form-control" rows="2" >{{ old('pet_medication_or_disabilities_specification', isset($family->pet_medication_or_disabilities_specification) ? $family->pet_medication_or_disabilities_specification : '') }}</textarea>
-                                        <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-                                        @if ($errors->has('pet_medication_or_disabilities_specification'))
+                                        <label for="pet_medication_specify">If yes please specify</label>
+                                        <textarea id="pet_medication_specify" name="pet_medication_specify" placeholder="" class="form-control" rows="2" >{{ old('pet_medication_specify', isset($family->pet_medication_specify) ? $family->pet_medication_specify : '') }}</textarea>
+                                        <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+                                        @if ($errors->has('pet_medication_specify'))
                                             <span class="text-danger">
-                                                <strong>{{ $errors->first('pet_medication_or_disabilities_specification') }}</strong>
+                                                <strong>{{ $errors->first('pet_medication_specify') }}</strong>
                                             </span>
                                         @endif
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="candidate_duties">What will be the candidate’s duties <span class="text-danger">*</span></label>
                                             <textarea id="candidate_duties" name="candidate_duties" class="form-control" rows="8" >{{ old('candidate_duties', isset($family->candidate_duties) ? $family->candidate_duties : '') }}</textarea>
-                                            <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
+                                            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
                                             @if ($errors->has('candidate_duties'))
                                                 <span class="text-danger">
                                                     <strong>{{ $errors->first('candidate_duties') }}</strong>
@@ -378,7 +366,6 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">When do you need a petsitter </label>
@@ -504,14 +491,12 @@
                                 <button type="submit" id="submitButton" class="btn btn-info float-right">Update</button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </section>
     </div>
 @endsection
-
 @section('jquery')
 <script type="text/javascript">
 
@@ -538,9 +523,9 @@
             for (var i = no_children - 1; i >= 1; i--) {
                 $("#more_childern")
                 .append(`
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="type_of_pet">Type of pet</label>
+                            <label for="type_of_pet">Type of pet <span class="text-danger">*</span></label>
                             <select name="type_of_pet[]" class="form-control">
                                 <option value="dog">Dog</option>
                                 <option value="cat">Cat</option>
@@ -551,9 +536,9 @@
                         </div>
                     </div> 
 
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="gender_of_children">How many pets</label>
+                            <label for="gender_of_children">How many pets <span class="text-danger">*</span></label>
                             <input type="number" id="how_many_pets" name="how_many_pets" value="1" placeholder="" class="form-control" >
                         </div>
                     </div>
@@ -575,6 +560,12 @@
             closeOnCancel: false
         };
     }
+
+    /*for debuggging purpose*/
+    @if($errors->any())
+        var errorMessages = {!! json_encode($errors->toArray()) !!};
+        console.log(errorMessages);
+    @endif
 </script>
 @endsection
 

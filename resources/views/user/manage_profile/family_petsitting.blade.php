@@ -279,12 +279,12 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="pet_medication_or_disabilities_specification">If yes please specify.</label>
-                <textarea id="pet_medication_or_disabilities_specification" class="form-field" name="pet_medication_or_disabilities_specification" placeholder="" rows="2" >{{ old('pet_medication_or_disabilities_specification', isset($family->pet_medication_or_disabilities_specification) ? $family->pet_medication_or_disabilities_specification : '') }}</textarea>
+                <label for="pet_medication_specify">If yes please specify.</label>
+                <textarea id="pet_medication_specify" class="form-field" name="pet_medication_specify" placeholder="" rows="2" >{{ old('pet_medication_specify', isset($family->pet_medication_specify) ? $family->pet_medication_specify : '') }}</textarea>
                 <p class="text-end fw-light fst-italic small">Minimum 200 Characters</p>
-                @if ($errors->has('pet_medication_or_disabilities_specification'))
+                @if ($errors->has('pet_medication_specify'))
                     <span class="text-danger">
-                        <strong>{{ $errors->first('pet_medication_or_disabilities_specification') }}</strong>
+                        <strong>{{ $errors->first('pet_medication_specify') }}</strong>
                     </span>
                 @endif
             </div>
