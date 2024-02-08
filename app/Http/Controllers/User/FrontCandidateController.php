@@ -181,6 +181,19 @@ class FrontCandidateController extends Controller{
             $rules['religion']                          = "required";
         }
 
+        if(isset($candidate->role) && $candidate->role == "petsitters"){
+            $rules['working_permit']                    = "required_if:south_african_citizen,==,no";
+            $rules['smoker_or_non_smoker']              = "required";
+            $rules['special_needs_specifications']      = "required_if:experience_special_needs,==,yes|max:500";
+            $rules['about_yourself']                    = "required|max:500";
+            $rules['salary_expectation']                = "required|numeric|digits_between:2,10";  
+            $rules['situated']                          = "required|max:50";
+            $rules['animals_comfortable_with']          = "required";
+            $rules['experience_with_animals']           = "required";
+            $rules['do_you_like_animals']               = "required";
+            $rules['childcare_experience']              = "required";
+        }
+
         $message = [
             'experience_with_animals'               => 'Please specify whether you have experience with animals',
             'heading.*.required'                    => 'The heading field is required.',
@@ -202,6 +215,10 @@ class FrontCandidateController extends Controller{
             'password.min'                          => 'The password must be at least 8 characters in length.',
             'password.regex'                        => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
         ];
+
+        if(isset($candidate->role) && $candidate->role == "petsitters"){
+            $message['childcare_experience.required'] = "The petsitting experience field is required";
+        }
 
         $validator = Validator::make($data, $rules, $message);
 
