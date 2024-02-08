@@ -31,7 +31,6 @@
                     </span>
                 @endif
             </div>
-
              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input mb-3">
                     <label for="name">Name <span class="text-danger">*</span></label>
@@ -236,7 +235,7 @@
                     </span>
                 @endif
             </div>
-             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="additional_language">Additional Language <span class="text-danger">*</span></label>
                     <select id="additional_language" name="additional_language" multiple class="form-field">
@@ -397,9 +396,9 @@
                     <li><input type="radio" name="car_accident" value="no" {{ isset($candidate->car_accident) && $candidate->car_accident == 'no' ? 'checked' : null }}>No</li>
                 </ul>
             </div>
-            @if ($errors->has('live_in_or_live_out'))
+            @if ($errors->has('car_accident'))
                 <span class="text-danger">
-                    <strong>{{ $errors->first('live_in_or_live_out') }}</strong>
+                    <strong>{{ $errors->first('car_accident') }}</strong>
                 </span>
             @endif
         </div>

@@ -132,6 +132,30 @@ class FrontCandidateController extends Controller{
             $rules['religion']                          = "required";
         }
 
+        if(isset($candidate->role) && $candidate->role == "babysitters"){
+            $rules['additional_language']               = "required";
+            // $rules['south_african_citizen']             = "required";
+            $rules['working_permit']                    = "required_if:south_african_citizen,==,no";
+            $rules['first_aid']                         = "required";
+            $rules['smoker_or_non_smoker']              = "required";
+            // $rules['comfortable_with_light_housework']  = "required";
+            // $rules['live_in_or_live_out']               = "required";
+            $rules['marital_status']                    = 'required';
+            $rules['dependants']                        = 'required';
+            $rules['drivers_license']                   = "required";
+            $rules['car_accident']                      = "required";
+            $rules['vehicle']                           = "required";
+            $rules['childcare_experience']              = "required";
+            $rules['experience_special_needs']          = "required";
+            // $rules['special_needs_specifications']      = "required_if:experience_special_needs,==,yes|max:500";
+            $rules['about_yourself']                    = "required|max:500";
+            $rules['ages_of_children_you_worked_with']  = "required";
+            // $rules['available_date']                    = "required";
+            $rules['chronical_medication']              = "required";
+            $rules['hourly_rate_pay']                   = "required|numeric|digits_between:2,5";
+            $rules['religion']                          = "required";
+        }
+
         $message = [
             'experience_with_animals'               => 'Please specify whether you have experience with animals',
             'heading.*.required'                    => 'The heading field is required.',
