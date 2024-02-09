@@ -264,6 +264,12 @@
         var checkUser = {{ session()->has('frontUser') || session()->has('guestUser') ? "true" : "false" }};
         
         if(checkUser == false){
+            var modalLabel    = "Warning";
+            var modalIcon     = "<img src='{{ url('front/images/warning-icon1.png') }}' alt=''>"; 
+            var message       = "You have to sign up your family first"; 
+            setTimeout(function () {
+                showModal(modalLabel, modalIcon, message, "{{ route('family-register', ['service' => 'family']) }}", "Sign Up");
+            }, 500); // 2 seconds delay
             return false;
         }
         
@@ -288,6 +294,14 @@
                 $("#cart-modal-body").html('Go to checkout or add another package');
             }
         });
+    }
+
+    function showModal(modalLabel, modalIcon, message, url, text){
+        $("#alert-modal-label").html(modalLabel);
+        $("#alert-modal-icon").html(modalIcon);
+        $("#alert-modal-body").html(message);
+        $("#alert-modal-action-btn").attr('href', url).text(text);
+        $('#alert-modal').modal('show');
     }
 </script>
 @endsection
