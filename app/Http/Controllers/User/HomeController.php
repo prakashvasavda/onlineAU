@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\Models\FrontUser;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use App\Mail\ContactUs;
 
 
 class HomeController extends Controller{
@@ -25,20 +27,18 @@ class HomeController extends Controller{
 
     public function store_contact(Request $request){
         $data  = $request->all();
+
         $rules = [
             'name'    => "required",
             'email'   => "required|email",
             'number'  => "required",
             'message' => "required",
         ];
-        $message = [
-            'name'    => "The Name must be required",
-            'number'  => "The Number must be required",
-            'message' => "The Mesasge must be required",
-            'email'   => "The Email must be required",
 
-        ];
+        $message = [];
+
         $validator = Validator::make($data, $rules, $message);
+
         if ($validator->fails()) {
             return back()->withInput()
                 ->withErrors($validator)
@@ -46,14 +46,7 @@ class HomeController extends Controller{
                 ->with('message', 'There were some error try again');
         }
 
-        Contact::insert([
-            'name'       => $data['name'],
-            'email'      => $data['email'],
-            'number'     => $data['number'],
-            'message'    => $data['message'],
-            "created_at" => date("Y-m-d H:i:s"),
-            "updated_at" => date("Y-m-d H:i:s"),
-        ]);
+        Mail::to('info@onlineaupairs.co.za')->send(new ContactUs($data));
 
         return redirect()->back()->with('success', 'Thank you for your enquiry. We will be in touch as soon as possible.');
     }

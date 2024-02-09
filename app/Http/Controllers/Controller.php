@@ -144,9 +144,19 @@ class Controller extends BaseController{
         ];
 
         $messages  = [];
+
         $validator = Validator::make($data, $rules, $messages);
+
+        if ($validator->fails()) {
+            return back()->withInput()
+                ->withErrors($validator)
+                ->with('message_type', 'danger')
+                ->with('message', 'There were some error try again');
+        }
+
     
         $services           = is_string($request->services) ? explode(',', $request->services) : [];
+        
         $data = [
             'services'  => $services,
             'family_id' => $request->family_id,
