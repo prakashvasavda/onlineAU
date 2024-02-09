@@ -248,10 +248,18 @@ class FrontRegisterController extends Controller{
     }
 
     private function notify_family($data){
-        // $families = FrontUser::where('family_address', 'like', '%' . $data['area'] . '%')
-        //     ->where('family_notifications', 'yes')
-        //     ->where('')
-        //     ->where('status', 1)
+        $families = FrontUser::where('family_address', 'like', '%' . $data['area'] . '%')
+            ->where('family_notifications', 'yes')
+            ->where('role', 'family')
+            ->where('status', 1)
+            ->pluck('email')
+            ->toArray();
+        
+        if(empty($families)){
+            return false;
+        }
+
+        return true;
     }
 
     public function store_need_babysitter($input, $candidateId){
