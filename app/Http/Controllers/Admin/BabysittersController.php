@@ -10,6 +10,7 @@ use App\Models\NeedsBabysitter;
 use App\Models\FrontUser;
 use Illuminate\Support\Facades\Session;
 use DataTables;
+use Illuminate\Support\Facades\Validator;
 use Mail;
 
 class BabysittersController extends Controller{
@@ -61,21 +62,90 @@ class BabysittersController extends Controller{
     }
 
     public function update_babysitters_candidate(Request $request, $id){
-        $request->validate([
-            'name'                  => 'required',
-            'age'                   => 'required|gt:18|lt:70',
-            'surname'               => "required",
-            'hourly_rate_pay'       => 'sometimes|required',
-            'contact_number'        => 'nullable|min:10|max:10|regex:/[0-9]{9}/',
-            'area'                  => 'required',
-            'id_number'             => 'required' . ($request->type_of_id_number == 'south_african' ? ' |numeric|digits:13' : ''),
-            'type_of_id_number'     => "required",
-            'email'                 => "required|email|unique:front_users,email," . $id,
-            'profile'               => 'nullable|image|mimes:jpeg,jpg,png,gif',
-        ]);
+        $data       = $request->all();
+        $candidate  = FrontUser::findorFail($id);
 
+        $rules = [
+            'name'                         => "required|max:50",
+            'age'                          => 'required|gt:18|lt:70',
+            'email'                        => 'required|email', //required|email|unique:front_users,email
+            'surname'                      => 'required|max:50',
+            'contact_number'               => 'required|min:10|max:10|regex:/[0-9]{9}/',
+            'area'                         => 'required|max:100',
+            'id_number'                    => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
+            'type_of_id_number'            => "required",
+            'profile'                      => 'nullable|image|mimes:jpeg,jpg,png,gif',
+            'ethnicity'                    => "required|regex:/^[\pL\s\-]+$/u|max:50",
+            'gender'                       => "required",
+            'home_language'                => "required",
+            'disabilities'                 => "required|max:100",
+            // 'heading.*'                    => 'required|max:255', 
+            'password' => [
+                'nullable',
+                'string',
+                'min:8',                    // must be at least 10 characters in length
+                'regex:/[a-z]/',            // must contain at least one lowercase letter
+                'regex:/[A-Z]/',            // must contain at least one uppercase letter
+                'regex:/[0-9]/',            // must contain at least one digit
+                'regex:/[@$!%*#?&]/',       // must contain a special character
+            ],
+        ];
 
-        $candidate                              = FrontUser::findorFail($id);
+        if(isset($candidate->role) && $candidate->role == "babysitters"){
+            $rules['additional_language']               = "required";
+            // $rules['south_african_citizen']             = "required";
+            $rules['working_permit']                    = "required_if:south_african_citizen,==,no";
+            $rules['first_aid']                         = "required";
+            $rules['smoker_or_non_smoker']              = "required";
+            // $rules['comfortable_with_light_housework']  = "required";
+            // $rules['live_in_or_live_out']               = "required";
+            $rules['marital_status']                    = 'required';
+            $rules['dependants']                        = 'required';
+            $rules['drivers_license']                   = "required";
+            $rules['car_accident']                      = "required";
+            $rules['vehicle']                           = "required";
+            $rules['childcare_experience']              = "required";
+            $rules['experience_special_needs']          = "required";
+            // $rules['special_needs_specifications']      = "required_if:experience_special_needs,==,yes|max:500";
+            $rules['about_yourself']                    = "required|max:500";
+            $rules['ages_of_children_you_worked_with']  = "required";
+            // $rules['available_date']                    = "required";
+            $rules['chronical_medication']              = "required";
+            $rules['hourly_rate_pay']                   = "required|numeric|digits_between:2,5";
+            $rules['religion']                          = "required";
+        }
+
+        $message = [
+            'experience_with_animals'               => 'Please specify whether you have experience with animals',
+            'heading.*.required'                    => 'The heading field is required.',
+            'first_aid.required'                    => "Please specify whether you have first aid training.",
+            'experience_special_needs.required'     => "Please indicate whether you have experience with special needs.",
+            'live_in_or_live_out.required'          => "Please specify whether you prefer to live in or live out.",
+            'smoker_or_non_smoker.required'         => "Please indicate whether you are a smoker or non-smoker",
+            'drivers_license.required'              => "Please indicate whether you have a driver's license",
+            'marital_status.required'               => "Please select your marital status",
+            'dependants.required'                   => "Please indicate whether you have any dependants.",
+            'chronical_medication.required'         => "Please specify whether you are currently on any chronic medication.",
+            'car_accident.required'                 => "Please indicate whether you have ever been in a car accident",
+            'vehicle.required'                      => "Please select whether you have your own vehicle.",
+            'ethnicity.regex'                       => "The ethnicity field can only contain letters",
+            'salary_expectation.required'           => 'The salary expectation field is required',
+            'hourly_rate_pay.required'              => 'The hourly rate amount field is required',
+            'password.required'                     => 'The password field is required.',
+            'password.string'                       => 'The password must be a string.',
+            'password.min'                          => 'The password must be at least 8 characters in length.',
+            'password.regex'                        => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
+        ];
+
+        $validator = Validator::make($data, $rules, $message);
+
+        if ($validator->fails()) {
+            return back()->withInput()
+                ->withErrors($validator)
+                ->with('message_type', 'danger')
+                ->with('message', 'There were some error try again');
+        }
+
         $input                                  = $request->all();
         $input['password']                      = !empty($request->password) ? Hash::make($request->password) : $candidate->password;
         $input['email']                         = !empty($request->email) ? $request->email : $candidate->email;
