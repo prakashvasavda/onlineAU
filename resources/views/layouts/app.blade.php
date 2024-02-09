@@ -108,7 +108,7 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('admin.families') }}" class="nav-link @if($menu=='family') active @endif">
-                                        <i class="fa fa-user-friends nav-icon"></i>
+                                        <i class="far fa-circle nav-icon"></i>
                                         <p>Manage Families</p>
                                     </a>
                                 </li>
@@ -117,7 +117,7 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ url('admin/family-petsitting') }}" class="nav-link @if($menu=='family petsitting') active @endif">
-                                        <i class="fa fa-restroom nav-icon"></i>
+                                        <i class="far fa-circle nav-icon"></i>
                                         <p>Manage Petisitting</p>
                                     </a>
                                 </li>
@@ -132,26 +132,26 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{route('admin.candidates.aupairs')}}" class="nav-link @if($menu=='aupairs') active @endif">
-                                        <i class="fa fa-home nav-icon"></i>
+                                        <i class="far fa-circle nav-icon"></i>
                                         <p>Manage Au-Pairs</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('admin.candidates.babysitters')}}" class="nav-link @if($menu=='babysitters') active @endif">
-                                        <i class="fa fa-baby nav-icon"></i>
+                                        <i class="far fa-circle nav-icon"></i>
                                         <p>Manage Babysitters</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('admin.candidates.petsitters')}}" class="nav-link @if($menu=='petsitters') active @endif">
-                                        <i class="fa fa-dog nav-icon"></i>
+                                        <i class="far fa-circle nav-icon"></i>
                                         <p>Manage Petsitters</p>
                                     </a>
                                 </li>
 
                                  <li class="nav-item">
                                     <a href="{{route('admin.candidates.nannies')}}" class="nav-link @if($menu=='nannies') active @endif">
-                                        <i class="fa fa-user-nurse nav-icon"></i>
+                                        <i class="far fa-circle nav-icon"></i>
                                         <p>Manage Nannies</p>
                                     </a>
                                 </li>
