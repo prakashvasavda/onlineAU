@@ -239,8 +239,19 @@ class FrontRegisterController extends Controller{
         }
 
         $status = $this->store_need_babysitter($data, $candidateId);
+
+        /* send email to the admin */
         Mail::to('info@onlineaupairs.co.za')->send(new CandidateRegistration($data));
+        /* send email to the family */
+        //$this->notify_family($data);
         return redirect()->route('sign-up', ['service' => 'family']);
+    }
+
+    private function notify_family($data){
+        // $families = FrontUser::where('family_address', 'like', '%' . $data['area'] . '%')
+        //     ->where('family_notifications', 'yes')
+        //     ->where('')
+        //     ->where('status', 1)
     }
 
     public function store_need_babysitter($input, $candidateId){
