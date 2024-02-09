@@ -297,6 +297,20 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
+                                            <label for="disabilities">Disabilities <span class="text-danger">*</span></label>
+                                            <input type="text" id="disabilities" name="disabilities" placeholder="" class="form-control" value="{{ old('disabilities', isset($candidate->disabilities) ? $candidate->disabilities : null) }}">
+                                            @if ($errors->has('disabilities'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('disabilities ') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
                                             <label for="home_language">Home Language <span class="text-danger">*</span></label>
                                             <select id="home_language" name="home_language" class="form-control">
                                                 <option value="" selected="selected" disabled="disabled">Select one</option>
@@ -329,9 +343,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="additional_language">Additional Language <span class="text-danger">*</span></label>
@@ -362,18 +374,6 @@
                                             @if ($errors->has('additional_language'))
                                                 <span class="text-danger">
                                                     <strong>{{ $errors->first('additional_language ') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="disabilities">Disabilities <span class="text-danger">*</span></label>
-                                            <input type="text" id="disabilities" name="disabilities" placeholder="" class="form-control" value="{{ old('disabilities', isset($candidate->disabilities) ? $candidate->disabilities : null) }}">
-                                            @if ($errors->has('disabilities'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('disabilities ') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
