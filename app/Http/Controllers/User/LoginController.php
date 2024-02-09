@@ -31,10 +31,19 @@ class LoginController extends Controller{
             'password'  => 'required',
         ]);
 
-        $user = FrontUser::where('email', $request->email)->first();
+        /* email is duplicate in this case */
+        $users = FrontUser::where('email', $request->email)->get();
 
-        /* check if the user it authnticated */
-        if(!$user || !Hash::check($request->password, $user->password)){
+        if($users->isEmpty() || !isset($users)){
+            return back()->withErrors(['email' => 'Invalid credentials']);
+        }
+
+        /* get unique user based on the password */
+        $user = $users->first(function ($user) use ($request) {
+            return Hash::check($request->password, $user->password);
+        });
+
+        if(!$user){
             return back()->withErrors(['email' => 'Invalid credentials']);
         }
         
