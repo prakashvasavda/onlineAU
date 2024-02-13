@@ -605,7 +605,7 @@
                 @endif
             @endforeach
         @endif
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="day_hour">What are your available days and hours</label>
                 <div class="shift-table">
@@ -733,7 +733,103 @@
                     </span>
                 @enderror
             </div>
-        </div>
+        </div> 
+
+        {{-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="mb-2">
+                <label for="day_hour">What are your available days and hours</label>
+            </div>
+            <div class="table-responsive timeForm">
+                <table class="table table-borderless table-sm">
+                    <tbody>
+                        <tr id="monday-row">
+                            <td><input type="checkbox" name="monday[]" value="" id=""></td>
+                            <td>Monday</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td>to</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td onclick="addCalendarRow('monday')">
+                                <a href="javaScript:;" class="btn add-btn icon">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr id="tuesday-row">
+                            <td><input type="checkbox" name="" value="" id="" checked></td>
+                            <td>Tuesday</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td>to</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td onclick="addCalendarRow('tuesday')">
+                                <a href="javaScript:;" class="btn add-btn icon">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr id="wednesday-row">
+                            <td><input type="checkbox" name="" value="" id="" checked></td>
+                            <td>Wednesday</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td>to</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td onclick="addCalendarRow('wednesday')">
+                                <a href="javaScript:;" class="btn add-btn icon">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr id="thursday-row">
+                            <td><input type="checkbox" name="" value="" id="" checked></td>
+                            <td>Thursday</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td>to</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td onclick="addCalendarRow('thursday')">
+                                <a href="javaScript:;" class="btn add-btn icon">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr id="friday-row">
+                            <td><input type="checkbox" name="" value="" id="" checked></td>
+                            <td>Friday</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td>to</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td onclick="addCalendarRow('friday')">
+                                <a href="javaScript:;" class="btn add-btn icon">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr id="saturday-row">
+                            <td><input type="checkbox" name="" value="" id=""></td>
+                            <td>Saturday</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td>to</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td onclick="addCalendarRow('saturday')">
+                                <a href="javaScript:;" class="btn add-btn icon">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr id="sunday-row">
+                            <td><input type="checkbox" name="" value="" id=""></td>
+                            <td>Sunday</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td>to</td>
+                            <td><input type="datetime-local" name="" value="" id=""></td>
+                            <td onclick="addCalendarRow('sunday')">
+                                <a href="javaScript:;" class="btn add-btn icon">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> --}}
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-input">

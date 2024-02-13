@@ -175,3 +175,26 @@ function initAutocomplete() {
 }
 
 google.maps.event.addDomListener(window, 'load', initAutocomplete);
+
+/* add dynamic row to candidate calender*/
+function addCalendarRow(rowId){
+  $('#'+rowId+'-row').after(`
+    <tr>
+      <td><input type="checkbox" name="" value="" id="" checked></td>
+      <td class="text-capitalize">`+rowId+`</td>
+      <td><input type="datetime-local" name="" value="" id=""></td>
+      <td>to</td>
+      <td><input type="datetime-local" name="" value="" id=""></td>
+      <td onclick="removeCalendarRow(event)">
+        <a href="javaScript:;" class="btn add-btn icon">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      </td>
+    </tr>
+  `);
+}
+
+/* remove calender row */
+function removeCalendarRow(event){
+  event.target.closest('tr').remove();
+}
