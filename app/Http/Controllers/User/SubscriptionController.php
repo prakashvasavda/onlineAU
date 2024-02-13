@@ -20,7 +20,6 @@ class SubscriptionController extends Controller{
             $data = [
                 'user_id'       => $user_id,
                 'package_id'    => isset($value['id']) ? $value['id'] : null,
-                'package_name'  => isset($value['item_name']) ? $value['item_name'] : null,
                 'start_date'    => date("Y-m-d"),
                 'end_date'      => isset($value['duration']) ? Carbon::now()->addDays($value['duration'])->format('Y-m-d') : null,
                 'status'        => 'pending',
