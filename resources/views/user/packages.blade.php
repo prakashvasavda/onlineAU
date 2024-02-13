@@ -269,7 +269,7 @@
             var message       = "You have to sign up your family first"; 
             setTimeout(function () {
                 showModal(modalLabel, modalIcon, message, "{{ route('family-register', ['service' => 'family']) }}", "Sign Up");
-            }, 500); // 2 seconds delay
+            }, 500); // 5 milseconds delay
             return false;
         }
         

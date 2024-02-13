@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Mail;
 use App\Mail\CandidateRegistration;
+use App\Mail\FamilySignupNotification;
 
 
 class FrontRegisterController extends Controller{    
@@ -242,24 +243,31 @@ class FrontRegisterController extends Controller{
 
         /* send email to the admin */
         Mail::to('info@onlineaupairs.co.za')->send(new CandidateRegistration($data));
-        /* send email to the family */
-        //$this->notify_family($data);
+        /* send email to the family when a user mathiching with their loaction has registered*/
+        $this->notify_family($data);
         return redirect()->route('sign-up', ['service' => 'family']);
     }
 
     private function notify_family($data){
-        $families = FrontUser::where('family_address', 'like', '%' . $data['area'] . '%')
-            ->where('family_notifications', 'yes')
-            ->where('role', 'family')
-            ->where('status', 1)
-            ->pluck('email')
-            ->toArray();
+        try {
+            $families = FrontUser::where('family_address', 'like', '%' . $data['area'] . '%')
+                ->where('family_notifications', 'yes')
+                ->where('role', 'family')
+                ->where('status', 1)
+                ->pluck('email')
+                ->toArray();
         
-        if(empty($families)){
-            return false;
-        }
+            if (empty($families) || !isset($families)) {
+                return false;
+            }
 
-        return true;
+            Mail::to($families)->send(new FamilySignupNotification($data));
+            return true;
+
+        } catch (\Exception $e) {
+            \Log::info(print_r($e, true));
+            return false; 
+        }
     }
 
     public function store_need_babysitter($input, $candidateId){

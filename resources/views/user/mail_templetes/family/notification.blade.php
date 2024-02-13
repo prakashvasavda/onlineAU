@@ -25,19 +25,20 @@
     </style>
 </head>
 <body>
-    <div class="container">  
-        <p>Hello Admin,</p>
+    <div class="container">
+        <p>Dear Family,</p>
         
-        <p>You have received a new message from the contact form on your website. Below are the details:</p>
+        <p>We're thrilled to share that a new Online Au Pair candidate from <i>{{ isset($area) ? $area : "" }}</i> has just joined our platform. Here are a few details about them:</p>
         
-        <p><strong>Name:</strong>{{ isset($name) ? $name : "" }}</p>
-        <p><strong>Email:</strong>{{ isset($email) ? $email : "" }}</p>
-        <p><strong>Message:</strong></p>
+        <p><strong>Name:</strong>{{ isset($name) ? ucfirst($name) : "" }}</p>
+        <p><strong>Service:</strong>{{ isset($role) ? ucfirst($role) : "" }}</p>
+        <p><strong>Experience:</strong>{{ isset($childcare_experience) ? $childcare_experience : "" }}</p>
+        <p><strong>About The candidate:</strong></p>
         <blockquote>
-            {{ isset($messages) ? $messages : "" }}
+            {{ isset($about_yourself) ? $about_yourself : "" }}
         </blockquote>
 
-        <p>Please respond to the sender at their provided email address.</p>
+        <p>Login now to view their complete profile and explore if they could be the perfect match for your family</p>
 
         <p>Thank you!</p>
     </div>

@@ -13,39 +13,33 @@ class FamilySignupNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
-    {
-        //
+    private $data;
+
+    public function __construct($data){
+        $this->data = $data;
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Family Signup Notification',
+            subject: 'New Candidate From Your Location',
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'user.mail_templetes.family.notification',
+            with: [
+                'area'                  => isset($this->data['area'])  ? $this->data['area']  : "",
+                'role'                  => isset($this->data['role'])  ? $this->data['role']  : "",
+                'name'                  => isset($this->data['name'])  ? $this->data['name']  : "",
+                'childcare_experience'  => isset($this->data['childcare_experience']) ? $this->data['childcare_experience'] : "",
+                'about_yourself'        => isset($this->data['about_yourself'])  ? $this->data['about_yourself']  : "",
+            ],
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
     public function attachments(): array
     {
         return [];
