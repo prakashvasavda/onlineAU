@@ -2,26 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\User\SubscriptionController;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
+use App\Models\FrontUser;
+use App\Models\FamilyReview;
 use Illuminate\Http\Request;
-use App\Models\CandidateFavoriteFamily;
-use App\Models\FamilyFavoriteCandidate;
+use App\Models\CandidateReview;
+use App\Models\NeedsBabysitter;
+use Yajra\DataTables\DataTables;
 use App\Models\CandidateFavourite;
 use App\Models\PreviousExperience;
-use App\Models\NeedsBabysitter;
-use App\Models\CandidateReview;
-use App\Models\FamilyReview;
-use App\Models\FrontUser;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use DataTables;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Models\CandidateFavoriteFamily;
+use App\Models\FamilyFavoriteCandidate;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\User\SubscriptionController;
 
-class FamilyPetsittingController extends Controller
-{
-    
+class FamilyPetsittingController extends Controller{
+
+    protected $calendarController;
+
+    public function __construct(CalendarController $calendarController){
+        $this->calendarController = $calendarController;
+    }
     public function index(Request $request){
         $data['menu']   = "family petsitting";
        
@@ -81,13 +86,14 @@ class FamilyPetsittingController extends Controller
     public function edit(string $id){
         $data['menu']                                       = "family petsitting";
         $data['family']                                     = FrontUser::findOrFail($id);
-        $data['availability']                               = NeedsBabysitter::where('family_id', $id)->first();
-        $data['morning_availability']                       = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability']                     = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']                       = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']                         = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        $data['availability']                               = NeedsBabysitter::where('family_id', $id)->first(); 
         $data['family']['type_of_pet']                      = !empty($data['family']->type_of_pet) ? json_decode($data['family']->type_of_pet, true) : array();
         $data['family']['how_many_pets']                    = !empty($data['family']->how_many_pets) ? json_decode($data['family']->how_many_pets, true) : array();
+        
+        /* decode calender data */
+        $calender           = $data['candidate']['calendars'];
+        $data['calendars']  = $this->calendarController->decode_calender($calender);
+
         return view('admin.family_petsitting.edit', $data);
     }
 
@@ -130,7 +136,11 @@ class FamilyPetsittingController extends Controller
         $input['profile']                       = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
         $input['type_of_pet']                   = isset($request->type_of_pet) ? json_encode($request->type_of_pet) : null;
         $input['how_many_pets']                 = isset($request->how_many_pets) ? json_encode($request->how_many_pets) : null;
-        $calender                               = $this->store_family_calender($input, $id);
+        
+        /* store calender data */
+        $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
+        $this->calendarController->store_calender($calender, $id);
+        
         $update_status                          = $family->update($input);
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }

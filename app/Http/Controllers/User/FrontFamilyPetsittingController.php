@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\FrontUser;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\CalendarController;
 
 
 class FrontFamilyPetsittingController extends Controller{
+
+    protected $calendarController;
+
+    public function __construct(CalendarController $calendarController){
+        $this->calendarController = $calendarController;
+    }
  
     public function store(Request $request){
         $request->validate([
@@ -57,7 +64,9 @@ class FrontFamilyPetsittingController extends Controller{
         $input['updated_at']    = date("Y-m-d H:i:s");
 
         $familyId   = FrontUser::insertGetId($input);
-        $calender   = $this->store_family_calender($request->all(), $familyId);
+
+        $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
+        $this->calendarController->store_calender($calender, $familyId);
 
         /*redirect to payment packages*/
         $input['user_id']        = $familyId;
@@ -78,7 +87,10 @@ class FrontFamilyPetsittingController extends Controller{
         $input['how_many_pets']  = isset($request->how_many_pets) ? json_encode($request->how_many_pets) : null;
         $input['updated_at']     = date("Y-m-d H:i:s");
 
-        $calender                = $this->store_family_calender($input, $id);
+        /* store calender data */
+        $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
+        $this->calendarController->store_calender($calender, $id);
+
         $update_status           = $family->update($input);
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }

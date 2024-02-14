@@ -754,7 +754,8 @@
                                                 <strong>{{ $errors->first('calender') }}</strong>
                                             </span>
                                         @endif
-                                    </div> 
+                                    </div>
+                                     
                                 </div>
                             </div>
 
