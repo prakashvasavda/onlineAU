@@ -91,7 +91,7 @@ class FamilyPetsittingController extends Controller{
         $data['family']['how_many_pets']                    = !empty($data['family']->how_many_pets) ? json_decode($data['family']->how_many_pets, true) : array();
         
         /* decode calender data */
-        $calender           = $data['candidate']['calendars'];
+        $calender           = $data['family']['calendars'];
         $data['calendars']  = $this->calendarController->decode_calender($calender);
 
         return view('admin.family_petsitting.edit', $data);
