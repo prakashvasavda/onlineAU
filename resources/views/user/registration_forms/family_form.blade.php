@@ -367,129 +367,55 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="">Days and hours needed. </label>
-                    <div class="shift-table">
-                        <div class="table-arrows">
-                            <a href="javaScript:;" id="left-button"><i class="fa-solid fa-chevron-left"></i></a>
-                            <a href="javaScript:;" id="right-button"><i class="fa-solid fa-chevron-right"></i></a>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-borderless table-sm">
-                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <th>Mo</th>
-                                        <th>Tu</th>
-                                        <th>We</th>
-                                        <th>Th</th>
-                                        <th>Fr</th>
-                                        <th>Sa</th>
-                                        <th>Su</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Morning: 07:00 – 13:00</th>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="mo_morning"  {{ (old('morning') !== null && in_array("mo_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="tu_morning"  {{ (old('morning') !== null && in_array("tu_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="we_morning"  {{ (old('morning') !== null && in_array("we_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="th_morning"  {{ (old('morning') !== null && in_array("th_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="fr_morning"  {{ (old('morning') !== null && in_array("fr_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="sa_morning"  {{ (old('morning') !== null && in_array("sa_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="su_morning"  {{ (old('morning') !== null && in_array("su_morning", old('morning'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Afternoon: 13:00 – 17:00</th>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="mo_afternoon"  {{ (old('afternoon') !== null && in_array("mo_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="tu_afternoon"  {{ (old('afternoon') !== null && in_array("tu_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="we_afternoon"  {{ (old('afternoon') !== null && in_array("we_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="th_afternoon"  {{ (old('afternoon') !== null && in_array("th_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="fr_afternoon"  {{ (old('afternoon') !== null && in_array("fr_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="sa_afternoon"  {{ (old('afternoon') !== null && in_array("sa_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="su_afternoon"  {{ (old('afternoon') !== null && in_array("su_afternoon", old('afternoon'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Evening: 17:00 – 21:00</th>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="mo_evening"  {{ (old('evening') !== null && in_array("mo_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="tu_evening"  {{ (old('evening') !== null && in_array("tu_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="we_evening"  {{ (old('evening') !== null && in_array("we_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="th_evening"  {{ (old('evening') !== null && in_array("th_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="fr_evening"  {{ (old('evening') !== null && in_array("fr_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="sa_evening"  {{ (old('evening') !== null && in_array("sa_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="su_evening"  {{ (old('evening') !== null && in_array("su_evening", old('evening'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Night: 21:00 – 00:00</th>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="mo_night"  {{ (old('night') !== null && in_array("mo_night", old('night'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="tu_night"  {{ (old('night') !== null && in_array("tu_night", old('night'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="we_night"  {{ (old('night') !== null && in_array("we_night", old('night'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="th_night"  {{ (old('night') !== null && in_array("th_night", old('night'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="fr_night"  {{ (old('night') !== null && in_array("fr_night", old('night'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="sa_night"  {{ (old('night') !== null && in_array("sa_night", old('night'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="su_night"  {{ (old('night') !== null && in_array("su_night", old('night'))) ? 'checked' : '' }}></label>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the candidate as needed</p>
-                        </div>
-                    </div>
+                <div class="mb-2">
+                    <label for="day_hour">What are your available days and hours</label>
                 </div>
-            </div>
+                <div class="table-responsive timeForm">
+                    <table class="table table-borderless table-sm">
+                        <tbody>
+                            @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day)
+                                <tr id="{{ $day }}-row">
+                                    <td><input type="checkbox"></td>
+                                    <td>{{ ucfirst($day) }}</td>
+                                    <td><input type="time" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][0] ?? null }}"></td>
+                                    <td>to</td>
+                                    <td><input type="time" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][0] ?? null }}"></td>
+                                    <td onclick="addCalendarRow('{{ $day }}')">
+                                        <a href="javaScript:;" class="btn add-btn icon">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+    
+                                @if(old($day) && is_array(old($day)))
+                                    @foreach(old($day)['start_time'] as $key => $value)
+                                        @if(isset($key) && $key >= 1 && isset(old($day)['start_time'][$key]) && isset(old($day)['end_time'][$key]))
+                                            <tr id="{{ $day }}-row">
+                                                <td><input type="checkbox"></td>
+                                                <td>{{ ucfirst($day) }}</td>
+                                                <td><input type="time" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] }}"></td>
+                                                <td>to</td>
+                                                <td><input type="time" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] }}"></td>
+                                                <td onclick="removeCalendarRow(event)">
+                                                    <a href="javaScript:;" class="btn add-btn icon">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
+                </div>
+                @if ($errors->has('calender'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('calender') }}</strong>
+                    </span>
+                @endif
+            </div> 
 
             <div class="col-12">
                 <div class="form-input switch-input">

@@ -2,30 +2,37 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\User\SubscriptionController;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Payment;
+use App\Models\Features;
+use App\Models\Packages;
+use App\Models\FrontUser;
 use Illuminate\Support\Str;
-use App\Models\CandidateFavoriteFamily;
-use App\Models\FamilyFavoriteCandidate;
+use App\Models\FamilyReview;
+use Illuminate\Http\Request;
+use App\Models\CandidateReview;
+use App\Models\NeedsBabysitter;
 use App\Models\UserSubscription;
 use App\Models\CandidateFavourite;
 use App\Models\PreviousExperience;
-use App\Models\NeedsBabysitter;
-use App\Models\CandidateReview;
-use App\Models\FamilyReview;
-use App\Models\FrontUser;
-use App\Models\Features;
-use App\Models\Packages;
-use App\Models\Payment;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Models\CandidateFavoriteFamily;
+use App\Models\FamilyFavoriteCandidate;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\User\SubscriptionController;
 
 
 class FrontFamilyController extends Controller{
+
+    protected $calendarController;
+
+    public function __construct(CalendarController $calendarController){
+        $this->calendarController = $calendarController;
+    }
 
     public function store_family_review(Request $request){ 
         $request->validate([
@@ -61,23 +68,23 @@ class FrontFamilyController extends Controller{
     public function manage_profile(){
         $familyId                                           = Session::get('frontUser')->id;
         $data['menu']                                       = "manage profile";
-        $data['family']                                     = FrontUser::findOrFail($familyId);
+        $data['family']                                     = FrontUser::with('calendars')->find($familyId);
         $data['family']['family_babysitter_comfortable']    = !empty($data['family']->family_babysitter_comfortable) ? json_decode($data['family']->family_babysitter_comfortable, true) : array();
         $data['family']['family_special_need_value']        = !empty($data['family']->family_special_need_value) ? json_decode($data['family']->family_special_need_value, true) : array();
         $data['family']['describe_kids']                    = !empty($data['family']->describe_kids) ? json_decode($data['family']->describe_kids): array();
         $data['family']['gender_of_children']               = !empty($data['family']->gender_of_children) ? json_decode($data['family']->gender_of_children, true) : array();
         $data['family']['what_do_you_need']                 = !empty($data['family']->what_do_you_need) ? json_decode($data['family']->what_do_you_need, true) : array();
         $data['availability']                               = NeedsBabysitter::where('family_id', $familyId)->first();
-        $data['previous_experience']                        = PreviousExperience::where('candidate_id', $familyId)->get();
-        $data['morning_availability']                       = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability']                     = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']                       = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']                         = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        $data['previous_experience']                        = PreviousExperience::where('candidate_id', $familyId)->get();  
         $data['family']['age']                              = !empty($data['family']->age) ? json_decode($data['family']->age, true) : array();
         
         /*family pettisittimg*/ 
         $data['family']['type_of_pet']                      = !empty($data['family']->type_of_pet) ? json_decode($data['family']->type_of_pet, true) : array();
         $data['family']['how_many_pets']                    = !empty($data['family']->how_many_pets) ? json_decode($data['family']->how_many_pets, true) : array();
+
+        /* decode calender data */
+        $calender           = $data['family']['calendars'];
+        $data['calendars']  = $this->calendarController->decode_calender($calender);
 
         $role = strtolower(Session::get('frontUser')->role);
         $family_profile_forms = [
@@ -162,9 +169,11 @@ class FrontFamilyController extends Controller{
         $input['gender_of_children']            = isset($request->gender_of_children) ? json_encode($request->gender_of_children) : null;
         $input['what_do_you_need']              = isset($request->what_do_you_need) ? json_encode($request->what_do_you_need) : null;
 
-        $availability                           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_family_calender($input, $familyId) : 0;
-        $update_status                          = $family->update($input);
+         /* store calender data */
+         $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
+         $this->calendarController->store_calender($calender, $familyId);
 
+        $update_status                          = $family->update($input);
         return redirect()->back()->with('success', 'profile updated successfully.');
     }
 

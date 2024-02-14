@@ -686,130 +686,6 @@
                                         </div>
                                     </div>
 
-                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="day_hour">What are your available days and hours</label>
-                                            <div class="table-responsive">
-                                                <table class="table table-borderless table-sm">
-                                                    <tbody>
-                                                            <tr>
-                                                                <td></td>
-                                                                <th>Mo</th>
-                                                                <th>Tu</th>
-                                                                <th>We</th>
-                                                                <th>Th</th>
-                                                                <th>Fr</th>
-                                                                <th>Sa</th>
-                                                                <th>Su</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Morning: 07:00 – 13:00</th>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="morning[]" value="mo_morning"  {{ isset($morning) && in_array("mo_morning", $morning ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="morning[]" value="tu_morning"  {{ isset($morning) && in_array("tu_morning", $morning ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="morning[]" value="we_morning"  {{ isset($morning) && in_array("we_morning", $morning ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="morning[]" value="th_morning"  {{ isset($morning) && in_array("th_morning", $morning ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="morning[]" value="fr_morning"  {{ isset($morning) && in_array("fr_morning", $morning ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="morning[]" value="sa_morning"  {{ isset($morning) && in_array("sa_morning", $morning ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="morning[]" value="su_morning"  {{ isset($morning) && in_array("su_morning", $morning ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Afternoon: 13:00 – 17:00</th>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="afternoon[]" value="mo_afternoon"  {{ isset($afternoon) && in_array("mo_afternoon", $afternoon ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="afternoon[]" value="tu_afternoon"  {{ isset($afternoon) && in_array("tu_afternoon", $afternoon ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="afternoon[]" value="we_afternoon"  {{ isset($afternoon) && in_array("we_afternoon", $afternoon ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="afternoon[]" value="th_afternoon"  {{ isset($afternoon) && in_array("th_afternoon", $afternoon ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="afternoon[]" value="fr_afternoon"  {{ isset($afternoon) && in_array("fr_afternoon", $afternoon ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="afternoon[]" value="sa_afternoon"  {{ isset($afternoon) && in_array("sa_afternoon", $afternoon ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="afternoon[]" value="su_afternoon"  {{ isset($afternoon) && in_array("su_afternoon", $afternoon ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Evening: 17:00 – 21:00</th>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="evening[]" value="mo_evening"  {{ isset($evening) && in_array("mo_evening", $evening ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="evening[]" value="tu_evening"  {{ isset($evening) && in_array("tu_evening", $evening ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="evening[]" value="we_evening"  {{ isset($evening) && in_array("we_evening", $evening ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="evening[]" value="th_evening"  {{ isset($evening) && in_array("th_evening", $evening ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="evening[]" value="fr_evening"  {{ isset($evening) && in_array("fr_evening", $evening ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="evening[]" value="sa_evening"  {{ isset($evening) && in_array("sa_evening", $evening ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="evening[]" value="su_evening"  {{ isset($evening) && in_array("su_evening", $evening ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Night: 21:00 – 00:00</th>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="night[]" value="mo_night" id="" {{ isset($night) && in_array("mo_night", $night ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="night[]" value="tu_night" id="" {{ isset($night) && in_array("tu_night", $night ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="night[]" value="we_night" id="" {{ isset($night) && in_array("we_night", $night ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="night[]" value="th_night" id="" {{ isset($night) && in_array("th_night", $night ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="night[]" value="fr_night" id="" {{ isset($night) && in_array("fr_night", $night ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="night[]" value="sa_night" id="" {{ isset($night) && in_array("sa_night", $night ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                                <td>
-                                                                    <label><input type="checkbox" name="night[]" value="su_night" id="" {{ isset($night) && in_array("su_night", $night ) ? 'checked' : '' }}></label>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                </table>
-                                                <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
-                                            </div>
-                                            @error('morning')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div> --}}
-
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="mb-2">
                                             <label for="day_hour">What are your available days and hours</label>
@@ -831,7 +707,7 @@
                                                             </td>
                                                         </tr>
                         
-                                                        @if(isset($calendars[$day]) && is_array($calendars[$day]))
+                                                         @if(isset($calendars[$day]) && !empty($calendars[$day]) && is_array($calendars[$day]))
                                                             @foreach($calendars[$day]['start_time'] as $key => $value)
                                                                 @if(isset($key) && $key >= 1 && isset($calendars[$day]['start_time'][$key]) && isset($calendars[$day]['end_time'][$key]))
                                                                     <tr id="{{ $day }}-row">
@@ -879,8 +755,6 @@
                                             </span>
                                         @endif
                                     </div> 
-
-
                                 </div>
                             </div>
 
