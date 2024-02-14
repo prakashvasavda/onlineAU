@@ -706,7 +706,7 @@
                                     </td>
                                 </tr>
 
-                                @if(isset($calendars[$day]) && is_array($calendars[$day]))
+                                @if(isset($calendars[$day]) && !empty($calendars[$day]) && is_array($calendars[$day]))
                                     @foreach($calendars[$day]['start_time'] as $key => $value)
                                         @if(isset($key) && $key >= 1 && isset($calendars[$day]['start_time'][$key]) && isset($calendars[$day]['end_time'][$key]))
                                             <tr id="{{ $day }}-row">

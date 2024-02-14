@@ -479,7 +479,7 @@
                                     </td>
                                 </tr>
 
-                                @if(isset($calendars[$day]) && is_array($calendars[$day]))
+                                @if(isset($calendars[$day]) && !empty($calendars[$day]) && is_array($calendars[$day]))
                                     @foreach($calendars[$day]['start_time'] as $key => $value)
                                         @if(isset($key) && $key >= 1 && isset($calendars[$day]['start_time'][$key]) && isset($calendars[$day]['end_time'][$key]))
                                             <tr id="{{ $day }}-row">
@@ -527,7 +527,7 @@
                     </span>
                 @endif
             </div> 
-
+            
             <div class="col-12">
                 <div class="form-input-btn text-center">
                     <input type="submit" class="btn btn-primary round" value="update">
