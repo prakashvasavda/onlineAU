@@ -138,11 +138,11 @@
                                         <div class="form-group">
                                             <label for="id_number">ID Number <span class="text-danger">*</span></label>
                                             <input type="text" id="id_number" name="id_number" placeholder="" class="form-control"  value="{{ old('id_number', isset($candidate->id_number) ? $candidate->id_number : null) }}">
-                                            @error('id_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                            @if ($errors->has('id_number'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('id_number') }}</strong>
                                                 </span>
-                                            @enderror
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -313,7 +313,7 @@
                                         <div class="form-group">
                                             <label for="home_language">Home Language <span class="text-danger">*</span></label>
                                             <select id="home_language" name="home_language" class="form-control">
-                                                <option value="" selected="selected" disabled="disabled">Select one</option>
+                                                <option value="">Select one</option>
                                                 <option value="english" {{ isset($candidate->home_language) && $candidate->home_language == "english" ? 'selected' : null }}>English</option>
                                                 <option value="afrikaans" {{ isset($candidate->home_language) && $candidate->home_language == "afrikaans" ? 'selected' : null }}>Afrikaans</option>
                                                 <option value="zulu (isizulu)" {{ isset($candidate->home_language) && $candidate->home_language == "zulu (isizulu)" ? 'selected' : null }}>Zulu (isiZulu)</option>
@@ -617,7 +617,7 @@
                                         <div class="form-group">
                                             <label for="childcare_experience">How many years of childcare experience do you have <span class="text-danger">*</span></label>
                                             <select id="childcare_experience" name="childcare_experience" class="form-control">
-                                                <option value="" selected="selected" disabled="disabled">Select</option>
+                                                <option value="">Select</option>
                                                 <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
                                                 <option value="1 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1 years" ? "selected" : '' }}>1 years</option>
                                                 <option value="1.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1.5 years" ? "selected" : '' }}>1.5 years</option>
@@ -630,9 +630,9 @@
                                                 <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
                                                 <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
                                             </select>
-                                            @if ($errors->has('about_yourself'))
+                                            @if ($errors->has('childcare_experience'))
                                                 <span class="text-danger">
-                                                    <strong>{{ $errors->first('about_yourself') }}</strong>
+                                                    <strong>{{ $errors->first('childcare_experience') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
