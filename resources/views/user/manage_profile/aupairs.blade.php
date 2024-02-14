@@ -168,7 +168,7 @@
                     <label for="religion">Religion <span class="text-danger">*</span></label>
                     <select id="religion" name="religion" class="form-field">
                         <option value="" selected="selected" disabled="disabled">Select one</option>
-                        <option value="african traditional &amp; Diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>
+                        <option value="african traditional and diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional and diasporic' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>
                         <option value="agnostic" {{ isset($candidate->religion) && $candidate->religion == 'agnostic' ? 'selected' : null }}>Agnostic</option>
                         <option value="atheist" {{ isset($candidate->religion) && $candidate->religion == 'atheist' ? 'selected' : null }}>Atheist</option>
                         <option value="baha'i" {{ isset($candidate->religion) && $candidate->religion == "baha'i" ? 'selected' : null }}>Baha'i</option>
@@ -340,393 +340,338 @@
                     </span>
                 @endif
             </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="experience_special_needs">Do you have experience with special needs <span class="text-danger">*</span></label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="experience_special_needs" value="yes" {{ isset($candidate->experience_special_needs) && $candidate->experience_special_needs == 'yes' ? 'checked' : null }}>Yes</li>
-                    <li><input type="radio" name="experience_special_needs" value="no" {{ isset($candidate->experience_special_needs) && $candidate->experience_special_needs == 'no' ? 'checked' : null }}>No</li>
-                </ul>
-            </div>
-            @if ($errors->has('experience_special_needs'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('experience_special_needs') }}</strong>
-                </span>
-            @endif
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label for="about_yourself">Tell us a bit more about yourself <span class="text-danger">*</span></label>
-            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
-            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
-            @if ($errors->has('about_yourself'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('about_yourself') }}</strong>
-                </span>
-            @endif
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label for="special_needs_specifications">If yes please specify</label>
-            <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications', $candidate->special_needs_specifications) }}</textarea>
-            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
-            @if ($errors->has('special_needs_specifications'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('special_needs_specifications') }}</strong>
-                </span>
-            @endif
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
-                <ul class="radio-box-list">
-                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="live_in" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live_in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
-                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
-                </ul>
-                @if ($errors->has('live_in_or_live_out'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('live_in_or_live_out') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="car_accident">Have you ever been in a car accident <span class="text-danger">*</span></label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="car_accident" value="yes" {{ isset($candidate->car_accident) && $candidate->car_accident == 'yes' ? 'checked' : null }}>Yes</li>
-                    <li><input type="radio" name="car_accident" value="no" {{ isset($candidate->car_accident) && $candidate->car_accident == 'no' ? 'checked' : null }}>No</li>
-                </ul>
-            </div>
-            @if ($errors->has('car_accident'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('car_accident') }}</strong>
-                </span>
-            @endif
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="first_aid">Do you have first aid <span class="text-danger">*</span></label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="first_aid" value="yes" {{ old('first_aid', $candidate->first_aid) == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="first_aid" value="no" {{ old('first_aid', $candidate->first_aid) == "no" ? "checked" : '' }}>No</li>
-                </ul>
-            </div>
-            @if ($errors->has('first_aid'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('first_aid') }}</strong>
-                </span>
-            @endif
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="smoker_or_non_smoker">Smoker / Non-Smoker <span class="text-danger">*</span></label>
-                <ul class="radio-box-list">
-                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="smoker" {{ $candidate->smoker_or_non_smoker == 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
-                    <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ $candidate->smoker_or_non_smoker == 'non_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
-                </ul>
-            </div>
-            @if ($errors->has('smoker_or_non_smoker'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('smoker_or_non_smoker') }}</strong>
-                </span>
-            @endif
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="available_date">From which date would you be available <span class="text-danger">*</span></label>
-                <input type="date" id="available_date" name="available_date" value="{{ old('available_date', $candidate->available_date) }}" class="form-field">
-                @if ($errors->has('available_date'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('available_date') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
-                <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
-                    <option value="" disabled>Select</option>
-                    <option value="0_12_months" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("0_12_months", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>0-12 months</option>
-                    <option value="1_3_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("1_3_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>1-3 years</option>
-                    <option value="4_7_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("4_7_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>4-7 years</option>
-                    <option value="8_13_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("8_13_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>8-13 years</option>
-                    <option value="13_16_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("13_16_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>13-16 years</option>
-                </select>
-                @if ($errors->has('ages_of_children_you_worked_with'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="childcare_experience">How many years of childcare experience do you have <span class="text-danger">*</span></label>
-                <select id="childcare_experience" name="childcare_experience" class="form-field">
-                    <option value="" selected="selected" disabled="disabled">Select</option>
-                    <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
-                    <option value="1 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1 years" ? "selected" : '' }}>1 years</option>
-                    <option value="1.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1.5 years" ? "selected" : '' }}>1.5 years</option>
-                    <option value="2 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2 years" ? "selected" : '' }}>2 years</option>
-                    <option value="2.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2.5 years" ? "selected" : '' }}>2.5 years</option>
-                    <option value="3 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3 yearsyearsyears" ? "selected" : '' }}>3 years</option>
-                    <option value="3.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3.5 yearsyears" ? "selected" : '' }}>3.5 years</option>
-                    <option value="4 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4 years" ? "selected" : '' }}>4 years</option>
-                    <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 yearsyearsyears" ? "selected" : '' }}>4.5 years</option>
-                    <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
-                    <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
-                </select>
-            </div>
-            @if ($errors->has('ages_of_children_you_worked_with'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
-                </span>
-            @endif
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="disabilities">Disabilities <span class="text-danger">*</span></label>
-                <input type="text" id="disabilities" name="disabilities" placeholder="" class="form-field" value="{{ old('disabilities', isset($candidate->disabilities) ? $candidate->disabilities : null) }}">
-            </div>
-            @if ($errors->has('disabilities'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('disabilities') }}</strong>
-                </span>
-            @endif
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger">*</span></label>
-                    <div class="input-group mb-1">
-                        <span class="input-group-text">R</span>
-                            <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{ old('hourly_rate_pay', isset($candidate->hourly_rate_pay) ? $candidate->hourly_rate_pay : '') }}">
-                        <span class="input-group-text">hr</span>
-                    </div>
-                @if ($errors->has('hourly_rate_pay'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
-                <label for="salary_expectation">What is your salary expectation <span class="text-danger">*</span></label>
-                <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
-                @if ($errors->has('salary_expectation'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('salary_expectation') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-inputs" id="dynamic_field">
-                <div class="d-flex flex-row justify-content-between align-items-start">
-                    <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
-                    <div class="icon-option all-in-one d-flex flex-row">
-                        <p>Add Reference</p>
-                        <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
-                    </div>
-                </div>
-                
-                @if(isset($previous_experience) && !$previous_experience->isEmpty())
-                    @foreach($previous_experience as $key => $value)
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="daterange">Date range</label>
-                                    <input type="text" id="daterange" name="daterange[]" class="form-field" placeholder=""  value="{{ old('daterange[]', isset($value->daterange) ? $value->daterange : null) }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="heading">Heading</label>
-                                    <input type="text" id="heading" name="heading[]" class="form-field" placeholder="" value="{{ old('heading[]', isset($value->heading) ? $value->heading : null) }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="description">Description</label>
-                                    <input type="text" id="description" name="description[]" class="form-field" placeholder="" value="{{ old('description[]', isset($value->description) ? $value->description : null) }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="reference">Reference Name</label>
-                                    <input type="text" id="reference" name="reference[]" class="form-field" placeholder="" value="{{ old('reference[]', isset($value->reference) ? $value->reference : null) }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="tel_number">Tel Number</label>
-                                    <input type="text" id="tel_number" name="tel_number[]" class="form-field" placeholder=""value="{{ old('tel_number[]', isset($value->tel_number) ? $value->tel_number : null) }}">
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="daterange">Date range</label>
-                                    <input type="text" id="daterange" name="daterange[]" value="10/01/2023 - 12/15/2023" class="form-field" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="heading">Heading</label>
-                                    <input type="text" id="heading" name="heading[]" class="form-field" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="description">Description</label>
-                                    <input type="text" id="description" name="description[]" class="form-field" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="reference">Reference Name</label>
-                                    <input type="text" id="reference" name="reference[]" class="form-field" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-input">
-                                    <label for="tel_number">Tel Number</label>
-                                    <input type="text" id="tel_number" name="tel_number[]" class="form-field" placeholder="">
-                                </div>
-                            </div>
-                        </div>
-                @endif
-            </div>
-        </div>
-
-            <div class="row"></div>
-            
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="day_hour">What are your available days and hours </label>
-                    <div class="table-responsive">
-                        <table class="table table-borderless table-sm">
-                            <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <th>Mo</th>
-                                        <th>Tu</th>
-                                        <th>We</th>
-                                        <th>Th</th>
-                                        <th>Fr</th>
-                                        <th>Sa</th>
-                                        <th>Su</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Morning: 07:00 – 13:00</th>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="mo_morning" {{ isset($morning_availability) && in_array("mo_morning", $morning_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="tu_morning" {{ isset($morning_availability) && in_array("tu_morning", $morning_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="we_morning" {{ isset($morning_availability) && in_array("we_morning", $morning_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="th_morning" {{ isset($morning_availability) && in_array("th_morning", $morning_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="fr_morning" {{ isset($morning_availability) && in_array("fr_morning", $morning_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="sa_morning" {{ isset($morning_availability) && in_array("sa_morning", $morning_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="morning[]" value="su_morning" {{ isset($morning_availability) && in_array("su_morning", $morning_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Afternoon: 13:00 – 17:00</th>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="mo_afternoon" {{ isset($afternoon_availability) && in_array("mo_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="tu_afternoon" {{ isset($afternoon_availability) && in_array("tu_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="we_afternoon" {{ isset($afternoon_availability) && in_array("we_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="th_afternoon" {{ isset($afternoon_availability) && in_array("th_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="fr_afternoon" {{ isset($afternoon_availability) && in_array("fr_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="sa_afternoon" {{ isset($afternoon_availability) && in_array("sa_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="afternoon[]" value="su_afternoon" {{ isset($afternoon_availability) && in_array("su_afternoon", $afternoon_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Evening: 17:00 – 21:00</th>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="mo_evening" {{ isset($evening_availability) && in_array("mo_evening", $evening_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="tu_evening" {{ isset($evening_availability) && in_array("tu_evening", $evening_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="we_evening" {{ isset($evening_availability) && in_array("we_evening", $evening_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="th_evening" {{ isset($evening_availability) && in_array("th_evening", $evening_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="fr_evening" {{ isset($evening_availability) && in_array("fr_evening", $evening_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="sa_evening" {{ isset($evening_availability) && in_array("sa_evening", $evening_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="evening[]" value="su_evening" {{ isset($evening_availability) && in_array("su_evening", $evening_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Night: 21:00 – 00:00</th>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="mo_night" {{ isset($night_availability) && in_array("mo_night", $night_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="tu_night" {{ isset($night_availability) && in_array("tu_night", $night_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="we_night" {{ isset($night_availability) && in_array("we_night", $night_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="th_night" {{ isset($night_availability) && in_array("th_night", $night_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="fr_night" {{ isset($night_availability) && in_array("fr_night", $night_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="sa_night" {{ isset($night_availability) && in_array("sa_night", $night_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                        <td>
-                                            <label><input type="checkbox" name="night[]" value="su_night" {{ isset($night_availability) && in_array("su_night", $night_availability ) ? 'checked' : '' }}></label>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                        </table>
-                        <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
-                    </div>
-                    @error('morning')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                    <label for="experience_special_needs">Do you have experience with special needs <span class="text-danger">*</span></label>
+                    <ul class="d-flex flex-wrap">
+                        <li><input type="radio" name="experience_special_needs" value="yes" {{ isset($candidate->experience_special_needs) && $candidate->experience_special_needs == 'yes' ? 'checked' : null }}>Yes</li>
+                        <li><input type="radio" name="experience_special_needs" value="no" {{ isset($candidate->experience_special_needs) && $candidate->experience_special_needs == 'no' ? 'checked' : null }}>No</li>
+                    </ul>
+                </div>
+                @if ($errors->has('experience_special_needs'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('experience_special_needs') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="about_yourself">Tell us a bit more about yourself <span class="text-danger">*</span></label>
+                <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
+                <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+                @if ($errors->has('about_yourself'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('about_yourself') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="special_needs_specifications">If yes please specify</label>
+                <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications', $candidate->special_needs_specifications) }}</textarea>
+                <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+                @if ($errors->has('special_needs_specifications'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('special_needs_specifications') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
+                    <ul class="radio-box-list">
+                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="live in" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
+                        <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live out" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
+                    </ul>
+                    @if ($errors->has('live_in_or_live_out'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('live_in_or_live_out') }}</strong>
                         </span>
-                    @enderror
+                    @endif
                 </div>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="car_accident">Have you ever been in a car accident <span class="text-danger">*</span></label>
+                    <ul class="d-flex flex-wrap">
+                        <li><input type="radio" name="car_accident" value="yes" {{ isset($candidate->car_accident) && $candidate->car_accident == 'yes' ? 'checked' : null }}>Yes</li>
+                        <li><input type="radio" name="car_accident" value="no" {{ isset($candidate->car_accident) && $candidate->car_accident == 'no' ? 'checked' : null }}>No</li>
+                    </ul>
+                </div>
+                @if ($errors->has('car_accident'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('car_accident') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="first_aid">Do you have first aid <span class="text-danger">*</span></label>
+                    <ul class="d-flex flex-wrap">
+                        <li><input type="radio" name="first_aid" value="yes" {{ old('first_aid', $candidate->first_aid) == "yes" ? "checked" : '' }}>Yes</li>
+                        <li><input type="radio" name="first_aid" value="no" {{ old('first_aid', $candidate->first_aid) == "no" ? "checked" : '' }}>No</li>
+                    </ul>
+                </div>
+                @if ($errors->has('first_aid'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('first_aid') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="smoker_or_non_smoker">Smoker / Non-Smoker <span class="text-danger">*</span></label>
+                    <ul class="radio-box-list">
+                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="smoker" {{ $candidate->smoker_or_non_smoker == 'smoker' ? 'checked' : '' }}><label>Smoker</label></li>
+                        <li class="radio-box-item"><input type="radio" name="smoker_or_non_smoker" value="non_smoker" {{ $candidate->smoker_or_non_smoker == 'non_smoker' ? 'checked' : '' }}><label>Non Smoker</label></li>
+                    </ul>
+                </div>
+                @if ($errors->has('smoker_or_non_smoker'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('smoker_or_non_smoker') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="available_date">From which date would you be available <span class="text-danger">*</span></label>
+                    <input type="date" id="available_date" name="available_date" value="{{ old('available_date', $candidate->available_date) }}" class="form-field">
+                    @if ($errors->has('available_date'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('available_date') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
+                    <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
+                        <option value="" disabled>Select</option>
+                        <option value="0-12 months" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("0-12 months", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>0-12 months</option>
+                        <option value="1-3 years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("1-3 years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>1-3 years</option>
+                        <option value="4-7 years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("4-7 years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>4-7 years</option>
+                        <option value="8-13 years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("8-13 years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>8-13 years</option>
+                        <option value="13-16 years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("13-16 years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>13-16 years</option>
+                    </select>
+                    @if ($errors->has('ages_of_children_you_worked_with'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('ages_of_children_you_worked_with') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="childcare_experience">How many years of childcare experience do you have <span class="text-danger">*</span></label>
+                    <select id="childcare_experience" name="childcare_experience" class="form-field">
+                        <option value="" selected="selected" disabled="disabled">Select</option>
+                        <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
+                        <option value="1 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1 years" ? "selected" : '' }}>1 years</option>
+                        <option value="1.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1.5 years" ? "selected" : '' }}>1.5 years</option>
+                        <option value="2 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2 years" ? "selected" : '' }}>2 years</option>
+                        <option value="2.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2.5 years" ? "selected" : '' }}>2.5 years</option>
+                        <option value="3 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3 yearsyearsyears" ? "selected" : '' }}>3 years</option>
+                        <option value="3.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3.5 yearsyears" ? "selected" : '' }}>3.5 years</option>
+                        <option value="4 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4 years" ? "selected" : '' }}>4 years</option>
+                        <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 yearsyearsyears" ? "selected" : '' }}>4.5 years</option>
+                        <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
+                        <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
+                    </select>
+                </div>
+                @if ($errors->has('childcare_experience'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('childcare_experience') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="disabilities">Disabilities <span class="text-danger">*</span></label>
+                    <input type="text" id="disabilities" name="disabilities" placeholder="" class="form-field" value="{{ old('disabilities', isset($candidate->disabilities) ? $candidate->disabilities : null) }}">
+                </div>
+                @if ($errors->has('disabilities'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('disabilities') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger">*</span></label>
+                        <div class="input-group mb-1">
+                            <span class="input-group-text">R</span>
+                                <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{ old('hourly_rate_pay', isset($candidate->hourly_rate_pay) ? $candidate->hourly_rate_pay : '') }}">
+                            <span class="input-group-text">hr</span>
+                        </div>
+                    @if ($errors->has('hourly_rate_pay'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <label for="salary_expectation">What is your salary expectation <span class="text-danger">*</span></label>
+                    <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-field @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
+                    @if ($errors->has('salary_expectation'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('salary_expectation') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-inputs" id="dynamic_field">
+                    <div class="d-flex flex-row justify-content-between align-items-start">
+                        <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                        <div class="icon-option all-in-one d-flex flex-row">
+                            <p>Add Reference</p>
+                            <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
+                        </div>
+                    </div>
+                    
+                    @if(isset($previous_experience) && !$previous_experience->isEmpty())
+                        @foreach($previous_experience as $key => $value)
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="daterange">Date range</label>
+                                        <input type="text" id="daterange" name="daterange[]" class="form-field" placeholder=""  value="{{ old('daterange[]', isset($value->daterange) ? $value->daterange : null) }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="heading">Heading</label>
+                                        <input type="text" id="heading" name="heading[]" class="form-field" placeholder="" value="{{ old('heading[]', isset($value->heading) ? $value->heading : null) }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="description">Description</label>
+                                        <input type="text" id="description" name="description[]" class="form-field" placeholder="" value="{{ old('description[]', isset($value->description) ? $value->description : null) }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="reference">Reference Name</label>
+                                        <input type="text" id="reference" name="reference[]" class="form-field" placeholder="" value="{{ old('reference[]', isset($value->reference) ? $value->reference : null) }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="tel_number">Tel Number</label>
+                                        <input type="text" id="tel_number" name="tel_number[]" class="form-field" placeholder=""value="{{ old('tel_number[]', isset($value->tel_number) ? $value->tel_number : null) }}">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="daterange">Date range</label>
+                                        <input type="text" id="daterange" name="daterange[]" value="10/01/2023 - 12/15/2023" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="heading">Heading</label>
+                                        <input type="text" id="heading" name="heading[]" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="description">Description</label>
+                                        <input type="text" id="description" name="description[]" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="reference">Reference Name</label>
+                                        <input type="text" id="reference" name="reference[]" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-input">
+                                        <label for="tel_number">Tel Number</label>
+                                        <input type="text" id="tel_number" name="tel_number[]" class="form-field" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                    @endif
+                </div>
+            </div>
+            <div class="row"></div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="mb-2">
+                    <label for="day_hour">What are your available days and hours</label>
+                </div>
+                <div class="table-responsive timeForm">
+                    <table class="table table-borderless table-sm">
+                        <tbody>
+                            @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day)
+                                <tr id="{{ $day }}-row">
+                                    <td><input type="checkbox"></td>
+                                    <td>{{ ucfirst($day) }}</td>
+                                    <td><input type="time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][0] ?? null }}"></td>
+                                    <td>to</td>
+                                    <td><input type="time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][0] ?? null }}"></td>
+                                    <td onclick="addCalendarRow('{{ $day }}')">
+                                        <a href="javaScript:;" class="btn add-btn icon">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                @if(isset($calendars[$day]) && is_array($calendars[$day]))
+                                    @foreach($calendars[$day]['start_time'] as $key => $value)
+                                        @if(isset($key) && $key >= 1 && isset($calendars[$day]['start_time'][$key]) && isset($calendars[$day]['end_time'][$key]))
+                                            <tr id="{{ $day }}-row">
+                                                <td><input type="checkbox"></td>
+                                                <td>{{ ucfirst($day) }}</td>
+                                                <td><input type="time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][$key] }}"></td>
+                                                <td>to</td>
+                                                <td><input type="time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][$key] }}"></td>
+                                                <td onclick="removeCalendarRow(event)">
+                                                    <a href="javaScript:;" class="btn add-btn icon">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                @endif
+                                
+                                @if(old($day) && is_array(old($day)))
+                                    @foreach(old($day)['start_time'] as $key => $value)
+                                        @if(isset($key) && $key >= 1 && isset(old($day)['start_time'][$key]) && isset(old($day)['end_time'][$key]))
+                                            <tr id="{{ $day }}-row">
+                                                <td><input type="checkbox"></td>
+                                                <td>{{ ucfirst($day) }}</td>
+                                                <td><input type="time" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] }}"></td>
+                                                <td>to</td>
+                                                <td><input type="time" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] }}"></td>
+                                                <td onclick="removeCalendarRow(event)">
+                                                    <a href="javaScript:;" class="btn add-btn icon">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
+                </div>
+                @if ($errors->has('calender'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('calender') }}</strong>
+                    </span>
+                @endif
+            </div> 
 
             <div class="col-12">
                 <div class="form-input-btn text-center">

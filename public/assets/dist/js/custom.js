@@ -65,3 +65,26 @@ function viewSubscriptions(user_id, role){
 function closeModal(){
     $('#subscriptionsModal').modal('toggle'); 
 }
+
+/* add dynamic row to candidate calender*/
+function addCalendarRow(rowId){
+    $('#'+rowId+'-row').after(`
+      <tr>
+        <td><input type="checkbox" checked disabled></td>
+        <td class="text-capitalize">`+rowId+`</td>
+        <td><input type="time" name="`+rowId+`[start_time][]" value=""></td>
+        <td>to</td>
+        <td><input type="time" name="`+rowId+`[end_time][]" value=""></td>
+        <td onclick="removeCalendarRow(event)">
+          <a href="javaScript:;" class="btn add-btn icon">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+    `);
+  }
+  
+  /* remove calender row */
+  function removeCalendarRow(event){
+    event.target.closest('tr').remove();
+  }

@@ -397,8 +397,8 @@
             <div class="form-input">
                 <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
                 <ul class="radio-box-list">
-                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="live_in" {{ old('live_in_or_live_out') === "live in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
-                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out') === "live_out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
+                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" checked value="live in" {{ old('live_in_or_live_out') === "live in" ? 'checked' : '' }} class="form-field"><label>Live in</label></li>
+                    <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live out" {{ old('live_in_or_live_out') === "live out" ? 'checked' : '' }} class="form-field"><label>Live out</label></li>
                 </ul>
                 @if ($errors->has('live_in_or_live_out'))
                     <span class="text-danger">
@@ -605,7 +605,7 @@
                 @endif
             @endforeach
         @endif
-       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        {{-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="day_hour">What are your available days and hours</label>
                 <div class="shift-table">
@@ -733,103 +733,58 @@
                     </span>
                 @enderror
             </div>
-        </div> 
+        </div>  --}}
 
-        {{-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="mb-2">
                 <label for="day_hour">What are your available days and hours</label>
             </div>
             <div class="table-responsive timeForm">
                 <table class="table table-borderless table-sm">
                     <tbody>
-                        <tr id="monday-row">
-                            <td><input type="checkbox" name="monday[]" value="" id=""></td>
-                            <td>Monday</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td>to</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td onclick="addCalendarRow('monday')">
-                                <a href="javaScript:;" class="btn add-btn icon">
-                                    <i class="fa-solid fa-plus"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr id="tuesday-row">
-                            <td><input type="checkbox" name="" value="" id="" checked></td>
-                            <td>Tuesday</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td>to</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td onclick="addCalendarRow('tuesday')">
-                                <a href="javaScript:;" class="btn add-btn icon">
-                                    <i class="fa-solid fa-plus"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr id="wednesday-row">
-                            <td><input type="checkbox" name="" value="" id="" checked></td>
-                            <td>Wednesday</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td>to</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td onclick="addCalendarRow('wednesday')">
-                                <a href="javaScript:;" class="btn add-btn icon">
-                                    <i class="fa-solid fa-plus"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr id="thursday-row">
-                            <td><input type="checkbox" name="" value="" id="" checked></td>
-                            <td>Thursday</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td>to</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td onclick="addCalendarRow('thursday')">
-                                <a href="javaScript:;" class="btn add-btn icon">
-                                    <i class="fa-solid fa-plus"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr id="friday-row">
-                            <td><input type="checkbox" name="" value="" id="" checked></td>
-                            <td>Friday</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td>to</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td onclick="addCalendarRow('friday')">
-                                <a href="javaScript:;" class="btn add-btn icon">
-                                    <i class="fa-solid fa-plus"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr id="saturday-row">
-                            <td><input type="checkbox" name="" value="" id=""></td>
-                            <td>Saturday</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td>to</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td onclick="addCalendarRow('saturday')">
-                                <a href="javaScript:;" class="btn add-btn icon">
-                                    <i class="fa-solid fa-plus"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr id="sunday-row">
-                            <td><input type="checkbox" name="" value="" id=""></td>
-                            <td>Sunday</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td>to</td>
-                            <td><input type="datetime-local" name="" value="" id=""></td>
-                            <td onclick="addCalendarRow('sunday')">
-                                <a href="javaScript:;" class="btn add-btn icon">
-                                    <i class="fa-solid fa-plus"></i>
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day)
+                            <tr id="{{ $day }}-row">
+                                <td><input type="checkbox"></td>
+                                <td>{{ ucfirst($day) }}</td>
+                                <td><input type="time" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][0] ?? null }}"></td>
+                                <td>to</td>
+                                <td><input type="time" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][0] ?? null }}"></td>
+                                <td onclick="addCalendarRow('{{ $day }}')">
+                                    <a href="javaScript:;" class="btn add-btn icon">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            @if(old($day) && is_array(old($day)))
+                                @foreach(old($day)['start_time'] as $key => $value)
+                                    @if(isset($key) && $key >= 1 && isset(old($day)['start_time'][$key]) && isset(old($day)['end_time'][$key]))
+                                        <tr id="{{ $day }}-row">
+                                            <td><input type="checkbox"></td>
+                                            <td>{{ ucfirst($day) }}</td>
+                                            <td><input type="time" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] }}"></td>
+                                            <td>to</td>
+                                            <td><input type="time" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] }}"></td>
+                                            <td onclick="removeCalendarRow(event)">
+                                                <a href="javaScript:;" class="btn add-btn icon">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
                     </tbody>
                 </table>
+                <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
             </div>
-        </div> --}}
+            @if ($errors->has('calender'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('calender') }}</strong>
+                </span>
+            @endif
+        </div> 
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-input">

@@ -2,23 +2,30 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\User\SubscriptionController;
+use Mail;
+use App\Models\Packages;
 use App\Models\FrontUser;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Models\NeedsBabysitter;
 use App\Models\PreviousExperience;
-use Illuminate\Http\Request;
+use App\Mail\CandidateRegistration;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use App\Models\Packages;
+use App\Mail\FamilySignupNotification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Mail;
-use App\Mail\CandidateRegistration;
-use App\Mail\FamilySignupNotification;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\User\SubscriptionController;
 
 
 class FrontRegisterController extends Controller{    
+
+    protected $calendarController;
+
+    public function __construct(CalendarController $calendarController){
+        $this->calendarController = $calendarController;
+    }
     public function index($type){
         $data['type'] = $type == 'nannies' ? 'a nanny' : ($type == 'babysitters' ? 'a babysitter' : ($type == 'petsitters' ? 'A Petsitter' : 'an au-pair'));
         $registration_forms = [
@@ -35,7 +42,7 @@ class FrontRegisterController extends Controller{
 
     public function store_candidate(Request $request){
         $data  = $request->all();
-        
+
         $rules = [
             'name'                         => "required|max:50",
             'age'                          => 'required|gt:18|lt:70',
@@ -239,7 +246,9 @@ class FrontRegisterController extends Controller{
             ]);
         }
 
-        $status = $this->store_need_babysitter($data, $candidateId);
+        /* store calender data */
+        $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
+        $this->calendarController->store_calender($calender, $candidateId);
 
         /* send email to the admin */
         Mail::to('info@onlineaupairs.co.za')->send(new CandidateRegistration($data));
@@ -268,15 +277,6 @@ class FrontRegisterController extends Controller{
             \Log::info(print_r($e, true));
             return false; 
         }
-    }
-
-    public function store_need_babysitter($input, $candidateId){
-        $data['family_id'] = $candidateId;
-        $data['morning']   = !empty($input['morning']) ? json_encode($input['morning']) : null;
-        $data['afternoon'] = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
-        $data['evening']   = !empty($input['evening']) ? json_encode($input['evening']) : null;
-        $data['night']     = !empty($input['night']) ? json_encode($input['night']) : null;
-        return NeedsBabysitter::create($data);
     }
 
     public function family_register($service){
@@ -381,7 +381,9 @@ class FrontRegisterController extends Controller{
             'type_of_id_number'             => $request->type_of_id_number,
         ]);
 
-        $status              = $this->store_need_babysitter($data, $familyId);
+        $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
+        $this->calendarController->store_calender($calender, $familyId);
+
         $package             = Packages::find($request->package);
 
         /*redirect to payment packages*/

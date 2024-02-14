@@ -294,11 +294,11 @@
                                             <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger">*</span></label>
                                             <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-control">
                                                 <option value="" disabled>Select</option>
-                                                <option value="0_12_months" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("0_12_months", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>0-12 months</option>
-                                                <option value="1_3_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("1_3_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>1-3 years</option>
-                                                <option value="4_7_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("4_7_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>4-7 years</option>
-                                                <option value="8_13_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("8_13_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>8-13 years</option>
-                                                <option value="13_16_years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("13_16_years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>13-16 years</option>
+                                                <option value="0-12 months" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("0-12 months", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>0-12 months</option>
+                                                <option value="1-3 years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("1-3 years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>1-3 years</option>
+                                                <option value="4-7 years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("4-7 years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>4-7 years</option>
+                                                <option value="8-13 years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("8-13 years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>8-13 years</option>
+                                                <option value="13-16 years" {{ (!empty($candidate->ages_of_children_you_worked_with) && is_array($candidate->ages_of_children_you_worked_with) && in_array("13-16 years", $candidate->ages_of_children_you_worked_with))? 'selected' : '' }}>13-16 years</option>
                                             </select>
                                             @if ($errors->has('ages_of_children_you_worked_with'))
                                                 <span class="text-danger">
@@ -338,7 +338,7 @@
                                             <label for="religion">Religion <span class="text-danger">*</span></label>
                                             <select id="religion" name="religion" class="form-control">
                                                 <option value="" selected="selected" disabled="disabled">Select one</option>
-                                                <option value="african traditional &amp; Diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>
+                                                <option value="african traditional and diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional and diasporic' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>
                                                 <option value="agnostic" {{ isset($candidate->religion) && $candidate->religion == 'agnostic' ? 'selected' : null }}>Agnostic</option>
                                                 <option value="atheist" {{ isset($candidate->religion) && $candidate->religion == 'atheist' ? 'selected' : null }}>Atheist</option>
                                                 <option value="baha'i" {{ isset($candidate->religion) && $candidate->religion == "baha'i" ? 'selected' : null }}>Baha'i</option>
@@ -553,8 +553,8 @@
                                         <div class="form-group">
                                             <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
                                             <ul class="radio-box-list">
-                                                <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_in" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live_in" ? 'checked' : '' }} class="form-field"><label>&nbsp; Live in</label></li>
-                                                <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live_out" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live_out" ? 'checked' : '' }} class="form-field"><label> &nbsp;Live out</label></li>
+                                                <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live in" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live in" ? 'checked' : '' }} class="form-field"><label>&nbsp; Live in</label></li>
+                                                <li class="radio-box-item"><input type="radio" name="live_in_or_live_out" value="live out" {{ old('live_in_or_live_out', $candidate->live_in_or_live_out) === "live out" ? 'checked' : '' }} class="form-field"><label> &nbsp;Live out</label></li>
                                             </ul>
                                             @if ($errors->has('live_in_or_live_out'))
                                                 <span class="text-danger">
@@ -685,7 +685,8 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="day_hour">What are your available days and hours</label>
                                             <div class="table-responsive">
@@ -807,7 +808,79 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="mb-2">
+                                            <label for="day_hour">What are your available days and hours</label>
+                                        </div>
+                                        <div class="timeForm">
+                                            <table class="table table-bordered table-sm">
+                                                <tbody>
+                                                    @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day)
+                                                        <tr id="{{ $day }}-row">
+                                                            <td><input type="checkbox" checked disabled></td>
+                                                            <td>{{ ucfirst($day) }}</td>
+                                                            <td><input type="time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][0] ?? null }}"></td>
+                                                            <td>to</td>
+                                                            <td><input type="time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][0] ?? null }}"></td>
+                                                            <td onclick="addCalendarRow('{{ $day }}')">
+                                                                <a href="javaScript:;" class="btn add-btn icon">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                        
+                                                        @if(isset($calendars[$day]) && is_array($calendars[$day]))
+                                                            @foreach($calendars[$day]['start_time'] as $key => $value)
+                                                                @if(isset($key) && $key >= 1 && isset($calendars[$day]['start_time'][$key]) && isset($calendars[$day]['end_time'][$key]))
+                                                                    <tr id="{{ $day }}-row">
+                                                                        <td><input type="checkbox" checked disabled></td>
+                                                                        <td>{{ ucfirst($day) }}</td>
+                                                                        <td><input type="time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][$key] }}"></td>
+                                                                        <td>to</td>
+                                                                        <td><input type="time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][$key] }}"></td>
+                                                                        <td onclick="removeCalendarRow(event)">
+                                                                            <a href="javaScript:;" class="btn add-btn icon">
+                                                                                <i class="fa fa-trash"></i>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                        
+                                                        @if(old($day) && is_array(old($day)))
+                                                            @foreach(old($day)['start_time'] as $key => $value)
+                                                                @if(isset($key) && $key >= 1 && isset(old($day)['start_time'][$key]) && isset(old($day)['end_time'][$key]))
+                                                                    <tr id="{{ $day }}-row">
+                                                                        <td><input type="checkbox" checked disabled></td>
+                                                                        <td>{{ ucfirst($day) }}</td>
+                                                                        <td><input type="time" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] }}"></td>
+                                                                        <td>to</td>
+                                                                        <td><input type="time" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] }}"></td>
+                                                                        <td onclick="removeCalendarRow(event)">
+                                                                            <a href="javaScript:;" class="btn add-btn icon">
+                                                                                <i class="fa fa-trash"></i>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                            <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
+                                        </div>
+                                        @if ($errors->has('calender'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('calender') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div> 
+
+
                                 </div>
                             </div>
 

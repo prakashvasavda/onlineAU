@@ -2,25 +2,31 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use App\Models\CandidateFavoriteFamily;
-use App\Models\FamilyFavoriteCandidate;
-use App\Models\FamilyReview;
-use App\Models\CandidateReview;
+use App\Models\Payment;
 use App\Models\FrontUser;
+use Illuminate\Support\Str;
+use App\Models\FamilyReview;
+use Illuminate\Http\Request;
+use App\Models\CandidateReview;
 use App\Models\NeedsBabysitter;
 use App\Models\PreviousExperience;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use App\Models\Payment;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Models\CandidateFavoriteFamily;
+use App\Models\FamilyFavoriteCandidate;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\CalendarController;
 
 
 class FrontCandidateController extends Controller{
     
+    protected $calendarController;
+
+    public function __construct(CalendarController $calendarController){
+        $this->calendarController = $calendarController;
+    }
     public function store_candidate_reviews(Request $request){
         $request->validate([
             'review_rating_count'       => 'required',
@@ -55,20 +61,18 @@ class FrontCandidateController extends Controller{
     public function manage_profile(){
         $candidateId                                            = Session::get('frontUser')->id;
         $data['menu']                                           = "manage profile";
-        $data['candidate']                                      = FrontUser::findOrFail($candidateId);
+        $data['candidate']                                      = FrontUser::with('calendars')->find($candidateId);
         $data['candidate']['other_services']                    = !empty($data['candidate']->other_services) ? json_decode($data['candidate']->other_services) : array();
+        $data['previous_experience']                            = PreviousExperience::where('candidate_id', $candidateId)->get();   
         $data['candidate']['ages_of_children_you_worked_with']  = !empty($data['candidate']->ages_of_children_you_worked_with) ? json_decode($data['candidate']->ages_of_children_you_worked_with) : array();
         $data['candidate']['animals_comfortable_with']          = !empty($data['candidate']->animals_comfortable_with) ? json_decode($data['candidate']->animals_comfortable_with) : array();
-        $data['availability']                                   = NeedsBabysitter::where('family_id', $candidateId)->first();
-        $data['previous_experience']                            = PreviousExperience::where('candidate_id', $candidateId)->get();
-        $data['morning_availability']                           = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability']                         = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']                           = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']                             = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
-        
 
-        $role = strtolower(Session::get('frontUser')->role);
-        
+        /* decode calender data */
+        $calender           = $data['candidate']['calendars'];
+        $data['calendars']  = $this->calendarController->decode_calender($calender);
+
+        /* get candidate role profile page */
+        $role               = strtolower(Session::get('frontUser')->role);
         $candidate_profile_forms = [
             'au-pairs'      => 'user.manage_profile.aupairs',
             'nannies'       => 'user.manage_profile.nannies',
@@ -237,8 +241,12 @@ class FrontCandidateController extends Controller{
         $input['profile']       = $request->hasFile('profile') ? $this->store_image($request->file('profile')) : $candidate->profile;
         $input['other_services']= !empty($request->other_services) ? json_encode($request->other_services) : null;
         $experiance             = !empty($input['daterange']) ? $this->store_previous_experience($input, $candidateId) : 0;
-        $availability           = isset($request->morning) || isset($request->afternoon) || isset($request->evening) ? $this->store_candidate_calender($input, $candidateId) : 0;
         $update_status          = $candidate->update($input);
+        
+        /* store calender data */
+        $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
+        $this->calendarController->store_calender($calender, $candidateId);
+
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 

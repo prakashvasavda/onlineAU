@@ -106,6 +106,10 @@ class FrontUser extends Model
         return $this->hasMany(UserSubscription::class, 'user_id');
     }
 
+    public function calendars(){
+        return $this->hasOne(Calendar::class, 'front_user_id');
+    }
+
     protected static function boot(){
         parent::boot();
 

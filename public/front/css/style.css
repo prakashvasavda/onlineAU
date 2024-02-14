@@ -2181,8 +2181,10 @@ header {
     border: 1px solid var(--dust-storm);
     border-radius: 0px 5px 5px 0px;
 }
-span.text-danger{
-    font-size: .875em;
+span.text-danger,
+span.invalid-feedback
+{
+    font-size: small;
 }
 .pricing-plans-main form {
     height: 100%;
@@ -2362,102 +2364,104 @@ span.text-danger{
     min-width: 95px;
 }
 .wpIcon-wrapper {
-            position: fixed;
-            bottom: 30px;
-            right: 35px;
-            width: 48px;
-            z-index: 1;
-        }
-        .wpIcon-wrapper img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-        .timeForm table {
-            vertical-align: middle;
-            text-align: center;
-            font-size: 1.3rem;
-            line-height: 1;
-            font-family: var(--bellefair-font);
-            color: var(--primary);
-        }
-        .timeForm table tr td {
-            border-bottom: 2px solid rgba(255,255,255, .5);
-            padding: 10px 5px;
-        }
-        .timeForm table td:not(:first-child) {
-            background-color: var(--dust-storm);
-        }
-        .timeForm input[type="checkbox"], 
-        .timeForm input[type=checkbox]:checked {
-            background-color: var(--secondary);
-            border-color: var(--secondary);
-        }
-        .timeForm input[type="datetime-local"], 
-        .timeForm input[type="datetime"] {
-            max-width: 150px;
-            background-color: var(--secondary);
-            color: var(--white);
-            border: 0;
-            border-radius: 30px;
-            padding: 5px 10px;
-            font-size: 18px;
-        }
-        .timeForm table .add-btn {
-            font-size: 20px;
-            padding: 0px 10px;
-            color: var(--white) !important;
-            background-color: transparent !important;
-            border: 0px;
-        }
+    position: fixed;
+    bottom: 30px;
+    right: 35px;
+    width: 48px;
+    z-index: 1;
+}
+.wpIcon-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+.timeForm table {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 1.3rem;
+    line-height: 1;
+    font-family: var(--bellefair-font);
+    color: var(--primary);
+}
+.timeForm table tr td {
+    border-bottom: 2px solid rgba(255,255,255, .5);
+    padding: 10px 5px;
+}
+.timeForm table td:not(:first-child) {
+    background-color: var(--dust-storm);
+}
+.timeForm input[type="checkbox"], 
+.timeForm input[type=checkbox]:checked {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+.timeForm input[type="datetime-local"], 
+.timeForm input[type="datetime"] {
+    max-width: 150px;
+    background-color: var(--secondary);
+    color: var(--white);
+    border: 0;
+    border-radius: 30px;
+    padding: 5px 10px;
+    font-size: 18px;
+}
+.timeForm table .add-btn {
+    font-size: 20px;
+    padding: 0px 10px;
+    color: var(--white) !important;
+    background-color: transparent !important;
+    border: 0px;
+}
 
-        /* new candidate hours table */
-        .wpIcon-wrapper {
-            position: fixed;
-            bottom: 30px;
-            right: 35px;
-            width: 48px;
-            z-index: 1;
-        }
-        .wpIcon-wrapper img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-        .timeForm table {
-            vertical-align: middle;
-            text-align: center;
-            font-size: 1.3rem;
-            line-height: 1;
-            font-family: var(--bellefair-font);
-            color: var(--primary);
-        }
-        .timeForm table tr td {
-            border-bottom: 2px solid rgba(255,255,255, .5);
-            padding: 10px 5px;
-        }
-        .timeForm table td:not(:first-child) {
-            background-color: var(--dust-storm);
-        }
-        .timeForm input[type="checkbox"], 
-        .timeForm input[type=checkbox]:checked {
-            background-color: var(--secondary);
-            border-color: var(--secondary);
-        }
-        .timeForm input[type="datetime-local"], 
-        .timeForm input[type="datetime"] {
-            max-width: 150px;
-            background-color: var(--secondary);
-            color: var(--white);
-            border: 0;
-            border-radius: 30px;
-            padding: 5px 10px;
-            font-size: 18px;
-        }
-        .timeForm table .add-btn {
-            font-size: 20px;
-            padding: 0px 10px;
-            color: var(--white) !important;
-            background-color: transparent !important;
-            border: 0px;
-        }
+/* candidate calender */
+.wpIcon-wrapper {
+    position: fixed;
+    bottom: 30px;
+    right: 35px;
+    width: 48px;
+    z-index: 1;
+}
+.wpIcon-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+.timeForm table {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 1.3rem;
+    line-height: 1;
+    font-family: var(--bellefair-font);
+    color: var(--primary);
+}
+.timeForm table tr td {
+    border-bottom: 2px solid rgba(255,255,255, .5);
+    padding: 10px 5px;
+}
+.timeForm table td:not(:first-child) {
+    background-color: var(--dust-storm);
+}
+.timeForm input[type="checkbox"], 
+.timeForm input[type=checkbox]:checked {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+.timeForm input[type="time"], 
+.timeForm input[type="datetime-local"], 
+.timeForm input[type="datetime"] {
+    max-width: 150px;
+    background-color: var(--secondary);
+    color: var(--white);
+    border: 0;
+    border-radius: 30px;
+    padding: 5px 10px;
+    font-size: 18px;
+}
+.timeForm table .add-btn {
+    font-size: 20px;
+    padding: 0px 10px;
+    color: var(--white) !important;
+    background-color: transparent !important;
+    border: 0px;
+}
+/*end of candidate calender*/

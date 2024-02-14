@@ -180,11 +180,11 @@ google.maps.event.addDomListener(window, 'load', initAutocomplete);
 function addCalendarRow(rowId){
   $('#'+rowId+'-row').after(`
     <tr>
-      <td><input type="checkbox" name="" value="" id="" checked></td>
+      <td><input type="checkbox"></td>
       <td class="text-capitalize">`+rowId+`</td>
-      <td><input type="datetime-local" name="" value="" id=""></td>
+      <td><input type="time" name="`+rowId+`[start_time][]" value=""></td>
       <td>to</td>
-      <td><input type="datetime-local" name="" value="" id=""></td>
+      <td><input type="time" name="`+rowId+`[end_time][]" value=""></td>
       <td onclick="removeCalendarRow(event)">
         <a href="javaScript:;" class="btn add-btn icon">
           <i class="fa-solid fa-trash"></i>
