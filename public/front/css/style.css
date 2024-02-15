@@ -2464,4 +2464,7 @@ span.invalid-feedback
     background-color: transparent !important;
     border: 0px;
 }
+.timeForm table tr td:first-child {
+    line-height: 0;
+}
 /*end of candidate calender*/
