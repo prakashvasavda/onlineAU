@@ -47,3 +47,11 @@
 		</div>
 	</div>
 </footer>
+
+{{-- whatsapp link icon --}}
+<div class="wpIcon-wrapper">
+	<a href="https://web.whatsapp.com/" target="_blank">
+		<img  src="{{ asset('front/images/whatsapp-icon.svg') }}" alt="whatsapp">
+	</a>
+</div>
+{{-- end whatsapp link icon --}}
