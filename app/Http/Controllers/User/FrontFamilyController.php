@@ -179,35 +179,18 @@ class FrontFamilyController extends Controller{
 
    
     public function manage_calender(Request $request){
-        $data['menu']                   = "manage calender";
-        $data['candidate']              = FrontUser::findOrFail(Session::get('frontUser')->id);
-        $data['availability']           = NeedsBabysitter::where('family_id', Session::get('frontUser')->id)->first();
-        $data['morning_availability']   = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability'] = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']   = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']     = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        $data['candidate'] = FrontUser::with('calendars')->find(Session::get('frontUser')->id);
+        $calender          = $data['candidate']['calendars'];
+        $data['calendars'] = $this->calendarController->decode_calender($calender);
         return view('user.family.manage_calender', $data);
     }
 
     public function update_family_calender(Request $request, $familyId){
-        $input      = $request->all();
-        $status     = $this->store_family_calender($input, $familyId);
+        $input  = $request->all();
+        $status = $this->calendarController->store_calender($input, $familyId);
         return redirect()->back()->with($status > 0 ? 'success' : 'error', $status > 0 ? 'Family calendar has been updated successfully.' : 'Failed to update Family\'s calendar.');
     }
 
-    public function store_family_calender($input, $candidateId){
-        $candidate = FrontUser::findOrFail($candidateId);
-        if(isset($candidate) && !empty($candidate)){
-            $data['morning']        = !empty($input['morning']) ? json_encode($input['morning']) : null;
-            $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
-            $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
-            $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
-            $data['updated_at']     =  date("Y-m-d H:i:s");
-            $availability           =  $candidate->needs_babysitter()->updateOrCreate(['family_id' => $candidateId], $data);
-            return $availability->id;
-        }        
-    }
-    
     public function view_candidates($service = null){
         $data['menu']       = "view candidates";
         $data['user']       = Session::get('frontUser');

@@ -12,6 +12,7 @@ class CalendarController extends Controller {
     public function store_calender($input, $id){
         $candidate = FrontUser::find($id);
 
+        // Check if input or candidate is empty
         if(empty($input) || empty($candidate)){
             return 0;
         }
@@ -28,7 +29,10 @@ class CalendarController extends Controller {
             'status'        => 1,
         ];
 
-        return $candidate->calendars()->updateOrCreate(['front_user_id' => $id], $data);
+        // Update or create calendar entry for the front user
+        $candidate->calendars()->updateOrCreate(['front_user_id' => $id], $data);
+        // Return success indicator
+        return 1;     
     }
 
     public function decode_calender($data){
