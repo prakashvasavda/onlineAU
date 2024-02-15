@@ -12,7 +12,7 @@ use App\Http\Controllers\User\SearchController;
 use App\Http\Controllers\User\FrontFamilyController;
 use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\FrontCandidateController;
-use App\Http\Controllers\User\SubscriptionController;
+use App\Http\Controllers\User\SubscriptionController as FrontSubscriptionController;
 use App\Http\Controllers\User\FrontFamilyPetsittingController;
 use App\Http\Controllers\User\CartController;
 /* admin */
@@ -26,6 +26,8 @@ use App\Http\Controllers\Admin\PetsittersController;
 use App\Http\Controllers\Admin\ReviewsController;
 use App\Http\Controllers\Admin\TransactionsController;
 use App\Http\Controllers\Admin\FamilyPetsittingController;
+use App\Http\Controllers\Admin\SubscriptionController as AdminSubscriptionController;
+
 
 
 /* user auth routes */
@@ -64,7 +66,7 @@ Route::any('/payment/process', [PaymentController::class, 'process_payment'])->n
 /* user protected routes */
 Route::group(['middleware' => 'frontendauth'], function () {
     /* transactions */
-    Route::get('transactions', [FrontFamilyController::class, 'transactions'])->name('transactions');
+    //Route::get('transactions', [FrontFamilyController::class, 'transactions'])->name('transactions');
     /* candidate */
     Route::post('store-candidate-reviews', [FrontCandidateController::class, 'store_candidate_reviews'])->name('store-candidate-reviews');
     Route::get('candidate/manage-profile', [FrontCandidateController::class, 'manage_profile'])->name('candidate-manage-profile');
@@ -88,7 +90,8 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('family/manage-calender', [FrontFamilyController::class, 'manage_calender'])->name('family-manage-calender');
     Route::put('update-family-calender/{id}', [FrontFamilyController::class, 'update_family_calender'])->name('update-family-calender');
     /* subscriptions */
-    Route::post('cancel-user-subscription', [SubscriptionController::class, 'cancel_user_subscription'])->name('cancel-user-subscription');
+    Route::post('cancel-user-subscription', [FrontSubscriptionController::class, 'cancel_user_subscription'])->name('cancel-user-subscription');
+    Route::get('transactions', [FrontSubscriptionController::class, 'get_candidate_subscriptions'])->name('transactions');
     /* reviews */
     Route::get('reviews/{service?}', [FrontFamilyController::class, 'reviews'])->name('reviews');
     /* family-petissiting */
@@ -138,4 +141,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('change-user-status', [Controller::class, 'change_user_status'])->name('admin.change-user-status');
     /*family petisittimg*/
     Route::resource('family-petsitting', FamilyPetsittingController::class)->names('admin.family-petsitting');
+    /* subsctiptions */
+    Route::get('subscriptions/cancel-requests', [AdminSubscriptionController::class, 'get_cancellation_requests'])->name('admin.subscriptions.cancel-requests');
 });

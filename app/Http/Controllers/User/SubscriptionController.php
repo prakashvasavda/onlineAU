@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\UserSubscription;
@@ -100,5 +101,24 @@ class SubscriptionController extends Controller{
         }
 
         return true;
+    }
+
+    public function get_candidate_subscriptions(){
+        $data['subscriptions'] = UserSubscription::leftJoin('packages', 'user_subscriptions.package_id', '=', 'packages.id')
+            ->select(
+                'user_subscriptions.*', 
+                'packages.name', 'packages.price', 
+                'packages.cancellation_allowed', 
+                'packages.cancellation_notice_period',
+                'packages.duration'
+            )
+            ->where('user_subscriptions.status', 'active')
+            ->where('user_id', Session::get('frontUser')->id)
+            ->get()
+            ->toArray();
+
+        //return $data;
+
+        return view('user.family.transactions', $data);
     }
 }

@@ -165,13 +165,27 @@
                             </a>
                         </li>
 
+                        <li class="nav-item @if(in_array($menu, ['cancel requests'])) menu-is-opening menu-open @endif">
+                            <a href="#" class="nav-link @if(in_array($menu, ['cancel requests'])) active @endif">
+                                <i class="nav-icon fa fa-file-invoice-dollar"></i>
+                                <p>Subscriptions<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.subscriptions.cancel-requests') }}" class="nav-link @if($menu=='cancel requests') active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Manage Cancel Requests</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item">
                             <a href="{{ url('admin/transactions') }}" class="nav-link @if($menu=='transactions') active @endif">
                                 <i class="nav-icon fa fa-money-bill"></i>
                                 <p>Transactions</p>
                             </a>
                         </li>
-
                     </ul>
                 </nav>
             </div>

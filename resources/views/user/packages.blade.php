@@ -241,24 +241,6 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-    function userSubscription(){
-        var status = $('#subscribe_chkbx').is(':checked') ? 1 : 0;
-        $.ajax({
-            type: "POST",
-            url: "{{ route('cancel-user-subscription') }}",
-            data: {
-                    status:status,
-                    _token: "{{ csrf_token() }}",
-                    id: {{ isset($user_subscription->id) ? $user_subscription->id : 0 }}
-            },
-            success: function (response) {
-                if(response === "success"){
-                   location.reload();
-                }
-            }
-        });
-    }
-
     function addItemToCart(package_name, block_id){
         event.preventDefault();
         var checkUser = {{ session()->has('frontUser') || session()->has('guestUser') ? "true" : "false" }};

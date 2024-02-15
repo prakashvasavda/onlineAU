@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\UserSubscription;
 use App\Models\Payment;
 use App\Models\FrontUser;
-use DataTables;
+use Yajra\DataTables\DataTables;
 
 class TransactionsController extends Controller{
     
