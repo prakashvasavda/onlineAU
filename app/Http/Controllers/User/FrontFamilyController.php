@@ -223,14 +223,16 @@ class FrontFamilyController extends Controller{
     }
 
     public function family_detail($familyId){
-        $data['menu']                           = 'family detail';
-        $data['family']                         = FrontUser::where('id', $familyId)->where('role', 'family')->where('status', '1')->first();
-        $data['availability']                   = NeedsBabysitter::where('family_id', $familyId)->first(); 
-        $data['morning_availability']           = isset($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability']         = isset($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']           = isset($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']             = isset($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
-       
+        $data['menu']    = 'family detail';
+        $data['family']  = FrontUser::with('calendars')
+            ->where('id', $familyId)
+            ->where('role', 'family')
+            ->where('status', '1')
+            ->first();
+        
+        /* decode calender data */
+        $calender           = $data['family']['calendars'];
+        $data['calendars']  = $this->calendarController->decode_calender($calender);
 
         $data['reviews'] = FamilyReview::select(['review_note', 'review_rating_count'])
             ->selectSub(function ($query) use ($familyId) {

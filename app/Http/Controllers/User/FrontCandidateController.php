@@ -309,14 +309,13 @@ class FrontCandidateController extends Controller{
 
     public function candidate_detail($candidateId){
         $data['menu']                           = 'candidate detail';
-        $data['candidate']                      = FrontUser::where('id', $candidateId)->where('status', '1')->first();
-        $data['availability']                   = NeedsBabysitter::where('family_id', $candidateId)->first();
+        $data['candidate']                      = FrontUser::with('calendars')->where('id', $candidateId)->where('status', '1')->first();
         $data['payments']                       = Session::has('frontUser') ? Payment::where('user_id', Session::get('frontUser')->id)->first() : null;
         $data['candidate']['other_services']    = isset($data['candidate']->other_services) ? implode(", ", json_decode($data['candidate']->other_services, true)) : null;
-        $data['morning_availability']           = !empty($data['availability']->morning) ? json_decode($data['availability']->morning, true) : array();
-        $data['afternoon_availability']         = !empty($data['availability']->afternoon) ? json_decode($data['availability']->afternoon, true) : array();
-        $data['evening_availability']           = !empty($data['availability']->evening) ? json_decode($data['availability']->evening, true) : array();
-        $data['night_availability']             = !empty($data['availability']->night) ? json_decode($data['availability']->night, true) : array();
+        
+        /* decode calender data */
+        $calender           = $data['candidate']['calendars'];
+        $data['calendars']  = $this->calendarController->decode_calender($calender);
     
         $data['reviews'] = CandidateReview::select(['review_note', 'review_rating_count'])
             ->selectSub(function ($query) use ($candidateId) {
