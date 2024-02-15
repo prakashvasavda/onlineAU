@@ -50,7 +50,7 @@
 
 {{-- whatsapp link icon --}}
 <div class="wpIcon-wrapper">
-	<a href="https://web.whatsapp.com/" target="_blank">
+	<a href="https://wa.link/yhhp5h" target="_blank">
 		<img  src="{{ asset('front/images/whatsapp-icon.svg') }}" alt="whatsapp">
 	</a>
 </div>
