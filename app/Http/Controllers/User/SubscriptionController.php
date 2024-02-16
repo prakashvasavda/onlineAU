@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Models\Packages;
 use Illuminate\Http\Request;
 use App\Models\UserSubscription;
-use App\Models\Packages;
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use App\Mail\SubscriptionsCancellationRequest;
 
 
 class SubscriptionController extends Controller{
@@ -117,8 +119,36 @@ class SubscriptionController extends Controller{
             ->get()
             ->toArray();
 
-        //return $data;
-
         return view('user.family.transactions', $data);
+    }
+
+    public function request_cancellation(Request $request){
+        try {
+            $request->validate([
+                'id'       => 'required',
+                'user_id'  => 'required',
+            ]);
+    
+            $userSubscription = UserSubscription::select('user_subscriptions.*', 'packages.name AS package_name')
+                ->leftJoin('packages', 'packages.id', '=', 'user_subscriptions.package_id')
+                ->where('user_subscriptions.id', $request->id)
+                ->where('user_subscriptions.user_id', $request->user_id)
+                ->first();
+    
+            if(empty($userSubscription)){
+                return response()->json([
+                    'status'  => 400,
+                    'message' => 'data not found'
+                ]);
+            }
+
+            $userSubscription->update(['cancellation_request_status' => 1]);
+
+            Mail::to("emmanuel.k.php@gmail.com")->send(new SubscriptionsCancellationRequest($userSubscription));
+            return response()->json(['status' => 200]);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e]);
+        }
     }
 }

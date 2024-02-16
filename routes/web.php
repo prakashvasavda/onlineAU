@@ -90,8 +90,8 @@ Route::group(['middleware' => 'frontendauth'], function () {
     Route::get('family/manage-calender', [FrontFamilyController::class, 'manage_calender'])->name('family-manage-calender');
     Route::put('update-family-calender/{id}', [FrontFamilyController::class, 'update_family_calender'])->name('update-family-calender');
     /* subscriptions */
-    Route::post('cancel-user-subscription', [FrontSubscriptionController::class, 'cancel_user_subscription'])->name('cancel-user-subscription');
     Route::get('transactions', [FrontSubscriptionController::class, 'get_candidate_subscriptions'])->name('transactions');
+    Route::post('request-cancellation', [FrontSubscriptionController::class, 'request_cancellation'])->name('request-cancellation');
     /* reviews */
     Route::get('reviews/{service?}', [FrontFamilyController::class, 'reviews'])->name('reviews');
     /* family-petissiting */
@@ -143,4 +143,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('family-petsitting', FamilyPetsittingController::class)->names('admin.family-petsitting');
     /* subsctiptions */
     Route::get('subscriptions/cancel-requests', [AdminSubscriptionController::class, 'get_cancellation_requests'])->name('admin.subscriptions.cancel-requests');
+    Route::post('update-cancellation-request', [AdminSubscriptionController::class, 'update_cancellation_request'])->name('admin.subscriptions.cancel-requests.update');
+
 });

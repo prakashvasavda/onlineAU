@@ -24,7 +24,7 @@ class Packages extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function userSubscriptions(){
-        return $this->belongsTo(UserSubscription::class, 'package_id');
-    }
+    // public function userSubscriptions(){
+    //     return $this->belongsTo(UserSubscription::class);
+    // }
 }

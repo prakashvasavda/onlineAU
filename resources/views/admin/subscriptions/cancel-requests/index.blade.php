@@ -37,8 +37,8 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
+                                        <th>Email</th>
                                         <th>Package Name</th>
-                                        <th>Amount</th>
                                         <th>Status</th>
                                         <th>End Date</th>
                                         <th>Created At</th>
@@ -54,8 +54,8 @@
             </div>
         </section>
     </div>
+@include ('admin.includes.modal')
 @endsection
-
 @section('jquery')
 <script type="text/javascript">
     $(function () {
@@ -66,46 +66,45 @@
             ajax: "{{ route('admin.subscriptions.cancel-requests') }}",
             columns: [
                 {data: 'user_name', name: 'user_name'},
+                {data: 'email', name: 'email'},
                 {data: 'package_name', name: 'package_name'},
-                {data: 'm_payment_id', name: 'm_payment_id'},
-                {data: 'm_payment_id', name: 'm_payment_id'},
-                {data: 'amount_net', name: 'amount_net'},
-                {data: 'item_name', name: 'item_name'},
+                {data: 'status', name: 'status'},
+                {data: 'end_date', name: 'end_date'},
                 {data: 'created_at', name: 'created_at'},
+                {data: 'action', name: 'action'},
             ]
         });
     });
 
-    function deleteReview(review_id, role){
-        event.preventDefault();
-        swal({
-            title: "Are you sure?",
-            text: "You want to delete this record?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: '#DD6B55',
-            confirmButtonText: 'Yes, Delete', 
-            cancelButtonText: "No, cancel",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        },
-        function(isConfirm) {
-            if (isConfirm) {
-                $.ajax({
-                    url: "{{url('admin/reviews')}}/"+review_id,
-                    type: "DELETE",
-                    data: {_token: '{{csrf_token()}}', review_id:review_id, role:role},
-                    success: function(response){
-                        // if(response.status == 200){
-                            $('#reviewTable').DataTable().ajax.reload();
-                            swal("Deleted", "Record successfully deleted!", "success");
-                        //}
-                    }
-                });
-            } else {
-                swal("Cancelled", "Your data safe!", "error");
+    function approveRequest(id, front_user_id){
+        $('input[type="hidden"][id="user-id"]').val(front_user_id);
+        $('input[type="hidden"][id="subscription-id"]').val(id);
+        $("#approve-request-modal").modal('show');
+    }
+
+    function updateRequest(){
+        var formData = $('#approve-request-form').serialize();
+        formData += "&_token={{ csrf_token() }}";
+        $("#approve-request-modal").modal('hide');
+        $.ajax({
+            type: "POST",
+            url: "{{ route('admin.subscriptions.cancel-requests.update') }}",
+            data: formData,
+            success: function (response) {
+                if(response.status == 200){
+                    $("#approve-request-form").trigger('reset');
+                    $('#cancellationRequestsTable').DataTable().ajax.reload();
+                    swal("Success", "Status updated successfully!", "success");
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('AJAX Error:', textStatus, errorThrown);
             }
         });
+    }
+
+    function closeModal(){
+        $("#approve-request-modal").modal('hide');
     }
 </script>
 @endsection

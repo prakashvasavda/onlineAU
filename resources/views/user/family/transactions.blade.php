@@ -30,21 +30,27 @@
                                             @endphp
                                             <tr id="row_{{ $value['id'] }}">
                                                 <td class="product-remove">
-                                                    <a href="JavaScript:;" class="remove" onclick="RequestCancellation({{ $value['id'] }}, {{ $value['cancellation_allowed'] }})">×</a>                        
+                                                    @if($value['cancellation_allowed'] === 1 && $value['cancellation_request_status'] === 0 && !in_array($value['cancellation_approval_status'], [0,1], true))
+                                                        <a href="JavaScript:;" class="remove" onclick="RequestCancellation({{ $value['id'] }}, {{ $value['cancellation_allowed'] }})">×</a>
+                                                    @else
+                                                        <a href="JavaScript:;" class="remove" onclick="invalidAction()">×</a>                        
+                                                    @endif  
                                                 </td>
                                                 <td>{{ $value['name'] ?? null }}</td>
                                                 <td>
-                                                    @if($value['cancellation_allowed'] == 1)
+                                                    @if($value['cancellation_allowed'] === 1)
                                                        <span class="badge bg-light text-dark">Applicable</span>
                                                     @else
                                                         <span class="badge bg-dark">Not Applicable</span>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if($value['cancellation_request_status'] == 1 && $value['cancellation_approval_status'] == 0)
-                                                        <span class="badge bg-danger">Pending</span>
-                                                    @elseif($value['cancellation_request_status'] == 1 && $value['cancellation_approval_status'] == 1)
+                                                    @if($value['cancellation_request_status'] === 1 && $value['cancellation_approval_status'] === 0)
+                                                        <span class="badge bg-danger">Denied</span>
+                                                    @elseif($value['cancellation_request_status'] == 1 && $value['cancellation_approval_status'] === 1)
                                                         <span class="badge bg-success">Approved</span>
+                                                    @elseif($value['cancellation_request_status'] == 1 && $value['cancellation_approval_status'] === null)
+                                                        <span class="badge bg-warning">pending</span>
                                                     @else
                                                         <span class="badge bg-secondary">Inactive</span>
                                                     @endif
@@ -78,60 +84,58 @@
 @endsection
 @section('script')
 <script type="text/javascript">
+    function invalidAction(){
+        setTimeout(function () {
+            showModal("Warning", "<img src='{{ url('front/images/warning-icon1.png') }}' alt=''>", "Subscription cancellation for this package is currently not permitted. Please reach out to the administrator for any concern.", "{{ route('contact-us') }}", "Contact Us");
+        }, 500); // 5 milseconds delay
+        return false;
+    }
+
     function RequestCancellation(id, cancellationAllowed){
-        /*incase it is not applicable for  cancellation*/
         if(!cancellationAllowed || cancellationAllowed == 0){
-            var modalLabel    = "Warning";
-            var modalIcon     = "<img src='{{ url('front/images/warning-icon1.png') }}' alt=''>"; 
-            var message       = "Subscription cancellation is not available for this package. If you have any queries, please contact the administrator";
-            var url           = "{{ route('contact-us') }}";
-            var btnText       = "Contact Us" 
-            setTimeout(function () {
-                showModal(modalLabel, modalIcon, message, url, btnText);
-            }, 500); // 5 milseconds delay
             return false;
         }
 
-        var modalLabel    = "Warning";
-        var modalIcon     = "<img src='{{ url('front/images/question-icon1.png') }}' alt=''>"; 
-        var message       = "Are you sure you want to proceed with canceling your subscription for this package?";
-        var url           = "#";
-        var btnText       = "Yes" 
         setTimeout(function () {
-            showModal(modalLabel, modalIcon, message, url, btnText);
+            showModal("Warning", "<img src='{{ url('front/images/question-icon1.png') }}' alt=''>", "Are you sure you want to proceed with canceling your subscription for this package?", "#", "Yes", id);
         }, 500); // 5 milseconds delay
+    }
 
-
+    /*send request to the admin*/
+    $(document).on('click', '#alert-modal-action-btn:contains("Yes")', function(event){
+        event.preventDefault();
+        $('#alert-modal').modal('hide');
 
         $.ajax({
             type: "POST",
-            url: "{{ route('cancel-user-subscription') }}",
+            url: "{{ route('request-cancellation') }}",
             data: {
-                    status:status,
-                    _token: "{{ csrf_token() }}",
-                    id: {{ isset($user_subscription->id) ? $user_subscription->id : 0 }}
+                id: $(this).data("id"),
+                _token: "{{ csrf_token() }}",
+                user_id: "{{ session()->get('frontUser')->id ?? null }}",
             },
             success: function (response) {
-                if(response === "success"){
-                   location.reload();
+                if(response.status == 200){
+                    // window.location.reload();
+                    setTimeout(function () {
+                        showModal("Success!", "<img src='{{ url('front/images/success-check-icon1.png') }}' alt=''>", "Your request has been submitted to the administrator. Kindly await approval. If you have any further inquiries, please feel free to contact us.", "{{ route('contact-us') }}", "Contact Us");
+                    }, 500); // 5 milseconds delay
                 }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('AJAX Error:', textStatus, errorThrown);
             }
         });
-    }
+    });
 
     /*show modal pop up*/
-    function showModal(modalLabel, modalIcon, message, url, btnText){
+    function showModal(modalLabel, modalIcon, message, url, btnText, id=null){
         $("#alert-modal-label").html(modalLabel);
         $("#alert-modal-icon").html(modalIcon);
         $("#alert-modal-body").html(message);
-        $("#alert-modal-action-btn").attr('href', url).text(btnText);
+        $("#alert-modal-action-btn").attr('href', url).attr("data-id", id).text(btnText);
         $('#alert-modal').modal('show');
     }
-
-    $('#alert-modal-action-btn:contains("Yes")').on('click', function(){
-        event.preventDefault();
-        alert("true");
-    });
 
 </script>
 @endsection
