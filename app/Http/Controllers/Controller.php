@@ -70,47 +70,7 @@ class Controller extends BaseController{
         return $name;
     }
 
-    public function store_candidate_calender($input, $candidateId){
-        $candidate = FrontUser::find($candidateId);
-        if(isset($candidate) && !empty($candidate)){
-            $data['morning']        = !empty($input['morning']) ? json_encode($input['morning']) : null;
-            $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
-            $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
-            $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
-            $data['updated_at']     =  date("Y-m-d H:i:s");
-            $availability           =  $candidate->needs_babysitter()->updateOrCreate(['family_id' => $candidateId], $data);
-            return $availability->id;        
-        }
-    }
-
-    public function store_family_calender($input, $candidateId){
-        $candidate = FrontUser::find($candidateId);
-        if(isset($candidate) && !empty($candidate)){
-            $data['morning']        = !empty($input['morning']) ? json_encode($input['morning']) : null;
-            $data['afternoon']      = !empty($input['afternoon']) ? json_encode($input['afternoon']) : null;
-            $data['evening']        = !empty($input['evening']) ? json_encode($input['evening']) : null;
-            $data['night']          = !empty($input['night']) ? json_encode($input['night']) : null;
-            $data['updated_at']     =  date("Y-m-d H:i:s");
-            $availability           =  $candidate->needs_babysitter()->updateOrCreate(['family_id' => $candidateId], $data);
-            return $availability->id;
-        }        
-    }
-
-    public function send_mail($data=null, $subject, $message){
-        config(['mail.mailers.smtp.host' => 'smtp.gmail.com']);
-        config(['mail.mailers.smtp.port' => '587']);
-        config(['mail.mailers.smtp.username' => 'prakash.v.php@gmail.com']);
-        config(['mail.mailers.smtp.password' => 'rqjmelerlcsuycnp']);
-        config(['mail.mailers.smtp.encryption' => 'tls']);
-         
-        // Mail::send([], [], function ($mail) use ($message, $emailTo, $name, $subject) {
-        //     $mail->to($emailTo, $name)->subject($subject)->html($message);
-        //     $mail->from('info@onlineaupair.Co.Za', 'Onlineaupair');
-        // });
-
-        return 1;
-    }
-
+   
     public function change_user_status(Request $request){
         $frontUser = FrontUser::find($request->id);
         if(empty($frontUser)){
@@ -170,5 +130,13 @@ class Controller extends BaseController{
         ];
         
         return response()->json($response, 200);
-    }   
+    }
+    
+    // public function update_session_data(){
+    //     $frontUser                              = Session::get('frontUser');
+    //     $frontUser['user_subscription_status']  = $subscription->check_subscription_status(Session::get('frontUser')->id);
+    //     $frontUser['purchased_candidates']      = $this->get_purchased_candidates(Session::get('frontUser')->id);
+        
+    //     Session::put('frontUser', $frontUser);
+    // }
 }

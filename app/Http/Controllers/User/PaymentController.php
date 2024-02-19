@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller{
 
+    protected $subscriptionController;
+
+    public function __construct(SubscriptionController $subscriptionController){
+        $this->subscriptionController = $subscriptionController;
+    }
+
     public function process_payment(Request $request){
         if((!Session::has('frontUser') && !Session::has('guestUser')) || empty(Session::get('cart'))){
             return redirect()->route('sign-up', ['service' => 'family']);
@@ -85,7 +91,16 @@ class PaymentController extends Controller{
     }
 
     public function payment_success(Request $request){
-        return redirect()->route('transactions');
+        //return redirect()->route('transactions');
+        if(!Session::has('frontUser')){
+            return redirect()->route('user-login');
+        }
+
+        $frontUser                              = Session::get('frontUser');
+        $frontUser['user_subscription_status']  = $this->subscriptionController->check_subscription_status(Session::get('frontUser')->id);
+        $frontUser['purchased_candidates']      = $this->get_purchased_candidates(Session::get('frontUser')->id);
+        Session::put('frontUser', $frontUser);
+        $this->subscriptionController->get_candidate_subscriptions();
     }
 
     public function payment_cancel(Request $request){
