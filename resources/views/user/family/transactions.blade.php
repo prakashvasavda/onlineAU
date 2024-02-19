@@ -165,7 +165,7 @@
                                         @endforeach
                                     @else
                                         <tr id="empty_row">
-                                            <td class="text-center" colspan="4">No package available</td>
+                                            <td class="text-center" colspan="7">No transactions available</td>
                                         </tr>
                                     @endif
                                 </tbody>

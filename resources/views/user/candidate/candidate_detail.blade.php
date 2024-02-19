@@ -120,7 +120,33 @@
                             </div>
                         </li>
                     @endif
-
+                    <li class="equalHeight">
+                        <div class="about-candidate-title">
+                            <img src="{{ url('front/images/availableDate-icon1.png') }}" alt="">
+                            <h4>AVAILABLE ON:</h4>
+                        </div>
+                        <div class="about-candidate-content">
+                            <h4>{{ isset($candidate->available_date) ? $candidate->available_date : '-' }}</h4>
+                        </div>
+                    </li>
+                    <li class="equalHeight">
+                        <div class="about-candidate-title">
+                            <img src="{{ url('front/images/smoker_NonSmoker-icon1.png') }}" alt="">
+                            <h4>SMOKER/NON SMOKER:</h4>
+                        </div>
+                        <div class="about-candidate-content">
+                            <h4>{{ isset($candidate->smoker_or_non_smoker) ? str_replace("_", " ", $candidate->smoker_or_non_smoker) : '-' }}</h4>
+                        </div>
+                    </li>
+                    <li class="equalHeight">
+                        <div class="about-candidate-title">
+                            <img src="{{ url('front/images/medications-icon1.png') }}" alt="">
+                            <h4>Chronical medication:</h4>
+                        </div>
+                        <div class="about-candidate-content">
+                            <h4>{{ isset($candidate->chronical_medication) ? $candidate->chronical_medication : '-' }}</h4>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -173,6 +199,35 @@
                             </div>
                         </li>
                     @endif
+                    <li class="equalHeight">
+                        <div class="about-candidate-title">
+                            <img src="{{ url('front/images/ageGroup-icon1.png') }}" alt="">
+                            <h4>AGES OF CHILDREN YOU WORKED WITH:</h4>
+                        </div>
+                        <div class="about-candidate-content">
+                            <h4>{{ isset($candidate->child_ages) ? ucwords(str_replace("_", "-", $candidate->child_ages)) : '-' }}</h4>
+                        </div>
+                    </li>
+
+                    <li class="equalHeight">
+                        <div class="about-candidate-title">
+                            <img src="{{ url('front/images/experience_special_needs-icon1.png') }}" alt="">
+                            <h4>EXPERIENCE WITH SPECIAL NEEDS:</h4>
+                        </div>
+                        <div class="about-candidate-content">
+                            <h4>{{ isset($candidate->experience_special_needs) ? $candidate->experience_special_needs : "-" }}</h4>
+                        </div>
+                    </li>
+
+                    <li class={{ isset($candidate->comfortable_with_light_housework) ? "equalHeight" : "d-none" }}>
+                        <div class="about-candidate-title">
+                            <img src="{{ url('front/images/houseWork-icon1.png') }}" alt="">
+                            <h4>Comfortable with light house work:</h4>
+                        </div>
+                        <div class="about-candidate-content">
+                            <h4>{{ isset($candidate->comfortable_with_light_housework) ? $candidate->comfortable_with_light_housework : "-" }}</h4>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
