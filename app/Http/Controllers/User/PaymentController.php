@@ -30,8 +30,8 @@ class PaymentController extends Controller{
         $merchant_key   = env('PAYFAST_MERCHANT_KEY');
 
         /*for testing purpose*/
-        $merchant_id    = 10031315;
-        $merchant_key   = 'sbijrnrrkonrs';
+        // $merchant_id    = 10031315;
+        // $merchant_key   = 'sbijrnrrkonrs';
 
         /*user details*/
         $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : (Session::get('guestUser')['name'] ?? null);
@@ -53,7 +53,7 @@ class PaymentController extends Controller{
         $cancel_url     = 'https://onlineaupairs.co.za/public/api/payment/cancel';
         $notify_url     = 'https://onlineaupairs.co.za/public/api/payment/notify';
 
-        $testingMode = true;
+        $testingMode = false;
         $payfast_url = $testingMode ? 'https://sandbox.payfast.co.za/eng/process' : 'https://www.payfast.co.za/eng/process';
 
         $data = array(
