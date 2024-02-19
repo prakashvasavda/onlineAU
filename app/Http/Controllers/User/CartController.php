@@ -10,19 +10,11 @@ use App\Models\Packages;
 
 class CartController extends Controller{
     
-    public function index(){
-
-    }
-
-    public function create(){
-
-    }
-
     public function store(Request $request){
         $package = Packages::where('name', $request->package_name)->first();
         $cart    = session()->get('cart', []);
 
-        if(isset($cart[$package->id]) || empty($package)) {
+        if(empty($package) ||isset($cart[$package->id])) {
             $response = [
                 'status'        => 404,
                 'cart'          => session()->get('cart'),
@@ -49,18 +41,6 @@ class CartController extends Controller{
         ];
 
         return response()->json($response, 200);
-    }
-
-    public function show(string $id){
-        //
-    }
-
-    public function edit(string $id){
-        //
-    }
-
-    public function update(Request $request, string $id){
-        //
     }
 
     public function destroy(Request $request, string $id){

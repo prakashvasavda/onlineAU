@@ -147,7 +147,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('babysitters 1 month subscription', 'babysitters_first')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('babysitters monthly subscription', 'babysitters_first')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -169,7 +169,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('babysitters 2 month subscription', 'babysitters_second')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('babysitters 1 month access', 'babysitters_second')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -200,7 +200,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('pet sitters 1 month subscription', 'petsitters_first')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('pet sitters monthly subscription', 'petsitters_first')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -222,7 +222,7 @@
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
-                                            <a href="#" onclick="addItemToCart('pet sitters 2 month subscription', 'petsitters_second')" class="btn btn-primary round">Add to Cart</a>
+                                            <a href="#" onclick="addItemToCart('pet sitters 1 month access', 'petsitters_second')" class="btn btn-primary round">Add to Cart</a>
                                         </div>
                                     </div>
                                 </a>
