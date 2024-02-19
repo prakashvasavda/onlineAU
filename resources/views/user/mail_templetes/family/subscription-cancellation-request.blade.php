@@ -28,14 +28,15 @@
     <div class="container">
         <p>Dear Admin,</p>
         
-        <p>I am requesting for the cancellation of my subscription with the following details</p>
-        
+        <p>Please be informed that {{ ucfirst($name) }} has requested the cancellation of their subscription with {{ $package_name }}</p>
+        <p>Account Details:</p>
         <p><strong>Name:</strong>{{ isset($name) ? ucfirst($name) : "" }}</p>
         <p><strong>Package Name:</strong>{{ isset($package_name) ? ucfirst($package_name) : "" }}</p>
         
-        <p>Thank you for your prompt attention to this matter.</p>
-
-        <p>Sincerely</p>
+        <p>Kindly process the cancellation and update our records accordingly. If further information is needed, please notify {{$name}}</p>
+       
+        <p>Thank you.</p>
+        <p>Best.</p>
     </div>
 </body>
 </html>

@@ -83,6 +83,10 @@
     }
 
     function updateRequest(){
+        if (!$("#approve-request-form").valid()) {
+            return false;
+        }
+
         var formData = $('#approve-request-form').serialize();
         formData += "&_token={{ csrf_token() }}";
         $("#approve-request-modal").modal('hide');
@@ -106,5 +110,38 @@
     function closeModal(){
         $("#approve-request-modal").modal('hide');
     }
+
+    $(document).ready(function() {
+        $.validator.addMethod("greaterThanToday", function(value, element) {
+            var currentDate = new Date();
+            var selectedDate = new Date(value);
+            return selectedDate > currentDate;
+        }, "Please select a date greater than today");
+
+        $("#approve-request-form").validate({
+            rules: {
+                approval_status: "required",
+                end_date: {
+                    required: true,
+                    greaterThanToday: true
+                }
+            },
+            messages: {
+                approval_status: "Please select an approval status",
+                end_date: {
+                    required: "Please enter an end date",
+                    greaterThanToday: "End date must be greater than today"
+                }
+            },
+            errorElement: "span",
+            errorPlacement: function(error, element) {
+                if (element.attr("type") === "radio") {
+                    error.appendTo(element.parent().parent()).addClass("text-danger"); 
+                } else {
+                    error.appendTo(element.parent()).addClass("text-danger");
+                }
+            }
+        });
+    });
 </script>
 @endsection

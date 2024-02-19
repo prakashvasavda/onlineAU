@@ -31,9 +31,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/dist/css/custom.css')}}">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style>
         a{text-decoration: none!important;}
@@ -234,6 +232,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="{{ URL::asset('assets/plugins/ladda/spin.min.js')}}"></script>
     <script src="{{ URL::asset('assets/plugins/ladda/ladda.min.js')}}"></script>
+    <script src="{{ URL('assets/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+
     
     <script>
         Ladda.bind( 'input[type=submit]' );
