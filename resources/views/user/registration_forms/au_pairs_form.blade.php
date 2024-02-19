@@ -91,7 +91,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="area">Area <span class="text-danger">*</span></label>
+                <label for="area">Type in your City <span class="text-danger">*</span></label>
                 <input type="text" id="area" name="area" placeholder="" class="form-field @error('area') is-invalid @enderror address-input"  value="{{ old('area') }}">
                 @error('area')
                     <span class="invalid-feedback" role="alert">

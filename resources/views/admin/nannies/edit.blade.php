@@ -202,7 +202,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="area">Area<span class="text-danger">*</span></label>
+                                            <label for="area">Type in your City <span class="text-danger">*</span></label>
                                             <input type="text" id="area" name="area" placeholder="" class="form-control"  value="{{ old('area', isset($candidate->area) ? $candidate->area : null) }}">
                                             @error('area')
                                                 <span class="invalid-feedback" role="alert">
