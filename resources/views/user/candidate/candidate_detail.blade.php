@@ -98,7 +98,15 @@
                              <h4>{{ isset($candidate->home_language) ? ucfirst($candidate->home_language) : '-' }}</h4>
                         </div>
                     </li>
-
+                    <li class={{ isset($candidate->additional_language) ? "equalHeight" : "d-none" }}>
+                        <div class="about-candidate-title">
+                            <img src="{{ url('front/images/language-icon1.png') }}" alt="">
+                            <h4>additional language:</h4>
+                        </div>
+                        <div class="about-candidate-content">
+                             <h4>{{ isset($candidate->additional_language) ? ucfirst($candidate->additional_language) : '-' }}</h4>
+                        </div>
+                    </li>
                     <li class="equalHeight">
                         <div class="about-candidate-title">
                             <img src="{{ url('front/images/marital-status-icon1.png') }}" alt="">
@@ -122,11 +130,11 @@
                     @endif
                     <li class="equalHeight">
                         <div class="about-candidate-title">
-                            <img src="{{ url('front/images/availableDate-icon1.png') }}" alt="">
-                            <h4>AVAILABLE ON:</h4>
+                            <img src="{{ url('front/images/gender-icon1.png') }}" alt="">
+                            <h4>GENDER:</h4>
                         </div>
                         <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->available_date) ? $candidate->available_date : '-' }}</h4>
+                            <h4>{{ isset($candidate->gender) ? $candidate->gender : '-' }}</h4>
                         </div>
                     </li>
                     <li class="equalHeight">
@@ -226,6 +234,16 @@
                         </div>
                         <div class="about-candidate-content">
                             <h4>{{ isset($candidate->comfortable_with_light_housework) ? $candidate->comfortable_with_light_housework : "-" }}</h4>
+                        </div>
+                    </li>
+
+                    <li class="equalHeight">
+                        <div class="about-candidate-title">
+                            <img src="{{ url('front/images/availableDate-icon1.png') }}" alt="">
+                            <h4>AVAILABLE ON:</h4>
+                        </div>
+                        <div class="about-candidate-content">
+                            <h4>{{ isset($candidate->available_date) ? $candidate->available_date : '-' }}</h4>
                         </div>
                     </li>
                 </ul>
