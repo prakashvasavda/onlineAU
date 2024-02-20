@@ -233,7 +233,6 @@
     <script src="{{ URL::asset('assets/plugins/ladda/spin.min.js')}}"></script>
     <script src="{{ URL::asset('assets/plugins/ladda/ladda.min.js')}}"></script>
     <script src="{{ URL('assets/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
-
     
     <script>
         Ladda.bind( 'input[type=submit]' );

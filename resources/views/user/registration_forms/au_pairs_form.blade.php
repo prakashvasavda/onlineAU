@@ -717,8 +717,5 @@
             });
         @endif
     });
-
-  </script>
-
 </script>
 @endsection
