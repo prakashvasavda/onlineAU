@@ -86,7 +86,12 @@ class NanniesController extends Controller{
             'gender'                       => "required",
             'home_language'                => "required",
             'disabilities'                 => "required|max:100",
-            // 'heading.*'                    => 'required|max:255', 
+            // 'heading.*'                    => 'required|max:255',
+            'heading.*'                    => 'required|max:255',
+            'daterange.*'                  => 'required', 
+            'description.*'                => 'required|max:255',
+            'reference.*'                  => 'required|max:255',
+            'tel_number.*'                 => 'required|max:255',  
             'password' => [
                 'nullable',
                 'string',
@@ -124,8 +129,12 @@ class NanniesController extends Controller{
         }
 
         $message = [
-            'experience_with_animals'               => 'Please specify whether you have experience with animals',
             'heading.*.required'                    => 'The heading field is required.',
+            'daterange.*.required'                  => 'The daterange field is required.',
+            'description.*.required'                => 'The description field is required.',
+            'reference.*.required'                  => 'The reference field is required.',
+            'tel_number.*.required'                 => 'The telephone number field is required.',
+            'experience_with_animals'               => 'Please specify whether you have experience with animals',
             'first_aid.required'                    => "Please specify whether you have first aid training.",
             'experience_special_needs.required'     => "Please indicate whether you have experience with special needs.",
             'live_in_or_live_out.required'          => "Please specify whether you prefer to live in or live out.",

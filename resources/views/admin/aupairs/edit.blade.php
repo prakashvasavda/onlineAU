@@ -594,80 +594,108 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="form-group" id="dynamic_field">
-                                            <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
-                                            {{-- <div class="icon-option all-in-one">
-                                                <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fas fa-plus"></i></a>
-                                            </div> --}}
-
+                                        <div class="form-inputs" id="dynamic_field">
+                                            <div class="d-flex flex-row justify-content-between align-items-start">
+                                                <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                                                <div class="icon-option all-in-one d-flex flex-row d-none">
+                                                    <p>Add Reference</p>
+                                                    <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
+                                                </div>
+                                            </div>
+                                            
                                             @if(isset($previous_experience) && !$previous_experience->isEmpty())
                                                 @foreach($previous_experience as $key => $value)
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label for="daterange">Date range</label>
-                                                                <input type="text" id="daterange" name="daterange[]" class="form-control" placeholder=""  value="{{ old('daterange[]', isset($value->daterange) ? $value->daterange : null) }}">
+                                                            <div class="form-input">
+                                                                <label for="daterange">Date range <span class="text-danger">*</span></label>
+                                                                <input type="text" id={{ "daterange_" . $key }} name="daterange[]" class="form-control" placeholder=""  value="{{ old('daterange[]', isset($value->daterange) ? $value->daterange : null) }}">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label for="heading">Heading</label>
-                                                                <input type="text" id="heading" name="heading[]" class="form-control" placeholder="" value="{{ old('heading[]', isset($value->heading) ? $value->heading : null) }}">
+                                                            <div class="form-input">
+                                                                <label for="heading">Heading <span class="text-danger">*</span></label>
+                                                                <input type="text" id={{ "heading_" . $key }} name="heading[]" class="form-control" placeholder="" value="{{ old('heading[]', isset($value->heading) ? $value->heading : null) }}">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label for="description">Description</label>
-                                                                <input type="text" id="description" name="description[]" class="form-control" placeholder="" value="{{ old('description[]', isset($value->description) ? $value->description : null) }}">
+                                                            <div class="form-input">
+                                                                <label for="description">Description <span class="text-danger">*</span></label>
+                                                                <input type="text" id={{ "description_" . $key }} name="description[]"class="form-control" placeholder="" value="{{ old('description[]', isset($value->description) ? $value->description : null) }}">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label for="reference">Reference Name</label>
-                                                                <input type="text" id="reference" name="reference[]" class="form-control" placeholder="" value="{{ old('reference[]', isset($value->reference) ? $value->reference : null) }}">
+                                                            <div class="form-input">
+                                                                <label for="reference">Reference Name <span class="text-danger">*</span></label>
+                                                                <input type="text" id={{ "reference_" . $key }} name="reference[]" class="form-control" placeholder="" value="{{ old('reference[]', isset($value->reference) ? $value->reference : null) }}">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label for="tel_number">Tel Number</label>
-                                                                <input type="text" id="tel_number" name="tel_number[]" class="form-control" placeholder=""value="{{ old('tel_number[]', isset($value->tel_number) ? $value->tel_number : null) }}">
+                                                            <div class="form-input">
+                                                                <label for="tel_number">Tel Number <span class="text-danger">*</span></label>
+                                                                <input type="text" id={{ "tel_number_" . $key }} name="tel_number[]" class="form-control" placeholder=""value="{{ old('tel_number[]', isset($value->tel_number) ? $value->tel_number : null) }}">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
                                             @else
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label for="daterange">Date range</label>
-                                                                <input type="text" id="daterange" name="daterange[]" value="10/01/2023 - 12/15/2023" class="form-control" placeholder="">
-                                                            </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                        <div class="form-input">
+                                                            <label for="daterange">Date range <span class="text-danger">*</span></label>
+                                                            <input type="text" id="daterange" name="daterange[]" value="{{ isset(old('daterange')[0]) ? old('daterange')[0] : '' }}" class="form-control" placeholder="">
                                                         </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label for="heading">Heading</label>
-                                                                <input type="text" id="heading" name="heading[]" class="form-control" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label for="description">Description</label>
-                                                                <input type="text" id="description" name="description[]" class="form-control" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label for="reference">Reference Name</label>
-                                                                <input type="text" id="reference" name="reference[]" class="form-control" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label for="tel_number">Tel Number</label>
-                                                                <input type="text" id="tel_number" name="tel_number[]" class="form-control" placeholder="">
-                                                            </div>
-                                                        </div>
+                                                        @error('daterange.0')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                        <div class="form-input">
+                                                            <label for="heading">Heading <span class="text-danger">*</span></label>
+                                                            <input type="text" id="heading" name="heading[]" value="{{ isset(old('heading')[0]) ? old('heading')[0] : null }}" class="form-control" placeholder="">
+                                                        </div>
+                                                        @error('heading.0')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                        <div class="form-input">
+                                                            <label for="description">Description <span class="text-danger">*</span></label>
+                                                            <input type="text" id="description" name="description[]" value="{{ isset(old('description')[0]) ? old('description')[0] : null }}" class="form-control" placeholder="">
+                                                        </div>
+                                                        @error('description.0')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                        <div class="form-input">
+                                                            <label for="reference">Reference Name <span class="text-danger">*</span></label>
+                                                            <input type="text" id="reference" name="reference[]" value="{{ isset(old('reference')[0]) ? old('reference')[0] : null }}" class="form-control" placeholder="">
+                                                        </div>
+                                                        @error('reference.0')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                        <div class="form-input">
+                                                            <label for="tel_number">Tel Number <span class="text-danger">*</span></label>
+                                                            <input type="text" id="tel_number" name="tel_number[]" value="{{ isset(old('tel_number')[0]) ? old('tel_number')[0] : null }}" class="form-control" placeholder="">
+                                                        </div>
+                                                        @error('tel_number.0')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
@@ -839,11 +867,24 @@
         };
     }
 
-    /*get validaton errors*/
-    @if($errors->any())
-        var errorMessages = {!! json_encode($errors->toArray()) !!};
-        console.log(errorMessages);
-    @endif
+    $(document).ready(function() {
+        /*get validaton errors*/
+        @if($errors->any())
+            var errorMessages = {!! json_encode($errors->toArray()) !!};
+            const prefixesToCheck = ['heading.', 'description.', 'reference.', 'tel_number.', 'daterange.'];
+            console.log(errorMessages);
+            $.each(errorMessages, function(key, value) {
+                if (prefixesToCheck.some(prefix => key.startsWith(prefix))) {
+                    var newKey = key.replace(/\./g, '_');
+                    $("#"+newKey).after(`
+                        <span class="text-danger">
+                            <strong>`+value+`</strong>
+                        </span>
+                    `);
+                }
+            });
+        @endif
+    });
 </script>
 @endsection
 
