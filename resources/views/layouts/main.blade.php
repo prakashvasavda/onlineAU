@@ -39,6 +39,7 @@
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD64PSVTdGQ34zRRpNa2lKkPS-A-mbTSA&libraries=places"></script>
         <script src="{{ asset('front/js/main.js') }}"></script>
+        <script src="{{ URL('front/js/jquery-validation/jquery.validate.min.js')}}"></script>
         @yield('script')
     </body>
 </html>

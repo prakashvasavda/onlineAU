@@ -2182,9 +2182,11 @@ header {
     border-radius: 0px 5px 5px 0px;
 }
 span.text-danger,
-span.invalid-feedback
-{
+span.invalid-feedback {
     font-size: small;
+}
+span.error.text-danger {
+    font-weight: bold;
 }
 .pricing-plans-main form {
     height: 100%;
