@@ -318,7 +318,7 @@ class FrontCandidateController extends Controller{
 
     public function candidate_detail($candidateId){
         $data['menu']                       = 'candidate detail';
-        $data['candidate']                  = FrontUser::with('calendars')->where('id', $candidateId)->where('status', '1')->first();
+        $data['candidate']                  = FrontUser::with(['calendars', 'previous_experience'])->where('id', $candidateId)->where('status', '1')->first();
         $data['payments']                   = Session::has('frontUser') ? Payment::where('user_id', Session::get('frontUser')->id)->first() : null;
         $data['candidate']['other_services']= isset($data['candidate']->other_services) ? implode(", ", json_decode($data['candidate']->other_services, true)) : null;
         $data['candidate']['child_ages']    = isset($data['candidate']->ages_of_children_you_worked_with) ? implode(", ", json_decode($data['candidate']->ages_of_children_you_worked_with, true)) : null;

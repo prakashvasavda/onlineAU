@@ -237,6 +237,46 @@
 <div class="candidate-availability">
     <div class="container">
         <div class="title-main">
+            <h3>Experience</h3>
+        </div>
+        <div class="table-responsive timeForm">
+            <table class="table table-borderless table-sm">
+                <thead>
+                    <tr>
+                        <th class="w-15">From</th>
+                        <th class="w-15">To</th>
+                        <th class="w-15">Heading </th>
+                        {{-- <th class="w-15">Description</th> --}}
+                        <th class="w-15">Reference Name</th>
+                        <th class="w-15">Tel Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(isset($candidate->previous_experience) && !empty($candidate->previous_experience))
+                        @foreach ($candidate->previous_experience as $key => $value)
+                            <tr>
+                                <td>{{ explode("-", $value->daterange)[0] ?? "-"  }}</td>
+                                <td>{{ explode("-", $value->daterange)[1] ?? "-" }}</td>
+                                <td>{{ $value->heading ?? "-" }}</td>
+                                {{-- <td>{{ $value->description ?? "-" }}</td> --}}
+                                <td>{{ $value->reference ?? "-" }}</td>
+                                <td>{{ $value->tel_number?? "-" }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td class="text-center" colspan="6">No experiances available</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="candidate-availability">
+    <div class="container">
+        <div class="title-main">
             <h3>Availability</h3>
         </div>
         <div class="table-responsive timeForm">
@@ -281,8 +321,6 @@
         </div>
     </div>
 </div>
-
-
 
 <div class="review-section">
     <div class="container mb-5">
