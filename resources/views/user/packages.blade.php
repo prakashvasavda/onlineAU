@@ -165,7 +165,7 @@
                                         <div class="name-box">1 Month Access</div>
                                         <div class="price-box display-6">R 500</div>
                                         <ul class="features">
-                                            <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 1 months.</li>
+                                            <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 1 month.</li>
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
@@ -218,7 +218,7 @@
                                         <div class="name-box">1 Month Access</div>
                                         <div class="price-box display-6">R 500</div>
                                         <ul class="features">
-                                            <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 1 months.</li>
+                                            <li><i class="fa-solid fa-circle"></i>You have full access to all our available Candidates in your area for up to 1 month.</li>
                                             <li><i class="fa-solid fa-circle"></i>You will be responsible to pay the candidates hourly rate.</li>
                                         </ul>
                                         <div class="btn-main text-center p-4 pt-0">
