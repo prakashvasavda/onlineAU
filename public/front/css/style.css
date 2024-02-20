@@ -2448,6 +2448,7 @@ span.error.text-danger {
     background-color: var(--secondary);
     border-color: var(--secondary);
 }
+.timeForm input[type="text"],
 .timeForm input[type="time"], 
 .timeForm input[type="datetime-local"], 
 .timeForm input[type="datetime"] {

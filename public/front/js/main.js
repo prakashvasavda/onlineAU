@@ -184,9 +184,9 @@ function addCalendarRow(rowId){
     <tr>
       <td><input type="checkbox"></td>
       <td class="text-capitalize">`+rowId+`</td>
-      <td><input type="time" name="`+rowId+`[start_time][]" value=""></td>
+      <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="`+rowId+`[start_time][]" value="" placeholder="Add Time"></td>
       <td>to</td>
-      <td><input type="time" name="`+rowId+`[end_time][]" value=""></td>
+      <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="`+rowId+`[end_time][]" value="" placeholder="Add Time"></td>
       <td onclick="removeCalendarRow(event)">
         <a href="javaScript:;" class="btn add-btn icon">
           <i class="fa-solid fa-trash"></i>
