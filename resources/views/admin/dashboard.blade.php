@@ -88,6 +88,68 @@
                     </a>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title">Latest Candidates</h3>
+                        </div>
+                        <div class="card-body">
+                            <table id="candidatesTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Created At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (isset($candidates) && !empty($candidates))
+                                        @foreach ($candidates as $key => $value)
+                                        <tr>
+                                            <td>{{ $value->name ?? "-" }}</td>
+                                            <td>{{ $value->role ?? "-" }}</td>
+                                            <td>{{ $value->created_at ?? "-" }}</td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title">Latest Transactions</h3>
+                        </div>
+                        <div class="card-body">
+                            <table id="paymentTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Payment ID</th>
+                                        <th>Amount</th>
+                                        <th>Created At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (isset($payment) && !empty($payment))
+                                        @foreach ($payment as $key => $value)
+                                        <tr>
+                                            <td>{{ $value->m_payment_id ?? "-" }}</td>
+                                            <td>{{ $value->amount_gross ?? "-" }}</td>
+                                            <td>{{ $value->created_at ?? "-" }}</td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
