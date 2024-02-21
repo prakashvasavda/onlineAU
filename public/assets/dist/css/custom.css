@@ -59,3 +59,43 @@ input:checked + .status_slider:before {
   border-radius: 50%;
 }
 /*end of switch*/
+
+/* candidate calender */
+.wpIcon-wrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 35px;
+  width: 48px;
+  z-index: 1;
+}
+.wpIcon-wrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+
+.timeForm table td:not(:first-child) {
+  background-color: var(--dust-storm);
+}
+.timeForm input[type="checkbox"], 
+.timeForm input[type=checkbox]:checked {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}
+.timeForm input[type="text"],
+.timeForm input[type="time"], 
+.timeForm input[type="datetime-local"], 
+.timeForm input[type="datetime"] {
+  max-width: 100px;
+  background-color: var(--secondary);
+  color: var(--white);
+  border: 0;
+  border-radius: 30px;
+  padding: 5px 10px;
+  /* font-size: 18px; */
+}
+.timeForm table tr td:first-child {
+  line-height: 0;
+}
+/*end of candidate calender*/

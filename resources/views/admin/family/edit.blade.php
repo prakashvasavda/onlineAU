@@ -521,9 +521,9 @@
                                                         <tr id="{{ $day }}-row">
                                                             <td><input type="checkbox" checked disabled></td>
                                                             <td>{{ ucfirst($day) }}</td>
-                                                            <td><input type="time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][0] ?? null }}"></td>
+                                                            <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Add Time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][0] ?? null }}"></td>
                                                             <td>to</td>
-                                                            <td><input type="time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][0] ?? null }}"></td>
+                                                            <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Add Time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][0] ?? null }}"></td>
                                                             <td onclick="addCalendarRow('{{ $day }}')">
                                                                 <a href="javaScript:;" class="btn add-btn icon">
                                                                     <i class="fa fa-plus"></i>
@@ -531,15 +531,15 @@
                                                             </td>
                                                         </tr>
                         
-                                                        @if(isset($calendars[$day]) && !empty($calendars[$day]) && is_array($calendars[$day]))
+                                                         @if(isset($calendars[$day]) && !empty($calendars[$day]) && is_array($calendars[$day]))
                                                             @foreach($calendars[$day]['start_time'] as $key => $value)
                                                                 @if(isset($key) && $key >= 1 && isset($calendars[$day]['start_time'][$key]) && isset($calendars[$day]['end_time'][$key]))
                                                                     <tr id="{{ $day }}-row">
                                                                         <td><input type="checkbox" checked disabled></td>
                                                                         <td>{{ ucfirst($day) }}</td>
-                                                                        <td><input type="time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][$key] }}"></td>
+                                                                        <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Add Time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][$key] }}"></td>
                                                                         <td>to</td>
-                                                                        <td><input type="time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][$key] }}"></td>
+                                                                        <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Add Time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][$key] }}"></td>
                                                                         <td onclick="removeCalendarRow(event)">
                                                                             <a href="javaScript:;" class="btn add-btn icon">
                                                                                 <i class="fa fa-trash"></i>
@@ -556,9 +556,9 @@
                                                                     <tr id="{{ $day }}-row">
                                                                         <td><input type="checkbox" checked disabled></td>
                                                                         <td>{{ ucfirst($day) }}</td>
-                                                                        <td><input type="time" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] }}"></td>
+                                                                        <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Add Time" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] }}"></td>
                                                                         <td>to</td>
-                                                                        <td><input type="time" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] }}"></td>
+                                                                        <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Add Time" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] }}"></td>
                                                                         <td onclick="removeCalendarRow(event)">
                                                                             <a href="javaScript:;" class="btn add-btn icon">
                                                                                 <i class="fa fa-trash"></i>
@@ -578,7 +578,7 @@
                                                 <strong>{{ $errors->first('calender') }}</strong>
                                             </span>
                                         @endif
-                                    </div> 
+                                    </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <label for="family_description">Tell a little about your family, so candidates can get to know you. <span class="text-danger">*</span></label>
