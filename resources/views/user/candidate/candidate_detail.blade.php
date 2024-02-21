@@ -207,15 +207,18 @@
                             </div>
                         </li>
                     @endif
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/ageGroup-icon1.png') }}" alt="">
-                            <h4>AGES OF CHILDREN YOU WORKED WITH:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->child_ages) ? ucwords(str_replace("_", "-", $candidate->child_ages)) : '-' }}</h4>
-                        </div>
-                    </li>
+                    
+                    @if($candidate->role !== 'petsitters')
+                        <li class="equalHeight">
+                            <div class="about-candidate-title">
+                                <img src="{{ url('front/images/ageGroup-icon1.png') }}" alt="">
+                                <h4>AGES OF CHILDREN YOU WORKED WITH:</h4>
+                            </div>
+                            <div class="about-candidate-content">
+                                <h4>{{ isset($candidate->child_ages) ? ucwords(str_replace("_", "-", $candidate->child_ages)) : '-' }}</h4>
+                            </div>
+                        </li>
+                    @endif
 
                     <li class="equalHeight">
                         <div class="about-candidate-title">
@@ -252,7 +255,7 @@
     </div>
 </div>
 
-<div class="candidate-availability">
+<div class="candidate-availability d-none">
     <div class="container">
         <div class="title-main">
             <h3>Experience</h3>
