@@ -422,11 +422,11 @@
                 <label for="ages_of_children_you_worked_with">Ages of children you worked with <span class="text-danger small">*</span></label>
                 <select id="ages_of_children_you_worked_with" multiple name="ages_of_children_you_worked_with[]" class="form-field ">
                     <option value="" disabled>Select</option>
-                    <option value="0_12_months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0_12_months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
-                    <option value="1_3_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("1_3_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>1-3 years</option>
-                    <option value="4_7_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("4_7_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>4-7 years</option>
-                    <option value="8_13_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("8_13_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>8-13 years</option>
-                    <option value="13_16_years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("13_16_years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>13-16 years</option>
+                    <option value="0-12 months" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("0-12 months", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>0-12 months</option>
+                    <option value="1-3 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("1-3 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>1-3 years</option>
+                    <option value="4-7 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("4-7 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>4-7 years</option>
+                    <option value="8-13 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("8-13 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>8-13 years</option>
+                    <option value="13-16 years" {{ (!empty(old('ages_of_children_you_worked_with')) && in_array("13-16 years", old('ages_of_children_you_worked_with')))? 'selected' : '' }}>13-16 years</option>
                 </select>
                 @if ($errors->has('ages_of_children_you_worked_with'))
                     <span class="text-danger small">
@@ -626,13 +626,13 @@
 
                             @if(old($day) && is_array(old($day)))
                                 @foreach(old($day)['start_time'] as $key => $value)
-                                    @if(isset($key) && $key >= 1 && isset(old($day)['start_time'][$key]) && isset(old($day)['end_time'][$key]))
+                                    @if(isset($key) && $key >= 1 && isset(old($day)['start_time'][$key]) || isset(old($day)['end_time'][$key]))
                                         <tr id="{{ $day }}-row">
                                             <td><input type="checkbox"></td>
                                             <td>{{ ucfirst($day) }}</td>
-                                            <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] }}" placeholder="Add Time"></td>
+                                            <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] ?? null }}" placeholder="Add Time"></td>
                                             <td>to</td>
-                                            <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] }}" placeholder="Add Time"></td>
+                                            <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] ?? null }}" placeholder="Add Time"></td>
                                             <td onclick="removeCalendarRow(event)">
                                                 <a href="javaScript:;" class="btn add-btn icon">
                                                     <i class="fa-solid fa-trash"></i>

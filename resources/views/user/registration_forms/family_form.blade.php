@@ -389,13 +389,13 @@
 
                                 @if(old($day) && is_array(old($day)))
                                     @foreach(old($day)['start_time'] as $key => $value)
-                                        @if(isset($key) && $key >= 1 && isset(old($day)['start_time'][$key]) && isset(old($day)['end_time'][$key]))
+                                        @if(isset($key) && $key >= 1 && isset(old($day)['start_time'][$key]) || isset(old($day)['end_time'][$key]))
                                             <tr id="{{ $day }}-row">
                                                 <td><input type="checkbox"></td>
                                                 <td>{{ ucfirst($day) }}</td>
-                                                <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] }}" placeholder="Add Time"></td>
+                                                <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] ?? null }}" placeholder="Add Time"></td>
                                                 <td>to</td>
-                                                <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] }}" placeholder="Add Time"></td>
+                                                <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] ?? null }}" placeholder="Add Time"></td>
                                                 <td onclick="removeCalendarRow(event)">
                                                     <a href="javaScript:;" class="btn add-btn icon">
                                                         <i class="fa-solid fa-trash"></i>
