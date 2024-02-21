@@ -368,7 +368,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="mb-2">
-                    <label for="day_hour">What are your available days and hours</label>
+                    <label for="day_hour">Days & times needed</label>
                 </div>
                 <div class="table-responsive timeForm">
                     <table class="table table-borderless table-sm">
