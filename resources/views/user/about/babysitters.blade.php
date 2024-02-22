@@ -147,7 +147,7 @@
                     <h4>Hourly rate:</h4>
                 </div>
                 <div class="about-candidate-content">
-                    <h4>{{ "R".$candidate->hourly_rate_pay ?? "-" }}</h4>
+                    <h4>{{ $candidate->hourly_rate_pay ? "R".$candidate->hourly_rate_pay : "-" }}</h4>
                 </div>
             </li>
         </ul>

@@ -156,7 +156,7 @@
                     <h4>SALARY / Hourly rate:</h4>
                 </div>
                 <div class="about-candidate-content">
-                    <h4>{{ "R".$candidate->salary_expectation ?? "-" }} / {{ "R".$candidate->hourly_rate_pay ?? "-" }}</h4>
+                    <h4>{{ $candidate->salary_expectation ? "R".$candidate->salary_expectation : "-" }} / {{ $candidate->hourly_rate_pay ? "R".$candidate->hourly_rate_pay : "-" }}</h4>
                 </div>
             </li>
             <li class="equalHeight">
