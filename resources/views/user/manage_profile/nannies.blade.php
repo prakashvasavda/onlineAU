@@ -133,35 +133,6 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="other_services">Other Services <span class="text-danger">*</span></label>
-                    <select id="other_services" name="other_services[]" multiple class="form-field">
-                        <option value="au-airs" {{ isset($candidate->role) && $candidate->role == "au-pairs" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("au-airs", $candidate->other_services)) ? "selected" : "" }}>Au-Pairs</option>
-                        <option value="nannies" {{ isset($candidate->role) && $candidate->role == "nannies" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("nannies", $candidate->other_services)) ? "selected" : "" }}>Nannies</option>
-                        <option value="babysitters" {{ isset($candidate->role) && $candidate->role == "babysitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) &&  in_array("babysitters", $candidate->other_services)) ? "selected" : "" }}>babysitters</option>
-                        <option value="petsitters" {{ isset($candidate->role) && $candidate->role == "petsitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("petsitters", $candidate->other_services)) ? "selected" : "" }}>petsitters</option>
-                    </select>
-                    @if ($errors->has('other_services'))
-                        <span class="text-danger">
-                            <strong>{{ $errors->first('other_services') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-            
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
-                    <label for="situated">Situated <span class="text-danger">*</span></label>
-                    <input type="text" id="situated" name="situated" placeholder="" class="form-field @error('situated') is-invalid @enderror"  value="{{ old('situated', isset($candidate->situated) ? $candidate->situated : null) }}">
-                    @error('situated')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="form-input">
                     <label for="area">Type in your City <span class="text-danger">*</span></label>
                     <input type="text" id="area" name="area" placeholder="" class="form-field address-input @error('area') is-invalid @enderror"  value="{{ old('area', isset($candidate->area) ? $candidate->area : null) }}">
                     @error('area')
@@ -202,7 +173,7 @@
                     <label for="religion">Religion <span class="text-danger">*</span></label>
                     <select id="religion" name="religion" class="form-field">
                         <option value="" selected="selected" disabled="disabled">Select one</option>
-                        <option value="african traditional &amp; Diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>
+                        <option value="african traditional and diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional and diasporic' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>
                         <option value="agnostic" {{ isset($candidate->religion) && $candidate->religion == 'agnostic' ? 'selected' : null }}>Agnostic</option>
                         <option value="atheist" {{ isset($candidate->religion) && $candidate->religion == 'atheist' ? 'selected' : null }}>Atheist</option>
                         <option value="baha'i" {{ isset($candidate->religion) && $candidate->religion == "baha'i" ? 'selected' : null }}>Baha'i</option>
@@ -522,7 +493,6 @@
                     </span>
                 @endif
             </div>
-
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="live_in_or_live_out">Live in / Live out <span class="text-danger">*</span></label>
@@ -537,6 +507,27 @@
                     @endif
                 </div>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="special_needs_specifications">If yes please specify</label>
+                <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications', $candidate->special_needs_specifications) }}</textarea>
+                <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+                @if ($errors->has('special_needs_specifications'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('special_needs_specifications') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label for="about_yourself">Tell us a bit more about yourself <span class="text-danger">*</span></label>
+                <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
+                <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+                @if ($errors->has('about_yourself'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('about_yourself') }}</strong>
+                    </span>
+                @endif
+            </div>
+            
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
                     <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger">*</span></label>
@@ -600,7 +591,7 @@
                     
                     @if(isset($previous_experience) && !$previous_experience->isEmpty())
                         @foreach($previous_experience as $key => $value)
-                            <div class="row">
+                            <div class="row mt-3">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-input">
                                         <label for="daterange">Date range <span class="text-danger">*</span></label>
@@ -634,7 +625,7 @@
                             </div>
                         @endforeach
                     @else
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-input">
                                     <label for="daterange">Date range <span class="text-danger">*</span></label>
@@ -740,20 +731,7 @@
                 @endforeach
             @endif
 
-            <div class="row">
-                
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label for="about_yourself">Tell us a bit more about yourself  <span class="text-danger">*</span></label>
-                <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself', $candidate->about_yourself) }}</textarea>
-                <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
-                @if ($errors->has('about_yourself'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('about_yourself') }}</strong>
-                    </span>
-                @endif
-            </div>
+            <div class="row"></div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="mb-2">
