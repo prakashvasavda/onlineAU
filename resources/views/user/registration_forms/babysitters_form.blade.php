@@ -259,7 +259,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="contact_number">Contact Number</label>
+                <label for="contact_number">Contact Number <span class="text-danger">*</span></label>
                 <input type="number" id="contact_number" name="contact_number" placeholder="" class="form-field @error('contact_number') is-invalid @enderror"  value="{{ old('contact_number') }}">
                 @error('contact_number')
                     <span class="invalid-feedback" role="alert">
