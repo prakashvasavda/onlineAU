@@ -98,4 +98,8 @@ input:checked + .status_slider:before {
 .timeForm table tr td:first-child {
   line-height: 0;
 }
+.timeForm input[type="text"]::placeholder {
+  color: white;
+}
+
 /*end of candidate calender*/
