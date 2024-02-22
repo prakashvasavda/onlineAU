@@ -55,7 +55,7 @@
         </nav>
         <aside class="main-sidebar sidebar-dark-primary elevation-4" id="left-menubar" style="min-height:0!important; overflow-x: hidden;">
             <a href="{{url('/')}}" class="brand-link" style="text-align: center">
-                <span class="brand-text font-weight-light"><b>AU-PAIRS ADMIN</b></span>
+                <span class="brand-text font-weight-light"><b>ONLINE-AU ADMIN</b></span>
             </a>
 
             <div class="sidebar">
@@ -65,7 +65,7 @@
                             <a href="#" class="nav-link @if(isset($menu) && $menu=='User') active  @endif">
                                 <img src=" {{url('assets/dist/img/AdminLTELogo.png')}}" class="img-circle elevation-2" alt="User Image" style="width: 2.1rem; margin-right: 1.5%;">
                                 <p style="padding-right: 6.5%;">
-                                    {{ ucfirst(Auth::user()->name) }}
+                                    &nbsp;{{ strtoupper(Auth::user()->name) }}
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -192,7 +192,7 @@
         @yield('content')
 
         <footer class="main-footer">
-            <strong>{{ config('app.name', 'AU-PAIRS') }} Admin</strong>
+            <strong>ONLINE-AU ADMIN @ 2024</strong>
         </footer>
     </div>
 
@@ -233,6 +233,7 @@
     <script src="{{ URL::asset('assets/plugins/ladda/spin.min.js')}}"></script>
     <script src="{{ URL::asset('assets/plugins/ladda/ladda.min.js')}}"></script>
     <script src="{{ URL('assets/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+
     
     <script>
         Ladda.bind( 'input[type=submit]' );

@@ -23,7 +23,7 @@
                         <div class="small-box bg-secondary">
                             <div class="inner">
                                 <h3>{{ isset($front_users->total_family_petsittings) ? $front_users->total_family_petsittings : "0" }}</h3>
-                                <p>Total Family Petsitting</p>
+                                <p>Total Petsittings</p>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-user"></i>
@@ -93,7 +93,7 @@
                 <div class="col-6">
                     <div class="card card-secondary">
                         <div class="card-header">
-                            <h3 class="card-title">Latest Candidates</h3>
+                            <h3 class="card-title">Latest Registrations</h3>
                         </div>
                         <div class="card-body">
                             <table id="candidatesTable" class="table table-bordered table-striped">
