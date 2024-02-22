@@ -71,7 +71,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="profile">Profile Picture </label>
+                <label for="profile">Profile Picture <span class="text-danger">*</span></label>
                 <input type="file" id="profile" name="profile" placeholder="" class="form-field" accept="image/*" >
                 @if ($errors->has('profile'))
                     <span class="text-danger">
