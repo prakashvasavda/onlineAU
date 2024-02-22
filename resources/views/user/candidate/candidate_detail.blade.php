@@ -5,6 +5,8 @@
     $services = [
         "au-pairs"   => "au-pair",
         "nannies"    => "nanny",
+        "petsitters" => "petsitter",
+        "babysitters"=> "babysitter",
     ]
 @endphp
 
@@ -31,7 +33,7 @@
                         @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs')
                             SALARY: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
                         @else
-                            HOURLY RATE: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
+                            HOURLY RATE: {{ $candidate->hourly_rate_pay ? "R".strtoupper($candidate->hourly_rate_pay) : "-" }}<br>
                         @endif
                        
 
