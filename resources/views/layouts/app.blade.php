@@ -49,12 +49,12 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ url('/') }}" class="nav-link">Home</a>
+                    <a href="{{ url('admin') }}" class="nav-link">Home</a>
                 </li>
             </ul>
         </nav>
         <aside class="main-sidebar sidebar-dark-primary elevation-4" id="left-menubar" style="min-height:0!important; overflow-x: hidden;">
-            <a href="{{url('/')}}" class="brand-link" style="text-align: center">
+            <a href="{{ url('admin') }}" class="brand-link" style="text-align: center">
                 <span class="brand-text font-weight-light"><b>ONLINE-AU ADMIN</b></span>
             </a>
 
@@ -116,7 +116,7 @@
                                 <li class="nav-item">
                                     <a href="{{ url('admin/family-petsitting') }}" class="nav-link @if($menu=='family petsitting') active @endif">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Manage Petisitting</p>
+                                        <p>Manage Petisittings</p>
                                     </a>
                                 </li>
                             </ul>
@@ -141,16 +141,15 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.candidates.petsitters')}}" class="nav-link @if($menu=='petsitters') active @endif">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Manage Petsitters</p>
-                                    </a>
-                                </li>
-
-                                 <li class="nav-item">
                                     <a href="{{route('admin.candidates.nannies')}}" class="nav-link @if($menu=='nannies') active @endif">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Manage Nannies</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.candidates.petsitters')}}" class="nav-link @if($menu=='petsitters') active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Manage Petsitters</p>
                                     </a>
                                 </li>
                             </ul>
