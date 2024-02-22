@@ -205,18 +205,14 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="salary_expectation">What is your hourly rate <span class="text-danger">*</span></label>
-                <div class="input-group mb-1">
-                    <span class="input-group-text">R</span>
-                        <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="" value="{{old('salary_expectation')}}">
-                    <span class="input-group-text">hr</span>
-                </div>
-                @if ($errors->has('salary_expectation'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('salary_expectation') }}</strong>
-                    </span>
-                @endif
+                <label for="disabilities">Disabilities <span class="text-danger">*</span></label>
+                <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
             </div>
+            @if ($errors->has('disabilities'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('disabilities') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
@@ -277,14 +273,42 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="disabilities">Disabilities <span class="text-danger">*</span></label>
-                <input type="text" id="disabilities" name="disabilities" value="{{ old('disabilities') }}" placeholder="" class="form-field">
+                <label for="childcare_experience">How many years of petsitting experience do you have <span class="text-danger">*</span></label>
+                <select id="childcare_experience" name="childcare_experience" class="form-field">
+                    <option value="" selected="selected" disabled="disabled">Select</option>
+                    <option value="6 months" {{ old('childcare_experience') == "6 months" ? "selected" : '' }}>6 Months</option>
+                    <option value="1 years" {{ old('childcare_experience') == "1 years" ? "selected" : '' }}>1 year</option>
+                    <option value="1.5 years" {{ old('childcare_experience') == "1.5 years" ? "selected" : '' }}>1.5 years</option>
+                    <option value="2 years" {{ old('childcare_experience') == "2 years" ? "selected" : '' }}>2 years</option>
+                    <option value="2.5 years" {{ old('childcare_experience') == "2.5 years" ? "selected" : '' }}>2.5 years</option>
+                    <option value="3 years" {{ old('childcare_experience') == "3 years" ? "selected" : '' }}>3 years</option>
+                    <option value="3.5 years" {{ old('childcare_experience') == "3.5 years" ? "selected" : '' }}>3.5 years</option>
+                    <option value="4 years" {{ old('childcare_experience') == "4 years" ? "selected" : '' }}>4 years</option>
+                    <option value="4.5 years" {{ old('childcare_experience') == "4.5 years" ? "selected" : '' }}>4.5 years</option>
+                    <option value="5 years" {{ old('childcare_experience') == "5 years" ? "selected" : '' }}>5 years</option>
+                    <option value="5+ years" {{ old('childcare_experience') == "5+ years" ? "selected" : '' }}>5+ years</option>
+                </select>
+                @if ($errors->has('childcare_experience'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('childcare_experience') }}</strong>
+                    </span>
+                @endif
             </div>
-            @if ($errors->has('disabilities'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('disabilities') }}</strong>
-                </span>
-            @endif
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger">*</span></label>
+                <div class="input-group mb-1">
+                    <span class="input-group-text">R</span>
+                        <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{old('hourly_rate_pay')}}">
+                    <span class="input-group-text">hr</span>
+                </div>
+                @if ($errors->has('hourly_rate_pay'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
+                    </span>
+                @endif
+            </div>
         </div>
         <div class="col-12">
             <div class="form-inputs" id="dynamic_field">

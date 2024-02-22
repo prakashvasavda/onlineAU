@@ -337,34 +337,19 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="chronical_medication">Are you on any chronical medication <span class="text-danger">*</span></label>
-                                            <select class="form-control" name="chronical_medication">
-                                                <option selected disabled>select</option>
-                                                <option value="yes" {{ isset($candidate->chronical_medication) && $candidate->chronical_medication == 'yes' ? 'selected' : null }}>Yes</option>
-                                                <option value="no" {{ isset($candidate->chronical_medication) && $candidate->chronical_medication == 'no' ? 'selected' : null }}>No</option>
-                                            </select>
-                                            @if ($errors->has('chronical_medication'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('chronical_medication') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
                                             <label for="childcare_experience">How many years of petsitting experience do you have <span class="text-danger">*</span></label>
                                             <select id="childcare_experience" name="childcare_experience" class="form-control">
-                                                <option value="" selected="selected" disabled="disabled">Select</option>
+                                                <option value="">Select</option>
                                                 <option value="6 months" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "6 months" ? "selected" : '' }}>6 Months</option>
                                                 <option value="1 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1 years" ? "selected" : '' }}>1 years</option>
                                                 <option value="1.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "1.5 years" ? "selected" : '' }}>1.5 years</option>
                                                 <option value="2 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2 years" ? "selected" : '' }}>2 years</option>
                                                 <option value="2.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "2.5 years" ? "selected" : '' }}>2.5 years</option>
-                                                <option value="3 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3 yearsyearsyears" ? "selected" : '' }}>3 years</option>
-                                                <option value="3.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3.5 yearsyears" ? "selected" : '' }}>3.5 years</option>
+                                                <option value="3 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3 years" ? "selected" : '' }}>3 years</option>
+                                                <option value="3.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "3.5 years" ? "selected" : '' }}>3.5 years</option>
                                                 <option value="4 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4 years" ? "selected" : '' }}>4 years</option>
-                                                <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 yearsyearsyears" ? "selected" : '' }}>4.5 years</option>
-                                                <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 yearsyears" ? "selected" : '' }}>5 years</option>
+                                                <option value="4.5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "4.5 years" ? "selected" : '' }}>4.5 years</option>
+                                                <option value="5 years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5 years" ? "selected" : '' }}>5 years</option>
                                                 <option value="5+ years" {{ isset($candidate->childcare_experience) && $candidate->childcare_experience == "5+ years" ? "selected" : '' }}>5+ years</option>
                                             </select>
                                             @if ($errors->has('childcare_experience'))
@@ -374,8 +359,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
+
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="situated">Situated <span class="text-danger">*</span></label>
@@ -389,10 +373,27 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="salary_expectation">What is your hourly rate <span class="text-danger">*</span></label>
+                                            <div class="input-group mb-1">
+                                                <span class="input-group-text">R</span>
+                                                    <input type="text" name="salary_expectation" id="salary_expectation" class="form-control" placeholder="" value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
+                                                <span class="input-group-text">hr</span>
+                                            </div>
+                                            @if ($errors->has('salary_expectation'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('salary_expectation') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-12">
                                         <div class="form-inputs" id="dynamic_field">
                                             <div class="d-flex flex-row justify-content-between align-items-start">
-                                                <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                                                <label class="mb-2 fst-italic">List your previous petsitting work experience with contactable references.</label>
                                                 <div class="icon-option all-in-one d-flex flex-row d-none">
                                                     <p>Add Reference</p>
                                                     <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
@@ -401,7 +402,7 @@
                                             
                                             @if(isset($previous_experience) && !$previous_experience->isEmpty())
                                                 @foreach($previous_experience as $key => $value)
-                                                    <div class="row">
+                                                    <div class="row mb-3">
                                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                             <div class="form-input">
                                                                 <label for="daterange">Date range <span class="text-danger">*</span></label>
@@ -435,7 +436,7 @@
                                                     </div>
                                                 @endforeach
                                             @else
-                                                <div class="row">
+                                                <div class="row mb-3">
                                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                         <div class="form-input">
                                                             <label for="daterange">Date range <span class="text-danger">*</span></label>
@@ -491,41 +492,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="salary_expectation">What is your hourly rate <span class="text-danger">*</span></label>
-                                            <div class="input-group mb-1">
-                                                <span class="input-group-text">R</span>
-                                                    <input type="text" name="salary_expectation" id="salary_expectation" class="form-control" placeholder="" value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
-                                                <span class="input-group-text">hr</span>
-                                            </div>
-                                            @if ($errors->has('salary_expectation'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('salary_expectation') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="other_services">Other Services <span class="text-danger">*</span></label>
-                                            <select id="other_services" name="other_services[]" multiple class="form-control">
-                                                <option value="au-airs" {{ isset($candidate->role) && $candidate->role == "au-pairs" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("au-airs", $candidate->other_services)) ? "selected" : "" }}>Au-Pairs</option>
-                                                <option value="nannies" {{ isset($candidate->role) && $candidate->role == "nannies" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("nannies", $candidate->other_services)) ? "selected" : "" }}>Nannies</option>
-                                                <option value="babysitters" {{ isset($candidate->role) && $candidate->role == "babysitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) &&  in_array("babysitters", $candidate->other_services)) ? "selected" : "" }}>babysitters</option>
-                                                <option value="petsitters" {{ isset($candidate->role) && $candidate->role == "petsitters" ? "disabled" : "" }} {{ (isset($candidate->other_services) && in_array("petsitters", $candidate->other_services)) ? "selected" : "" }}>petsitters</option>
-                                            </select>
-                                            @if ($errors->has('other_services'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('other_services') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
+                                
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
