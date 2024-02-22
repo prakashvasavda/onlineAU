@@ -9,7 +9,6 @@
         "babysitters"=> "babysitter",
     ]
 @endphp
-
 <div class="candidate-info">
     <div class="container">
         <div class="row">
@@ -30,13 +29,6 @@
                         LOCATION:    {{ $candidate->area ? strtoupper($candidate->area)  : "-"  }}    <br>
                         SPECIALITY:  {{ isset($services[$candidate->role]) ? strtoupper($services[$candidate->role])  : "-"  }} <br>
                          
-                        @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs')
-                            SALARY: {{ $candidate->salary_expectation ? "R".strtoupper($candidate->salary_expectation) : "-" }}<br>
-                        @else
-                            HOURLY RATE: {{ $candidate->hourly_rate_pay ? "R".strtoupper($candidate->hourly_rate_pay) : "-" }}<br>
-                        @endif
-                       
-
                         @if(session()->has('frontUser') && session()->get('frontUser')->role == "family" && session()->get('frontUser')->user_subscription_status == "active")
                             @if(isset(session()->get('frontUser')->purchased_candidates) && in_array($candidate->role, explode(',', session()->get('frontUser')->purchased_candidates)))
                                 <span id="candidate_contact" style="display: none;">
@@ -52,10 +44,10 @@
                 <div class="candidate-contact">
                     @if(session()->has('frontUser'))
                         <p class="mb-2"><a href="javaScript:;" class="btn icon-with-text btn-link p-0" onclick="storeFamilyFavoriteCandidate()"><i class="{{ isset($favourite) ? 'fa-solid' : 'fa-regular' }} fa-heart" id="candidate_favourite"></i>Save</a></p>
-                        <a href="javaScript:;" class="btn btn-primary round" onclick="handleClick(event)">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                        <a href="javaScript:;" class="btn btn-primary round" onclick="handleClick(event)"  style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                     @else
                         <p class="mb-2"><a href="{{ route('user-login') }}" class="btn icon-with-text btn-link p-0"><i class="fa-regular fa-heart" id="candidate_favourite"></i>Save</a></p>
-                        <a href="{{ route('user-login') }}" class="btn btn-primary round">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
+                        <a href="{{ route('user-login') }}" class="btn btn-primary round"  style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis">CONTACT {{ isset($candidate->name) ? explode(' ', $candidate->name)[0] : '' }}</a>
                     @endif
                 </div>
             </div>
@@ -69,226 +61,40 @@
             <h3 class="mb-2">About me</h3>
             <p class="text-start mb-2">{{ $candidate->about_yourself ? $candidate->about_yourself : "-" }}</p>
         </div>
-
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <ul class="about-candidate-box">
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/religion-icon1.png') }}" alt="">
-                            <h4>religion:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->religion) ? ucfirst($candidate->religion) : '-' }}</h4>
-                        </div>
-                    </li>
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/disabilities-icon1.png') }}" alt="">
-                            <h4>disabilities:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->disabilities) ? ucfirst($candidate->disabilities) : '-' }}</h4>
-                        </div>
-                    </li>
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/language-icon1.png') }}" alt="">
-                            <h4>HOME LANGUAGE:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                             <h4>{{ isset($candidate->home_language) ? ucfirst($candidate->home_language) : '-' }}</h4>
-                        </div>
-                    </li>
-                    <li class={{ isset($candidate->additional_language) ? "equalHeight" : "d-none" }}>
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/language-icon1.png') }}" alt="">
-                            <h4>additional language:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                             <h4>{{ isset($candidate->additional_language) ? ucfirst($candidate->additional_language) : '-' }}</h4>
-                        </div>
-                    </li>
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/marital-status-icon1.png') }}" alt="">
-                            <h4>MARITAL STATUS:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->marital_status) ? ucfirst($candidate->marital_status) : '-' }}</h4>
-                        </div>
-                    </li>
-
-                    @if($candidate->role == 'nannies' || $candidate->role == 'au-pairs' ||  $candidate->role == 'babysitters')
-                        <li class="equalHeight">
-                            <div class="about-candidate-title">
-                                <img src="{{ url('front/images/firstAid-icon1.png') }}" alt="">
-                                <h4>FIRST AID:</h4>
-                            </div>
-                            <div class="about-candidate-content">
-                                <h4>{{ isset($candidate->first_aid) ? ucfirst($candidate->first_aid) : '-' }}</h4>
-                            </div>
-                        </li>
-                    @endif
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/gender-icon1.png') }}" alt="">
-                            <h4>GENDER:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->gender) ? $candidate->gender : '-' }}</h4>
-                        </div>
-                    </li>
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/smoker_NonSmoker-icon1.png') }}" alt="">
-                            <h4>SMOKER/NON SMOKER:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->smoker_or_non_smoker) ? str_replace("_", " ", $candidate->smoker_or_non_smoker) : '-' }}</h4>
-                        </div>
-                    </li>
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/medications-icon1.png') }}" alt="">
-                            <h4>Chronical medication:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->chronical_medication) ? $candidate->chronical_medication : '-' }}</h4>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <ul class="about-candidate-box">
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/driving-licence-icon1.png') }}" alt="">
-                            <h4>DRIVERS LICENSE:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->drivers_license) ? ucfirst($candidate->drivers_license) : '-' }}</h4>
-                        </div>
-                    </li>
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/vehicle-icon1.png') }}" alt="">
-                            <h4>OWN VEHICLE:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->vehicle) ? ucfirst($candidate->vehicle) : '-' }}</h4>
-                        </div>
-                    </li>
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/years-experience-icon1.png') }}" alt="">
-                            <h4>YEARS OF EXPERIENCE:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->childcare_experience) ? ucfirst($candidate->childcare_experience) : '-' }}</h4>
-                        </div>
-                    </li>
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/dependants-icon1.png') }}" alt="">
-                            <h4>DEPENDANTS</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->dependants) ? ucfirst($candidate->dependants) : '-' }}</h4>
-                        </div>
-                    </li>
-
-                    @if($candidate->role == 'au-pairs' ||  $candidate->role == 'nannies')
-                        <li class="equalHeight">
-                            <div class="about-candidate-title">
-                                <img src="{{ url('front/images/home-live-in-icon1.png') }}" alt="">
-                                <h4>LIVE-IN OR LIVE-OUT:</h4>
-                            </div>
-                            <div class="about-candidate-content">
-                                <h4>{{ isset($candidate->live_in_or_live_out) ? ucfirst(str_replace("_", "-", $candidate->live_in_or_live_out)) : '-' }}</h4>
-                            </div>
-                        </li>
-                    @endif
-                    
-                    @if($candidate->role !== 'petsitters')
-                        <li class="equalHeight">
-                            <div class="about-candidate-title">
-                                <img src="{{ url('front/images/ageGroup-icon1.png') }}" alt="">
-                                <h4>AGES OF CHILDREN YOU WORKED WITH:</h4>
-                            </div>
-                            <div class="about-candidate-content">
-                                <h4>{{ isset($candidate->child_ages) ? ucwords(str_replace("_", "-", $candidate->child_ages)) : '-' }}</h4>
-                            </div>
-                        </li>
-                    @endif
-
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/experience_special_needs-icon1.png') }}" alt="">
-                            <h4>EXPERIENCE WITH SPECIAL NEEDS:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->experience_special_needs) ? $candidate->experience_special_needs : "-" }}</h4>
-                        </div>
-                    </li>
-
-                    <li class={{ isset($candidate->comfortable_with_light_housework) ? "equalHeight" : "d-none" }}>
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/houseWork-icon1.png') }}" alt="">
-                            <h4>Comfortable with light house work:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->comfortable_with_light_housework) ? $candidate->comfortable_with_light_housework : "-" }}</h4>
-                        </div>
-                    </li>
-
-                    <li class="equalHeight">
-                        <div class="about-candidate-title">
-                            <img src="{{ url('front/images/availableDate-icon1.png') }}" alt="">
-                            <h4>AVAILABLE ON:</h4>
-                        </div>
-                        <div class="about-candidate-content">
-                            <h4>{{ isset($candidate->available_date) ? $candidate->available_date : '-' }}</h4>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        @if (isset($candidate->role) && in_array($candidate->role, ['au-pairs', 'nannies', 'petsitters', 'babysitters']))
+            @include("user.about.$candidate->role")
+        @endif
     </div>
 </div>
 
-<div class="candidate-availability d-none">
+<div class="candidate-availability">
     <div class="container">
         <div class="title-main">
             <h3>Experience</h3>
         </div>
-        <div class="table-responsive timeForm">
-            <table class="table table-borderless table-sm">
+        <div class="table-responsive timeListTable">
+            <table class="table mb-0 experiances-table">
                 <thead>
                     <tr>
-                        <th class="w-15">From</th>
-                        <th class="w-15">To</th>
-                        <th class="w-15">Heading </th>
-                        {{-- <th class="w-15">Description</th> --}}
-                        <th class="w-15">Reference Name</th>
-                        <th class="w-15">Tel Number</th>
+                        <th class="w-10">From</th>
+                        <th class="w-10">To</th>
+                        <th class="w-25">Heading </th>
+                        <th class="w-50">Description</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if(isset($candidate->previous_experience) && !empty($candidate->previous_experience))
+                    @if(isset($candidate->previous_experience) && $candidate->previous_experience->isNotEmpty())
                         @foreach ($candidate->previous_experience as $key => $value)
                             <tr>
                                 <td>{{ explode("-", $value->daterange)[0] ?? "-"  }}</td>
                                 <td>{{ explode("-", $value->daterange)[1] ?? "-" }}</td>
                                 <td>{{ $value->heading ?? "-" }}</td>
-                                {{-- <td>{{ $value->description ?? "-" }}</td> --}}
-                                <td>{{ $value->reference ?? "-" }}</td>
-                                <td>{{ $value->tel_number?? "-" }}</td>
+                                <td>{{ $value->description ?? "-" }}</td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td class="text-center" colspan="6">No experiances available</td>
+                            <td class="text-center" colspan="4">No experiances available</td>
                         </tr>
                     @endif
                 </tbody>

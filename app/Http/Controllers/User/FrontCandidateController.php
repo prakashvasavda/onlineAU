@@ -317,12 +317,13 @@ class FrontCandidateController extends Controller{
     }
 
     public function candidate_detail($candidateId){
-        $data['menu']                       = 'candidate detail';
-        $data['candidate']                  = FrontUser::with(['calendars', 'previous_experience'])->where('id', $candidateId)->where('status', '1')->first();
-        $data['payments']                   = Session::has('frontUser') ? Payment::where('user_id', Session::get('frontUser')->id)->first() : null;
-        $data['candidate']['other_services']= isset($data['candidate']->other_services) ? implode(", ", json_decode($data['candidate']->other_services, true)) : null;
-        $data['candidate']['child_ages']    = isset($data['candidate']->ages_of_children_you_worked_with) ? implode(", ", json_decode($data['candidate']->ages_of_children_you_worked_with, true)) : null;
-        
+        $data['menu']                           = 'candidate detail';
+        $data['candidate']                      = FrontUser::with(['calendars', 'previous_experience'])->where('id', $candidateId)->where('status', '1')->first();
+        $data['payments']                       = Session::has('frontUser') ? Payment::where('user_id', Session::get('frontUser')->id)->first() : null;
+        $data['candidate']['other_services']    = isset($data['candidate']->other_services) ? implode(", ", json_decode($data['candidate']->other_services, true)) : null;
+        $data['candidate']['child_ages']        = isset($data['candidate']->ages_of_children_you_worked_with) ? implode(", ", json_decode($data['candidate']->ages_of_children_you_worked_with, true)) : null;
+        $data['candidate']['animals_work_with'] = isset($data['candidate']->animals_comfortable_with) ? implode(", ", json_decode($data['candidate']->animals_comfortable_with, true)) : null;
+
         /* decode calender data */
         $calender           = $data['candidate']['calendars'];
         $data['calendars']  = $this->calendarController->decode_calender($calender);

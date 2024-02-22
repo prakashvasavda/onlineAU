@@ -2470,4 +2470,39 @@ span.error.text-danger {
 .timeForm table tr td:first-child {
     line-height: 0;
 }
+.timeForm table tr th, 
+.timeForm table tr td {
+    text-align: center;
+}
+.timeListTable table {
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--dust-storm);
+    text-align: center;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--gray-text);
+    vertical-align: middle;
+    font-family: var(--montserrat-font);
+    white-space: nowrap;
+}
+.timeListTable table thead th {
+    background-color: var(--dust-storm);
+    font-weight: 600;
+}
+.timeListTable table tbody td {
+    font-weight: 500;
+}
 /*end of candidate calender*/
+
+/* experiance table */
+.experiances-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.experiances-table th, td {
+    padding: 8px;
+    text-align: left;
+    white-space: pre-wrap; /* Allow text to wrap */
+}

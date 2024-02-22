@@ -95,6 +95,7 @@
 	.row.row-gap-5 {row-gap: 4rem;}
 	.form-inputs .d-flex.flex-row {flex-flow: column !important;}
 	.form-inputs .d-flex.flex-row .icon-option.all-in-one {margin-left: auto;flex-flow: row !important;}
+	.about-candidate-box li {height: auto !important;}
 }
 @media screen and (max-width:575px) {
 	.ftr-menu h5 {font-size: 24px;margin: 0 0 8px;}
@@ -115,6 +116,7 @@
 	.requirements-list li:before {min-width: 28px;width: 28px;}
 	.pricing-card .heading h4 {font-size: 26px;}
 	.pricing-card .price {font-size: 40px;}
+	.timeListTable table {font-size: 14px;}
 }
 @media screen and (max-width:481px) {
 	header {padding: 10px 0;}
