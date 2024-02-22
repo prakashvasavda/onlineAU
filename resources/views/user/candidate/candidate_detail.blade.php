@@ -307,9 +307,9 @@
                         <tr id="{{ $day }}-row">
                             <td class="text-start"><input type="checkbox" disabled></td>
                             <td>{{ ucfirst($day) }}</td>
-                            <td><input type="time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][0] ?? null }}" disabled></td>
+                            <td><input type="text" placeholder="Add Time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][0] ?? null }}" disabled></td>
                             <td>to</td>
-                            <td><input type="time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][0] ?? null }}" disabled></td>
+                            <td><input type="text" placeholder="Add Time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][0] ?? null }}" disabled></td>
                         </tr>
 
                         @if(isset($calendars[$day]) && !empty($calendars[$day]) && is_array($calendars[$day]))
@@ -318,9 +318,9 @@
                                     <tr id="{{ $day }}-row">
                                         <td class="text-start"><input type="checkbox" disabled></td>
                                         <td>{{ ucfirst($day) }}</td>
-                                        <td><input type="time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][$key] }}" disabled></td>
+                                        <td><input type="text" placeholder="Add Time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][$key] }}" disabled></td>
                                         <td>to</td>
-                                        <td><input type="time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][$key] }}" disabled></td>
+                                        <td><input type="text" placeholder="Add Time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][$key] }}" disabled></td>
                                     </tr>
                                 @endif
                             @endforeach
