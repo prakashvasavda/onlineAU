@@ -289,7 +289,7 @@
         <div class="col-12">
             <div class="form-inputs" id="dynamic_field">
                 <div class="d-flex flex-row justify-content-between align-items-start">
-                    <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                    <label class="mb-2 fst-italic">List your previous petsitting work experience with contactable references.</label>
                     <div class="icon-option all-in-one d-flex flex-row">
                         <p>Add Reference</p>
                         <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
