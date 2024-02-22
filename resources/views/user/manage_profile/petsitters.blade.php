@@ -321,15 +321,15 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-input">
-                    <label for="salary_expectation">What is your hourly rate <span class="text-danger">*</span></label>
+                    <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger">*</span></label>
                     <div class="input-group mb-1">
                         <span class="input-group-text">R</span>
-                            <input type="text" name="salary_expectation" id="salary_expectation" class="form-field" placeholder="" value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
+                            <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-field" placeholder="" value="{{ old('hourly_rate_pay', isset($candidate->hourly_rate_pay) ? $candidate->hourly_rate_pay : null) }}">
                         <span class="input-group-text">hr</span>
                     </div>
-                    @if ($errors->has('salary_expectation'))
+                    @if ($errors->has('hourly_rate_pay'))
                         <span class="text-danger">
-                            <strong>{{ $errors->first('salary_expectation') }}</strong>
+                            <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
                         </span>
                     @endif
                 </div>
