@@ -109,7 +109,7 @@ class PetsittersController extends Controller{
             $rules['smoker_or_non_smoker']              = "required";
             $rules['special_needs_specifications']      = "required_if:experience_special_needs,==,yes|max:500";
             $rules['about_yourself']                    = "required|max:500";
-            $rules['salary_expectation']                = "required|numeric|digits_between:2,10";  
+            $rules['hourly_rate_pay']                   = "required|numeric|digits_between:2,10";  
             $rules['situated']                          = "required|max:50";
             $rules['animals_comfortable_with']          = "required";
             $rules['experience_with_animals']           = "required";
