@@ -449,24 +449,7 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger">*</span></label>
-                                            <div class="input-group mb-1">
-                                                <span class="input-group-text">R</span>
-                                                    <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-control" placeholder="" value="{{ old('hourly_rate_pay', isset($candidate->hourly_rate_pay) ? $candidate->hourly_rate_pay : '') }}">
-                                                <span class="input-group-text">hr</span>
-                                            </div>
-                                            <p class="fw-light small">Average rate that other families offer: R16,34<br>For your safety and protection, only pay through Online Au-Pairs.</p>
-                                            @if ($errors->has('hourly_rate_pay'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="experience_special_needs">Do you have experience with special needs <span class="text-danger">*</span></label>
@@ -481,8 +464,19 @@
                                             </span>
                                         @endif
                                     </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="special_needs_specifications">If YES Please specify. </label>
+                                            <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-control" rows="3" >{{ old('special_needs_specifications', $candidate->special_needs_specifications) }}</textarea>
+                                            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+                                            @if ($errors->has('special_needs_specifications'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('special_needs_specifications') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <div class="row">
                                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
@@ -557,8 +551,25 @@
                                         </div>
                                     </div>                                
                                 </div>
-
-                               <div class="row">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="hourly_rate_pay">What is your hourly rate <span class="text-danger">*</span></label>
+                                            <div class="input-group mb-1">
+                                                <span class="input-group-text">R</span>
+                                                    <input type="text" name="hourly_rate_pay" id="hourly_rate_pay" class="form-control" placeholder="" value="{{ old('hourly_rate_pay', isset($candidate->hourly_rate_pay) ? $candidate->hourly_rate_pay : '') }}">
+                                                <span class="input-group-text">hr</span>
+                                            </div>
+                                            <p class="fw-light small">Average rate that other families offer: R16,34<br>For your safety and protection, only pay through Online Au-Pairs.</p>
+                                            @if ($errors->has('hourly_rate_pay'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('hourly_rate_pay') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-12">
                                         <div class="form-inputs" id="dynamic_field">
                                             <div class="d-flex flex-row justify-content-between align-items-start">
@@ -571,7 +582,7 @@
                                             
                                             @if(isset($previous_experience) && !$previous_experience->isEmpty())
                                                 @foreach($previous_experience as $key => $value)
-                                                    <div class="row">
+                                                    <div class="row mt-2">
                                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                             <div class="form-input">
                                                                 <label for="daterange">Date range <span class="text-danger">*</span></label>
@@ -605,7 +616,7 @@
                                                     </div>
                                                 @endforeach
                                             @else
-                                                <div class="row">
+                                                <div class="row mt-2">
                                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                         <div class="form-input">
                                                             <label for="daterange">Date range <span class="text-danger">*</span></label>
@@ -661,7 +672,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row mt-3">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="about_yourself">Tell us a bit more about yourself  <span class="text-danger">*</span></label>

@@ -353,20 +353,6 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
-                <label for="experience_special_needs">Do you have experience with special needs <span class="text-danger">*</span></label>
-                <ul class="d-flex flex-wrap">
-                    <li><input type="radio" name="experience_special_needs" value="yes" {{ old('experience_special_needs') == "yes" ? "checked" : '' }}>Yes</li>
-                    <li><input type="radio" name="experience_special_needs" value="no" {{ old('experience_special_needs') == "no" ? "checked" : '' }}>No</li>
-                </ul>
-                @if ($errors->has('experience_special_needs'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('experience_special_needs') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="form-input">
                 <label for="first_aid">Do you have first aid <span class="text-danger">*</span></label>
                 <ul class="d-flex flex-wrap">
                     <li><input type="radio" name="first_aid" value="yes" {{ old('first_aid') == "yes" ? "checked" : '' }}>Yes</li>
@@ -375,6 +361,20 @@
                 @if ($errors->has('first_aid'))
                     <span class="text-danger">
                         <strong>{{ $errors->first('first_aid') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-input">
+                <label for="experience_special_needs">Do you have experience with special needs <span class="text-danger">*</span></label>
+                <ul class="d-flex flex-wrap">
+                    <li><input type="radio" name="experience_special_needs" value="yes" {{ old('experience_special_needs') == "yes" ? "checked" : '' }}>Yes</li>
+                    <li><input type="radio" name="experience_special_needs" value="no" {{ old('experience_special_needs') == "no" ? "checked" : '' }}>No</li>
+                </ul>
+                @if ($errors->has('experience_special_needs'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('experience_special_needs') }}</strong>
                     </span>
                 @endif
             </div>
@@ -392,6 +392,26 @@
                     </span>
                 @endif
             </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <label for="special_needs_specifications">If yes please specify. </label>
+            <textarea id="special_needs_specifications" name="special_needs_specifications" placeholder="" class="form-field" rows="5" >{{ old('special_needs_specifications') }}</textarea>
+            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+            @if ($errors->has('special_needs_specifications'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('special_needs_specifications') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <label for="about_yourself">Tell us a bit more about yourself <span class="text-danger">*</span></label>
+            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
+            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
+            @if ($errors->has('about_yourself'))
+                <span class="text-danger">
+                    <strong>{{ $errors->first('about_yourself') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
@@ -592,17 +612,6 @@
             @endforeach
         @endif
 
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label for="about_yourself">Tell us a bit more about yourself <span class="text-danger">*</span></label>
-            <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
-            <p class="text-end fw-light fst-italic small">Maximum 500 Characters</p>
-            @if ($errors->has('about_yourself'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('about_yourself') }}</strong>
-                </span>
-            @endif
-        </div>
- 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="mb-2">
                 <label for="day_hour">What are your available days and hours</label>
