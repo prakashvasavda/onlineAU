@@ -2501,8 +2501,9 @@ span.error.text-danger {
     border-collapse: collapse;
 }
 
-.experiances-table th, td {
+.experiances-table th, .experiances-table td {
     padding: 8px;
     text-align: left;
-    white-space: pre-wrap; /* Allow text to wrap */
+    white-space: pre-wrap;
 }
+
