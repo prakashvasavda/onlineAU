@@ -240,6 +240,8 @@ class FrontRegisterController extends Controller{
             "other_services"                    => isset($request->other_services) ? json_encode($request->other_services) : null,
             'situated'                          => isset($request->situated) ? $request->situated : null,
             'type_of_id_number'                 => $request->type_of_id_number,
+            'special_needs_specifications'      => $request->special_needs_specifications ?? null,
+            'live_in_or_live_out'               => $request->live_in_or_live_out ?? null,
         ]);
 
         foreach ($data['daterange'] as $key => $value) {
