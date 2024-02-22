@@ -261,8 +261,7 @@
                                             <label for="religion">Religion <span class="text-danger">*</span></label>
                                             <select id="religion" name="religion" class="form-control">
                                                 <option value="" selected="selected" disabled="disabled">Select one</option>
-                                                <option value="african traditional &amp; Diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>
-                                                <option value="agnostic" {{ isset($candidate->religion) && $candidate->religion == 'agnostic' ? 'selected' : null }}>Agnostic</option>
+                                                <option value="african traditional and diasporic" {{ isset($candidate->religion) && $candidate->religion == 'african traditional and diasporic' ? 'selected' : null }}>African Traditional &amp; Diasporic</option>                                                <option value="agnostic" {{ isset($candidate->religion) && $candidate->religion == 'agnostic' ? 'selected' : null }}>Agnostic</option>
                                                 <option value="atheist" {{ isset($candidate->religion) && $candidate->religion == 'atheist' ? 'selected' : null }}>Atheist</option>
                                                 <option value="baha'i" {{ isset($candidate->religion) && $candidate->religion == "baha'i" ? 'selected' : null }}>Baha'i</option>
                                                 <option value="buddhism" {{ isset($candidate->religion) && $candidate->religion == 'buddhism' ? 'selected' : null }}>Buddhism</option>
