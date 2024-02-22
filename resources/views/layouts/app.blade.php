@@ -39,6 +39,10 @@
         body {
             overflow-x: hidden;
         }
+        a.nav-link.active{
+            background-color: rgba(255,255,255,.1) !important;
+            color: #fff !important;
+        }
     </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
