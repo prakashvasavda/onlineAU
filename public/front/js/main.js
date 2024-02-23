@@ -213,3 +213,11 @@ function enableCalenderRow(rowId) {
     $(this).prop('disabled', !$(this).prop('disabled'));
   });
 }
+
+function showModal(modalLabel, modalIcon, message, url, text){
+  $("#alert-modal-label").html(modalLabel);
+  $("#alert-modal-icon").html(modalIcon);
+  $("#alert-modal-body").html(message);
+  $("#alert-modal-action-btn").attr('href', url).text(text);
+  $('#alert-modal').modal('show');
+}
