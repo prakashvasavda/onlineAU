@@ -1,9 +1,9 @@
 <div class="table-responsive timeForm">
     <table class="table table-borderless table-sm">
         <tbody>
-            @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day)
-                <tr id="{{ $day }}-row">
-                    <td><input type="checkbox"></td>
+            @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $key => $day)
+                <tr class="{{ $day }}-row">
+                    <td><input type="checkbox" id="{{ $day }}-check" name={{ "day_".$key }} value="1" onchange="enableCalenderRow('{{ $day }}')" {{ old('day_'.$key) ? 'checked' : '' }}></td>
                     <td>{{ ucfirst($day) }}</td>
                     <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][0] ?? null }}" placeholder="Add Time"></td>
                     <td>to</td>
@@ -18,8 +18,8 @@
                 @if(old($day) && is_array(old($day)))
                     @foreach(old($day)['start_time'] as $key => $value)
                         @if(isset($key) && $key >= 1)
-                            <tr id="{{ $day }}-row">
-                                <td><input type="checkbox"></td>
+                            <tr class="{{ $day }}-row">
+                                <td>&nbsp;</td>
                                 <td>{{ ucfirst($day) }}</td>
                                 <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] ?? null }}" placeholder="Add Time"></td>
                                 <td>to</td>

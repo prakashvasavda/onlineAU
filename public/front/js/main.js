@@ -180,9 +180,13 @@ google.maps.event.addDomListener(window, 'load', initAutocomplete);
 
 /* add dynamic row to candidate calender*/
 function addCalendarRow(rowId){
-  $('#'+rowId+'-row').after(`
-    <tr>
-      <td><input type="checkbox"></td>
+  if (!$('#' + rowId + '-check').is(":checked")) {
+    return false;
+  }
+  
+  $('.'+rowId+'-row').after(`
+    <tr class="`+rowId+`-row">
+      <td>&nbsp;</td>
       <td class="text-capitalize">`+rowId+`</td>
       <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="`+rowId+`[start_time][]" value="" placeholder="Add Time"></td>
       <td>to</td>
@@ -199,4 +203,13 @@ function addCalendarRow(rowId){
 /* remove calender row */
 function removeCalendarRow(event){
   event.target.closest('tr').remove();
+}
+
+/* disable or enable calender fields */
+function enableCalenderRow(rowId) {
+  const row = $('.'+rowId+'-row');
+  const inputFields = row.find(':input:not(:checkbox)');  
+  inputFields.each(function () {
+    $(this).prop('disabled', !$(this).prop('disabled'));
+  });
 }

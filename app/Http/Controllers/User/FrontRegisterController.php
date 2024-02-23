@@ -302,7 +302,7 @@ class FrontRegisterController extends Controller{
     }
 
     public function store_family(Request $request){
-        $data  = $request->all();
+        return $data  = $request->all();
         
         $rules = [
             'name'                          => "required|max:50",
