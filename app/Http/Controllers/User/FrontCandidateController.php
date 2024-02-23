@@ -13,6 +13,7 @@ use App\Models\PreviousExperience;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\CalenderRequest;
 use App\Models\CandidateFavoriteFamily;
 use App\Models\FamilyFavoriteCandidate;
 use Illuminate\Support\Facades\Session;
@@ -314,7 +315,7 @@ class FrontCandidateController extends Controller{
         return view('user.candidate.manage_calender', $data);
     }
 
-    public function update_candidate_calender(Request $request, $candidateId){
+    public function update_candidate_calender(CalenderRequest $request, $candidateId){
         $input  = $request->all();
         $status = $this->calendarController->store_calender($input, $candidateId);
         return redirect()->back()->with($status > 0 ? 'success' : 'error', $status > 0 ? 'Candidate calendar has been updated successfully.' : 'Failed to update candidate\'s calendar.');

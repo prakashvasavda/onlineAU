@@ -113,22 +113,22 @@
                 <tbody>
                     @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day)
                         <tr id="{{ $day }}-row">
-                            <td class="text-start"><input type="checkbox" disabled></td>
+                            <td class="text-start"><input type="checkbox" {{ isset($calendars[$day]['start_time'][0]) || isset($calendars[$day]['end_time'][0]) ? 'checked' : '' }} disabled></td>
                             <td>{{ ucfirst($day) }}</td>
-                            <td><input type="text" placeholder="Add Time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][0] ?? null }}" disabled></td>
+                            <td><input type="text" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][0] ?? null }}" disabled></td>
                             <td>to</td>
-                            <td><input type="text" placeholder="Add Time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][0] ?? null }}" disabled></td>
+                            <td><input type="text" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][0] ?? null }}" disabled></td>
                         </tr>
 
                         @if(isset($calendars[$day]) && !empty($calendars[$day]) && is_array($calendars[$day]))
                             @foreach($calendars[$day]['start_time'] as $key => $value)
                                 @if(isset($key) && $key >= 1 && isset($calendars[$day]['start_time'][$key]) && isset($calendars[$day]['end_time'][$key]))
                                     <tr id="{{ $day }}-row">
-                                        <td class="text-start"><input type="checkbox" disabled></td>
+                                        <td>&nbsp;</td>
                                         <td>{{ ucfirst($day) }}</td>
-                                        <td><input type="text" placeholder="Add Time" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][$key] }}" disabled></td>
+                                        <td><input type="text" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][$key] }}" disabled></td>
                                         <td>to</td>
-                                        <td><input type="text" placeholder="Add Time" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][$key] }}" disabled></td>
+                                        <td><input type="text" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][$key] }}" disabled></td>
                                     </tr>
                                 @endif
                             @endforeach

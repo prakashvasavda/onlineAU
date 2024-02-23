@@ -13,7 +13,7 @@ class CalendarController extends Controller {
         $candidate = FrontUser::find($id);
 
         // Check if input or candidate is empty
-        if(empty($input) || empty($candidate)){
+        if(empty($candidate)){
             return 0;
         }
        

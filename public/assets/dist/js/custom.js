@@ -68,26 +68,40 @@ function closeModal(){
 
 /* add dynamic row to candidate calender*/
 function addCalendarRow(rowId){
-    $('#'+rowId+'-row').after(`
-      <tr>
-        <td><input type="checkbox" checked disabled></td>
-        <td class="text-capitalize">`+rowId+`</td>
-        <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Add Time" name="`+rowId+`[start_time][]" value=""></td>
-        <td>to</td>
-        <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Add Time" name="`+rowId+`[end_time][]" value=""></td>
-        <td onclick="removeCalendarRow(event)">
-          <a href="javaScript:;" class="btn add-btn icon">
-            <i class="fa fa-trash"></i>
-          </a>
-        </td>
-      </tr>
-    `);
+  if (!$('#' + rowId + '-check').is(":checked")) {
+    return false;
   }
   
-  /* remove calender row */
-  function removeCalendarRow(event){
-    event.target.closest('tr').remove();
-  }
+  $('.'+rowId+'-row').after(`
+    <tr class="`+rowId+`-row">
+      <td>&nbsp;</td>
+      <td class="text-capitalize">`+rowId+`</td>
+      <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="`+rowId+`[start_time][]" value="" placeholder="Add Time"></td>
+      <td>to</td>
+      <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="`+rowId+`[end_time][]" value="" placeholder="Add Time"></td>
+      <td onclick="removeCalendarRow(event)">
+        <a href="javaScript:;" class="btn add-btn icon">
+          <i class="fa fa-trash"></i>
+        </a>
+      </td>
+    </tr>
+  `);
+}
+
+/* remove calender row */
+function removeCalendarRow(event){
+  event.target.closest('tr').remove();
+}
+
+/* disable or enable calender fields */
+function enableCalenderRow(rowId) {
+  const row = $('.'+rowId+'-row');
+  const inputFields = row.find(':input:not(:checkbox)');  
+  inputFields.each(function () {
+    $(this).prop('disabled', !$(this).prop('disabled'));
+  });
+}
+
 
   /* initialize daterange picker */
   $('input[name="daterange[]"]').daterangepicker({

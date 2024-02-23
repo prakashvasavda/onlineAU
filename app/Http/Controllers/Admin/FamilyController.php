@@ -133,6 +133,22 @@ class FamilyController extends Controller{
             'salary_expectation'            => "required|numeric|digits_between:2,10",
             // 'age'                           => "required|array",
             // 'age.*'                         => "nullable|in:0-12 months,1-3 years,4-7 years,8-13 years,13-16 years",
+            /* calender validation */
+            'monday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:monday.end_time.*',
+            'monday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
+            'tuesday.start_time.*'         => 'present|required_if:day_0,==,1|date_format:H:i|before:tuesday.end_time.*',
+            'tuesday.end_time.*'           => 'present|required_if:day_0,==,1|date_format:H:i',
+            'wednesday.start_time.*'       => 'present|required_if:day_0,==,1|date_format:H:i|before:wednesday.end_time.*',
+            'wednesday.end_time.*'         => 'present|required_if:day_0,==,1|date_format:H:i',
+            'thursday.start_time.*'        => 'present|required_if:day_0,==,1|date_format:H:i|before:thursday.end_time.*',
+            'thursday.end_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i',
+            'friday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:friday.end_time.*',
+            'friday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
+            'saturday.start_time.*'        => 'present|required_if:day_0,==,1|date_format:H:i|before:saturday.end_time.*',
+            'saturday.end_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i',
+            'sunday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:sunday.end_time.*',
+            'sunday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
+            /* passowrd validation */ 
             'password' => [
                 'nullable',
                 'string',
@@ -154,6 +170,19 @@ class FamilyController extends Controller{
             'password.min'                  => 'The password must be at least 8 characters in length.',
             'password.regex'                => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
         ];
+
+        foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day){
+            /* start times */
+            $message[$day . '.start_time.*.present']       = 'The start time is required on ' . ucfirst($day) . '.';
+            $message[$day . '.start_time.*.required_if']   = 'The start time is required on ' . ucfirst($day) . '.';
+            $message[$day . '.start_time.*.date_format']   = 'The start time on ' . ucfirst($day) . ' should be in the correct format (H:i).';
+            $message[$day . '.start_time.*.before']        = 'The start time on ' . ucfirst($day) . ' must be before the end time.';
+            
+            /* end time */
+            $message[$day . '.end_time.*.present']         = 'The end time is required on ' . ucfirst($day) . '.';
+            $message[$day . '.end_time.*.required_if']     = 'The end time is required on ' . ucfirst($day) . '.';
+            $message[$day . '.end_time.*.date_format']     = 'The end time on ' . ucfirst($day) . ' should be in the correct format (H:i).';
+        }
 
         $validator = Validator::make($input, $rules, $message);
 
