@@ -107,7 +107,22 @@ class FrontCandidateController extends Controller{
             'description.*'                => 'required|max:255',
             'reference.*'                  => 'required|max:255',
             'tel_number.*'                 => 'required|max:255',
-
+            /* calender validation */
+            'monday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:monday.end_time.*',
+            'monday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
+            'tuesday.start_time.*'         => 'present|required_if:day_0,==,1|date_format:H:i|before:tuesday.end_time.*',
+            'tuesday.end_time.*'           => 'present|required_if:day_0,==,1|date_format:H:i',
+            'wednesday.start_time.*'       => 'present|required_if:day_0,==,1|date_format:H:i|before:wednesday.end_time.*',
+            'wednesday.end_time.*'         => 'present|required_if:day_0,==,1|date_format:H:i',
+            'thursday.start_time.*'        => 'present|required_if:day_0,==,1|date_format:H:i|before:thursday.end_time.*',
+            'thursday.end_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i',
+            'friday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:friday.end_time.*',
+            'friday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
+            'saturday.start_time.*'        => 'present|required_if:day_0,==,1|date_format:H:i|before:saturday.end_time.*',
+            'saturday.end_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i',
+            'sunday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:sunday.end_time.*',
+            'sunday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
+            /* passowrd validation */
             'password' => [
                 'nullable',
                 'string',
@@ -228,6 +243,18 @@ class FrontCandidateController extends Controller{
             'password.min'                          => 'The password must be at least 8 characters in length.',
             'password.regex'                        => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
         ];
+
+        foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $key => $day){
+            /* start times */
+            $message[$day . '.start_time.*.present']       = 'Required field.';
+            $message[$day . '.start_time.*.required_if']   = 'Required field.';
+            $message[$day . '.start_time.*.date_format']   = 'Incorrect format.';
+            $message[$day . '.start_time.*.before']        = 'Invalid time';
+            /* end time */
+            $message[$day . '.end_time.*.present']       = 'Required field.';
+            $message[$day . '.end_time.*.required_if']   = 'Required field.';
+            $message[$day . '.end_time.*.date_format']   = 'Incorrect format.';
+        }
 
         if(isset($candidate->role) && $candidate->role == "petsitters"){
             $message['childcare_experience.required'] = "The petsitting experience field is required";

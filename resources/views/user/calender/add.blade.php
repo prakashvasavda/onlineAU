@@ -1,13 +1,13 @@
 <div class="table-responsive timeForm">
     <table class="table table-borderless table-sm">
         <tbody>
-            @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $key => $day)
+            @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $index => $day)
                 <tr class="{{ $day }}-row">
-                    <td><input type="checkbox" id="{{ $day . '-check'}}" name={{ "day_".$key }} value="1" onchange="enableCalenderRow('{{ $day }}')" {{ old('day_'.$key) ? 'checked' : '' }}></td>
+                    <td><input type="checkbox" id="{{ $day . '-check'}}" name={{ "day_".$index }} value="1" onchange="enableCalenderRow('{{ $day }}')" {{ old('day_'.$index) ? 'checked' : '' }}></td>
                     <td>{{ ucfirst($day) }}</td>
-                    <td><input type="text" id="{{ $day . '_start_time_0' }}" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][0] ?? null }}" placeholder="Add Time" {{ old('day_'.$key) ? '' : 'disabled' }}><div></td>
+                    <td><input type="text" id="{{ $day . '_start_time_0' }}" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][0] ?? null }}" placeholder="Add Time" {{ old('day_'.$index) ? '' : 'disabled' }}><div></td>
                     <td>to</td>
-                    <td><input type="text" id="{{ $day . '_end_time_0' }}" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][0] ?? null }}" placeholder="Add Time" {{ old('day_'.$key) ? '' : 'disabled' }}></td>
+                    <td><input type="text" id="{{ $day . '_end_time_0' }}" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][0] ?? null }}" placeholder="Add Time" {{ old('day_'.$index) ? '' : 'disabled' }}></td>
                     <td onclick="addCalendarRow('{{ $day }}')">
                         <a href="javaScript:;" class="btn add-btn icon">
                             <i class="fa-solid fa-plus"></i>
