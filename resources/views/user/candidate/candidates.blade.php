@@ -21,6 +21,7 @@
 		        	<div class="form-input">
 		        		<input type="text" placeholder="Enter Area or City" id="search-field" class="form-field address-input" name="search_query" required>
 		        		<input type="hidden" name="type" value="candidate">
+						<input type="hidden" name="service" value="{{ $service ?? null }}">
 					</div>
 					<div class="form-input-btn">
 						<a href="#" onclick="document.getElementById('search_form').submit(); return false;" class="btn src-icon"><i class="fa fa-search"></i></a>

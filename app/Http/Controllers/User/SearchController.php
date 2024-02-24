@@ -20,7 +20,6 @@ class SearchController extends Controller{
         $splited_string = is_string($request->search_query) ? preg_split('/[\s,]+/', $request->search_query)  : null;
         $search_query   = isset($splited_string) && is_array($splited_string) ? array_filter($splited_string) : array($request->search_query);
 
-        
         if($request->type == "family") {
             $search = FrontUser::leftJoin(DB::raw('(SELECT family_id, GROUP_CONCAT(DISTINCT candidate_id) as candidate_favorite_families FROM candidate_favorite_families GROUP BY family_id) as candidate_favorites'), 'front_users.id', '=', 'candidate_favorites.family_id')
             ->leftJoin('family_reviews', 'front_users.id', '=', 'family_reviews.family_id')
@@ -61,6 +60,9 @@ class SearchController extends Controller{
             })
             ->where('front_users.role', '!=', 'family')
             ->where('front_users.status', '1')
+            ->when($request->service, function ($query, $service) {
+                return $query->where('front_users.role', $service);
+            })
             ->distinct()
             ->simplePaginate(9);
         }
