@@ -293,11 +293,11 @@ class FrontFamilyController extends Controller{
         Session::put('frontUser', $frontUser);
 
         $data['payments'] = UserSubscription::leftJoin('packages', 'user_subscriptions.package_id', '=', 'packages.id')
-            ->select('user_subscriptions.*', 'packages.name', 'packages.price')
-            ->where('user_subscriptions.status', 'active')
-            ->where('user_id', Session::get('frontUser')->id)
-            ->get()
-            ->toArray();
+        ->select('user_subscriptions.*', 'packages.name', 'packages.price')
+        ->where('user_subscriptions.status', 'active')
+        ->where('user_id', Session::get('frontUser')->id)
+        ->get()
+        ->toArray();
 
         return view('user.family.transactions', $data);
     }
