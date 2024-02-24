@@ -186,17 +186,7 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="situated">Situated <span class="text-danger">*</span></label>
-                                            <input type="text" id="situated" name="situated" placeholder="" class="form-control"  value="{{ old('situated', isset($candidate->situated) ? $candidate->situated : null) }}">
-                                            @error('situated')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                                 <div class="row">
@@ -655,7 +645,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="salary_expectation">What is your salary expectation/hourly rate <span class="text-danger">*</span></label>
+                                            <label for="salary_expectation">What is your salary expectation <span class="text-danger">*</span></label>
                                             <input type="number" id="salary_expectation" name="salary_expectation" placeholder="" class="form-control @error('salary_expectation') is-invalid @enderror"  value="{{ old('salary_expectation', isset($candidate->salary_expectation) ? $candidate->salary_expectation : null) }}">
                                             @error('salary_expectation')
                                                 <span class="invalid-feedback" role="alert">
@@ -784,7 +774,7 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="mb-2">
-                                            <label for="day_hour">What are your available days and hours</label>
+                                            <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
                                         </div>
                                         {{-- calender --}}
                                         @include ('admin.calender.edit')
