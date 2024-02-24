@@ -578,8 +578,7 @@
                     </span>
                 @endif
             </div>
-
-             <div class="col-12">
+            <div class="col-12">
                 <div class="form-inputs" id="dynamic_field">
                     <div class="d-flex flex-row justify-content-between align-items-start">
                         <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
@@ -589,9 +588,15 @@
                         </div>
                     </div>
                     
-                    @if(isset($previous_experience) && !$previous_experience->isEmpty())
+                    @if(empty(old('daterange')) && isset($previous_experience) && !$previous_experience->isEmpty())
                         @foreach($previous_experience as $key => $value)
-                            <div class="row mt-3">
+                            <div class="row" id="row{{ isset($key) ? $key + 1 : null }}">
+                                @if (isset($key) && $key >= 1)
+                                    <label class="mt-3 fst-italic">List your previous childcare work experience with contactable references.</label>
+                                    <div class="icon-option all-in-one">
+                                        <a href="javaScript:;" class="btn btn-danger delete-btn" id="{{ isset($key) ? $key + 1 : null }}"><i class="fa-solid fa-trash-can"></i></a>
+                                    </div>
+                                @endif
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-input">
                                         <label for="daterange">Date range <span class="text-danger">*</span></label>
@@ -625,7 +630,7 @@
                             </div>
                         @endforeach
                     @else
-                        <div class="row mt-3">
+                        <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-input">
                                     <label for="daterange">Date range <span class="text-danger">*</span></label>
@@ -678,15 +683,13 @@
                             </div>
                         </div>
                     @endif
-                </div>
-            </div>
-            @if(old('daterange') && is_array(old('daterange')))
-                @foreach(old('daterange') as $key => $value)
-                    @if(isset($key) && $key >= 1)
-                        <div class="col-12">
-                            <div class="form-inputs" id="dynamic_field">
-                                <div class="row mt-4" id="row{{ isset($key) ? $key : null }}">
-                                    <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+
+                    {{-- for old entered data --}}
+                    @if(old('daterange') && is_array(old('daterange')))
+                        @foreach(old('daterange') as $key => $value)
+                            @if(isset($key) && $key >= 1)
+                                <div class="row" id="row{{ isset($key) ? $key : null }}">
+                                    <label class="mt-3 fst-italic">List your previous childcare work experience with contactable references.</label>
                                     <div class="icon-option all-in-one">
                                         <a href="javaScript:;" class="btn btn-danger delete-btn" id="{{ isset($key) ? $key : null }}"><i class="fa-solid fa-trash-can"></i></a>
                                     </div>
@@ -696,28 +699,28 @@
                                             <input type="text" id={{ "daterange_" . $key }} name="daterange[]" value="{{ isset(old('daterange')[$key]) ? old('daterange')[$key] : null }}" class="form-field" placeholder="">
                                         </div>
                                     </div>
-
+        
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-input">
                                             <label for="heading">Heading <span class="text-danger">*</span></label>
                                             <input type="text" id={{ "heading_" . $key }} name="heading[]" value="{{ isset(old('heading')[$key]) ? old('heading')[$key] : null }}" class="form-field heading" placeholder="">
                                         </div>
                                     </div>
-
+        
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-input">
                                             <label for="description">Description <span class="text-danger">*</span></label>
                                             <input type="text" id={{ "description_" . $key }} name="description[]" value="{{ isset(old('description')[$key]) ? old('description')[$key] : null }}" class="form-field" placeholder="">
                                         </div>
                                     </div>
-
+        
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-input">
                                             <label for="reference">Reference Name <span class="text-danger">*</span></label>
                                             <input type="text" id={{ "reference_" . $key }} name="reference[]" value="{{ isset(old('reference')[$key]) ? old('reference')[$key] : null }}" class="form-field" placeholder="">
                                         </div>
                                     </div>
-
+        
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-input">
                                             <label for="tel_number">Tel Number <span class="text-danger">*</span></label>
@@ -725,24 +728,18 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            @endif
+                        @endforeach
                     @endif
-                @endforeach
-            @endif
-
-            <div class="row"></div>
+                    {{-- end of old entered data section --}}
+                </div>
+            </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="mb-2">
                     <label for="day_hour">What are your available days and hours</label>
                 </div>
                 @include('user.calender.edit')
-                @if ($errors->has('calender'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('calender') }}</strong>
-                    </span>
-                @endif
             </div> 
 
             <div class="col-12">

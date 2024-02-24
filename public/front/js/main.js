@@ -105,22 +105,31 @@
      actions.attr("hidden", !checkboxes.is(":checked"));
   });
 
+  /* experiance dynamic field section */
   var i = 1;
   var key = 0;
   var length;
-  $("#add").click(function () {    
+
+  $("#add").click(function () {
+      var rowCount = $('#dynamic_field .row').length;
+      console.log("Number of rows:", rowCount);
+      i = rowCount === 0 ? i : rowCount;
+    
       i++;
       key++
-      var newInput = '<div class="row mt-4" id="row' + i + '"><label class="fst-italic ' + i + '">List your previous childcare work experience with contactable references.</label><div class="icon-option all-in-one"><a href="javaScript:;" id="' + i + '" class="btn btn-danger delete-btn"><i class="fa-solid fa-trash-can"></i></a></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="daterange">Date range <span class="text-danger">*</span></label><input type="text" id="daterange' + key + '" name="daterange[]" value="" class="form-field" placeholder=""></div></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="heading">Heading <span class="text-danger">*</span></label><input type="text" id="heading_' + key + '" name="heading[]" class="form-field heading" placeholder=""></div></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="description">Description <span class="text-danger">*</span></label><input type="text" id="description' + key + '" name="description[]" class="form-field" placeholder=""></div></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="reference_name">Reference Name <span class="text-danger">*</span></label><input type="text" id="reference' + key + '" name="reference[]" class="form-field" placeholder=""></div></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="tel_number">Tel Number <span class="text-danger">*</span></label><input type="text" id="tel_number' + key + '" name="tel_number[]" class="form-field" placeholder=""></div></div></div>';
+      var newInput = '<div class="row" id="row' + i + '"><label class="mt-3 fst-italic ' + i + '">List your previous childcare work experience with contactable references.</label><div class="icon-option all-in-one"><a href="javaScript:;" id="' + i + '" class="btn btn-danger delete-btn"><i class="fa-solid fa-trash-can"></i></a></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="daterange">Date range <span class="text-danger">*</span></label><input type="text" id="daterange' + key + '" name="daterange[]" value="" class="form-field" placeholder=""></div></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="heading">Heading <span class="text-danger">*</span></label><input type="text" id="heading_' + key + '" name="heading[]" class="form-field heading" placeholder=""></div></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="description">Description <span class="text-danger">*</span></label><input type="text" id="description' + key + '" name="description[]" class="form-field" placeholder=""></div></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="reference_name">Reference Name <span class="text-danger">*</span></label><input type="text" id="reference' + key + '" name="reference[]" class="form-field" placeholder=""></div></div><div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="form-input"><label for="tel_number">Tel Number <span class="text-danger">*</span></label><input type="text" id="tel_number' + key + '" name="tel_number[]" class="form-field" placeholder=""></div></div></div>';
       $('#dynamic_field').append(newInput);
       $('#dynamic_field').find('input[name="daterange[]"]').daterangepicker();
   });
+
   $(document).on('click', '.delete-btn', function () {      
       var button_id = $(this).attr("id");
       $('#row' + button_id + '').remove();
   });
 
 })(jQuery);
+
+/* end experiance dynamic field section */
 
 (function ($) {
   $.fn.searchBox = function (ev) {
@@ -214,6 +223,7 @@ function enableCalenderRow(rowId) {
   });
 }
 
+/* dynamic modal pop up */
 function showModal(modalLabel, modalIcon, message, url, text){
   $("#alert-modal-label").html(modalLabel);
   $("#alert-modal-icon").html(modalIcon);
