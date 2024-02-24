@@ -63,22 +63,28 @@ class FrontRegisterController extends Controller{
             'description.*'                => 'required|max:255',
             'reference.*'                  => 'required|max:255',
             'tel_number.*'                 => 'required|max:255',
-            /* calender validation */
+            /* monday */
             'monday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:monday.end_time.*',
             'monday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
-            'tuesday.start_time.*'         => 'present|required_if:day_0,==,1|date_format:H:i|before:tuesday.end_time.*',
-            'tuesday.end_time.*'           => 'present|required_if:day_0,==,1|date_format:H:i',
-            'wednesday.start_time.*'       => 'present|required_if:day_0,==,1|date_format:H:i|before:wednesday.end_time.*',
-            'wednesday.end_time.*'         => 'present|required_if:day_0,==,1|date_format:H:i',
-            'thursday.start_time.*'        => 'present|required_if:day_0,==,1|date_format:H:i|before:thursday.end_time.*',
-            'thursday.end_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i',
-            'friday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:friday.end_time.*',
-            'friday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
-            'saturday.start_time.*'        => 'present|required_if:day_0,==,1|date_format:H:i|before:saturday.end_time.*',
-            'saturday.end_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i',
-            'sunday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:sunday.end_time.*',
-            'sunday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
-            /* password validation */
+            /* tuesday */
+            'tuesday.start_time.*'         => 'present|required_if:day_1,==,1|date_format:H:i|before:tuesday.end_time.*',
+            'tuesday.end_time.*'           => 'present|required_if:day_1,==,1|date_format:H:i',
+            /* wednesday */
+            'wednesday.start_time.*'       => 'present|required_if:day_2,==,1|date_format:H:i|before:wednesday.end_time.*',
+            'wednesday.end_time.*'         => 'present|required_if:day_2,==,1|date_format:H:i',
+            /* thursday */
+            'thursday.start_time.*'        => 'present|required_if:day_3,==,1|date_format:H:i|before:thursday.end_time.*',
+            'thursday.end_time.*'          => 'present|required_if:day_3,==,1|date_format:H:i',
+            /* friday */
+            'friday.start_time.*'          => 'present|required_if:day_4,==,1|date_format:H:i|before:friday.end_time.*',
+            'friday.end_time.*'            => 'present|required_if:day_4,==,1|date_format:H:i',
+            /* saturday */
+            'saturday.start_time.*'        => 'present|required_if:day_5,==,1|date_format:H:i|before:saturday.end_time.*',
+            'saturday.end_time.*'          => 'present|required_if:day_5,==,1|date_format:H:i',
+            /* sunday */
+            'sunday.start_time.*'          => 'present|required_if:day_6,==,1|date_format:H:i|before:sunday.end_time.*',
+            'sunday.end_time.*'            => 'present|required_if:day_6,==,1|date_format:H:i',
+
             'password' => [
                 'required',
                 'string',
@@ -357,8 +363,30 @@ class FrontRegisterController extends Controller{
             'family_description'            => "required|max:500",
             'hourly_rate_pay'               => "required|numeric|digits_between:2,5",
             'salary_expectation'            => "required|numeric|digits_between:2,10",
-            'age'                           => "required|array",
-            'age.*'                         => "required|in:0-12 months,1-3 years,4-7 years,8-13 years,13-16 years",
+            // 'age'                           => "required|array",
+            // 'age.*'                         => "required|in:0-12 months,1-3 years,4-7 years,8-13 years,13-16 years",
+            /* monday */
+            'monday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:monday.end_time.*',
+            'monday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
+            /* tuesday */
+            'tuesday.start_time.*'         => 'present|required_if:day_1,==,1|date_format:H:i|before:tuesday.end_time.*',
+            'tuesday.end_time.*'           => 'present|required_if:day_1,==,1|date_format:H:i',
+            /* wednesday */
+            'wednesday.start_time.*'       => 'present|required_if:day_2,==,1|date_format:H:i|before:wednesday.end_time.*',
+            'wednesday.end_time.*'         => 'present|required_if:day_2,==,1|date_format:H:i',
+            /* thursday */
+            'thursday.start_time.*'        => 'present|required_if:day_3,==,1|date_format:H:i|before:thursday.end_time.*',
+            'thursday.end_time.*'          => 'present|required_if:day_3,==,1|date_format:H:i',
+            /* friday */
+            'friday.start_time.*'          => 'present|required_if:day_4,==,1|date_format:H:i|before:friday.end_time.*',
+            'friday.end_time.*'            => 'present|required_if:day_4,==,1|date_format:H:i',
+            /* saturday */
+            'saturday.start_time.*'        => 'present|required_if:day_5,==,1|date_format:H:i|before:saturday.end_time.*',
+            'saturday.end_time.*'          => 'present|required_if:day_5,==,1|date_format:H:i',
+            /* sunday */
+            'sunday.start_time.*'          => 'present|required_if:day_6,==,1|date_format:H:i|before:sunday.end_time.*',
+            'sunday.end_time.*'            => 'present|required_if:day_6,==,1|date_format:H:i',
+
             'password' => [
                 'required',
                 'string',
@@ -381,6 +409,18 @@ class FrontRegisterController extends Controller{
             'password.min'                  => 'The password must be at least 8 characters in length.',
             'password.regex'                => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
         ];
+
+        foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $key => $day){
+            /* start times */
+            $message[$day . '.start_time.*.present']       = 'Required field.';
+            $message[$day . '.start_time.*.required_if']   = 'Required field.';
+            $message[$day . '.start_time.*.date_format']   = 'Incorrect format.';
+            $message[$day . '.start_time.*.before']        = 'Invalid time';
+            /* end time */
+            $message[$day . '.end_time.*.present']       = 'Required field.';
+            $message[$day . '.end_time.*.required_if']   = 'Required field.';
+            $message[$day . '.end_time.*.date_format']   = 'Incorrect format.';
+        }
 
         $validator = Validator::make($data, $rules, $message);
 

@@ -92,22 +92,28 @@ class NanniesController extends Controller{
             'description.*'                => 'required|max:255',
             'reference.*'                  => 'required|max:255',
             'tel_number.*'                 => 'required|max:255',
-            /* calender validation */
+            /* monday */
             'monday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:monday.end_time.*',
             'monday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
-            'tuesday.start_time.*'         => 'present|required_if:day_0,==,1|date_format:H:i|before:tuesday.end_time.*',
-            'tuesday.end_time.*'           => 'present|required_if:day_0,==,1|date_format:H:i',
-            'wednesday.start_time.*'       => 'present|required_if:day_0,==,1|date_format:H:i|before:wednesday.end_time.*',
-            'wednesday.end_time.*'         => 'present|required_if:day_0,==,1|date_format:H:i',
-            'thursday.start_time.*'        => 'present|required_if:day_0,==,1|date_format:H:i|before:thursday.end_time.*',
-            'thursday.end_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i',
-            'friday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:friday.end_time.*',
-            'friday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
-            'saturday.start_time.*'        => 'present|required_if:day_0,==,1|date_format:H:i|before:saturday.end_time.*',
-            'saturday.end_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i',
-            'sunday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:sunday.end_time.*',
-            'sunday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
-            /* passowrd validation */  
+            /* tuesday */
+            'tuesday.start_time.*'         => 'present|required_if:day_1,==,1|date_format:H:i|before:tuesday.end_time.*',
+            'tuesday.end_time.*'           => 'present|required_if:day_1,==,1|date_format:H:i',
+            /* wednesday */
+            'wednesday.start_time.*'       => 'present|required_if:day_2,==,1|date_format:H:i|before:wednesday.end_time.*',
+            'wednesday.end_time.*'         => 'present|required_if:day_2,==,1|date_format:H:i',
+            /* thursday */
+            'thursday.start_time.*'        => 'present|required_if:day_3,==,1|date_format:H:i|before:thursday.end_time.*',
+            'thursday.end_time.*'          => 'present|required_if:day_3,==,1|date_format:H:i',
+            /* friday */
+            'friday.start_time.*'          => 'present|required_if:day_4,==,1|date_format:H:i|before:friday.end_time.*',
+            'friday.end_time.*'            => 'present|required_if:day_4,==,1|date_format:H:i',
+            /* saturday */
+            'saturday.start_time.*'        => 'present|required_if:day_5,==,1|date_format:H:i|before:saturday.end_time.*',
+            'saturday.end_time.*'          => 'present|required_if:day_5,==,1|date_format:H:i',
+            /* sunday */
+            'sunday.start_time.*'          => 'present|required_if:day_6,==,1|date_format:H:i|before:sunday.end_time.*',
+            'sunday.end_time.*'            => 'present|required_if:day_6,==,1|date_format:H:i',
+            /* passowrd validation */
             'password' => [
                 'nullable',
                 'string',
