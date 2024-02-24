@@ -319,7 +319,6 @@
                         <a href="javaScript:;" class="btn btn-primary add-btn" id="add"><i class="fa-solid fa-plus"></i></a>
                     </div>
                 </div>
-                
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-input">
@@ -372,15 +371,12 @@
                         @enderror
                     </div>
                 </div>
-            </div>
-        </div>
-        @if(old('daterange') && is_array(old('daterange')))
-            @foreach(old('daterange') as $key => $value)
-                @if(isset($key) && $key >= 1)
-                    <div class="col-12">
-                        <div class="form-inputs" id="dynamic_field">
-                            <div class="row mt-4" id="row{{ isset($key) ? $key : null }}">
-                                <label class="mb-2 fst-italic">List your previous childcare work experience with contactable references.</label>
+                {{-- old --}}
+                @if(old('daterange') && is_array(old('daterange')))
+                    @foreach(old('daterange') as $key => $value)
+                        @if(isset($key) && $key >= 1)
+                            <div class="row" id="row{{ isset($key) ? $key : null }}">
+                                <label class="mt-3 fst-italic">List your previous childcare work experience with contactable references.</label>
                                 <div class="icon-option all-in-one">
                                     <a href="javaScript:;" class="btn btn-danger delete-btn" id="{{ isset($key) ? $key : null }}"><i class="fa-solid fa-trash-can"></i></a>
                                 </div>
@@ -390,28 +386,28 @@
                                         <input type="text" id={{ "daterange_" . $key }} name="daterange[]" value="{{ isset(old('daterange')[$key]) ? old('daterange')[$key] : null }}" class="form-field" placeholder="">
                                     </div>
                                 </div>
-
+    
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-input">
                                         <label for="heading">Heading <span class="text-danger">*</span></label>
                                         <input type="text" id={{ "heading_" . $key }} name="heading[]" value="{{ isset(old('heading')[$key]) ? old('heading')[$key] : null }}" class="form-field heading" placeholder="">
                                     </div>
                                 </div>
-
+    
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-input">
                                         <label for="description">Description <span class="text-danger">*</span></label>
                                         <input type="text" id={{ "description_" . $key }} name="description[]" value="{{ isset(old('description')[$key]) ? old('description')[$key] : null }}" class="form-field" placeholder="">
                                     </div>
                                 </div>
-
+    
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-input">
                                         <label for="reference">Reference Name <span class="text-danger">*</span></label>
                                         <input type="text" id={{ "reference_" . $key }} name="reference[]" value="{{ isset(old('reference')[$key]) ? old('reference')[$key] : null }}" class="form-field" placeholder="">
                                     </div>
                                 </div>
-
+    
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-input">
                                         <label for="tel_number">Tel Number <span class="text-danger">*</span></label>
@@ -419,12 +415,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        @endif
+                    @endforeach
                 @endif
-            @endforeach
-        @endif
-
+                {{-- end old --}}
+            </div>
+        </div>
+       
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <label for="about_yourself">Tell us a bit more about yourself <span class="text-danger">*</span></label>
             <textarea id="about_yourself" name="about_yourself" class="form-field" rows="5" >{{ old('about_yourself') }}</textarea>
@@ -438,20 +435,15 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="mb-2">
-                <label for="day_hour">What are your available days and hours</label>
+                <label for="day_hour">What are your available days and hours <span class="text-danger">*</span></label>
             </div>
             @include('user.calender.add')
-            @if ($errors->has('calender'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('calender') }}</strong>
-                </span>
-            @endif
         </div> 
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-input">
                 <div class="form-input d-flex flex-wrap mb-2">
-                    <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions" autocomplete="off">
+                    <input type="checkbox" name="terms_and_conditions" {{ old('terms_and_conditions') ? "checked" : " " }} id="terms_and_conditions" autocomplete="off">
                     <label class="form-check-label" for="terms_and_conditions"> 
                         <p><a href="{{ route('terms-and-conditions', ['service' => 'candidate']) }}" target="_blank">Accept Terms and Conditions </a><span class="text-danger">*</span></p>
                     </label>

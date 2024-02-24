@@ -456,7 +456,7 @@
                         @foreach(old('daterange') as $key => $value)
                             @if(isset($key) && $key >= 1)
                                 <div class="row" id="row{{ isset($key) ? $key : null }}">
-                                    <label class="mt-3 fst-italic">List your previous childcare work experience with contactable references.</label>
+                                    <label class="mt-3 fst-italic">List your previous petsitting work experience with contactable references.</label>
                                     <div class="icon-option all-in-one">
                                         <a href="javaScript:;" class="btn btn-danger delete-btn" id="{{ isset($key) ? $key : null }}"><i class="fa-solid fa-trash-can"></i></a>
                                     </div>

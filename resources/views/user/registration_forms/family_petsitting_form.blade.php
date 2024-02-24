@@ -218,14 +218,9 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="mb-2">
-                    <label for="day_hour">Days & times needed</label>
+                    <label for="day_hour">Days & times needed <span class="text-danger">*</span></label>
                 </div>
                 @include('user.calender.add')
-                @if ($errors->has('calender'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('calender') }}</strong>
-                    </span>
-                @endif
             </div> 
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -235,6 +230,23 @@
                     @if ($errors->has('duration_needed'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('duration_needed') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-input">
+                    <div class="form-input d-flex flex-wrap mb-2">
+                        <input type="checkbox" name="terms_and_conditions" {{ old('terms_and_conditions') ? "checked" : " " }} id="terms_and_conditions" autocomplete="off">
+                        <label class="form-check-label" for="terms_and_conditions"> 
+                            <p><a href="{{ route('terms-and-conditions', ['service' => 'family']) }}" target="_blank">Accept Terms and Conditions </a><span class="text-danger">*</span></p>
+                        </label>
+                    </div>
+
+                    @if ($errors->has('terms_and_conditions'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('terms_and_conditions') }}</strong>
                         </span>
                     @endif
                 </div>
