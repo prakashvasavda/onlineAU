@@ -162,7 +162,7 @@
             <li class="equalHeight">
                 <div class="about-candidate-title">
                     <img src="{{ url('front/images/availableDate-icon1.png') }}" alt="">
-                    <h4>AVAILABLE ON:</h4>
+                    <h4>AVAILABLE FROM:</h4>
                 </div>
                 <div class="about-candidate-content">
                     <h4>{{ isset($candidate->available_date) ? $candidate->available_date : '-' }}</h4>
