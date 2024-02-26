@@ -302,7 +302,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="mb-2">
-                    <label for="day_hour">Days & times needed</label>
+                    <label for="day_hour">Days & times needed <span class="text-danger">*</span></label>
                 </div>
                 @include('user.calender.edit')
                 @if ($errors->has('calender'))
