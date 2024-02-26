@@ -45,7 +45,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="password">Password <span class="text-danger">*</span></label>
-                <input type="password" id="password" name="password" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
+                <input type="password" id="password" name="password" value="{{ old('password') }}" placeholder="" class="form-field @error('password') is-invalid @enderror" readonly onfocus="this.removeAttribute('readonly');">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -189,7 +189,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-input">
                 <label for="profile">Profile Picture <span class="text-danger">*</span></label>
-                <input type="file" id="profile" name="profile" placeholder="" class="form-field" accept="image/*" >
+                <input type="file" id="profile" name="profile" value="{{ old('profile') }}" placeholder="" class="form-field" accept="image/*" >
                 @if ($errors->has('profile'))
                     <span class="text-danger">
                         <strong>{{ $errors->first('profile') }}</strong>
