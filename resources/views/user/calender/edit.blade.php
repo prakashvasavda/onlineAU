@@ -57,6 +57,12 @@
     </table>
     <p style="font-size: small; font-style: italic;">These hours are intended solely to provide a general indication of availability. Specific hours can be further discussed with the family as needed</p>
 </div>
+@if ($errors->has('day_0') || $errors->has('day_1') || $errors->has('day_2') || $errors->has('day_3') || $errors->has('day_4') || $errors->has('day_5') || $errors->has('day_6')) 
+    <span class="text-danger">
+        <strong>{{ "At least one day of the week must be selected." }}</strong>
+    </span>
+@endif
+
 @section('script')
 @parent
 <script type="text/javascript">

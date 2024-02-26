@@ -460,11 +460,6 @@
                     <label for="day_hour">Days & times needed <span class="text-danger">*</span></label>
                 </div>
                 @include('user.calender.edit')
-                @if ($errors->has('calender'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('calender') }}</strong>
-                    </span>
-                @endif
             </div> 
 
             <div class="col-12">
