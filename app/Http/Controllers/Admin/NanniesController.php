@@ -113,6 +113,16 @@ class NanniesController extends Controller{
             /* sunday */
             'sunday.start_time.*'          => 'present|required_if:day_6,==,1|date_format:H:i|before:sunday.end_time.*',
             'sunday.end_time.*'            => 'present|required_if:day_6,==,1|date_format:H:i',
+            
+            /* one day from the calender is required */
+            'day_0'                        => 'required_without_all:day_1,day_2,day_3,day_4,day_5,day_6', 
+            'day_1'                        => 'required_without_all:day_0,day_2,day_3,day_4,day_5,day_6', 
+            'day_2'                        => 'required_without_all:day_0,day_1,day_3,day_4,day_5,day_6',
+            'day_3'                        => 'required_without_all:day_0,day_1,day_2,day_4,day_5,day_6',
+            'day_4'                        => 'required_without_all:day_0,day_1,day_2,day_3,day_5,day_6',
+            'day_5'                        => 'required_without_all:day_0,day_1,day_2,day_3,day_4,day_6',
+            'day_6'                        => 'required_without_all:day_0,day_1,day_2,day_3,day_4,day_5',
+
             /* passowrd validation */
             'password' => [
                 'nullable',
@@ -176,7 +186,7 @@ class NanniesController extends Controller{
             'password.regex'                        => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
         ];
 
-        foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day){
+        foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $key => $day){
             /* start times */
             $message[$day . '.start_time.*.present']       = 'The start time is required on ' . ucfirst($day) . '.';
             $message[$day . '.start_time.*.required_if']   = 'The start time is required on ' . ucfirst($day) . '.';
@@ -187,6 +197,8 @@ class NanniesController extends Controller{
             $message[$day . '.end_time.*.present']         = 'The end time is required on ' . ucfirst($day) . '.';
             $message[$day . '.end_time.*.required_if']     = 'The end time is required on ' . ucfirst($day) . '.';
             $message[$day . '.end_time.*.date_format']     = 'The end time on ' . ucfirst($day) . ' should be in the correct format (H:i).';
+            
+            $message['day_' . $key .'.required_without_all']   = 'At least one day of the week in the calendar must be selected.';
         }
 
         $validator = Validator::make($data, $rules, $message);
