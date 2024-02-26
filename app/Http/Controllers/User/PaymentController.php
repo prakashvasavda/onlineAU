@@ -30,8 +30,8 @@ class PaymentController extends Controller{
         $merchant_key   = env('PAYFAST_MERCHANT_KEY');
 
         /*for testing purpose*/
-        // $merchant_id    = 10031315;
-        // $merchant_key   = 'sbijrnrrkonrs';
+         $merchant_id    = 10031315;
+         $merchant_key   = 'sbijrnrrkonrs';
 
         /*user details*/
         $name_first     = Session::has('frontUser') ? Session::get('frontUser')->name  : (Session::get('guestUser')['name'] ?? null);
@@ -53,7 +53,7 @@ class PaymentController extends Controller{
         $cancel_url     = 'https://onlineaupairs.co.za/public/api/payment/cancel';
         $notify_url     = 'https://onlineaupairs.co.za/public/api/payment/notify';
 
-        $testingMode = false;
+        $testingMode = true;
         $payfast_url = $testingMode ? 'https://sandbox.payfast.co.za/eng/process' : 'https://www.payfast.co.za/eng/process';
 
         $data = array(
@@ -91,16 +91,7 @@ class PaymentController extends Controller{
     }
 
     public function payment_success(Request $request){
-        //return redirect()->route('transactions');
-        if(!Session::has('frontUser')){
-            return redirect()->route('user-login');
-        }
-
-        $frontUser                              = Session::get('frontUser');
-        $frontUser['user_subscription_status']  = $this->subscriptionController->check_subscription_status(Session::get('frontUser')->id);
-        $frontUser['purchased_candidates']      = $this->get_purchased_candidates(Session::get('frontUser')->id);
-        Session::put('frontUser', $frontUser);
-        $this->subscriptionController->get_candidate_subscriptions();
+        return redirect()->route('transactions'); //redirect the user to transaction page
     }
 
     public function payment_cancel(Request $request){

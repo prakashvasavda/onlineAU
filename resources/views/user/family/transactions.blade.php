@@ -102,6 +102,13 @@
                 padding-left: 0px;
             }
         }
+        .badge {
+            background-color: rgb(143,94,71);
+            color: white;
+            padding: 4px 8px;
+            text-align: center;
+            border-radius: 5px;
+        }
     </style>
 <div class="cart-checkout-main pricing-plans no-banner">
     <div class="container">
@@ -142,20 +149,20 @@
                                                 <td>{{ $value['name'] ?? null }}</td>
                                                 <td>
                                                     @if($value['cancellation_allowed'] === 1)
-                                                       <span class="badge bg-light text-dark">Applicable</span>
+                                                       <span class="badge">Applicable</span>
                                                     @else
-                                                        <span class="badge bg-dark">Not Applicable</span>
+                                                        <span class="badge">Not Applicable</span>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     @if($value['cancellation_request_status'] === 1 && $value['cancellation_approval_status'] === 0)
-                                                        <span class="badge bg-danger">Denied</span>
+                                                        <span class="badge">Denied</span>
                                                     @elseif($value['cancellation_request_status'] == 1 && $value['cancellation_approval_status'] === 1)
-                                                        <span class="badge bg-success">Approved</span>
+                                                        <span class="badge">Approved</span>
                                                     @elseif($value['cancellation_request_status'] == 1 && $value['cancellation_approval_status'] === null)
-                                                        <span class="badge bg-warning">pending</span>
+                                                        <span class="badge">pending</span>
                                                     @else
-                                                        <span class="badge bg-secondary">Inactive</span>
+                                                        <span class="badge">Inactive</span>
                                                     @endif
                                                 </td>
                                                 <td>{{ date('d-m-Y', strtotime($value['created_at'] ?? null)) }}</td>

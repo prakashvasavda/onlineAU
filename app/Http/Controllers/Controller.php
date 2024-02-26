@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use Mail;
+use Carbon\Carbon;
+use App\Models\Packages;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Symfony\Component\Mime\Part\HtmlPart;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
+use App\Models\FrontUser;
 use Illuminate\Support\Str;
+use App\Models\FamilyReview;
+use Illuminate\Http\Request;
+use App\Models\CandidateReview;
+use App\Models\NeedsBabysitter;
+use App\Mail\CandidateApplication;
+use App\Models\PreviousExperience;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\Models\CandidateFavoriteFamily;
 use App\Models\FamilyFavoriteCandidate;
-use App\Models\FamilyReview;
-use App\Models\CandidateReview;
-use App\Models\FrontUser;
-use App\Models\NeedsBabysitter;
-use App\Models\PreviousExperience;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use App\Models\Packages;
-use Carbon\Carbon;
-use Mail;
-use App\Mail\CandidateApplication;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Mime\Part\HtmlPart;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use App\Http\Controllers\User\SubscriptionController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 
 
@@ -170,5 +171,14 @@ class Controller extends BaseController{
         ];
         
         return response()->json($response, 200);
-    }   
+    }
+    
+    public function update_session_data(){
+        /*check user subscription status*/
+        $subscription                           = new SubscriptionController();
+        $frontUser                              = Session::get('frontUser');
+        $frontUser['user_subscription_status']  = $subscription->check_subscription_status(Session::get('frontUser')->id);
+        $frontUser['purchased_candidates']      = $this->get_purchased_candidates(Session::get('frontUser')->id);
+        Session::put('frontUser', $frontUser);
+    }
 }

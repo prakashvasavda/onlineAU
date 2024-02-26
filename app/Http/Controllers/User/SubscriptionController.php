@@ -53,9 +53,15 @@ class SubscriptionController extends Controller{
     } 
 
     public function check_subscription_status($user_id){
-        /* track user subscription based on the longest purchased package */
+        /* track user subscription based on the longest purchased package  end date*/
         $user_subscription = UserSubscription::where('user_id', $user_id)
             ->orderBy('end_date', 'desc')
+            ->first();
+        
+        /* check if the user has any active subscription regardless of the end date */
+        $active_subscription = UserSubscription::where('user_id', $user_id)
+            ->whereDate('end_date', '>', Carbon::now()) // if the subscription has not yet crossed the end date
+            ->where('status', 'active')
             ->first();
         
         /*inactive*/
@@ -64,12 +70,16 @@ class SubscriptionController extends Controller{
         }
 
         /*payment pending*/
-        if($user_subscription->status == "pending" && Carbon::now() < Carbon::parse($user_subscription->end_date)){
+        if($user_subscription->status == "pending" && Carbon::now() < Carbon::parse($user_subscription->end_date) &&
+            empty($active_subscription)){
+
             return "pending";
         }
 
         /*update pending status to expired status*/
-        if($user_subscription->status == "pending" && Carbon::now() > Carbon::parse($user_subscription->end_date)){
+        if($user_subscription->status == "pending" && Carbon::now() > Carbon::parse($user_subscription->end_date) && 
+            empty($active_subscription)){
+                
             return "expired";
         }
 
@@ -106,7 +116,13 @@ class SubscriptionController extends Controller{
     }
 
     public function get_candidate_subscriptions(){
-        $data['subscriptions'] = UserSubscription::leftJoin('packages', 'user_subscriptions.package_id', '=', 'packages.id')
+        $this->update_session_data();
+        $data['subscriptions'] = $this->candidate_subscriptions_data(Session::get('frontUser')->id);
+        return view('user.family.transactions', $data);
+    }
+
+    public function candidate_subscriptions_data($user_id){
+        return UserSubscription::leftJoin('packages', 'user_subscriptions.package_id', '=', 'packages.id')
             ->select(
                 'user_subscriptions.*', 
                 'packages.name', 'packages.price', 
@@ -115,11 +131,9 @@ class SubscriptionController extends Controller{
                 'packages.duration'
             )
             ->where('user_subscriptions.status', 'active')
-            ->where('user_id', Session::get('frontUser')->id)
+            ->where('user_id', $user_id)
             ->get()
             ->toArray();
-
-        return view('user.family.transactions', $data);
     }
 
     public function request_cancellation(Request $request){
