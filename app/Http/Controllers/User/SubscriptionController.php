@@ -158,7 +158,7 @@ class SubscriptionController extends Controller{
 
             $userSubscription->update(['cancellation_request_status' => 1]);
 
-            Mail::to("emmanuel.k.php@gmail.com")->send(new SubscriptionsCancellationRequest($userSubscription));
+            Mail::to("info@onlineaupairs.co.za")->send(new SubscriptionsCancellationRequest($userSubscription));
             return response()->json(['status' => 200]);
 
         } catch (\Exception $e) {
