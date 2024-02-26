@@ -111,13 +111,13 @@ class FrontFamilyPetsittingController extends Controller{
         $input['created_at']    = date("Y-m-d H:i:s");
         $input['updated_at']    = date("Y-m-d H:i:s");
 
-        $familyId   = FrontUser::insertGetId($input);
+        $family   = FrontUser::create($input);
 
         $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
-        $this->calendarController->store_calender($calender, $familyId);
+        $this->calendarController->store_calender($calender, $family->id);
 
         /*redirect to payment packages*/
-        $input['user_id']        = $familyId;
+        $input['user_id']        = $family->id;
         $input['profile']        = null;
 
         Session::put('guestUser', $input);
