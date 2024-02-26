@@ -16,11 +16,6 @@
                 <label class="d-none" for="day_hour">What are your available days and hours</label>
             </div>
             @include('user.calender.edit')
-            @if ($errors->has('calender'))
-                <span class="text-danger">
-                    <strong>{{ $errors->first('calender') }}</strong>
-                </span>
-            @endif
         </div> 
 
         <div class="col-12">
