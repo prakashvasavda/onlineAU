@@ -175,7 +175,10 @@ $('.close').on('click', function () {
 
 function initAutocomplete() {
     var inputs = document.querySelectorAll('.address-input');
-
+    var options = {
+      fields: ["formatted_address", "geometry", "name"],
+      componentRestrictions: {country: 'ZA'}
+    };
     inputs.forEach(function(input) {
         var autocomplete = new google.maps.places.Autocomplete(input);
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
