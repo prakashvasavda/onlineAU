@@ -8,6 +8,7 @@ use App\Models\FrontUser;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\NeedsBabysitter;
+use Illuminate\Validation\Rule;
 use App\Models\PreviousExperience;
 use App\Mail\CandidateRegistration;
 use App\Http\Controllers\Controller;
@@ -368,14 +369,17 @@ class FrontRegisterController extends Controller{
             'live_in_or_live_out'           => "required",
             'type_of_id_number'             => "required",
             'profile'                       => "nullable|image|mimes:jpeg,jpg,png,gif",
-            'gender_of_children'            => "required|array",
-            'gender_of_children.*'          => "required|in:male,female",
             'what_do_you_need'              => ['required', 'array'],
             'family_description'            => "required|max:500",
             'hourly_rate_pay'               => "required|numeric|digits_between:2,5",
             'salary_expectation'            => "required|numeric|digits_between:2,10",
-            // 'age'                           => "required|array",
-            // 'age.*'                         => "required|in:0-12 months,1-3 years,4-7 years,8-13 years,13-16 years",
+            
+            /* Age and gender of children */
+            'age'                           => "required|array",
+            'age.*'                         => ['required', Rule::in(['0-12 months', '1-3 years', '4-7 years', '8-13 years', '13-16 years']), 'distinct'],
+            'gender_of_children'            => "required|array",
+            'gender_of_children.*'          => "required|in:male,female",
+
             /* monday */
             'monday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:monday.end_time.*',
             'monday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
@@ -421,6 +425,7 @@ class FrontRegisterController extends Controller{
         $message = [
             'age.*.in'                      => 'Invalid selected age.',
             'age.*.required'                => 'The age field is required.',
+            'age.*.distinct'                => 'The age field must be unique.',
             'gender_of_children.*.in'       => 'Invalid gender selected for a child.',
             'gender_of_children.*.required' => 'The gender field is required.',
             'no_children.required'          => 'The number of children field is required.',
