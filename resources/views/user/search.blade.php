@@ -12,10 +12,10 @@
 			<div class="title-main title-box">
 				@if($type == "family")
 					<h2>Find Family</h2>
-					<p>{{ count($search) }} families matching your search</p>
+					<p>{{ $total_results ?? "0" }} families matching your search</p>
 				@else
 					<h2>Find Candidates</h2>
-					<p>{{ count($search) }} candidates matching your search</p>
+					<p>{{ $total_results ?? "0" }} candidates matching your search</p>
 				@endif
 			</div>
 			<div class="row result-list">
