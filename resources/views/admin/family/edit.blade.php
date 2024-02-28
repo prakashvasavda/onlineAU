@@ -341,9 +341,10 @@
                                                 @break  
                                             @else
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                                    <div class="form-group">
+                                                    <div class="form-input">
                                                         <label for="age_children">Age of children <span class="text-danger">*</span></label>
-                                                        <select id="age_children" name="age[]" class="form-control">
+                                                        <select id="age_children" name="age[]" class="form-control @error('age') is-invalid @enderror" >
+                                                            <option value="" >Select</option>
                                                             <option value="0-12 months" {{ $value == "0-12 months" ? 'selected' : '' }}>0-12 Months</option>
                                                             <option value="1-3 years" {{ $value == "1-3 years" ? 'selected' : '' }}>1-3 Years</option>
                                                             <option value="4-7 years" {{ $value == "4-7 years" ? 'selected' : '' }}>4-7 Years</option>
@@ -359,9 +360,10 @@
                                                 </div>
 
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                                    <div class="form-group">
+                                                    <div class="form-input">
                                                         <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                                                         <select id="gender_of_children" name="gender_of_children[]" class="form-control">
+                                                            <option value="" >Select</option>
                                                             <option value="male" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "male" ? 'selected' : '' }}>Male</option>
                                                             <option value="female" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "female" ? 'selected' : '' }}>Female</option>
                                                         </select>
@@ -376,18 +378,18 @@
                                         @endforeach
                                     @else
                                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                            <div class="form-group">
+                                            <div class="form-input">
                                                 <label for="age_children">Age of children <span class="text-danger">*</span></label>
                                                 <select id="age_children" name="age[]" class="form-control @error('age') is-invalid @enderror" >
-                                                    <option value="" disabled="disabled" selected>Select Age</option>
-                                                    <option value="0-12 months">0-12 Months</option>
-                                                    <option value="1-3 years">1-3 Years</option>
-                                                    <option value="4-7 years">4-7 Years</option>
-                                                    <option value="8-13 years">8-13 Years</option>
-                                                    <option value="13-16 years">13-16 Years</option>
+                                                    <option value="" >Select</option>
+                                                    <option value="0-12 months" {{ isset(old('age')[0]) && old('age')[0] == "0-12 months" ? "selected" : " " }}>0-12 Months</option>
+                                                    <option value="1-3 years" {{ isset(old('age')[0]) && old('age')[0] == "1-3 years" ? "selected" : " " }}>1-3 Years</option>
+                                                    <option value="4-7 years" {{ isset(old('age')[0]) && old('age')[0] == "4-7 years" ? "selected" : " " }}>4-7 Years</option>
+                                                    <option value="8-13 years" {{ isset(old('age')[0]) && old('age')[0] == "8-13 years" ? "selected" : " " }}>8-13 Years</option>
+                                                    <option value="13-16 years" {{ isset(old('age')[0]) && old('age')[0] == "13-16 years" ? "selected" : " " }}>13-16 Years</option>
                                                 </select>
-                                                @error('age')
-                                                    <span class="invalid-feedback" role="alert">
+                                                @error('age.0')
+                                                    <span class="text-danger">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
@@ -395,62 +397,109 @@
                                         </div>
 
                                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                            <div class="form-group">
+                                            <div class="form-input">
                                                 <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                                                 <select id="gender_of_children" name="gender_of_children[]" class="form-control">
-                                                    <option value="male" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("male", $family->gender_of_children))? 'selected' : '' }}>Male</option>
-                                                    <option value="female" {{ (isset($family->gender_of_children) && is_array($family->gender_of_children) && in_array("female", $family->gender_of_children))? 'selected' : '' }}>Female</option>
+                                                    <option value="" >Select</option>
+                                                    <option value="male" {{ isset(old('gender_of_children')[0]) && old('gender_of_children')[0] == "male" ? "selected" : " " }}>Male</option>
+                                                    <option value="female" {{ isset(old('gender_of_children')[0]) && old('gender_of_children')[0] == "female" ? "selected" : " " }}>Female</option>
                                                 </select>
-                                                @if ($errors->has('gender_of_children'))
+                                                @error('gender_of_children.0')
                                                     <span class="text-danger">
-                                                        <strong>{{ $errors->first('gender_of_children') }}</strong>
+                                                        <strong>{{ $message }}</strong>
                                                     </span>
-                                                @endif
+                                                @enderror
                                             </div>
                                         </div>
-                                    @endif 
+                                    @endif  
                                 </div>
-
+                                
                                 <div id="more_childern" class="row p-0">
-                                    @if(isset($family->age) && !empty($family->age) && is_array($family->age))
-                                        @foreach($family->age as $key => $value)
-                                            @if ($key >= 1) 
-                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                                    <div class="form-group">
+                                    @if(empty(old('no_children')) && isset($family->age) && !empty($family->age) && is_array($family->age))
+                                       @foreach($family->age as $key => $value)
+                                           @if ($key >= 1) 
+                                               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-3">
+                                                   <div class="form-input">
+                                                       <label for="age_children">Age of children <span class="text-danger">*</span></label>
+                                                       <select id={{ "age_children_" . $key }} name="age[]" class="form-control @error('age') is-invalid @enderror" >
+                                                           <option value="" >Select</option>
+                                                           <option value="0-12 months" {{ $value == "0-12 months" ? 'selected' : '' }}>0-12 Months</option>
+                                                           <option value="1-3 years" {{ $value == "1-3 years" ? 'selected' : '' }}>1-3 Years</option>
+                                                           <option value="4-7 years" {{ $value == "4-7 years" ? 'selected' : '' }}>4-7 Years</option>
+                                                           <option value="8-13 years" {{ $value == "8-13 years" ? 'selected' : '' }}>8-13 Years</option>
+                                                           <option value="13-16 years" {{ $value == "13-16 years" ? 'selected' : '' }}>13-16 Years</option>
+                                                       </select>
+                                                       @error('age.0')
+                                                           <span class="text-danger">
+                                                               <strong>{{ $message }}</strong>
+                                                           </span>
+                                                       @enderror
+                                                   </div>
+                                               </div>
+                                               
+                                               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-3">
+                                                   <div class="form-input">
+                                                       <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
+                                                       <select id={{ "gender_of_children_" . $key }} name="gender_of_children[]" class="form-control">
+                                                           <option value="" >Select</option>
+                                                           <option value="male" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "male" ? 'selected' : '' }}>Male</option>
+                                                           <option value="female" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "female" ? 'selected' : '' }}>Female</option>
+                                                       </select>
+                                                       @error('gender_of_children.0')
+                                                           <span class="text-danger">
+                                                               <strong>{{ $message }}</strong>
+                                                           </span>
+                                                       @enderror
+                                                   </div>
+                                               </div>
+                                           @endif
+                                       @endforeach     
+                                   @endif 
+                                </div>
+                                {{-- old data --}}
+                                @if(old('no_children') && old('no_children') > 1)
+                                    <div id="more_childern" class="row p-0">
+                                        @for ($i = 1; $i < old('no_children'); $i++)
+                                            @if ($i < 5)
+                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 old-input-childern">
+                                                    <div class="form-input">
                                                         <label for="age_children">Age of children <span class="text-danger">*</span></label>
-                                                        <select id="age_children" name="age[]" class="form-control" >
-                                                            <option value="0-12 months" {{ $value == "0-12 months" ? 'selected' : '' }}>0-12 Months</option>
-                                                            <option value="1-3 years" {{ $value == "1-3 years" ? 'selected' : '' }}>1-3 Years</option>
-                                                            <option value="4-7 years" {{ $value == "4-7 years" ? 'selected' : '' }}>4-7 Years</option>
-                                                            <option value="8-13 years" {{ $value == "8-13 years" ? 'selected' : '' }}>8-13 Years</option>
-                                                            <option value="13-16 years" {{ $value == "13-16 years" ? 'selected' : '' }}>13-16 Years</option>
+                                                        <select id={{ "age_children_" . $i }} name="age[]" class="form-control @error('age') is-invalid @enderror" >
+                                                            <option value="" >Select</option>
+                                                            <option value="0-12 months" {{ isset(old('age')[$i]) && old('age')[$i] == "0-12 months" ? "selected" : " " }}>0-12 Months</option>
+                                                            <option value="1-3 years" {{ isset(old('age')[$i]) && old('age')[$i] == "1-3 years" ? "selected" : " " }}>1-3 Years</option>
+                                                            <option value="4-7 years" {{ isset(old('age')[$i]) && old('age')[$i] == "4-7 years" ? "selected" : " " }}>4-7 Years</option>
+                                                            <option value="8-13 years" {{ isset(old('age')[$i]) && old('age')[$i] == "8-13 years" ? "selected" : " " }}>8-13 Years</option>
+                                                            <option value="13-16 years" {{ isset(old('age')[$i]) && old('age')[$i] == "13-16 years" ? "selected" : " " }}>13-16 Years</option>
                                                         </select>
-                                                        @error('age')
-                                                            <span class="invalid-feedback" role="alert">
+                                                        @error('age.' . $i)
+                                                            <span class="text-danger">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
                                                         @enderror
                                                     </div>
                                                 </div>
-
-                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                                    <div class="form-group">
+                                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 old-input-childern">
+                                                    <div class="form-input">
                                                         <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
-                                                        <select id="gender_of_children" name="gender_of_children[]" class="form-control">
-                                                            <option value="male" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "male" ? 'selected' : '' }}>Male</option>
-                                                            <option value="female" {{ isset($family->gender_of_children[$key]) && $family->gender_of_children[$key] == "female" ? 'selected' : '' }}>Female</option>
+                                                        <select id={{ "gender_of_children_" . $i }} name="gender_of_children[]" class="form-control">
+                                                            <option value="" >Select</option>
+                                                            <option value="male" {{ isset(old('gender_of_children')[$i]) && old('gender_of_children')[$i] == "male" ? "selected" : " " }}>Male</option>
+                                                            <option value="female" {{ isset(old('gender_of_children')[$i]) && old('gender_of_children')[$i] == "female" ? "selected" : " " }}>Female</option>
                                                         </select>
-                                                        @if ($errors->has('gender_of_children'))
+                                                        @error('gender_of_children.' . $i)
                                                             <span class="text-danger">
-                                                                <strong>{{ $errors->first('gender_of_children') }}</strong>
+                                                                <strong>{{ $message }}</strong>
                                                             </span>
-                                                        @endif
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             @endif
-                                        @endforeach     
-                                    @endif 
-                                </div>
+                                        @endfor
+                                    </div>
+                                @endif
+                                {{-- end old data --}}
+
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
@@ -666,15 +715,25 @@
 
     $("#no_children").keyup(function(){
         var no_children = $("#no_children").val();
+        
+        if(no_children > 5){
+            !$('#no-children-error-msg').length ? $("#no_children").after(`<span id="no-children-error-msg" class="text-danger"><strong>The no children field must be less than or equal to 5.</strong></span>`) : "";
+            return false;
+        }
+
+        $('.old-input-childern').length ? $(".old-input-childern").remove() : "";
+        $('#no-children-error-msg').length ? $("#no-children-error-msg").remove() : "";
+
         $("#more_childern").html('');
         if(no_children > 1) {
             for (var i = no_children - 1; i >= 1; i--) {
                 $("#more_childern")
                 .append(`
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-3">
+                        <div class="form-input">
                             <label for="age_children">Age of children <span class="text-danger">*</span></label>
                             <select name="age[]" class="form-control" >
+                                <option value="" >Select</option>
                                 <option value="0-12 months">0-12 Months</option>
                                 <option value="1-3 years">1-3 Years</option>
                                 <option value="4-7 years">4-7 Years</option>
@@ -684,10 +743,11 @@
                         </div>
                     </div> 
 
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-3">
+                        <div class="form-input">
                             <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                             <select name="gender_of_children[]" class="form-control">
+                                <option value="" >Select</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
