@@ -188,7 +188,7 @@ function initAutocomplete() {
     });
 }
 
-google.maps.event.addDomListener(window, 'load', initAutocomplete);
+window.addEventListener('load', initAutocomplete);
 
 /* add dynamic row to candidate calender*/
 function addCalendarRow(rowId){
