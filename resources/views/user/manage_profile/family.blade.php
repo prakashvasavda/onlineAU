@@ -234,7 +234,7 @@
                  @if(empty(old('no_children')) && isset($family->age) && !empty($family->age) && is_array($family->age))
                     @foreach($family->age as $key => $value)
                         @if ($key >= 1) 
-                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-3">
                                 <div class="form-input">
                                     <label for="age_children">Age of children <span class="text-danger">*</span></label>
                                     <select id={{ "age_children_" . $key }} name="age[]" class="form-field @error('age') is-invalid @enderror" >
@@ -252,8 +252,8 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-3">
                                 <div class="form-input">
                                     <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
                                     <select id={{ "gender_of_children_" . $key }} name="gender_of_children[]" class="form-field">

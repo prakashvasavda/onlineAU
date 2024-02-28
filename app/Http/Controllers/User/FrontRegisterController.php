@@ -490,6 +490,7 @@ class FrontRegisterController extends Controller{
             'live_in_or_live_out'           => $request->live_in_or_live_out,
             'hourly_rate_pay'               => isset($request->hourly_rate_pay) ? $request->hourly_rate_pay : null,
             'type_of_id_number'             => $request->type_of_id_number,
+            'gender_of_children'            => isset($request->gender_of_children) ? json_encode($request->gender_of_children) : null,
         ]);
 
         $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
