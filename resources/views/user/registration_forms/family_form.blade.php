@@ -181,40 +181,41 @@
             {{-- old data --}}
             @if(old('no_children') && old('no_children') > 1)
                 @for ($i = 1; $i < old('no_children'); $i++)
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 old-input-childern">
-                        <div class="form-input">
-                            <label for="age_children">Age of children <span class="text-danger">*</span></label>
-                            <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
-                                <option value="" >Select</option>
-                                <option value="0-12 months" {{ isset(old('age')[$i]) && old('age')[$i] == "0-12 months" ? "selected" : " " }}>0-12 Months</option>
-                                <option value="1-3 years" {{ isset(old('age')[$i]) && old('age')[$i] == "1-3 years" ? "selected" : " " }}>1-3 Years</option>
-                                <option value="4-7 years" {{ isset(old('age')[$i]) && old('age')[$i] == "4-7 years" ? "selected" : " " }}>4-7 Years</option>
-                                <option value="8-13 years" {{ isset(old('age')[$i]) && old('age')[$i] == "8-13 years" ? "selected" : " " }}>8-13 Years</option>
-                                <option value="13-16 years" {{ isset(old('age')[$i]) && old('age')[$i] == "13-16 years" ? "selected" : " " }}>13-16 Years</option>
-                            </select>
-                            @error('age.' . $i)
-                                <span class="text-danger">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                    @if ($i < 5)
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 old-input-childern">
+                            <div class="form-input">
+                                <label for="age_children">Age of children <span class="text-danger">*</span></label>
+                                <select id="age_children" name="age[]" class="form-field @error('age') is-invalid @enderror" >
+                                    <option value="" >Select</option>
+                                    <option value="0-12 months" {{ isset(old('age')[$i]) && old('age')[$i] == "0-12 months" ? "selected" : " " }}>0-12 Months</option>
+                                    <option value="1-3 years" {{ isset(old('age')[$i]) && old('age')[$i] == "1-3 years" ? "selected" : " " }}>1-3 Years</option>
+                                    <option value="4-7 years" {{ isset(old('age')[$i]) && old('age')[$i] == "4-7 years" ? "selected" : " " }}>4-7 Years</option>
+                                    <option value="8-13 years" {{ isset(old('age')[$i]) && old('age')[$i] == "8-13 years" ? "selected" : " " }}>8-13 Years</option>
+                                    <option value="13-16 years" {{ isset(old('age')[$i]) && old('age')[$i] == "13-16 years" ? "selected" : " " }}>13-16 Years</option>
+                                </select>
+                                @error('age.' . $i)
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-        
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 old-input-childern">
-                        <div class="form-input">
-                            <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
-                            <select id="gender_of_children" name="gender_of_children[]" class="form-field">
-                                <option value="" >Select</option>
-                                <option value="male" {{ isset(old('gender_of_children')[$i]) && old('gender_of_children')[$i] == "male" ? "selected" : " " }}>Male</option>
-                                <option value="female" {{ isset(old('gender_of_children')[$i]) && old('gender_of_children')[$i] == "female" ? "selected" : " " }}>Female</option>
-                            </select>
-                            @error('gender_of_children.' . $i)
-                                <span class="text-danger">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 old-input-childern">
+                            <div class="form-input">
+                                <label for="gender_of_children">Gender of children <span class="text-danger">*</span></label>
+                                <select id="gender_of_children" name="gender_of_children[]" class="form-field">
+                                    <option value="" >Select</option>
+                                    <option value="male" {{ isset(old('gender_of_children')[$i]) && old('gender_of_children')[$i] == "male" ? "selected" : " " }}>Male</option>
+                                    <option value="female" {{ isset(old('gender_of_children')[$i]) && old('gender_of_children')[$i] == "female" ? "selected" : " " }}>Female</option>
+                                </select>
+                                @error('gender_of_children.' . $i)
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endfor
             @endif
             {{-- end old data --}}
@@ -545,7 +546,7 @@ $(document).ready(function() {
         }
 
         $('.old-input-childern').length ? $(".old-input-childern").remove() : "";
-        $('#old_childern').length ? $("#old_childern").remove() : "";
+        $('#no-children-error-msg').length ? $("#no-children-error-msg").remove() : "";
 
         $("#more_childern").html('');
         if(no_children > 1) {
