@@ -1,31 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Requests;
 
-use App\Models\FrontUser;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
-use App\Http\Requests\PetsittingRequest;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\CalendarController;
+use Illuminate\Foundation\Http\FormRequest;
 
-
-class FrontFamilyPetsittingController extends Controller{
-
-    protected $calendarController;
-
-    public function __construct(CalendarController $calendarController){
-        $this->calendarController = $calendarController;
+class PetsittingRequest extends FormRequest
+{
+    
+    public function authorize(): bool
+    {
+        return true;
     }
- 
-    public function store(Request $request){
-        $input                              = $request->all();
 
-        $rules = [
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
             'name'                          => "required|max:50",
             'email'                         => 'required|email', //required|email|unique:front_users,email
             'family_address'                => "required|max:100",
@@ -34,9 +29,9 @@ class FrontFamilyPetsittingController extends Controller{
             'duration_needed'               => "required|numeric|gt:1|lt:24",
             'candidate_duties'              => "required|max:500",
             'surname'                       => "required|max:50",
-            'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
+            'id_number'                     => 'required' . ($this->input('type_of_id_number') == 'south_african' ? '|numeric|digits:13' : ''),
             'type_of_id_number'             => "required",
-            'number_of_pets'                => "required|lte:5",
+            'number_of_pets'                => "required|gte:1|lte:5",
             'pet_medication_or_disabilities'=> "required",
             'pet_medication_specify'        => "required_if:pet_medication_or_disabilities,==,yes|max:500",
 
@@ -78,7 +73,7 @@ class FrontFamilyPetsittingController extends Controller{
             'how_many_pets.*'               => "required|gte:1|lte:5",
 
             'password' => [
-                'required',
+                'nullable',
                 'string',
                 'min:8',                    // must be at least 10 characters in length
                 'regex:/[a-z]/',            // must contain at least one lowercase letter
@@ -87,84 +82,37 @@ class FrontFamilyPetsittingController extends Controller{
                 'regex:/[@$!%*#?&]/',       // must contain a special character
             ],
         ];
+    }
 
-        $message = [
+    public function messages() :array
+    {
+        $messages = [
             'type_of_pet.*.in'                   => 'Invalid selected type of pet.',
             'type_of_pet.*.required'             => 'The type of pet field is required.',
             'type_of_pet.*.distinct'             => 'The type of pet field must be unique.',
             'how_many_pets.*.gte'                => 'Pets number must be 1 or more.',
             'how_many_pets.*.lte'                => 'Pets number must less 5.',
             
-            'password.required'                  => 'The password field is required.',
             'password.string'                    => 'The password must be a string.',
             'password.min'                       => 'The password must be at least 8 characters in length.',
             'password.regex'                     => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
             'pet_medication_specify.required_if' => "Specification field is required when you have selected yes on the above field.",
         ];
-
+        
         foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $key => $day){
             /* start times */
-            $message[$day . '.start_time.*.present']       = 'Required field.';
-            $message[$day . '.start_time.*.required_if']   = 'Required field.';
-            $message[$day . '.start_time.*.date_format']   = 'Incorrect format.';
-            $message[$day . '.start_time.*.before']        = 'Invalid time';
+            $messages[$day . '.start_time.*.present']       = 'Required field.';
+            $messages[$day . '.start_time.*.required_if']   = 'Required field.';
+            $messages[$day . '.start_time.*.date_format']   = 'Incorrect format.';
+            $messages[$day . '.start_time.*.before']        = 'Invalid time';
             /* end time */
-            $message[$day . '.end_time.*.present']       = 'Required field.';
-            $message[$day . '.end_time.*.required_if']   = 'Required field.';
-            $message[$day . '.end_time.*.date_format']   = 'Incorrect format.';
+            $messages[$day . '.end_time.*.present']         = 'Required field.';
+            $messages[$day . '.end_time.*.required_if']     = 'Required field.';
+            $messages[$day . '.end_time.*.date_format']     = 'Incorrect format.';
             /* day validation */
-            $message['day_' . $key .'.required_without_all']   = 'At least one day of the week in the calendar must be selected.';
+            $messages['day_' . $key .'.required_without_all']   = 'At least one day of the week in the calendar must be selected.';
         }
 
-        $validator = Validator::make($input, $rules, $message);
-
-        if ($validator->fails()) {
-            return back()->withInput()
-                ->withErrors($validator)
-                ->with('message_type', 'danger')
-                ->with('message', 'There were some error try again');
-        }
-
-        $input                  = $request->except('_method', '_token', 'morning', 'afternoon', 'evening', 'night');
-        $input['profile']       = $request->hasFile('profile') ? $this->store_image($request->file('profile')) : null;
-        $input['type_of_pet']   = isset($request->type_of_pet) ? json_encode($request->type_of_pet) : null;
-        $input['how_many_pets'] = isset($request->how_many_pets) ? json_encode($request->how_many_pets) : null;
-        $input['password']      = Hash::make($request->password);
-        
-        $input['status']        = 1;
-        $input['role']          = 'family-petsitting';
-        $input['created_at']    = date("Y-m-d H:i:s");
-        $input['updated_at']    = date("Y-m-d H:i:s");
-
-        $family   = FrontUser::create($input);
-
-        $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
-        $this->calendarController->store_calender($calender, $family->id);
-
-        /*redirect to payment packages*/
-        $input['user_id']        = $family->id;
-        $input['profile']        = null;
-
-        Session::put('guestUser', $input);
-        return redirect()->to('packages');
-    }
-
-    public function update(PetsittingRequest $request, string $id){
-        $family                  = FrontUser::find($id);
-        $input                   = $request->all();
-        $input['password']       = !empty($request->password) ? Hash::make($request->password) : $family->password;
-        $input['email']          = !empty($request->email) ? $request->email : $family->email;
-        $input['role']           = $family->role;
-        $input['profile']        = $request->file('profile') !== null ? $this->store_image($request->file('profile')) : $family->profile;
-        $input['type_of_pet']    = isset($request->type_of_pet) ? json_encode($request->type_of_pet) : null;
-        $input['how_many_pets']  = isset($request->how_many_pets) ? json_encode($request->how_many_pets) : null;
-        $input['updated_at']     = date("Y-m-d H:i:s");
-
-        /* store calender data */
-        $calender           = $request->only(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
-        $this->calendarController->store_calender($calender, $id);
-
-        $update_status           = $family->update($input);
-        return redirect()->back()->with('success', 'Profile updated successfully.');
+        return $messages;
     }
 }
