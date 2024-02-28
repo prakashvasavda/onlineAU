@@ -12,6 +12,7 @@ use App\Models\FamilyReview;
 use Illuminate\Http\Request;
 use App\Models\CandidateReview;
 use App\Models\NeedsBabysitter;
+use Illuminate\Validation\Rule;
 use App\Models\UserSubscription;
 use App\Models\CandidateFavourite;
 use App\Models\PreviousExperience;
@@ -105,7 +106,7 @@ class FrontFamilyController extends Controller{
             'family_address'                => "required|max:100",
             'family_city'                   => "required|max:100",
             'home_language'                 => "required",
-            'no_children'                   => "required|lte:5",
+            'no_children'                   => "required|gte:1|lte:5",
             'family_notifications'          => "required",
             'cell_number'                   => "required|min:10|max:10|regex:/[0-9]{9}/",
             'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
@@ -117,14 +118,11 @@ class FrontFamilyController extends Controller{
             'live_in_or_live_out'           => "required",
             'type_of_id_number'             => "required",
             'profile'                       => 'nullable|image|mimes:jpeg,jpg,png,gif',
-            'gender_of_children'            => "required|array",
-            'gender_of_children.*'          => "required|in:male,female",
             'what_do_you_need'              => ['required', 'array'],
             'family_description'            => "required|max:500",
             'hourly_rate_pay'               => "required|numeric|digits_between:2,5",
             'salary_expectation'            => "required|numeric|digits_between:2,10",
-            // 'age'                           => "required|array",
-            // 'age.*'                         => "nullable|in:0-12 months,1-3 years,4-7 years,8-13 years,13-16 years",
+
             /* monday */
             'monday.start_time.*'          => 'present|required_if:day_0,==,1|date_format:H:i|before:monday.end_time.*',
             'monday.end_time.*'            => 'present|required_if:day_0,==,1|date_format:H:i',
@@ -156,6 +154,12 @@ class FrontFamilyController extends Controller{
             'day_5'                        => 'required_without_all:day_0,day_1,day_2,day_3,day_4,day_6',
             'day_6'                        => 'required_without_all:day_0,day_1,day_2,day_3,day_4,day_5',
 
+            /* Age and gender of children */
+            'age'                          => "required|array",
+            'age.*'                        => ['required', Rule::in(['0-12 months', '1-3 years', '4-7 years', '8-13 years', '13-16 years']), 'distinct'],
+            'gender_of_children'           => "required|array",
+            'gender_of_children.*'         => "required|in:male,female",
+
             'password' => [
                 'nullable',
                 'string',
@@ -170,9 +174,11 @@ class FrontFamilyController extends Controller{
         $message = [
             'age.*.in'                      => 'Invalid selected age.',
             'age.*.required'                => 'The age field is required.',
+            'age.*.distinct'                => 'The age field must be unique.',
             'gender_of_children.*.in'       => 'Invalid gender selected for a child.',
             'gender_of_children.*.required' => 'The gender field is required.',
             'no_children.required'          => 'The number of children field is required.',
+            'password.required'             => 'The password field is required.',
             'password.string'               => 'The password must be a string.',
             'password.min'                  => 'The password must be at least 8 characters in length.',
             'password.regex'                => 'The password must meet the following requirements: at least one lowercase letter, one uppercase letter, one digit, and one special character.',
