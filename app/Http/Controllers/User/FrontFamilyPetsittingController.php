@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Models\FrontUser;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -34,7 +35,7 @@ class FrontFamilyPetsittingController extends Controller{
             'surname'                       => "required|max:50",
             'id_number'                     => 'required' . ($request->type_of_id_number == 'south_african' ? '|numeric|digits:13' : ''),
             'type_of_id_number'             => "required",
-            'number_of_pets'                => "required|lte:10",
+            'number_of_pets'                => "required|lte:5",
             'pet_medication_or_disabilities'=> "required",
             'pet_medication_specify'        => "required_if:pet_medication_or_disabilities,==,yes|max:500",
 
@@ -69,6 +70,12 @@ class FrontFamilyPetsittingController extends Controller{
             'day_5'                        => 'required_without_all:day_0,day_1,day_2,day_3,day_4,day_6',
             'day_6'                        => 'required_without_all:day_0,day_1,day_2,day_3,day_4,day_5',
 
+            /* type of pet and number of pet validation */
+            'type_of_pet'                   => "required|array",
+            'type_of_pet.*'                 => ['required', Rule::in(['dog', 'cat', 'hamster and guinea pig', 'reptile', 'spider']), 'distinct'],
+            'how_many_pets'                 => "required|array",
+            'how_many_pets.*'               => "required|gte:1|lte:5",
+
             'password' => [
                 'required',
                 'string',
@@ -81,6 +88,12 @@ class FrontFamilyPetsittingController extends Controller{
         ];
 
         $message = [
+            'type_of_pet.*.in'                   => 'Invalid selected type of pet.',
+            'type_of_pet.*.required'             => 'The type of pet field is required.',
+            'type_of_pet.*.distinct'             => 'The type of pet field must be unique.',
+            'how_many_pets.*.gte'                => 'Pets number must be 1 or more.',
+            'how_many_pets.*.lte'                => 'Pets number must less 5.',
+            
             'password.required'                  => 'The password field is required.',
             'password.string'                    => 'The password must be a string.',
             'password.min'                       => 'The password must be at least 8 characters in length.',
