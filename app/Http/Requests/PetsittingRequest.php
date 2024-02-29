@@ -92,6 +92,7 @@ class PetsittingRequest extends FormRequest
             'type_of_pet.*.distinct'             => 'The type of pet field must be unique.',
             'how_many_pets.*.gte'                => 'Pets number must be 1 or more.',
             'how_many_pets.*.lte'                => 'Pets number must less 5.',
+            'how_many_pets.*.required'           => 'The number of pets field is required.',
             
             'password.string'                    => 'The password must be a string.',
             'password.min'                       => 'The password must be at least 8 characters in length.',
@@ -111,6 +112,24 @@ class PetsittingRequest extends FormRequest
             $messages[$day . '.end_time.*.date_format']     = 'Incorrect format.';
             /* day validation */
             $messages['day_' . $key .'.required_without_all']   = 'At least one day of the week in the calendar must be selected.';
+        }
+
+        /* if the user is logged in as an admin */
+        if(auth()->check()){
+            foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $key => $day){
+                /* start times */
+                $messages[$day . '.start_time.*.present']       = 'The start time is required on ' . ucfirst($day) . '.';
+                $messages[$day . '.start_time.*.required_if']   = 'The start time is required on ' . ucfirst($day) . '.';
+                $messages[$day . '.start_time.*.date_format']   = 'The start time on ' . ucfirst($day) . ' should be in the correct format (H:i).';
+                $messages[$day . '.start_time.*.before']        = 'The start time on ' . ucfirst($day) . ' must be before the end time.';
+                
+                /* end time */
+                $messages[$day . '.end_time.*.present']         = 'The end time is required on ' . ucfirst($day) . '.';
+                $messages[$day . '.end_time.*.required_if']     = 'The end time is required on ' . ucfirst($day) . '.';
+                $messages[$day . '.end_time.*.date_format']     = 'The end time on ' . ucfirst($day) . ' should be in the correct format (H:i).';
+                
+                $messages['day_' . $key .'.required_without_all']   = 'At least one day of the week in the calendar must be selected.';
+            }
         }
 
         return $messages;

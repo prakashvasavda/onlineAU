@@ -69,11 +69,11 @@
    $(document).ready(function() {
         @if($errors->any())
             var errorMessages = {!! json_encode($errors->toArray()) !!};
+            console.log(errorMessages);
             const prefixesToCheck = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
             $.each(errorMessages, function(key, value) {
                 if (prefixesToCheck.some(prefix => key.startsWith(prefix))) {
                     var newKey = key.replace(/\./g, '_');
-                    console.log(newKey);
                     $("#"+newKey).after(`
                         <div>
                             <span class="text-danger">
