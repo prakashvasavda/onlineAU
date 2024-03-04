@@ -59,9 +59,8 @@
         </nav>
         <aside class="main-sidebar sidebar-dark-primary elevation-4" id="left-menubar" style="min-height:0!important; overflow-x: hidden;">
             <a href="{{ url('admin') }}" class="brand-link" style="text-align: center">
-                <span class="brand-text font-weight-light"><b>ONLINE-AU ADMIN</b></span>
+                <img src="{{ asset('front/images/logo.png') }}" style="width: 80%;" />
             </a>
-
             <div class="sidebar">
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
