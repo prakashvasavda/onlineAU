@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-secondary">
+                    <div class="card card-secondary card-outline">
                         {{-- <div class="card-header">
                             <h3 class="card-title">Petsittings Table</h3>
                         </div> --}}

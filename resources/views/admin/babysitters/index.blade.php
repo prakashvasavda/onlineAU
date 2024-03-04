@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-secondary">
+                    <div class="card card-secondary card-outline">
                         <div class="card-body table-responsive">
                             <table id="babysittersTable" class="table table-bordered table-striped">
                                 <thead>
