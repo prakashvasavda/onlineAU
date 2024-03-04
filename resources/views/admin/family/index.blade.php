@@ -25,9 +25,6 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card card-secondary">
-                        <div class="card-header">
-                            <h3 class="card-title">Families Table</h3>
-                        </div>
                         <div class="card-body table-responsive">
                             <table id="familyTable" class="table table-bordered table-striped dataTable display" cellspacing="0" width="100%">
                                 <thead>

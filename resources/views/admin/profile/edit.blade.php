@@ -21,7 +21,7 @@
              @include ('admin.includes.error')
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-info">
+                    <div class="card card-secondary">
                         <div class="card-header">
                             <h3 class="card-title">Edit {{'Profile'}}</h3>
                         </div>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="card-footer">
                             <a href="{{ route('admin.dashboard') }}" ><button class="btn btn-default" type="button">Back</button></a>
-                            <button class="btn btn-info float-right" type="submit">Update</button>
+                            <button class="btn btn-secondary float-right" type="submit">Update</button>
                         </div>
                         {!! Form::close() !!}
                     </div>

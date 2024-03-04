@@ -25,9 +25,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card card-secondary">
-                        <div class="card-header">
+                        {{-- <div class="card-header">
                             <h3 class="card-title">Petsittings Table</h3>
-                        </div>
+                        </div> --}}
                         <div class="card-body table-responsive">
                             <table id="familyPetsittingTable" class="table table-bordered table-striped dataTable display" cellspacing="0" width="100%">
                                 <thead>

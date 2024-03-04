@@ -25,9 +25,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card card-secondary">
-                        <div class="card-header">
+                        {{-- <div class="card-header">
                             <h3 class="card-title">{{isset($menu) ? ucwords($menu) : ""}} Table</h3>
-                        </div>
+                        </div> --}}
                         <div class="card-body table-responsive">
                             <table id="petsittersTable" class="table table-bordered table-striped">
                                 <thead>
