@@ -5,9 +5,9 @@
                 <tr class="{{ $day }}-row">
                     <td><input type="checkbox" id="{{ $day . '-check'}}" name={{ "day_".$index }} value="1" onchange="enableCalenderRow('{{ $day }}')" {{ old('day_'.$index) || isset($calendars[$day]['start_time'][0]) || isset($calendars[$day]['end_time'][0]) ? 'checked' : '' }}></td>
                     <td>{{ ucfirst($day) }}</td>
-                    <td><input type="text" id="{{ $day . '_start_time_0' }}" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][0] ?? $calendars[$day]['start_time'][0] ?? null }}" placeholder="Add Time" {{ old('day_'.$index) || isset($calendars[$day]['start_time'][0]) || isset($calendars[$day]['end_time'][0]) ? '' : 'disabled' }}></td>
+                    <td><input class="timepicker" type="text" id="{{ $day . '_start_time_0' }}" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][0] ?? $calendars[$day]['start_time'][0] ?? null }}" placeholder="Add Time" {{ old('day_'.$index) || isset($calendars[$day]['start_time'][0]) || isset($calendars[$day]['end_time'][0]) ? '' : 'disabled' }}></td>
                     <td>to</td>
-                    <td><input type="text" id="{{ $day . '_end_time_0' }}" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][0] ?? $calendars[$day]['end_time'][0] ?? null }}" placeholder="Add Time" {{ old('day_'.$index) || isset($calendars[$day]['start_time'][0]) || isset($calendars[$day]['end_time'][0]) ? '' : 'disabled' }}></td>
+                    <td><input class="timepicker" type="text" id="{{ $day . '_end_time_0' }}" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][0] ?? $calendars[$day]['end_time'][0] ?? null }}" placeholder="Add Time" {{ old('day_'.$index) || isset($calendars[$day]['start_time'][0]) || isset($calendars[$day]['end_time'][0]) ? '' : 'disabled' }}></td>
                     <td onclick="addCalendarRow('{{ $day }}')">
                         <a href="javaScript:;" class="btn add-btn icon">
                             <i class="fa-solid fa-plus"></i>
@@ -21,9 +21,9 @@
                             <tr class="{{ $day }}-row">
                                 <td>&nbsp;</td>
                                 <td>{{ ucfirst($day) }}</td>
-                                <td><input type="text" id="{{ $day . '_start_time_' . $key }}"  onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][$key] ?? null }}" placeholder="Add Time"></td>
+                                <td><input class="timepicker" type="text" id="{{ $day . '_start_time_' . $key }}" name="{{ $day }}[start_time][]" value="{{ $calendars[$day]['start_time'][$key] ?? null }}" placeholder="Add Time"></td>
                                 <td>to</td>
-                                <td><input type="text" id="{{ $day . '_end_time_' . $key }}" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][$key] ?? null }}" placeholder="Add Time"></td>
+                                <td><input class="timepicker" type="text" id="{{ $day . '_end_time_' . $key }}" name="{{ $day }}[end_time][]" value="{{ $calendars[$day]['end_time'][$key] ?? null }}" placeholder="Add Time"></td>
                                 <td onclick="removeCalendarRow(event)">
                                     <a href="javaScript:;" class="btn add-btn icon">
                                         <i class="fa-solid fa-trash"></i>
@@ -40,9 +40,9 @@
                             <tr class="{{ $day }}-row">
                                 <td>&nbsp;</td>
                                 <td>{{ ucfirst($day) }}</td>
-                                <td><input type="text" id="{{ $day . '_start_time_' . $key }}" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] ?? null }}" placeholder="Add Time"></td>
+                                <td><input class="timepicker" type="text" id="{{ $day . '_start_time_' . $key }}" name="{{ $day }}[start_time][]" value="{{ old($day)['start_time'][$key] ?? null }}" placeholder="Add Time"></td>
                                 <td>to</td>
-                                <td><input type="text" id="{{ $day . '_end_time_' . $key }}" onfocus="(this.type='time')" onblur="(this.type='text')" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] ?? null }}" placeholder="Add Time"></td>
+                                <td><input class="timepicker" type="text" id="{{ $day . '_end_time_' . $key }}" name="{{ $day }}[end_time][]" value="{{ old($day)['end_time'][$key] ?? null }}" placeholder="Add Time"></td>
                                 <td onclick="removeCalendarRow(event)">
                                     <a href="javaScript:;" class="btn add-btn icon">
                                         <i class="fa-solid fa-trash"></i>

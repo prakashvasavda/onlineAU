@@ -200,9 +200,9 @@ function addCalendarRow(rowId){
     <tr class="`+rowId+`-row">
       <td>&nbsp;</td>
       <td class="text-capitalize">`+rowId+`</td>
-      <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="`+rowId+`[start_time][]" value="" placeholder="Add Time"></td>
+      <td><input class="timepicker" type="text" name="`+rowId+`[start_time][]" value="" placeholder="Add Time"></td>
       <td>to</td>
-      <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="`+rowId+`[end_time][]" value="" placeholder="Add Time"></td>
+      <td><input class="timepicker" type="text" name="`+rowId+`[end_time][]" value="" placeholder="Add Time"></td>
       <td onclick="removeCalendarRow(event)">
         <a href="javaScript:;" class="btn add-btn icon">
           <i class="fa-solid fa-trash"></i>
@@ -234,3 +234,10 @@ function showModal(modalLabel, modalIcon, message, url, text){
   $("#alert-modal-action-btn").attr('href', url).text(text);
   $('#alert-modal').modal('show');
 }
+
+/* time picker */
+$('body').on('focus',".timepicker", function(){
+  $(this).timepicker({
+    timeFormat: 'HH:mm',
+  });
+});

@@ -76,9 +76,9 @@ function addCalendarRow(rowId){
     <tr class="`+rowId+`-row">
       <td>&nbsp;</td>
       <td class="text-capitalize">`+rowId+`</td>
-      <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="`+rowId+`[start_time][]" value="" placeholder="Add Time"></td>
+      <td><input class="timepicker" type="text" name="`+rowId+`[start_time][]" value="" placeholder="Add Time"></td>
       <td>to</td>
-      <td><input type="text" onfocus="(this.type='time')" onblur="(this.type='text')" name="`+rowId+`[end_time][]" value="" placeholder="Add Time"></td>
+      <td><input class="timepicker" type="text" name="`+rowId+`[end_time][]" value="" placeholder="Add Time"></td>
       <td onclick="removeCalendarRow(event)">
         <a href="javaScript:;" class="btn add-btn icon">
           <i class="fa fa-trash"></i>
@@ -103,9 +103,16 @@ function enableCalenderRow(rowId) {
 }
 
 
-  /* initialize daterange picker */
-  $('input[name="daterange[]"]').daterangepicker({
-    opens: 'left'
-  }, function(start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+/* initialize daterange picker */
+$('input[name="daterange[]"]').daterangepicker({
+  opens: 'left'
+}, function(start, end, label) {
+  console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+});
+
+/* time picker */
+$('body').on('focus',".timepicker", function(){
+  $(this).timepicker({
+    timeFormat: 'HH:mm',
   });
+});

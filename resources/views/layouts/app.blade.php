@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/dist/css/custom.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style>
         a{text-decoration: none!important;}
@@ -225,7 +226,6 @@
     <script src="{{ URL('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
     <script src="{{ URL('assets/dist/js/adminlte.js')}}"></script>
     <script src="{{ URL('assets/dist/js/demo.js')}}"></script>
-    <script src="{{ URL('assets/dist/js/custom.js')}}"></script>
     <script src="{{ URL('assets/dist/js/pages/dashboard.js')}}"></script>
     <script src="{{ URL('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
     <script src="{{ URL('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
@@ -235,6 +235,8 @@
     <script src="{{ URL::asset('assets/plugins/ladda/spin.min.js')}}"></script>
     <script src="{{ URL::asset('assets/plugins/ladda/ladda.min.js')}}"></script>
     <script src="{{ URL('assets/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="{{ URL('assets/dist/js/custom.js')}}"></script>
 
     
     <script>

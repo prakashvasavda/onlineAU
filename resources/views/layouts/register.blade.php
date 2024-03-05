@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('front/css/responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('front/css/search.css') }}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 </head>
 <body>
 
@@ -42,6 +43,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD64PSVTdGQ34zRRpNa2lKkPS-A-mbTSA&libraries=places"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <script src="{{ asset('front/js/main.js') }}"></script>
     <script src="{{ URL('front/js/jquery-validation/jquery.validate.min.js')}}"></script>
     @yield('script')
