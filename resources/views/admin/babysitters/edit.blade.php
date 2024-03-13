@@ -23,7 +23,7 @@
                
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Babysitter</h1>
+                        <h1>Babysitter</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -38,9 +38,9 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-secondary">
+                    <div class="card card-secondary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">{{isset($menu) ? ucwords($menu) : ""}} Form</h3>
+                            <h3 class="card-title">Edit Babysitter</h3>
                         </div>
                         {{-- form --}}
                         <form method="POST" id="request_data" action="{{ route('admin.candidates.update-babysitters', ['id' => $candidate->id]) }}" enctype="multipart/form-data">

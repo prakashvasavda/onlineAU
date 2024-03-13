@@ -21,7 +21,7 @@
              @include ('admin.includes.error')
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-secondary">
+                    <div class="card card-secondary card-outline">
                         <div class="card-header">
                             <h3 class="card-title">Edit {{'Profile'}}</h3>
                         </div>

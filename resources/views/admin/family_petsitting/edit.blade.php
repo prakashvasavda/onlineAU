@@ -22,7 +22,7 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Petsitting</h1>
+                        <h1>Petsitting</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -37,9 +37,9 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-secondary">
+                    <div class="card card-secondary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">Petsittings Form</h3>
+                            <h3 class="card-title">Edit Petsitting</h3>
                         </div>
 
                         <form method="POST" id="request_data" action="{{ url('admin/family-petsitting', ['id' => $family->id]) }}" enctype="multipart/form-data">
