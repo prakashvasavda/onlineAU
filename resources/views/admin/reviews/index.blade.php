@@ -33,6 +33,7 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 20%">Candidate Name</th>
+                                        <th style="width: 20%">Reviewed By</th>
                                         <th style="width: 20%">Role</th>
                                         <th style="width: 50%">Review Note</th>
                                         <th style="width: 10%">Action</th>
@@ -57,8 +58,9 @@
             serverSide: true,
             ajax: "{{ url('admin/reviews') }}",
             columns: [
-                {data: 'name', name: 'name'},
-                {data: 'role', name: 'role'},
+                {data: 'front_user.name', name: 'name'},
+                {data: 'family_name', name: 'family_name'},
+                {data: 'front_user.role', name: 'role'},
                 {data: 'review_note', name: 'review_note'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
