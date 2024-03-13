@@ -1,24 +1,4 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <title>Terms and Conditions</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      text-align: justify;
-    }
-    h1 {
-      text-align: center;
-    }
-    p {
-      margin-top: 15px;
-    }
-  </style>
-</head>
-<body> -->
 @extends('layouts.main')
-
 @section('content')
 <div class="simple-content-main no-banner py-5">
   <div class="container">
@@ -67,5 +47,3 @@
 @section('script')
 @parent
 @endsection
-<!-- </body>
-</html> -->

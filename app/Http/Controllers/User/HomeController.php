@@ -102,11 +102,14 @@ class HomeController extends Controller{
     }
 
     public function terms_and_conditions($service){
-        if($service == "candidate"){
-            return view('user.candidate_terms_and_conditions');
-        }else{
-            return view('user.family_terms_and_conditions');
-        }
+        $terms_page = [
+            'candidate' => 'user.terms-and-conditions.candidate',
+            'family'    => 'user.terms-and-conditions.family',
+        ];
+
+        $service = strtolower($service);
+        $view    = isset($terms_page[$service]) ? $terms_page[$service] : 'user.home';
+        return view($view);
     }
 
     public function packages(){
