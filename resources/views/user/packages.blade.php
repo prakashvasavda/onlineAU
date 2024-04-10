@@ -24,7 +24,7 @@
                                 <a href="#" onclick="return false; document.getElementById('form_one').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
                                         <div class="name-box">Self Placement Package</div>
-                                        <div class="price-box display-6">R 1500</div>
+                                        <div class="price-box display-6">R 750</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You are your own agent.</li>
                                             <li><i class="fa-solid fa-circle"></i>Full access to all our available Candidates in your area for up to 2 months.</li>
@@ -83,7 +83,7 @@
                                 <a href="#" onclick="return false; document.getElementById('form_three').submit(); return false;" class="pricingBox-main">
                                     <div class="pricing-box">
                                         <div class="name-box">Self Placement Package</div>
-                                        <div class="price-box display-6">R 1500</div>
+                                        <div class="price-box display-6">R 750</div>
                                         <ul class="features">
                                             <li><i class="fa-solid fa-circle"></i>You are your own agent.</li>
                                             <li><i class="fa-solid fa-circle"></i>Full access to all our available Candidates in your area for up to 2 months.</li>
