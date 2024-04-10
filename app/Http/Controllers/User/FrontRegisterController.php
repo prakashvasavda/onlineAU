@@ -313,9 +313,9 @@ class FrontRegisterController extends Controller{
         $this->calendarController->store_calender($calender, $candidateId);
 
         /* send email to the admin */
-        Mail::to('info@onlineaupairs.co.za')->send(new CandidateRegistration($data));
+        //Mail::to('info@onlineaupairs.co.za')->send(new CandidateRegistration($data));
         /* send email to the family when a user mathiching with their loaction has registered*/
-        $this->notify_family($data);
+        //$this->notify_family($data);
         return redirect()->route('sign-up', ['service' => 'family']);
     }
 
